@@ -1,0 +1,16 @@
+{
+	"name": "mpetrovich/dash",
+	"description": "A functional utility library for PHP",
+	"keywords": ["php", "functional programming", "functional", "underscore", "lodash", "underbar", "bottomline", "ramda"],
+	"homepage": "https://github.com/mpetrovich/Dash",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Mike Petrovich",
+			"email": "michael.c.petrovich@gmail.com"
+		}
+	],
+	"require": {
+		"php": ">=5.3.0"
+	}
+}
