@@ -13,6 +13,8 @@ namespace Dash;
  *         ->map(function($n) { return $n * 2; })
  *         ->filter(function($n) { return $n > 2; })
  *         ->value();  // == array(4, 6)
+ *
+ * @method Container map($collection, $iteratee)
  */
 class Container
 {

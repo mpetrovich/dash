@@ -16,7 +16,10 @@
 	"autoload": {
 		"psr-4": {
 			"Dash\\": ["src/", "tests/"]
-		}
+		},
+		"files": [
+			"src/Collection/map.php"
+		]
 	},
 	"require-dev": {
 		"phpunit/phpunit": "^4.7"
