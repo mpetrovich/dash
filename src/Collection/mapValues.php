@@ -31,7 +31,7 @@ function mapValues($collection, $iteratee)
 {
 	$mapped = array();
 
-	foreach ((array) $collection as $key => $value) {
+	foreach ($collection as $key => $value) {
 		$mapped[$key] = call_user_func($iteratee, $value, $key, $collection);
 	}
 

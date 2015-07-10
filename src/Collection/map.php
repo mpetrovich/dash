@@ -33,7 +33,7 @@ function map($collection, $iteratee)
 	$mapped = array();
 	$index = 0;
 
-	foreach ((array) $collection as $key => $value) {
+	foreach ($collection as $key => $value) {
 		$mapped[$index] = call_user_func($iteratee, $value, $key, $collection);
 		$index++;
 	}
