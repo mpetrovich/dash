@@ -18,7 +18,8 @@
 			"Dash\\": ["src/", "tests/"]
 		},
 		"files": [
-			"src/Collection/map.php"
+			"src/Collection/map.php",
+			"src/Collection/mapValues.php"
 		]
 	},
 	"require-dev": {

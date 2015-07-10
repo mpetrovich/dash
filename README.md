@@ -74,7 +74,7 @@ When chaining, `value()` must *always* be called in order to retrieve the wrappp
 
 ### Collection
 - [x] `map(collection, iteratee)`
-- [ ] `mapValues(collection, iteratee)`
+- [x] `mapValues(collection, iteratee)`
 - [ ] `pluck(collection, path)`
 - [ ] `reduce(collection, iteratee, result)`
 - [ ] `each(collection, iteratee)`

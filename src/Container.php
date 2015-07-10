@@ -15,6 +15,7 @@ namespace Dash;
  *         ->value();  // == array(4, 6)
  *
  * @method Container map($collection, $iteratee)
+ * @method Container mapValues($collection, $iteratee)
  */
 class Container
 {
