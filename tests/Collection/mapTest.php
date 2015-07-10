@@ -73,6 +73,22 @@ class mapTest extends PHPUnit_Framework_TestCase
 					'c is third',
 				),
 			),
+			'With an empty ArrayObject' => array(
+				new ArrayObject(array()),
+				array()
+			),
+			'With a non-empty ArrayObject' => array(
+				new ArrayObject(array(
+					'a' => 'first',
+					'b' => 'second',
+					'c' => 'third',
+				)),
+				array(
+					'a is first',
+					'b is second',
+					'c is third',
+				),
+			),
 		);
 	}
 }
