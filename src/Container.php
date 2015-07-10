@@ -6,7 +6,7 @@ namespace Dash;
  * Wrapper that encapsulates a value and its chained operations.
  *
  * This class should not be instantiated directly; instead, use
- * Dash\Dash::with() which return a new Container instance whose methods are
+ * Dash\Dash::with() which returns a new Container instance whose methods are
  * used to chain operations like so:
  *
  *     Dash\Dash::with(array(1, 2, 3))
