@@ -16,7 +16,7 @@ class ContainerTest extends PHPUnit_Framework_TestCase
 	public function testConstructorWithDefaultValue()
 	{
 		$container = new Container();
-		$this->assertNull($container->value());
+		$this->assertEquals(array(), $container->value());
 	}
 
 	/**
@@ -25,8 +25,10 @@ class ContainerTest extends PHPUnit_Framework_TestCase
 	public function testWith($value)
 	{
 		$container = new Container();
-		$container->with($value);
+		$return = $container->with($value);
+
 		$this->assertEquals($value, $container->value());
+		$this->assertSame($container, $return);
 	}
 
 	public function getTestCases()

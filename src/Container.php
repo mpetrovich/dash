@@ -29,7 +29,7 @@ class Container
 	 *
 	 * @return void
 	 */
-	public function __construct($value = null)
+	public function __construct($value = array())
 	{
 		$this->with($value);
 	}
@@ -87,7 +87,7 @@ class Container
 		$container->with(array(4, 5));
 		$container->value();  // == array(4, 5)
 	 */
-	public function with($value = null)
+	public function with($value = array())
 	{
 		$this->value = $value;
 		return $this;
@@ -114,5 +114,5 @@ class Container
 	 *
 	 * @var mixed
 	 */
-	private $value = null;
+	private $value = array();
 }
