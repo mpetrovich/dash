@@ -8,7 +8,7 @@ class mapTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider casesForMap
 	 */
-	public function testMap($collection, $expected)
+	public function testStandaloneMap($collection, $expected)
 	{
 		$self = $this;
 		$iteratee = function($value, $key, $collection2) use ($self, $collection) {
@@ -16,11 +16,21 @@ class mapTest extends PHPUnit_Framework_TestCase
 			return $key . ' is ' . $value;
 		};
 
-		// As a standalone operation
 		$actual = Collection\map($collection, $iteratee);
 		$this->assertEquals($expected, $actual);
+	}
 
-		// As a chained operation
+	/**
+	 * @dataProvider casesForMap
+	 */
+	public function testChainedMap($collection, $expected)
+	{
+		$self = $this;
+		$iteratee = function($value, $key, $collection2) use ($self, $collection) {
+			$self->assertSame($collection, $collection2);
+			return $key . ' is ' . $value;
+		};
+
 		$container = new Container($collection);
 		$actual = $container->map($iteratee)->value();
 		$this->assertEquals($expected, $actual);
