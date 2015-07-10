@@ -18,6 +18,7 @@
 			"Dash\\": ["src/", "tests/"]
 		},
 		"files": [
+			"src/Collection/each.php",
 			"src/Collection/map.php",
 			"src/Collection/mapValues.php"
 		]
