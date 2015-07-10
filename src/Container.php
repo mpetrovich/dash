@@ -14,9 +14,9 @@ namespace Dash;
  *         ->filter(function($n) { return $n > 2; })
  *         ->value();  // == array(4, 6)
  *
+ * @method Container each($collection, $iteratee)
  * @method Container map($collection, $iteratee)
  * @method Container mapValues($collection, $iteratee)
- * @method Container each($collection, $iteratee)
  */
 class Container
 {
