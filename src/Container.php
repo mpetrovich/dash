@@ -17,6 +17,7 @@ namespace Dash;
  * @method Container each($collection, $iteratee)
  * @method Container map($collection, $iteratee)
  * @method Container mapValues($collection, $iteratee)
+ * @method Container pluck($collection, $path)
  */
 class Container
 {

@@ -22,6 +22,7 @@
 			"src/Collection/get.php",
 			"src/Collection/map.php",
 			"src/Collection/mapValues.php",
+			"src/Collection/pluck.php",
 			"src/Collection/property.php"
 		]
 	},

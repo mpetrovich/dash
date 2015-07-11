@@ -82,7 +82,7 @@ When chaining, `value()` must *always* be called in order to retrieve the wrappp
 - [ ] `max(collection, iteratee)`
 - [ ] `median(collection, iteratee)`
 - [ ] `min(collection, iteratee)`
-- [ ] `pluck(collection, path)`
+- [x] `pluck(collection, path)`
 - [ ] `reduce(collection, iteratee, result)`
 - [ ] `reject(collection, predicate)`
 - [ ] `sum(collection, iteratee)`
