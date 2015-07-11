@@ -84,6 +84,7 @@ When chaining, `value()` must *always* be called in order to retrieve the wrappp
 - [ ] `every(collection, predicate)`
 - [ ] `min(collection, iteratee)`
 - [ ] `max(collection, iteratee)`
+- [x] `property(path, [default=null])`
 - [ ] `sum(collection, iteratee)`
 - [ ] `average(collection, iteratee)`
 - [ ] `median(collection, iteratee)`
@@ -98,7 +99,6 @@ When chaining, `value()` must *always* be called in order to retrieve the wrappp
 - More coming soon…
 
 ### Objects
-- [ ] `property(path, [default=null])`
 - [ ] `get(object, path, [default=null])`
 - More coming soon…
 
