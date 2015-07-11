@@ -37,5 +37,5 @@ namespace Dash\Collection;
 function get($collection, $path, $default = null)
 {
 	$getter = property($path, $default);
-	return $getter($collection);
+	return call_user_func($getter, $collection);
 }
