@@ -8,9 +8,19 @@ class getTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider casesForGet
 	 */
-	public function testGet($collection, $path, $expected)
+	public function testStandaloneGet($collection, $path, $expected)
 	{
 		$actual = Collection\get($collection, $path, 'default');
+		$this->assertEquals($expected, $actual);
+	}
+
+	/**
+	 * @dataProvider casesForGet
+	 */
+	public function testChainedGet($collection, $path, $expected)
+	{
+		$container = new Container($collection);
+		$actual = $container->get($path, 'default')->value();
 		$this->assertEquals($expected, $actual);
 	}
 
