@@ -8,17 +8,16 @@ class propertyTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider casesForProperty
 	 */
-	public function testProperty($path, $object, $expected)
+	public function testProperty($collection, $path, $expected)
 	{
 		$getter = Collection\property($path, 'default');
-		$this->assertEquals($expected, $getter($object));
+		$this->assertEquals($expected, $getter($collection));
 	}
 
 	public function casesForProperty()
 	{
 		return array(
 			'With a valid path for an object' => array(
-				'a.b.c',
 				(object) array(
 					'a' => (object) array(
 						'b' => (object) array(
@@ -26,10 +25,10 @@ class propertyTest extends PHPUnit_Framework_TestCase
 						)
 					)
 				),
+				'a.b.c',
 				'value'
 			),
 			'With an invalid path for an object' => array(
-				'a.X.c',
 				(object) array(
 					'a' => (object) array(
 						'b' => (object) array(
@@ -37,10 +36,10 @@ class propertyTest extends PHPUnit_Framework_TestCase
 						)
 					)
 				),
+				'a.X.c',
 				'default'
 			),
 			'With a valid array index' => array(
-				'a.1.b',
 				(object) array(
 					'a' => array(
 						(object) array(
@@ -53,10 +52,10 @@ class propertyTest extends PHPUnit_Framework_TestCase
 						),
 					)
 				),
+				'a.1.b',
 				'value'
 			),
 			'With an invalid array index' => array(
-				'a.2.b',
 				(object) array(
 					'a' => array(
 						(object) array(
@@ -69,16 +68,17 @@ class propertyTest extends PHPUnit_Framework_TestCase
 						),
 					)
 				),
+				'a.2.b',
 				'default'
 			),
 			'With a matching direct array key' => array(
-				'a.b.c',
 				array('a.b.c' => 'value'),
+				'a.b.c',
 				'value'
 			),
 			'With a matching direct object property' => array(
-				'a.b.c',
 				(object) array('a.b.c' => 'value'),
+				'a.b.c',
 				'value'
 			),
 		);

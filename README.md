@@ -73,22 +73,23 @@ When chaining, `value()` must *always* be called in order to retrieve the wrappp
 ## API
 
 ### Collection
-- [x] `map(collection, iteratee)`
-- [x] `mapValues(collection, iteratee)`
+- [ ] `any(collection, predicate)`
+- [ ] `average(collection, iteratee)`
+- [ ] `deltas(collection, iteratee)`
+- [ ] `every(collection, predicate)`
+- [ ] `filter(collection, predicate)`
+- [ ] `get(object, path, [default=null])`
+- [ ] `max(collection, iteratee)`
+- [ ] `median(collection, iteratee)`
+- [ ] `min(collection, iteratee)`
 - [ ] `pluck(collection, path)`
 - [ ] `reduce(collection, iteratee, result)`
-- [x] `each(collection, iteratee)`
-- [ ] `filter(collection, predicate)`
 - [ ] `reject(collection, predicate)`
-- [ ] `any(collection, predicate)`
-- [ ] `every(collection, predicate)`
-- [ ] `min(collection, iteratee)`
-- [ ] `max(collection, iteratee)`
-- [x] `property(path, [default=null])`
 - [ ] `sum(collection, iteratee)`
-- [ ] `average(collection, iteratee)`
-- [ ] `median(collection, iteratee)`
-- [ ] `deltas(collection, iteratee)`
+- [x] `each(collection, iteratee)`
+- [x] `map(collection, iteratee)`
+- [x] `mapValues(collection, iteratee)`
+- [x] `property(path, [default=null])`
 - More coming soon…
 
 ### Array
@@ -99,7 +100,6 @@ When chaining, `value()` must *always* be called in order to retrieve the wrappp
 - More coming soon…
 
 ### Objects
-- [ ] `get(object, path, [default=null])`
 - More coming soon…
 
 ### String

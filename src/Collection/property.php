@@ -8,7 +8,8 @@ namespace Dash\Collection;
  * @param string $path Path of the property to retrieve
  * @param mixed $default Default value to return if nothing exists at $path
  *
- * @return mixed Value at $path
+ * @return function Function that accepts a collection and returns the value
+ *         at $path on the collection
  *
  * @example
 	$getter = Dash\Collection\property('a.b');
