@@ -82,13 +82,19 @@ When chaining, `value()` must *always* be called in order to retrieve the wrappp
 - [ ] `reject(collection, predicate)`
 - [ ] `any(collection, predicate)`
 - [ ] `every(collection, predicate)`
+- [ ] `min(collection, iteratee)`
+- [ ] `max(collection, iteratee)`
+- [ ] `sum(collection, iteratee)`
+- [ ] `average(collection, iteratee)`
+- [ ] `median(collection, iteratee)`
+- [ ] `deltas(collection, iteratee)`
 - More coming soon…
 
 ### Array
 - [ ] `first(array)`
 - [ ] `last(array)`
-- [ ] `take(array, count)`
-- [ ] `takeRight(array, count)`
+- [ ] `take(array, count, [fromStart=0])`
+- [ ] `takeRight(array, count, [fromEnd=0])`
 - More coming soon…
 
 ### Objects
