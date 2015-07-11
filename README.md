@@ -76,20 +76,20 @@ When chaining, `value()` must *always* be called in order to retrieve the wrappp
 - [ ] `any(collection, predicate)`
 - [ ] `average(collection, iteratee)`
 - [ ] `deltas(collection, iteratee)`
+- [x] `each(collection, iteratee)`
 - [ ] `every(collection, predicate)`
 - [ ] `filter(collection, predicate)`
 - [x] `get(object, path, [default=null])`
+- [x] `map(collection, iteratee)`
+- [x] `mapValues(collection, iteratee)`
 - [ ] `max(collection, iteratee)`
 - [ ] `median(collection, iteratee)`
 - [ ] `min(collection, iteratee)`
 - [x] `pluck(collection, path)`
+- [x] `property(path, [default=null])`
 - [ ] `reduce(collection, iteratee, result)`
 - [ ] `reject(collection, predicate)`
 - [ ] `sum(collection, iteratee)`
-- [x] `each(collection, iteratee)`
-- [x] `map(collection, iteratee)`
-- [x] `mapValues(collection, iteratee)`
-- [x] `property(path, [default=null])`
 - More coming soon…
 
 ### Array
