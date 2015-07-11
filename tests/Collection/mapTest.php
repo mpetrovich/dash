@@ -101,4 +101,43 @@ class mapTest extends PHPUnit_Framework_TestCase
 			),
 		);
 	}
+
+	/**
+	 * @dataProvider casesForMapWithPath
+	 */
+	public function testMapWithPath($collection, $path, $expected)
+	{
+		$actual = Collection\map($collection, $path);
+		$this->assertEquals($expected, $actual);
+	}
+
+	public function casesForMapWithPath()
+	{
+		return array(
+			'With a non-empty array' => array(
+				array(
+					array(
+						'a' => array(
+							'b' => 'first'
+						)
+					),
+					array(
+						'X' => 'missing'
+					),
+					array(
+						'a' => array(
+							'b' => 'third'
+						)
+					),
+					array(
+						'a' => array(
+							'b' => 'fourth'
+						)
+					)
+				),
+				'a.b',
+				array('first', null, 'third', 'fourth')
+			),
+		);
+	}
 }
