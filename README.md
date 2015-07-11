@@ -78,7 +78,7 @@ When chaining, `value()` must *always* be called in order to retrieve the wrappp
 - [ ] `deltas(collection, iteratee)`
 - [ ] `every(collection, predicate)`
 - [ ] `filter(collection, predicate)`
-- [ ] `get(object, path, [default=null])`
+- [x] `get(object, path, [default=null])`
 - [ ] `max(collection, iteratee)`
 - [ ] `median(collection, iteratee)`
 - [ ] `min(collection, iteratee)`
