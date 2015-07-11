@@ -1,7 +1,6 @@
 <?php
 
 use Dash\Collection;
-use Dash\Container;
 
 class propertyTest extends PHPUnit_Framework_TestCase
 {
