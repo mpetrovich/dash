@@ -5,7 +5,8 @@ namespace Dash\Collection;
 /**
  * Creates a function that returns the value at a path on a collection.
  *
- * @param string $path Path of the property to retrieve
+ * @param string $path Path of the property to retrieve; can be nested by
+ *        delimiting each sub-property or array index with a period
  * @param mixed $default Default value to return if nothing exists at $path
  *
  * @return function Function that accepts a collection and returns the value
