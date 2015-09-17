@@ -10,8 +10,8 @@ namespace Dash;
  * chaining results in clearer and shorter code.
  *
  * @example Without chaining
-	Dash\Collection\filter(
-		Dash\Collection\map(
+	Dash\Collections\filter(
+		Dash\Collections\map(
 			array(1, 2, 3),
 			function($n) { return $n * 2; }
 		),

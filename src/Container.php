@@ -13,13 +13,6 @@ namespace Dash;
  *         ->map(function($n) { return $n * 2; })
  *         ->filter(function($n) { return $n > 2; })
  *         ->value();  // == array(4, 6)
- *
- * @method Container each($collection, $iteratee)
- * @method Container get($collection, $path, $default)
- * @method Container map($collection, $iteratee)
- * @method Container mapValues($collection, $iteratee)
- * @method Container pluck($collection, $path)
- * @method Container property($path, $default)
  */
 class Container
 {
@@ -55,26 +48,41 @@ class Container
 	 */
 	public function __call($method, $arguments)
 	{
+		$this->operations[] = $this->getOperation($method, $arguments);
+		return $this;
+	}
+
+	private function getOperation($method, $arguments)
+	{
+		$callable = $this->getCallable($method);
+
+		if (!$callable) {
+			throw new \Exception(sprintf('No callable method found for "%s"', $method));
+		}
+
+		$operation = function($value) use ($callable, $arguments) {
+			array_unshift($arguments, $value);
+			return call_user_func_array($callable, $arguments);
+		};
+
+		return $operation;
+	}
+
+	private function getCallable($method)
+	{
 		$namespaces = array(
-			'Dash\Collection',
-			'Dash\Array',
-			'Dash\Object',
-			'Dash\String',
-			'Dash\Function',
+			'Dash\Collections',
+			'Dash\Functions',
 		);
 
-		// @todo Replace loop with Dash\Collection\find()
 		foreach ($namespaces as $namespace) {
-			$qualifiedMethod = $namespace . '\\' . $method;
-			if (function_exists($qualifiedMethod)) {
-				$arguments = array_merge(array($this->value), $arguments);
-				$result = call_user_func_array($qualifiedMethod, $arguments);
-				$this->with($result);
-				break;
+			$callable = $namespace . '\\' . $method;
+			if (is_callable($callable)) {
+				return $callable;
 			}
 		}
 
-		return $this;
+		return null;
 	}
 
 	/**
@@ -106,17 +114,31 @@ class Container
 		$container = new Container(array(1, 2, 3));
 		$container->value();  // == array(1, 2, 3)
 		$container->map(function($n) { return $n * 2; })
-		$container->value();  // == array(4, 6)
+		$container->value();  // == array(2, 4, 6)
 	 */
 	public function value()
 	{
+		if ($this->value !== null) {
+			$this->execute();
+		}
+
 		return $this->value;
 	}
+
+	private function execute()
+	{
+		foreach ($this->operations as $operation) {
+			$result = call_user_func($operation, $this->value);
+			$this->with($result);
+		}
+	}
+
+	private $operations = array();
 
 	/**
 	 * The current wrapped value.
 	 *
 	 * @var mixed
 	 */
-	private $value = array();
+	protected $value = array();
 }

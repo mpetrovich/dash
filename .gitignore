@@ -1,1 +1,5 @@
 vendor/
+test-coverage/
+
+# OS meta files
+.DS_Store

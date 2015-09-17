@@ -1,0 +1,47 @@
+<?php
+
+use Dash\Collections;
+use Dash\Container;
+
+class thruTest extends PHPUnit_Framework_TestCase
+{
+	/**
+	 * @dataProvider casesForThru
+	 */
+	public function testStandaloneThru($collection, $interceptor, $expected)
+	{
+		$actual = Collections\thru($collection, $interceptor);
+		$this->assertSame($expected, $actual);
+	}
+
+	/**
+	 * @dataProvider casesForThru
+	 */
+	public function testChainedThru($collection, $interceptor, $expected)
+	{
+		$container = new Container($collection);
+		$actual = $container->thru($interceptor)->value();
+		$this->assertSame($expected, $actual);
+	}
+
+	public function casesForThru()
+	{
+		return array(
+			'should return the modified collection when the interceptor returns a modifed collection' => array(
+				array('a' => 1, 'b' => 2),
+				function($collection) {
+					$collection['c'] = 3;
+					return $collection;
+				},
+				array('a' => 1, 'b' => 2, 'c' => 3)
+			),
+			'should return the new collection when the interceptor returns a new collection' => array(
+				array('a' => 1, 'b' => 2),
+				function() {
+					return array(2, 3, 5);
+				},
+				array(2, 3, 5)
+			),
+		);
+	}
+}
