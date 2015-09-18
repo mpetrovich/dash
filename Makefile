@@ -35,8 +35,8 @@ release:
 	make clean
 	make test
 	make docs
-	git commit -am "Release "$1
-	git tag -a v$1 -m v$1
+	git commit -am "Release "$(version)
+	git tag -a v$(version) -m v$(version)
 
 
 # Forces these commands to always run
