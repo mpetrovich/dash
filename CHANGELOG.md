@@ -4,14 +4,14 @@ Changelog
 - [0.1.0](#010)
 
 
-0.2.0 - Test & performance improvements
+0.2.0
 ---------------------------------------
 - Improve documentation
 - Improve unit test coverage
 - Improve performance by using native PHP `array_*` methods
 
 
-0.1.0 - Initial release
+0.1.0
 -----------------------
 - Standalone and chained usage
 - Deferred evaluation
