@@ -16,7 +16,7 @@ Features
 - Supports a variety of data types:
 	- native PHP arrays
 	- [`stdClass`](http://php.net/manual/en/reserved.classes.php) objects
-	- [`Traversable`](http://php.net/manual/en/class.traversable.php) objects (e.g. [`ArrayObject`](http://php.net/manual/en/class.arrayobject.php), [Propel ORM models](http://www.propelorm.org))
+	- [`Traversable`](http://php.net/manual/en/class.traversable.php) objects (e.g. [`ArrayObject`](http://php.net/manual/en/class.arrayobject.php), database ORM models)
 - [Standalone usage](#standalone-usage) and [chaining](#chaining)
 - [Deferred evaluation](#deferred-evaluation)
 - Comprehensive unit tests
