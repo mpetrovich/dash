@@ -44,10 +44,11 @@ function map($collection, $iteratee = 'Dash\Functions\identity')
 {
 	$iteratee = property($iteratee);
 	$array = toArray($collection);
+	$mapped = array();
 
-	$mapped = array_map(function($value, $key) use ($collection, $iteratee) {
-		return call_user_func($iteratee, $value, $key, $collection);
-	}, $array, array_keys($array));
+	array_walk($array, function($value, $key) use ($collection, $iteratee, &$mapped) {
+		$mapped[] = call_user_func($iteratee, $value, $key, $collection);
+	});
 
 	return $mapped;
 }
