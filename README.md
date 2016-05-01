@@ -13,15 +13,15 @@ A functional utility library for PHP.
 
 Features
 --------
+- Works with PHP 5.3+
 - Supports a variety of data types:
 	- native PHP arrays
 	- [`stdClass`](http://php.net/manual/en/reserved.classes.php) objects
-	- [`Traversable`](http://php.net/manual/en/class.traversable.php) objects (e.g. [`ArrayObject`](http://php.net/manual/en/class.arrayobject.php), database ORM models)
-- [Standalone usage](#standalone-usage) and [chaining](#chaining)
+	- [`Traversable`](http://php.net/manual/en/class.traversable.php) objects such as [`ArrayObject`](http://php.net/manual/en/class.arrayobject.php) and many database ORM models
+- [Chaining](#chaining)
 - [Deferred evaluation](#deferred-evaluation)
 - Comprehensive unit tests
 - Modular architecture
-- Works with PHP 5.3+
 
 
 Requirements
@@ -41,16 +41,17 @@ composer require mpetrovich/dash
 Usage
 -----
 All classes and functions are available within the `Dash` namespace or one of its child namespaces, which include:
-
 - `Dash\Collections`
 - `Dash\Functions`
 
 
-#### Standalone usage
+#### One-off operations
 Standalone operations can be called alone:
 
 ```php
-$double = Dash\Collections\map(
+use Dash\Dash;
+
+$double = Dash::map(
 	array(1, 2, 3),
 	function($n) { return $n * 2; }
 );
@@ -63,8 +64,10 @@ $double = Dash\Collections\map(
 Multiple operations can be chained in sequence using `with()`:
 
 ```php
-$doubleOdds = Dash\Dash::with(array(1, 2, 3))
-	->filter('Dash\Functions\isOdd')
+use Dash\Dash;
+
+$doubleOdds = Dash::with(array(1, 2, 3))
+	->filter('Dash\Dash::isOdd')
 	->map(function($n) { return $n * 2; })
 	->value();
 
@@ -75,8 +78,10 @@ $doubleOdds = Dash\Dash::with(array(1, 2, 3))
 #### Deferred evaluation
 Chained operations are not evaluated until `value()` is called, so the input data can be changed at any time before then. This makes it simple to create reusable chains:
 ```php
-$doubleOdds = Dash\Dash::with()
-	->filter('Dash\Functions\isOdd')
+use Dash\Dash;
+
+$doubleOdds = Dash::with()
+	->filter('Dash\Dash::isOdd')
 	->map(function($n) { return $n * 2; });
 
 $result = $doubleOdds->with(array(1, 2, 3))->value();
