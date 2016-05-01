@@ -4,6 +4,35 @@ use Dash\Dash;
 
 class DashTest extends PHPUnit_Framework_TestCase
 {
+	/**
+	 * @dataProvider casesForStandalone
+	 */
+	public function testStandalone($method, $args, $expected)
+	{
+		$actual = call_user_func_array('Dash\Dash::' . $method, $args);
+		$this->assertEquals($expected, $actual);
+	}
+
+	public function casesForStandalone()
+	{
+		return array(
+			array(
+				'map',
+				array(array(1, 2, 3), function ($n) { return $n * 2; }),
+				array(2, 4, 6),
+			)
+		);
+	}
+
+	/**
+	 * @expectedException Exception
+	 * @expectedExceptionMessage No callable method found for "foobar"
+	 */
+	public function testStandaloneInvalid()
+	{
+		Dash::foobar(array(1, 2, 3));
+	}
+
 	public function testWith()
 	{
 		$chain = Dash::with(array(1, 2, 3));
