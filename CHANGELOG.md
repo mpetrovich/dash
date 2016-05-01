@@ -1,18 +1,19 @@
 Changelog
 =========
-- [0.2.0](#020)
+- [0.2.0](#020-planned)
 - [0.1.0](#010)
 
 
-0.2.0
----------------------------------------
+0.2.0 (planned)
+---------------
 - Improve documentation
 - Improve unit test coverage
 - Improve performance by using native PHP `array_*` methods
 
 
 0.1.0
------------------------
+-----
+- Initial release
 - Standalone and chained usage
 - Deferred evaluation
 - Operations:
