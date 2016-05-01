@@ -1,6 +1,7 @@
 <?php
 
 use Dash\Container;
+use Dash\Collections;
 
 class ContainerTest extends PHPUnit_Framework_TestCase
 {
@@ -10,7 +11,13 @@ class ContainerTest extends PHPUnit_Framework_TestCase
 	public function testConstructor($value)
 	{
 		$container = new Container($value);
-		$this->assertEquals($value, $container->value());
+
+		if ($value instanceof Traversable || is_object($value)) {
+			$this->assertEquals(Collections\toArray($value), $container->value());
+		}
+		else {
+			$this->assertEquals($value, $container->value());
+		}
 	}
 
 	public function testConstructorWithDefaultValue()
@@ -27,7 +34,13 @@ class ContainerTest extends PHPUnit_Framework_TestCase
 		$container = new Container();
 		$return = $container->with($value);
 
-		$this->assertEquals($value, $container->value());
+		if ($value instanceof Traversable || is_object($value)) {
+			$this->assertEquals(Collections\toArray($value), $container->value());
+		}
+		else {
+			$this->assertEquals($value, $container->value());
+		}
+
 		$this->assertSame($container, $return);
 	}
 

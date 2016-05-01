@@ -26,8 +26,9 @@ class mapTest extends PHPUnit_Framework_TestCase
 	public function testChainedMap($collection, $expected)
 	{
 		$self = $this;
-		$iteratee = function($value, $key, $collection2) use ($self, $collection) {
-			$self->assertSame($collection, $collection2);
+		$array = Collections\toArray($collection);
+		$iteratee = function($value, $key, $collection) use ($self, $array) {
+			$self->assertSame($collection, $array);
 			return $key . ' is ' . $value;
 		};
 

@@ -28,8 +28,9 @@ class eachTest extends PHPUnit_Framework_TestCase
 	{
 		$self = $this;
 		$iterated = array();
-		$iteratee = function($value, $key, $collection2) use ($self, $collection, &$iterated) {
-			$self->assertSame($collection, $collection2);
+		$array = Collections\toArray($collection);
+		$iteratee = function($value, $key, $collection) use ($self, $array, &$iterated) {
+			$self->assertSame($collection, $array);
 			$iterated[] = $key . ' is ' . $value;
 		};
 
@@ -99,52 +100,6 @@ class eachTest extends PHPUnit_Framework_TestCase
 					'a is first',
 					'b is second',
 					'c is third',
-				),
-			),
-		);
-	}
-
-	/**
-	 * @dataProvider casesForEachWithEarlyExit
-	 */
-	public function testEachWithEarlyExit($collection, $expected)
-	{
-		$iterated = array();
-		$iteratee = function($value, $key, $collection2) use (&$iterated) {
-			$iterated[] = $key . ' is ' . $value;
-
-			if (count($iterated) == 2) {
-				return false;
-			}
-		};
-
-		Collections\each($collection, $iteratee);
-		$this->assertEquals($expected, $iterated);
-	}
-
-	public function casesForEachWithEarlyExit()
-	{
-		return array(
-			'With an array' => array(
-				array(
-					'a' => 'first',
-					'b' => 'second',
-					'c' => 'third',
-				),
-				array(
-					'a is first',
-					'b is second',
-				),
-			),
-			'With an object' => array(
-				(object) array(
-					'a' => 'first',
-					'b' => 'second',
-					'c' => 'third',
-				),
-				array(
-					'a is first',
-					'b is second',
 				),
 			),
 		);

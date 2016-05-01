@@ -42,14 +42,12 @@ namespace Dash\Collections;
  */
 function map($collection, $iteratee = 'Dash\Functions\identity')
 {
-	$mapped = array();
-	$index = 0;
 	$iteratee = property($iteratee);
+	$array = toArray($collection);
 
-	foreach ($collection as $key => $value) {
-		$mapped[$index] = call_user_func($iteratee, $value, $key, $collection);
-		$index++;
-	}
+	$mapped = array_map(function($value, $key) use ($collection, $iteratee) {
+		return call_user_func($iteratee, $value, $key, $collection);
+	}, $array, array_keys($array));
 
 	return $mapped;
 }

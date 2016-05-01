@@ -101,7 +101,19 @@ class Container
 	 */
 	public function with($value = array())
 	{
-		$this->value = $value;
+		if ($value instanceof Traversable) {
+			$this->value = iterator_to_array($value);
+		}
+		else if (is_object($value)) {
+			$this->value = array();
+			foreach ($value as $key => $val) {
+				$this->value[$key] = $val;
+			}
+		}
+		else {
+			$this->value = $value;
+		}
+
 		return $this;
 	}
 

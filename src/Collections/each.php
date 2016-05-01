@@ -24,13 +24,9 @@ namespace Dash\Collections;
  */
 function each($collection, $iteratee)
 {
-	foreach ($collection as $key => $value) {
-		$result = call_user_func($iteratee, $value, $key, $collection);
-
-		if ($result === false) {
-			break;
-		}
-	}
+	array_walk(toArray($collection), function($value, $key) use ($collection, $iteratee) {
+		return $iteratee($value, $key, $collection);
+	});
 
 	return $collection;
 }
