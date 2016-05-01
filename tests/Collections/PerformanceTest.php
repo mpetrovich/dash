@@ -5,7 +5,7 @@ use Dash\Collections;
 class PerformanceTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForTestMapPerformance
+	 * @dataProvider casesForMapPerformance
 	 */
 	public function testMapPerformance($count)
 	{
@@ -42,11 +42,12 @@ class PerformanceTest extends PHPUnit_Framework_TestCase
 		$end = microtime(true);
 		$elapsedLoop = ($end - $start) * 1000;
 
-		print_r(array($count => array(
-			'native' => sprintf('%0.3f ms', $elapsedNative),
-			'for   ' => sprintf('%0.3f (%0.2fx)', $elapsedLoop, $elapsedLoop / $elapsedNative),
-			'dash  ' => sprintf('%0.3f (%0.2fx)', $elapsedDash, $elapsedDash / $elapsedNative),
-		)));
+		// Timing debugging
+		// print_r(array($count => array(
+		// 	'native' => sprintf('%0.3f ms', $elapsedNative),
+		// 	'for   ' => sprintf('%0.3f (%0.2fx)', $elapsedLoop, $elapsedLoop / $elapsedNative),
+		// 	'dash  ' => sprintf('%0.3f (%0.2fx)', $elapsedDash, $elapsedDash / $elapsedNative),
+		// )));
 
 		ini_set('memory_limit', $memoryLimit);
 		$this->assertSame($mappedNative, $mappedDash, 'Native and Dash results should be identical');
@@ -56,7 +57,7 @@ class PerformanceTest extends PHPUnit_Framework_TestCase
 		$this->assertLessThanOrEqual($elapsedLoop, $elapsedNative, 'Native should be the same or faster than loop');
 	}
 
-	public function casesForTestMapPerformance()
+	public function casesForMapPerformance()
 	{
 		return array(
 			array(1e1),
