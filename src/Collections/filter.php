@@ -7,7 +7,7 @@ function filter($collection, $predicate)
 	$filtered = array();
 
 	foreach ($collection as $key => $value) {
-		if ($predicate($value, $key)) {
+		if (call_user_func($predicate, $value, $key)) {
 			$filtered[$key] = $value;
 		}
 	}

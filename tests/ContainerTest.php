@@ -93,7 +93,7 @@ class ContainerTest extends PHPUnit_Framework_TestCase
 	{
 		$doubleOdds = new Container();
 		$doubleOdds
-			->filter('Dash\Functions\isOdd')
+			->filter('Dash\Dash::isOdd')
 			->map(function($n) { return $n * 2; });
 
 		$this->assertEquals(
