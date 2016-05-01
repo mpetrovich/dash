@@ -148,4 +148,63 @@ class mapTest extends PHPUnit_Framework_TestCase
 		$expected = $collection;
 		$this->assertEquals($expected, $actual);
 	}
+
+	/**
+	 * @dataProvider casesForTestMapPerformance
+	 */
+	public function testMapPerformance($count) {
+		$memoryLimit = ini_get('memory_limit');
+		ini_set('memory_limit', '-1');
+
+		for ($i = 0; $i < $count; $i++) {
+			$collection[] = mt_rand(1, $count);
+		}
+
+		$start = microtime(true);
+		$mappedDash = Collections\map($collection, function($value, $key) {
+			return $value * $value;
+		});
+		$end = microtime(true);
+		$elapsedDash = ($end - $start) * 1000;
+
+		$start = microtime(true);
+		$mappedNative = array_map(function($value) {
+			return $value * $value;
+		}, $collection);
+		$end = microtime(true);
+		$elapsedNative = ($end - $start) * 1000;
+
+		$start = microtime(true);
+		$mappedFor = array();
+		$iteratee = function($value, $key) { return $value * $value; };
+		foreach($collection as $key => $value) {
+			$mappedFor[] = call_user_func($iteratee, $value, $key);
+		}
+		$end = microtime(true);
+		$elapsedFor = ($end - $start) * 1000;
+
+		print_r(array($count => array(
+			'native' => $elapsedNative,
+			'for   ' => $elapsedFor,
+			'dash  ' => $elapsedDash,
+		)));
+
+		ini_set('memory_limit', $memoryLimit);
+		$this->assertSame($mappedNative, $mappedDash, 'Native and Dash should be identical');
+		$this->assertSame($mappedFor, $mappedNative, 'For loop and native should be identical');
+		$this->assertLessThanOrEqual(10, $elapsedDash / $elapsedNative, 'Dash should be within an order of magnitude as fast as native');
+		$this->assertLessThanOrEqual(10, $elapsedDash / $elapsedFor, 'Dash should be within an order of magnitude as fast as for loop');
+		$this->assertLessThanOrEqual($elapsedFor, $elapsedNative, 'Native should be the same or faster than for loop');
+	}
+
+	public function casesForTestMapPerformance() {
+		return array(
+			array(1e1),
+			array(1e2),
+			array(1e3),
+			array(1e4),
+			array(1e5),
+			array(1e6),
+		);
+	}
 }
