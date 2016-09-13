@@ -1,17 +1,17 @@
 Changelog
 =========
-- [0.2.0](#020)
-- [0.1.0](#010)
+- [0.2.0](#020-future)
+- [0.1.0](#010-current)
 
 
-0.2.0 (Future)
+0.2.0 (future)
 ---------------------------------------
 - Improve documentation
 - Improve unit test coverage
 - Improve performance by using native PHP `array_*` methods
 
 
-0.1.0 (Current)
+0.1.0 (current)
 -----------------------
 - Standalone and chained usage
 - Deferred evaluation
