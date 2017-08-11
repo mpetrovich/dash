@@ -54,7 +54,6 @@ class PerformanceTest extends PHPUnit_Framework_TestCase
 		$this->assertSame($mappedLoop, $mappedNative, 'Loop and native results should be identical');
 		$this->assertLessThanOrEqual(10, $elapsedDash / $elapsedNative, 'Dash should be within an order of magnitude as fast as native');
 		$this->assertLessThanOrEqual(10, $elapsedDash / $elapsedLoop, 'Dash should be within an order of magnitude as fast as loop');
-		$this->assertLessThanOrEqual($elapsedLoop, $elapsedNative, 'Native should be the same or faster than loop');
 	}
 
 	public function casesForMapPerformance()
