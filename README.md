@@ -1,6 +1,6 @@
 Dash
 ====
-A functional utility library for PHP.
+A functional utility library for PHP. [![Build Status](https://travis-ci.org/mpetrovich/Dash.svg?branch=master)](https://travis-ci.org/mpetrovich/Dash)
 
 - [Features](#features)
 - [Requirements](#requirements)
