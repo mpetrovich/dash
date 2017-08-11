@@ -13,7 +13,7 @@ A functional utility library for PHP.
 
 Features
 --------
-- Works with PHP 5.3+
+- Works with PHP 5.4+
 - Supports a variety of data types:
 	- native PHP arrays
 	- [`stdClass`](http://php.net/manual/en/reserved.classes.php) objects
@@ -26,7 +26,7 @@ Features
 
 Requirements
 ------------
-- PHP 5.3+
+- PHP 5.4+
 - [Composer](https://getcomposer.org/)
 
 
