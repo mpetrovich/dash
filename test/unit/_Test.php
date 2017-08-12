@@ -79,6 +79,51 @@ class _Test extends PHPUnit_Framework_TestCase
 		$this->assertEquals(array(8, 10, 12), $chain->value());
 	}
 
+	public function testChainNormalization()
+	{
+		_::chain((object) [1, 2, 3])
+			->thru(function($array) {
+				return (object) $array;
+			})
+			->tap(function($array) {
+				$this->assertInternalType('array', $array);
+			})
+			->value();
+	}
+
+	public function testValueCaching()
+	{
+		$mapCallCount = 0;
+
+		$chain = _::chain((object) array(1, 2, 3));
+
+		$this->assertEquals(array(1, 2, 3), $chain->value());
+
+		$chain->map(function($n) use (&$mapCallCount) {
+			$mapCallCount++;
+			return $n * 2;
+		});
+
+		$this->assertEquals(array(2, 4, 6), $chain->value());
+		$this->assertEquals(3, $mapCallCount);
+		$this->assertEquals(array(2, 4, 6), $chain->value());
+		$this->assertEquals(3, $mapCallCount);
+
+		$chain->with((object) (object) array(4, 5, 6));
+
+		$this->assertEquals(array(8, 10, 12), $chain->value());
+		$this->assertEquals(6, $mapCallCount);
+		$this->assertEquals(array(8, 10, 12), $chain->value());
+		$this->assertEquals(6, $mapCallCount);
+
+		$chain->map(function($n) { return $n + 1;});
+
+		$this->assertEquals(array(9, 11, 13), $chain->value());
+		$this->assertEquals(9, $mapCallCount);
+		$this->assertEquals(array(9, 11, 13), $chain->value());
+		$this->assertEquals(9, $mapCallCount);
+	}
+
 	public function testChainingCloning()
 	{
 		$chain = _::chain()
@@ -184,8 +229,8 @@ class _Test extends PHPUnit_Framework_TestCase
 		$chain->foo();
 	}
 
-	public function testCustomFunctionStandalone() {
-
+	public function testCustomFunctionSetUnset()
+	{
 		/*
 			Tests setCustom()
 		 */
@@ -212,7 +257,33 @@ class _Test extends PHPUnit_Framework_TestCase
 		$this->assertFalse($isStillSet);
 	}
 
-	public function testCustomFunctionChained() {
+	public function testCustomFunctionWithArray()
+	{
+		_::setCustom('addEach', function($array, $add) {
+			return _::map($array, function($n) use ($add) { return $n + $add; });
+		});
+
+		$this->assertEquals(
+			[4, 5, 6],
+			_::chain([1, 2, 3])->addEach(3)->value()
+		);
+
+		_::unsetCustom('addEach');
+	}
+
+	public function testCustomFunctionWithScalarStandalone()
+	{
+		_::setCustom('triple', function($value) {
+			return $value * 3;
+		});
+
+		$this->assertEquals(12, _::triple(4));
+
+		_::unsetCustom('triple');
+	}
+
+	public function testCustomFunctionWithScalarChained()
+	{
 		_::setCustom('double', function($value) {
 			return $value * 2;
 		});

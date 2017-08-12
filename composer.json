@@ -63,6 +63,7 @@
 			"src/sum.php",
 			"src/take.php",
 			"src/takeRight.php",
+			"src/tap.php",
 			"src/thru.php",
 			"src/toArray.php",
 			"src/union.php",
