@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 use Dash\Container;
 
 class reverseTest extends PHPUnit_Framework_TestCase
@@ -10,7 +9,7 @@ class reverseTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneReverse($collection, $expected)
 	{
-		$actual = Collections\reverse($collection);
+		$actual = Dash\reverse($collection);
 		$this->assertEquals($expected, $actual);
 	}
 

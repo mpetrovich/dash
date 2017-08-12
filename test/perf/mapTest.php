@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 
 class PerformanceTest extends PHPUnit_Framework_TestCase
 {
@@ -18,7 +17,7 @@ class PerformanceTest extends PHPUnit_Framework_TestCase
 
 		// Dash
 		$start = microtime(true);
-		$mappedDash = Collections\map($collection, function($value, $key) {
+		$mappedDash = Dash\map($collection, function($value, $key) {
 			return $value * $value;
 		});
 		$end = microtime(true);

@@ -1,7 +1,6 @@
 <?php
 
 use Dash\Container;
-use Dash\Functions;
 
 class partialTest extends PHPUnit_Framework_TestCase
 {
@@ -10,7 +9,7 @@ class partialTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandalonePartial($partialArgs, $invokeArgs, $expected)
 	{
-		$partial = call_user_func_array('Dash\Functions\partial', $partialArgs);
+		$partial = call_user_func_array('Dash\partial', $partialArgs);
 		$actual = call_user_func_array($partial, $invokeArgs);
 		$this->assertSame($expected, $actual);
 	}

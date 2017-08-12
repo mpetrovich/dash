@@ -1,7 +1,6 @@
 <?php
 
 use Dash\Container;
-use Dash\Functions;
 
 class partialRightTest extends PHPUnit_Framework_TestCase
 {
@@ -10,7 +9,7 @@ class partialRightTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandalonePartialRight($partialRightArgs, $invokeArgs, $expected)
 	{
-		$partialRight = call_user_func_array('Dash\Functions\partialRight', $partialRightArgs);
+		$partialRight = call_user_func_array('Dash\partialRight', $partialRightArgs);
 		$actual = call_user_func_array($partialRight, $invokeArgs);
 		$this->assertSame($expected, $actual);
 	}

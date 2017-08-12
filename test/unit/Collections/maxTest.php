@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 use Dash\Container;
 
 class maxTest extends PHPUnit_Framework_TestCase
@@ -10,7 +9,7 @@ class maxTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneMax($collection, $expected)
 	{
-		$actual = Collections\max($collection);
+		$actual = Dash\max($collection);
 		$this->assertEquals($expected, $actual);
 	}
 

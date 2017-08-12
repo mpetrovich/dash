@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 use Dash\Container;
 
 class findTest extends PHPUnit_Framework_TestCase
@@ -10,7 +9,7 @@ class findTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneFind($collection, $predicate, $expected)
 	{
-		$actual = Collections\find($collection, $predicate);
+		$actual = Dash\find($collection, $predicate);
 		$this->assertEquals($expected, $actual);
 	}
 

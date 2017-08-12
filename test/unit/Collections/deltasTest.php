@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 use Dash\Container;
 
 class deltasTest extends PHPUnit_Framework_TestCase
@@ -10,7 +9,7 @@ class deltasTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneDeltas($collection, $expected)
 	{
-		$actual = Collections\deltas($collection);
+		$actual = Dash\deltas($collection);
 		$this->assertEquals($expected, $actual);
 	}
 

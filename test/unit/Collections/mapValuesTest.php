@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 use Dash\Container;
 
 class mapValuesTest extends PHPUnit_Framework_TestCase
@@ -16,7 +15,7 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 			return $key . ' is ' . $value;
 		};
 
-		$actual = Collections\mapValues($collection, $iteratee);
+		$actual = Dash\mapValues($collection, $iteratee);
 		$this->assertEquals($expected, $actual);
 	}
 
@@ -26,7 +25,7 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 	public function testChainedMapValues($collection, $expected)
 	{
 		$self = $this;
-		$array = Collections\toArray($collection);
+		$array = Dash\toArray($collection);
 		$iteratee = function($value, $key, $collection) use ($self, $array) {
 			$self->assertSame($collection, $array);
 			return $key . ' is ' . $value;
@@ -108,7 +107,7 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testMapValuesWithPath($collection, $path, $expected)
 	{
-		$actual = Collections\mapValues($collection, $path);
+		$actual = Dash\mapValues($collection, $path);
 		$this->assertEquals($expected, $actual);
 	}
 
@@ -150,7 +149,7 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 	public function testMapValuesWithoutIteratee()
 	{
 		$collection = array(0 => 'a', 1 => 'b', 2 => 'c');
-		$actual = Collections\mapValues($collection);
+		$actual = Dash\mapValues($collection);
 		$expected = $collection;
 		$this->assertEquals($expected, $actual);
 	}

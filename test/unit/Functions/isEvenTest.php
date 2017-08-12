@@ -1,7 +1,6 @@
 <?php
 
 use Dash\Container;
-use Dash\Functions;
 
 class isEvenTest extends PHPUnit_Framework_TestCase
 {
@@ -10,7 +9,7 @@ class isEvenTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneIsEven($value, $expected)
 	{
-		$actual = Functions\isEven($value);
+		$actual = Dash\isEven($value);
 		$this->assertSame($expected, $actual);
 	}
 

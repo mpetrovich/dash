@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 use Dash\Container;
 
 class eachTest extends PHPUnit_Framework_TestCase
@@ -17,7 +16,7 @@ class eachTest extends PHPUnit_Framework_TestCase
 			$iterated[] = $key . ' is ' . $value;
 		};
 
-		Collections\each($collection, $iteratee);
+		Dash\each($collection, $iteratee);
 		$this->assertEquals($expected, $iterated);
 	}
 
@@ -28,7 +27,7 @@ class eachTest extends PHPUnit_Framework_TestCase
 	{
 		$self = $this;
 		$iterated = array();
-		$array = Collections\toArray($collection);
+		$array = Dash\toArray($collection);
 		$iteratee = function($value, $key, $collection) use ($self, $array, &$iterated) {
 			$self->assertSame($collection, $array);
 			$iterated[] = $key . ' is ' . $value;

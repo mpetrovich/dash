@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 use Dash\Container;
 
 class intersectionTest extends PHPUnit_Framework_TestCase
@@ -11,7 +10,7 @@ class intersectionTest extends PHPUnit_Framework_TestCase
 	public function testStandaloneIntersection($collections, $expected)
 	{
 		list($collection1, $collection2, $collection3) = $collections;
-		$actual = Collections\intersection($collection1, $collection2, $collection3);
+		$actual = Dash\intersection($collection1, $collection2, $collection3);
 		$this->assertEquals($expected, $actual);
 	}
 
@@ -72,7 +71,7 @@ class intersectionTest extends PHPUnit_Framework_TestCase
 			array(1, 3, 5),
 		);
 		$expected = array(1);
-		$actual = Collections\intersection($collections);
+		$actual = Dash\intersection($collections);
 
 		$this->assertEquals($expected, $actual);
 	}

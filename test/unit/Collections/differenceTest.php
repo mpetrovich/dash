@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 use Dash\Container;
 
 class differenceTest extends PHPUnit_Framework_TestCase
@@ -11,7 +10,7 @@ class differenceTest extends PHPUnit_Framework_TestCase
 	public function testStandaloneDifference($collections, $expected)
 	{
 		list($collection1, $collection2, $collection3) = $collections;
-		$actual = Collections\difference($collection1, $collection2, $collection3);
+		$actual = Dash\difference($collection1, $collection2, $collection3);
 		$this->assertEquals($expected, $actual);
 	}
 

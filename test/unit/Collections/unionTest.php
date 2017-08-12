@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 use Dash\Container;
 
 class unionTest extends PHPUnit_Framework_TestCase
@@ -11,7 +10,7 @@ class unionTest extends PHPUnit_Framework_TestCase
 	public function testStandaloneUnion($collections, $expected)
 	{
 		list($collection1, $collection2, $collection3) = $collections;
-		$actual = Collections\union($collection1, $collection2, $collection3);
+		$actual = Dash\union($collection1, $collection2, $collection3);
 		$this->assertEquals($expected, $actual);
 	}
 
@@ -72,7 +71,7 @@ class unionTest extends PHPUnit_Framework_TestCase
 			array(1, 3, 5),
 		);
 		$expected = array(4, 1, 2, 3, 5);
-		$actual = Collections\union($collections);
+		$actual = Dash\union($collections);
 
 		$this->assertEquals($expected, $actual);
 	}

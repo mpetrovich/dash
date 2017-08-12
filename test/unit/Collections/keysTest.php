@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 use Dash\Container;
 
 class keysTest extends PHPUnit_Framework_TestCase
@@ -10,7 +9,7 @@ class keysTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneKeys($collection, $expected)
 	{
-		$actual = Collections\keys($collection);
+		$actual = Dash\keys($collection);
 		$this->assertEquals($expected, $actual);
 	}
 

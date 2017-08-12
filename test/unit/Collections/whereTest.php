@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 use Dash\Container;
 
 class whereTest extends PHPUnit_Framework_TestCase
@@ -10,7 +9,7 @@ class whereTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneWhere($collection, $properties, $expected)
 	{
-		$actual = Collections\where($collection, $properties);
+		$actual = Dash\where($collection, $properties);
 		$this->assertEquals($expected, $actual);
 	}
 

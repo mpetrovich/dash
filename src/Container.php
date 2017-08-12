@@ -57,7 +57,7 @@ class Container
 		$callable = $this->getCallable($method);
 
 		if (!$callable) {
-			throw new \Exception(sprintf('No callable method found for "%s"', $method));
+			throw new \Exception("No callable method found for \"{$method}\"");
 		}
 
 		$operation = function($value) use ($callable, $arguments) {
@@ -70,19 +70,8 @@ class Container
 
 	private function getCallable($method)
 	{
-		$namespaces = array(
-			'Dash\Collections',
-			'Dash\Functions',
-		);
-
-		foreach ($namespaces as $namespace) {
-			$callable = $namespace . '\\' . $method;
-			if (is_callable($callable)) {
-				return $callable;
-			}
-		}
-
-		return null;
+		$callable = "\\Dash\\{$method}";
+		return is_callable($callable) ? $callable : null;
 	}
 
 	/**

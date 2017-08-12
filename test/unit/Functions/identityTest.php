@@ -1,7 +1,6 @@
 <?php
 
 use Dash\Container;
-use Dash\Functions;
 
 class identityTest extends PHPUnit_Framework_TestCase
 {
@@ -10,7 +9,7 @@ class identityTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneIdentity($value, $expected)
 	{
-		$actual = Functions\identity($value);
+		$actual = Dash\identity($value);
 		$this->assertSame($expected, $actual);
 	}
 

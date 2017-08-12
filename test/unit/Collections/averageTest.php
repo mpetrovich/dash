@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 use Dash\Container;
 
 class averageTest extends PHPUnit_Framework_TestCase
@@ -10,7 +9,7 @@ class averageTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneAverage($collection, $expected)
 	{
-		$actual = Collections\average($collection);
+		$actual = Dash\average($collection);
 		$this->assertEquals($expected, $actual);
 	}
 

@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 use Dash\Container;
 
 class medianTest extends PHPUnit_Framework_TestCase
@@ -10,7 +9,7 @@ class medianTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneMedian($collection, $expected)
 	{
-		$actual = Collections\median($collection);
+		$actual = Dash\median($collection);
 		$this->assertEquals($expected, $actual);
 	}
 

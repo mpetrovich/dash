@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 
 class propertyTest extends PHPUnit_Framework_TestCase
 {
@@ -9,7 +8,7 @@ class propertyTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testProperty($collection, $path, $expected)
 	{
-		$getter = Collections\property($path, 'default');
+		$getter = Dash\property($path, 'default');
 		$this->assertEquals($expected, $getter($collection));
 	}
 

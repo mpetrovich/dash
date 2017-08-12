@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 use Dash\Container;
 
 class sumTest extends PHPUnit_Framework_TestCase
@@ -10,7 +9,7 @@ class sumTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneSum($collection, $expected)
 	{
-		$actual = Collections\sum($collection);
+		$actual = Dash\sum($collection);
 		$this->assertEquals($expected, $actual);
 	}
 

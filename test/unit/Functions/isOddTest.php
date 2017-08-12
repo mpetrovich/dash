@@ -1,7 +1,6 @@
 <?php
 
 use Dash\Container;
-use Dash\Functions;
 
 class isOddTest extends PHPUnit_Framework_TestCase
 {
@@ -10,7 +9,7 @@ class isOddTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneIsOdd($value, $expected)
 	{
-		$actual = Functions\isOdd($value);
+		$actual = Dash\isOdd($value);
 		$this->assertSame($expected, $actual);
 	}
 

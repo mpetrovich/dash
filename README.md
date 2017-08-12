@@ -40,9 +40,7 @@ composer require mpetrovich/dash
 
 Usage
 -----
-All classes and functions are available within the `Dash` namespace or one of its child namespaces, which include:
-- `Dash\Collections`
-- `Dash\Functions`
+All classes and functions are available within the `Dash` namespace.
 
 
 #### One-off operations
@@ -95,57 +93,57 @@ $result = $doubleOdds->with(array(7, 9, 11, 13))->value();
 #### Included operations
 For collections (arrays, `stdClass` and `Traversable` objects):
 
-- `Collections\any()`
-- `Collections\at()`
-- `Collections\average()`
-- `Collections\contains()`
-- `Collections\deltas()`
-- `Collections\difference()`
-- `Collections\each()`
-- `Collections\every()`
-- `Collections\filter()`
-- `Collections\find()`
-- `Collections\findKey()`
-- `Collections\findLast()`
-- `Collections\findValue()`
-- `Collections\first()`
-- `Collections\get()`
-- `Collections\intersection()`
-- `Collections\isEmpty()`
-- `Collections\keys()`
-- `Collections\last()`
-- `Collections\map()`
-- `Collections\mapValues()`
-- `Collections\matches()`
-- `Collections\matchesProperty()`
-- `Collections\max()`
-- `Collections\median()`
-- `Collections\min()`
-- `Collections\pluck()`
-- `Collections\property()`
-- `Collections\reduce()`
-- `Collections\reject()`
-- `Collections\reverse()`
-- `Collections\size()`
-- `Collections\sort()`
-- `Collections\sum()`
-- `Collections\take()`
-- `Collections\takeRight()`
-- `Collections\thru()`
-- `Collections\toArray()`
-- `Collections\union()`
-- `Collections\values()`
-- `Collections\where()`
-- `Collections\without()`
+- `any()`
+- `at()`
+- `average()`
+- `contains()`
+- `deltas()`
+- `difference()`
+- `each()`
+- `every()`
+- `filter()`
+- `find()`
+- `findKey()`
+- `findLast()`
+- `findValue()`
+- `first()`
+- `get()`
+- `intersection()`
+- `isEmpty()`
+- `keys()`
+- `last()`
+- `map()`
+- `mapValues()`
+- `matches()`
+- `matchesProperty()`
+- `max()`
+- `median()`
+- `min()`
+- `pluck()`
+- `property()`
+- `reduce()`
+- `reject()`
+- `reverse()`
+- `size()`
+- `sort()`
+- `sum()`
+- `take()`
+- `takeRight()`
+- `thru()`
+- `toArray()`
+- `union()`
+- `values()`
+- `where()`
+- `without()`
 
 For functions & scalar values:
 
-- `Functions\compare()`
-- `Functions\equal()`
-- `Functions\identical()`
-- `Functions\identity()`
-- `Functions\isEven()`
-- `Functions\isOdd()`
-- `Functions\negate()`
-- `Functions\partial()`
-- `Functions\partialRight()`
+- `compare()`
+- `equal()`
+- `identical()`
+- `identity()`
+- `isEven()`
+- `isOdd()`
+- `negate()`
+- `partial()`
+- `partialRight()`

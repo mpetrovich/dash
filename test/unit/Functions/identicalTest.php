@@ -1,7 +1,6 @@
 <?php
 
 use Dash\Container;
-use Dash\Functions;
 
 class identicalTest extends PHPUnit_Framework_TestCase
 {
@@ -10,7 +9,7 @@ class identicalTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneIdentical($a, $b, $expected)
 	{
-		$actual = Functions\identical($a, $b);
+		$actual = Dash\identical($a, $b);
 		$this->assertSame($expected, $actual);
 	}
 

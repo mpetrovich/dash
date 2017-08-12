@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 use Dash\Container;
 
 // @todo Test that original collection is not modified
@@ -12,7 +11,7 @@ class sortTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneSort($collection, $expected)
 	{
-		$actual = Collections\sort($collection);
+		$actual = Dash\sort($collection);
 		$this->assertEquals($expected, $actual);
 	}
 

@@ -1,7 +1,6 @@
 <?php
 
 use Dash\Container;
-use Dash\Functions;
 
 class compareTest extends PHPUnit_Framework_TestCase
 {
@@ -10,7 +9,7 @@ class compareTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneCompare($a, $b, $expected)
 	{
-		$actual = Functions\compare($a, $b);
+		$actual = Dash\compare($a, $b);
 		$this->assertSame($expected, $actual);
 	}
 

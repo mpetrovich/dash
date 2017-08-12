@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 use Dash\Container;
 
 class minTest extends PHPUnit_Framework_TestCase
@@ -10,7 +9,7 @@ class minTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneMin($collection, $expected)
 	{
-		$actual = Collections\min($collection);
+		$actual = Dash\min($collection);
 		$this->assertEquals($expected, $actual);
 	}
 

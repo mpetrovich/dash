@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 use Dash\Container;
 
 class thruTest extends PHPUnit_Framework_TestCase
@@ -10,7 +9,7 @@ class thruTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneThru($collection, $interceptor, $expected)
 	{
-		$actual = Collections\thru($collection, $interceptor);
+		$actual = Dash\thru($collection, $interceptor);
 		$this->assertSame($expected, $actual);
 	}
 

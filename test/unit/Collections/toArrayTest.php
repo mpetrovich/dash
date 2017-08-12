@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 use Dash\Container;
 
 class toArrayTest extends PHPUnit_Framework_TestCase
@@ -10,7 +9,7 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneToArray($collection, $expected)
 	{
-		$actual = Collections\toArray($collection);
+		$actual = Dash\toArray($collection);
 		$this->assertEquals($expected, $actual);
 	}
 

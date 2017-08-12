@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 use Dash\Container;
 
 class anyTest extends PHPUnit_Framework_TestCase
@@ -10,7 +9,7 @@ class anyTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneAny($collection, $predicate, $expected)
 	{
-		$actual = Collections\any($collection, $predicate);
+		$actual = Dash\any($collection, $predicate);
 		$this->assertEquals($expected, $actual);
 	}
 

@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 use Dash\Container;
 
 class firstTest extends PHPUnit_Framework_TestCase
@@ -10,7 +9,7 @@ class firstTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneFirst($collection, $expected)
 	{
-		$actual = Collections\first($collection);
+		$actual = Dash\first($collection);
 		$this->assertEquals($expected, $actual);
 	}
 

@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 use Dash\Container;
 
 class findLastTest extends PHPUnit_Framework_TestCase
@@ -10,7 +9,7 @@ class findLastTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneFindLast($collection, $predicate, $expected)
 	{
-		$actual = Collections\findLast($collection, $predicate);
+		$actual = Dash\findLast($collection, $predicate);
 		$this->assertEquals($expected, $actual);
 	}
 

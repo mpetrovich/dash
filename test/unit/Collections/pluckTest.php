@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 use Dash\Container;
 
 class pluckTest extends PHPUnit_Framework_TestCase
@@ -10,7 +9,7 @@ class pluckTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandalonePluck($collection, $path, $expected)
 	{
-		$actual = Collections\pluck($collection, $path);
+		$actual = Dash\pluck($collection, $path);
 		$this->assertEquals($expected, $actual);
 	}
 

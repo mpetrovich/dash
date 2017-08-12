@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 use Dash\Container;
 
 class takeRightTest extends PHPUnit_Framework_TestCase
@@ -10,7 +9,7 @@ class takeRightTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneTakeRight($collection, $count, $fromEnd, $expected)
 	{
-		$actual = Collections\takeRight($collection, $count, $fromEnd);
+		$actual = Dash\takeRight($collection, $count, $fromEnd);
 		$this->assertEquals($expected, $actual);
 	}
 

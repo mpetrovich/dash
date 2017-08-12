@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 use Dash\Container;
 
 class sizeTest extends PHPUnit_Framework_TestCase
@@ -10,7 +9,7 @@ class sizeTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneSize($collection, $expected)
 	{
-		$actual = Collections\size($collection);
+		$actual = Dash\size($collection);
 		$this->assertEquals($expected, $actual);
 	}
 

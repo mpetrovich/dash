@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 
 class matchesPropertyTest extends PHPUnit_Framework_TestCase
 {
@@ -9,7 +8,7 @@ class matchesPropertyTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testMatchesProperty($path, $value, $collection, $expected)
 	{
-		$matches = Collections\matchesProperty($path, $value);
+		$matches = Dash\matchesProperty($path, $value);
 		$actual = $matches($collection);
 		$this->assertEquals($expected, $actual);
 	}

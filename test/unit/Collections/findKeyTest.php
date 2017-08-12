@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 use Dash\Container;
 
 class findKeyTest extends PHPUnit_Framework_TestCase
@@ -10,7 +9,7 @@ class findKeyTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneFindKey($collection, $predicate, $expected)
 	{
-		$actual = Collections\findKey($collection, $predicate);
+		$actual = Dash\findKey($collection, $predicate);
 		$this->assertEquals($expected, $actual);
 	}
 

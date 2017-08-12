@@ -10,8 +10,8 @@ namespace Dash;
  * chaining results in clearer and shorter code.
  *
  * @example Without chaining
-	Dash\Collections\filter(
-		Dash\Collections\map(
+	Dash\filter(
+		Dash\map(
 			array(1, 2, 3),
 			function($n) { return $n * 2; }
 		),
@@ -57,15 +57,12 @@ abstract class _
 	 */
 	public static function __callStatic($method, $args)
 	{
-		$namespaces = array(
-			'Dash\\Collections\\',
-			'Dash\\Functions\\',
-		);
-		foreach ($namespaces as $namespace) {
-			if (function_exists($namespace . $method)) {
-				return call_user_func_array($namespace . $method, $args);
-			}
+		$callable = "\\Dash\\{$method}";
+
+		if (!function_exists($callable)) {
+			throw new \Exception("No callable method found for \"{$method}\"");
 		}
-		throw new \Exception(sprintf('No callable method found for "%s"', $method));
+
+		return call_user_func_array($callable, $args);
 	}
 }

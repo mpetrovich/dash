@@ -1,6 +1,5 @@
 <?php
 
-use Dash\Collections;
 use Dash\Container;
 
 class withoutTest extends PHPUnit_Framework_TestCase
@@ -10,7 +9,7 @@ class withoutTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneWithout($collection, $without, $expected)
 	{
-		$actual = Collections\without($collection, $without);
+		$actual = Dash\without($collection, $without);
 		$this->assertEquals($expected, $actual);
 	}
 
