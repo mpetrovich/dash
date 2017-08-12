@@ -19,17 +19,6 @@ test-clean:
 	@rm -rf test-coverage/
 
 # -----------------------------------------------------------------------------
-# Documentation
-# -----------------------------------------------------------------------------
-
-docs:
-	@vendor/bin/phpdoc -d src/ -t docs/
-	@echo "Docs visible at:" $(shell pwd)/docs/index.html
-
-docs-clean:
-	@rm -rf docs/
-
-# -----------------------------------------------------------------------------
 # Release
 # -----------------------------------------------------------------------------
 
@@ -37,11 +26,14 @@ clean:
 	make test-clean
 	make docs-clean
 
+# Tags a new release.
+#
+# Example:
+# 	make release version=1.2.3
+#
 release:
 	make clean
 	make test
-	make docs
-	git commit -am "Release "$(version)
 	git tag -a v$(version) -m v$(version)
 
 
