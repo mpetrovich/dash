@@ -18,8 +18,7 @@ class sizeTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedSize($collection, $expected)
 	{
-		$_ = new _($collection);
-		$actual = $_->size()->value();
+		$actual = _::chain($collection)->size()->value();
 		$this->assertEquals($expected, $actual);
 	}
 

@@ -18,8 +18,7 @@ class firstTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedFirst($collection, $expected)
 	{
-		$_ = new _($collection);
-		$actual = $_->first()->value();
+		$actual = _::chain($collection)->first()->value();
 		$this->assertEquals($expected, $actual);
 	}
 

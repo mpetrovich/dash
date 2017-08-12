@@ -18,8 +18,7 @@ class keysTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedKeys($collection, $expected)
 	{
-		$_ = new _($collection);
-		$actual = $_->keys()->value();
+		$actual = _::chain($collection)->keys()->value();
 		$this->assertEquals($expected, $actual);
 	}
 

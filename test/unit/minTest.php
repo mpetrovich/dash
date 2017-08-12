@@ -18,8 +18,7 @@ class minTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedMin($collection, $expected)
 	{
-		$_ = new _($collection);
-		$actual = $_->min()->value();
+		$actual = _::chain($collection)->min()->value();
 		$this->assertEquals($expected, $actual);
 	}
 

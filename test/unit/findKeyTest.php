@@ -18,8 +18,7 @@ class findKeyTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedFindKey($collection, $predicate, $expected)
 	{
-		$_ = new _($collection);
-		$actual = $_->findKey($predicate)->value();
+		$actual = _::chain($collection)->findKey($predicate)->value();
 		$this->assertEquals($expected, $actual);
 	}
 

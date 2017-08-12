@@ -18,8 +18,7 @@ class averageTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedAverage($collection, $expected)
 	{
-		$_ = new _($collection);
-		$actual = $_->average()->value();
+		$actual = _::chain($collection)->average()->value();
 		$this->assertEquals($expected, $actual);
 	}
 

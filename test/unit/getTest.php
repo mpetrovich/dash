@@ -18,8 +18,7 @@ class getTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedGet($collection, $path, $expected)
 	{
-		$_ = new _($collection);
-		$actual = $_->get($path, 'default')->value();
+		$actual = _::chain($collection)->get($path, 'default')->value();
 		$this->assertEquals($expected, $actual);
 	}
 

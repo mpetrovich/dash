@@ -18,8 +18,7 @@ class lastTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedLast($collection, $expected)
 	{
-		$_ = new _($collection);
-		$actual = $_->last()->value();
+		$actual = _::chain($collection)->last()->value();
 		$this->assertEquals($expected, $actual);
 	}
 

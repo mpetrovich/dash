@@ -18,8 +18,7 @@ class atTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedAt($collection, $index, $expected)
 	{
-		$_ = new _($collection);
-		$actual = $_->at($index)->value();
+		$actual = _::chain($collection)->at($index)->value();
 		$this->assertEquals($expected, $actual);
 	}
 

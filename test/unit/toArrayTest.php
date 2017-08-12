@@ -18,8 +18,7 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedToArray($collection, $expected)
 	{
-		$_ = new _($collection);
-		$actual = $_->toArray()->value();
+		$actual = _::chain($collection)->toArray()->value();
 		$this->assertEquals($expected, $actual);
 	}
 

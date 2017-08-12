@@ -18,8 +18,7 @@ class anyTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedAny($collection, $predicate, $expected)
 	{
-		$_ = new _($collection);
-		$actual = $_->any($predicate)->value();
+		$actual = _::chain($collection)->any($predicate)->value();
 		$this->assertEquals($expected, $actual);
 	}
 

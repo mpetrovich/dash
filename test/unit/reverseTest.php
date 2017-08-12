@@ -18,8 +18,7 @@ class reverseTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedReverse($collection, $expected)
 	{
-		$_ = new _($collection);
-		$actual = $_->reverse()->value();
+		$actual = _::chain($collection)->reverse()->value();
 		$this->assertEquals($expected, $actual);
 	}
 

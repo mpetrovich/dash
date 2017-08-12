@@ -18,8 +18,7 @@ class withoutTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedWithout($collection, $without, $expected)
 	{
-		$_ = new _($collection);
-		$actual = $_->without($without)->value();
+		$actual = _::chain($collection)->without($without)->value();
 		$this->assertEquals($expected, $actual);
 	}
 
