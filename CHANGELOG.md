@@ -1,6 +1,7 @@
 Changelog
 =========
 - [Planned](#planned)
+- [0.3.0](#030)
 - [0.2.0](#020)
 - [0.1.0](#010)
 
@@ -10,8 +11,11 @@ Planned
 - Hundreds of new functions
 - Drop-in compatibility with other popular Underscore-like PHP libraries
 - Performance improvements
-- Ability to add custom functions
-- Ability to iterate over chains without calling `->value()`
+
+
+0.3.0
+-----
+- Added ability to add custom functions via `setCustom()`
 
 
 0.2.0
