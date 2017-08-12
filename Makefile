@@ -24,7 +24,6 @@ test-clean:
 
 clean:
 	make test-clean
-	make docs-clean
 
 # Tags a new release.
 #
