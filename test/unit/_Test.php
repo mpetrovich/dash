@@ -79,6 +79,21 @@ class _Test extends PHPUnit_Framework_TestCase
 		$this->assertEquals(array(8, 10, 12), $chain->value());
 	}
 
+	public function testChainingCloning()
+	{
+		$chain = _::chain()
+			->map(function($n) { return $n * 2; });
+
+		$chain->with(array(1, 2, 3));
+		$this->assertEquals(array(2, 4, 6), $chain->value());
+
+		$clone = clone $chain;
+		$clone->map(function($n) { return $n + 1; });
+
+		$clone->with(array(4, 5, 6));
+		$this->assertEquals(array(9, 11, 13), $clone->value());
+	}
+
 	/**
 	 * @dataProvider getTestCases
 	 */
