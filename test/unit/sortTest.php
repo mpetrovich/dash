@@ -20,8 +20,8 @@ class sortTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedSort($collection, $expected)
 	{
-		$container = new _($collection);
-		$actual = $container->sort()->value();
+		$_ = new _($collection);
+		$actual = $_->sort()->value();
 		$this->assertEquals($expected, $actual);
 	}
 

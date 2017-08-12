@@ -18,8 +18,8 @@ class maxTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedMax($collection, $expected)
 	{
-		$container = new _($collection);
-		$actual = $container->max()->value();
+		$_ = new _($collection);
+		$actual = $_->max()->value();
 		$this->assertEquals($expected, $actual);
 	}
 

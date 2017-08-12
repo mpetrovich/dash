@@ -33,8 +33,8 @@ class eachTest extends PHPUnit_Framework_TestCase
 			$iterated[] = $key . ' is ' . $value;
 		};
 
-		$container = new _($collection);
-		$container->each($iteratee)->value();
+		$_ = new _($collection);
+		$_->each($iteratee)->value();
 		$this->assertEquals($expected, $iterated);
 	}
 

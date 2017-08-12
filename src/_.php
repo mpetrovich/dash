@@ -90,8 +90,8 @@ class _
 	 * @return _ The container instance
 	 *
 	 * @example
-		$container = new _(array(1, 2, 3));
-		$container
+		$_ = new _(array(1, 2, 3));
+		$_
 			->map(function($n) { return $n * 2; })
 			->filter(function($n) { return $n > 2; })
 			->value();  // == array(4, 6)
@@ -134,9 +134,9 @@ class _
 	 * @return _ The container instance
 	 *
 	 * @example
-		$container = new _(array(1, 2, 3));
-		$container->with(array(4, 5));
-		$container->value();  // == array(4, 5)
+		$_ = new _(array(1, 2, 3));
+		$_->with(array(4, 5));
+		$_->value();  // == array(4, 5)
 	 */
 	public function with($value = array())
 	{
@@ -162,10 +162,10 @@ class _
 	 * @return mixed
 	 *
 	 * @example
-		$container = new _(array(1, 2, 3));
-		$container->value();  // == array(1, 2, 3)
-		$container->map(function($n) { return $n * 2; })
-		$container->value();  // == array(2, 4, 6)
+		$_ = new _(array(1, 2, 3));
+		$_->value();  // == array(1, 2, 3)
+		$_->map(function($n) { return $n * 2; })
+		$_->value();  // == array(2, 4, 6)
 	 */
 	public function value()
 	{

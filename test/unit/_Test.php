@@ -99,20 +99,20 @@ class _Test extends PHPUnit_Framework_TestCase
 	 */
 	public function testConstructor($value)
 	{
-		$container = new _($value);
+		$_ = new _($value);
 
 		if ($value instanceof Traversable || is_object($value)) {
-			$this->assertEquals(Dash\toArray($value), $container->value());
+			$this->assertEquals(Dash\toArray($value), $_->value());
 		}
 		else {
-			$this->assertEquals($value, $container->value());
+			$this->assertEquals($value, $_->value());
 		}
 	}
 
 	public function testConstructorWithDefaultValue()
 	{
-		$container = new _();
-		$this->assertEquals(array(), $container->value());
+		$_ = new _();
+		$this->assertEquals(array(), $_->value());
 	}
 
 	/**
@@ -120,17 +120,17 @@ class _Test extends PHPUnit_Framework_TestCase
 	 */
 	public function testWith($value)
 	{
-		$container = new _();
-		$return = $container->with($value);
+		$_ = new _();
+		$return = $_->with($value);
 
 		if ($value instanceof Traversable || is_object($value)) {
-			$this->assertEquals(Dash\toArray($value), $container->value());
+			$this->assertEquals(Dash\toArray($value), $_->value());
 		}
 		else {
-			$this->assertEquals($value, $container->value());
+			$this->assertEquals($value, $_->value());
 		}
 
-		$this->assertSame($container, $return);
+		$this->assertSame($_, $return);
 	}
 
 	public function getTestCases()
@@ -201,7 +201,7 @@ class _Test extends PHPUnit_Framework_TestCase
 	 */
 	public function testInvalidChainMethod()
 	{
-		$container = new _(array(1, 2, 3));
-		$container->foo();
+		$_ = new _(array(1, 2, 3));
+		$_->foo();
 	}
 }

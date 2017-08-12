@@ -18,8 +18,8 @@ class medianTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedMedian($collection, $expected)
 	{
-		$container = new _($collection);
-		$actual = $container->median()->value();
+		$_ = new _($collection);
+		$actual = $_->median()->value();
 		$this->assertEquals($expected, $actual);
 	}
 

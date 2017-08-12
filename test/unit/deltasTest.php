@@ -18,8 +18,8 @@ class deltasTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedDeltas($collection, $expected)
 	{
-		$container = new _($collection);
-		$actual = $container->deltas()->value();
+		$_ = new _($collection);
+		$actual = $_->deltas()->value();
 		$this->assertEquals($expected, $actual);
 	}
 

@@ -18,8 +18,8 @@ class pluckTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedPluck($collection, $path, $expected)
 	{
-		$container = new _($collection);
-		$actual = $container->pluck($path)->value();
+		$_ = new _($collection);
+		$actual = $_->pluck($path)->value();
 		$this->assertEquals($expected, $actual);
 	}
 

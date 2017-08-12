@@ -18,8 +18,8 @@ class takeRightTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedTakeRight($collection, $count, $fromEnd, $expected)
 	{
-		$container = new _($collection);
-		$actual = $container->takeRight($count, $fromEnd)->value();
+		$_ = new _($collection);
+		$actual = $_->takeRight($count, $fromEnd)->value();
 		$this->assertEquals($expected, $actual);
 	}
 

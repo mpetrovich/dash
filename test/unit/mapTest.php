@@ -31,8 +31,8 @@ class mapTest extends PHPUnit_Framework_TestCase
 			return $key . ' is ' . $value;
 		};
 
-		$container = new _($collection);
-		$actual = $container->map($iteratee)->value();
+		$_ = new _($collection);
+		$actual = $_->map($iteratee)->value();
 		$this->assertEquals($expected, $actual);
 	}
 

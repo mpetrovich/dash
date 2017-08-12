@@ -18,8 +18,8 @@ class takeTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedTake($collection, $count, $fromStart, $expected)
 	{
-		$container = new _($collection);
-		$actual = $container->take($count, $fromStart)->value();
+		$_ = new _($collection);
+		$actual = $_->take($count, $fromStart)->value();
 		$this->assertEquals($expected, $actual);
 	}
 

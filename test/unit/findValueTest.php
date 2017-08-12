@@ -18,8 +18,8 @@ class findValueTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedFindValue($collection, $predicate, $expected)
 	{
-		$container = new _($collection);
-		$actual = $container->findValue($predicate)->value();
+		$_ = new _($collection);
+		$actual = $_->findValue($predicate)->value();
 		$this->assertEquals($expected, $actual);
 	}
 

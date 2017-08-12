@@ -18,8 +18,8 @@ class everyTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedEvery($collection, $predicate, $expected)
 	{
-		$container = new _($collection);
-		$actual = $container->every($predicate)->value();
+		$_ = new _($collection);
+		$actual = $_->every($predicate)->value();
 		$this->assertEquals($expected, $actual);
 	}
 

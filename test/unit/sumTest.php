@@ -18,8 +18,8 @@ class sumTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedSum($collection, $expected)
 	{
-		$container = new _($collection);
-		$actual = $container->sum()->value();
+		$_ = new _($collection);
+		$actual = $_->sum()->value();
 		$this->assertEquals($expected, $actual);
 	}
 

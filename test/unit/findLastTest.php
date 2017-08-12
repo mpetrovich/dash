@@ -18,8 +18,8 @@ class findLastTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedFindLast($collection, $predicate, $expected)
 	{
-		$container = new _($collection);
-		$actual = $container->findLast($predicate)->value();
+		$_ = new _($collection);
+		$actual = $_->findLast($predicate)->value();
 		$this->assertEquals($expected, $actual);
 	}
 

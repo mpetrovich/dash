@@ -20,8 +20,8 @@ class intersectionTest extends PHPUnit_Framework_TestCase
 	public function testChainedIntersection($collections, $expected)
 	{
 		list($collection1, $collection2, $collection3) = $collections;
-		$container = new _($collection1);
-		$actual = $container->intersection($collection2, $collection3)->value();
+		$_ = new _($collection1);
+		$actual = $_->intersection($collection2, $collection3)->value();
 		$this->assertEquals($expected, $actual);
 	}
 

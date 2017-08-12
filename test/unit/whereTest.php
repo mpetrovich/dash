@@ -18,8 +18,8 @@ class whereTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedWhere($collection, $properties, $expected)
 	{
-		$container = new _($collection);
-		$actual = $container->where($properties)->value();
+		$_ = new _($collection);
+		$actual = $_->where($properties)->value();
 		$this->assertEquals($expected, $actual);
 	}
 

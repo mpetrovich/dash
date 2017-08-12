@@ -31,8 +31,8 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 			return $key . ' is ' . $value;
 		};
 
-		$container = new _($collection);
-		$actual = $container->mapValues($iteratee)->value();
+		$_ = new _($collection);
+		$actual = $_->mapValues($iteratee)->value();
 		$this->assertEquals($expected, $actual);
 	}
 

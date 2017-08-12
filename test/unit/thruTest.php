@@ -18,8 +18,8 @@ class thruTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedThru($collection, $interceptor, $expected)
 	{
-		$container = new _($collection);
-		$actual = $container->thru($interceptor)->value();
+		$_ = new _($collection);
+		$actual = $_->thru($interceptor)->value();
 		$this->assertSame($expected, $actual);
 	}
 
