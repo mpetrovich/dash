@@ -1,6 +1,6 @@
 Dash &nbsp; [![Build Status](https://travis-ci.org/mpetrovich/Dash.svg?branch=master)](https://travis-ci.org/mpetrovich/Dash)
 ====
-A functional utility library for PHP.
+A functional utility library for PHP, like Underscore/Lodash.
 
 - [Features](#features)
 - [Requirements](#requirements)
