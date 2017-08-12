@@ -246,24 +246,18 @@ class _
 	}
 
 	/**
-	 * Converts objects and Traversables to arrays, but leaves scalars alone.
+	 * Converts a non-scalar value to an array.
 	 *
 	 * @param mixed $value
 	 * @return array|scalar
 	 */
 	private function normalize($value)
 	{
-		if ($value instanceof Traversable) {
-			$normalized = iterator_to_array($value);
-		}
-		else if (is_object($value)) {
-			$normalized = [];
-			foreach ($value as $key => $val) {
-				$normalized[$key] = $val;
-			}
+		if (is_scalar($value) || is_null($value)) {
+			$normalized = $value;
 		}
 		else {
-			$normalized = $value;
+			$normalized = toArray($value);
 		}
 
 		return $normalized;

@@ -2,16 +2,13 @@
 
 namespace Dash;
 
-function toArray($collection)
+function toArray($value)
 {
-	if (is_array($collection)) {
-		return $collection;
+	if ($value instanceof Traversable) {
+		$array = iterator_to_array($value);
 	}
-
-	$array = [];
-
-	foreach ($collection as $key => $value) {
-		$array[$key] = $value;
+	else {
+		$array = (array) $value;
 	}
 
 	return $array;
