@@ -4,7 +4,7 @@ namespace Dash;
 
 function take($collection, $count = 1, $fromStart = 0)
 {
-	$taken = array();
+	$taken = [];
 
 	foreach ($collection as $key => $value) {
 		if ($fromStart > 0) {

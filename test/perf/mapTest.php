@@ -33,7 +33,7 @@ class PerformanceTest extends PHPUnit_Framework_TestCase
 
 		// Loop
 		$start = microtime(true);
-		$mappedLoop = array();
+		$mappedLoop = [];
 		$iteratee = function($value, $key) { return $value * $value; };
 		foreach($collection as $key => $value) {
 			$mappedLoop[] = call_user_func($iteratee, $value, $key);

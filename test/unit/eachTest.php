@@ -10,7 +10,7 @@ class eachTest extends PHPUnit_Framework_TestCase
 	public function testStandaloneEach($collection, $expected)
 	{
 		$self = $this;
-		$iterated = array();
+		$iterated = [];
 		$iteratee = function($value, $key, $collection2) use ($self, $collection, &$iterated) {
 			$self->assertSame($collection, $collection2);
 			$iterated[] = $key . ' is ' . $value;
@@ -26,7 +26,7 @@ class eachTest extends PHPUnit_Framework_TestCase
 	public function testChainedEach($collection, $expected)
 	{
 		$self = $this;
-		$iterated = array();
+		$iterated = [];
 		$array = Dash\toArray($collection);
 		$iteratee = function($value, $key, $collection) use ($self, $array, &$iterated) {
 			$self->assertSame($collection, $array);
@@ -42,8 +42,8 @@ class eachTest extends PHPUnit_Framework_TestCase
 	{
 		return array(
 			'With an empty array' => array(
-				array(),
-				array()
+				[],
+				[]
 			),
 			'With an indexed array' => array(
 				array(
@@ -70,8 +70,8 @@ class eachTest extends PHPUnit_Framework_TestCase
 				),
 			),
 			'With an empty object' => array(
-				(object) array(),
-				array()
+				(object) [],
+				[]
 			),
 			'With a non-empty object' => array(
 				(object) array(
@@ -86,8 +86,8 @@ class eachTest extends PHPUnit_Framework_TestCase
 				),
 			),
 			'With an empty ArrayObject' => array(
-				new ArrayObject(array()),
-				array(),
+				new ArrayObject([]),
+				[],
 			),
 			'With a non-empty ArrayObject' => array(
 				new ArrayObject(array(

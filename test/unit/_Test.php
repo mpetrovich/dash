@@ -116,7 +116,7 @@ class _Test extends PHPUnit_Framework_TestCase
 	{
 		return array(
 			'With an empty array' => array(
-				array()
+				[]
 			),
 			'With an indexed array' => array(
 				array(
@@ -133,7 +133,7 @@ class _Test extends PHPUnit_Framework_TestCase
 				)
 			),
 			'With an empty object' => array(
-				(object) array()
+				(object) []
 			),
 			'With a non-empty object' => array(
 				(object) array(

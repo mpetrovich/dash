@@ -31,8 +31,8 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'should return an empty array for an empty array' => array(
-				array(),
-				array(),
+				[],
+				[],
 			),
 			'should return an array of the values of an indexed array' => array(
 				array(3, 8, 2, 5),
@@ -48,8 +48,8 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'should return an empty array for an empty stdClass' => array(
-				(object) array(),
-				array(),
+				(object) [],
+				[],
 			),
 			'should return an array of the values of a stdClass' => array(
 				(object) array(3, 8, 2, 5),
@@ -65,8 +65,8 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'should return an empty array for an empty ArrayObject' => array(
-				new ArrayObject(array()),
-				array(),
+				new ArrayObject([]),
+				[],
 			),
 			'should return an array of the values of an indexed ArrayObject' => array(
 				new ArrayObject(array(3, 8, 2, 5)),

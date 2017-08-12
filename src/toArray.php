@@ -8,7 +8,7 @@ function toArray($collection)
 		return $collection;
 	}
 
-	$array = array();
+	$array = [];
 
 	foreach ($collection as $key => $value) {
 		$array[$key] = $value;

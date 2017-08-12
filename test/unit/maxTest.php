@@ -31,7 +31,7 @@ class maxTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'should return null for an empty array' => array(
-				array(),
+				[],
 				null
 			),
 			'should return the max of the values of an array' => array(
@@ -44,7 +44,7 @@ class maxTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'should return null for an empty stdClass' => array(
-				(object) array(),
+				(object) [],
 				null
 			),
 			'should return the max of the values of an stdClass' => array(
@@ -57,7 +57,7 @@ class maxTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'should return null for an empty ArrayObject' => array(
-				new ArrayObject(array()),
+				new ArrayObject([]),
 				null
 			),
 			'should return the max of the values of an ArrayObject' => array(

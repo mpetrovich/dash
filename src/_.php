@@ -67,7 +67,7 @@ class _
 	 * @param mixed $value The initial value
 	 * @return void
 	 */
-	private function __construct($value = array())
+	private function __construct($value = [])
 	{
 		$this->with($value);
 	}
@@ -134,13 +134,13 @@ class _
 		$chain->with(array(4, 5));
 		$chain->value();  // == array(4, 5)
 	 */
-	public function with($value = array())
+	public function with($value = [])
 	{
 		if ($value instanceof Traversable) {
 			$this->value = iterator_to_array($value);
 		}
 		else if (is_object($value)) {
-			$this->value = array();
+			$this->value = [];
 			foreach ($value as $key => $val) {
 				$this->value[$key] = $val;
 			}
@@ -189,15 +189,14 @@ class _
 	{
 		unset(self::$customFunctions[$name]);
 	}
+	private static $customFunctions = [];
 
-	private static $customFunctions = array();
-
-	private $operations = array();
+	private $operations = [];
 
 	/**
 	 * The current wrapped value.
 	 *
 	 * @var mixed
 	 */
-	private $value = array();
+	private $value = [];
 }

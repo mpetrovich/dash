@@ -30,11 +30,11 @@ class unionTest extends PHPUnit_Framework_TestCase
 		return array(
 			'With empty arrays' => array(
 				array(
-					array(),
-					array(),
-					array(),
+					[],
+					[],
+					[],
 				),
-				array()
+				[]
 			),
 			'With non-intersecting arrays' => array(
 				array(

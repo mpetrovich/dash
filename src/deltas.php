@@ -4,7 +4,7 @@ namespace Dash;
 
 function deltas($collection)
 {
-	$deltas = array();
+	$deltas = [];
 	$prev = null;
 
 	foreach ($collection as $value) {

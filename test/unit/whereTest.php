@@ -26,14 +26,14 @@ class whereTest extends PHPUnit_Framework_TestCase
 	{
 		return array(
 			'With an empty array' => array(
-				array(),
+				[],
 				array('age' => 30),
-				array()
+				[]
 			),
 			'With an empty object' => array(
-				(object) array(),
+				(object) [],
 				array('age' => 30),
-				array()
+				[]
 			),
 			'With non-empty arrays' => array(
 				array(

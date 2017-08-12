@@ -39,8 +39,8 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 	{
 		return array(
 			'With an empty array' => array(
-				array(),
-				array()
+				[],
+				[]
 			),
 			'With an indexed array' => array(
 				array(
@@ -67,8 +67,8 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 				),
 			),
 			'With an empty object' => array(
-				(object) array(),
-				array()
+				(object) [],
+				[]
 			),
 			'With a non-empty object' => array(
 				(object) array(
@@ -83,8 +83,8 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 				),
 			),
 			'With an empty ArrayObject' => array(
-				new ArrayObject(array()),
-				array()
+				new ArrayObject([]),
+				[]
 			),
 			'With a non-empty ArrayObject' => array(
 				new ArrayObject(array(

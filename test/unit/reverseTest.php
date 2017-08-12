@@ -26,8 +26,8 @@ class reverseTest extends PHPUnit_Framework_TestCase
 	{
 		return array(
 			'With an empty array' => array(
-				array(),
-				array()
+				[],
+				[]
 			),
 			'With an indexed array' => array(
 				array(0 => 'a', 1 => 'b', 2 => 'c', 3 => 'd', 4 => 'e'),

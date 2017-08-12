@@ -31,7 +31,7 @@ class anyTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'should return false for an empty array' => array(
-				array(),
+				[],
 				function($value, $key) {
 					return $value < 0;
 				},
@@ -64,7 +64,7 @@ class anyTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'should return false for an empty stdClass' => array(
-				(object) array(),
+				(object) [],
 				function($value, $key) {
 					return $value < 0;
 				},
@@ -97,7 +97,7 @@ class anyTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'should return false for an empty ArrayObject' => array(
-				new ArrayObject(array()),
+				new ArrayObject([]),
 				function($value, $key) {
 					return $value < 0;
 				},

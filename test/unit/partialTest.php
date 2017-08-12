@@ -23,7 +23,7 @@ class partialTest extends PHPUnit_Framework_TestCase
 		return array(
 			'With all function parameters pre-specified' => array(
 				array($sum, 1, 2, 3),
-				array(),
+				[],
 				6
 			),
 			'With some function parameters pre-specified' => array(

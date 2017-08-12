@@ -29,7 +29,7 @@ namespace Dash;
  */
 function mapValues($collection, $iteratee = 'Dash\identity')
 {
-	$mapped = array();
+	$mapped = [];
 	$iteratee = property($iteratee);
 
 	foreach ($collection as $key => $value) {

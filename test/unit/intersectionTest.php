@@ -30,11 +30,11 @@ class intersectionTest extends PHPUnit_Framework_TestCase
 		return array(
 			'With empty arrays' => array(
 				array(
-					array(),
-					array(),
-					array(),
+					[],
+					[],
+					[],
 				),
-				array()
+				[]
 			),
 			'With non-intersecting arrays' => array(
 				array(
@@ -42,7 +42,7 @@ class intersectionTest extends PHPUnit_Framework_TestCase
 					array(1, 2),
 					array(3, 4),
 				),
-				array()
+				[]
 			),
 			'With partially intersecting arrays' => array(
 				array(

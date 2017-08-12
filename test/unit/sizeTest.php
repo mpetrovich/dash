@@ -26,15 +26,15 @@ class sizeTest extends PHPUnit_Framework_TestCase
 	{
 		return array(
 			'With an empty array' => array(
-				array(),
+				[],
 				0
 			),
 			'With an empty object' => array(
-				(object) array(),
+				(object) [],
 				0
 			),
 			'With an empty Countable' => array(
-				new ArrayObject(array()),
+				new ArrayObject([]),
 				0
 			),
 			'With a non-empty array' => array(

@@ -31,7 +31,7 @@ class atTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'should return null for an empty array' => array(
-				array(),
+				[],
 				2,
 				null
 			),
@@ -51,7 +51,7 @@ class atTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'should return null for an empty stdClass' => array(
-				(object) array(),
+				(object) [],
 				2,
 				null
 			),
@@ -66,7 +66,7 @@ class atTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'should return null for an empty ArrayObject' => array(
-				new ArrayObject(array()),
+				new ArrayObject([]),
 				2,
 				null
 			),

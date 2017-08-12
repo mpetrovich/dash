@@ -4,7 +4,7 @@ namespace Dash;
 
 function filter($collection, $predicate)
 {
-	$filtered = array();
+	$filtered = [];
 
 	foreach ($collection as $key => $value) {
 		if (call_user_func($predicate, $value, $key)) {

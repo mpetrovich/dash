@@ -26,7 +26,7 @@ class firstTest extends PHPUnit_Framework_TestCase
 	{
 		return array(
 			'With an empty array' => array(
-				array(),
+				[],
 				null
 			),
 			'With a non-empty array' => array(

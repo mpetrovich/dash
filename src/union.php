@@ -8,7 +8,7 @@ function union($collections /* or as $collection1, $collection2, ... */)
 		$collections = func_get_args();
 	}
 
-	$union = array();
+	$union = [];
 
 	foreach ($collections as $collection) {
 		foreach ($collection as $value) {

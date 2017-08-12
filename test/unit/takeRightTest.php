@@ -26,16 +26,16 @@ class takeRightTest extends PHPUnit_Framework_TestCase
 	{
 		return array(
 			'With an empty array and a zero end offset' => array(
-				array(),
+				[],
 				3,
 				0,
-				array()
+				[]
 			),
 			'With an empty array and a non-zero end offset' => array(
-				array(),
+				[],
 				3,
 				2,
-				array()
+				[]
 			),
 			'With an indexed array and a zero end offset' => array(
 				array(0 => 'a', 1 => 'b', 2 => 'c', 3 => 'd', 4 => 'e'),

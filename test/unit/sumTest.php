@@ -31,7 +31,7 @@ class sumTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'should return zero for an empty array' => array(
-				array(),
+				[],
 				0
 			),
 			'should return the sum of the values of an array' => array(
@@ -44,7 +44,7 @@ class sumTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'should return zero for an empty stdClass' => array(
-				(object) array(),
+				(object) [],
 				0
 			),
 			'should return the sum of the values of an stdClass' => array(
@@ -57,7 +57,7 @@ class sumTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'should return zero for an empty ArrayObject' => array(
-				new ArrayObject(array()),
+				new ArrayObject([]),
 				0
 			),
 			'should return the sum of the values of an ArrayObject' => array(

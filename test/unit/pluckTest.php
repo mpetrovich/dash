@@ -26,9 +26,9 @@ class pluckTest extends PHPUnit_Framework_TestCase
 	{
 		return array(
 			'With an empty array' => array(
-				array(),
+				[],
 				'a.b',
-				array()
+				[]
 			),
 			'With a non-empty array' => array(
 				array(

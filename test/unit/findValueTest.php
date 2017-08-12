@@ -26,7 +26,7 @@ class findValueTest extends PHPUnit_Framework_TestCase
 	{
 		return array(
 			'With an empty array' => array(
-				array(),
+				[],
 				function() { return false; },
 				null
 			),

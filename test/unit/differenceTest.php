@@ -30,11 +30,11 @@ class differenceTest extends PHPUnit_Framework_TestCase
 		return array(
 			'With empty arrays' => array(
 				array(
-					array(),
-					array(),
-					array(),
+					[],
+					[],
+					[],
 				),
-				array()
+				[]
 			),
 			'With non-intersecting arrays' => array(
 				array(
@@ -58,7 +58,7 @@ class differenceTest extends PHPUnit_Framework_TestCase
 					array(2, 1),
 					array(2, 1),
 				),
-				array()
+				[]
 			),
 		);
 	}

@@ -26,9 +26,9 @@ class withoutTest extends PHPUnit_Framework_TestCase
 	{
 		return array(
 			'With an empty array' => array(
-				array(),
-				array(),
-				array()
+				[],
+				[],
+				[]
 			),
 			'With no matching exclusions' => array(
 				array(1 => 'a', 2 => 'b', 3 => 'c', 4 => 'd'),
