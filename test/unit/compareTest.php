@@ -18,8 +18,8 @@ class compareTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedCompare($a, $b, $expected)
 	{
-		$_ = new _($a);
-		$actual = $_->compare($b)->value();
+		$chain = _::chain($a);
+		$actual = $chain->compare($b)->value();
 		$this->assertSame($expected, $actual);
 	}
 

@@ -21,8 +21,8 @@ class negateTest extends PHPUnit_Framework_TestCase
 			return $value > 0;
 		};
 
-		$_ = new _(array(2, -3, 5, -8));
-		$negatives = $_
+		$chain = _::chain(array(2, -3, 5, -8));
+		$negatives = $chain
 			->filter(Dash\negate($isPositive))
 			->values()  // Re-indexes the array
 			->value();

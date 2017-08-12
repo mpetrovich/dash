@@ -69,14 +69,10 @@ class _
 	/**
 	 * Initializes a new container with a value.
 	 *
-	 * @internal This is only used internally; use Dash\_::chain() instead
- 	 * @see Dash\_::chain()
-	 *
 	 * @param mixed $value The initial value
-	 *
 	 * @return void
 	 */
-	public function __construct($value = array())
+	private function __construct($value = array())
 	{
 		$this->with($value);
 	}
@@ -90,8 +86,8 @@ class _
 	 * @return _ The container instance
 	 *
 	 * @example
-		$_ = new _(array(1, 2, 3));
-		$_
+		$chain = _::chain(array(1, 2, 3));
+		$chain
 			->map(function($n) { return $n * 2; })
 			->filter(function($n) { return $n > 2; })
 			->value();  // == array(4, 6)
@@ -134,9 +130,9 @@ class _
 	 * @return _ The container instance
 	 *
 	 * @example
-		$_ = new _(array(1, 2, 3));
-		$_->with(array(4, 5));
-		$_->value();  // == array(4, 5)
+		$chain = _::chain(array(1, 2, 3));
+		$chain->with(array(4, 5));
+		$chain->value();  // == array(4, 5)
 	 */
 	public function with($value = array())
 	{
@@ -162,10 +158,10 @@ class _
 	 * @return mixed
 	 *
 	 * @example
-		$_ = new _(array(1, 2, 3));
-		$_->value();  // == array(1, 2, 3)
-		$_->map(function($n) { return $n * 2; })
-		$_->value();  // == array(2, 4, 6)
+		$chain = _::chain(array(1, 2, 3));
+		$chain->value();  // == array(1, 2, 3)
+		$chain->map(function($n) { return $n * 2; })
+		$chain->value();  // == array(2, 4, 6)
 	 */
 	public function value()
 	{
@@ -191,5 +187,5 @@ class _
 	 *
 	 * @var mixed
 	 */
-	protected $value = array();
+	private $value = array();
 }

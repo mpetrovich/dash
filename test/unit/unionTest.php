@@ -20,8 +20,8 @@ class unionTest extends PHPUnit_Framework_TestCase
 	public function testChainedUnion($collections, $expected)
 	{
 		list($collection1, $collection2, $collection3) = $collections;
-		$_ = new _($collection1);
-		$actual = $_->union($collection2, $collection3)->value();
+		$chain = _::chain($collection1);
+		$actual = $chain->union($collection2, $collection3)->value();
 		$this->assertEquals($expected, $actual);
 	}
 

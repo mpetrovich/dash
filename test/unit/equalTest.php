@@ -18,8 +18,8 @@ class equalTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedEqual($a, $b, $expected)
 	{
-		$_ = new _($a);
-		$actual = $_->equal($b)->value();
+		$chain = _::chain($a);
+		$actual = $chain->equal($b)->value();
 		$this->assertSame($expected, $actual);
 	}
 

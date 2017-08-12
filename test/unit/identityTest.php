@@ -18,8 +18,8 @@ class identityTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedIdentity($value, $expected)
 	{
-		$_ = new _($value);
-		$actual = $_->identity()->value();
+		$chain = _::chain($value);
+		$actual = $chain->identity()->value();
 		$this->assertSame($expected, $actual);
 	}
 

@@ -18,8 +18,8 @@ class identicalTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedIdentical($a, $b, $expected)
 	{
-		$_ = new _($a);
-		$actual = $_->identical($b)->value();
+		$chain = _::chain($a);
+		$actual = $chain->identical($b)->value();
 		$this->assertSame($expected, $actual);
 	}
 
