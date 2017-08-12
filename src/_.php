@@ -109,11 +109,15 @@ class _
 	{
 		$callable = "\\Dash\\{$method}";
 
-		if (!is_callable($callable)) {
+		if (is_callable($callable)) {
+			return $callable;
+		}
+		else if (isset(self::$customFunctions[$method])) {
+			return self::$customFunctions[$method];
+		}
+		else {
 			throw new \Exception("No callable method found for \"{$method}\"");
 		}
-
-		return $callable;
 	}
 
 	/**
@@ -175,6 +179,18 @@ class _
 			$this->with($result);
 		}
 	}
+
+	public static function setCustom($name, callable $callable)
+	{
+		self::$customFunctions[$name] = $callable;
+	}
+
+	public static function unsetCustom($name)
+	{
+		unset(self::$customFunctions[$name]);
+	}
+
+	private static $customFunctions = array();
 
 	private $operations = array();
 

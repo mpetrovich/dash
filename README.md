@@ -90,6 +90,22 @@ $result = $doubleOdds->with(array(7, 9, 11, 13))->value();
 ```
 
 
+#### Custom functions
+Custom functions can be added and removed via `setCustom()` and `unsetCustom()`, respectively:
+```php
+use Dash\_;
+
+_::setCustom('triple', function($value) {
+	return $value * 3;
+});
+
+_::triple(4)); // === 12
+_::chain(5)->triple()->value(); // === 15
+
+_::unsetCustom('triple');
+```
+
+
 #### Included operations
 For collections (arrays, `stdClass` and `Traversable` objects):
 

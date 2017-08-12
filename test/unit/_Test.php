@@ -183,4 +183,42 @@ class _Test extends PHPUnit_Framework_TestCase
 		$chain = _::chain(array(1, 2, 3));
 		$chain->foo();
 	}
+
+	public function testCustomFunctionStandalone() {
+
+		/*
+			Tests setCustom()
+		 */
+
+		_::setCustom('triple', function($value) {
+			return $value * 3;
+		});
+
+		$this->assertEquals(12, _::triple(4));
+
+		/*
+			Tests unsetCustom()
+		 */
+
+		_::unsetCustom('triple');
+
+		try {
+			$isStillSet = false;
+			_::triple(2);
+			$isStillSet = true;
+		}
+		catch (Exception $e) {}
+
+		$this->assertFalse($isStillSet);
+	}
+
+	public function testCustomFunctionChained() {
+		_::setCustom('double', function($value) {
+			return $value * 2;
+		});
+
+		$this->assertEquals(8, _::chain(4)->double()->value());
+
+		_::unsetCustom('double');
+	}
 }
