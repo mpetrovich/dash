@@ -3,7 +3,8 @@
 # -----------------------------------------------------------------------------
 
 test:
-	@vendor/bin/phpunit
+	make test-coverage
+	make test-perf
 
 test-unit:
 	@vendor/bin/phpunit --no-coverage --testsuite unit
