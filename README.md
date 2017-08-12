@@ -59,7 +59,7 @@ $double = _::map(
 
 
 #### Chaining
-Multiple operations can be chained in sequence using `from()`:
+Multiple operations can be chained in sequence using `chain()`. Use `value()` to retrieve the final value:
 
 ```php
 use Dash\_;
