@@ -114,7 +114,7 @@ class _
 	 */
 	public function with($initialValue = [])
 	{
-		$this->initialValue = $this->normalize($initialValue);
+		$this->initialValue = toArrayOrScalar($initialValue);
 		$this->finalValue = null;
 		return $this;
 	}
@@ -246,24 +246,6 @@ class _
 	}
 
 	/**
-	 * Converts a non-scalar value to an array.
-	 *
-	 * @param mixed $value
-	 * @return array|scalar
-	 */
-	private function normalize($value)
-	{
-		if (is_scalar($value) || is_null($value)) {
-			$normalized = $value;
-		}
-		else {
-			$normalized = toArray($value);
-		}
-
-		return $normalized;
-	}
-
-	/**
 	 * Executes all chained operations.
 	 *
 	 * @param mixed $initialValue
@@ -275,7 +257,7 @@ class _
 
 		foreach ($this->operations as $operation) {
 			$result = call_user_func($operation, $value);
-			$value = $this->normalize($result);
+			$value = toArrayOrScalar($result);
 		}
 
 		return $value;
