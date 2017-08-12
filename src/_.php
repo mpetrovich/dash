@@ -19,12 +19,12 @@ namespace Dash;
 	);  // == array(4, 6)
  *
  * @example With chaining
-	Dash\Dash::with(array(1, 2, 3))
+	_::with(array(1, 2, 3))
 		->map(function($n) { return $n * 2; })
 		->filter(function($n) { return $n > 2; })
 		->value();  // === array(4, 6)
  */
-abstract class Dash
+abstract class _
 {
 	/**
 	 * Wraps a value within a new container for the purposes of chaining.
@@ -34,7 +34,7 @@ abstract class Dash
 	 * @return Container A new container that wraps the value
 	 *
 	 * @example
-		Dash\Dash::with(array(1, 2, 3))
+		_::with(array(1, 2, 3))
 			->map(function($n) { return $n * 2; })
 			->filter(function($n) { return $n > 2; })
 			->value();  // === array(4, 6)
@@ -45,14 +45,14 @@ abstract class Dash
 	}
 
 	/**
-	 * Enables standalone Dash functions to be called statically (eg. `Dash::map(…)`).
+	 * Enables standalone Dash functions to be called statically (eg. `_::map(…)`).
 	 *
 	 * @param string $method Method name
 	 * @param array $args Method arguments
 	 * @return mixed Return value of the called method
 	 *
 	 * @example
-		Dash\Dash::map(array(1, 2, 3), function($n) { return $n * 2; })
+		Dash\_::map(array(1, 2, 3), function($n) { return $n * 2; })
 		// === array(2, 4, 6)
 	 */
 	public static function __callStatic($method, $args)

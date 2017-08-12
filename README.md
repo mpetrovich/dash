@@ -49,9 +49,9 @@ All classes and functions are available within the `Dash` namespace or one of it
 Standalone operations can be called alone:
 
 ```php
-use Dash\Dash;
+use Dash\_;
 
-$double = Dash::map(
+$double = _::map(
 	array(1, 2, 3),
 	function($n) { return $n * 2; }
 );
@@ -64,10 +64,10 @@ $double = Dash::map(
 Multiple operations can be chained in sequence using `with()`:
 
 ```php
-use Dash\Dash;
+use Dash\_;
 
-$doubleOdds = Dash::with(array(1, 2, 3))
-	->filter('Dash\Dash::isOdd')
+$doubleOdds = _::with(array(1, 2, 3))
+	->filter('Dash\_::isOdd')
 	->map(function($n) { return $n * 2; })
 	->value();
 
@@ -78,10 +78,10 @@ $doubleOdds = Dash::with(array(1, 2, 3))
 #### Deferred evaluation
 Chained operations are not evaluated until `value()` is called, so the input data can be changed at any time before then. This makes it simple to create reusable chains:
 ```php
-use Dash\Dash;
+use Dash\_;
 
-$doubleOdds = Dash::with()
-	->filter('Dash\Dash::isOdd')
+$doubleOdds = _::with()
+	->filter('Dash\_::isOdd')
 	->map(function($n) { return $n * 2; });
 
 $result = $doubleOdds->with(array(1, 2, 3))->value();

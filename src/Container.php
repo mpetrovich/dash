@@ -6,10 +6,10 @@ namespace Dash;
  * Wrapper that encapsulates a value and its chained operations.
  *
  * This class should not be instantiated directly; instead, use
- * Dash\Dash::with() which returns a new Container instance whose methods are
+ * Dash\_::with() which returns a new Container instance whose methods are
  * used to chain operations like so:
  *
- *     Dash\Dash::with(array(1, 2, 3))
+ *     Dash\_::with(array(1, 2, 3))
  *         ->map(function($n) { return $n * 2; })
  *         ->filter(function($n) { return $n > 2; })
  *         ->value();  // == array(4, 6)
@@ -19,8 +19,8 @@ class Container
 	/**
 	 * Initializes a new container with a value.
 	 *
-	 * @internal This is only used internally; use Dash\Dash::with() instead
- 	 * @see Dash\Dash::with()
+	 * @internal This is only used internally; use Dash\_::with() instead
+ 	 * @see Dash\_::with()
 	 *
 	 * @param mixed $value The initial value
 	 *
