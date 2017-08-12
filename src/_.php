@@ -57,12 +57,7 @@ class _
 	 */
 	public static function __callStatic($method, $args)
 	{
-		$callable = "\\Dash\\{$method}";
-
-		if (!function_exists($callable)) {
-			throw new \Exception("No callable method found for \"{$method}\"");
-		}
-
+		$callable = self::getCallable($method);
 		return call_user_func_array($callable, $args);
 	}
 
@@ -100,11 +95,7 @@ class _
 
 	private function getOperation($method, $arguments)
 	{
-		$callable = $this->getCallable($method);
-
-		if (!$callable) {
-			throw new \Exception("No callable method found for \"{$method}\"");
-		}
+		$callable = self::getCallable($method);
 
 		$operation = function($value) use ($callable, $arguments) {
 			array_unshift($arguments, $value);
@@ -114,10 +105,15 @@ class _
 		return $operation;
 	}
 
-	private function getCallable($method)
+	private static function getCallable($method)
 	{
 		$callable = "\\Dash\\{$method}";
-		return is_callable($callable) ? $callable : null;
+
+		if (!is_callable($callable)) {
+			throw new \Exception("No callable method found for \"{$method}\"");
+		}
+
+		return $callable;
 	}
 
 	/**
