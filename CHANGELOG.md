@@ -1,69 +1,80 @@
 Changelog
 =========
-- [0.2.0](#020-future)
-- [0.1.0](#010-current)
+- [Planned](#planned)
+- [0.2.0](#020)
+- [0.1.0](#010)
 
 
-0.2.0 (future)
----------------------------------------
-- Improve documentation
-- Improve unit test coverage
-- Improve performance by using native PHP `array_*` methods
+Planned
+-------
+- Hundreds of new functions
+- Drop-in compatibility with other popular Underscore-like PHP libraries
+- Performance improvements
+- Ability to add custom functions
+- Ability to iterate over chains without calling `->value()`
 
 
-0.1.0 (current)
------------------------
+0.2.0
+-----
+- Renamed `Dash\Dash` class to `Dash\_`
+- Renamed `::with()` to `::chain()`
+- Removed `Dash\Collections` and `Dash\Functions` sub-namespaces; now all functions are in the root `Dash` namespace
+- Removed support for PHP 5.3
+
+
+0.1.0
+-----
 - Standalone and chained usage
 - Deferred evaluation
-- Operations:
-	- `Dash\any()`
-	- `Dash\at()`
-	- `Dash\average()`
-	- `Dash\contains()`
-	- `Dash\deltas()`
-	- `Dash\difference()`
-	- `Dash\each()`
-	- `Dash\every()`
-	- `Dash\filter()`
-	- `Dash\find()`
-	- `Dash\findKey()`
-	- `Dash\findLast()`
-	- `Dash\findValue()`
-	- `Dash\first()`
-	- `Dash\get()`
-	- `Dash\intersection()`
-	- `Dash\isEmpty()`
-	- `Dash\keys()`
-	- `Dash\last()`
-	- `Dash\map()`
-	- `Dash\mapValues()`
-	- `Dash\matches()`
-	- `Dash\matchesProperty()`
-	- `Dash\max()`
-	- `Dash\median()`
-	- `Dash\min()`
-	- `Dash\pluck()`
-	- `Dash\property()`
-	- `Dash\reduce()`
-	- `Dash\reject()`
-	- `Dash\reverse()`
-	- `Dash\size()`
-	- `Dash\sort()`
-	- `Dash\sum()`
-	- `Dash\take()`
-	- `Dash\takeRight()`
-	- `Dash\thru()`
-	- `Dash\toArray()`
-	- `Dash\union()`
-	- `Dash\values()`
-	- `Dash\where()`
-	- `Dash\without()`
-	- `Dash\compare()`
-	- `Dash\equal()`
-	- `Dash\identical()`
-	- `Dash\identity()`
-	- `Dash\isEven()`
-	- `Dash\isOdd()`
-	- `Dash\negate()`
-	- `Dash\partial()`
-	- `Dash\partialRight()`
+- Functions:
+	- `any()`
+	- `at()`
+	- `average()`
+	- `contains()`
+	- `deltas()`
+	- `difference()`
+	- `each()`
+	- `every()`
+	- `filter()`
+	- `find()`
+	- `findKey()`
+	- `findLast()`
+	- `findValue()`
+	- `first()`
+	- `get()`
+	- `intersection()`
+	- `isEmpty()`
+	- `keys()`
+	- `last()`
+	- `map()`
+	- `mapValues()`
+	- `matches()`
+	- `matchesProperty()`
+	- `max()`
+	- `median()`
+	- `min()`
+	- `pluck()`
+	- `property()`
+	- `reduce()`
+	- `reject()`
+	- `reverse()`
+	- `size()`
+	- `sort()`
+	- `sum()`
+	- `take()`
+	- `takeRight()`
+	- `thru()`
+	- `toArray()`
+	- `union()`
+	- `values()`
+	- `where()`
+	- `without()`
+	- `compare()`
+	- `equal()`
+	- `identical()`
+	- `identity()`
+	- `isEven()`
+	- `isOdd()`
+	- `negate()`
+	- `partial()`
+	- `partialRight()`
