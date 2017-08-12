@@ -1,0 +1,23 @@
+<phpunit
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	colors="true"
+>
+	<testsuites>
+		<testsuite name="unit">
+			<directory suffix=".php">test/unit</directory>
+		</testsuite>
+		<testsuite name="perf">
+			<directory suffix=".php">test/perf</directory>
+		</testsuite>
+	</testsuites>
+
+	<filter>
+		<whitelist checkForUnintentionallyCoveredCode="true">
+			<directory suffix=".php">src</directory>
+		</whitelist>
+	</filter>
+
+	<logging>
+		<log type="coverage-html" target="test-coverage" lowUpperBound="50" highLowerBound="70" />
+	</logging>
+</phpunit>

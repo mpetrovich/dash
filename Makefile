@@ -3,10 +3,16 @@
 # -----------------------------------------------------------------------------
 
 test:
-	@vendor/bin/phpunit --color tests/
+	@vendor/bin/phpunit
+
+test-unit:
+	@vendor/bin/phpunit --no-coverage --testsuite unit
+
+test-perf:
+	@vendor/bin/phpunit --no-coverage --testsuite perf
 
 test-coverage:
-	@vendor/bin/phpunit --color --coverage-html=test-coverage --strict-coverage tests/
+	@vendor/bin/phpunit --testsuite unit
 	@echo "Test coverage visible at:" $(shell pwd)/test-coverage/index.html
 
 test-clean:
@@ -40,4 +46,4 @@ release:
 
 
 # Forces these commands to always run
-.PHONY: test-coverage docs
+.PHONY: test test-coverage docs
