@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class intersectionTest extends PHPUnit_Framework_TestCase
 {
@@ -20,7 +20,7 @@ class intersectionTest extends PHPUnit_Framework_TestCase
 	public function testChainedIntersection($collections, $expected)
 	{
 		list($collection1, $collection2, $collection3) = $collections;
-		$container = new Container($collection1);
+		$container = new _($collection1);
 		$actual = $container->intersection($collection2, $collection3)->value();
 		$this->assertEquals($expected, $actual);
 	}

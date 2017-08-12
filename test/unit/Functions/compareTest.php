@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class compareTest extends PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class compareTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedCompare($a, $b, $expected)
 	{
-		$container = new Container($a);
+		$container = new _($a);
 		$actual = $container->compare($b)->value();
 		$this->assertSame($expected, $actual);
 	}

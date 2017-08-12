@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class findLastTest extends PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class findLastTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedFindLast($collection, $predicate, $expected)
 	{
-		$container = new Container($collection);
+		$container = new _($collection);
 		$actual = $container->findLast($predicate)->value();
 		$this->assertEquals($expected, $actual);
 	}

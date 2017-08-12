@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class identityTest extends PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class identityTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedIdentity($value, $expected)
 	{
-		$container = new Container($value);
+		$container = new _($value);
 		$actual = $container->identity()->value();
 		$this->assertSame($expected, $actual);
 	}

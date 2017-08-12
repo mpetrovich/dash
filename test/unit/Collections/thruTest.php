@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class thruTest extends PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class thruTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedThru($collection, $interceptor, $expected)
 	{
-		$container = new Container($collection);
+		$container = new _($collection);
 		$actual = $container->thru($interceptor)->value();
 		$this->assertSame($expected, $actual);
 	}

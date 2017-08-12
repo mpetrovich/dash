@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class findValueTest extends PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class findValueTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedFindValue($collection, $predicate, $expected)
 	{
-		$container = new Container($collection);
+		$container = new _($collection);
 		$actual = $container->findValue($predicate)->value();
 		$this->assertEquals($expected, $actual);
 	}

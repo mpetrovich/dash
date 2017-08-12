@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class whereTest extends PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class whereTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedWhere($collection, $properties, $expected)
 	{
-		$container = new Container($collection);
+		$container = new _($collection);
 		$actual = $container->where($properties)->value();
 		$this->assertEquals($expected, $actual);
 	}

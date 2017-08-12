@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class isOddTest extends PHPUnit_Framework_TestCase
 {

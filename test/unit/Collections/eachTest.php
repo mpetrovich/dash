@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class eachTest extends PHPUnit_Framework_TestCase
 {
@@ -33,7 +33,7 @@ class eachTest extends PHPUnit_Framework_TestCase
 			$iterated[] = $key . ' is ' . $value;
 		};
 
-		$container = new Container($collection);
+		$container = new _($collection);
 		$container->each($iteratee)->value();
 		$this->assertEquals($expected, $iterated);
 	}

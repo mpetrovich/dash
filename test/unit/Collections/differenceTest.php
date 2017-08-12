@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class differenceTest extends PHPUnit_Framework_TestCase
 {
@@ -20,7 +20,7 @@ class differenceTest extends PHPUnit_Framework_TestCase
 	public function testChainedDifference($collections, $expected)
 	{
 		list($collection1, $collection2, $collection3) = $collections;
-		$container = new Container($collection1);
+		$container = new _($collection1);
 		$actual = $container->difference($collection2, $collection3)->value();
 		$this->assertEquals($expected, $actual);
 	}

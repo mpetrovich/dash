@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class negateTest extends PHPUnit_Framework_TestCase
 {
@@ -21,7 +21,7 @@ class negateTest extends PHPUnit_Framework_TestCase
 			return $value > 0;
 		};
 
-		$container = new Container(array(2, -3, 5, -8));
+		$container = new _(array(2, -3, 5, -8));
 		$negatives = $container
 			->filter(Dash\negate($isPositive))
 			->values()  // Re-indexes the array

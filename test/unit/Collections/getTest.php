@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class getTest extends PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class getTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedGet($collection, $path, $expected)
 	{
-		$container = new Container($collection);
+		$container = new _($collection);
 		$actual = $container->get($path, 'default')->value();
 		$this->assertEquals($expected, $actual);
 	}

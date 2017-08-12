@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class reverseTest extends PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class reverseTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedReverse($collection, $expected)
 	{
-		$container = new Container($collection);
+		$container = new _($collection);
 		$actual = $container->reverse()->value();
 		$this->assertEquals($expected, $actual);
 	}

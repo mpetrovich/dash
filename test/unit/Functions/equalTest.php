@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class equalTest extends PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class equalTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedEqual($a, $b, $expected)
 	{
-		$container = new Container($a);
+		$container = new _($a);
 		$actual = $container->equal($b)->value();
 		$this->assertSame($expected, $actual);
 	}

@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class firstTest extends PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class firstTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedFirst($collection, $expected)
 	{
-		$container = new Container($collection);
+		$container = new _($collection);
 		$actual = $container->first()->value();
 		$this->assertEquals($expected, $actual);
 	}

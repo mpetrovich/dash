@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class takeTest extends PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class takeTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedTake($collection, $count, $fromStart, $expected)
 	{
-		$container = new Container($collection);
+		$container = new _($collection);
 		$actual = $container->take($count, $fromStart)->value();
 		$this->assertEquals($expected, $actual);
 	}

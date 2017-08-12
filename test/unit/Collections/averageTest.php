@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class averageTest extends PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class averageTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedAverage($collection, $expected)
 	{
-		$container = new Container($collection);
+		$container = new _($collection);
 		$actual = $container->average()->value();
 		$this->assertEquals($expected, $actual);
 	}

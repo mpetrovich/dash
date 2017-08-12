@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class takeRightTest extends PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class takeRightTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedTakeRight($collection, $count, $fromEnd, $expected)
 	{
-		$container = new Container($collection);
+		$container = new _($collection);
 		$actual = $container->takeRight($count, $fromEnd)->value();
 		$this->assertEquals($expected, $actual);
 	}

@@ -1,15 +1,15 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
-class ContainerTest extends PHPUnit_Framework_TestCase
+class _Test extends PHPUnit_Framework_TestCase
 {
 	/**
 	 * @dataProvider getTestCases
 	 */
 	public function testConstructor($value)
 	{
-		$container = new Container($value);
+		$container = new _($value);
 
 		if ($value instanceof Traversable || is_object($value)) {
 			$this->assertEquals(Dash\toArray($value), $container->value());
@@ -21,7 +21,7 @@ class ContainerTest extends PHPUnit_Framework_TestCase
 
 	public function testConstructorWithDefaultValue()
 	{
-		$container = new Container();
+		$container = new _();
 		$this->assertEquals(array(), $container->value());
 	}
 
@@ -30,7 +30,7 @@ class ContainerTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testWith($value)
 	{
-		$container = new Container();
+		$container = new _();
 		$return = $container->with($value);
 
 		if ($value instanceof Traversable || is_object($value)) {
@@ -90,7 +90,7 @@ class ContainerTest extends PHPUnit_Framework_TestCase
 
 	public function testDeferredEvaluation()
 	{
-		$doubleOdds = new Container();
+		$doubleOdds = new _();
 		$doubleOdds
 			->filter('Dash\_::isOdd')
 			->map(function($n) { return $n * 2; });
@@ -111,7 +111,7 @@ class ContainerTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testInvalidChainMethod()
 	{
-		$container = new Container(array(1, 2, 3));
+		$container = new _(array(1, 2, 3));
 		$container->foo();
 	}
 }

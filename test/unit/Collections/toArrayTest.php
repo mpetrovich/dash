@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class toArrayTest extends PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedToArray($collection, $expected)
 	{
-		$container = new Container($collection);
+		$container = new _($collection);
 		$actual = $container->toArray()->value();
 		$this->assertEquals($expected, $actual);
 	}

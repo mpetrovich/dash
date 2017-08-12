@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class sumTest extends PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class sumTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedSum($collection, $expected)
 	{
-		$container = new Container($collection);
+		$container = new _($collection);
 		$actual = $container->sum()->value();
 		$this->assertEquals($expected, $actual);
 	}

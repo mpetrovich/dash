@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class deltasTest extends PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class deltasTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedDeltas($collection, $expected)
 	{
-		$container = new Container($collection);
+		$container = new _($collection);
 		$actual = $container->deltas()->value();
 		$this->assertEquals($expected, $actual);
 	}

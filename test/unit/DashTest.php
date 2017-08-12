@@ -33,15 +33,15 @@ class DashTest extends PHPUnit_Framework_TestCase
 		_::foobar(array(1, 2, 3));
 	}
 
-	public function testWith()
+	public function testChain()
 	{
-		$chain = _::with(array(1, 2, 3));
+		$chain = _::chain(array(1, 2, 3));
 		$this->assertEquals(array(1, 2, 3), $chain->value());
 	}
 
 	public function testChainingWithInitialValue()
 	{
-		$chain = _::with(array(1, 2, 3))
+		$chain = _::chain(array(1, 2, 3))
 			->map(function($n) { return $n * 2; })
 			->filter(function($n) { return $n < 6; });
 
@@ -50,7 +50,7 @@ class DashTest extends PHPUnit_Framework_TestCase
 
 	public function testChainingWithoutInitialValue()
 	{
-		$chain = _::with()
+		$chain = _::chain()
 			->map(function($n) { return $n * 2; })
 			->filter(function($n) { return $n < 6; });
 
@@ -69,7 +69,7 @@ class DashTest extends PHPUnit_Framework_TestCase
 
 	public function testChainingReuse()
 	{
-		$chain = _::with(array(1, 2, 3))
+		$chain = _::chain(array(1, 2, 3))
 			->map(function($n) { return $n * 2; });
 
 		$this->assertEquals(array(2, 4, 6), $chain->value());

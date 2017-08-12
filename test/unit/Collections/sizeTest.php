@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class sizeTest extends PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class sizeTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedSize($collection, $expected)
 	{
-		$container = new Container($collection);
+		$container = new _($collection);
 		$actual = $container->size()->value();
 		$this->assertEquals($expected, $actual);
 	}

@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class maxTest extends PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class maxTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedMax($collection, $expected)
 	{
-		$container = new Container($collection);
+		$container = new _($collection);
 		$actual = $container->max()->value();
 		$this->assertEquals($expected, $actual);
 	}

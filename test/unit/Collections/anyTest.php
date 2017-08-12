@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class anyTest extends PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class anyTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedAny($collection, $predicate, $expected)
 	{
-		$container = new Container($collection);
+		$container = new _($collection);
 		$actual = $container->any($predicate)->value();
 		$this->assertEquals($expected, $actual);
 	}

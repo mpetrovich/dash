@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class mapValuesTest extends PHPUnit_Framework_TestCase
 {
@@ -31,7 +31,7 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 			return $key . ' is ' . $value;
 		};
 
-		$container = new Container($collection);
+		$container = new _($collection);
 		$actual = $container->mapValues($iteratee)->value();
 		$this->assertEquals($expected, $actual);
 	}

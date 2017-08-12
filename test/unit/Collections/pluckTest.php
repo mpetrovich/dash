@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class pluckTest extends PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class pluckTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedPluck($collection, $path, $expected)
 	{
-		$container = new Container($collection);
+		$container = new _($collection);
 		$actual = $container->pluck($path)->value();
 		$this->assertEquals($expected, $actual);
 	}

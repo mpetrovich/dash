@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 // @todo Test that original collection is not modified
 // @todo Test with comparator
@@ -20,7 +20,7 @@ class sortTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedSort($collection, $expected)
 	{
-		$container = new Container($collection);
+		$container = new _($collection);
 		$actual = $container->sort()->value();
 		$this->assertEquals($expected, $actual);
 	}

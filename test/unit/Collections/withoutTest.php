@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class withoutTest extends PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class withoutTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedWithout($collection, $without, $expected)
 	{
-		$container = new Container($collection);
+		$container = new _($collection);
 		$actual = $container->without($without)->value();
 		$this->assertEquals($expected, $actual);
 	}

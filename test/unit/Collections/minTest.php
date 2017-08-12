@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class minTest extends PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class minTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedMin($collection, $expected)
 	{
-		$container = new Container($collection);
+		$container = new _($collection);
 		$actual = $container->min()->value();
 		$this->assertEquals($expected, $actual);
 	}

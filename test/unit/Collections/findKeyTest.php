@@ -1,6 +1,6 @@
 <?php
 
-use Dash\Container;
+use Dash\_;
 
 class findKeyTest extends PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class findKeyTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainedFindKey($collection, $predicate, $expected)
 	{
-		$container = new Container($collection);
+		$container = new _($collection);
 		$actual = $container->findKey($predicate)->value();
 		$this->assertEquals($expected, $actual);
 	}

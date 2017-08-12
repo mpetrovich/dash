@@ -59,12 +59,12 @@ $double = _::map(
 
 
 #### Chaining
-Multiple operations can be chained in sequence using `with()`:
+Multiple operations can be chained in sequence using `from()`:
 
 ```php
 use Dash\_;
 
-$doubleOdds = _::with(array(1, 2, 3))
+$doubleOdds = _::chain(array(1, 2, 3))
 	->filter('Dash\_::isOdd')
 	->map(function($n) { return $n * 2; })
 	->value();
@@ -74,11 +74,11 @@ $doubleOdds = _::with(array(1, 2, 3))
 
 
 #### Deferred evaluation
-Chained operations are not evaluated until `value()` is called, so the input data can be changed at any time before then. This makes it simple to create reusable chains:
+Chained operations are not evaluated until `value()` is called, so the input data can be changed at any time (via `with()`) before then. This makes it simple to create reusable chains:
 ```php
 use Dash\_;
 
-$doubleOdds = _::with()
+$doubleOdds = _::chain()
 	->filter('Dash\_::isOdd')
 	->map(function($n) { return $n * 2; });
 
