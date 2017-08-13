@@ -71,6 +71,7 @@
 			"src/sum.php",
 			"src/take.php",
 			"src/takeRight.php",
+			"src/takeWhile.php",
 			"src/tap.php",
 			"src/thru.php",
 			"src/toArray.php",
