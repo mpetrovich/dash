@@ -9,6 +9,9 @@ test:
 test-unit:
 	@vendor/bin/phpunit --no-coverage --testsuite unit
 
+test-one:
+	@vendor/bin/phpunit test/unit/$(test)Test --no-coverage --testsuite unit
+
 test-perf:
 	@vendor/bin/phpunit --no-coverage --testsuite perf
 
