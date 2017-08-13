@@ -39,8 +39,8 @@ class _
 	/**
 	 * Sets a custom operation.
 	 *
-	 * Any existing custom operation with the same name will be replaced.
-	 * However, built-in Dash operations cannot be replaced.
+	 * A custom operation with the same name as a built-in operation
+	 * will override the built-in operation.
 	 *
 	 * @param string $name Operation name
 	 * @param callable $callable Operation function
@@ -204,11 +204,11 @@ class _
 	{
 		$callable = "\\Dash\\{$method}";
 
-		if (is_callable($callable)) {
-			return $callable;
-		}
-		else if (isset(self::$customFunctions[$method])) {
+		if (isset(self::$customFunctions[$method])) {
 			return self::$customFunctions[$method];
+		}
+		else if (is_callable($callable)) {
+			return $callable;
 		}
 		else {
 			throw new \BadMethodCallException("No callable method found for \"{$method}\"");
