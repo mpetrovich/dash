@@ -1,14 +1,20 @@
 
-# Runs all unit tests
-test:
-	@vendor/bin/phpunit --no-coverage
-
-
-# Runs a single test file
+# Runs unit tests
+#
+# To run tests for a single operation, add `op=<operation>`.
+# If omitted, all tests will be run.
 #
 # Example:
-#   make test-one test=map
+#   make test-one op=map
 #
+test:
+ifdef op
+	@vendor/bin/phpunit test/$(op)Test --no-coverage
+else
+	@vendor/bin/phpunit --no-coverage
+endif
+
+
 test-one:
 	@vendor/bin/phpunit test/$(test)Test --no-coverage
 
@@ -37,3 +43,4 @@ release:
 
 # Forces these commands to always run
 .PHONY: test test-coverage docs
+
