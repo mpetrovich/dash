@@ -107,59 +107,63 @@ _::unsetCustom('triple');
 
 
 #### Included operations
-For collections (arrays, `stdClass` and `Traversable` objects):
 
-- `any()`
-- `at()`
-- `average()`
-- `contains()`
-- `deltas()`
-- `difference()`
-- `each()`
-- `every()`
-- `filter()`
-- `find()`
-- `findKey()`
-- `findLast()`
-- `findValue()`
-- `first()`
-- `get()`
-- `intersection()`
-- `isEmpty()`
-- `keys()`
-- `last()`
-- `map()`
-- `mapValues()`
-- `matches()`
-- `matchesProperty()`
-- `max()`
-- `median()`
-- `min()`
-- `pluck()`
-- `property()`
-- `reduce()`
-- `reject()`
-- `reverse()`
-- `size()`
-- `sort()`
-- `sum()`
-- `take()`
-- `takeRight()`
-- `thru()`
-- `toArray()`
-- `union()`
-- `values()`
-- `where()`
-- `without()`
-
-For functions & scalar values:
-
-- `compare()`
-- `equal()`
-- `identical()`
-- `identity()`
-- `isEven()`
-- `isOdd()`
-- `negate()`
-- `partial()`
-- `partialRight()`
+ - `all()`
+ - `any()`
+ - `assertType()`
+ - `at()`
+ - `average()`
+ - `compare()`
+ - `contains()`
+ - `deltas()`
+ - `difference()`
+ - `each()`
+ - `equal()`
+ - `every()`
+ - `filter()`
+ - `find()`
+ - `findKey()`
+ - `findLast()`
+ - `findValue()`
+ - `first()`
+ - `get()`
+ - `groupBy()`
+ - `identical()`
+ - `identity()`
+ - `indexBy()`
+ - `intersection()`
+ - `isEmpty()`
+ - `isEven()`
+ - `isOdd()`
+ - `keyBy()`
+ - `keys()`
+ - `last()`
+ - `map()`
+ - `mapValues()`
+ - `matches()`
+ - `matchesProperty()`
+ - `max()`
+ - `median()`
+ - `min()`
+ - `negate()`
+ - `partial()`
+ - `partialRight()`
+ - `pick()`
+ - `pluck()`
+ - `property()`
+ - `reduce()`
+ - `reject()`
+ - `reverse()`
+ - `set()`
+ - `size()`
+ - `sort()`
+ - `sum()`
+ - `take()`
+ - `takeRight()`
+ - `tap()`
+ - `thru()`
+ - `toArray()`
+ - `union()`
+ - `values()`
+ - `where()`
+ - `without()`

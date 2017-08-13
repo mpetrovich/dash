@@ -14,6 +14,18 @@ Planned
 - Performance improvements
 
 
+0.4.0
+-----
+- Adds:
+	- `all()`
+	- `groupBy()`
+	- `indexBy()`
+	- `keyBy()`
+	- `set()`
+	- `assertType()`
+- Fixes issues with non-array inputs
+
+
 0.3.0
 -----
 - Added ability to add custom functions via `setCustom()`
@@ -31,7 +43,7 @@ Planned
 -----
 - Standalone and chained usage
 - Deferred evaluation
-- Functions:
+- Included operations:
 	- `any()`
 	- `at()`
 	- `average()`
