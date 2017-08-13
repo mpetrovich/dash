@@ -18,6 +18,7 @@
 			"Dash\\": ["src/", "tests/"]
 		},
 		"files": [
+			"src/all.php",
 			"src/any.php",
 			"src/assertType.php",
 			"src/at.php",
@@ -36,12 +37,15 @@
 			"src/findValue.php",
 			"src/first.php",
 			"src/get.php",
+			"src/groupBy.php",
 			"src/identical.php",
 			"src/identity.php",
+			"src/indexBy.php",
 			"src/intersection.php",
 			"src/isEmpty.php",
 			"src/isEven.php",
 			"src/isOdd.php",
+			"src/keyBy.php",
 			"src/keys.php",
 			"src/last.php",
 			"src/map.php",
