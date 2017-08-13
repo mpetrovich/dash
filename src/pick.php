@@ -2,16 +2,16 @@
 
 namespace Dash;
 
-function pick($input, $fields)
+function pick($input, $keys)
 {
-	assertType($input, ['array', 'object']);
+	assertType($input, ['iterable']);
 
-	$fields = (array) $fields;
+	$keys = (array) $keys;
 	$picked = [];
 
-	foreach ($input as $field => $value) {
-		if (in_array($field, $fields)) {
-			$picked[$field] = $value;
+	foreach ($input as $key => $value) {
+		if (in_array($key, $keys)) {
+			$picked[$key] = $value;
 		}
 	}
 
