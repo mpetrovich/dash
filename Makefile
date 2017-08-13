@@ -27,12 +27,12 @@ clean:
 # Tags a new release
 #
 # Example:
-# 	make release version=1.2.3
+# 	make release v=1.2.3
 #
 release:
 	make clean
 	make test
-	git tag -a v$(version) -m v$(version)
+	git tag -a v$(v) -m v$(v)
 
 
 # Forces these commands to always run
