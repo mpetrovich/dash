@@ -64,17 +64,31 @@ Multiple operations can be chained in sequence using `chain()`. Use `value()` to
 ```php
 use Dash\_;
 
-$doubleOdds = _::chain(array(1, 2, 3))
+$doubleOdds = _::chain([1, 2, 3])
 	->filter('Dash\_::isOdd')
 	->map(function($n) { return $n * 2; })
 	->value();
 
-// $doubleOdds == array(2, 6)
+// $doubleOdds == [2, 6]
+```
+
+As a convenience, `_::chain()` can be aliased to a global function with `setGlobalAlias()`:
+
+```php
+Dash\_::setGlobalAlias('__');
+
+$doubleOdds = __([1, 2, 3])
+	->filter('Dash\_::isOdd')
+	->map(function($n) { return $n * 2; })
+	->value();
+
+// $doubleOdds == [2, 6]
 ```
 
 
 #### Deferred evaluation
 Chained operations are not evaluated until `value()` is called, so the input data can be changed at any time (via `with()`) before then. This makes it simple to create reusable chains:
+
 ```php
 use Dash\_;
 
@@ -92,6 +106,7 @@ $result = $doubleOdds->with(array(7, 9, 11, 13))->value();
 
 #### Custom functions
 Custom functions can be added and removed via `setCustom()` and `unsetCustom()`, respectively:
+
 ```php
 use Dash\_;
 

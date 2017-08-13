@@ -20,6 +20,31 @@ namespace Dash;
 class _
 {
 	/**
+	 * Creates a global function alias for _::chain().
+	 *
+	 * @param string $alias Name of the global function
+	 * @return void
+	 *
+	 * @example Aliases _::chain() to dash()
+		_::setGlobalAlias('dash');
+
+		dash([1, 2, 3])
+			->map(function($n) { return $n * 2; })
+			->filter(function($n) { return $n > 2; })
+			->value();  // === [4, 6]
+	 */
+	public static function setGlobalAlias($alias = '__')
+	{
+		if (function_exists($alias) && !$alias() instanceof _) {
+			throw new \RuntimeException("$alias() already defined");
+		}
+
+		if (!function_exists($alias)) {
+			eval("function $alias() { return call_user_func_array('Dash\_::chain', func_get_args()); }");
+		}
+	}
+
+	/**
 	 * Starts a new chain.
 	 *
 	 * @param mixed $input (optional) Initial value of the chain
@@ -211,7 +236,7 @@ class _
 			return $callable;
 		}
 		else {
-			throw new \BadMethodCallException("No callable method found for \"{$method}\"");
+			throw new \BadMethodCallException("No callable method found for \"$method\"");
 		}
 	}
 
