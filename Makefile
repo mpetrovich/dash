@@ -1,35 +1,30 @@
-# -----------------------------------------------------------------------------
-# Tests
-# -----------------------------------------------------------------------------
 
+# Runs all unit tests
 test:
-	make test-coverage
-	make test-perf
+	@vendor/bin/phpunit --no-coverage
 
-test-unit:
-	@vendor/bin/phpunit --no-coverage --testsuite unit
 
+# Runs a single test file
+#
+# Example:
+#   make test-one test=map
+#
 test-one:
-	@vendor/bin/phpunit test/unit/$(test)Test --no-coverage --testsuite unit
+	@vendor/bin/phpunit test/$(test)Test --no-coverage
 
-test-perf:
-	@vendor/bin/phpunit --no-coverage --testsuite perf
 
+# Runs all tests with code coverage analysis
 test-coverage:
-	@vendor/bin/phpunit --testsuite unit
+	@vendor/bin/phpunit
 	@echo "Test coverage visible at:" $(shell pwd)/test-coverage/index.html
 
-test-clean:
+
+# Removes all generated files
+clean:
 	@rm -rf test-coverage/
 
-# -----------------------------------------------------------------------------
-# Release
-# -----------------------------------------------------------------------------
 
-clean:
-	make test-clean
-
-# Tags a new release.
+# Tags a new release
 #
 # Example:
 # 	make release version=1.2.3
