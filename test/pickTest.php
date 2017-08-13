@@ -126,7 +126,6 @@ class pickTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @expectedException \InvalidArgumentException
-	 * @expectedExceptionMessage Expected a array or object but was given a integer
 	 */
 	public function testInputType() {
 		Dash\pick(42, 'a');

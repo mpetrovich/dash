@@ -120,7 +120,7 @@ class assertTypeTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @expectedException \InvalidArgumentException
-	 * @expectedExceptionMessage Expected a string but was given a integer
+	 * @expectedExceptionMessage Expected string but was given integer
 	 */
 	public function testExceptionWithOneType()
 	{
@@ -129,7 +129,7 @@ class assertTypeTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @expectedException \InvalidArgumentException
-	 * @expectedExceptionMessage Expected a null or array or object but was given a double
+	 * @expectedExceptionMessage Expected null or array or object but was given double
 	 */
 	public function testExceptionWithSeveralTypes()
 	{
