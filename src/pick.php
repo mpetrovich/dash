@@ -4,6 +4,8 @@ namespace Dash;
 
 function pick($input, $fields)
 {
+	assertType($input, ['array', 'object']);
+
 	$fields = (array) $fields;
 	$picked = [];
 

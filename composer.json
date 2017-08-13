@@ -19,6 +19,7 @@
 		},
 		"files": [
 			"src/any.php",
+			"src/assertType.php",
 			"src/at.php",
 			"src/average.php",
 			"src/compare.php",
@@ -59,6 +60,7 @@
 			"src/reduce.php",
 			"src/reject.php",
 			"src/reverse.php",
+			"src/set.php",
 			"src/size.php",
 			"src/sort.php",
 			"src/sum.php",

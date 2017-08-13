@@ -4,9 +4,18 @@ use Dash\_;
 
 class setTest extends PHPUnit_Framework_TestCase
 {
-	public function test()
+	/**
+	 * @dataProvider cases
+	 */
+	public function test($input, $field, $value, $expected)
 	{
-		$this->markTestIncomplete();
+		$this->assertEquals($expected, Dash\set($input, $field, $value));
+	}
+
+	public function cases()
+	{
+		return [
+		];
 	}
 }
 

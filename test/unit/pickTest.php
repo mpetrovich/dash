@@ -1,7 +1,5 @@
 <?php
 
-use Dash\_;
-
 class pickTest extends PHPUnit_Framework_TestCase
 {
 	/**
@@ -12,7 +10,8 @@ class pickTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expected, Dash\pick($input, $pick));
 	}
 
-	public function cases() {
+	public function cases()
+	{
 		return [
 
 			/*
@@ -124,5 +123,12 @@ class pickTest extends PHPUnit_Framework_TestCase
 			],
 		];
 	}
-}
 
+	/**
+	 * @expectedException \InvalidArgumentException
+	 * @expectedExceptionMessage Expected a array or object but was given a integer
+	 */
+	public function testInputType() {
+		Dash\pick(42, 'a');
+	}
+}
