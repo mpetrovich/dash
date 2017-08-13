@@ -73,7 +73,6 @@
 			"src/tap.php",
 			"src/thru.php",
 			"src/toArray.php",
-			"src/toArrayOrScalar.php",
 			"src/union.php",
 			"src/values.php",
 			"src/where.php",
