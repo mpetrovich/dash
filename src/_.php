@@ -154,7 +154,7 @@ class _
 	public function value()
 	{
 		if (!isset($this->output)) {
-			$this->output = $this->executeOperations($this->input);
+			$this->output = $this->getOutput($this->input);
 		}
 
 		return $this->output;
@@ -251,7 +251,7 @@ class _
 	 * @param mixed $input
 	 * @return array|scalar Normalized result of all operations on the given initial value
 	 */
-	private function executeOperations($input)
+	private function getOutput($input)
 	{
 		$output = $input;
 
