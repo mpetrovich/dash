@@ -112,9 +112,9 @@ class _
 		$chain->with(3.14);
 		$chain->value();  // === 3.14
 	 */
-	public function with($initialValue = [])
+	public function with($initialValue = null)
 	{
-		$this->initialValue = toArrayOrScalar($initialValue);
+		$this->initialValue = $initialValue;
 		$this->finalValue = null;
 		return $this;
 	}
@@ -182,9 +182,9 @@ class _
 	/**
 	 * The initial value of the chain.
 	 *
-	 * @var array|scalar
+	 * @var mixed
 	 */
-	private $initialValue = [];
+	private $initialValue = null;
 
 	/**
 	 * The final value of the chain.
@@ -221,7 +221,7 @@ class _
 	 * @param mixed $initialValue (optional) Initial value of the chain
 	 * @return void
 	 */
-	private function __construct($initialValue = [])
+	private function __construct($initialValue = null)
 	{
 		$this->with($initialValue);
 	}
@@ -256,8 +256,7 @@ class _
 		$value = $initialValue;
 
 		foreach ($this->operations as $operation) {
-			$result = call_user_func($operation, $value);
-			$value = toArrayOrScalar($result);
+			$value = call_user_func($operation, $value);
 		}
 
 		return $value;

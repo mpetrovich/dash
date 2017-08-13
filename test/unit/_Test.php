@@ -39,13 +39,21 @@ class _Test extends PHPUnit_Framework_TestCase
 		$this->assertEquals(array(1, 2, 3), $chain->value());
 	}
 
-	public function testChainingWithInitialValue()
+	public function testChainingWithArray()
 	{
 		$chain = _::chain(array(1, 2, 3))
 			->map(function($n) { return $n * 2; })
 			->filter(function($n) { return $n < 6; });
 
 		$this->assertEquals(array(2, 4), $chain->value());
+	}
+
+	public function testChainingWithObject()
+	{
+		$chain = _::chain((object) array('a' => 1, 'b' => 2, 'c' => 3))
+			->pick(['b', 'c']);
+
+		$this->assertEquals((object) array('b' => 2, 'c' => 3), $chain->value());
 	}
 
 	public function testChainingWithoutInitialValue()
@@ -79,25 +87,13 @@ class _Test extends PHPUnit_Framework_TestCase
 		$this->assertEquals(array(8, 10, 12), $chain->value());
 	}
 
-	public function testChainNormalization()
-	{
-		_::chain((object) [1, 2, 3])
-			->thru(function($array) {
-				return (object) $array;
-			})
-			->tap(function($array) {
-				$this->assertInternalType('array', $array);
-			})
-			->value();
-	}
-
 	public function testValueCaching()
 	{
 		$mapCallCount = 0;
 
 		$chain = _::chain((object) array(1, 2, 3));
 
-		$this->assertEquals(array(1, 2, 3), $chain->value());
+		$this->assertEquals((object) array(1, 2, 3), $chain->value());
 
 		$chain->map(function($n) use (&$mapCallCount) {
 			$mapCallCount++;
@@ -109,7 +105,7 @@ class _Test extends PHPUnit_Framework_TestCase
 		$this->assertEquals(array(2, 4, 6), $chain->value());
 		$this->assertEquals(3, $mapCallCount);
 
-		$chain->with((object) (object) array(4, 5, 6));
+		$chain->with((object) array(4, 5, 6));
 
 		$this->assertEquals(array(8, 10, 12), $chain->value());
 		$this->assertEquals(6, $mapCallCount);
@@ -147,13 +143,7 @@ class _Test extends PHPUnit_Framework_TestCase
 		$chain = _::chain();
 		$return = $chain->with($value);
 
-		if ($value instanceof Traversable || is_object($value)) {
-			$this->assertEquals(Dash\toArray($value), $chain->value());
-		}
-		else {
-			$this->assertEquals($value, $chain->value());
-		}
-
+		$this->assertSame($value, $chain->value());
 		$this->assertSame($chain, $return);
 	}
 

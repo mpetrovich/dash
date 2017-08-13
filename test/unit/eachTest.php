@@ -27,9 +27,7 @@ class eachTest extends PHPUnit_Framework_TestCase
 	{
 		$self = $this;
 		$iterated = [];
-		$array = Dash\toArray($collection);
-		$iteratee = function($value, $key, $collection) use ($self, $array, &$iterated) {
-			$self->assertSame($collection, $array);
+		$iteratee = function($value, $key, $collection) use ($self, &$iterated) {
 			$iterated[] = $key . ' is ' . $value;
 		};
 

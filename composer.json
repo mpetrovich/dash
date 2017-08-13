@@ -53,6 +53,7 @@
 			"src/negate.php",
 			"src/partial.php",
 			"src/partialRight.php",
+			"src/pick.php",
 			"src/pluck.php",
 			"src/property.php",
 			"src/reduce.php",
