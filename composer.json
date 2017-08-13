@@ -23,6 +23,7 @@
 			"src/assertType.php",
 			"src/at.php",
 			"src/average.php",
+			"src/chain.php",
 			"src/compare.php",
 			"src/contains.php",
 			"src/deltas.php",
