@@ -13,15 +13,6 @@ class everyTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForEvery
-	 */
-	public function testChainedEvery($collection, $predicate, $expected)
-	{
-		$actual = _::chain($collection)->every($predicate)->value();
-		$this->assertEquals($expected, $actual);
-	}
-
 	public function casesForEvery()
 	{
 		return array(
@@ -92,7 +83,7 @@ class everyTest extends PHPUnit_Framework_TestCase
 				true
 			),
 
-/*
+			/*
 				With ArrayObject
 			 */
 
