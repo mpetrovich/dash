@@ -22,7 +22,7 @@ class _
 	/**
 	 * Starts a new chain.
 	 *
-	 * @param mixed $initialValue (optional) Initial value of the chain
+	 * @param mixed $input (optional) Initial value of the chain
 	 * @return _ A new chain
 	 *
 	 * @example
@@ -31,9 +31,9 @@ class _
 			->filter(function($n) { return $n > 2; })
 			->value();  // === [4, 6]
 	 */
-	public static function chain($initialValue = null)
+	public static function chain($input = null)
 	{
-		return new self($initialValue);
+		return new self($input);
 	}
 
 	/**
@@ -96,7 +96,7 @@ class _
 	/**
 	 * Sets the initial value of a chain.
 	 *
-	 * @param mixed $initialValue
+	 * @param mixed $input
 	 * @return _ The chain
 	 *
 	 * @example With an array
@@ -112,10 +112,10 @@ class _
 		$chain->with(3.14);
 		$chain->value();  // === 3.14
 	 */
-	public function with($initialValue = null)
+	public function with($input = null)
 	{
-		$this->initialValue = $initialValue;
-		$this->finalValue = null;
+		$this->input = $input;
+		$this->output = null;
 		return $this;
 	}
 
@@ -135,7 +135,7 @@ class _
 	public function __call($method, $args)
 	{
 		$this->operations[] = $this->toOperation($method, $args);
-		$this->finalValue = null;
+		$this->output = null;
 		return $this;
 	}
 
@@ -153,11 +153,11 @@ class _
 	 */
 	public function value()
 	{
-		if (!isset($this->finalValue)) {
-			$this->finalValue = $this->executeOperations($this->initialValue);
+		if (!isset($this->output)) {
+			$this->output = $this->executeOperations($this->input);
 		}
 
-		return $this->finalValue;
+		return $this->output;
 	}
 
 	/*
@@ -180,18 +180,18 @@ class _
 	private $operations = [];
 
 	/**
-	 * The initial value of the chain.
+	 * The input value of the chain.
 	 *
 	 * @var mixed
 	 */
-	private $initialValue = null;
+	private $input = null;
 
 	/**
-	 * The final value of the chain.
+	 * The output value of the chain.
 	 *
 	 * @var mixed
 	 */
-	private $finalValue = null;
+	private $output = null;
 
 	/**
 	 * Returns a callable for the given Dash operation.
@@ -218,12 +218,12 @@ class _
 	/**
 	 * Constructs a new chain.
 	 *
-	 * @param mixed $initialValue (optional) Initial value of the chain
+	 * @param mixed $input (optional) Initial value of the chain
 	 * @return void
 	 */
-	private function __construct($initialValue = null)
+	private function __construct($input = null)
 	{
-		$this->with($initialValue);
+		$this->with($input);
 	}
 
 	/**
@@ -237,8 +237,8 @@ class _
 	{
 		$callable = self::toCallable($method);
 
-		$operation = function($value) use ($callable, $args) {
-			array_unshift($args, $value);
+		$operation = function($input) use ($callable, $args) {
+			array_unshift($args, $input);
 			return call_user_func_array($callable, $args);
 		};
 
@@ -248,17 +248,17 @@ class _
 	/**
 	 * Executes all chained operations.
 	 *
-	 * @param mixed $initialValue
+	 * @param mixed $input
 	 * @return array|scalar Normalized result of all operations on the given initial value
 	 */
-	private function executeOperations($initialValue)
+	private function executeOperations($input)
 	{
-		$value = $initialValue;
+		$output = $input;
 
 		foreach ($this->operations as $operation) {
-			$value = call_user_func($operation, $value);
+			$output = call_user_func($operation, $output);
 		}
 
-		return $value;
+		return $output;
 	}
 }
