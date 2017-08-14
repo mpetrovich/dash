@@ -9,6 +9,7 @@ namespace Dash;
  * Keys in the original collection are _not_ preserved; a freshly indexed array
  * is returned.
  *
+ * @category Collection
  * @param array|object $collection
  * @param Callable|string $iteratee Function called with (element, key, collection)
  *        for each element in $collection. The return value of $iteratee will
