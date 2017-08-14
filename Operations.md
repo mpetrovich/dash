@@ -131,7 +131,7 @@ Gets the value at a path on a collection.
 Name | Type | Description
 --- | --- | ---
 `$collection` | `array\|object` | 
-`$path` | `string` | Path of the property to retrieve; can be nested by
+`$path` | `string` | Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period
 `$default` | `mixed` | Default value to return if nothing exists at $path
 
 
@@ -255,7 +255,7 @@ Gets the value at a path for all elements in a collection.
 Name | Type | Description
 --- | --- | ---
 `$collection` | `array\|object` | 
-`$path` | `string` | Path of the property to retrieve; can be nested by
+`$path` | `string` | Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period
 
 
 **Example:** 
@@ -281,7 +281,7 @@ Creates a function that returns the value at a path on a collection.
 
 Name | Type | Description
 --- | --- | ---
-`$path` | `string\|function` | Path of the property to retrieve; can be nested
+`$path` | `string\|function` | Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period. If it is a function, the same function is returned.
 `$default` | `mixed` | Default value to return if nothing exists at $path
 
 
