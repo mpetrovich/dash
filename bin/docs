@@ -12,20 +12,13 @@ buildDocs($sourceDir, $destFilepath);
 function buildDocs($sourceDir, $destFilepath)
 {
 	$categories = _::chain(new FilesystemIterator($sourceDir))
-		->indexBy(function($fileinfo) {
-			return pathinfo($fileinfo)['filename'];
-		})
-		->mapValues(function($fileinfo) {
-			return $fileinfo->getPathname();
-		})
-		->reject(function($filepath, $name) {
-			return $name === '' || $name === '_';
-		})
+		->map(function($fileinfo) { return pathinfo($fileinfo)['filename']; })
+		->reject(function($name) { return $name === '' || $name[0] === '_'; })
+		->map(function($name) { return "src/$name/$name.php"; })
+		->filter(function($filepath) { return file_exists($filepath); })
 		->map('createDoc')
 		->groupBy('category', 'Other')
-		->each(function($docs) {
-			return _::sort($docs, _::property('name'));
-		})
+		->each(function($docs) { return _::sort($docs, _::property('name')); })
 		->value();
 
 	_::chain($categories)
@@ -35,9 +28,7 @@ function buildDocs($sourceDir, $destFilepath)
 			$tableOfContents = renderTableOfContents($categories);
 			return "$tableOfContents\n\n$renderedCategories";
 		})
-		->tap(function($content) use ($destFilepath) {
-			file_put_contents($destFilepath, $content);
-		})
+		->tap(function($content) use ($destFilepath) { file_put_contents($destFilepath, $content); })
 		->execute();
 }
 
@@ -66,7 +57,7 @@ function extractDocblock($filepath)
 	$docblock = $hasDoc ? $matches[1] : '';
 
 	// Removes leading asterisks and whitespace
-	$docblock = preg_replace('/^[\s\*]*([^\n]+?)\n?/m', '$1', $docblock);
+	$docblock = preg_replace('/^[ ]*\*[ ]*(.*)$/m', '$1', $docblock);
 	$docblock = trim($docblock);
 
 	return $docblock;
@@ -110,6 +101,28 @@ function parseDocblock($docblock)
 		})
 		->value();
 
+	// Examples
+	$allExampleLines = _::dropWhile($lines, function($line) {
+		return strpos($line, '@example') !== 0;
+	});
+
+	for ($doc->examples = []; $allExampleLines;) {
+		$description = str_replace('@example', '', array_shift($allExampleLines));
+		$description = trim($description);
+
+		$exampleLines = [];
+		while ($allExampleLines && strpos($allExampleLines[0], '@example') !== 0) {
+			$exampleLine = array_shift($allExampleLines);
+			$exampleLine = preg_replace('/^\t/', '', $exampleLine);
+			$exampleLines[] = $exampleLine;
+		}
+
+		$doc->examples[] = (object) [
+			'description' => $description,
+			'content' => implode("\n", $exampleLines),
+		];
+	}
+
 	return $doc;
 }
 
@@ -120,6 +133,18 @@ function renderDoc($doc)
 		return $output . "`$param->name` | `$type` | $param->description\n";
 	}, "Name | Type | Description\n--- | --- | ---\n");
 
+	$examples = _::chain($doc->examples)
+		->map(function($example) {
+			return <<<END
+**Example:** {$example->description}
+```php
+{$example->content}
+```
+END;
+		})
+		->join("\n\n")
+		->value();
+
 	return <<<END
 {$doc->name}
 ---
@@ -129,6 +154,8 @@ function renderDoc($doc)
 {$doc->description}
 
 $paramsTable
+
+$examples
 END;
 }
 
