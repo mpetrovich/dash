@@ -185,6 +185,15 @@ class _
 		return $this->output;
 	}
 
+	/**
+	 * Alias for value().
+	 * @see value()
+	 */
+	public function execute()
+	{
+		return $this->value();
+	}
+
 	/*
 		Private
 		------------------------------------------------------------
