@@ -1,13 +1,29 @@
 <?php
 
-use Dash\_;
-
-// From Lodash
 class joinTest extends PHPUnit_Framework_TestCase
 {
-	public function test()
+	/**
+	 * @dataProvider cases
+	 */
+	public function test($input, $glue, $expected)
 	{
-		$this->markTestIncomplete();
+		$this->assertEquals($expected, Dash\join($input, $glue));
+	}
+
+	public function cases()
+	{
+		return [
+			[
+				'input' => [1, 2, 3],
+				'glue' => ', ',
+				'expected' => '1, 2, 3',
+			],
+			[
+				'input' => (object) ['a' => 1, 'b' => 2, 'c' => 3],
+				'glue' => ', ',
+				'expected' => '1, 2, 3',
+			],
+		];
 	}
 }
 

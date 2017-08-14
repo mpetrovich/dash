@@ -46,6 +46,7 @@
 			"src/isEmpty.php",
 			"src/isEven.php",
 			"src/isOdd.php",
+			"src/join.php",
 			"src/keyBy.php",
 			"src/keys.php",
 			"src/last.php",
