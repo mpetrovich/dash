@@ -26,7 +26,7 @@ function set(&$input, $path, $value)
 			$target = &$target->$key;
 		}
 		else {
-			break;
+			return $input;
 		}
 	}
 
