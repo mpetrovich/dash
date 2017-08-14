@@ -1,5 +1,5 @@
 Changelog
-=========
+===
 - [Planned](#planned)
 - [0.3.0](#030)
 - [0.2.0](#020)
@@ -7,32 +7,43 @@ Changelog
 
 
 Planned
--------
+---
 - Better documentation
 - Hundreds of new functions
 - Drop-in compatibility with other popular Underscore-like PHP libraries
 - Performance improvements
 
 
+0.5.0
+---
+- New operations:
+	- `join()`
+	- `takeWhile()`
+- Adds `_::setGlobalAlias()` to create a global function alias for `_::chain()`, eg. `__([1, 2, 3])->map(…)`
+- Adds `execute()` as an alias to `value()`
+- Fixes `toArray()` with `DirectoryIterator`
+- Adds auto-generated operator documentation
+
+
 0.4.0
------
-- Adds:
+---
+- New operations:
 	- `all()`
+	- `assertType()`
 	- `groupBy()`
 	- `indexBy()`
 	- `keyBy()`
 	- `set()`
-	- `assertType()`
 - Fixes issues with non-array inputs
 
 
 0.3.0
------
+---
 - Added ability to add custom functions via `setCustom()`
 
 
 0.2.0
------
+---
 - Renamed `Dash\Dash` class to `Dash\_`
 - Renamed `::with()` to `::chain()`
 - Removed `Dash\Collections` and `Dash\Functions` sub-namespaces; now all functions are in the root `Dash` namespace
@@ -40,10 +51,10 @@ Planned
 
 
 0.1.0
------
+---
 - Standalone and chained usage
 - Deferred evaluation
-- Included operations:
+- New operations:
 	- `any()`
 	- `at()`
 	- `average()`

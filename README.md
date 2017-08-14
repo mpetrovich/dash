@@ -1,5 +1,5 @@
 Dash &nbsp; [![Build Status](https://travis-ci.org/mpetrovich/Dash.svg?branch=master)](https://travis-ci.org/mpetrovich/Dash)
-====
+===
 A functional utility library for PHP, like Underscore/Lodash.
 
 - [Features](#features)
@@ -12,7 +12,7 @@ A functional utility library for PHP, like Underscore/Lodash.
 
 
 Features
---------
+---
 - Works with PHP 5.4+
 - Supports a variety of data types:
 	- native PHP arrays
@@ -25,13 +25,13 @@ Features
 
 
 Requirements
-------------
+---
 - PHP 5.4+
 - [Composer](https://getcomposer.org/)
 
 
 Installation
-------------
+---
 Dash should be installed via [Composer](https://getcomposer.org/):
 ```sh
 composer require mpetrovich/dash
@@ -39,7 +39,7 @@ composer require mpetrovich/dash
 
 
 Usage
------
+---
 All classes and functions are available within the `Dash` namespace.
 
 
@@ -119,3 +119,8 @@ _::chain(5)->triple()->value(); // === 15
 
 _::unsetCustom('triple');
 ```
+
+
+Available operations
+---
+See [Operations.md](Operations.md)
