@@ -6,7 +6,7 @@ class _Test extends PHPUnit_Framework_TestCase
 {
 	public function testGlobalAliasDefault()
 	{
-		_::setGlobalAlias();
+		_::addGlobalAlias();
 		$chain = __([1, 2, 3]);
 
 		$this->assertInstanceOf('Dash\_', $chain);
@@ -18,7 +18,7 @@ class _Test extends PHPUnit_Framework_TestCase
 
 	public function testGlobalAliasCustom()
 	{
-		_::setGlobalAlias('dash');
+		_::addGlobalAlias('dash');
 		$chain = dash([1, 2, 3]);
 
 		$this->assertInstanceOf('Dash\_', $chain);

@@ -26,14 +26,14 @@ class _
 	 * @return void
 	 *
 	 * @example Aliases _::chain() to dash()
-		_::setGlobalAlias('dash');
+		_::addGlobalAlias('dash');
 
 		dash([1, 2, 3])
 			->map(function($n) { return $n * 2; })
 			->filter(function($n) { return $n > 2; })
 			->value();  // === [4, 6]
 	 */
-	public static function setGlobalAlias($alias = '__')
+	public static function addGlobalAlias($alias = '__')
 	{
 		if (function_exists($alias) && !$alias() instanceof _) {
 			throw new \RuntimeException("$alias() already defined");

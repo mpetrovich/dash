@@ -72,10 +72,10 @@ $doubleOdds = _::chain([1, 2, 3])
 // $doubleOdds == [2, 6]
 ```
 
-As a convenience, `_::chain()` can be aliased to a global function with `setGlobalAlias()`:
+As a convenience, `_::chain()` can be aliased to a global function with `addGlobalAlias()`:
 
 ```php
-Dash\_::setGlobalAlias('__');
+Dash\_::addGlobalAlias('__');
 
 $doubleOdds = __([1, 2, 3])
 	->filter('Dash\_::isOdd')

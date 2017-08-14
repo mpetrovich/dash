@@ -21,7 +21,7 @@ Planned
 - New operations:
 	- `join()`
 	- `takeWhile()`
-- Adds `_::setGlobalAlias()` to create a global function alias for `_::chain()`, eg. `__([1, 2, 3])->map(…)`
+- Adds `_::addGlobalAlias()` to create a global function alias for `_::chain()`, eg. `__([1, 2, 3])->map(…)`
 - Adds `execute()` as an alias to `value()`
 - Fixes `toArray()` with `DirectoryIterator`
 - Adds auto-generated operator documentation
