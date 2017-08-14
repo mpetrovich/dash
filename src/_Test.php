@@ -155,6 +155,17 @@ class _Test extends PHPUnit_Framework_TestCase
 		$this->assertEquals(9, $mapCallCount);
 	}
 
+	public function testExecute()
+	{
+		$obj = (object) ['a' => 1];
+
+		$chain = _::chain($obj)->tap(function($obj) { $obj->a = 2; });
+		$this->assertEquals((object) ['a' => 1], $obj);
+
+		$chain->execute();
+		$this->assertEquals((object) ['a' => 2], $obj);
+	}
+
 	public function testChainingCloning()
 	{
 		$chain = _::chain()
