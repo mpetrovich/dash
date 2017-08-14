@@ -4,7 +4,15 @@ namespace Dash;
 
 function toArray($value)
 {
-	if ($value instanceof Traversable) {
+	if ($value instanceof \DirectoryIterator) {
+		// iterator_to_array() doesn't work as expected with DirectoryIterator
+		// https://bugs.php.net/bug.php?id=49755
+		$array = [];
+		foreach ($value as $key => $val) {
+			$array[$key] = clone $val;
+		}
+	}
+	else if ($value instanceof \Traversable) {
 		$array = iterator_to_array($value);
 	}
 	else {
