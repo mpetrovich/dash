@@ -11,7 +11,7 @@ buildDocs($sourceDir, $destFilepath);
 
 function buildDocs($sourceDir, $destFilepath)
 {
-	_::chain(new FilesystemIterator($sourceDir))
+	$categories = _::chain(new FilesystemIterator($sourceDir))
 		->indexBy(function($fileinfo) {
 			return pathinfo($fileinfo)['filename'];
 		})
@@ -22,12 +22,19 @@ function buildDocs($sourceDir, $destFilepath)
 			return $name === '' || $name === '_';
 		})
 		->map('createDoc')
-		->groupBy('category')
+		->groupBy('category', 'Other')
 		->each(function($docs) {
 			return _::sort($docs, _::property('name'));
 		})
+		->value();
+
+	_::chain($categories)
 		->map('renderCategory')
 		->join("\n")
+		->thru(function($renderedCategories) use ($categories) {
+			$tableOfContents = renderTableOfContents($categories);
+			return "$tableOfContents\n\n$renderedCategories";
+		})
 		->tap(function($content) use ($destFilepath) {
 			file_put_contents($destFilepath, $content);
 		})
@@ -41,6 +48,7 @@ function createDoc($filepath)
 
 	$name = pathinfo($filepath)['filename'];
 	$doc->name = $name;
+	$doc->slug = strtolower($name);
 
 	$params = _::chain($doc->params)->map('name')->join(', ')->value();
 	$doc->signature = "{$doc->name}($params)";
@@ -126,8 +134,6 @@ END;
 
 function renderCategory($docs, $category)
 {
-	$category = $category ?: 'Other';
-
 	$renderedDocs = _::chain($docs)
 		->map('renderDoc')
 		->join("\n")
@@ -139,5 +145,30 @@ $category
 
 $renderedDocs
 
+END;
+}
+
+function renderTableOfContents($categories)
+{
+	$list = _::chain($categories)
+		->map(function($ops, $category) {
+			$opsList = _::chain($ops)
+				->map(function($op) { return "- [{$op->name}](#{$op->slug})"; })
+				->join("\n")
+				->value();
+
+			return <<<END
+### $category
+$opsList
+
+END;
+		})
+		->join("\n")
+		->value();
+
+	return <<<END
+Table of contents
+===
+$list
 END;
 }
