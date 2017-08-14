@@ -2,8 +2,8 @@
 
 namespace Dash;
 
-function tap($array, callable $interceptor)
+function tap($iterable, callable $interceptor)
 {
-	call_user_func($interceptor, $array);
-	return $array;
+	call_user_func($interceptor, $iterable);
+	return $iterable;
 }

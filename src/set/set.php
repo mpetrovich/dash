@@ -2,18 +2,35 @@
 
 namespace Dash;
 
-function set($input, $field, $value)
+function set(&$input, $path, $value)
 {
-	if (is_array($input)) {
-		$input[$field] = $value;
+	$keys = explode('.', $path);
+
+	for ($target = &$input; $keys;) {
+		$key = array_shift($keys);
+
+		if (!isset($target)) {
+			$target = [];
+		}
+
+		if (is_array($target)) {
+			if (!isset($target[$key])) {
+				$target[$key] = [];
+			}
+			$target = &$target[$key];
+		}
+		else if (is_object($target)) {
+			if (!isset($target->$key)) {
+				$target->$key = new \stdClass;
+			}
+			$target = &$target->$key;
+		}
+		else {
+			break;
+		}
 	}
-	else if (is_object($input)) {
-		$input->$field = $value;
-	}
-	else {
-		throw new \InvalidArgumentException(sprintf(
-			'set() only accepts arrays or objects; called with: %s',
-			gettype($input)
-		));
-	}
+
+	$target = $value;
+
+	return $input;
 }

@@ -9,7 +9,7 @@ function toArray($value)
 		// https://bugs.php.net/bug.php?id=49755
 		$array = [];
 		foreach ($value as $key => $val) {
-			$array[$key] = clone $val;
+			$array[$key] = is_object($val) ? clone $val : $val;
 		}
 	}
 	else if ($value instanceof \Traversable) {

@@ -1,30 +1,19 @@
 <?php
 
-use Dash\_;
-
 class toArrayTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForToArray
+	 * @dataProvider cases
 	 */
-	public function testStandaloneToArray($collection, $expected)
+	public function test($collection, $expected)
 	{
 		$actual = Dash\toArray($collection);
 		$this->assertEquals($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForToArray
-	 */
-	public function testChainedToArray($collection, $expected)
+	public function cases()
 	{
-		$actual = _::chain($collection)->toArray()->value();
-		$this->assertEquals($expected, $actual);
-	}
-
-	public function casesForToArray()
-	{
-		return array(
+		return [
 
 			/*
 				With array
@@ -76,6 +65,32 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 				new ArrayObject(array('a' => 3, 'b' => 8, 'c' => 2, 'd' => 5)),
 				array('a' => 3, 'b' => 8, 'c' => 2, 'd' => 5),
 			),
-		);
+		];
+	}
+
+	public function testDirectoryIterator()
+	{
+		$input = new \FilesystemIterator(__DIR__, \FilesystemIterator::KEY_AS_PATHNAME | \FilesystemIterator::CURRENT_AS_FILEINFO);
+		$output = Dash\toArray($input);
+
+		$this->assertCount(2, $output);
+
+		$i = 0;
+		$prevValue = null;
+
+		foreach ($output as $key => $value) {
+			if ($i === 0) {
+				$this->assertStringEndsWith('toArray.php', $key);
+			}
+			else if ($i === 1) {
+				$this->assertStringEndsWith('toArrayTest.php', $key);
+			}
+
+			$this->assertInstanceOf('SplFileInfo', $value);
+			$this->assertNotSame($prevValue, $value);
+
+			$prevValue = $value;
+			$i++;
+		}
 	}
 }
