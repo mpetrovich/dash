@@ -28,6 +28,7 @@
 			"src/contains/contains.php",
 			"src/deltas/deltas.php",
 			"src/difference/difference.php",
+			"src/dropWhile/dropWhile.php",
 			"src/each/each.php",
 			"src/equal/equal.php",
 			"src/every/every.php",
