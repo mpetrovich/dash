@@ -4,13 +4,16 @@
 >
 	<testsuites>
 		<testsuite>
-			<directory suffix=".php">test</directory>
+			<directory suffix="Test.php">src</directory>
 		</testsuite>
 	</testsuites>
 
 	<filter>
 		<whitelist checkForUnintentionallyCoveredCode="true">
 			<directory suffix=".php">src</directory>
+			<exclude>
+				<directory suffix="Test.php">src</directory>
+			</exclude>
 		</whitelist>
 	</filter>
 

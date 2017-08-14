@@ -9,14 +9,10 @@
 #
 test:
 ifdef op
-	@vendor/bin/phpunit test/$(op)Test --no-coverage
+	@vendor/bin/phpunit src/$(op)/$(op)Test --no-coverage
 else
 	@vendor/bin/phpunit --no-coverage
 endif
-
-
-test-one:
-	@vendor/bin/phpunit test/$(test)Test --no-coverage
 
 
 # Runs all tests with code coverage analysis
