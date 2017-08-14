@@ -14,6 +14,87 @@ Name | Type | Description
 `$input` | `mixed` | Any iterable
 `$predicate` | `callable` | 
 
+each
+---
+```php
+each($collection, $iteratee)
+```
+Iterates over a collection and calls an iteratee function for each element.
+Any changes to the value, key, or collection from within the iteratee
+function are not persisted. If the original collection needs to be mutated,
+use a native `foreach` loop instead.
+
+Name | Type | Description
+--- | --- | ---
+`$collection` | `array\|object` | 
+`$iteratee` | `Callable` | Function called with (element, key, collection)
+
+get
+---
+```php
+get($collection, $path, $default)
+```
+Gets the value at a path on a collection.
+
+Name | Type | Description
+--- | --- | ---
+`$collection` | `array\|object` | 
+`$path` | `string` | Path of the property to retrieve; can be nested by
+`$default` | `mixed` | Default value to return if nothing exists at $path
+
+map
+---
+```php
+map($collection, $iteratee)
+```
+Creates a new indexed array of values by running each element in a
+collection through an iteratee function.
+Keys in the original collection are _not_ preserved; a freshly indexed array
+is returned.
+
+Name | Type | Description
+--- | --- | ---
+`$collection` | `array\|object` | 
+`$iteratee` | `Callable\|string` | Function called with (element, key, collection)
+
+mapValues
+---
+```php
+mapValues($collection, $iteratee)
+```
+Creates a new array of values by running each element in a collection
+through an iteratee function.
+Keys in the original collection _are_ preserved.
+
+Name | Type | Description
+--- | --- | ---
+`$collection` | `array\|object` | 
+`$iteratee` | `Callable` | Function called with (element, key, collection)
+
+pluck
+---
+```php
+pluck($collection, $path)
+```
+Gets the value at a path for all elements in a collection.
+
+Name | Type | Description
+--- | --- | ---
+`$collection` | `array\|object` | 
+`$path` | `string` | Path of the property to retrieve; can be nested by
+
+property
+---
+```php
+property($path, $default)
+```
+Creates a function that returns the value at a path on a collection.
+
+Name | Type | Description
+--- | --- | ---
+`$path` | `string\|function` | Path of the property to retrieve; can be nested
+`$default` | `mixed` | Default value to return if nothing exists at $path
+
 
 Other
 ===
@@ -108,21 +189,6 @@ difference()
 Name | Type | Description
 --- | --- | ---
 
-each
----
-```php
-each($collection, $iteratee)
-```
-Iterates over a collection and calls an iteratee function for each element.
-Any changes to the value, key, or collection from within the iteratee
-function are not persisted. If the original collection needs to be mutated,
-use a native `foreach` loop instead.
-
-Name | Type | Description
---- | --- | ---
-`$collection` | `array\|object` | 
-`$iteratee` | `Callable` | Function called with (element, key, collection)
-
 equal
 ---
 ```php
@@ -202,19 +268,6 @@ first()
 
 Name | Type | Description
 --- | --- | ---
-
-get
----
-```php
-get($collection, $path, $default)
-```
-Gets the value at a path on a collection.
-
-Name | Type | Description
---- | --- | ---
-`$collection` | `array\|object` | 
-`$path` | `string` | Path of the property to retrieve; can be nested by
-`$default` | `mixed` | Default value to return if nothing exists at $path
 
 groupBy
 ---
@@ -336,35 +389,6 @@ last()
 Name | Type | Description
 --- | --- | ---
 
-map
----
-```php
-map($collection, $iteratee)
-```
-Creates a new indexed array of values by running each element in a
-collection through an iteratee function.
-Keys in the original collection are _not_ preserved; a freshly indexed array
-is returned.
-
-Name | Type | Description
---- | --- | ---
-`$collection` | `array\|object` | 
-`$iteratee` | `Callable\|string` | Function called with (element, key, collection)
-
-mapValues
----
-```php
-mapValues($collection, $iteratee)
-```
-Creates a new array of values by running each element in a collection
-through an iteratee function.
-Keys in the original collection _are_ preserved.
-
-Name | Type | Description
---- | --- | ---
-`$collection` | `array\|object` | 
-`$iteratee` | `Callable` | Function called with (element, key, collection)
-
 matches
 ---
 ```php
@@ -454,30 +478,6 @@ pick()
 
 Name | Type | Description
 --- | --- | ---
-
-pluck
----
-```php
-pluck($collection, $path)
-```
-Gets the value at a path for all elements in a collection.
-
-Name | Type | Description
---- | --- | ---
-`$collection` | `array\|object` | 
-`$path` | `string` | Path of the property to retrieve; can be nested by
-
-property
----
-```php
-property($path, $default)
-```
-Creates a function that returns the value at a path on a collection.
-
-Name | Type | Description
---- | --- | ---
-`$path` | `string\|function` | Path of the property to retrieve; can be nested
-`$default` | `mixed` | Default value to return if nothing exists at $path
 
 reduce
 ---
