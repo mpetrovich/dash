@@ -1,0 +1,143 @@
+#!/usr/bin/php
+<?php
+
+require_once 'vendor/autoload.php';
+
+use Dash\_;
+
+$sourceDir = $argv[1];
+$destFilepath = $argv[2];
+buildDocs($sourceDir, $destFilepath);
+
+function buildDocs($sourceDir, $destFilepath)
+{
+	_::chain(new FilesystemIterator($sourceDir))
+		->indexBy(function($fileinfo) {
+			return pathinfo($fileinfo)['filename'];
+		})
+		->mapValues(function($fileinfo) {
+			return $fileinfo->getPathname();
+		})
+		->reject(function($filepath, $name) {
+			return $name === '' || $name === '_';
+		})
+		->map('createDoc')
+		->groupBy('category')
+		->each(function($docs) {
+			return _::sort($docs, _::property('name'));
+		})
+		->map('renderCategory')
+		->join("\n")
+		->tap(function($content) use ($destFilepath) {
+			file_put_contents($destFilepath, $content);
+		})
+		->execute();
+}
+
+function createDoc($filepath)
+{
+	$docblock = extractDocblock($filepath);
+	$doc = parseDocblock($docblock);
+
+	$name = pathinfo($filepath)['filename'];
+	$doc->name = $name;
+
+	$params = _::chain($doc->params)->map('name')->join(', ')->value();
+	$doc->signature = "{$doc->name}($params)";
+
+	return $doc;
+}
+
+function extractDocblock($filepath)
+{
+	$content = file_get_contents($filepath);
+	$matches = [];
+
+	// Extracts docblock
+	$hasDoc = preg_match('/\/\**\n([\s\S]+?)\*\//', $content, $matches);
+	$docblock = $hasDoc ? $matches[1] : '';
+
+	// Removes leading asterisks and whitespace
+	$docblock = preg_replace('/^[\s\*]*([^\n]+?)\n?/m', '$1', $docblock);
+	$docblock = trim($docblock);
+
+	return $docblock;
+}
+
+function parseDocblock($docblock)
+{
+	$doc = (object) [];
+	$lines = explode("\n", $docblock);
+
+	// Description
+	$doc->description = _::chain($lines)
+		->takeWhile(function($line) { return strpos($line, '@') === false; })
+		->join("\n")
+		->value();
+
+	// Category
+	$doc->category = _::chain($lines)
+		->filter(function($line) { return strpos($line, '@category') === 0; })
+		->map(function($line) {
+			$matches = [];
+			preg_match('/^@category\s+(.*)$/', $line, $matches);
+			$category = $matches[1];
+			return $category;
+		})
+		->first()
+		->value();
+
+	// Parameters
+	$doc->params = _::chain($lines)
+		->filter(function($line) { return strpos($line, '@param') === 0; })
+		->map(function($line) {
+			$matches = [];
+			preg_match('/^@param\s+([\S]+)\s+([\S]+)\s*(.*)$/', $line, $matches);
+			list($type, $name, $description) = array_slice($matches, 1);
+			return (object) [
+				'type' => $type,
+				'name' => $name,
+				'description' => $description,
+			];
+		})
+		->value();
+
+	return $doc;
+}
+
+function renderDoc($doc)
+{
+	$paramsTable = _::reduce($doc->params, function($output, $param) {
+		$type = str_replace('|', '\|', $param->type);
+		return $output . "`$param->name` | `$type` | $param->description\n";
+	}, "Name | Type | Description\n--- | --- | ---\n");
+
+	return <<<END
+{$doc->name}
+---
+```php
+{$doc->signature}
+```
+{$doc->description}
+
+$paramsTable
+END;
+}
+
+function renderCategory($docs, $category)
+{
+	$category = $category ?: 'Other';
+
+	$renderedDocs = _::chain($docs)
+		->map('renderDoc')
+		->join("\n")
+		->value();
+
+	return <<<END
+$category
+===
+
+$renderedDocs
+
+END;
+}

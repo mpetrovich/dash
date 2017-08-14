@@ -25,6 +25,11 @@ test-coverage:
 	@echo "Test coverage visible at:" $(shell pwd)/test-coverage/index.html
 
 
+# Builds documentation for all operations
+docs:
+	@bin/docs src Operations.md
+
+
 # Removes all generated files
 clean:
 	@rm -rf test-coverage/
@@ -38,7 +43,11 @@ clean:
 release:
 	make clean
 	make test
+	make docs
+	git add Operations.md
+	git commit -m "Auto-update docs"
 	git tag -a v$(v) -m v$(v)
+	git push --tags
 
 
 # Forces these commands to always run
