@@ -127,6 +127,11 @@ class assertTypeTest extends PHPUnit_Framework_TestCase
 				'input' => new ArrayObject([1, 2, 3]),
 				'type' => ['object', 'array'],
 			],
+
+			'Asserting with several types with an ArrayObject' => [
+				'input' => new ArrayObject([1, 2, 3]),
+				'type' => ['iterable'],
+			],
 		];
 	}
 
