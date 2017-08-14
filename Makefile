@@ -5,7 +5,7 @@
 # If omitted, all tests will be run.
 #
 # Example:
-#   make test-one op=map
+#   make test op=map
 #
 test:
 ifdef op
@@ -15,10 +15,21 @@ else
 endif
 
 
-# Runs all tests with code coverage analysis
+# Runs all unit tests with code coverage analysis
+#
+# To run tests with code coverage for a single operation, add `op=<operation>`.
+# If omitted, all tests will be run.
+#
+# Example:
+#   make test-coverage op=map
+#
 test-coverage:
+ifdef op
+	@vendor/bin/phpunit src/$(op)/$(op)Test
+else
 	@vendor/bin/phpunit
-	@echo "Test coverage visible at:" $(shell pwd)/test-coverage/index.html
+endif
+@echo "Test coverage visible at:" $(shell pwd)/test-coverage/index.html
 
 
 # Builds documentation for all operations
