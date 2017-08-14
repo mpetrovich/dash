@@ -16,5 +16,6 @@
 
 	<logging>
 		<log type="coverage-html" target="test-coverage" lowUpperBound="50" highLowerBound="70" />
+		<log type="coverage-clover" target="clover.xml" />
 	</logging>
 </phpunit>

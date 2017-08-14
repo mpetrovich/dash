@@ -11,4 +11,7 @@ before_script:
   - composer install --no-interaction
 
 script:
-  - make test
+  - make test-coverage
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
