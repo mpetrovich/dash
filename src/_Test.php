@@ -29,6 +29,17 @@ class _Test extends PHPUnit_Framework_TestCase
 	}
 
 	/**
+	 * @expectedException RuntimeException
+	 */
+	public function testGlobalAliasExisting()
+	{
+		$name = 'dash' . intval(microtime(true));
+		eval("function $name() {}");
+
+		_::addGlobalAlias($name);
+	}
+
+	/**
 	 * @dataProvider casesForStandalone
 	 */
 	public function testStandalone($method, $args, $expected)
