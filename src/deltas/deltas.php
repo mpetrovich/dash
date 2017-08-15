@@ -2,12 +2,12 @@
 
 namespace Dash;
 
-function deltas($collection)
+function deltas($iterable)
 {
 	$deltas = [];
 	$prev = null;
 
-	foreach ($collection as $value) {
+	foreach ($iterable as $value) {
 		$deltas[] = $prev ? ($value - $prev) : 0;
 		$prev = $value;
 	}

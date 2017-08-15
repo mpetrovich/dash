@@ -5,9 +5,9 @@ class takeRightTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($collection, $count, $fromEnd, $expected)
+	public function test($iterable, $count, $fromEnd, $expected)
 	{
-		$actual = Dash\takeRight($collection, $count, $fromEnd);
+		$actual = Dash\takeRight($iterable, $count, $fromEnd);
 		$this->assertEquals($expected, $actual);
 	}
 

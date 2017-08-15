@@ -2,11 +2,11 @@
 
 namespace Dash;
 
-function filter($collection, $predicate)
+function filter($iterable, $predicate)
 {
 	$filtered = [];
 
-	foreach ($collection as $key => $value) {
+	foreach ($iterable as $key => $value) {
 		if (call_user_func($predicate, $value, $key)) {
 			$filtered[$key] = $value;
 		}

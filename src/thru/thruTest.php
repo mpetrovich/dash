@@ -5,9 +5,9 @@ class thruTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($collection, $interceptor, $expected)
+	public function test($iterable, $interceptor, $expected)
 	{
-		$actual = Dash\thru($collection, $interceptor);
+		$actual = Dash\thru($iterable, $interceptor);
 		$this->assertSame($expected, $actual);
 	}
 
@@ -16,9 +16,9 @@ class thruTest extends PHPUnit_Framework_TestCase
 		return array(
 			'should return the modified collection when the interceptor returns a modifed collection' => array(
 				array('a' => 1, 'b' => 2),
-				function($collection) {
-					$collection['c'] = 3;
-					return $collection;
+				function($iterable) {
+					$iterable['c'] = 3;
+					return $iterable;
 				},
 				array('a' => 1, 'b' => 2, 'c' => 3)
 			),

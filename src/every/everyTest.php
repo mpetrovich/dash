@@ -5,9 +5,9 @@ class everyTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider casesForEvery
 	 */
-	public function testStandaloneEvery($collection, $predicate, $expected)
+	public function testStandaloneEvery($iterable, $predicate, $expected)
 	{
-		$actual = Dash\every($collection, $predicate);
+		$actual = Dash\every($iterable, $predicate);
 		$this->assertEquals($expected, $actual);
 	}
 

@@ -2,13 +2,13 @@
 
 namespace Dash;
 
-function min($collection)
+function min($iterable)
 {
-	if (isEmpty($collection)) {
+	if (isEmpty($iterable)) {
 		return null;
 	}
 
-	$min = reduce($collection, function($min, $value) {
+	$min = reduce($iterable, function($min, $value) {
 		return \min($min, $value);
 	}, +INF);
 

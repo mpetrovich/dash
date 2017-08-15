@@ -7,9 +7,9 @@ class sortTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($collection, $expected)
+	public function test($iterable, $expected)
 	{
-		$actual = Dash\sort($collection);
+		$actual = Dash\sort($iterable);
 		$this->assertEquals($expected, $actual);
 	}
 

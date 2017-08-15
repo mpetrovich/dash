@@ -10,9 +10,9 @@ namespace Dash;
  * is returned.
  *
  * @category Collection
- * @param array|object $collection
+ * @param array|object $iterable
  * @param Callable|string $iteratee Function called with (element, key, collection)
- *        for each element in $collection. The return value of $iteratee will
+ *        for each element in $iterable. The return value of $iteratee will
  *        be used as the corresponding element in the returned array.
  *        If $iteratee is a string, property($iteratee) will be used as the
  *        iteratee function.
@@ -41,14 +41,14 @@ namespace Dash;
 		'color'
 	) == array('red', 'blue');
  */
-function map($collection, $iteratee = 'Dash\identity')
+function map($iterable, $iteratee = 'Dash\identity')
 {
 	$iteratee = property($iteratee);
-	$array = toArray($collection);
+	$array = toArray($iterable);
 	$mapped = [];
 
-	array_walk($array, function($value, $key) use ($collection, $iteratee, &$mapped) {
-		$mapped[] = call_user_func($iteratee, $value, $key, $collection);
+	array_walk($array, function($value, $key) use ($iterable, $iteratee, &$mapped) {
+		$mapped[] = call_user_func($iteratee, $value, $key, $iterable);
 	});
 
 	return $mapped;

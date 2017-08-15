@@ -5,9 +5,9 @@ class sumTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($collection, $expected)
+	public function test($iterable, $expected)
 	{
-		$actual = Dash\sum($collection);
+		$actual = Dash\sum($iterable);
 		$this->assertEquals($expected, $actual);
 	}
 

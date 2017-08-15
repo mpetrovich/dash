@@ -5,9 +5,9 @@ class sizeTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($collection, $expected)
+	public function test($iterable, $expected)
 	{
-		$actual = Dash\size($collection);
+		$actual = Dash\size($iterable);
 		$this->assertEquals($expected, $actual);
 	}
 

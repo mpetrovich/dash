@@ -5,9 +5,9 @@ class withoutTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($collection, $without, $expected)
+	public function test($iterable, $without, $expected)
 	{
-		$actual = Dash\without($collection, $without);
+		$actual = Dash\without($iterable, $without);
 		$this->assertEquals($expected, $actual);
 	}
 

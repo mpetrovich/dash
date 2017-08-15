@@ -5,10 +5,10 @@ class differenceTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($collections, $expected)
+	public function test($iterables, $expected)
 	{
-		list($collection1, $collection2, $collection3) = $collections;
-		$actual = Dash\difference($collection1, $collection2, $collection3);
+		list($iterable1, $iterable2, $iterable3) = $iterables;
+		$actual = Dash\difference($iterable1, $iterable2, $iterable3);
 		$this->assertEquals($expected, $actual);
 	}
 

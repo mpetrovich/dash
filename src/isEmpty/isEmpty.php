@@ -2,7 +2,7 @@
 
 namespace Dash;
 
-function isEmpty($collection)
+function isEmpty($iterable)
 {
-	return size($collection) === 0;
+	return size($iterable) === 0;
 }

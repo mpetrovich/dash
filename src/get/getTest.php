@@ -5,9 +5,9 @@ class getTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($collection, $path, $expected)
+	public function test($iterable, $path, $expected)
 	{
-		$actual = Dash\get($collection, $path, 'default');
+		$actual = Dash\get($iterable, $path, 'default');
 		$this->assertEquals($expected, $actual);
 	}
 

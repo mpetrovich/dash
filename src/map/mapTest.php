@@ -5,15 +5,15 @@ class mapTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($collection, $expected)
+	public function test($iterable, $expected)
 	{
 		$self = $this;
-		$iteratee = function($value, $key, $collection2) use ($self, $collection) {
-			$self->assertSame($collection, $collection2);
+		$iteratee = function($value, $key, $iterable2) use ($self, $iterable) {
+			$self->assertSame($iterable, $iterable2);
 			return $key . ' is ' . $value;
 		};
 
-		$actual = Dash\map($collection, $iteratee);
+		$actual = Dash\map($iterable, $iteratee);
 		$this->assertEquals($expected, $actual);
 	}
 
@@ -86,9 +86,9 @@ class mapTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider casesWithPath
 	 */
-	public function testWithPath($collection, $path, $expected)
+	public function testWithPath($iterable, $path, $expected)
 	{
-		$actual = Dash\map($collection, $path);
+		$actual = Dash\map($iterable, $path);
 		$this->assertEquals($expected, $actual);
 	}
 
@@ -124,9 +124,9 @@ class mapTest extends PHPUnit_Framework_TestCase
 
 	public function testWithoutIteratee()
 	{
-		$collection = array(0 => 'a', 1 => 'b', 2 => 'c');
-		$actual = Dash\map($collection);
-		$expected = $collection;
+		$iterable = array(0 => 'a', 1 => 'b', 2 => 'c');
+		$actual = Dash\map($iterable);
+		$expected = $iterable;
 		$this->assertEquals($expected, $actual);
 	}
 }

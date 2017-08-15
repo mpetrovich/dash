@@ -2,17 +2,17 @@
 
 namespace Dash;
 
-function intersection($collections /* or as $collection1, $collection2, ... */)
+function intersection($iterables /* or as $iterable1, $iterable2, ... */)
 {
 	if (func_num_args() > 1) {
-		$collections = func_get_args();
+		$iterables = func_get_args();
 	}
 
-	$intersection = array_shift($collections);
+	$intersection = array_shift($iterables);
 
-	foreach ($collections as $collection) {
+	foreach ($iterables as $iterable) {
 		foreach ($intersection as $key => $value) {
-			if (!contains($collection, $value)) {
+			if (!contains($iterable, $value)) {
 				// @todo Test whether unset() works with all Traversable
 				unset($intersection[$key]);
 			}

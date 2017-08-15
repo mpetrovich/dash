@@ -2,9 +2,9 @@
 
 namespace Dash;
 
-function last($collection)
+function last($iterable)
 {
-	$last = end($collection);
-	reset($collection);
+	$last = end($iterable);
+	reset($iterable);
 	return $last;
 }

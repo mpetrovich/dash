@@ -5,9 +5,9 @@ class whereTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($collection, $properties, $expected)
+	public function test($iterable, $properties, $expected)
 	{
-		$actual = Dash\where($collection, $properties);
+		$actual = Dash\where($iterable, $properties);
 		$this->assertEquals($expected, $actual);
 	}
 

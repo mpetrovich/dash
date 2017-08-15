@@ -2,11 +2,11 @@
 
 namespace Dash;
 
-function difference(/* $collection1, $collection2, ... */)
+function difference(/* $iterable1, $iterable2, ... */)
 {
-	$collections = func_get_args();
-	$union = union($collections);
-	$intersection = intersection($collections);
+	$iterables = func_get_args();
+	$union = union($iterables);
+	$intersection = intersection($iterables);
 	$difference = without($union, $intersection);
 	$difference = values($difference);  // Re-indexes array
 

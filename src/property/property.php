@@ -12,28 +12,28 @@ namespace Dash;
  *
  * @example
 	$getter = Dash\property('a.b');
-	$collection = array(
+	$iterable = array(
 		'a' => array(
 			'b' => 'value'
 		)
 	);
-	$getter($collection) == 'value';
+	$getter($iterable) == 'value';
  *
  * @example Array elements can be referenced by index
 	$getter = Dash\property('people.1.name');
-	$collection = array(
+	$iterable = array(
 		'people' => array(
 			array('name' => 'Pete'),
 			array('name' => 'John'),
 			array('name' => 'Paul'),
 		)
 	);
-	$getter($collection) == 'John';
+	$getter($iterable) == 'John';
  *
  * @example Keys with the same name as the full path can be used
 	$getter = Dash\property('a.b.c');
-	$collection = array('a.b.c' => 'value');
-	$getter($collection) == 'value';
+	$iterable = array('a.b.c' => 'value');
+	$getter($iterable) == 'value';
  */
 function property($path, $default = null)
 {

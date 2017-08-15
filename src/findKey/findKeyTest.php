@@ -5,9 +5,9 @@ class findKeyTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($collection, $predicate, $expected)
+	public function test($iterable, $predicate, $expected)
 	{
-		$actual = Dash\findKey($collection, $predicate);
+		$actual = Dash\findKey($iterable, $predicate);
 		$this->assertEquals($expected, $actual);
 	}
 

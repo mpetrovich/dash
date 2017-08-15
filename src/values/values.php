@@ -2,7 +2,7 @@
 
 namespace Dash;
 
-function values($collection)
+function values($iterable)
 {
-	return map($collection);
+	return map($iterable);
 }

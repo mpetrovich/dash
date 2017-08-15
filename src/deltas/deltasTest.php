@@ -5,9 +5,9 @@ class deltasTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($collection, $expected)
+	public function test($iterable, $expected)
 	{
-		$actual = Dash\deltas($collection);
+		$actual = Dash\deltas($iterable);
 		$this->assertEquals($expected, $actual);
 	}
 

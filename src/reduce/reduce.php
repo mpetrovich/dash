@@ -2,9 +2,9 @@
 
 namespace Dash;
 
-function reduce($collection, $iteratee, $result = [])
+function reduce($iterable, $iteratee, $result = [])
 {
-	foreach ($collection as $key => $value) {
+	foreach ($iterable as $key => $value) {
 		$result = call_user_func($iteratee, $result, $value, $key);
 	}
 

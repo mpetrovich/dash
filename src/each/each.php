@@ -10,12 +10,12 @@ namespace Dash;
  * use a native `foreach` loop instead.
  *
  * @category Collection
- * @param array|object $collection
+ * @param array|object $iterable
  * @param Callable $iteratee Function called with (element, key, collection)
- *        for each element in $collection. If $iteratee returns false,
+ *        for each element in $iterable. If $iteratee returns false,
  *        subsequent elements will be skipped and iteration will end.
  *
- * @return array|object The original $collection
+ * @return array|object The original $iterable
  *
  * @example
 	Dash\each(
@@ -23,12 +23,12 @@ namespace Dash;
 		function($n) { echo $n; }
 	);  // Prints "123"
  */
-function each($collection, $iteratee)
+function each($iterable, $iteratee)
 {
-	$array = toArray($collection);
-	array_walk($array, function($value, $key) use ($collection, $iteratee) {
-		return $iteratee($value, $key, $collection);
+	$array = toArray($iterable);
+	array_walk($array, function($value, $key) use ($iterable, $iteratee) {
+		return $iteratee($value, $key, $iterable);
 	});
 
-	return $collection;
+	return $iterable;
 }

@@ -2,13 +2,13 @@
 
 namespace Dash;
 
-function any($collection, $predicate)
+function any($iterable, $predicate)
 {
-	if (isEmpty($collection)) {
+	if (isEmpty($iterable)) {
 		return false;
 	}
 
-	foreach ($collection as $key => $value) {
+	foreach ($iterable as $key => $value) {
 		if (call_user_func($predicate, $value, $key)) {
 			return true;
 		}

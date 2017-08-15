@@ -6,10 +6,10 @@ class propertyTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider casesForProperty
 	 */
-	public function testProperty($collection, $path, $expected)
+	public function testProperty($iterable, $path, $expected)
 	{
 		$getter = Dash\property($path, 'default');
-		$this->assertEquals($expected, $getter($collection));
+		$this->assertEquals($expected, $getter($iterable));
 	}
 
 	public function casesForProperty()

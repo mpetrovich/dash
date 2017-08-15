@@ -9,9 +9,9 @@ namespace Dash;
  * Keys in the original collection _are_ preserved.
  *
  * @category Collection
- * @param array|object $collection
+ * @param array|object $iterable
  * @param Callable $iteratee Function called with (element, key, collection)
- *        for each element in $collection. The return value of $iteratee will
+ *        for each element in $iterable. The return value of $iteratee will
  *        be used as the corresponding element in the returned array.
  *
  * @return array
@@ -28,13 +28,13 @@ namespace Dash;
 		function($color, $flower) { return $flower . ' are ' . $color; }
 	) == array('roses' => 'roses are red', 'violets' => 'violets are blue');
  */
-function mapValues($collection, $iteratee = 'Dash\identity')
+function mapValues($iterable, $iteratee = 'Dash\identity')
 {
 	$mapped = [];
 	$iteratee = property($iteratee);
 
-	foreach ($collection as $key => $value) {
-		$mapped[$key] = call_user_func($iteratee, $value, $key, $collection);
+	foreach ($iterable as $key => $value) {
+		$mapped[$key] = call_user_func($iteratee, $value, $key, $iterable);
 	}
 
 	return $mapped;

@@ -2,13 +2,13 @@
 
 namespace Dash;
 
-function max($collection)
+function max($iterable)
 {
-	if (isEmpty($collection)) {
+	if (isEmpty($iterable)) {
 		return null;
 	}
 
-	$max = reduce($collection, function($max, $value) {
+	$max = reduce($iterable, function($max, $value) {
 		return \max($max, $value);
 	}, -INF);
 

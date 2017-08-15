@@ -5,16 +5,16 @@ class eachTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($collection, $expected)
+	public function test($iterable, $expected)
 	{
 		$self = $this;
 		$iterated = [];
-		$iteratee = function($value, $key, $collection2) use ($self, $collection, &$iterated) {
-			$self->assertSame($collection, $collection2);
+		$iteratee = function($value, $key, $iterable2) use ($self, $iterable, &$iterated) {
+			$self->assertSame($iterable, $iterable2);
 			$iterated[] = $key . ' is ' . $value;
 		};
 
-		Dash\each($collection, $iteratee);
+		Dash\each($iterable, $iteratee);
 		$this->assertEquals($expected, $iterated);
 	}
 

@@ -2,10 +2,10 @@
 
 namespace Dash;
 
-function reverse($collection)
+function reverse($iterable)
 {
 	return array_reverse(
-		mapValues($collection),
+		mapValues($iterable),
 		true  // Preserves numeric keys
 	);
 }

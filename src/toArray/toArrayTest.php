@@ -5,9 +5,9 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($collection, $expected)
+	public function test($iterable, $expected)
 	{
-		$actual = Dash\toArray($collection);
+		$actual = Dash\toArray($iterable);
 		$this->assertEquals($expected, $actual);
 	}
 

@@ -2,7 +2,7 @@
 
 namespace Dash;
 
-function first($collection)
+function first($iterable)
 {
-	return isset($collection[0]) ? $collection[0] : null;
+	return isset($iterable[0]) ? $iterable[0] : null;
 }

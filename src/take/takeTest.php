@@ -5,9 +5,9 @@ class takeTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($collection, $count, $fromStart, $expected)
+	public function test($iterable, $count, $fromStart, $expected)
 	{
-		$actual = Dash\take($collection, $count, $fromStart);
+		$actual = Dash\take($iterable, $count, $fromStart);
 		$this->assertEquals($expected, $actual);
 	}
 

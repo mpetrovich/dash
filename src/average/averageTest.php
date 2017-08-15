@@ -5,9 +5,9 @@ class averageTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($collection, $expected)
+	public function test($iterable, $expected)
 	{
-		$actual = Dash\average($collection);
+		$actual = Dash\average($iterable);
 		$this->assertEquals($expected, $actual);
 	}
 

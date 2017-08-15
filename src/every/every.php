@@ -2,11 +2,11 @@
 
 namespace Dash;
 
-function every($collection, $predicate)
+function every($iterable, $predicate)
 {
-	if (isEmpty($collection)) {
+	if (isEmpty($iterable)) {
 		return true;
 	}
 
-	return !any($collection, negate($predicate));
+	return !any($iterable, negate($predicate));
 }

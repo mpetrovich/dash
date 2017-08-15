@@ -2,8 +2,8 @@
 
 namespace Dash;
 
-function findKey($collection, $predicate)
+function findKey($iterable, $predicate)
 {
-	list($key, $value) = find($collection, $predicate);
+	list($key, $value) = find($iterable, $predicate);
 	return $key;
 }

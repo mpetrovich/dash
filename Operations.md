@@ -84,10 +84,10 @@ $predicate will be called with ($value, $key).
 Name | Type | Description
 --- | --- | ---
 `$input` | `mixed` | Any iterable
-`$predicate` | `callable` | 
+`$predicate` | `callable` |
 
 
-**Example:** 
+**Example:**
 ```php
 all([1, 2, 3], function($n) { return $n < 3; });  // === false
 all([1, 2, 3], function($n) { return $n < 4; });  // === true
@@ -98,7 +98,7 @@ all([1, 3, 5], 'Dash\isOdd');  // === true
 each
 ---
 ```php
-each($collection, $iteratee)
+each($iterable, $iteratee)
 ```
 Iterates over a collection and calls an iteratee function for each element.
 
@@ -109,11 +109,11 @@ use a native `foreach` loop instead.
 
 Name | Type | Description
 --- | --- | ---
-`$collection` | `array\|object` | 
+`$iterable` | `array\|object` |
 `$iteratee` | `Callable` | Function called with (element, key, collection)
 
 
-**Example:** 
+**Example:**
 ```php
 Dash\each(
 	array(1, 2, 3),
@@ -123,51 +123,51 @@ Dash\each(
 get
 ---
 ```php
-get($collection, $path, $default)
+get($iterable, $path, $default)
 ```
 Gets the value at a path on a collection.
 
 
 Name | Type | Description
 --- | --- | ---
-`$collection` | `array\|object` | 
+`$iterable` | `array\|object` |
 `$path` | `string` | Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period
 `$default` | `mixed` | Default value to return if nothing exists at $path
 
 
-**Example:** 
+**Example:**
 ```php
-$collection = array(
+$iterable = array(
 	'a' => array(
 		'b' => 'value'
 	)
 );
-Dash\get($collection, 'a.b') == 'value';
+Dash\get($iterable, 'a.b') == 'value';
 
 ```
 
 **Example:** Array elements can be referenced by index
 ```php
-$collection = array(
+$iterable = array(
 	'people' => array(
 		array('name' => 'Pete'),
 		array('name' => 'John'),
 		array('name' => 'Paul'),
 	)
 );
-Dash\get($collection, 'people.1.name') == 'John';
+Dash\get($iterable, 'people.1.name') == 'John';
 
 ```
 
 **Example:** Keys with the same name as the full path can be used
 ```php
-$collection = array('a.b.c' => 'value');
-Dash\get($collection, 'a.b.c') == 'value';
+$iterable = array('a.b.c' => 'value');
+Dash\get($iterable, 'a.b.c') == 'value';
 ```
 map
 ---
 ```php
-map($collection, $iteratee)
+map($iterable, $iteratee)
 ```
 Creates a new indexed array of values by running each element in a
 collection through an iteratee function.
@@ -178,11 +178,11 @@ is returned.
 
 Name | Type | Description
 --- | --- | ---
-`$collection` | `array\|object` | 
+`$iterable` | `array\|object` |
 `$iteratee` | `Callable\|string` | Function called with (element, key, collection)
 
 
-**Example:** 
+**Example:**
 ```php
 Dash\map(
 	array(1, 2, 3),
@@ -193,7 +193,7 @@ Dash\map(
 
 ```
 
-**Example:** 
+**Example:**
 ```php
 Dash\map(
 	array('roses' => 'red', 'violets' => 'blue'),
@@ -214,7 +214,7 @@ Dash\map(
 mapValues
 ---
 ```php
-mapValues($collection, $iteratee)
+mapValues($iterable, $iteratee)
 ```
 Creates a new array of values by running each element in a collection
 through an iteratee function.
@@ -224,11 +224,11 @@ Keys in the original collection _are_ preserved.
 
 Name | Type | Description
 --- | --- | ---
-`$collection` | `array\|object` | 
+`$iterable` | `array\|object` |
 `$iteratee` | `Callable` | Function called with (element, key, collection)
 
 
-**Example:** 
+**Example:**
 ```php
 Dash\map(
 	array(1, 2, 3),
@@ -237,7 +237,7 @@ Dash\map(
 
 ```
 
-**Example:** 
+**Example:**
 ```php
 Dash\map(
 	array('roses' => 'red', 'violets' => 'blue'),
@@ -247,18 +247,18 @@ Dash\map(
 pluck
 ---
 ```php
-pluck($collection, $path)
+pluck($iterable, $path)
 ```
 Gets the value at a path for all elements in a collection.
 
 
 Name | Type | Description
 --- | --- | ---
-`$collection` | `array\|object` | 
+`$iterable` | `array\|object` |
 `$path` | `string` | Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period
 
 
-**Example:** 
+**Example:**
 ```php
 Dash\pluck(
 	array(
@@ -285,37 +285,37 @@ Name | Type | Description
 `$default` | `mixed` | Default value to return if nothing exists at $path
 
 
-**Example:** 
+**Example:**
 ```php
 $getter = Dash\property('a.b');
-$collection = array(
+$iterable = array(
 	'a' => array(
 		'b' => 'value'
 	)
 );
-$getter($collection) == 'value';
+$getter($iterable) == 'value';
 
 ```
 
 **Example:** Array elements can be referenced by index
 ```php
 $getter = Dash\property('people.1.name');
-$collection = array(
+$iterable = array(
 	'people' => array(
 		array('name' => 'Pete'),
 		array('name' => 'John'),
 		array('name' => 'Paul'),
 	)
 );
-$getter($collection) == 'John';
+$getter($iterable) == 'John';
 
 ```
 
 **Example:** Keys with the same name as the full path can be used
 ```php
 $getter = Dash\property('a.b.c');
-$collection = array('a.b.c' => 'value');
-$getter($collection) == 'value';
+$iterable = array('a.b.c' => 'value');
+$getter($iterable) == 'value';
 ```
 
 Other

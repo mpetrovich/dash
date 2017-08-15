@@ -5,9 +5,9 @@ class lastTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($collection, $expected)
+	public function test($iterable, $expected)
 	{
-		$actual = Dash\last($collection);
+		$actual = Dash\last($iterable);
 		$this->assertEquals($expected, $actual);
 	}
 

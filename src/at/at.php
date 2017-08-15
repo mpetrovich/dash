@@ -2,12 +2,12 @@
 
 namespace Dash;
 
-function at($collection, $index)
+function at($iterable, $index)
 {
 	$at = null;
 
 	$i = 0;
-	foreach ($collection as $key => $value) {
+	foreach ($iterable as $key => $value) {
 		$at = $value;
 		if ($i === intval($index)) {
 			break;

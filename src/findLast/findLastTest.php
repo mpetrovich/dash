@@ -5,9 +5,9 @@ class findLastTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($collection, $predicate, $expected)
+	public function test($iterable, $predicate, $expected)
 	{
-		$actual = Dash\findLast($collection, $predicate);
+		$actual = Dash\findLast($iterable, $predicate);
 		$this->assertEquals($expected, $actual);
 	}
 

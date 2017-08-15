@@ -2,14 +2,14 @@
 
 namespace Dash;
 
-function average($collection)
+function average($iterable)
 {
-	$size = size($collection);
+	$size = size($iterable);
 
 	if ($size === 0) {
 		return 0;
 	}
 	else {
-		return sum($collection) / $size;
+		return sum($iterable) / $size;
 	}
 }

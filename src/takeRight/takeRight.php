@@ -2,9 +2,9 @@
 
 namespace Dash;
 
-function takeRight($collection, $count = 1, $fromEnd = 0)
+function takeRight($iterable, $count = 1, $fromEnd = 0)
 {
-	$values = mapValues($collection);
+	$values = mapValues($iterable);
 	$reversed = reverse($values);
 	return take($reversed, $count, $fromEnd);
 }

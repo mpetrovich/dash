@@ -5,10 +5,10 @@ class intersectionTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($collections, $expected)
+	public function test($iterables, $expected)
 	{
-		list($collection1, $collection2, $collection3) = $collections;
-		$actual = Dash\intersection($collection1, $collection2, $collection3);
+		list($iterable1, $iterable2, $iterable3) = $iterables;
+		$actual = Dash\intersection($iterable1, $iterable2, $iterable3);
 		$this->assertEquals($expected, $actual);
 	}
 
@@ -52,13 +52,13 @@ class intersectionTest extends PHPUnit_Framework_TestCase
 
 	public function testIntersectionWithSingleArray()
 	{
-		$collections = array(
+		$iterables = array(
 			array(4, 1, 2),
 			array(1, 2, 3),
 			array(1, 3, 5),
 		);
 		$expected = array(1);
-		$actual = Dash\intersection($collections);
+		$actual = Dash\intersection($iterables);
 
 		$this->assertEquals($expected, $actual);
 	}

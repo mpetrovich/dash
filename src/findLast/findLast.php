@@ -2,9 +2,9 @@
 
 namespace Dash;
 
-function findLast($collection, $predicate)
+function findLast($iterable, $predicate)
 {
-	$values = mapValues($collection);
+	$values = mapValues($iterable);
 	$reversed = reverse($values);
 	return find($reversed, $predicate);
 }

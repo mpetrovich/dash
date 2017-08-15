@@ -2,16 +2,16 @@
 
 namespace Dash;
 
-function union($collections /* or as $collection1, $collection2, ... */)
+function union($iterables /* or as $iterable1, $iterable2, ... */)
 {
 	if (func_num_args() > 1) {
-		$collections = func_get_args();
+		$iterables = func_get_args();
 	}
 
 	$union = [];
 
-	foreach ($collections as $collection) {
-		foreach ($collection as $value) {
+	foreach ($iterables as $iterable) {
+		foreach ($iterable as $value) {
 			if (!contains($union, $value)) {
 				$union[] = $value;
 			}

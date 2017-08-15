@@ -2,15 +2,15 @@
 
 namespace Dash;
 
-function median($collection)
+function median($iterable)
 {
-	$size = size($collection);
+	$size = size($iterable);
 
 	if ($size === 0) {
 		$median = null;
 	}
 	else {
-		$sorted = values(sort($collection));
+		$sorted = values(sort($iterable));
 
 		if ($size % 2 === 0) {
 			// For an even number of values,

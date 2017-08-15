@@ -2,9 +2,9 @@
 
 namespace Dash;
 
-function keys($collection)
+function keys($iterable)
 {
-	return map($collection, function($value, $key) {
+	return map($iterable, function($value, $key) {
 		return $key;
 	});
 }

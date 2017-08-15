@@ -6,36 +6,36 @@ namespace Dash;
  * Gets the value at a path on a collection.
  *
  * @category Collection
- * @param array|object $collection
+ * @param array|object $iterable
  * @param string $path Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period
  * @param mixed $default Default value to return if nothing exists at $path
  *
  * @return mixed Value at $path on the collection
  *
  * @example
-	$collection = array(
+	$iterable = array(
 		'a' => array(
 			'b' => 'value'
 		)
 	);
-	Dash\get($collection, 'a.b') == 'value';
+	Dash\get($iterable, 'a.b') == 'value';
  *
  * @example Array elements can be referenced by index
-	$collection = array(
+	$iterable = array(
 		'people' => array(
 			array('name' => 'Pete'),
 			array('name' => 'John'),
 			array('name' => 'Paul'),
 		)
 	);
-	Dash\get($collection, 'people.1.name') == 'John';
+	Dash\get($iterable, 'people.1.name') == 'John';
  *
  * @example Keys with the same name as the full path can be used
-	$collection = array('a.b.c' => 'value');
-	Dash\get($collection, 'a.b.c') == 'value';
+	$iterable = array('a.b.c' => 'value');
+	Dash\get($iterable, 'a.b.c') == 'value';
  */
-function get($collection, $path, $default = null)
+function get($iterable, $path, $default = null)
 {
 	$getter = property($path, $default);
-	return call_user_func($getter, $collection);
+	return call_user_func($getter, $iterable);
 }

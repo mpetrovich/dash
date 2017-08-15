@@ -2,7 +2,7 @@
 
 namespace Dash;
 
-function reject($collection, $predicate)
+function reject($iterable, $predicate)
 {
-	return filter($collection, negate($predicate));
+	return filter($iterable, negate($predicate));
 }

@@ -5,9 +5,9 @@ class allTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider casesForAll
 	 */
-	public function testStandaloneAll($collection, $predicate, $expected)
+	public function testStandaloneAll($iterable, $predicate, $expected)
 	{
-		$actual = Dash\all($collection, $predicate);
+		$actual = Dash\all($iterable, $predicate);
 		$this->assertEquals($expected, $actual);
 	}
 

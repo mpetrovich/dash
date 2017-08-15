@@ -6,10 +6,10 @@ class matchesPropertyTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider casesForMatchesProperty
 	 */
-	public function testMatchesProperty($path, $value, $collection, $expected)
+	public function testMatchesProperty($path, $value, $iterable, $expected)
 	{
 		$matches = Dash\matchesProperty($path, $value);
-		$actual = $matches($collection);
+		$actual = $matches($iterable);
 		$this->assertEquals($expected, $actual);
 	}
 

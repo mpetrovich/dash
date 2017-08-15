@@ -2,12 +2,12 @@
 
 namespace Dash;
 
-function where($collection, $properties)
+function where($iterable, $properties)
 {
 	$matches = matches($properties);
 	$results = [];
 
-	foreach ($collection as $key => $value) {
+	foreach ($iterable as $key => $value) {
 		if ($matches($value)) {
 			$results[$key] = $value;
 		}

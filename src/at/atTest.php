@@ -5,9 +5,9 @@ class atTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($collection, $index, $expected)
+	public function test($iterable, $index, $expected)
 	{
-		$actual = Dash\at($collection, $index);
+		$actual = Dash\at($iterable, $index);
 		$this->assertEquals($expected, $actual);
 	}
 
