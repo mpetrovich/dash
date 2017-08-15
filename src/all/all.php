@@ -4,11 +4,10 @@ namespace Dash;
 
 /**
  * Checks whether $predicate returns truthy for every item in $input.
- * $predicate will be called with ($value, $key).
  *
  * @category Collection
  * @param mixed $input Any iterable
- * @param callable $predicate
+ * @param callable $predicate A callable invoked with ($value, $key) that returns a boolean
  * @return bool true if $predicate returns truthy for every item in $input
  *
  * @example
