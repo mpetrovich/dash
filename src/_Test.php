@@ -288,7 +288,9 @@ class _Test extends PHPUnit_Framework_TestCase
 			_::triple(2);
 			$isStillSet = true;
 		}
-		catch (Exception $e) {}
+		catch (Exception $e) {
+			// Swallowed
+		}
 
 		$this->assertFalse($isStillSet);
 	}
