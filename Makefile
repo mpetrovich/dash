@@ -2,7 +2,6 @@
 # Runs unit tests
 #
 # To run tests for a single operation, add `op=<operation>`.
-# If omitted, all tests will be run.
 #
 # Example:
 #   make test op=map
@@ -17,8 +16,7 @@ endif
 
 # Runs all unit tests with code coverage analysis
 #
-# To run tests with code coverage for a single operation, add `op=<operation>`.
-# If omitted, all tests will be run.
+# To generate code coverage for a single operation, add `op=<operation>`.
 #
 # Example:
 #   make test-coverage op=map
@@ -30,6 +28,30 @@ else
 	@vendor/bin/phpunit
 endif
 @echo "Test coverage visible at:" $(shell pwd)/test-coverage/index.html
+
+
+# Checks code against style rules
+#
+# To check a single file, add `path=<dir/file path>`
+#
+# Example:
+#   make check-style path=map
+#   make check-style path=map/mapTest.php
+#
+check-style:
+	@vendor/bin/phpcs --standard=phpcs.xml -s src/$(path)
+
+
+# Fixes code to match style rules
+#
+# To fix a single file, add `path=<dir/file path>`
+#
+# Example:
+#   make fix-style path=map
+#   make fix-style path=map/mapTest.php
+#
+fix-style:
+	@vendor/bin/phpcbf --standard=phpcs.xml -s src/$(path)
 
 
 # Builds documentation for all operations
