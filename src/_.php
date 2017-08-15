@@ -236,13 +236,11 @@ class _
 	 */
 	private static function toCallable($method)
 	{
-		$callable = "\\Dash\\{$method}";
-
 		if (isset(self::$customFunctions[$method])) {
 			return self::$customFunctions[$method];
 		}
-		else if (is_callable($callable)) {
-			return $callable;
+		else if (is_callable("\\Dash\\{$method}")) {
+			return "\\Dash\\{$method}";
 		}
 		else {
 			throw new \BadMethodCallException("No callable method found for \"$method\"");
