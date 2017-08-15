@@ -106,6 +106,7 @@
 	<rule ref="PEAR.Commenting.FunctionComment">
 		<exclude name="PEAR.Commenting.FunctionComment.SpacingAfterParamType"/>
 		<exclude name="PEAR.Commenting.FunctionComment.SpacingAfterParamName"/>
+		<exclude name="PEAR.Commenting.FunctionComment.Missing"/>
 	</rule>
 	<rule ref="PEAR.Commenting.InlineComment"/>
 	<rule ref="PEAR.ControlStructures.ControlSignature"/>
