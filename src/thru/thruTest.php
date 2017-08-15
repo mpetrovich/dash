@@ -1,28 +1,17 @@
 <?php
 
-use Dash\_;
-
 class thruTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForThru
+	 * @dataProvider cases
 	 */
-	public function testStandaloneThru($collection, $interceptor, $expected)
+	public function test($collection, $interceptor, $expected)
 	{
 		$actual = Dash\thru($collection, $interceptor);
 		$this->assertSame($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForThru
-	 */
-	public function testChainedThru($collection, $interceptor, $expected)
-	{
-		$actual = _::chain($collection)->thru($interceptor)->value();
-		$this->assertSame($expected, $actual);
-	}
-
-	public function casesForThru()
+	public function cases()
 	{
 		return array(
 			'should return the modified collection when the interceptor returns a modifed collection' => array(

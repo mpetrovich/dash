@@ -1,28 +1,17 @@
 <?php
 
-use Dash\_;
-
 class keysTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForKeys
+	 * @dataProvider cases
 	 */
-	public function testStandaloneKeys($collection, $expected)
+	public function test($collection, $expected)
 	{
 		$actual = Dash\keys($collection);
 		$this->assertEquals($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForKeys
-	 */
-	public function testChainedKeys($collection, $expected)
-	{
-		$actual = _::chain($collection)->keys()->value();
-		$this->assertEquals($expected, $actual);
-	}
-
-	public function casesForKeys()
+	public function cases()
 	{
 		return array(
 

@@ -1,7 +1,5 @@
 <?php
 
-use Dash\_;
-
 class isEvenTest extends PHPUnit_Framework_TestCase
 {
 	/**

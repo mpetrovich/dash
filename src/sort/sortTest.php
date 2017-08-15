@@ -1,30 +1,19 @@
 <?php
 
-use Dash\_;
-
 // @todo Test that original collection is not modified
 // @todo Test with comparator
 class sortTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForSort
+	 * @dataProvider cases
 	 */
-	public function testStandaloneSort($collection, $expected)
+	public function test($collection, $expected)
 	{
 		$actual = Dash\sort($collection);
 		$this->assertEquals($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForSort
-	 */
-	public function testChainedSort($collection, $expected)
-	{
-		$actual = _::chain($collection)->sort()->value();
-		$this->assertEquals($expected, $actual);
-	}
-
-	public function casesForSort()
+	public function cases()
 	{
 		return array(
 

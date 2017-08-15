@@ -1,28 +1,17 @@
 <?php
 
-use Dash\_;
-
 class findKeyTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForFindKey
+	 * @dataProvider cases
 	 */
-	public function testStandaloneFindKey($collection, $predicate, $expected)
+	public function test($collection, $predicate, $expected)
 	{
 		$actual = Dash\findKey($collection, $predicate);
 		$this->assertEquals($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForFindKey
-	 */
-	public function testChainedFindKey($collection, $predicate, $expected)
-	{
-		$actual = _::chain($collection)->findKey($predicate)->value();
-		$this->assertEquals($expected, $actual);
-	}
-
-	public function casesForFindKey()
+	public function cases()
 	{
 		return array(
 			'With an empty array' => array(

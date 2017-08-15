@@ -1,28 +1,17 @@
 <?php
 
-use Dash\_;
-
 class reverseTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForReverse
+	 * @dataProvider cases
 	 */
-	public function testStandaloneReverse($collection, $expected)
+	public function test($collection, $expected)
 	{
 		$actual = Dash\reverse($collection);
 		$this->assertEquals($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForReverse
-	 */
-	public function testChainedReverse($collection, $expected)
-	{
-		$actual = _::chain($collection)->reverse()->value();
-		$this->assertEquals($expected, $actual);
-	}
-
-	public function casesForReverse()
+	public function cases()
 	{
 		return array(
 			'With an empty array' => array(

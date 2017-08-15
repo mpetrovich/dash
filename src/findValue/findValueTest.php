@@ -1,28 +1,17 @@
 <?php
 
-use Dash\_;
-
 class findValueTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForFindValue
+	 * @dataProvider cases
 	 */
-	public function testStandaloneFindValue($collection, $predicate, $expected)
+	public function test($collection, $predicate, $expected)
 	{
 		$actual = Dash\findValue($collection, $predicate);
 		$this->assertEquals($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForFindValue
-	 */
-	public function testChainedFindValue($collection, $predicate, $expected)
-	{
-		$actual = _::chain($collection)->findValue($predicate)->value();
-		$this->assertEquals($expected, $actual);
-	}
-
-	public function casesForFindValue()
+	public function cases()
 	{
 		return array(
 			'With an empty array' => array(

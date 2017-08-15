@@ -1,29 +1,17 @@
 <?php
 
-use Dash\_;
-
 class equalTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForEqual
+	 * @dataProvider cases
 	 */
-	public function testStandaloneEqual($a, $b, $expected)
+	public function test($a, $b, $expected)
 	{
 		$actual = Dash\equal($a, $b);
 		$this->assertSame($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForEqual
-	 */
-	public function testChainedEqual($a, $b, $expected)
-	{
-		$chain = _::chain($a);
-		$actual = $chain->equal($b)->value();
-		$this->assertSame($expected, $actual);
-	}
-
-	public function casesForEqual()
+	public function cases()
 	{
 		return array(
 			'should return true when the values are identical' => array(

@@ -1,28 +1,17 @@
 <?php
 
-use Dash\_;
-
 class firstTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForFirst
+	 * @dataProvider cases
 	 */
-	public function testStandaloneFirst($collection, $expected)
+	public function test($collection, $expected)
 	{
 		$actual = Dash\first($collection);
 		$this->assertEquals($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForFirst
-	 */
-	public function testChainedFirst($collection, $expected)
-	{
-		$actual = _::chain($collection)->first()->value();
-		$this->assertEquals($expected, $actual);
-	}
-
-	public function casesForFirst()
+	public function cases()
 	{
 		return array(
 			'With an empty array' => array(

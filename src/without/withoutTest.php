@@ -1,28 +1,17 @@
 <?php
 
-use Dash\_;
-
 class withoutTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForWithout
+	 * @dataProvider cases
 	 */
-	public function testStandaloneWithout($collection, $without, $expected)
+	public function test($collection, $without, $expected)
 	{
 		$actual = Dash\without($collection, $without);
 		$this->assertEquals($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForWithout
-	 */
-	public function testChainedWithout($collection, $without, $expected)
-	{
-		$actual = _::chain($collection)->without($without)->value();
-		$this->assertEquals($expected, $actual);
-	}
-
-	public function casesForWithout()
+	public function cases()
 	{
 		return array(
 			'With an empty array' => array(

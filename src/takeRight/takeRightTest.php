@@ -1,28 +1,17 @@
 <?php
 
-use Dash\_;
-
 class takeRightTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForTakeRight
+	 * @dataProvider cases
 	 */
-	public function testStandaloneTakeRight($collection, $count, $fromEnd, $expected)
+	public function test($collection, $count, $fromEnd, $expected)
 	{
 		$actual = Dash\takeRight($collection, $count, $fromEnd);
 		$this->assertEquals($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForTakeRight
-	 */
-	public function testChainedTakeRight($collection, $count, $fromEnd, $expected)
-	{
-		$actual = _::chain($collection)->takeRight($count, $fromEnd)->value();
-		$this->assertEquals($expected, $actual);
-	}
-
-	public function casesForTakeRight()
+	public function cases()
 	{
 		return array(
 			'With an empty array and a zero end offset' => array(

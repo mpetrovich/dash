@@ -1,28 +1,17 @@
 <?php
 
-use Dash\_;
-
 class getTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForGet
+	 * @dataProvider cases
 	 */
-	public function testStandaloneGet($collection, $path, $expected)
+	public function test($collection, $path, $expected)
 	{
 		$actual = Dash\get($collection, $path, 'default');
 		$this->assertEquals($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForGet
-	 */
-	public function testChainedGet($collection, $path, $expected)
-	{
-		$actual = _::chain($collection)->get($path, 'default')->value();
-		$this->assertEquals($expected, $actual);
-	}
-
-	public function casesForGet()
+	public function cases()
 	{
 		return array(
 			'With a valid path for an object' => array(

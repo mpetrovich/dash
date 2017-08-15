@@ -1,28 +1,17 @@
 <?php
 
-use Dash\_;
-
 class sizeTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForSize
+	 * @dataProvider cases
 	 */
-	public function testStandaloneSize($collection, $expected)
+	public function test($collection, $expected)
 	{
 		$actual = Dash\size($collection);
 		$this->assertEquals($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForSize
-	 */
-	public function testChainedSize($collection, $expected)
-	{
-		$actual = _::chain($collection)->size()->value();
-		$this->assertEquals($expected, $actual);
-	}
-
-	public function casesForSize()
+	public function cases()
 	{
 		return array(
 			'With an empty array' => array(

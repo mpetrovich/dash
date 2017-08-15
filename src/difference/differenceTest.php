@@ -1,31 +1,18 @@
 <?php
 
-use Dash\_;
-
 class differenceTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForDifference
+	 * @dataProvider cases
 	 */
-	public function testStandaloneDifference($collections, $expected)
+	public function test($collections, $expected)
 	{
 		list($collection1, $collection2, $collection3) = $collections;
 		$actual = Dash\difference($collection1, $collection2, $collection3);
 		$this->assertEquals($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForDifference
-	 */
-	public function testChainedDifference($collections, $expected)
-	{
-		list($collection1, $collection2, $collection3) = $collections;
-		$chain = _::chain($collection1);
-		$actual = $chain->difference($collection2, $collection3)->value();
-		$this->assertEquals($expected, $actual);
-	}
-
-	public function casesForDifference()
+	public function cases()
 	{
 		return array(
 			'With empty arrays' => array(

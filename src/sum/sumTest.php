@@ -1,28 +1,17 @@
 <?php
 
-use Dash\_;
-
 class sumTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForSum
+	 * @dataProvider cases
 	 */
-	public function testStandaloneSum($collection, $expected)
+	public function test($collection, $expected)
 	{
 		$actual = Dash\sum($collection);
 		$this->assertEquals($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForSum
-	 */
-	public function testChainedSum($collection, $expected)
-	{
-		$actual = _::chain($collection)->sum()->value();
-		$this->assertEquals($expected, $actual);
-	}
-
-	public function casesForSum()
+	public function cases()
 	{
 		return array(
 

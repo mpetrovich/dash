@@ -1,28 +1,17 @@
 <?php
 
-use Dash\_;
-
 class findLastTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForFindLast
+	 * @dataProvider cases
 	 */
-	public function testStandaloneFindLast($collection, $predicate, $expected)
+	public function test($collection, $predicate, $expected)
 	{
 		$actual = Dash\findLast($collection, $predicate);
 		$this->assertEquals($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForFindLast
-	 */
-	public function testChainedFindLast($collection, $predicate, $expected)
-	{
-		$actual = _::chain($collection)->findLast($predicate)->value();
-		$this->assertEquals($expected, $actual);
-	}
-
-	public function casesForFindLast()
+	public function cases()
 	{
 		return array(
 			'With an empty array' => array(

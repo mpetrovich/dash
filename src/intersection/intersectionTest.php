@@ -1,31 +1,18 @@
 <?php
 
-use Dash\_;
-
 class intersectionTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForIntersection
+	 * @dataProvider cases
 	 */
-	public function testStandaloneIntersection($collections, $expected)
+	public function test($collections, $expected)
 	{
 		list($collection1, $collection2, $collection3) = $collections;
 		$actual = Dash\intersection($collection1, $collection2, $collection3);
 		$this->assertEquals($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForIntersection
-	 */
-	public function testChainedIntersection($collections, $expected)
-	{
-		list($collection1, $collection2, $collection3) = $collections;
-		$chain = _::chain($collection1);
-		$actual = $chain->intersection($collection2, $collection3)->value();
-		$this->assertEquals($expected, $actual);
-	}
-
-	public function casesForIntersection()
+	public function cases()
 	{
 		return array(
 			'With empty arrays' => array(

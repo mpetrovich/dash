@@ -1,28 +1,17 @@
 <?php
 
-use Dash\_;
-
 class takeTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForTake
+	 * @dataProvider cases
 	 */
-	public function testStandaloneTake($collection, $count, $fromStart, $expected)
+	public function test($collection, $count, $fromStart, $expected)
 	{
 		$actual = Dash\take($collection, $count, $fromStart);
 		$this->assertEquals($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForTake
-	 */
-	public function testChainedTake($collection, $count, $fromStart, $expected)
-	{
-		$actual = _::chain($collection)->take($count, $fromStart)->value();
-		$this->assertEquals($expected, $actual);
-	}
-
-	public function casesForTake()
+	public function cases()
 	{
 		return array(
 			'With an empty array and a zero start offset' => array(

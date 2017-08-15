@@ -1,28 +1,17 @@
 <?php
 
-use Dash\_;
-
 class averageTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForAverage
+	 * @dataProvider cases
 	 */
-	public function testStandaloneAverage($collection, $expected)
+	public function test($collection, $expected)
 	{
 		$actual = Dash\average($collection);
 		$this->assertEquals($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForAverage
-	 */
-	public function testChainedAverage($collection, $expected)
-	{
-		$actual = _::chain($collection)->average()->value();
-		$this->assertEquals($expected, $actual);
-	}
-
-	public function casesForAverage()
+	public function cases()
 	{
 		return array(
 

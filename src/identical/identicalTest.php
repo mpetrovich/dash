@@ -1,29 +1,17 @@
 <?php
 
-use Dash\_;
-
 class identicalTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForIdentical
+	 * @dataProvider cases
 	 */
-	public function testStandaloneIdentical($a, $b, $expected)
+	public function test($a, $b, $expected)
 	{
 		$actual = Dash\identical($a, $b);
 		$this->assertSame($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForIdentical
-	 */
-	public function testChainedIdentical($a, $b, $expected)
-	{
-		$chain = _::chain($a);
-		$actual = $chain->identical($b)->value();
-		$this->assertSame($expected, $actual);
-	}
-
-	public function casesForIdentical()
+	public function cases()
 	{
 		return array(
 			'With two identical arrays' => array(

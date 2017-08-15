@@ -1,7 +1,5 @@
 <?php
 
-use Dash\_;
-
 class everyTest extends PHPUnit_Framework_TestCase
 {
 	/**

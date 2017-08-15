@@ -1,29 +1,17 @@
 <?php
 
-use Dash\_;
-
 class compareTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForCompare
+	 * @dataProvider cases
 	 */
-	public function testStandaloneCompare($a, $b, $expected)
+	public function test($a, $b, $expected)
 	{
 		$actual = Dash\compare($a, $b);
 		$this->assertSame($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForCompare
-	 */
-	public function testChainedCompare($a, $b, $expected)
-	{
-		$chain = _::chain($a);
-		$actual = $chain->compare($b)->value();
-		$this->assertSame($expected, $actual);
-	}
-
-	public function casesForCompare()
+	public function cases()
 	{
 		return array(
 			'should return zero when the values are equal' => array(

@@ -1,13 +1,11 @@
 <?php
 
-use Dash\_;
-
 class eachTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForEach
+	 * @dataProvider cases
 	 */
-	public function testStandaloneEach($collection, $expected)
+	public function test($collection, $expected)
 	{
 		$self = $this;
 		$iterated = [];
@@ -20,23 +18,7 @@ class eachTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expected, $iterated);
 	}
 
-	/**
-	 * @dataProvider casesForEach
-	 */
-	public function testChainedEach($collection, $expected)
-	{
-		$self = $this;
-		$iterated = [];
-		$iteratee = function($value, $key, $collection) use ($self, &$iterated) {
-			$iterated[] = $key . ' is ' . $value;
-		};
-
-		$chain = _::chain($collection);
-		$chain->each($iteratee)->value();
-		$this->assertEquals($expected, $iterated);
-	}
-
-	public function casesForEach()
+	public function cases()
 	{
 		return array(
 			'With an empty array' => array(

@@ -1,28 +1,17 @@
 <?php
 
-use Dash\_;
-
 class medianTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForMedian
+	 * @dataProvider cases
 	 */
-	public function testStandaloneMedian($collection, $expected)
+	public function test($collection, $expected)
 	{
 		$actual = Dash\median($collection);
 		$this->assertEquals($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForMedian
-	 */
-	public function testChainedMedian($collection, $expected)
-	{
-		$actual = _::chain($collection)->median()->value();
-		$this->assertEquals($expected, $actual);
-	}
-
-	public function casesForMedian()
+	public function cases()
 	{
 		return array(
 

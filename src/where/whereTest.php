@@ -1,28 +1,17 @@
 <?php
 
-use Dash\_;
-
 class whereTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForWhere
+	 * @dataProvider cases
 	 */
-	public function testStandaloneWhere($collection, $properties, $expected)
+	public function test($collection, $properties, $expected)
 	{
 		$actual = Dash\where($collection, $properties);
 		$this->assertEquals($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForWhere
-	 */
-	public function testChainedWhere($collection, $properties, $expected)
-	{
-		$actual = _::chain($collection)->where($properties)->value();
-		$this->assertEquals($expected, $actual);
-	}
-
-	public function casesForWhere()
+	public function cases()
 	{
 		return array(
 			'With an empty array' => array(

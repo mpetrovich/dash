@@ -1,29 +1,17 @@
 <?php
 
-use Dash\_;
-
 class identityTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForIdentity
+	 * @dataProvider cases
 	 */
-	public function testStandaloneIdentity($value, $expected)
+	public function test($value, $expected)
 	{
 		$actual = Dash\identity($value);
 		$this->assertSame($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForIdentity
-	 */
-	public function testChainedIdentity($value, $expected)
-	{
-		$chain = _::chain($value);
-		$actual = $chain->identity()->value();
-		$this->assertSame($expected, $actual);
-	}
-
-	public function casesForIdentity()
+	public function cases()
 	{
 		return array(
 			'With an empty array' => array(

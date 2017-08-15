@@ -1,13 +1,11 @@
 <?php
 
-use Dash\_;
-
 class mapValuesTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForMapValues
+	 * @dataProvider cases
 	 */
-	public function testStandaloneMapValues($collection, $expected)
+	public function test($collection, $expected)
 	{
 		$self = $this;
 		$iteratee = function($value, $key, $collection2) use ($self, $collection) {
@@ -19,21 +17,7 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForMapValues
-	 */
-	public function testChainedMapValues($collection, $expected)
-	{
-		$self = $this;
-		$iteratee = function($value, $key, $collection) use ($self) {
-			return $key . ' is ' . $value;
-		};
-
-		$actual = _::chain($collection)->mapValues($iteratee)->value();
-		$this->assertEquals($expected, $actual);
-	}
-
-	public function casesForMapValues()
+	public function cases()
 	{
 		return array(
 			'With an empty array' => array(
@@ -100,15 +84,15 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @dataProvider casesForMapValuesWithPath
+	 * @dataProvider casesWithPath
 	 */
-	public function testMapValuesWithPath($collection, $path, $expected)
+	public function testWithPath($collection, $path, $expected)
 	{
 		$actual = Dash\mapValues($collection, $path);
 		$this->assertEquals($expected, $actual);
 	}
 
-	public function casesForMapValuesWithPath()
+	public function casesWithPath()
 	{
 		return array(
 			'With a non-empty array' => array(
@@ -143,7 +127,7 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 		);
 	}
 
-	public function testMapValuesWithoutIteratee()
+	public function testWithoutIteratee()
 	{
 		$collection = array(0 => 'a', 1 => 'b', 2 => 'c');
 		$actual = Dash\mapValues($collection);

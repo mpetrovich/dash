@@ -1,28 +1,17 @@
 <?php
 
-use Dash\_;
-
 class pluckTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForPluck
+	 * @dataProvider cases
 	 */
-	public function testStandalonePluck($collection, $path, $expected)
+	public function test($collection, $path, $expected)
 	{
 		$actual = Dash\pluck($collection, $path);
 		$this->assertEquals($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForPluck
-	 */
-	public function testChainedPluck($collection, $path, $expected)
-	{
-		$actual = _::chain($collection)->pluck($path)->value();
-		$this->assertEquals($expected, $actual);
-	}
-
-	public function casesForPluck()
+	public function cases()
 	{
 		return array(
 			'With an empty array' => array(

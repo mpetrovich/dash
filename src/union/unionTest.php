@@ -1,31 +1,18 @@
 <?php
 
-use Dash\_;
-
 class unionTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForUnion
+	 * @dataProvider cases
 	 */
-	public function testStandaloneUnion($collections, $expected)
+	public function test($collections, $expected)
 	{
 		list($collection1, $collection2, $collection3) = $collections;
 		$actual = Dash\union($collection1, $collection2, $collection3);
 		$this->assertEquals($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForUnion
-	 */
-	public function testChainedUnion($collections, $expected)
-	{
-		list($collection1, $collection2, $collection3) = $collections;
-		$chain = _::chain($collection1);
-		$actual = $chain->union($collection2, $collection3)->value();
-		$this->assertEquals($expected, $actual);
-	}
-
-	public function casesForUnion()
+	public function cases()
 	{
 		return array(
 			'With empty arrays' => array(

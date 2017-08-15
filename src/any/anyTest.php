@@ -1,28 +1,17 @@
 <?php
 
-use Dash\_;
-
 class anyTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForAny
+	 * @dataProvider cases
 	 */
-	public function testStandaloneAny($collection, $predicate, $expected)
+	public function test($collection, $predicate, $expected)
 	{
 		$actual = Dash\any($collection, $predicate);
 		$this->assertEquals($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForAny
-	 */
-	public function testChainedAny($collection, $predicate, $expected)
-	{
-		$actual = _::chain($collection)->any($predicate)->value();
-		$this->assertEquals($expected, $actual);
-	}
-
-	public function casesForAny()
+	public function cases()
 	{
 		return array(
 

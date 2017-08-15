@@ -1,7 +1,5 @@
 <?php
 
-use Dash\_;
-
 // From Lodash
 class assignInWithTest extends PHPUnit_Framework_TestCase
 {

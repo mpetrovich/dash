@@ -1,28 +1,17 @@
 <?php
 
-use Dash\_;
-
 class atTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForAt
+	 * @dataProvider cases
 	 */
-	public function testStandaloneAt($collection, $index, $expected)
+	public function test($collection, $index, $expected)
 	{
 		$actual = Dash\at($collection, $index);
 		$this->assertEquals($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForAt
-	 */
-	public function testChainedAt($collection, $index, $expected)
-	{
-		$actual = _::chain($collection)->at($index)->value();
-		$this->assertEquals($expected, $actual);
-	}
-
-	public function casesForAt()
+	public function cases()
 	{
 		return array(
 

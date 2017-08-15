@@ -1,28 +1,17 @@
 <?php
 
-use Dash\_;
-
 class minTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForMin
+	 * @dataProvider cases
 	 */
-	public function testStandaloneMin($collection, $expected)
+	public function test($collection, $expected)
 	{
 		$actual = Dash\min($collection);
 		$this->assertEquals($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForMin
-	 */
-	public function testChainedMin($collection, $expected)
-	{
-		$actual = _::chain($collection)->min()->value();
-		$this->assertEquals($expected, $actual);
-	}
-
-	public function casesForMin()
+	public function cases()
 	{
 		return array(
 

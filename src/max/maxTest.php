@@ -1,28 +1,17 @@
 <?php
 
-use Dash\_;
-
 class maxTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForMax
+	 * @dataProvider cases
 	 */
-	public function testStandaloneMax($collection, $expected)
+	public function test($collection, $expected)
 	{
 		$actual = Dash\max($collection);
 		$this->assertEquals($expected, $actual);
 	}
 
-	/**
-	 * @dataProvider casesForMax
-	 */
-	public function testChainedMax($collection, $expected)
-	{
-		$actual = _::chain($collection)->max()->value();
-		$this->assertEquals($expected, $actual);
-	}
-
-	public function casesForMax()
+	public function cases()
 	{
 		return array(
 

@@ -1,7 +1,5 @@
 <?php
 
-use Dash\_;
-
 class rangeTest extends PHPUnit_Framework_TestCase
 {
 	public function test()
