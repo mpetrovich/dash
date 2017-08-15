@@ -12,7 +12,9 @@
 	<rule ref="Generic.CodeAnalysis.UnnecessaryFinalModifier"/>
 	<rule ref="Generic.ControlStructures.InlineControlStructure"/>
 	<rule ref="Generic.Files.LineEndings"/>
-	<rule ref="Generic.Formatting.DisallowMultipleStatements"/>
+	<rule ref="Generic.Formatting.DisallowMultipleStatements">
+		<exclude name="Generic.Formatting.DisallowMultipleStatements.SameLine"/>
+	</rule>
 	<rule ref="Generic.Formatting.SpaceAfterCast"/>
 	<rule ref="Generic.Functions.CallTimePassByReference"/>
 	<rule ref="Generic.Functions.OpeningFunctionBraceBsdAllman"/>
@@ -77,6 +79,12 @@
 	<rule ref="Squiz.Classes.ValidClassName">
 		<exclude name="Squiz.Classes.ValidClassName.NotCamelCaps"/>
 	</rule>
+	<rule ref="Squiz.ControlStructures.ControlSignature">
+		<exclude name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"/>
+	</rule>
+	<rule ref="Squiz.Functions.MultiLineFunctionDeclaration">
+		<exclude name="Squiz.Functions.MultiLineFunctionDeclaration.ContentAfterBrace"/>
+	</rule>
 	<rule ref="Squiz.PHP.CommentedOutCode"/>
 	<rule ref="Squiz.PHP.DisallowSizeFunctionsInLoops"/>
 	<rule ref="Squiz.PHP.DiscouragedFunctions"/>
@@ -91,9 +99,13 @@
 	<rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace"/>
 	<rule ref="Squiz.WhiteSpace.LanguageConstructSpacing"/>
 	<rule ref="Squiz.WhiteSpace.LogicalOperatorSpacing"/>
-	<rule ref="Squiz.WhiteSpace.ObjectOperatorSpacing"/>
+	<rule ref="Squiz.WhiteSpace.ObjectOperatorSpacing">
+		<exclude name="Squiz.WhiteSpace.ObjectOperatorSpacing.Before"/>
+	</rule>
 	<rule ref="Squiz.WhiteSpace.OperatorSpacing"/>
-	<rule ref="Squiz.WhiteSpace.ScopeClosingBrace"/>
+	<rule ref="Squiz.WhiteSpace.ScopeClosingBrace">
+		<exclude name="Squiz.WhiteSpace.ScopeClosingBrace.ContentBefore"/>
+	</rule>
 	<rule ref="Squiz.WhiteSpace.ScopeKeywordSpacing"/>
 	<rule ref="Squiz.WhiteSpace.SemicolonSpacing"/>
 	<rule ref="Squiz.WhiteSpace.SuperfluousWhitespace"/>
@@ -109,18 +121,28 @@
 		<exclude name="PEAR.Commenting.FunctionComment.Missing"/>
 	</rule>
 	<rule ref="PEAR.Commenting.InlineComment"/>
-	<rule ref="PEAR.ControlStructures.ControlSignature"/>
+	<rule ref="PEAR.ControlStructures.ControlSignature">
+		<exclude name="PEAR.ControlStructures.ControlSignature.Found"/>
+	</rule>
 	<rule ref="PEAR.ControlStructures.MultiLineCondition"/>
 	<rule ref="PEAR.Files.IncludingFile"/>
 	<rule ref="PEAR.Formatting.MultiLineAssignment"/>
-	<rule ref="PEAR.Functions.FunctionCallSignature"/>
-	<rule ref="PEAR.Functions.FunctionDeclaration"/>
+	<rule ref="PEAR.Functions.FunctionCallSignature">
+		<exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine"/>
+		<exclude name="PEAR.Functions.FunctionCallSignature.ContentAfterOpenBracket"/>
+	</rule>
+	<rule ref="PEAR.Functions.FunctionDeclaration">
+		<exclude name="PEAR.Functions.FunctionDeclaration.ContentAfterBrace"/>
+	</rule>
 	<rule ref="PEAR.Functions.ValidDefaultValue"/>
 	<rule ref="PEAR.NamingConventions.ValidClassName">
 		<exclude name="PEAR.NamingConventions.ValidClassName.StartWithCapital"/>
+		<exclude name="PEAR.NamingConventions.ValidClassName.Invalid"/>
 	</rule>
 	<rule ref="PEAR.WhiteSpace.ObjectOperatorIndent"/>
-	<rule ref="PEAR.WhiteSpace.ScopeClosingBrace"/>
+	<rule ref="PEAR.WhiteSpace.ScopeClosingBrace">
+		<exclude name="PEAR.WhiteSpace.ScopeClosingBrace.Line"/>
+	</rule>
 	<rule ref="PEAR.WhiteSpace.ScopeIndent"/>
 
 	<!--
