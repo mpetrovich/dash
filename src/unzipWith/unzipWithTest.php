@@ -1,6 +1,5 @@
 <?php
 
-// From Lodash
 class unzipWithTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

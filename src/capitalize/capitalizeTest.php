@@ -1,6 +1,5 @@
 <?php
 
-// From Lodash
 class capitalizeTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

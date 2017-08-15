@@ -1,6 +1,5 @@
 <?php
 
-// From Lodash
 class meanByTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

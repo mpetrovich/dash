@@ -1,6 +1,5 @@
 <?php
 
-// From Lodash
 class differenceWithTest extends PHPUnit_Framework_TestCase
 {
 	public function test()
