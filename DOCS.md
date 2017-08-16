@@ -11,13 +11,16 @@ Table of contents
 
 ### Other
 - [any](#any)
+- [apply](#apply)
 - [ary](#ary)
 - [assertType](#asserttype)
 - [at](#at)
 - [average](#average)
+- [call](#call)
 - [chain](#chain)
 - [compare](#compare)
 - [contains](#contains)
+- [custom](#custom)
 - [deltas](#deltas)
 - [difference](#difference)
 - [display](#display)
@@ -340,6 +343,20 @@ Name | Type | Description
 
 
 
+apply
+---
+```php
+apply($callable, $args)
+```
+
+
+Name | Type | Description
+--- | --- | ---
+`$callable` | `callable` | 
+`$args` | `array` | 
+
+
+
 ary
 ---
 ```php
@@ -388,6 +405,19 @@ Name | Type | Description
 
 
 
+call
+---
+```php
+call($callable)
+```
+
+
+Name | Type | Description
+--- | --- | ---
+`$callable` | `callable` | 
+
+
+
 chain
 ---
 ```php
@@ -424,6 +454,24 @@ Name | Type | Description
 
 
 
+custom
+---
+```php
+custom($name)
+```
+Gets a custom operation by name.
+
+
+Name | Type | Description
+--- | --- | ---
+`$name` | `string` | Name of the custom operation
+
+
+**Example:** 
+```php
+_::setCustom('double', function ($n) { return $n * 2; });
+_::chain([1, 2, 3])->map(Dash\custom('double'))->value();  // === [2, 4, 6]
+```
 deltas
 ---
 ```php
