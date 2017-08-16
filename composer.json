@@ -20,6 +20,7 @@
 		"files": [
 			"src/all/all.php",
 			"src/any/any.php",
+			"src/ary/ary.php",
 			"src/assertType/assertType.php",
 			"src/at/at.php",
 			"src/average/average.php",
@@ -48,6 +49,7 @@
 			"src/identity/identity.php",
 			"src/indexBy/indexBy.php",
 			"src/intersection/intersection.php",
+			"src/is/is.php",
 			"src/isEmpty/isEmpty.php",
 			"src/isEven/isEven.php",
 			"src/isOdd/isOdd.php",
