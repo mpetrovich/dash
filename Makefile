@@ -71,7 +71,7 @@ release:
 	make clean
 	make test
 	make docs
-	git add Operations.md
+	git add DOCS.md
 	git commit -m "Auto-update docs" --allow-empty
 	git tag -a v$(v) -m v$(v)
 	git push
