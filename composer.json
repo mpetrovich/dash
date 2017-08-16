@@ -20,10 +20,12 @@
 		"files": [
 			"src/all/all.php",
 			"src/any/any.php",
+			"src/apply/apply.php",
 			"src/ary/ary.php",
 			"src/assertType/assertType.php",
 			"src/at/at.php",
 			"src/average/average.php",
+			"src/call/call.php",
 			"src/chain/chain.php",
 			"src/compare/compare.php",
 			"src/contains/contains.php",
