@@ -4,30 +4,25 @@ namespace Dash;
 
 function set(&$input, $path, $value)
 {
-	$keys = explode('.', $path);
+	$steps = explode('.', $path);
 
-	for ($target = &$input; $keys;) {
-		$key = array_shift($keys);
+	for ($target = &$input; $steps;) {
+		$step = array_shift($steps);
 
 		if (!isset($target)) {
 			$target = [];
 		}
 
-		if (is_array($target)) {
-			if (!isset($target[$key])) {
-				$target[$key] = [];
-			}
-			$target = &$target[$key];
+		$hasDirect = hasDirect($target, $step);
+
+		if (!$hasDirect && is_array($target)) {
+			$target[$step] = [];
 		}
-		elseif (is_object($target)) {
-			if (!isset($target->$key)) {
-				$target->$key = new \stdClass;
-			}
-			$target = &$target->$key;
+		elseif (!$hasDirect && is_object($target)) {
+			$target->$step = (object) [];
 		}
-		else {
-			return $input;
-		}
+
+		$target = &getDirectRef($target, $step);
 	}
 
 	$target = $value;

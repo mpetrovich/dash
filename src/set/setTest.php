@@ -166,21 +166,23 @@ class setTest extends PHPUnit_Framework_TestCase
 					],
 				],
 			],
+		];
+	}
 
-			'With an intermediate field that is not an array or object' => [
-				'input' => [
-					'a' => [
-						'b' => 'hello',
-					],
-				],
-				'path' => 'a.b.c',
-				'value' => 123,
-				'expected' => [
-					'a' => [
-						'b' => 'hello',
-					],
-				],
+	/**
+	 * @expectedException \UnexpectedValueException
+	 * @expectedExceptionMessage string has no property "c"
+	 */
+	public function testUnsettableProperty()
+	{
+		$input = [
+			'a' => [
+				'b' => 'hello',
 			],
 		];
+		$path = 'a.b.c';
+		$value = 123;
+
+		Dash\set($input, $path, $value);
 	}
 }
