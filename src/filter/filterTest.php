@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\filter
+ */
 class filterTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\groupBy
+ */
 class groupByTest extends PHPUnit_Framework_TestCase
 {
 	/**

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\reverse
+ */
 class reverseTest extends PHPUnit_Framework_TestCase
 {
 	/**

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\average
+ */
 class averageTest extends PHPUnit_Framework_TestCase
 {
 	/**

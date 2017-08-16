@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\every
+ */
 class everyTest extends PHPUnit_Framework_TestCase
 {
 	/**

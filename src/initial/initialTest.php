@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\initial
+ */
 class initialTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

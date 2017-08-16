@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\after
+ */
 class afterTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

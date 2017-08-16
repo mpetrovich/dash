@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\where
+ */
 class whereTest extends PHPUnit_Framework_TestCase
 {
 	/**

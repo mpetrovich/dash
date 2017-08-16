@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\max
+ */
 class maxTest extends PHPUnit_Framework_TestCase
 {
 	/**

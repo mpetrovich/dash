@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\reduceRight
+ */
 class reduceRightTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

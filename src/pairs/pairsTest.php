@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\pairs
+ */
 class pairsTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

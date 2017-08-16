@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\tail
+ */
 class tailTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\uniq
+ */
 class uniqTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

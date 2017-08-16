@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\negate
+ */
 class negateTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

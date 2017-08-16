@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\toArray
+ */
 class toArrayTest extends PHPUnit_Framework_TestCase
 {
 	/**

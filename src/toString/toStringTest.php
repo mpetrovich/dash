@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\toString
+ */
 class toStringTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\find
+ */
 class findTest extends PHPUnit_Framework_TestCase
 {
 	/**

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\create
+ */
 class createTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

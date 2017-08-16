@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\chain
+ */
 class chainTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

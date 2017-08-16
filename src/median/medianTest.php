@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\median
+ */
 class medianTest extends PHPUnit_Framework_TestCase
 {
 	/**

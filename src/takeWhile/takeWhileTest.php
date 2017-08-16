@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\takeWhile
+ */
 class takeWhileTest extends PHPUnit_Framework_TestCase
 {
 	/**

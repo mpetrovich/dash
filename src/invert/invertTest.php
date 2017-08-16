@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\invert
+ */
 class invertTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

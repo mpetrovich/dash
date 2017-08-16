@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\partial
+ */
 class partialTest extends PHPUnit_Framework_TestCase
 {
 	/**

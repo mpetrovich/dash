@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\assignWith
+ */
 class assignWithTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\unionBy
+ */
 class unionByTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

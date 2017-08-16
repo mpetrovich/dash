@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\tap
+ */
 class tapTest extends PHPUnit_Framework_TestCase
 {
 	/**

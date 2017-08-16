@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\isNull
+ */
 class isNullTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

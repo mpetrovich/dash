@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\merge
+ */
 class mergeTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

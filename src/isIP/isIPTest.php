@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\isIp
+ */
 class isIpTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

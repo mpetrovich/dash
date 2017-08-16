@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\findLast
+ */
 class findLastTest extends PHPUnit_Framework_TestCase
 {
 	/**

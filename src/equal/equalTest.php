@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\equal
+ */
 class equalTest extends PHPUnit_Framework_TestCase
 {
 	/**

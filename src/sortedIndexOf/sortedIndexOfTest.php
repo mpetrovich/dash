@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\sortedIndexOf
+ */
 class sortedIndexOfTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\without
+ */
 class withoutTest extends PHPUnit_Framework_TestCase
 {
 	/**

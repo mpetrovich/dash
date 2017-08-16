@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\identity
+ */
 class identityTest extends PHPUnit_Framework_TestCase
 {
 	/**

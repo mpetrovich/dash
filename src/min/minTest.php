@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\min
+ */
 class minTest extends PHPUnit_Framework_TestCase
 {
 	/**

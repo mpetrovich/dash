@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\size
+ */
 class sizeTest extends PHPUnit_Framework_TestCase
 {
 	/**

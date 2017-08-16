@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\keys
+ */
 class keysTest extends PHPUnit_Framework_TestCase
 {
 	/**

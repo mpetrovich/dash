@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\intersection
+ */
 class intersectionTest extends PHPUnit_Framework_TestCase
 {
 	/**

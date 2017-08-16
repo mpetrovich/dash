@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\pullAt
+ */
 class pullAtTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

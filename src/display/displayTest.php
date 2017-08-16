@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\display
+ */
 class displayTest extends PHPUnit_Framework_TestCase
 {
 	/**

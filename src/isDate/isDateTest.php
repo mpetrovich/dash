@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\isDate
+ */
 class isDateTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

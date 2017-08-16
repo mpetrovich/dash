@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\at
+ */
 class atTest extends PHPUnit_Framework_TestCase
 {
 	/**

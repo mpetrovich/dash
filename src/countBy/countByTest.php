@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\countBy
+ */
 class countByTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

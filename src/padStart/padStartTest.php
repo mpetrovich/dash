@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\padStart
+ */
 class padStartTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

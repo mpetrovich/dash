@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\trimStart
+ */
 class trimStartTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

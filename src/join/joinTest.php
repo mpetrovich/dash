@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\join
+ */
 class joinTest extends PHPUnit_Framework_TestCase
 {
 	/**

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\slug
+ */
 class slugTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

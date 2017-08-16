@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\conforms
+ */
 class conformsTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

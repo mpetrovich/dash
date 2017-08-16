@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\findKey
+ */
 class findKeyTest extends PHPUnit_Framework_TestCase
 {
 	/**

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\mapValues
+ */
 class mapValuesTest extends PHPUnit_Framework_TestCase
 {
 	/**

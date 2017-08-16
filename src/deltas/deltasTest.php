@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\deltas
+ */
 class deltasTest extends PHPUnit_Framework_TestCase
 {
 	/**

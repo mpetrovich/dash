@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\accord
+ */
 class accordTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\thru
+ */
 class thruTest extends PHPUnit_Framework_TestCase
 {
 	/**

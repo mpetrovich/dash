@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\chunk
+ */
 class chunkTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

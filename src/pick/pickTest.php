@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\pick
+ */
 class pickTest extends PHPUnit_Framework_TestCase
 {
 	/**

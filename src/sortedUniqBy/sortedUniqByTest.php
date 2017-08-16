@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\sortedUniqBy
+ */
 class sortedUniqByTest extends PHPUnit_Framework_TestCase
 {
 	public function test()

@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @covers Dash\takeRight
+ */
 class takeRightTest extends PHPUnit_Framework_TestCase
 {
 	/**
