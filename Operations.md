@@ -78,16 +78,15 @@ all
 all($input, $predicate)
 ```
 Checks whether $predicate returns truthy for every item in $input.
-$predicate will be called with ($value, $key).
 
 
 Name | Type | Description
 --- | --- | ---
 `$input` | `mixed` | Any iterable
-`$predicate` | `callable` |
+`$predicate` | `callable` | A callable invoked with ($value, $key) that returns a boolean
 
 
-**Example:**
+**Example:** 
 ```php
 all([1, 2, 3], function($n) { return $n < 3; });  // === false
 all([1, 2, 3], function($n) { return $n < 4; });  // === true
@@ -109,11 +108,11 @@ use a native `foreach` loop instead.
 
 Name | Type | Description
 --- | --- | ---
-`$iterable` | `array\|object` |
-`$iteratee` | `Callable` | Function called with (element, key, collection)
+`$iterable` | `array\|object` | 
+`$iteratee` | `Callable` | Function called with (element, key, collection) for each element in $iterable. If $iteratee returns false, subsequent elements will be skipped and iteration will end. 
 
 
-**Example:**
+**Example:** 
 ```php
 Dash\each(
 	array(1, 2, 3),
@@ -130,12 +129,12 @@ Gets the value at a path on a collection.
 
 Name | Type | Description
 --- | --- | ---
-`$iterable` | `array\|object` |
+`$iterable` | `array\|object` | 
 `$path` | `string` | Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period
-`$default` | `mixed` | Default value to return if nothing exists at $path
+`$default` | `mixed` | Default value to return if nothing exists at $path 
 
 
-**Example:**
+**Example:** 
 ```php
 $iterable = array(
 	'a' => array(
@@ -178,11 +177,11 @@ is returned.
 
 Name | Type | Description
 --- | --- | ---
-`$iterable` | `array\|object` |
-`$iteratee` | `Callable\|string` | Function called with (element, key, collection)
+`$iterable` | `array\|object` | 
+`$iteratee` | `Callable\|string` | Function called with (element, key, collection) for each element in $iterable. The return value of $iteratee will be used as the corresponding element in the returned array. If $iteratee is a string, property($iteratee) will be used as the iteratee function. 
 
 
-**Example:**
+**Example:** 
 ```php
 Dash\map(
 	array(1, 2, 3),
@@ -193,7 +192,7 @@ Dash\map(
 
 ```
 
-**Example:**
+**Example:** 
 ```php
 Dash\map(
 	array('roses' => 'red', 'violets' => 'blue'),
@@ -224,11 +223,11 @@ Keys in the original collection _are_ preserved.
 
 Name | Type | Description
 --- | --- | ---
-`$iterable` | `array\|object` |
-`$iteratee` | `Callable` | Function called with (element, key, collection)
+`$iterable` | `array\|object` | 
+`$iteratee` | `Callable` | Function called with (element, key, collection) for each element in $iterable. The return value of $iteratee will be used as the corresponding element in the returned array. 
 
 
-**Example:**
+**Example:** 
 ```php
 Dash\map(
 	array(1, 2, 3),
@@ -237,7 +236,7 @@ Dash\map(
 
 ```
 
-**Example:**
+**Example:** 
 ```php
 Dash\map(
 	array('roses' => 'red', 'violets' => 'blue'),
@@ -254,11 +253,11 @@ Gets the value at a path for all elements in a collection.
 
 Name | Type | Description
 --- | --- | ---
-`$iterable` | `array\|object` |
-`$path` | `string` | Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period
+`$iterable` | `array\|object` | 
+`$path` | `string` | Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period 
 
 
-**Example:**
+**Example:** 
 ```php
 Dash\pluck(
 	array(
@@ -285,7 +284,7 @@ Name | Type | Description
 `$default` | `mixed` | Default value to return if nothing exists at $path
 
 
-**Example:**
+**Example:** 
 ```php
 $getter = Dash\property('a.b');
 $iterable = array(
