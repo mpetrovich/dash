@@ -45,23 +45,17 @@ function property($path, $default = null)
 	}
 
 	$getter = function ($value) use ($path, $default) {
-		// Checks for a direct element or property with the same name as $path
-		if (is_array($value) && array_key_exists($path, $value)) {
-			return $value[$path];
-		}
-		elseif (is_object($value) && property_exists($value, $path)) {
-			return $value->$path;
+		// Short-circuit for direct properties
+		if (hasDirect($value, $path)) {
+			return getDirect($value, $path);
 		}
 
 		$result = $value;
 		$steps = explode('.', $path);
 
 		foreach ($steps as $step) {
-			if (is_array($result) && array_key_exists($step, $result)) {
-				$result = $result[$step];
-			}
-			elseif (is_object($result) && property_exists($result, $step)) {
-				$result = $result->$step;
+			if (hasDirect($result, $step)) {
+				$result = getDirect($result, $step);
 			}
 			else {
 				$result = $default;
