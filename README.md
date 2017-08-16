@@ -11,10 +11,9 @@ $result = __([1, 2, 3, 4, 5])
 // $result === [2, 6, 10]
 ```
 
-###### Jump to:
+##### Jump to:
 - [Features](#features)
 - [Documentation](#documentation)
-- [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Changelog](CHANGELOG.md)
@@ -48,7 +47,7 @@ Usage
 Dash operations can be used alone or chained together.
 
 
-#### Standalone operations
+### Standalone operations
 As static methods:
 
 ```php
@@ -64,7 +63,7 @@ Dash\map([1, 2, 3], function ($n) { return $n * 2; });  // === [2, 4, 6]
 ```
 
 
-#### Chaining
+### Chaining
 Multiple operations can be chained in sequence using `chain()`. Call `value()` to return the final value:
 
 ```php
@@ -99,7 +98,7 @@ _::chain([1, 2, 3, 4, 5])
 ```
 
 
-#### Lazy evaluation
+### Lazy evaluation
 Chained operations are not evaluated until `value()` or `execute()` is called. Furthermore, the input data can be changed and evaluated multiple times via `with()`. This makes it simple to create reusable chains:
 
 ```php
@@ -126,7 +125,7 @@ $chain->value();  // === [10, 14]
 When `value()` is called, the result is cached until the chain is modified or the input is changed via `with()`.
 
 
-#### Custom operations
+### Custom operations
 Custom operations can be added and removed via `setCustom()` and `unsetCustom()`, respectively:
 
 ```php
