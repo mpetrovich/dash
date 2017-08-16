@@ -12,6 +12,7 @@ before_script:
 
 script:
   - make test-coverage
+  - make check-style
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
