@@ -5,8 +5,53 @@
  */
 class reduceTest extends PHPUnit_Framework_TestCase
 {
-	public function test()
+	/**
+	 * @dataProvider cases
+	 */
+	public function test($input, $iteratee, $initial, $expected)
 	{
-		$this->markTestIncomplete();
+		$this->assertEquals($expected, Dash\reduce($input, $iteratee, $initial));
+	}
+
+	public function cases()
+	{
+		return [
+			'With an empty array' => [
+				'input' => [],
+				'iteratee' => function ($result, $value) { return $result + $value; },
+				'initial' => 0,
+				'expected' => 0,
+			],
+			'With a non-empty array' => [
+				'input' => [1, 2, 3, 4],
+				'iteratee' => function ($result, $value) { return $result + $value; },
+				'initial' => 0,
+				'expected' => 10,
+			],
+			'With an empty stdClass' => [
+				'input' => (object) [],
+				'iteratee' => function ($result, $value) { return $result + $value; },
+				'initial' => 0,
+				'expected' => 0,
+			],
+			'With a non-empty stdClass' => [
+				'input' => (object) [1, 2, 3, 4],
+				'iteratee' => function ($result, $value) { return $result + $value; },
+				'initial' => 0,
+				'expected' => 10,
+			],
+			'With an empty ArrayObject' => [
+				'input' => new ArrayObject([]),
+				'iteratee' => function ($result, $value) { return $result + $value; },
+				'initial' => 0,
+				'expected' => 0,
+			],
+			'With a non-empty ArrayObject' => [
+				'input' => new ArrayObject([1, 2, 3, 4]),
+				'iteratee' => function ($result, $value) { return $result + $value; },
+				'initial' => 0,
+				'expected' => 10,
+			],
+		];
 	}
 }

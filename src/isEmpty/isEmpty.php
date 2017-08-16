@@ -2,7 +2,7 @@
 
 namespace Dash;
 
-function isEmpty($iterable)
+function isEmpty($input)
 {
-	return size($iterable) === 0;
+	return empty($input) || size($input) === 0;
 }

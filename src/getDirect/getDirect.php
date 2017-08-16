@@ -2,16 +2,17 @@
 
 namespace Dash;
 
-function getDirect($subject, $field, $default = null)
+function getDirect($input, $field, $default = null)
 {
-	if (is_array($subject) && array_key_exists($field, $subject)) {
-		$value = $subject[$field];
+	if (is_array($input) && array_key_exists($field, $input)) {
+		$value = $input[$field];
 	}
-	elseif (is_object($subject) && property_exists($subject, $field)) {
-		$value = $subject->$field;
+	elseif (is_object($input) && property_exists($input, $field)) {
+		$value = $input->$field;
 	}
 	else {
-		$value = $default;
+		$array = toArray($input);
+		$value = isset($array[$field]) ? $array[$field] : $default;
 	}
 
 	return $value;

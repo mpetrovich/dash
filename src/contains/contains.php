@@ -2,17 +2,7 @@
 
 namespace Dash;
 
-function contains($iterable, $target, $predicate = null)
+function contains($iterable, $target, $predicate = 'Dash\equal')
 {
-	if ($predicate === null) {
-		$predicate = 'Dash\equal';
-	}
-
-	foreach ($iterable as $value) {
-		if (call_user_func($predicate, $target, $value)) {
-			return true;
-		}
-	}
-
-	return false;
+	return any($iterable, partial($predicate, $target));
 }

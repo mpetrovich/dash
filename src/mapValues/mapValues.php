@@ -8,7 +8,7 @@ namespace Dash;
  *
  * Keys in the original collection _are_ preserved.
  *
- * @category Collection
+ * @category Iterable
  * @param array|object $iterable
  * @param Callable $iteratee Function called with (element, key, collection)
  *                           for each element in $iterable. The return value of $iteratee will

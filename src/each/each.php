@@ -9,7 +9,7 @@ namespace Dash;
  * function are not persisted. If the original collection needs to be mutated,
  * use a native `foreach` loop instead.
  *
- * @category Collection
+ * @category Iterable
  * @param array|object $iterable
  * @param Callable $iteratee Function called with (element, key, collection)
  *                           for each element in $iterable. If $iteratee returns false,

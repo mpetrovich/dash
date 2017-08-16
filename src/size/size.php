@@ -2,16 +2,23 @@
 
 namespace Dash;
 
-function size($iterable)
+function size($input, $encoding = 'utf8')
 {
-	if (is_array($iterable) || $iterable instanceof Countable) {
-		return count($iterable);
+	if (is_array($input) || $input instanceof Countable) {
+		$size = count($input);
+	}
+	elseif (is($input, 'iterable')) {
+		$size = 0;
+		foreach ($input as $value) {
+			$size++;
+		}
+	}
+	elseif (is_string($input)) {
+		$size = mb_strlen($input, $encoding);
 	}
 	else {
-		$count = 0;
-		foreach ($iterable as $value) {
-			$count++;
-		}
-		return $count;
+		$size = null;
 	}
+
+	return $size;
 }
