@@ -32,26 +32,24 @@ endif
 
 # Checks code against style rules
 #
-# To check a single file, add `path=<dir/file path>`
+# To check a single operation, add `op=<operation>`
 #
 # Example:
-#   make check-style path=map
-#   make check-style path=map/mapTest.php
+#   make check-style op=map
 #
 check-style:
-	@vendor/bin/phpcs --standard=phpcs.xml -s src/$(path)
+	@vendor/bin/phpcs --standard=phpcs.xml -s src/$(op)
 
 
 # Fixes code to match style rules
 #
-# To fix a single file, add `path=<dir/file path>`
+# To fix a single operation, add `op=<operation>`
 #
 # Example:
-#   make fix-style path=map
-#   make fix-style path=map/mapTest.php
+#   make fix-style op=map
 #
 fix-style:
-	@vendor/bin/phpcbf --standard=phpcs.xml -s src/$(path)
+	@vendor/bin/phpcbf --standard=phpcs.xml -s src/$(op)
 
 
 # Builds documentation for all operations
