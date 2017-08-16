@@ -29,6 +29,7 @@
 			"src/chain/chain.php",
 			"src/compare/compare.php",
 			"src/contains/contains.php",
+			"src/custom/custom.php",
 			"src/deltas/deltas.php",
 			"src/difference/difference.php",
 			"src/display/display.php",

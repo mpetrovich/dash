@@ -131,10 +131,17 @@ Custom operations can be added and removed via `setCustom()` and `unsetCustom()`
 ```php
 _::setCustom('triple', function ($n) { return $n * 3; });
 
+// Standalone
 _::triple(4);  // === 12
 
+// Chained
 _::chain([1, 2, 3])
-	->map('Dash\_::triple')  // Must be accessed statically like so; 'Dash\triple' won't work
+	->map('Dash\_::triple')
+	->value();  // === [3, 6, 9]
+
+// Chained (alternative syntax)
+_::chain([1, 2, 3])
+	->map(Dash\custom('triple'))
 	->value();  // === [3, 6, 9]
 
 _::unsetCustom('triple');
