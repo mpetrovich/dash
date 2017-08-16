@@ -2,7 +2,7 @@
 
 namespace Dash;
 
-function partialRight($function /* , ..., $argN-1, $argN */)
+function partialRight($function)
 {
 	$fixedArgs = func_get_args();
 	array_shift($fixedArgs);  // Removes $function parameter

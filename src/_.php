@@ -69,6 +69,7 @@ class _
 	 *
 	 * @param string $name Operation name
 	 * @param callable $callable Operation function
+	 * @return void
 	 *
 	 * @example Custom scalar operation
 		_::setCustom('triple', function($n) { return $n * 3; });
@@ -187,7 +188,9 @@ class _
 
 	/**
 	 * Alias for value().
+	 *
 	 * @see value()
+	 * @return mixed
 	 */
 	public function execute()
 	{

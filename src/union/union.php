@@ -2,7 +2,7 @@
 
 namespace Dash;
 
-function union($iterables /* or as $iterable1, $iterable2, ... */)
+function union($iterables)
 {
 	if (func_num_args() > 1) {
 		$iterables = func_get_args();

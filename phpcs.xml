@@ -85,7 +85,9 @@
 	<rule ref="Squiz.Functions.MultiLineFunctionDeclaration">
 		<exclude name="Squiz.Functions.MultiLineFunctionDeclaration.ContentAfterBrace"/>
 	</rule>
-	<rule ref="Squiz.PHP.CommentedOutCode"/>
+	<rule ref="Squiz.PHP.CommentedOutCode">
+		<exclude-pattern>*Test.php</exclude-pattern>
+	</rule>
 	<rule ref="Squiz.PHP.DisallowSizeFunctionsInLoops"/>
 	<rule ref="Squiz.PHP.DiscouragedFunctions"/>
 	<rule ref="Squiz.PHP.GlobalKeyword"/>
@@ -116,9 +118,11 @@
 
 	<rule ref="PEAR.Classes.ClassDeclaration"/>
 	<rule ref="PEAR.Commenting.FunctionComment">
+		<exclude-pattern>*Test.php</exclude-pattern>
 		<exclude name="PEAR.Commenting.FunctionComment.SpacingAfterParamType"/>
 		<exclude name="PEAR.Commenting.FunctionComment.SpacingAfterParamName"/>
 		<exclude name="PEAR.Commenting.FunctionComment.Missing"/>
+		<exclude name="PEAR.Commenting.FunctionComment.MissingParamComment"/>
 	</rule>
 	<rule ref="PEAR.Commenting.InlineComment"/>
 	<rule ref="PEAR.ControlStructures.ControlSignature">

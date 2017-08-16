@@ -7,8 +7,9 @@ namespace Dash;
  *
  * @category Collection
  * @param array|object $iterable
- * @param string $path Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period
- *
+ * @param string $path Path of the property to retrieve;
+ *                     can be nested by delimiting each sub-property or array index with a period
+ * @param mixed $default
  * @return array
  *
  * @example

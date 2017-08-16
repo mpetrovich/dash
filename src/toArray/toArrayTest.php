@@ -70,7 +70,10 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 
 	public function testDirectoryIterator()
 	{
-		$input = new \FilesystemIterator(__DIR__, \FilesystemIterator::KEY_AS_PATHNAME | \FilesystemIterator::CURRENT_AS_FILEINFO);
+		$input = new \FilesystemIterator(
+			__DIR__,
+			\FilesystemIterator::KEY_AS_PATHNAME | \FilesystemIterator::CURRENT_AS_FILEINFO
+		);
 		$output = Dash\toArray($input);
 
 		$this->assertCount(2, $output);
