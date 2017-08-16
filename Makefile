@@ -54,7 +54,7 @@ fix-style:
 
 # Builds documentation for all operations
 docs:
-	@bin/docs src Operations.md
+	@bin/docs src DOCS.md
 
 
 # Removes all generated files

@@ -1,6 +1,6 @@
 Table of contents
 ===
-### Collection
+### Iterable
 - [all](#all)
 - [each](#each)
 - [get](#get)
@@ -11,6 +11,7 @@ Table of contents
 
 ### Other
 - [any](#any)
+- [ary](#ary)
 - [assertType](#asserttype)
 - [at](#at)
 - [average](#average)
@@ -23,17 +24,20 @@ Table of contents
 - [dropWhile](#dropwhile)
 - [equal](#equal)
 - [every](#every)
-- [filter](#filter)
 - [find](#find)
 - [findKey](#findkey)
 - [findLast](#findlast)
 - [findValue](#findvalue)
 - [first](#first)
+- [getDirect](#getdirect)
+- [getDirectRef](#getdirectref)
 - [groupBy](#groupby)
+- [hasDirect](#hasdirect)
 - [identical](#identical)
 - [identity](#identity)
 - [indexBy](#indexby)
 - [intersection](#intersection)
+- [is](#is)
 - [isEmpty](#isempty)
 - [isEven](#iseven)
 - [isOdd](#isodd)
@@ -68,8 +72,11 @@ Table of contents
 - [where](#where)
 - [without](#without)
 
+### Iterables
+- [filter](#filter)
 
-Collection
+
+Iterable
 ===
 
 all
@@ -246,7 +253,7 @@ Dash\map(
 pluck
 ---
 ```php
-pluck($iterable, $path)
+pluck($iterable, $path, $default)
 ```
 Gets the value at a path for all elements in a collection.
 
@@ -254,7 +261,8 @@ Gets the value at a path for all elements in a collection.
 Name | Type | Description
 --- | --- | ---
 `$iterable` | `array\|object` | 
-`$path` | `string` | Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period 
+`$path` | `string` | Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period
+`$default` | `mixed` | 
 
 
 **Example:** 
@@ -324,6 +332,18 @@ any
 ---
 ```php
 any()
+```
+
+
+Name | Type | Description
+--- | --- | ---
+
+
+
+ary
+---
+```php
+ary()
 ```
 
 
@@ -476,18 +496,6 @@ Name | Type | Description
 
 
 
-filter
----
-```php
-filter()
-```
-
-
-Name | Type | Description
---- | --- | ---
-
-
-
 find
 ---
 ```php
@@ -548,10 +556,46 @@ Name | Type | Description
 
 
 
+getDirect
+---
+```php
+getDirect()
+```
+
+
+Name | Type | Description
+--- | --- | ---
+
+
+
+getDirectRef
+---
+```php
+getDirectRef()
+```
+
+
+Name | Type | Description
+--- | --- | ---
+
+
+
 groupBy
 ---
 ```php
 groupBy()
+```
+
+
+Name | Type | Description
+--- | --- | ---
+
+
+
+hasDirect
+---
+```php
+hasDirect()
 ```
 
 
@@ -600,6 +644,18 @@ intersection
 ---
 ```php
 intersection()
+```
+
+
+Name | Type | Description
+--- | --- | ---
+
+
+
+is
+---
+```php
+is()
 ```
 
 
@@ -1001,6 +1057,26 @@ without()
 
 Name | Type | Description
 --- | --- | ---
+
+
+
+
+Iterables
+===
+
+filter
+---
+```php
+filter($iterable, $predicate)
+```
+Returns a subset of $iterable for which $predicate is truthy.
+Keys and key order are preserved.
+
+
+Name | Type | Description
+--- | --- | ---
+`$iterable` | `iterable` | 
+`$predicate` | `callable` | Callable invoked with ($value, $key) for each item in $iterable
 
 
 

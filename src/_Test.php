@@ -330,6 +330,7 @@ class _Test extends PHPUnit_Framework_TestCase
 		});
 
 		$this->assertEquals(8, _::chain(4)->double()->value());
+		$this->assertEquals([2, 4, 6], _::chain([1, 2, 3])->map('Dash\_::double')->value());
 
 		_::unsetCustom('double');
 	}

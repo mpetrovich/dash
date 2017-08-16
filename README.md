@@ -2,37 +2,42 @@ Dash &nbsp; [![Build Status](https://travis-ci.org/mpetrovich/Dash.svg?branch=ma
 ===
 A functional utility library for PHP, like Underscore and Lodash.
 
+```php
+$result = __([1, 2, 3, 4, 5])
+	->filter('Dash\isOdd')
+	->map(function ($n) { return $n * 2; })
+	->value();
+
+// $result === [2, 6, 10]
+```
+
+###### Jump to:
 - [Features](#features)
+- [Documentation](#documentation)
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Available operations](Operations.md)
 - [Changelog](CHANGELOG.md)
 - [Contributing](CONTRIBUTING.md)
 
 
 Features
 ---
-- Works with PHP 5.4+
-- Supports a variety of data types:
-	- native PHP arrays
-	- [`stdClass`](http://php.net/manual/en/reserved.classes.php) objects
-	- [`Traversable`](http://php.net/manual/en/class.traversable.php) objects such as [`ArrayObject`](http://php.net/manual/en/class.arrayobject.php) and many database ORM models
+- Works with arrays, objects, [`Traversable`](http://php.net/manual/en/class.traversable.php), [`DirectoryIterator`](http://php.net/manual/en/class.directoryiterator.php), and more
+- [Standalone operations](#standalone-operations)
 - [Chaining](#chaining)
-- [Deferred evaluation](#deferred-evaluation)
-- Comprehensive unit tests
-- Modular architecture
+- [Lazy evaluation](#lazy-evaluation)
+- [Custom operations](#custom-operations)
 
 
-Requirements
+Documentation
 ---
-- PHP 5.4+
-- [Composer](https://getcomposer.org/)
+For all function docs, see [DOCS.md](DOCS.md)
 
 
 Installation
 ---
-Dash should be installed via [Composer](https://getcomposer.org/):
+Requires PHP 5.4+
 ```sh
 composer require mpetrovich/dash
 ```
@@ -40,87 +45,98 @@ composer require mpetrovich/dash
 
 Usage
 ---
-All classes and functions are available within the `Dash` namespace.
+Dash operations can be used alone or chained together.
 
 
-#### One-off operations
-Standalone operations can be called alone:
+#### Standalone operations
+As static methods:
 
 ```php
 use Dash\_;
 
-$double = _::map(
-	array(1, 2, 3),
-	function($n) { return $n * 2; }
-);
+_::map([1, 2, 3], function ($n) { return $n * 2; });  // === [2, 4, 6]
+```
 
-// $double == array(2, 4, 6)
+or as standalone functions:
+
+```php
+Dash\map([1, 2, 3], function ($n) { return $n * 2; });  // === [2, 4, 6]
 ```
 
 
 #### Chaining
-Multiple operations can be chained in sequence using `chain()`. Use `value()` to retrieve the final value:
+Multiple operations can be chained in sequence using `chain()`. Call `value()` to return the final value:
 
 ```php
-use Dash\_;
-
-$doubleOdds = _::chain([1, 2, 3])
-	->filter('Dash\_::isOdd')
-	->map(function($n) { return $n * 2; })
+$result = _::chain([1, 2, 3, 4, 5])
+	->filter('Dash\isOdd')
+	->map(function ($n) { return $n * 2; })
 	->value();
 
-// $doubleOdds == [2, 6]
+// $result === [2, 6, 10]
 ```
 
-As a convenience, `_::chain()` can be aliased to a global function with `addGlobalAlias()`:
+For convenience, `_::chain()` can be aliased to a global function via `addGlobalAlias()`. It only needs to be called once during your application bootstrap:
 
 ```php
-Dash\_::addGlobalAlias('__');
+// In your application bootstrap:
+_::addGlobalAlias('__');
 
-$doubleOdds = __([1, 2, 3])
-	->filter('Dash\_::isOdd')
-	->map(function($n) { return $n * 2; })
+// Elsewhere:
+$result = __([1, 2, 3, 4, 5])
+	->filter('Dash\isOdd')
+	->map(function ($n) { return $n * 2; })
 	->value();
+```
 
-// $doubleOdds == [2, 6]
+Sometimes you don't need the return value of the chain. In those cases, use `execute()` instead of `value()`. Without it, the chain won't be processed:
+
+```php
+_::chain([1, 2, 3, 4, 5])
+	->reverse()
+	->each(function ($n) { echo "T-minus $n..."; })
+	->execute();
 ```
 
 
-#### Deferred evaluation
-Chained operations are not evaluated until `value()` is called, so the input data can be changed at any time (via `with()`) before then. This makes it simple to create reusable chains:
+#### Lazy evaluation
+Chained operations are not evaluated until `value()` or `execute()` is called. Furthermore, the input data can be changed and evaluated multiple times via `with()`. This makes it simple to create reusable chains:
 
 ```php
-use Dash\_;
+$chain = _::chain()
+	->filter('Dash\isOdd')
+	->map(function ($n) { return $n * 2; });
 
-$doubleOdds = _::chain()
-	->filter('Dash\_::isOdd')
-	->map(function($n) { return $n * 2; });
-
-$result = $doubleOdds->with(array(1, 2, 3))->value();
-// $result == array(2, 6)
-
-$result = $doubleOdds->with(array(7, 9, 11, 13))->value();
-// $result == array(14, 18, 22, 26)
+$chain->with([1, 2, 3])->value();  // === [2, 6]
+$chain->with([4, 5, 6, 7])->value();  // === [10, 14]
 ```
 
-
-#### Custom functions
-Custom functions can be added and removed via `setCustom()` and `unsetCustom()`, respectively:
+Chains can also be cloned and extended:
 
 ```php
-use Dash\_;
+// …continued from above
+$clone = clone $chain;
+$clone->map(function ($n) { $n + 1; })
+$clone->value();  // === [11, 15]
 
-_::setCustom('triple', function($value) {
-	return $value * 3;
-});
+// The original chain is untouched
+$chain->value();  // === [10, 14]
+```
 
-_::triple(4)); // === 12
-_::chain(5)->triple()->value(); // === 15
+When `value()` is called, the result is cached until the chain is modified or the input is changed via `with()`.
+
+
+#### Custom operations
+Custom operations can be added and removed via `setCustom()` and `unsetCustom()`, respectively:
+
+```php
+_::setCustom('triple', function ($n) { return $n * 3; });
+
+_::triple(4);  // === 12
+
+_::chain([1, 2, 3])
+	->map('Dash\_::triple')  // Must be accessed statically like so; 'Dash\triple' won't work
+	->value();  // === [3, 6, 9]
 
 _::unsetCustom('triple');
 ```
-
-
-Available operations
----
-See [Operations.md](Operations.md)
