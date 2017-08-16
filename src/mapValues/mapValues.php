@@ -11,8 +11,8 @@ namespace Dash;
  * @category Collection
  * @param array|object $iterable
  * @param Callable $iteratee Function called with (element, key, collection)
- *        for each element in $iterable. The return value of $iteratee will
- *        be used as the corresponding element in the returned array.
+ *                           for each element in $iterable. The return value of $iteratee will
+ *                           be used as the corresponding element in the returned array.
  *
  * @return array
  *

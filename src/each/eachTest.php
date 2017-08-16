@@ -9,7 +9,7 @@ class eachTest extends PHPUnit_Framework_TestCase
 	{
 		$self = $this;
 		$iterated = [];
-		$iteratee = function($value, $key, $iterable2) use ($self, $iterable, &$iterated) {
+		$iteratee = function ($value, $key, $iterable2) use ($self, $iterable, &$iterated) {
 			$self->assertSame($iterable, $iterable2);
 			$iterated[] = $key . ' is ' . $value;
 		};

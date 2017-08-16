@@ -239,7 +239,7 @@ class _
 		if (isset(self::$customFunctions[$method])) {
 			return self::$customFunctions[$method];
 		}
-		else if (is_callable("\\Dash\\{$method}")) {
+		elseif (is_callable("\\Dash\\{$method}")) {
 			return "\\Dash\\{$method}";
 		}
 		else {
@@ -269,7 +269,7 @@ class _
 	{
 		$callable = self::toCallable($method);
 
-		$operation = function($input) use ($callable, $args) {
+		$operation = function ($input) use ($callable, $args) {
 			array_unshift($args, $input);
 			return call_user_func_array($callable, $args);
 		};

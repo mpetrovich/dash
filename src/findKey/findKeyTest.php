@@ -16,7 +16,7 @@ class findKeyTest extends PHPUnit_Framework_TestCase
 		return array(
 			'With an empty array' => array(
 				[],
-				function() { return false; },
+				function () { return false; },
 				null
 			),
 			'With a non-matching search of an array' => array(
@@ -27,7 +27,7 @@ class findKeyTest extends PHPUnit_Framework_TestCase
 					'd' => 'second',
 					'e' => 'fifth',
 				),
-				function() { return false; },
+				function () { return false; },
 				null
 			),
 			'With a matching value search of an array' => array(
@@ -38,7 +38,7 @@ class findKeyTest extends PHPUnit_Framework_TestCase
 					'd' => 'second',
 					'e' => 'fifth',
 				),
-				function($value) {
+				function ($value) {
 					return $value == 'second';
 				},
 				'b'
@@ -51,7 +51,7 @@ class findKeyTest extends PHPUnit_Framework_TestCase
 					'd' => 'second',
 					'e' => 'fifth',
 				),
-				function($value, $key) {
+				function ($value, $key) {
 					return $key == 'd';
 				},
 				'd'

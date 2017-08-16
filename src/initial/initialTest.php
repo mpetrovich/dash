@@ -7,4 +7,3 @@ class initialTest extends PHPUnit_Framework_TestCase
 		$this->markTestIncomplete();
 	}
 }
-

@@ -42,7 +42,7 @@ function property($path, $default = null)
 		return $path;
 	}
 
-	$getter = function($value) use ($path, $default) {
+	$getter = function ($value) use ($path, $default) {
 		// Checks for a direct element or property with the same name as $path
 		if (is_array($value) && array_key_exists($path, $value)) {
 			return $value[$path];

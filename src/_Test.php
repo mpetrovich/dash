@@ -12,7 +12,7 @@ class _Test extends PHPUnit_Framework_TestCase
 		$this->assertInstanceOf('Dash\_', $chain);
 		$this->assertEquals([1, 2, 3], $chain->value());
 
-		$chain->map(function($n) { return $n * 2; });
+		$chain->map(function ($n) { return $n * 2; });
 		$this->assertEquals([2, 4, 6], $chain->value());
 	}
 
@@ -24,7 +24,7 @@ class _Test extends PHPUnit_Framework_TestCase
 		$this->assertInstanceOf('Dash\_', $chain);
 		$this->assertEquals([1, 2, 3], $chain->value());
 
-		$chain->map(function($n) { return $n * 2; });
+		$chain->map(function ($n) { return $n * 2; });
 		$this->assertEquals([2, 4, 6], $chain->value());
 	}
 
@@ -77,8 +77,8 @@ class _Test extends PHPUnit_Framework_TestCase
 	public function testChainingWithArray()
 	{
 		$chain = _::chain(array(1, 2, 3))
-			->map(function($n) { return $n * 2; })
-			->filter(function($n) { return $n < 6; });
+			->map(function ($n) { return $n * 2; })
+			->filter(function ($n) { return $n < 6; });
 
 		$this->assertEquals(array(2, 4), $chain->value());
 	}
@@ -94,8 +94,8 @@ class _Test extends PHPUnit_Framework_TestCase
 	public function testChainingWithoutInitialValue()
 	{
 		$chain = _::chain()
-			->map(function($n) { return $n * 2; })
-			->filter(function($n) { return $n < 6; });
+			->map(function ($n) { return $n * 2; })
+			->filter(function ($n) { return $n < 6; });
 
 		try {
 			$chain->value();
@@ -113,7 +113,7 @@ class _Test extends PHPUnit_Framework_TestCase
 	public function testChainingReuse()
 	{
 		$chain = _::chain(array(1, 2, 3))
-			->map(function($n) { return $n * 2; });
+			->map(function ($n) { return $n * 2; });
 
 		$this->assertEquals(array(2, 4, 6), $chain->value());
 
@@ -130,7 +130,7 @@ class _Test extends PHPUnit_Framework_TestCase
 
 		$this->assertEquals((object) array(1, 2, 3), $chain->value());
 
-		$chain->map(function($n) use (&$mapCallCount) {
+		$chain->map(function ($n) use (&$mapCallCount) {
 			$mapCallCount++;
 			return $n * 2;
 		});
@@ -147,7 +147,7 @@ class _Test extends PHPUnit_Framework_TestCase
 		$this->assertEquals(array(8, 10, 12), $chain->value());
 		$this->assertEquals(6, $mapCallCount);
 
-		$chain->map(function($n) { return $n + 1;});
+		$chain->map(function ($n) { return $n + 1;});
 
 		$this->assertEquals(array(9, 11, 13), $chain->value());
 		$this->assertEquals(9, $mapCallCount);
@@ -159,7 +159,7 @@ class _Test extends PHPUnit_Framework_TestCase
 	{
 		$obj = (object) ['a' => 1];
 
-		$chain = _::chain($obj)->tap(function($obj) { $obj->a = 2; });
+		$chain = _::chain($obj)->tap(function ($obj) { $obj->a = 2; });
 		$this->assertEquals((object) ['a' => 1], $obj);
 
 		$chain->execute();
@@ -169,13 +169,13 @@ class _Test extends PHPUnit_Framework_TestCase
 	public function testChainingCloning()
 	{
 		$chain = _::chain()
-			->map(function($n) { return $n * 2; });
+			->map(function ($n) { return $n * 2; });
 
 		$chain->with(array(1, 2, 3));
 		$this->assertEquals(array(2, 4, 6), $chain->value());
 
 		$clone = clone $chain;
-		$clone->map(function($n) { return $n + 1; });
+		$clone->map(function ($n) { return $n + 1; });
 
 		$clone->with(array(4, 5, 6));
 		$this->assertEquals(array(9, 11, 13), $clone->value());
@@ -243,7 +243,7 @@ class _Test extends PHPUnit_Framework_TestCase
 		$doubleOdds = _::chain();
 		$doubleOdds
 			->filter('Dash\_::isOdd')
-			->map(function($n) { return $n * 2; });
+			->map(function ($n) { return $n * 2; });
 
 		$this->assertEquals(
 			array(2, 6),
@@ -271,7 +271,7 @@ class _Test extends PHPUnit_Framework_TestCase
 			Tests setCustom()
 		 */
 
-		_::setCustom('triple', function($value) {
+		_::setCustom('triple', function ($value) {
 			return $value * 3;
 		});
 
@@ -297,8 +297,8 @@ class _Test extends PHPUnit_Framework_TestCase
 
 	public function testCustomFunctionWithArray()
 	{
-		_::setCustom('addEach', function($array, $add) {
-			return _::map($array, function($n) use ($add) { return $n + $add; });
+		_::setCustom('addEach', function ($array, $add) {
+			return _::map($array, function ($n) use ($add) { return $n + $add; });
 		});
 
 		$this->assertEquals(
@@ -311,7 +311,7 @@ class _Test extends PHPUnit_Framework_TestCase
 
 	public function testCustomFunctionWithScalarStandalone()
 	{
-		_::setCustom('triple', function($value) {
+		_::setCustom('triple', function ($value) {
 			return $value * 3;
 		});
 
@@ -322,7 +322,7 @@ class _Test extends PHPUnit_Framework_TestCase
 
 	public function testCustomFunctionWithScalarChained()
 	{
-		_::setCustom('double', function($value) {
+		_::setCustom('double', function ($value) {
 			return $value * 2;
 		});
 

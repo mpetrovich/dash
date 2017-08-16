@@ -7,4 +7,3 @@ class xorByTest extends PHPUnit_Framework_TestCase
 		$this->markTestIncomplete();
 	}
 }
-

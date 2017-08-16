@@ -7,4 +7,3 @@ class methodsTest extends PHPUnit_Framework_TestCase
 		$this->markTestIncomplete();
 	}
 }
-

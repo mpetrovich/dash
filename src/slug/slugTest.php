@@ -7,4 +7,3 @@ class slugTest extends PHPUnit_Framework_TestCase
 		$this->markTestIncomplete();
 	}
 }
-

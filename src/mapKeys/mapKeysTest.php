@@ -7,4 +7,3 @@ class mapKeysTest extends PHPUnit_Framework_TestCase
 		$this->markTestIncomplete();
 	}
 }
-

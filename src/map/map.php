@@ -12,10 +12,10 @@ namespace Dash;
  * @category Collection
  * @param array|object $iterable
  * @param Callable|string $iteratee Function called with (element, key, collection)
- *        for each element in $iterable. The return value of $iteratee will
- *        be used as the corresponding element in the returned array.
- *        If $iteratee is a string, property($iteratee) will be used as the
- *        iteratee function.
+ *                                  for each element in $iterable. The return value of $iteratee will
+ *                                  be used as the corresponding element in the returned array.
+ *                                  If $iteratee is a string, property($iteratee) will be used as the
+ *                                  iteratee function.
  *
  * @return array
  *
@@ -47,7 +47,7 @@ function map($iterable, $iteratee = 'Dash\identity')
 	$array = toArray($iterable);
 	$mapped = [];
 
-	array_walk($array, function($value, $key) use ($iterable, $iteratee, &$mapped) {
+	array_walk($array, function ($value, $key) use ($iterable, $iteratee, &$mapped) {
 		$mapped[] = call_user_func($iteratee, $value, $key, $iterable);
 	});
 

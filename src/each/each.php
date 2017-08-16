@@ -12,8 +12,8 @@ namespace Dash;
  * @category Collection
  * @param array|object $iterable
  * @param Callable $iteratee Function called with (element, key, collection)
- *        for each element in $iterable. If $iteratee returns false,
- *        subsequent elements will be skipped and iteration will end.
+ *                           for each element in $iterable. If $iteratee returns false,
+ *                           subsequent elements will be skipped and iteration will end.
  *
  * @return array|object The original $iterable
  *
@@ -26,7 +26,7 @@ namespace Dash;
 function each($iterable, $iteratee)
 {
 	$array = toArray($iterable);
-	array_walk($array, function($value, $key) use ($iterable, $iteratee) {
+	array_walk($array, function ($value, $key) use ($iterable, $iteratee) {
 		return $iteratee($value, $key, $iterable);
 	});
 

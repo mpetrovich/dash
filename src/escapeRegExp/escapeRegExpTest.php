@@ -7,4 +7,3 @@ class escapeRegExpTest extends PHPUnit_Framework_TestCase
 		$this->markTestIncomplete();
 	}
 }
-

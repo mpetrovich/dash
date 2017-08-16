@@ -5,7 +5,7 @@ namespace Dash;
 function assertType($value, $type)
 {
 	$typeChecks = [
-		'iterable' => function($value) {
+		'iterable' => function ($value) {
 			return is_array($value)
 				|| $value instanceof \Traversable
 				|| $value instanceof \stdClass;
@@ -14,7 +14,7 @@ function assertType($value, $type)
 
 	$types = (array) $type;
 
-	$hasType = any($types, function($type) use ($value, $typeChecks) {
+	$hasType = any($types, function ($type) use ($value, $typeChecks) {
 		$typeCheck = isset($typeChecks[$type]) ? $typeChecks[$type] : "is_$type";
 		return call_user_func($typeCheck, $value);
 	});

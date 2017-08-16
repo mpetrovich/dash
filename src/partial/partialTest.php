@@ -14,7 +14,7 @@ class partialTest extends PHPUnit_Framework_TestCase
 
 	public function casesForPartial()
 	{
-		$sum = function($a, $b, $c) {
+		$sum = function ($a, $b, $c) {
 			return $a + $b + $c;
 		};
 

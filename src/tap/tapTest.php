@@ -9,7 +9,7 @@ class tapTest extends PHPUnit_Framework_TestCase
 	{
 		$passed = null;
 
-		$output = Dash\tap($input, function($input) use (&$passed) {
+		$output = Dash\tap($input, function ($input) use (&$passed) {
 			$passed = $input;
 		});
 
@@ -29,4 +29,3 @@ class tapTest extends PHPUnit_Framework_TestCase
 		];
 	}
 }
-

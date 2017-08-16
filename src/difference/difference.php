@@ -2,7 +2,7 @@
 
 namespace Dash;
 
-function difference(/* $iterable1, $iterable2, ... */)
+function difference()
 {
 	$iterables = func_get_args();
 	$union = union($iterables);

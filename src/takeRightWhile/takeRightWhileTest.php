@@ -7,4 +7,3 @@ class takeRightWhileTest extends PHPUnit_Framework_TestCase
 		$this->markTestIncomplete();
 	}
 }
-

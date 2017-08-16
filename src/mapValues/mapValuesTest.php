@@ -8,7 +8,7 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 	public function test($iterable, $expected)
 	{
 		$self = $this;
-		$iteratee = function($value, $key, $iterable2) use ($self, $iterable) {
+		$iteratee = function ($value, $key, $iterable2) use ($self, $iterable) {
 			$self->assertSame($iterable, $iterable2);
 			return $key . ' is ' . $value;
 		};

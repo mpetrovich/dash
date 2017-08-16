@@ -7,4 +7,3 @@ class padTest extends PHPUnit_Framework_TestCase
 		$this->markTestIncomplete();
 	}
 }
-

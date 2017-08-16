@@ -184,4 +184,3 @@ class setTest extends PHPUnit_Framework_TestCase
 		];
 	}
 }
-

@@ -7,4 +7,3 @@ class isSafeIntegerTest extends PHPUnit_Framework_TestCase
 		$this->markTestIncomplete();
 	}
 }
-

@@ -82,7 +82,7 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 			if ($i === 0) {
 				$this->assertStringEndsWith('toArray.php', $key);
 			}
-			else if ($i === 1) {
+			elseif ($i === 1) {
 				$this->assertStringEndsWith('toArrayTest.php', $key);
 			}
 

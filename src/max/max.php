@@ -8,7 +8,7 @@ function max($iterable)
 		return null;
 	}
 
-	$max = reduce($iterable, function($max, $value) {
+	$max = reduce($iterable, function ($max, $value) {
 		return \max($max, $value);
 	}, -INF);
 

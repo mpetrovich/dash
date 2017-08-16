@@ -7,4 +7,3 @@ class beforeTest extends PHPUnit_Framework_TestCase
 		$this->markTestIncomplete();
 	}
 }
-

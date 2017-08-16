@@ -12,7 +12,7 @@ function toArray($value)
 			$array[$key] = is_object($val) ? clone $val : $val;
 		}
 	}
-	else if ($value instanceof \Traversable) {
+	elseif ($value instanceof \Traversable) {
 		$array = iterator_to_array($value);
 	}
 	else {

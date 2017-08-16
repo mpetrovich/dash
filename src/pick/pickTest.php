@@ -127,7 +127,8 @@ class pickTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @expectedException \InvalidArgumentException
 	 */
-	public function testInputType() {
+	public function testInputType()
+	{
 		Dash\pick(42, 'a');
 	}
 }

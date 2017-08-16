@@ -19,7 +19,7 @@ function set(&$input, $path, $value)
 			}
 			$target = &$target[$key];
 		}
-		else if (is_object($target)) {
+		elseif (is_object($target)) {
 			if (!isset($target->$key)) {
 				$target->$key = new \stdClass;
 			}
