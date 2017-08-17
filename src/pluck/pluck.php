@@ -15,14 +15,14 @@ namespace Dash;
  * @example
 	Dash\pluck(
 		array(
-			array('a' => array('b' => 1)),
-			array('a' => 'missing'),
-			array('a' => array('b' => 3)),
-			array('a' => array('b' => 4)),
+			array('a' => ['b' => 1]),
+			['a' => 'missing'],
+			array('a' => ['b' => 3]),
+			array('a' => ['b' => 4]),
 		),
 		'a.b',
 		'default'
-	) == array(1, 'default', 3, 4);
+	) == [1, 'default', 3, 4];
  */
 function pluck($iterable, $path, $default = null)
 {

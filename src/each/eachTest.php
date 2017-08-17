@@ -24,49 +24,49 @@ class eachTest extends PHPUnit_Framework_TestCase
 	public function cases()
 	{
 		return array(
-			'With an empty array' => array(
+			'With an empty array' => [
 				[],
 				[]
-			),
+			],
 			'With an indexed array' => array(
-				array(
+				[
 					'first',
 					'second',
 					'third',
-				),
-				array(
+				],
+				[
 					'0 is first',
 					'1 is second',
 					'2 is third',
-				),
+				],
 			),
 			'With an associative array' => array(
-				array(
+				[
 					'a' => 'first',
 					'b' => 'second',
 					'c' => 'third',
-				),
-				array(
+				],
+				[
 					'a is first',
 					'b is second',
 					'c is third',
-				),
+				],
 			),
 			'With an empty object' => array(
 				(object) [],
 				[]
 			),
 			'With a non-empty object' => array(
-				(object) array(
+				(object) [
 					'a' => 'first',
 					'b' => 'second',
 					'c' => 'third',
-				),
-				array(
+				],
+				[
 					'a is first',
 					'b is second',
 					'c is third',
-				),
+				],
 			),
 			'With an empty ArrayObject' => array(
 				new ArrayObject([]),
@@ -78,11 +78,11 @@ class eachTest extends PHPUnit_Framework_TestCase
 					'b' => 'second',
 					'c' => 'third',
 				)),
-				array(
+				[
 					'a is first',
 					'b is second',
 					'c is third',
-				),
+				],
 			),
 		);
 	}

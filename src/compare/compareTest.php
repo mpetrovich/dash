@@ -17,21 +17,21 @@ class compareTest extends PHPUnit_Framework_TestCase
 	public function cases()
 	{
 		return array(
-			'should return zero when the values are equal' => array(
+			'should return zero when the values are equal' => [
 				'3',
 				3,
 				0
-			),
-			'should return +1 when the first value is greater than the second' => array(
+			],
+			'should return +1 when the first value is greater than the second' => [
 				'4',
 				3,
 				+1
-			),
-			'should return -1 when the first value is less than the second' => array(
+			],
+			'should return -1 when the first value is less than the second' => [
 				'2',
 				3,
 				-1
-			),
+			],
 		);
 	}
 }

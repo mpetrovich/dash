@@ -30,21 +30,21 @@ class everyTest extends PHPUnit_Framework_TestCase
 				true
 			),
 			'should return false for an array with no items that satisfy the predicate' => array(
-				array(1, 2, 3, 4),
+				[1, 2, 3, 4],
 				function ($value) {
 					return $value < 0;
 				},
 				false
 			),
 			'should return true for an array with one item that satisfies the predicate' => array(
-				array(1, 2, -3, 4),
+				[1, 2, -3, 4],
 				function ($value) {
 					return $value < 0;
 				},
 				false
 			),
 			'should return true for an array with all items that satisfy the predicate' => array(
-				array(-1, -2, -3, -4),
+				[-1, -2, -3, -4],
 				function ($value) {
 					return $value < 0;
 				},
@@ -63,21 +63,21 @@ class everyTest extends PHPUnit_Framework_TestCase
 				true
 			),
 			'should return false for an stdClass with no items that satisfy the predicate' => array(
-				(object) array(1, 2, 3, 4),
+				(object) [1, 2, 3, 4],
 				function ($value) {
 					return $value < 0;
 				},
 				false
 			),
 			'should return true for an stdClass with one item that satisfies the predicate' => array(
-				(object) array(1, 2, -3, 4),
+				(object) [1, 2, -3, 4],
 				function ($value) {
 					return $value < 0;
 				},
 				false
 			),
 			'should return true for an stdClass with all items that satisfy the predicate' => array(
-				(object) array(-1, -2, -3, -4),
+				(object) [-1, -2, -3, -4],
 				function ($value) {
 					return $value < 0;
 				},

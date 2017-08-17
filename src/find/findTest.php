@@ -23,41 +23,41 @@ class findTest extends PHPUnit_Framework_TestCase
 				null
 			),
 			'With a non-matching search of an array' => array(
-				array(
+				[
 					'a' => 'first',
 					'b' => 'second',
 					'c' => 'third',
 					'd' => 'second',
 					'e' => 'fifth',
-				),
+				],
 				function () { return false; },
 				null
 			),
 			'With a matching value search of an array' => array(
-				array(
+				[
 					'a' => 'first',
 					'b' => 'second',
 					'c' => 'third',
 					'd' => 'second',
 					'e' => 'fifth',
-				),
+				],
 				function ($value) {
 					return $value == 'second';
 				},
-				array('b', 'second')
+				['b', 'second']
 			),
 			'With a matching key search of an array' => array(
-				array(
+				[
 					'a' => 'first',
 					'b' => 'second',
 					'c' => 'third',
 					'd' => 'second',
 					'e' => 'fifth',
-				),
+				],
 				function ($value, $key) {
 					return $key == 'd';
 				},
-				array('d', 'second')
+				['d', 'second']
 			),
 		);
 	}

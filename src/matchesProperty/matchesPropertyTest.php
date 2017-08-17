@@ -21,9 +21,9 @@ class matchesPropertyTest extends PHPUnit_Framework_TestCase
 				'value',
 				array(
 					'a' => array(
-						'b' => array(
+						'b' => [
 							'c' => 'value'
-						)
+						]
 					)
 				),
 				true
@@ -33,9 +33,9 @@ class matchesPropertyTest extends PHPUnit_Framework_TestCase
 				'value',
 				array(
 					'a' => array(
-						'b' => array(
+						'b' => [
 							'c' => 'value'
-						)
+						]
 					)
 				),
 				false
@@ -45,9 +45,9 @@ class matchesPropertyTest extends PHPUnit_Framework_TestCase
 				'value',
 				(object) array(
 					'a' => (object) array(
-						'b' => (object) array(
+						'b' => (object) [
 							'c' => 'value'
-						)
+						]
 					)
 				),
 				true
@@ -57,9 +57,9 @@ class matchesPropertyTest extends PHPUnit_Framework_TestCase
 				'value',
 				(object) array(
 					'a' => (object) array(
-						'b' => (object) array(
+						'b' => (object) [
 							'c' => 'value'
-						)
+						]
 					)
 				),
 				false

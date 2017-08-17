@@ -17,21 +17,21 @@ class equalTest extends PHPUnit_Framework_TestCase
 	public function cases()
 	{
 		return array(
-			'should return true when the values are identical' => array(
+			'should return true when the values are identical' => [
 				3,
 				3,
 				true
-			),
-			'should return true when the values are equal but not identical' => array(
+			],
+			'should return true when the values are equal but not identical' => [
 				'3',
 				3,
 				true
-			),
-			'should return false when the values are not equal' => array(
+			],
+			'should return false when the values are not equal' => [
 				'4',
 				3,
 				false
-			),
+			],
 		);
 	}
 }

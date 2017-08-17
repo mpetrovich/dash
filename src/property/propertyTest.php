@@ -18,9 +18,9 @@ class propertyTest extends PHPUnit_Framework_TestCase
 			'With a valid path for an object' => array(
 				(object) array(
 					'a' => (object) array(
-						'b' => (object) array(
+						'b' => (object) [
 							'c' => 'value'
-						)
+						]
 					)
 				),
 				'a.b.c',
@@ -29,9 +29,9 @@ class propertyTest extends PHPUnit_Framework_TestCase
 			'With an invalid path for an object' => array(
 				(object) array(
 					'a' => (object) array(
-						'b' => (object) array(
+						'b' => (object) [
 							'c' => 'value'
-						)
+						]
 					)
 				),
 				'a.X.c',
@@ -41,13 +41,13 @@ class propertyTest extends PHPUnit_Framework_TestCase
 				(object) array(
 					'a' => array(
 						(object) array(
-							'x' => (object) array(
+							'x' => (object) [
 								'y' => 'other'
-							)
+							]
 						),
-						(object) array(
+						(object) [
 							'b' => 'value'
-						),
+						],
 					)
 				),
 				'a.1.b',
@@ -57,25 +57,25 @@ class propertyTest extends PHPUnit_Framework_TestCase
 				(object) array(
 					'a' => array(
 						(object) array(
-							'x' => (object) array(
+							'x' => (object) [
 								'y' => 'other'
-							)
+							]
 						),
-						(object) array(
+						(object) [
 							'b' => 'value'
-						),
+						],
 					)
 				),
 				'a.2.b',
 				'default'
 			),
 			'With a matching direct array key' => array(
-				array('a.b.c' => 'value'),
+				['a.b.c' => 'value'],
 				'a.b.c',
 				'value'
 			),
 			'With a matching direct object property' => array(
-				(object) array('a.b.c' => 'value'),
+				(object) ['a.b.c' => 'value'],
 				'a.b.c',
 				'value'
 			),

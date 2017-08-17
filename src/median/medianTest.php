@@ -22,16 +22,16 @@ class medianTest extends PHPUnit_Framework_TestCase
 				With array
 			 */
 
-			'should return zero for an empty array' => array(
+			'should return zero for an empty array' => [
 				[],
 				0
-			),
+			],
 			'should return the median of the values of an array with an even number of values' => array(
-				array(3, 8, 2, 5),
+				[3, 8, 2, 5],
 				4
 			),
 			'should return the median of the values of an array with an odd number of values' => array(
-				array(3, 8, 2, 13, 5),
+				[3, 8, 2, 13, 5],
 				5
 			),
 
@@ -44,11 +44,11 @@ class medianTest extends PHPUnit_Framework_TestCase
 				0
 			),
 			'should return the median of the values of an stdClass with an even number of values' => array(
-				(object) array(3, 8, 2, 5),
+				(object) [3, 8, 2, 5],
 				4
 			),
 			'should return the median of the values of an stdClass with an odd number of values' => array(
-				(object) array(3, 8, 2, 13, 5),
+				(object) [3, 8, 2, 13, 5],
 				5
 			),
 

@@ -17,18 +17,18 @@ class identityTest extends PHPUnit_Framework_TestCase
 	public function cases()
 	{
 		return array(
-			'With an empty array' => array(
+			'With an empty array' => [
 				[],
 				[]
-			),
+			],
 			'With a non-empty array' => array(
-				array(0 => 'a', 1 => 'b', 2 => 'c', 3 => 'd', 4 => 'e'),
-				array(0 => 'a', 1 => 'b', 2 => 'c', 3 => 'd', 4 => 'e')
+				[0 => 'a', 1 => 'b', 2 => 'c', 3 => 'd', 4 => 'e'],
+				[0 => 'a', 1 => 'b', 2 => 'c', 3 => 'd', 4 => 'e']
 			),
-			'With a scalar value' => array(
+			'With a scalar value' => [
 				'abc',
 				'abc'
-			)
+			]
 		);
 	}
 }

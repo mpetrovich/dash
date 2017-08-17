@@ -22,12 +22,12 @@ class averageTest extends PHPUnit_Framework_TestCase
 				With array
 			 */
 
-			'should return zero for an empty array' => array(
+			'should return zero for an empty array' => [
 				[],
 				0
-			),
+			],
 			'should return the average of the values of an array' => array(
-				array(2, 3, 5, 8),
+				[2, 3, 5, 8],
 				4.5
 			),
 
@@ -40,7 +40,7 @@ class averageTest extends PHPUnit_Framework_TestCase
 				0
 			),
 			'should return the average of the values of an stdClass' => array(
-				(object) array(2, 3, 5, 8),
+				(object) [2, 3, 5, 8],
 				4.5
 			),
 

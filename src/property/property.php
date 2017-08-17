@@ -15,9 +15,9 @@ namespace Dash;
  * @example
 	$getter = Dash\property('a.b');
 	$iterable = array(
-		'a' => array(
+		'a' => [
 			'b' => 'value'
-		)
+		]
 	);
 	$getter($iterable) == 'value';
  *
@@ -25,16 +25,16 @@ namespace Dash;
 	$getter = Dash\property('people.1.name');
 	$iterable = array(
 		'people' => array(
-			array('name' => 'Pete'),
-			array('name' => 'John'),
-			array('name' => 'Paul'),
+			['name' => 'Pete'],
+			['name' => 'John'],
+			['name' => 'Paul'],
 		)
 	);
 	$getter($iterable) == 'John';
  *
  * @example Keys with the same name as the full path can be used
 	$getter = Dash\property('a.b.c');
-	$iterable = array('a.b.c' => 'value');
+	$iterable = ['a.b.c' => 'value'];
 	$getter($iterable) == 'value';
  */
 function property($path, $default = null)

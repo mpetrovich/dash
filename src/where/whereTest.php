@@ -19,40 +19,40 @@ class whereTest extends PHPUnit_Framework_TestCase
 		return array(
 			'With an empty array' => array(
 				[],
-				array('age' => 30),
+				['age' => 30],
 				[]
 			),
 			'With an empty object' => array(
 				(object) [],
-				array('age' => 30),
+				['age' => 30],
 				[]
 			),
 			'With non-empty arrays' => array(
 				array(
-					0 => array('name' => 'Jane', 'age' => 25, 'gender' => 'f'),
-					1 => array('name' => 'Mike', 'age' => 30, 'gender' => 'm'),
-					2 => array('name' => 'Abby', 'age' => 30, 'gender' => 'f'),
-					3 => array('name' => 'Pete', 'age' => 45, 'gender' => 'm'),
-					4 => array('name' => 'Kate', 'age' => 30, 'gender' => 'f'),
+					0 => ['name' => 'Jane', 'age' => 25, 'gender' => 'f'],
+					1 => ['name' => 'Mike', 'age' => 30, 'gender' => 'm'],
+					2 => ['name' => 'Abby', 'age' => 30, 'gender' => 'f'],
+					3 => ['name' => 'Pete', 'age' => 45, 'gender' => 'm'],
+					4 => ['name' => 'Kate', 'age' => 30, 'gender' => 'f'],
 				),
-				array('gender' => 'f', 'age' => 30),
+				['gender' => 'f', 'age' => 30],
 				array(
-					2 => array('name' => 'Abby', 'age' => 30, 'gender' => 'f'),
-					4 => array('name' => 'Kate', 'age' => 30, 'gender' => 'f'),
+					2 => ['name' => 'Abby', 'age' => 30, 'gender' => 'f'],
+					4 => ['name' => 'Kate', 'age' => 30, 'gender' => 'f'],
 				),
 			),
 			'With non-empty objects' => array(
 				array(
-					0 => (object) array('name' => 'Jane', 'age' => 25, 'gender' => 'f'),
-					1 => (object) array('name' => 'Mike', 'age' => 30, 'gender' => 'm'),
-					2 => (object) array('name' => 'Abby', 'age' => 30, 'gender' => 'f'),
-					3 => (object) array('name' => 'Pete', 'age' => 45, 'gender' => 'm'),
-					4 => (object) array('name' => 'Kate', 'age' => 30, 'gender' => 'f'),
+					0 => (object) ['name' => 'Jane', 'age' => 25, 'gender' => 'f'],
+					1 => (object) ['name' => 'Mike', 'age' => 30, 'gender' => 'm'],
+					2 => (object) ['name' => 'Abby', 'age' => 30, 'gender' => 'f'],
+					3 => (object) ['name' => 'Pete', 'age' => 45, 'gender' => 'm'],
+					4 => (object) ['name' => 'Kate', 'age' => 30, 'gender' => 'f'],
 				),
-				array('gender' => 'f', 'age' => 30),
+				['gender' => 'f', 'age' => 30],
 				array(
-					2 => (object) array('name' => 'Abby', 'age' => 30, 'gender' => 'f'),
-					4 => (object) array('name' => 'Kate', 'age' => 30, 'gender' => 'f'),
+					2 => (object) ['name' => 'Abby', 'age' => 30, 'gender' => 'f'],
+					4 => (object) ['name' => 'Kate', 'age' => 30, 'gender' => 'f'],
 				),
 			),
 		);

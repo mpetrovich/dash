@@ -18,15 +18,15 @@ namespace Dash;
  *
  * @example
 	Dash\map(
-		array(1, 2, 3),
+		[1, 2, 3],
 		function($n) { return $n * 2; }
-	) == array(2, 4, 6);
+	) == [2, 4, 6];
  *
  * @example
 	Dash\map(
-		array('roses' => 'red', 'violets' => 'blue'),
+		['roses' => 'red', 'violets' => 'blue'],
 		function($color, $flower) { return $flower . ' are ' . $color; }
-	) == array('roses' => 'roses are red', 'violets' => 'violets are blue');
+	) == ['roses' => 'roses are red', 'violets' => 'violets are blue'];
  */
 function mapValues($iterable, $iteratee = 'Dash\identity')
 {

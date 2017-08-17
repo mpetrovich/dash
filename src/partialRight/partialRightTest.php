@@ -23,18 +23,18 @@ class partialRightTest extends PHPUnit_Framework_TestCase
 
 		return array(
 			'With all function parameters pre-specified' => array(
-				array($sum, 1, 2, 3),
+				[$sum, 1, 2, 3],
 				[],
 				6
 			),
 			'With some function parameters pre-specified' => array(
-				array($sum, 2, 3),
-				array(1),
+				[$sum, 2, 3],
+				[1],
 				6
 			),
 			'With no function parameters pre-specified' => array(
-				array($sum),
-				array(1, 2, 3),
+				[$sum],
+				[1, 2, 3],
 				6
 			),
 		);

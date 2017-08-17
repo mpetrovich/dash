@@ -19,7 +19,7 @@ namespace Dash;
  *
  * @example
 	Dash\each(
-		array(1, 2, 3),
+		[1, 2, 3],
 		function($n) { echo $n; }
 	);  // Prints "123"
  */

@@ -21,25 +21,25 @@ namespace Dash;
  *
  * @example
 	Dash\map(
-		array(1, 2, 3),
+		[1, 2, 3],
 		function($n) {
 			return $n * 2;
 		}
-	) == array(2, 4, 6);
+	) == [2, 4, 6];
  *
  * @example
 	Dash\map(
-		array('roses' => 'red', 'violets' => 'blue'),
+		['roses' => 'red', 'violets' => 'blue'],
 		function($color, $flower) {
 			return $flower . ' are ' . $color;
 		}
-	) == array('roses are red', 'violets are blue');
+	) == ['roses are red', 'violets are blue'];
  *
  * @example With $iteratee as a path
 	Dash\map(
-		array('color' => 'red', 'color' => 'blue'),
+		['color' => 'red', 'color' => 'blue'],
 		'color'
-	) == array('red', 'blue');
+	) == ['red', 'blue'];
  */
 function map($iterable, $iteratee = 'Dash\identity')
 {

@@ -22,17 +22,17 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 				With array
 			 */
 
-			'should return an empty array for an empty array' => array(
+			'should return an empty array for an empty array' => [
 				[],
 				[],
-			),
+			],
 			'should return an array of the values of an indexed array' => array(
-				array(3, 8, 2, 5),
-				array(3, 8, 2, 5),
+				[3, 8, 2, 5],
+				[3, 8, 2, 5],
 			),
 			'should return an array of the values of an associative array' => array(
-				array('a' => 3, 'b' => 8, 'c' => 2, 'd' => 5),
-				array('a' => 3, 'b' => 8, 'c' => 2, 'd' => 5),
+				['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
+				['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
 			),
 
 			/*
@@ -44,12 +44,12 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 				[],
 			),
 			'should return an array of the values of a stdClass' => array(
-				(object) array(3, 8, 2, 5),
-				array(3, 8, 2, 5),
+				(object) [3, 8, 2, 5],
+				[3, 8, 2, 5],
 			),
 			'should return an array of the values of an associative array' => array(
-				(object) array('a' => 3, 'b' => 8, 'c' => 2, 'd' => 5),
-				array('a' => 3, 'b' => 8, 'c' => 2, 'd' => 5),
+				(object) ['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
+				['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
 			),
 
 			/*
@@ -62,11 +62,11 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 			),
 			'should return an array of the values of an indexed ArrayObject' => array(
 				new ArrayObject(array(3, 8, 2, 5)),
-				array(3, 8, 2, 5),
+				[3, 8, 2, 5],
 			),
 			'should return an array of the values of an associative ArrayObject' => array(
 				new ArrayObject(array('a' => 3, 'b' => 8, 'c' => 2, 'd' => 5)),
-				array('a' => 3, 'b' => 8, 'c' => 2, 'd' => 5),
+				['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
 			),
 		];
 	}

@@ -15,24 +15,24 @@ namespace Dash;
  *
  * @example
 	$iterable = array(
-		'a' => array(
+		'a' => [
 			'b' => 'value'
-		)
+		]
 	);
 	Dash\get($iterable, 'a.b') == 'value';
  *
  * @example Array elements can be referenced by index
 	$iterable = array(
 		'people' => array(
-			array('name' => 'Pete'),
-			array('name' => 'John'),
-			array('name' => 'Paul'),
+			['name' => 'Pete'],
+			['name' => 'John'],
+			['name' => 'Paul'],
 		)
 	);
 	Dash\get($iterable, 'people.1.name') == 'John';
  *
  * @example Keys with the same name as the full path can be used
-	$iterable = array('a.b.c' => 'value');
+	$iterable = ['a.b.c' => 'value'];
 	Dash\get($iterable, 'a.b.c') == 'value';
  */
 function get($iterable, $path, $default = null)

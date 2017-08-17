@@ -17,16 +17,16 @@ class firstTest extends PHPUnit_Framework_TestCase
 	public function cases()
 	{
 		return array(
-			'With an empty array' => array(
+			'With an empty array' => [
 				[],
 				null
-			),
+			],
 			'With a non-empty array' => array(
-				array('a', 'b', 'c'),
+				['a', 'b', 'c'],
 				'a'
 			),
 			'With a non-empty array with null as the first element' => array(
-				array(null, 'b', 'c'),
+				[null, 'b', 'c'],
 				null
 			),
 		);

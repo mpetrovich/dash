@@ -57,7 +57,7 @@ class _Test extends PHPUnit_Framework_TestCase
 			array(
 				'map',
 				array(array(1, 2, 3), function ($n) { return $n * 2; }),
-				array(2, 4, 6),
+				[2, 4, 6],
 			)
 		);
 	}
@@ -88,10 +88,10 @@ class _Test extends PHPUnit_Framework_TestCase
 
 	public function testChainingWithObject()
 	{
-		$chain = _::chain((object) array('a' => 1, 'b' => 2, 'c' => 3))
+		$chain = _::chain((object) ['a' => 1, 'b' => 2, 'c' => 3])
 			->pick(['b', 'c']);
 
-		$this->assertEquals((object) array('b' => 2, 'c' => 3), $chain->value());
+		$this->assertEquals((object) ['b' => 2, 'c' => 3], $chain->value());
 	}
 
 	public function testChainingWithoutInitialValue()
@@ -109,7 +109,7 @@ class _Test extends PHPUnit_Framework_TestCase
 		}
 
 		$actual = $chain->with(array(1, 2, 3))->value();
-		$expected = array(2, 4);
+		$expected = [2, 4];
 		$this->assertEquals($expected, $actual);
 	}
 
@@ -129,9 +129,9 @@ class _Test extends PHPUnit_Framework_TestCase
 	{
 		$mapCallCount = 0;
 
-		$chain = _::chain((object) array(1, 2, 3));
+		$chain = _::chain((object) [1, 2, 3]);
 
-		$this->assertEquals((object) array(1, 2, 3), $chain->value());
+		$this->assertEquals((object) [1, 2, 3], $chain->value());
 
 		$chain->map(function ($n) use (&$mapCallCount) {
 			$mapCallCount++;
@@ -143,7 +143,7 @@ class _Test extends PHPUnit_Framework_TestCase
 		$this->assertEquals(array(2, 4, 6), $chain->value());
 		$this->assertEquals(3, $mapCallCount);
 
-		$chain->with((object) array(4, 5, 6));
+		$chain->with((object) [4, 5, 6]);
 
 		$this->assertEquals(array(8, 10, 12), $chain->value());
 		$this->assertEquals(6, $mapCallCount);
@@ -218,45 +218,45 @@ class _Test extends PHPUnit_Framework_TestCase
 	public function getTestCases()
 	{
 		return array(
-			'With an empty array' => array(
+			'With an empty array' => [
 				[]
-			),
+			],
 			'With an indexed array' => array(
-				array(
+				[
 					'first',
 					'second',
 					'third',
-				)
+				]
 			),
 			'With an associative array' => array(
-				array(
+				[
 					'a' => 'first',
 					'b' => 'second',
 					'c' => 'third',
-				)
+				]
 			),
 			'With an empty object' => array(
 				(object) []
 			),
 			'With a non-empty object' => array(
-				(object) array(
+				(object) [
 					'a' => 'first',
 					'b' => 'second',
 					'c' => 'third',
-				)
+				]
 			),
-			'With an empty string' => array(
+			'With an empty string' => [
 				''
-			),
-			'With a non-empty string' => array(
+			],
+			'With a non-empty string' => [
 				'hello'
-			),
-			'With a number' => array(
+			],
+			'With a number' => [
 				3.14
-			),
-			'With null' => array(
+			],
+			'With null' => [
 				null
-			),
+			],
 		);
 	}
 
@@ -268,11 +268,11 @@ class _Test extends PHPUnit_Framework_TestCase
 			->map(function ($n) { return $n * 2; });
 
 		$this->assertEquals(
-			array(2, 6),
+			[2, 6],
 			$doubleOdds->with(array(1, 2, 3))->value()
 		);
 		$this->assertEquals(
-			array(14, 18, 22, 26),
+			[14, 18, 22, 26],
 			$doubleOdds->with(array(7, 9, 11, 13))->value()
 		);
 	}

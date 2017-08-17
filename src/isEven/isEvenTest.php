@@ -17,14 +17,14 @@ class isEvenTest extends PHPUnit_Framework_TestCase
 	public function casesForIsEven()
 	{
 		return array(
-			'should return true for an even value' => array(
+			'should return true for an even value' => [
 				4,
 				true
-			),
-			'should return false for an odd value' => array(
+			],
+			'should return false for an odd value' => [
 				3,
 				false
-			),
+			],
 		);
 	}
 }

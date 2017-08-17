@@ -22,12 +22,12 @@ class minTest extends PHPUnit_Framework_TestCase
 				With array
 			 */
 
-			'should return null for an empty array' => array(
+			'should return null for an empty array' => [
 				[],
 				null
-			),
+			],
 			'should return the min of the values of an array' => array(
-				array(3, 8, 2, 5),
+				[3, 8, 2, 5],
 				2
 			),
 
@@ -40,7 +40,7 @@ class minTest extends PHPUnit_Framework_TestCase
 				null
 			),
 			'should return the min of the values of an stdClass' => array(
-				(object) array(3, 8, 2, 5),
+				(object) [3, 8, 2, 5],
 				2
 			),
 
