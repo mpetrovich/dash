@@ -41,8 +41,7 @@ function createDoc($filepath)
 	$doc->name = $name;
 	$doc->slug = strtolower($name);
 
-	$params = _::chain($doc->params)->map('name')->join(', ')->value();
-	$doc->signature = "{$doc->name}($params)";
+	$doc->signature = extractFunctionSignature($filepath);
 
 	return $doc;
 }
@@ -61,6 +60,14 @@ function extractDocblock($filepath)
 	$docblock = trim($docblock);
 
 	return $docblock;
+}
+
+function extractFunctionSignature($filepath)
+{
+	$content = file_get_contents($filepath);
+	$hasFunction = preg_match('/^function (\w+\([^\)]*\))$/m', $content, $matches);
+	$signature = $hasFunction ? $matches[1] : '';
+	return $signature;
 }
 
 function parseDocblock($docblock)
