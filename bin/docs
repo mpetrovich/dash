@@ -35,15 +35,15 @@ function buildDocs($sourceDir, $destFilepath)
 function createDoc($filepath)
 {
 	$docblock = extractDocblock($filepath);
-	$doc = parseDocblock($docblock);
+	$op = parseDocblock($docblock);
 
 	$name = pathinfo($filepath)['filename'];
-	$doc->name = $name;
-	$doc->slug = strtolower($name);
+	$op->name = $name;
+	$op->slug = strtolower($name);
 
-	$doc->signature = extractFunctionSignature($filepath);
+	$op->signature = extractFunctionSignature($filepath);
 
-	return $doc;
+	return $op;
 }
 
 function extractDocblock($filepath)
@@ -72,17 +72,17 @@ function extractFunctionSignature($filepath)
 
 function parseDocblock($docblock)
 {
-	$doc = (object) [];
+	$op = (object) [];
 	$lines = explode("\n", $docblock);
 
 	// Description
-	$doc->description = _::chain($lines)
+	$op->description = _::chain($lines)
 		->takeWhile(function($line) { return strpos($line, '@') === false; })
 		->join("\n")
 		->value();
 
 	// Category
-	$doc->category = _::chain($lines)
+	$op->category = _::chain($lines)
 		->filter(function($line) { return strpos($line, '@category') === 0; })
 		->map(function($line) {
 			$matches = [];
@@ -94,7 +94,7 @@ function parseDocblock($docblock)
 		->value();
 
 	// Return type
-	$doc->returnType = _::chain($lines)
+	$op->returnType = _::chain($lines)
 		->filter(function($line) { return strpos($line, '@return') === 0; })
 		->map(function($line) {
 			$matches = [];
@@ -110,7 +110,7 @@ function parseDocblock($docblock)
 		return strpos($line, '@param') !== 0;
 	});
 
-	for ($doc->params = []; $allParamLines;) {
+	for ($op->params = []; $allParamLines;) {
 		$matches = [];
 		$isMatch = preg_match('/^@param\s+([\S]+)\s+([\S]+)\s*(.*)$/', array_shift($allParamLines), $matches);
 
@@ -126,7 +126,7 @@ function parseDocblock($docblock)
 			$descriptionLines[] = $descriptionLine;
 		}
 
-		$doc->params[] = (object) [
+		$op->params[] = (object) [
 			'type' => $type,
 			'name' => $name,
 			'description' => implode(' ', $descriptionLines),
@@ -138,7 +138,7 @@ function parseDocblock($docblock)
 		return strpos($line, '@example') !== 0;
 	});
 
-	for ($doc->examples = []; $allExampleLines;) {
+	for ($op->examples = []; $allExampleLines;) {
 		$description = str_replace('@example', '', array_shift($allExampleLines));
 		$description = trim($description);
 
@@ -149,19 +149,19 @@ function parseDocblock($docblock)
 			$exampleLines[] = $exampleLine;
 		}
 
-		$doc->examples[] = (object) [
+		$op->examples[] = (object) [
 			'description' => $description,
 			'content' => implode("\n", $exampleLines),
 		];
 	}
 
-	return $doc;
+	return $op;
 }
 
-function renderDoc($doc)
+function renderDoc($op)
 {
-	if ($doc->params) {
-		$paramsTable = _::reduce($doc->params, function($output, $param) {
+	if ($op->params) {
+		$paramsTable = _::reduce($op->params, function($output, $param) {
 			$type = str_replace('|', '\|', $param->type);
 			return $output . "`$param->name` | `$type` | $param->description\n";
 		}, "Name | Type | Description\n--- | --- | ---\n");
@@ -170,7 +170,7 @@ function renderDoc($doc)
 		$paramsTable = '';
 	}
 
-	$examples = _::chain($doc->examples)
+	$examples = _::chain($op->examples)
 		->map(function($example) {
 			return <<<END
 **Example:** {$example->description}
@@ -182,13 +182,15 @@ END;
 		->join("\n\n")
 		->value();
 
+	$returnType = $op->returnType ? ": {$op->returnType}" : '';
+
 	return <<<END
-{$doc->name}
+{$op->name}
 ---
 ```php
-{$doc->signature}: {$doc->returnType}
+{$op->signature}$returnType
 ```
-{$doc->description}
+{$op->description}
 
 $paramsTable
 

@@ -348,7 +348,7 @@ Other
 any
 ---
 ```php
-any($iterable, $predicate): 
+any($iterable, $predicate)
 ```
 
 
@@ -372,7 +372,7 @@ Name | Type | Description
 ary
 ---
 ```php
-ary($callable, $ary): 
+ary($callable, $ary)
 ```
 
 
@@ -382,7 +382,7 @@ ary($callable, $ary):
 assertType
 ---
 ```php
-assertType($value, $type): 
+assertType($value, $type)
 ```
 
 
@@ -392,7 +392,7 @@ assertType($value, $type):
 at
 ---
 ```php
-at($iterable, $index): 
+at($iterable, $index)
 ```
 
 
@@ -402,7 +402,7 @@ at($iterable, $index):
 average
 ---
 ```php
-average($iterable): 
+average($iterable)
 ```
 
 
@@ -425,7 +425,7 @@ Name | Type | Description
 chain
 ---
 ```php
-chain($input = null): 
+chain($input = null)
 ```
 
 
@@ -435,7 +435,7 @@ chain($input = null):
 compare
 ---
 ```php
-compare($a, $b): 
+compare($a, $b)
 ```
 
 
@@ -445,7 +445,7 @@ compare($a, $b):
 contains
 ---
 ```php
-contains($iterable, $target, $predicate = 'Dash\equal'): 
+contains($iterable, $target, $predicate = 'Dash\equal')
 ```
 
 
@@ -473,7 +473,7 @@ _::chain([1, 2, 3])->map(Dash\custom('double'))->value();  // === [2, 4, 6]
 deltas
 ---
 ```php
-deltas($iterable): 
+deltas($iterable)
 ```
 
 
@@ -483,7 +483,7 @@ deltas($iterable):
 difference
 ---
 ```php
-difference(): 
+difference()
 ```
 
 
@@ -493,7 +493,7 @@ difference():
 display
 ---
 ```php
-display($value): 
+display($value)
 ```
 
 
@@ -503,7 +503,7 @@ display($value):
 dropWhile
 ---
 ```php
-dropWhile($input, $predicate = 'Dash\identity'): 
+dropWhile($input, $predicate = 'Dash\identity')
 ```
 
 
@@ -513,7 +513,7 @@ dropWhile($input, $predicate = 'Dash\identity'):
 equal
 ---
 ```php
-equal($a, $b): 
+equal($a, $b)
 ```
 
 
@@ -523,7 +523,7 @@ equal($a, $b):
 every
 ---
 ```php
-every($iterable, $predicate): 
+every($iterable, $predicate)
 ```
 
 
@@ -533,7 +533,7 @@ every($iterable, $predicate):
 find
 ---
 ```php
-find($iterable, $predicate): 
+find($iterable, $predicate)
 ```
 
 
@@ -543,7 +543,7 @@ find($iterable, $predicate):
 findKey
 ---
 ```php
-findKey($iterable, $predicate): 
+findKey($iterable, $predicate)
 ```
 
 
@@ -553,7 +553,7 @@ findKey($iterable, $predicate):
 findLast
 ---
 ```php
-findLast($iterable, $predicate): 
+findLast($iterable, $predicate)
 ```
 
 
@@ -563,7 +563,7 @@ findLast($iterable, $predicate):
 findValue
 ---
 ```php
-findValue($iterable, $predicate): 
+findValue($iterable, $predicate)
 ```
 
 
@@ -573,7 +573,7 @@ findValue($iterable, $predicate):
 first
 ---
 ```php
-first($iterable): 
+first($iterable)
 ```
 
 
@@ -583,7 +583,7 @@ first($iterable):
 getDirect
 ---
 ```php
-getDirect($input, $field, $default = null): 
+getDirect($input, $field, $default = null)
 ```
 
 
@@ -593,7 +593,7 @@ getDirect($input, $field, $default = null):
 getDirectRef
 ---
 ```php
-: 
+
 ```
 
 
@@ -603,7 +603,7 @@ getDirectRef
 groupBy
 ---
 ```php
-groupBy($input, $groupBy, $defaultGroup = null): 
+groupBy($input, $groupBy, $defaultGroup = null)
 ```
 
 
@@ -613,7 +613,7 @@ groupBy($input, $groupBy, $defaultGroup = null):
 hasDirect
 ---
 ```php
-hasDirect($subject, $field): 
+hasDirect($subject, $field)
 ```
 
 
@@ -623,7 +623,7 @@ hasDirect($subject, $field):
 identical
 ---
 ```php
-identical($a, $b): 
+identical($a, $b)
 ```
 
 
@@ -633,7 +633,7 @@ identical($a, $b):
 identity
 ---
 ```php
-identity($value): 
+identity($value)
 ```
 
 
@@ -643,7 +643,7 @@ identity($value):
 indexBy
 ---
 ```php
-indexBy($input, $indexBy = 'Dash\identity'): 
+indexBy($input, $indexBy = 'Dash\identity')
 ```
 
 
@@ -653,7 +653,7 @@ indexBy($input, $indexBy = 'Dash\identity'):
 intersection
 ---
 ```php
-intersection($iterables): 
+intersection($iterables)
 ```
 
 
@@ -663,7 +663,7 @@ intersection($iterables):
 is
 ---
 ```php
-is($value, $type): 
+is($value, $type)
 ```
 
 
@@ -673,7 +673,7 @@ is($value, $type):
 isEmpty
 ---
 ```php
-isEmpty($input): 
+isEmpty($input)
 ```
 
 
@@ -683,7 +683,7 @@ isEmpty($input):
 isEven
 ---
 ```php
-isEven($value): 
+isEven($value)
 ```
 
 
@@ -693,7 +693,7 @@ isEven($value):
 isOdd
 ---
 ```php
-isOdd($value): 
+isOdd($value)
 ```
 
 
@@ -703,7 +703,7 @@ isOdd($value):
 join
 ---
 ```php
-join($input, $glue): 
+join($input, $glue)
 ```
 
 
@@ -713,7 +713,7 @@ join($input, $glue):
 keyBy
 ---
 ```php
-keyBy($input, $keyBy = 'Dash\identity'): 
+keyBy($input, $keyBy = 'Dash\identity')
 ```
 
 
@@ -723,7 +723,7 @@ keyBy($input, $keyBy = 'Dash\identity'):
 keys
 ---
 ```php
-keys($iterable): 
+keys($iterable)
 ```
 
 
@@ -733,7 +733,7 @@ keys($iterable):
 last
 ---
 ```php
-last($iterable): 
+last($iterable)
 ```
 
 
@@ -743,7 +743,7 @@ last($iterable):
 matches
 ---
 ```php
-matches($properties): 
+matches($properties)
 ```
 
 
@@ -753,7 +753,7 @@ matches($properties):
 matchesProperty
 ---
 ```php
-matchesProperty($path, $value): 
+matchesProperty($path, $value)
 ```
 
 
@@ -763,7 +763,7 @@ matchesProperty($path, $value):
 max
 ---
 ```php
-max($iterable): 
+max($iterable)
 ```
 
 
@@ -773,7 +773,7 @@ max($iterable):
 median
 ---
 ```php
-median($iterable): 
+median($iterable)
 ```
 
 
@@ -783,7 +783,7 @@ median($iterable):
 min
 ---
 ```php
-min($iterable): 
+min($iterable)
 ```
 
 
@@ -793,7 +793,7 @@ min($iterable):
 negate
 ---
 ```php
-negate($function): 
+negate($function)
 ```
 
 
@@ -803,7 +803,7 @@ negate($function):
 partial
 ---
 ```php
-partial($function): 
+partial($function)
 ```
 
 
@@ -813,7 +813,7 @@ partial($function):
 partialRight
 ---
 ```php
-partialRight($function): 
+partialRight($function)
 ```
 
 
@@ -823,7 +823,7 @@ partialRight($function):
 pick
 ---
 ```php
-pick($input, $keys): 
+pick($input, $keys)
 ```
 
 
@@ -833,7 +833,7 @@ pick($input, $keys):
 reduce
 ---
 ```php
-reduce($iterable, $iteratee, $initial = []): 
+reduce($iterable, $iteratee, $initial = [])
 ```
 
 
@@ -843,7 +843,7 @@ reduce($iterable, $iteratee, $initial = []):
 reject
 ---
 ```php
-reject($iterable, $predicate): 
+reject($iterable, $predicate)
 ```
 
 
@@ -853,7 +853,7 @@ reject($iterable, $predicate):
 reverse
 ---
 ```php
-reverse($iterable): 
+reverse($iterable)
 ```
 
 
@@ -863,7 +863,7 @@ reverse($iterable):
 set
 ---
 ```php
-set(&$input, $path, $value): 
+set(&$input, $path, $value)
 ```
 
 
@@ -873,7 +873,7 @@ set(&$input, $path, $value):
 size
 ---
 ```php
-size($input, $encoding = 'utf8'): 
+size($input, $encoding = 'utf8')
 ```
 
 
@@ -883,7 +883,7 @@ size($input, $encoding = 'utf8'):
 sort
 ---
 ```php
-sort($iterable, $comparator = 'Dash\compare'): 
+sort($iterable, $comparator = 'Dash\compare')
 ```
 
 
@@ -893,7 +893,7 @@ sort($iterable, $comparator = 'Dash\compare'):
 sum
 ---
 ```php
-sum($iterable): 
+sum($iterable)
 ```
 
 
@@ -903,7 +903,7 @@ sum($iterable):
 take
 ---
 ```php
-take($iterable, $count = 1, $fromStart = 0): 
+take($iterable, $count = 1, $fromStart = 0)
 ```
 
 
@@ -913,7 +913,7 @@ take($iterable, $count = 1, $fromStart = 0):
 takeRight
 ---
 ```php
-takeRight($iterable, $count = 1, $fromEnd = 0): 
+takeRight($iterable, $count = 1, $fromEnd = 0)
 ```
 
 
@@ -923,7 +923,7 @@ takeRight($iterable, $count = 1, $fromEnd = 0):
 takeWhile
 ---
 ```php
-takeWhile($input, $predicate = 'Dash\identity'): 
+takeWhile($input, $predicate = 'Dash\identity')
 ```
 
 
@@ -933,7 +933,7 @@ takeWhile($input, $predicate = 'Dash\identity'):
 tap
 ---
 ```php
-tap($iterable, callable $interceptor): 
+tap($iterable, callable $interceptor)
 ```
 
 
@@ -943,7 +943,7 @@ tap($iterable, callable $interceptor):
 thru
 ---
 ```php
-thru($value, callable $interceptor): 
+thru($value, callable $interceptor)
 ```
 
 
@@ -953,7 +953,7 @@ thru($value, callable $interceptor):
 toArray
 ---
 ```php
-toArray($value): 
+toArray($value)
 ```
 
 
@@ -963,7 +963,7 @@ toArray($value):
 union
 ---
 ```php
-union($iterables): 
+union($iterables)
 ```
 
 
@@ -973,7 +973,7 @@ union($iterables):
 values
 ---
 ```php
-values($iterable): 
+values($iterable)
 ```
 
 
@@ -983,7 +983,7 @@ values($iterable):
 where
 ---
 ```php
-where($iterable, $properties): 
+where($iterable, $properties)
 ```
 
 
@@ -993,7 +993,7 @@ where($iterable, $properties):
 without
 ---
 ```php
-without($iterable, $excluded, $predicate = null): 
+without($iterable, $excluded, $predicate = null)
 ```
 
 
