@@ -80,7 +80,7 @@ function squares($iterable)
 Conventions to follow:
 - Test a variety of input types and cases, including arrays, `stdClass` objects, and `ArrayObject` instances. Data providers are helpful here.
 - Add an `@covers` annotation to ensure that code coverage gets correctly attributed to this test.
-- When invoking the method under test, use the standalone form (`Dash\squares()`) rather than the static form (`_::squares()`).
+- When invoking the method under test, use the standalone form `Dash\squares()` rather than the static form `_::squares()`.
 
 ```php
 <?php

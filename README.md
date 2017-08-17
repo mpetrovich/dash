@@ -11,9 +11,11 @@ $result = __([1, 2, 3, 4, 5])
 // $result === [2, 6, 10]
 ```
 
+[**See all available operations**](DOCS.md)
+
 ##### Jump to:
 - [Features](#features)
-- [Documentation](#documentation)
+- [Function docs](DOCS.md)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Changelog](CHANGELOG.md)
@@ -27,11 +29,6 @@ Features
 - [Chaining](#chaining)
 - [Lazy evaluation](#lazy-evaluation)
 - [Custom operations](#custom-operations)
-
-
-Documentation
----
-For all function docs, see [DOCS.md](DOCS.md)
 
 
 Installation
