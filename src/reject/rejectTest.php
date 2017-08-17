@@ -26,7 +26,7 @@ class rejectTest extends PHPUnit_Framework_TestCase
 				'predicate' => 'Dash\isEven',
 				'expected' => [],
 			],
-			'With a non-empty array' => [
+			'With an array' => [
 				'input' => [1, 2, 3],
 				'predicate' => 'Dash\isEven',
 				'expected' => [0 => 1, 2 => 3],
@@ -46,7 +46,7 @@ class rejectTest extends PHPUnit_Framework_TestCase
 				'predicate' => 'Dash\isEven',
 				'expected' => [],
 			],
-			'With a non-empty ArrayObject' => [
+			'With an ArrayObject' => [
 				'input' => new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]),
 				'predicate' => 'Dash\isEven',
 				'expected' => ['a' => 1, 'c' => 3],
@@ -83,7 +83,7 @@ class rejectTest extends PHPUnit_Framework_TestCase
 				'input' => [],
 				'expectedCallCount' => 0,
 			],
-			'With a non-empty array' => [
+			'With an array' => [
 				'input' => [],
 				'expectedCallCount' => 0,
 			],
@@ -99,7 +99,7 @@ class rejectTest extends PHPUnit_Framework_TestCase
 				'input' => new ArrayObject([]),
 				'expectedCallCount' => 0,
 			],
-			'With a non-empty ArrayObject' => [
+			'With an ArrayObject' => [
 				'input' => new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]),
 				'expectedCallCount' => 4,
 			],

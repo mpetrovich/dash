@@ -56,7 +56,7 @@ class eachTest extends PHPUnit_Framework_TestCase
 				(object) [],
 				[]
 			),
-			'With a non-empty object' => array(
+			'With an object' => array(
 				(object) [
 					'a' => 'first',
 					'b' => 'second',
@@ -72,7 +72,7 @@ class eachTest extends PHPUnit_Framework_TestCase
 				new ArrayObject([]),
 				[],
 			),
-			'With a non-empty ArrayObject' => array(
+			'With an ArrayObject' => array(
 				new ArrayObject(array(
 					'a' => 'first',
 					'b' => 'second',

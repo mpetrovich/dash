@@ -21,7 +21,7 @@ class deltasTest extends PHPUnit_Framework_TestCase
 				[],
 				[]
 			],
-			'With a non-empty array' => array(
+			'With an array' => array(
 				[3, 8, 9, 9, 5, 13],
 				[0, 5, 1, 0, -4, 8]
 			),

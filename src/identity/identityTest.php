@@ -21,7 +21,7 @@ class identityTest extends PHPUnit_Framework_TestCase
 				[],
 				[]
 			],
-			'With a non-empty array' => array(
+			'With an array' => array(
 				[0 => 'a', 1 => 'b', 2 => 'c', 3 => 'd', 4 => 'e'],
 				[0 => 'a', 1 => 'b', 2 => 'c', 3 => 'd', 4 => 'e']
 			),

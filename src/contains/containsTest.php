@@ -28,13 +28,13 @@ class containsTest extends PHPUnit_Framework_TestCase
 				'predicate' => 'Dash\equal',
 				'expected' => false,
 			],
-			'With a non-empty array' => [
+			'With an array' => [
 				'input' => [1, 2, 3],
 				'target' => 3,
 				'predicate' => 'Dash\equal',
 				'expected' => true,
 			],
-			'With a non-empty array' => [
+			'With an array' => [
 				'input' => [1, 2, 3],
 				'target' => 4,
 				'predicate' => 'Dash\equal',
@@ -64,13 +64,13 @@ class containsTest extends PHPUnit_Framework_TestCase
 				'predicate' => 'Dash\equal',
 				'expected' => false,
 			],
-			'With a non-empty ArrayObject' => [
+			'With an ArrayObject' => [
 				'input' => new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]),
 				'target' => 3,
 				'predicate' => 'Dash\equal',
 				'expected' => true,
 			],
-			'With a non-empty ArrayObject' => [
+			'With an ArrayObject' => [
 				'input' => new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]),
 				'target' => 5,
 				'predicate' => 'Dash\equal',

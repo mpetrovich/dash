@@ -21,11 +21,11 @@ class lastTest extends PHPUnit_Framework_TestCase
 				[],
 				null
 			],
-			'With a non-empty array' => array(
+			'With an array' => array(
 				['a', 'b', 'c'],
 				'c'
 			),
-			'With a non-empty array with null as the last element' => array(
+			'With an array with null as the last element' => array(
 				['a', 'b', null],
 				null
 			),

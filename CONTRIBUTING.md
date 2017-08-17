@@ -109,7 +109,7 @@ class squaresTest extends PHPUnit_Framework_TestCase
 				'input' => [],
 				'expected' => [],
 			],
-			'With a non-empty array' => [
+			'With an array' => [
 				'input' => [1, 2, 3],
 				'expected' => [1, 4, 9],
 			],
@@ -125,7 +125,7 @@ class squaresTest extends PHPUnit_Framework_TestCase
 				'input' => new ArrayObject(),
 				'expected' => [],
 			],
-			'With a non-empty ArrayObject' => [
+			'With an ArrayObject' => [
 				'input' => new ArrayObject([1, 2, 3]),
 				'expected' => [1, 4, 9],
 			],

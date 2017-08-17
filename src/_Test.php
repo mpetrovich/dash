@@ -238,7 +238,7 @@ class _Test extends PHPUnit_Framework_TestCase
 			'With an empty object' => array(
 				(object) []
 			),
-			'With a non-empty object' => array(
+			'With an object' => array(
 				(object) [
 					'a' => 'first',
 					'b' => 'second',
@@ -248,7 +248,7 @@ class _Test extends PHPUnit_Framework_TestCase
 			'With an empty string' => [
 				''
 			],
-			'With a non-empty string' => [
+			'With a string' => [
 				'hello'
 			],
 			'With a number' => [

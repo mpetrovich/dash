@@ -22,7 +22,7 @@ class reduceTest extends PHPUnit_Framework_TestCase
 				'initial' => 0,
 				'expected' => 0,
 			],
-			'With a non-empty array' => [
+			'With an array' => [
 				'input' => [1, 2, 3, 4],
 				'iteratee' => function ($result, $value) { return $result + $value; },
 				'initial' => 0,
@@ -46,7 +46,7 @@ class reduceTest extends PHPUnit_Framework_TestCase
 				'initial' => 0,
 				'expected' => 0,
 			],
-			'With a non-empty ArrayObject' => [
+			'With an ArrayObject' => [
 				'input' => new ArrayObject([1, 2, 3, 4]),
 				'iteratee' => function ($result, $value) { return $result + $value; },
 				'initial' => 0,

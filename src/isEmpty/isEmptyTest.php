@@ -24,7 +24,7 @@ class isEmptyTest extends PHPUnit_Framework_TestCase
 				'input' => 0.0,
 				'expected' => true,
 			],
-			'With a non-zero number' => [
+			'With a number' => [
 				'input' => 3.14,
 				'expected' => false,
 			],
@@ -32,7 +32,7 @@ class isEmptyTest extends PHPUnit_Framework_TestCase
 				'input' => '',
 				'expected' => true,
 			],
-			'With a non-empty string' => [
+			'With a string' => [
 				'input' => 'hello',
 				'expected' => false,
 			],
@@ -40,7 +40,7 @@ class isEmptyTest extends PHPUnit_Framework_TestCase
 				'input' => [],
 				'expected' => true,
 			],
-			'With a non-empty array' => [
+			'With an array' => [
 				'input' => [1, 2, 3],
 				'expected' => false,
 			],
@@ -56,7 +56,7 @@ class isEmptyTest extends PHPUnit_Framework_TestCase
 				'input' => new ArrayObject([]),
 				'expected' => true,
 			],
-			'With a non-empty ArrayObject' => [
+			'With an ArrayObject' => [
 				'input' => new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]),
 				'expected' => false,
 			],

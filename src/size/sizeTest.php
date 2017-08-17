@@ -25,7 +25,7 @@ class sizeTest extends PHPUnit_Framework_TestCase
 				0.0,
 				null
 			],
-			'With a non-zero number' => [
+			'With a number' => [
 				3.14,
 				null
 			],
@@ -33,7 +33,7 @@ class sizeTest extends PHPUnit_Framework_TestCase
 				'',
 				0
 			],
-			'With a non-empty string' => [
+			'With a string' => [
 				'hello',
 				5
 			],
@@ -45,7 +45,7 @@ class sizeTest extends PHPUnit_Framework_TestCase
 				[],
 				0
 			],
-			'With a non-empty array' => array(
+			'With an array' => array(
 				[1, 2, 3],
 				3
 			),
@@ -53,7 +53,7 @@ class sizeTest extends PHPUnit_Framework_TestCase
 				(object) [],
 				0
 			),
-			'With a non-empty object' => array(
+			'With an object' => array(
 				(object) ['a' => 1, 'b' => 2, 'c' => 3],
 				3
 			),
@@ -61,7 +61,7 @@ class sizeTest extends PHPUnit_Framework_TestCase
 				new ArrayObject([]),
 				0
 			),
-			'With a non-empty ArrayObject' => array(
+			'With an ArrayObject' => array(
 				new ArrayObject(array(1, 2, 3)),
 				3
 			),

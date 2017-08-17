@@ -37,17 +37,17 @@ class pickTest extends PHPUnit_Framework_TestCase
 				'expected' => [],
 			],
 
-			'Pick none from a non-empty array' => [
+			'Pick none from an array' => [
 				'input' => ['a' => 'one', 'b' => 'two', 'c' => 'three'],
 				'pick' => null,
 				'expected' => [],
 			],
-			'Pick one from a non-empty array' => [
+			'Pick one from an array' => [
 				'input' => ['a' => 'one', 'b' => 'two', 'c' => 'three'],
 				'pick' => 'b',
 				'expected' => ['b' => 'two'],
 			],
-			'Pick several from a non-empty array' => [
+			'Pick several from an array' => [
 				'input' => ['a' => 'one', 'b' => 'two', 'c' => 'three'],
 				'pick' => ['a', 'c'],
 				'expected' => ['a' => 'one', 'c' => 'three'],
@@ -73,17 +73,17 @@ class pickTest extends PHPUnit_Framework_TestCase
 				'expected' => (object) [],
 			],
 
-			'Pick none from a non-empty object' => [
+			'Pick none from an object' => [
 				'input' => (object) ['a' => 'one', 'b' => 'two', 'c' => 'three'],
 				'pick' => null,
 				'expected' => (object) [],
 			],
-			'Pick one from a non-empty object' => [
+			'Pick one from an object' => [
 				'input' => (object) ['a' => 'one', 'b' => 'two', 'c' => 'three'],
 				'pick' => 'b',
 				'expected' => (object) ['b' => 'two'],
 			],
-			'Pick several from a non-empty object' => [
+			'Pick several from an object' => [
 				'input' => (object) ['a' => 'one', 'b' => 'two', 'c' => 'three'],
 				'pick' => ['a', 'c'],
 				'expected' => (object) ['a' => 'one', 'c' => 'three'],
@@ -109,17 +109,17 @@ class pickTest extends PHPUnit_Framework_TestCase
 				'expected' => (object) [],
 			],
 
-			'Pick none from a non-empty ArrayObject' => [
+			'Pick none from an ArrayObject' => [
 				'input' => new ArrayObject(['a' => 'one', 'b' => 'two', 'c' => 'three']),
 				'pick' => null,
 				'expected' => (object) [],
 			],
-			'Pick one from a non-empty ArrayObject' => [
+			'Pick one from an ArrayObject' => [
 				'input' => new ArrayObject(['a' => 'one', 'b' => 'two', 'c' => 'three']),
 				'pick' => 'b',
 				'expected' => (object) ['b' => 'two'],
 			],
-			'Pick several from a non-empty ArrayObject' => [
+			'Pick several from an ArrayObject' => [
 				'input' => new ArrayObject(['a' => 'one', 'b' => 'two', 'c' => 'three']),
 				'pick' => ['a', 'c'],
 				'expected' => (object) ['a' => 'one', 'c' => 'three'],

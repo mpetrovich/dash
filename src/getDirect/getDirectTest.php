@@ -34,13 +34,13 @@ class getDirectTest extends PHPUnit_Framework_TestCase
 				'default' => 'default',
 				'expected' => 'default',
 			],
-			'With a non-empty array' => [
+			'With an array' => [
 				'input' => ['a' => 1, 'b' => 2, 'c' => 3],
 				'field' => 'b',
 				'default' => 'default',
 				'expected' => 2,
 			],
-			'With a non-empty array' => [
+			'With an array' => [
 				'input' => ['a' => 1, 'b' => 2, 'c' => 3],
 				'field' => 'b',
 				'default' => 'default',
@@ -70,13 +70,13 @@ class getDirectTest extends PHPUnit_Framework_TestCase
 				'default' => 'default',
 				'expected' => 'default',
 			],
-			'With a non-empty ArrayObject' => [
+			'With an ArrayObject' => [
 				'input' => new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3]),
 				'field' => 'b',
 				'default' => 'default',
 				'expected' => 2,
 			],
-			'With a non-empty ArrayObject' => [
+			'With an ArrayObject' => [
 				'input' => new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3]),
 				'field' => 'b',
 				'default' => 'default',

@@ -55,7 +55,7 @@ class mapTest extends PHPUnit_Framework_TestCase
 				(object) [],
 				[]
 			),
-			'With a non-empty object' => array(
+			'With an object' => array(
 				(object) [
 					'a' => 'first',
 					'b' => 'second',
@@ -71,7 +71,7 @@ class mapTest extends PHPUnit_Framework_TestCase
 				new ArrayObject([]),
 				[]
 			),
-			'With a non-empty ArrayObject' => array(
+			'With an ArrayObject' => array(
 				new ArrayObject(array(
 					'a' => 'first',
 					'b' => 'second',
@@ -98,7 +98,7 @@ class mapTest extends PHPUnit_Framework_TestCase
 	public function casesWithPath()
 	{
 		return array(
-			'With a non-empty array' => array(
+			'With an array' => array(
 				array(
 					'w' => array(
 						'a' => [

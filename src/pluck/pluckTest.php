@@ -22,7 +22,7 @@ class pluckTest extends PHPUnit_Framework_TestCase
 				'a.b',
 				[]
 			],
-			'With a non-empty array' => array(
+			'With an array' => array(
 				array(
 					array(
 						'a' => [

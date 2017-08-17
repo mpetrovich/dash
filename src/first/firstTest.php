@@ -21,11 +21,11 @@ class firstTest extends PHPUnit_Framework_TestCase
 				[],
 				null
 			],
-			'With a non-empty array' => array(
+			'With an array' => array(
 				['a', 'b', 'c'],
 				'a'
 			),
-			'With a non-empty array with null as the first element' => array(
+			'With an array with null as the first element' => array(
 				[null, 'b', 'c'],
 				null
 			),
