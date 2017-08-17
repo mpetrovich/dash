@@ -3,6 +3,7 @@ Table of contents
 ### Iterable
 - [all](#all)
 - [each](#each)
+- [filter](#filter)
 - [get](#get)
 - [map](#map)
 - [mapValues](#mapvalues)
@@ -75,9 +76,6 @@ Table of contents
 - [where](#where)
 - [without](#without)
 
-### Iterables
-- [filter](#filter)
-
 
 Iterable
 ===
@@ -129,6 +127,22 @@ Dash\each(
 	function($n) { echo $n; }
 );  // Prints "123"
 ```
+filter
+---
+```php
+filter($iterable, $predicate)
+```
+Returns a subset of $iterable for which $predicate is truthy.
+Keys and key order are preserved.
+
+
+Name | Type | Description
+--- | --- | ---
+`$iterable` | `iterable` | 
+`$predicate` | `callable` | Callable invoked with ($value, $key) for each item in $iterable
+
+
+
 get
 ---
 ```php
@@ -1105,26 +1119,6 @@ without()
 
 Name | Type | Description
 --- | --- | ---
-
-
-
-
-Iterables
-===
-
-filter
----
-```php
-filter($iterable, $predicate)
-```
-Returns a subset of $iterable for which $predicate is truthy.
-Keys and key order are preserved.
-
-
-Name | Type | Description
---- | --- | ---
-`$iterable` | `iterable` | 
-`$predicate` | `callable` | Callable invoked with ($value, $key) for each item in $iterable
 
 
 
