@@ -1,6 +1,6 @@
 Dash &nbsp; [![Build Status](https://travis-ci.org/mpetrovich/Dash.svg?branch=master)](https://travis-ci.org/mpetrovich/Dash) [![codecov](https://codecov.io/gh/mpetrovich/Dash/branch/master/graph/badge.svg)](https://codecov.io/gh/mpetrovich/Dash)
 ===
-A functional utility library for PHP, like Underscore and Lodash.
+A functional utility library (like Underscore and Lodash) for PHP.
 
 ```php
 $result = __([1, 2, 3, 4, 5])

@@ -10,9 +10,7 @@ Changelog
 
 Planned
 ---
-- Better documentation
-- Hundreds of new functions
-- Drop-in compatibility with other popular Underscore-like PHP libraries
+- Feature-parity with similar libraries
 - Performance improvements
 
 

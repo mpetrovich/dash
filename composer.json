@@ -15,7 +15,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Dash\\": ["src/", "tests/"]
+			"Dash\\": ["src/"]
 		},
 		"files": [
 			"src/all/all.php",
