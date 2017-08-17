@@ -10,8 +10,7 @@ class averageTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $expected)
 	{
-		$actual = Dash\average($iterable);
-		$this->assertEquals($expected, $actual);
+		$this->assertEquals($expected, Dash\average($iterable));
 	}
 
 	public function cases()
@@ -22,11 +21,11 @@ class averageTest extends PHPUnit_Framework_TestCase
 				With array
 			 */
 
-			'should return zero for an empty array' => [
+			'With an empty array' => [
 				[],
 				0
 			],
-			'should return the average of the values of an array' => [
+			'With an array' => [
 				[2, 3, 5, 8],
 				4.5
 			],
@@ -35,11 +34,11 @@ class averageTest extends PHPUnit_Framework_TestCase
 				With stdClass
 			 */
 
-			'should return zero for an empty stdClass' => [
+			'With an empty stdClass' => [
 				(object) [],
 				0
 			],
-			'should return the average of the values of an stdClass' => [
+			'With an stdClass' => [
 				(object) [2, 3, 5, 8],
 				4.5
 			],
@@ -48,11 +47,11 @@ class averageTest extends PHPUnit_Framework_TestCase
 				With ArrayObject
 			 */
 
-			'should return zero for an empty ArrayObject' => [
+			'With an empty ArrayObject' => [
 				new ArrayObject([]),
 				0
 			],
-			'should return the average of the values of an ArrayObject' => [
+			'With an ArrayObject' => [
 				new ArrayObject([2, 3, 5, 8]),
 				4.5
 			],

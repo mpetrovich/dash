@@ -10,8 +10,7 @@ class atTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $index, $expected)
 	{
-		$actual = Dash\at($iterable, $index);
-		$this->assertEquals($expected, $actual);
+		$this->assertEquals($expected, Dash\at($iterable, $index));
 	}
 
 	public function cases()
@@ -22,17 +21,17 @@ class atTest extends PHPUnit_Framework_TestCase
 				With array
 			 */
 
-			'should return null for an empty array' => [
+			'With an empty array' => [
 				[],
 				2,
 				null
 			],
-			'should return the value at the given index of an indexed array' => [
+			'With an indexed array' => [
 				[2, 3, 5, 8],
 				2,
 				5
 			],
-			'should return the value at the given Nth item of an associative array' => [
+			'With an associative array' => [
 				[3 => 2, 1 => 3, 0 => 5, 2 => 8],
 				2,
 				5
@@ -42,12 +41,12 @@ class atTest extends PHPUnit_Framework_TestCase
 				With stdClass
 			 */
 
-			'should return null for an empty stdClass' => [
+			'With an empty stdClass' => [
 				(object) [],
 				2,
 				null
 			],
-			'should return the value at the given index of an stdClass' => [
+			'With an stdClass' => [
 				(object) [2, 3, 5, 8],
 				2,
 				5
@@ -57,12 +56,12 @@ class atTest extends PHPUnit_Framework_TestCase
 				With ArrayObject
 			 */
 
-			'should return null for an empty ArrayObject' => [
+			'With an empty ArrayObject' => [
 				new ArrayObject([]),
 				2,
 				null
 			],
-			'should return the value at the given index of an ArrayObject' => [
+			'With an ArrayObject' => [
 				new ArrayObject([2, 3, 5, 8]),
 				2,
 				5

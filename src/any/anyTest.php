@@ -10,8 +10,7 @@ class anyTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $predicate, $expected)
 	{
-		$actual = Dash\any($iterable, $predicate);
-		$this->assertEquals($expected, $actual);
+		$this->assertEquals($expected, Dash\any($iterable, $predicate));
 	}
 
 	public function cases()
@@ -22,99 +21,90 @@ class anyTest extends PHPUnit_Framework_TestCase
 				With array
 			 */
 
-			'should return false for an empty array' => [
-				[],
-				function ($value, $key) {
-					return $value < 0;
-				},
-				false
+			'With an empty array' => [
+				'iterable' => [],
+				'predicate' => function ($value, $key) { return $value < 0; },
+				'expected' => false,
 			],
-			'should return false for an array with no items that satisfy the predicate' => [
-				[1, 2, 3, 4],
-				function ($value) {
-					return $value < 0;
-				},
-				false
+			'With an array with no items that satisfy the predicate' => [
+				'iterable' => [1, 2, 3, 4],
+				'predicate' => function ($value) { return $value < 0; },
+				'expected' => false,
 			],
-			'should return true for an array with one item that satisfies the predicate' => [
-				[1, 2, -3, 4],
-				function ($value) {
-					return $value < 0;
-				},
-				true
+			'With an array with one item that satisfies the predicate' => [
+				'iterable' => [1, 2, -3, 4],
+				'predicate' => function ($value) { return $value < 0; },
+				'expected' => true,
 			],
-			'should return true for an array with all items that satisfy the predicate' => [
-				[-1, -2, -3, -4],
-				function ($value) {
-					return $value < 0;
-				},
-				true
+			'With an array with several items that satisfy the predicate' => [
+				'iterable' => [1, -2, -3, 4],
+				'predicate' => function ($value) { return $value < 0; },
+				'expected' => true,
+			],
+			'With an array with all items that satisfy the predicate' => [
+				'iterable' => [-1, -2, -3, -4],
+				'predicate' => function ($value) { return $value < 0; },
+				'expected' => true,
 			],
 
 			/*
 				With stdClass
 			 */
 
-			'should return false for an empty stdClass' => [
-				(object) [],
-				function ($value, $key) {
-					return $value < 0;
-				},
-				false
+			'With an empty stdClass' => [
+				'iterable' => (object) [],
+				'predicate' => function ($value, $key) { return $value < 0; },
+				'expected' => false,
 			],
-			'should return false for an stdClass with no items that satisfy the predicate' => [
-				(object) [1, 2, 3, 4],
-				function ($value) {
-					return $value < 0;
-				},
-				false
+			'With an stdClass with no items that satisfy the predicate' => [
+				'iterable' => (object) [1, 2, 3, 4],
+				'predicate' => function ($value) { return $value < 0; },
+				'expected' => false,
 			],
-			'should return true for an stdClass with one item that satisfies the predicate' => [
-				(object) [1, 2, -3, 4],
-				function ($value) {
-					return $value < 0;
-				},
-				true
+			'With an stdClass with one item that satisfies the predicate' => [
+				'iterable' => (object) [1, 2, -3, 4],
+				'predicate' => function ($value) { return $value < 0; },
+				'expected' => true,
 			],
-			'should return true for an stdClass with all items that satisfy the predicate' => [
-				(object) [-1, -2, -3, -4],
-				function ($value) {
-					return $value < 0;
-				},
-				true
+			'With an stdClass with several items that satisfy the predicate' => [
+				'iterable' => (object) [1, -2, -3, 4],
+				'predicate' => function ($value) { return $value < 0; },
+				'expected' => true,
+			],
+			'With an stdClass with all items that satisfy the predicate' => [
+				'iterable' => (object) [-1, -2, -3, -4],
+				'predicate' => function ($value) { return $value < 0; },
+				'expected' => true,
 			],
 
 			/*
 				With ArrayObject
 			 */
 
-			'should return false for an empty ArrayObject' => [
-				new ArrayObject([]),
-				function ($value, $key) {
-					return $value < 0;
-				},
-				false
+			'With an empty ArrayObject' => [
+				'iterable' => new ArrayObject([]),
+				'predicate' => function ($value, $key) { return $value < 0; },
+				'expected' => false,
 			],
-			'should return false for an ArrayObject with no items that satisfy the predicate' => [
-				new ArrayObject([1, 2, 3, 4]),
-				function ($value) {
-					return $value < 0;
-				},
-				false
+			'With an ArrayObject with no items that satisfy the predicate' => [
+				'iterable' => new ArrayObject([1, 2, 3, 4]),
+				'predicate' => function ($value) { return $value < 0; },
+				'expected' => false,
 			],
-			'should return true for an ArrayObject with one item that satisfies the predicate' => [
-				new ArrayObject([1, 2, -3, 4]),
-				function ($value) {
-					return $value < 0;
-				},
-				true
+			'With an ArrayObject with one item that satisfies the predicate' => [
+				'iterable' => new ArrayObject([1, 2, -3, 4]),
+				'predicate' => function ($value) { return $value < 0; },
+				'expected' => true,
 			],
-			'should return true for an ArrayObject with all items that satisfy the predicate' => [
-				new ArrayObject([-1, -2, -3, -4]),
-				function ($value) {
-					return $value < 0;
-				},
-				true
+			'With an ArrayObject with several items that satisfy the predicate' => [
+				'iterable' => new ArrayObject([1, -2, -3, 4]),
+				'predicate' => function ($value) { return $value < 0; },
+				'expected' => true,
+			],
+			'With an ArrayObject with all items that satisfy the predicate' => [
+				'iterable' => new ArrayObject([-1, -2, -3, -4]),
+				'predicate' => function ($value) { return $value < 0; },
+				'expected' => true,
 			],
 		];
 	}

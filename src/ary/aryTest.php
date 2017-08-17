@@ -20,12 +20,12 @@ class aryTest extends PHPUnit_Framework_TestCase
 	public function cases()
 	{
 		return [
-			[
+			'Excessive ary' => [
 				'args' => ['a', 1, 'b', 2],
 				'ary' => 5,
 				'expectedArgs' => ['a', 1, 'b', 2],
 			],
-			[
+			'Full ary' => [
 				'args' => ['a', 1, 'b', 2],
 				'ary' => 4,
 				'expectedArgs' => ['a', 1, 'b', 2],
@@ -45,12 +45,12 @@ class aryTest extends PHPUnit_Framework_TestCase
 				'ary' => 1,
 				'expectedArgs' => ['a'],
 			],
-			[
+			'Zero ary' => [
 				'args' => ['a', 1, 'b', 2],
 				'ary' => 0,
 				'expectedArgs' => [],
 			],
-			[
+			'Negative ary' => [
 				'args' => ['a', 1, 'b', 2],
 				'ary' => -1,
 				'expectedArgs' => [],

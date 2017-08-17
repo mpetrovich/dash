@@ -2,6 +2,12 @@
 
 namespace Dash;
 
+/**
+ * Gets the average of all values in $iterable.
+ *
+ * @param iterable $iterable
+ * @return double Average value
+ */
 function average($iterable)
 {
 	$size = size($iterable);

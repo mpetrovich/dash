@@ -2,6 +2,7 @@ Table of contents
 ===
 ### Iterable
 - [all](#all)
+- [any](#any)
 - [each](#each)
 - [filter](#filter)
 - [get](#get)
@@ -11,7 +12,6 @@ Table of contents
 - [property](#property)
 
 ### Other
-- [any](#any)
 - [apply](#apply)
 - [ary](#ary)
 - [assertType](#asserttype)
@@ -83,24 +83,40 @@ Iterable
 all
 ---
 ```php
-all($input, $predicate): bool
+all($iterable, $predicate): bool
 ```
-Checks whether $predicate returns truthy for every item in $input.
+Checks whether $predicate returns truthy for every item in $iterable.
 
 
 Name | Type | Description
 --- | --- | ---
-`$input` | `mixed` | Any iterable
+`$iterable` | `mixed` | 
 `$predicate` | `callable` | A callable invoked with ($value, $key) that returns a boolean
 
 
 **Example:** 
 ```php
-all([1, 2, 3], function($n) { return $n < 3; });  // === false
-all([1, 2, 3], function($n) { return $n < 4; });  // === true
-
-all([1, 2, 3], 'Dash\isOdd');  // === false
+all([1, 2, 3], function($n) { return $n > 5; });  // === false
 all([1, 3, 5], 'Dash\isOdd');  // === true
+```
+any
+---
+```php
+any($iterable, $predicate): bool
+```
+Checks whether $predicate returns truthy for any item in $iterable.
+
+
+Name | Type | Description
+--- | --- | ---
+`$iterable` | `mixed` | 
+`$predicate` | `callable` | A callable invoked with ($value, $key) that returns a boolean
+
+
+**Example:** 
+```php
+all([1, 2, 3], function($n) { return $n > 5; });  // === false
+all([1, 2, 3], 'Dash\isEven');  // === true
 ```
 each
 ---
@@ -345,22 +361,12 @@ $getter($iterable) == 'value';
 Other
 ===
 
-any
----
-```php
-any($iterable, $predicate)
-```
-
-
-
-
-
 apply
 ---
 ```php
 apply($callable, $args): mixed
 ```
-
+Invokes a callable with arguments passed as a list.
 
 Name | Type | Description
 --- | --- | ---
@@ -368,44 +374,83 @@ Name | Type | Description
 `$args` | `array` | 
 
 
-
+**Example:** 
+```php
+function saveUser($name, $email) { … }
+apply('saveUser', ['John', 'jdoe@gmail.com']);
+```
 ary
 ---
 ```php
-ary($callable, $ary)
+ary($callable, $ary): callable
 ```
+Wraps $callable in a new function that only accepts up to $ary arguments and ignores the rest.
 
 
+Name | Type | Description
+--- | --- | ---
+`$callable` | `callable` | 
+`$ary` | `int` | Number of arguments to accept
 
 
-
+**Example:** 
+```php
+$fileExists = ary('file_exists', 1);
+$fileExists('foo.txt', 123, 456);  // file_exists() will only get called with 'foo.txt'
+```
 assertType
 ---
 ```php
-assertType($value, $type)
+assertType($input, $type): void
 ```
+Throws an exception if $input's type is not $type.
 
 
+Name | Type | Description
+--- | --- | ---
+`$input` | `mixed` | 
+`$type` | `string\|array` | Single type or list of types
 
 
-
+**Example:** 
+```php
+$input = [1, 2, 3];
+assertType($input, 'object');  // will throw
+```
 at
 ---
 ```php
-at($iterable, $index)
+at($iterable, $index): mixed
+```
+Gets the value at the $index-th value of $iterable, ignoring key values.
+
+Name | Type | Description
+--- | --- | ---
+`$iterable` | `iterable` | 
+`$index` | `int\|string` | 
+
+
+**Example:** 
+```php
+at([1, 3, 5, 8], 2);  // === 5
+
 ```
 
-
-
-
-
+**Example:** Keys are ignored; the literal i-th position is returned
+```php
+at([3 => 'a', 2 => 'b', 1 => 'c', 0 => 'd'], 2);  // === 'c'
+```
 average
 ---
 ```php
-average($iterable)
+average($iterable): double
 ```
+Gets the average of all values in $iterable.
 
 
+Name | Type | Description
+--- | --- | ---
+`$iterable` | `iterable` | 
 
 
 
