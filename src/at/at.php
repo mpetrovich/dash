@@ -6,6 +6,7 @@ namespace Dash;
  * Gets the value at the $index-th value of $iterable, ignoring key values.
  * @todo Revisit implementation
  *
+ * @category Array
  * @param iterable $iterable
  * @param int|string $index
  * @return mixed

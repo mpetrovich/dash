@@ -3,6 +3,7 @@ Table of contents
 ### Iterable
 - [all](#all)
 - [any](#any)
+- [average](#average)
 - [each](#each)
 - [filter](#filter)
 - [get](#get)
@@ -11,12 +12,17 @@ Table of contents
 - [pluck](#pluck)
 - [property](#property)
 
-### Other
+### Function
 - [apply](#apply)
 - [ary](#ary)
+
+### All
 - [assertType](#asserttype)
+
+### Array
 - [at](#at)
-- [average](#average)
+
+### Other
 - [call](#call)
 - [chain](#chain)
 - [compare](#compare)
@@ -118,6 +124,20 @@ Name | Type | Description
 all([1, 2, 3], function($n) { return $n > 5; });  // === false
 all([1, 2, 3], 'Dash\isEven');  // === true
 ```
+average
+---
+```php
+average($iterable): double
+```
+Gets the average of all values in $iterable.
+
+
+Name | Type | Description
+--- | --- | ---
+`$iterable` | `iterable` | 
+
+
+
 each
 ---
 ```php
@@ -358,7 +378,7 @@ $iterable = ['a.b.c' => 'value'];
 $getter($iterable) == 'value';
 ```
 
-Other
+Function
 ===
 
 apply
@@ -398,6 +418,10 @@ Name | Type | Description
 $fileExists = ary('file_exists', 1);
 $fileExists('foo.txt', 123, 456);  // file_exists() will only get called with 'foo.txt'
 ```
+
+All
+===
+
 assertType
 ---
 ```php
@@ -417,6 +441,10 @@ Name | Type | Description
 $input = [1, 2, 3];
 assertType($input, 'object');  // will throw
 ```
+
+Array
+===
+
 at
 ---
 ```php
@@ -440,19 +468,9 @@ at([1, 3, 5, 8], 2);  // === 5
 ```php
 at([3 => 'a', 2 => 'b', 1 => 'c', 0 => 'd'], 2);  // === 'c'
 ```
-average
----
-```php
-average($iterable): double
-```
-Gets the average of all values in $iterable.
 
-
-Name | Type | Description
---- | --- | ---
-`$iterable` | `iterable` | 
-
-
+Other
+===
 
 call
 ---
