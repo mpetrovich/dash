@@ -197,6 +197,16 @@ class _
 		return $this->value();
 	}
 
+	/**
+	 * Returns a new copy of this chain.
+	 *
+	 * @return _
+	 */
+	public function copy()
+	{
+		return clone $this;
+	}
+
 	/*
 		Private
 		------------------------------------------------------------

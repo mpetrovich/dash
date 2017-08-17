@@ -171,8 +171,7 @@ class _Test extends PHPUnit_Framework_TestCase
 
 	public function testChainingCloning()
 	{
-		$chain = _::chain()
-			->map(function ($n) { return $n * 2; });
+		$chain = _::chain()->map(function ($n) { return $n * 2; });
 
 		$chain->with(array(1, 2, 3));
 		$this->assertEquals(array(2, 4, 6), $chain->value());
@@ -182,6 +181,26 @@ class _Test extends PHPUnit_Framework_TestCase
 
 		$clone->with(array(4, 5, 6));
 		$this->assertEquals(array(9, 11, 13), $clone->value());
+
+		$chain->with(array(1, 2, 3));
+		$this->assertEquals(array(2, 4, 6), $chain->value());
+	}
+
+	public function testCopy()
+	{
+		$chain = _::chain()->map(function ($n) { return $n * 2; });
+
+		$chain->with(array(1, 2, 3));
+		$this->assertEquals(array(2, 4, 6), $chain->value());
+
+		$clone = $chain->copy();
+		$clone->map(function ($n) { return $n + 1; });
+
+		$clone->with(array(4, 5, 6));
+		$this->assertEquals(array(9, 11, 13), $clone->value());
+
+		$chain->with(array(1, 2, 3));
+		$this->assertEquals(array(2, 4, 6), $chain->value());
 	}
 
 	/**
