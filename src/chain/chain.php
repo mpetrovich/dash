@@ -2,6 +2,13 @@
 
 namespace Dash;
 
+/**
+ * Alias for _::chain()
+ * @see _::chain()
+ *
+ * @param mixed $input
+ * @return Dash\_ New chain instance
+ */
 function chain($input = null)
 {
 	return _::chain($input);

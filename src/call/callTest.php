@@ -15,7 +15,7 @@ class callTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(0, Dash\call($func));
 	}
 
-	public function testWithOneArgs()
+	public function testWithOneArg()
 	{
 		$func = function () {
 			$this->assertEquals([3], func_get_args());

@@ -12,8 +12,8 @@ namespace Dash;
  * @return mixed Return value of $callable
  *
  * @example
-	function saveUser($name, $email) { … }
-	apply('saveUser', ['John', 'jdoe@gmail.com']);
+	$saveUser = function ($name, $email) { … };
+	apply($saveUser, ['John', 'jdoe@gmail.com']);
  */
 function apply($callable, $args)
 {

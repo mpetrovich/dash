@@ -10,24 +10,23 @@ class compareTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($a, $b, $expected)
 	{
-		$actual = Dash\compare($a, $b);
-		$this->assertSame($expected, $actual);
+		$this->assertSame($expected, Dash\compare($a, $b));
 	}
 
 	public function cases()
 	{
 		return [
-			'should return zero when the values are equal' => [
+			'$a == $b' => [
 				'3',
 				3,
 				0
 			],
-			'should return +1 when the first value is greater than the second' => [
+			'$a > $b' => [
 				'4',
 				3,
 				+1
 			],
-			'should return -1 when the first value is less than the second' => [
+			'$a < $b' => [
 				'2',
 				3,
 				-1

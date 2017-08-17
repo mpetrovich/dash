@@ -15,6 +15,7 @@ Table of contents
 ### Function
 - [apply](#apply)
 - [ary](#ary)
+- [call](#call)
 
 ### All
 - [assertType](#asserttype)
@@ -23,7 +24,6 @@ Table of contents
 - [at](#at)
 
 ### Other
-- [call](#call)
 - [chain](#chain)
 - [compare](#compare)
 - [contains](#contains)
@@ -396,8 +396,8 @@ Name | Type | Description
 
 **Example:** 
 ```php
-function saveUser($name, $email) { … }
-apply('saveUser', ['John', 'jdoe@gmail.com']);
+$saveUser = function ($name, $email) { … };
+apply($saveUser, ['John', 'jdoe@gmail.com']);
 ```
 ary
 ---
@@ -417,6 +417,23 @@ Name | Type | Description
 ```php
 $fileExists = ary('file_exists', 1);
 $fileExists('foo.txt', 123, 456);  // file_exists() will only get called with 'foo.txt'
+```
+call
+---
+```php
+call($callable): mixed
+```
+Invokes a callable with arguments passed as individual parameters.
+
+Name | Type | Description
+--- | --- | ---
+`$callable` | `callable` | 
+
+
+**Example:** 
+```php
+$saveUser = function ($name, $email) { … };
+call($saveUser, 'John', 'jdoe@gmail.com');
 ```
 
 All
@@ -472,49 +489,64 @@ at([3 => 'a', 2 => 'b', 1 => 'c', 0 => 'd'], 2);  // === 'c'
 Other
 ===
 
-call
----
-```php
-call($callable): mixed
-```
-
-
-Name | Type | Description
---- | --- | ---
-`$callable` | `callable` | 
-
-
-
 chain
 ---
 ```php
-chain($input = null)
+chain($input = null): Dash\_
 ```
+Alias for _::chain()
 
-
+Name | Type | Description
+--- | --- | ---
+`$input` | `mixed` | 
 
 
 
 compare
 ---
 ```php
-compare($a, $b)
+compare($a, $b): int
 ```
+Returns -1, 0, +1 if $a is less than, equal to, or great than $b.
 
 
+Name | Type | Description
+--- | --- | ---
+`$a` | `mixed` | 
+`$b` | `mixed` | 
 
 
-
+**Example:** 
+```php
+compare(8, 9);  // === -1
+compare(8, 4);  // === +1
+compare(8, 8);  // === 0
+```
 contains
 ---
 ```php
-contains($iterable, $target, $predicate = 'Dash\equal')
+contains($iterable, $target, $comparator = 'Dash\equal'): bool
+```
+Checks whether $iterable has any $item values for which $comparator($target, $item) is truthy.
+
+
+Name | Type | Description
+--- | --- | ---
+`$iterable` | `iterable` | 
+`$target` | `mixed` | Value to compare $iterable items with
+`$comparator` | `callable` | Invoked with ($target, $item) for each $item value in $iterable
+
+
+**Example:** With loose equality comparison (the default)
+```php
+contains([1, '2', 3], 2);  // === true
+
 ```
 
-
-
-
-
+**Example:** With strict equality comparison
+```php
+contains([1, '2', 3], 2, 'Dash\identity');  // === false
+```
 custom
 ---
 ```php
