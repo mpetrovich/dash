@@ -93,6 +93,18 @@ function parseDocblock($docblock)
 		->first()
 		->value();
 
+	// Return type
+	$doc->returnType = _::chain($lines)
+		->filter(function($line) { return strpos($line, '@return') === 0; })
+		->map(function($line) {
+			$matches = [];
+			preg_match('/^@return\s+([\S]+)/', $line, $matches);
+			$returnType = $matches[1];
+			return $returnType;
+		})
+		->first()
+		->value();
+
 	// Parameters
 	$allParamLines = _::dropWhile($lines, function($line) {
 		return strpos($line, '@param') !== 0;
@@ -174,7 +186,7 @@ END;
 {$doc->name}
 ---
 ```php
-{$doc->signature}
+{$doc->signature}: {$doc->returnType}
 ```
 {$doc->description}
 
