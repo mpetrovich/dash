@@ -6,7 +6,7 @@ namespace Dash;
  * Returns a subset of $iterable for which $predicate is truthy.
  * Keys and key order are preserved.
  *
- * @category Iterables
+ * @category Iterable
  * @param iterable $iterable
  * @param callable $predicate Callable invoked with ($value, $key) for each item in $iterable
  * @return array
