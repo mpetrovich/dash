@@ -121,21 +121,6 @@ function parseDocblock($docblock)
 		];
 	}
 
-	// Parameters
-	// $doc->params = _::chain($lines)
-	// 	->filter(function($line) { return strpos($line, '@param') === 0; })
-	// 	->map(function($line) {
-	// 		$matches = [];
-	// 		preg_match('/^@param\s+([\S]+)\s+([\S]+)\s*(.*)$/', $line, $matches);
-	// 		list($type, $name, $description) = array_slice($matches, 1);
-	// 		return (object) [
-	// 			'type' => $type,
-	// 			'name' => $name,
-	// 			'description' => $description,
-	// 		];
-	// 	})
-	// 	->value();
-
 	// Examples
 	$allExampleLines = _::dropWhile($lines, function($line) {
 		return strpos($line, '@example') !== 0;
@@ -163,10 +148,15 @@ function parseDocblock($docblock)
 
 function renderDoc($doc)
 {
-	$paramsTable = _::reduce($doc->params, function($output, $param) {
-		$type = str_replace('|', '\|', $param->type);
-		return $output . "`$param->name` | `$type` | $param->description\n";
-	}, "Name | Type | Description\n--- | --- | ---\n");
+	if ($doc->params) {
+		$paramsTable = _::reduce($doc->params, function($output, $param) {
+			$type = str_replace('|', '\|', $param->type);
+			return $output . "`$param->name` | `$type` | $param->description\n";
+		}, "Name | Type | Description\n--- | --- | ---\n");
+	}
+	else {
+		$paramsTable = '';
+	}
 
 	$examples = _::chain($doc->examples)
 		->map(function($example) {

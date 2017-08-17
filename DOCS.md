@@ -352,8 +352,6 @@ any($iterable, $predicate)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -378,8 +376,6 @@ ary($callable, $ary)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -390,8 +386,6 @@ assertType($value, $type)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -402,8 +396,6 @@ at($iterable, $index)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -414,8 +406,6 @@ average($iterable)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -439,8 +429,6 @@ chain($input = null)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -451,8 +439,6 @@ compare($a, $b)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -463,8 +449,6 @@ contains($iterable, $target, $predicate = 'Dash\equal')
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -493,8 +477,6 @@ deltas($iterable)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -505,8 +487,6 @@ difference()
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -517,8 +497,6 @@ display($value)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -529,8 +507,6 @@ dropWhile($input, $predicate = 'Dash\identity')
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -541,8 +517,6 @@ equal($a, $b)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -553,8 +527,6 @@ every($iterable, $predicate)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -565,8 +537,6 @@ find($iterable, $predicate)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -577,8 +547,6 @@ findKey($iterable, $predicate)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -589,8 +557,6 @@ findLast($iterable, $predicate)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -601,8 +567,6 @@ findValue($iterable, $predicate)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -613,8 +577,6 @@ first($iterable)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -625,8 +587,6 @@ getDirect($input, $field, $default = null)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -637,8 +597,6 @@ getDirectRef
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -649,8 +607,6 @@ groupBy($input, $groupBy, $defaultGroup = null)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -661,8 +617,6 @@ hasDirect($subject, $field)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -673,8 +627,6 @@ identical($a, $b)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -685,8 +637,6 @@ identity($value)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -697,8 +647,6 @@ indexBy($input, $indexBy = 'Dash\identity')
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -709,8 +657,6 @@ intersection($iterables)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -721,8 +667,6 @@ is($value, $type)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -733,8 +677,6 @@ isEmpty($input)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -745,8 +687,6 @@ isEven($value)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -757,8 +697,6 @@ isOdd($value)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -769,8 +707,6 @@ join($input, $glue)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -781,8 +717,6 @@ keyBy($input, $keyBy = 'Dash\identity')
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -793,8 +727,6 @@ keys($iterable)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -805,8 +737,6 @@ last($iterable)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -817,8 +747,6 @@ matches($properties)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -829,8 +757,6 @@ matchesProperty($path, $value)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -841,8 +767,6 @@ max($iterable)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -853,8 +777,6 @@ median($iterable)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -865,8 +787,6 @@ min($iterable)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -877,8 +797,6 @@ negate($function)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -889,8 +807,6 @@ partial($function)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -901,8 +817,6 @@ partialRight($function)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -913,8 +827,6 @@ pick($input, $keys)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -925,8 +837,6 @@ reduce($iterable, $iteratee, $initial = [])
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -937,8 +847,6 @@ reject($iterable, $predicate)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -949,8 +857,6 @@ reverse($iterable)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -961,8 +867,6 @@ set(&$input, $path, $value)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -973,8 +877,6 @@ size($input, $encoding = 'utf8')
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -985,8 +887,6 @@ sort($iterable, $comparator = 'Dash\compare')
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -997,8 +897,6 @@ sum($iterable)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -1009,8 +907,6 @@ take($iterable, $count = 1, $fromStart = 0)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -1021,8 +917,6 @@ takeRight($iterable, $count = 1, $fromEnd = 0)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -1033,8 +927,6 @@ takeWhile($input, $predicate = 'Dash\identity')
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -1045,8 +937,6 @@ tap($iterable, callable $interceptor)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -1057,8 +947,6 @@ thru($value, callable $interceptor)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -1069,8 +957,6 @@ toArray($value)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -1081,8 +967,6 @@ union($iterables)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -1093,8 +977,6 @@ values($iterable)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -1105,8 +987,6 @@ where($iterable, $properties)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
@@ -1117,8 +997,6 @@ without($iterable, $excluded, $predicate = null)
 ```
 
 
-Name | Type | Description
---- | --- | ---
 
 
 
