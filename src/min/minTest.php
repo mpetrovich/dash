@@ -16,7 +16,7 @@ class minTest extends PHPUnit_Framework_TestCase
 
 	public function cases()
 	{
-		return array(
+		return [
 
 			/*
 				With array
@@ -26,36 +26,36 @@ class minTest extends PHPUnit_Framework_TestCase
 				[],
 				null
 			],
-			'should return the min of the values of an array' => array(
+			'should return the min of the values of an array' => [
 				[3, 8, 2, 5],
 				2
-			),
+			],
 
 			/*
 				With stdClass
 			 */
 
-			'should return null for an empty stdClass' => array(
+			'should return null for an empty stdClass' => [
 				(object) [],
 				null
-			),
-			'should return the min of the values of an stdClass' => array(
+			],
+			'should return the min of the values of an stdClass' => [
 				(object) [3, 8, 2, 5],
 				2
-			),
+			],
 
 			/*
 				With ArrayObject
 			 */
 
-			'should return null for an empty ArrayObject' => array(
+			'should return null for an empty ArrayObject' => [
 				new ArrayObject([]),
 				null
-			),
-			'should return the min of the values of an ArrayObject' => array(
-				new ArrayObject(array(3, 8, 2, 5)),
+			],
+			'should return the min of the values of an ArrayObject' => [
+				new ArrayObject([3, 8, 2, 5]),
 				2
-			),
-		);
+			],
+		];
 	}
 }

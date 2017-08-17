@@ -16,7 +16,7 @@ class atTest extends PHPUnit_Framework_TestCase
 
 	public function cases()
 	{
-		return array(
+		return [
 
 			/*
 				With array
@@ -27,46 +27,46 @@ class atTest extends PHPUnit_Framework_TestCase
 				2,
 				null
 			],
-			'should return the value at the given index of an indexed array' => array(
+			'should return the value at the given index of an indexed array' => [
 				[2, 3, 5, 8],
 				2,
 				5
-			),
-			'should return the value at the given Nth item of an associative array' => array(
+			],
+			'should return the value at the given Nth item of an associative array' => [
 				[3 => 2, 1 => 3, 0 => 5, 2 => 8],
 				2,
 				5
-			),
+			],
 
 			/*
 				With stdClass
 			 */
 
-			'should return null for an empty stdClass' => array(
+			'should return null for an empty stdClass' => [
 				(object) [],
 				2,
 				null
-			),
-			'should return the value at the given index of an stdClass' => array(
+			],
+			'should return the value at the given index of an stdClass' => [
 				(object) [2, 3, 5, 8],
 				2,
 				5
-			),
+			],
 
 			/*
 				With ArrayObject
 			 */
 
-			'should return null for an empty ArrayObject' => array(
+			'should return null for an empty ArrayObject' => [
 				new ArrayObject([]),
 				2,
 				null
-			),
-			'should return the value at the given index of an ArrayObject' => array(
-				new ArrayObject(array(2, 3, 5, 8)),
+			],
+			'should return the value at the given index of an ArrayObject' => [
+				new ArrayObject([2, 3, 5, 8]),
 				2,
 				5
-			),
-		);
+			],
+		];
 	}
 }

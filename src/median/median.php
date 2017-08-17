@@ -18,10 +18,10 @@ function median($iterable)
 			$start = $size / 2 - 1;
 			$end = $start + 1;
 			$median = average(
-				array(
+				[
 					at($sorted, $start),
 					at($sorted, $end)
-				)
+				]
 			);
 		}
 		else {

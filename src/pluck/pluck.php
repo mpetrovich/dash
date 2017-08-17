@@ -14,12 +14,12 @@ namespace Dash;
  *
  * @example
 	Dash\pluck(
-		array(
-			array('a' => ['b' => 1]),
+		[
+			['a' => ['b' => 1]],
 			['a' => 'missing'],
-			array('a' => ['b' => 3]),
-			array('a' => ['b' => 4]),
-		),
+			['a' => ['b' => 3]],
+			['a' => ['b' => 4]],
+		],
 		'a.b',
 		'default'
 	) == [1, 'default', 3, 4];

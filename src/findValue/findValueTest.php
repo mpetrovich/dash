@@ -16,13 +16,13 @@ class findValueTest extends PHPUnit_Framework_TestCase
 
 	public function cases()
 	{
-		return array(
-			'With an empty array' => array(
+		return [
+			'With an empty array' => [
 				[],
 				function () { return false; },
 				null
-			),
-			'With a non-matching search of an array' => array(
+			],
+			'With a non-matching search of an array' => [
 				[
 					'a' => 'first',
 					'b' => 'second',
@@ -32,8 +32,8 @@ class findValueTest extends PHPUnit_Framework_TestCase
 				],
 				function () { return false; },
 				null
-			),
-			'With a matching value search of an array' => array(
+			],
+			'With a matching value search of an array' => [
 				[
 					'a' => 'first',
 					'b' => 'second',
@@ -45,8 +45,8 @@ class findValueTest extends PHPUnit_Framework_TestCase
 					return $value == 'second';
 				},
 				'second'
-			),
-			'With a matching key search of an array' => array(
+			],
+			'With a matching key search of an array' => [
 				[
 					'a' => 'first',
 					'b' => 'second',
@@ -58,7 +58,7 @@ class findValueTest extends PHPUnit_Framework_TestCase
 					return $key == 'd';
 				},
 				'second'
-			),
-		);
+			],
+		];
 	}
 }

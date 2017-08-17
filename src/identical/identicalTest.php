@@ -16,27 +16,27 @@ class identicalTest extends PHPUnit_Framework_TestCase
 
 	public function cases()
 	{
-		return array(
-			'With two identical arrays' => array(
+		return [
+			'With two identical arrays' => [
 				[1, 2, 3],
 				[1, 2, 3],
 				true
-			),
-			'With two non-identical arrays' => array(
+			],
+			'With two non-identical arrays' => [
 				[1, 2, 3],
 				[1, '2', 3],
 				false
-			),
-			'With two identical objects' => array(
+			],
+			'With two identical objects' => [
 				[0 => 'a', 1 => 'b', 2 => 'c'],
 				[0 => 'a', 1 => 'b', 2 => 'c'],
 				true
-			),
-			'With two non-identical objects' => array(
+			],
+			'With two non-identical objects' => [
 				[0 => 'a', 1 => 'b', 2 => 'c'],
 				[0 => 'a', 1 => 'x', 2 => 'c'],
 				false
-			),
+			],
 			'With two identical strings' => [
 				'abc',
 				'abc',
@@ -77,6 +77,6 @@ class identicalTest extends PHPUnit_Framework_TestCase
 				'',
 				false
 			],
-		);
+		];
 	}
 }

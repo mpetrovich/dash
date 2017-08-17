@@ -16,7 +16,7 @@ class compareTest extends PHPUnit_Framework_TestCase
 
 	public function cases()
 	{
-		return array(
+		return [
 			'should return zero when the values are equal' => [
 				'3',
 				3,
@@ -32,6 +32,6 @@ class compareTest extends PHPUnit_Framework_TestCase
 				3,
 				-1
 			],
-		);
+		];
 	}
 }

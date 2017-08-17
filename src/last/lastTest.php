@@ -16,19 +16,19 @@ class lastTest extends PHPUnit_Framework_TestCase
 
 	public function cases()
 	{
-		return array(
+		return [
 			'With an empty array' => [
 				[],
 				null
 			],
-			'With an array' => array(
+			'With an array' => [
 				['a', 'b', 'c'],
 				'c'
-			),
-			'With an array with null as the last element' => array(
+			],
+			'With an array with null as the last element' => [
 				['a', 'b', null],
 				null
-			),
-		);
+			],
+		];
 	}
 }

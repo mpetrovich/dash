@@ -16,7 +16,7 @@ class isEvenTest extends PHPUnit_Framework_TestCase
 
 	public function casesForIsEven()
 	{
-		return array(
+		return [
 			'should return true for an even value' => [
 				4,
 				true
@@ -25,6 +25,6 @@ class isEvenTest extends PHPUnit_Framework_TestCase
 				3,
 				false
 			],
-		);
+		];
 	}
 }

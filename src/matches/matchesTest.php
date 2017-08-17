@@ -15,37 +15,37 @@ class matchesTest extends PHPUnit_Framework_TestCase
 
 	public function casesForMatches()
 	{
-		return array(
-			'With matching arrays' => array(
+		return [
+			'With matching arrays' => [
 				['b' => 2, 'd' => 4],
 				['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
 				true
-			),
-			'With non-matching arrays where keys do not match' => array(
+			],
+			'With non-matching arrays where keys do not match' => [
 				['b' => 2, 'x' => 4],
 				['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
 				false
-			),
-			'With non-matching arrays where values do not match' => array(
+			],
+			'With non-matching arrays where values do not match' => [
 				['b' => 2, 'd' => 9],
 				['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
 				false
-			),
-			'With matching objects' => array(
+			],
+			'With matching objects' => [
 				(object) ['b' => 2, 'd' => 4],
 				(object) ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
 				true
-			),
-			'With non-matching objects where keys do not match' => array(
+			],
+			'With non-matching objects where keys do not match' => [
 				(object) ['b' => 2, 'x' => 4],
 				(object) ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
 				false
-			),
-			'With non-matching objects where values do not match' => array(
+			],
+			'With non-matching objects where values do not match' => [
 				(object) ['b' => 2, 'd' => 9],
 				(object) ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
 				false
-			),
-		);
+			],
+		];
 	}
 }

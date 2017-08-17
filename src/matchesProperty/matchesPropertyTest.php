@@ -15,55 +15,55 @@ class matchesPropertyTest extends PHPUnit_Framework_TestCase
 
 	public function casesForMatchesProperty()
 	{
-		return array(
-			'With a matching array' => array(
+		return [
+			'With a matching array' => [
 				'a.b.c',
 				'value',
-				array(
-					'a' => array(
+				[
+					'a' => [
 						'b' => [
 							'c' => 'value'
 						]
-					)
-				),
+					]
+				],
 				true
-			),
-			'With a non-matching array' => array(
+			],
+			'With a non-matching array' => [
 				'a.X.c',
 				'value',
-				array(
-					'a' => array(
+				[
+					'a' => [
 						'b' => [
 							'c' => 'value'
 						]
-					)
-				),
+					]
+				],
 				false
-			),
-			'With a matching object' => array(
+			],
+			'With a matching object' => [
 				'a.b.c',
 				'value',
-				(object) array(
-					'a' => (object) array(
+				(object) [
+					'a' => (object) [
 						'b' => (object) [
 							'c' => 'value'
 						]
-					)
-				),
+					]
+				],
 				true
-			),
-			'With a non-matching object' => array(
+			],
+			'With a non-matching object' => [
 				'a.X.c',
 				'value',
-				(object) array(
-					'a' => (object) array(
+				(object) [
+					'a' => (object) [
 						'b' => (object) [
 							'c' => 'value'
 						]
-					)
-				),
+					]
+				],
 				false
-			),
-		);
+			],
+		];
 	}
 }

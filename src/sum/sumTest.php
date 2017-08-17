@@ -16,7 +16,7 @@ class sumTest extends PHPUnit_Framework_TestCase
 
 	public function cases()
 	{
-		return array(
+		return [
 
 			/*
 				With array
@@ -26,36 +26,36 @@ class sumTest extends PHPUnit_Framework_TestCase
 				[],
 				0
 			],
-			'should return the sum of the values of an array' => array(
+			'should return the sum of the values of an array' => [
 				[2, 3, 5, 8],
 				18
-			),
+			],
 
 			/*
 				With stdClass
 			 */
 
-			'should return zero for an empty stdClass' => array(
+			'should return zero for an empty stdClass' => [
 				(object) [],
 				0
-			),
-			'should return the sum of the values of an stdClass' => array(
+			],
+			'should return the sum of the values of an stdClass' => [
 				(object) [2, 3, 5, 8],
 				18
-			),
+			],
 
 			/*
 				With ArrayObject
 			 */
 
-			'should return zero for an empty ArrayObject' => array(
+			'should return zero for an empty ArrayObject' => [
 				new ArrayObject([]),
 				0
-			),
-			'should return the sum of the values of an ArrayObject' => array(
-				new ArrayObject(array(2, 3, 5, 8)),
+			],
+			'should return the sum of the values of an ArrayObject' => [
+				new ArrayObject([2, 3, 5, 8]),
 				18
-			),
-		);
+			],
+		];
 	}
 }

@@ -16,36 +16,36 @@ class pluckTest extends PHPUnit_Framework_TestCase
 
 	public function cases()
 	{
-		return array(
+		return [
 			'With an empty array' => [
 				[],
 				'a.b',
 				[]
 			],
-			'With an array' => array(
-				array(
-					array(
+			'With an array' => [
+				[
+					[
 						'a' => [
 							'b' => 'first'
 						]
-					),
+					],
 					[
 						'X' => 'missing'
 					],
-					array(
+					[
 						'a' => [
 							'b' => 'third'
 						]
-					),
-					array(
+					],
+					[
 						'a' => [
 							'b' => 'fourth'
 						]
-					)
-				),
+					]
+				],
 				'a.b',
 				['first', null, 'third', 'fourth']
-			),
-		);
+			],
+		];
 	}
 }

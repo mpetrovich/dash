@@ -16,19 +16,19 @@ class identityTest extends PHPUnit_Framework_TestCase
 
 	public function cases()
 	{
-		return array(
+		return [
 			'With an empty array' => [
 				[],
 				[]
 			],
-			'With an array' => array(
+			'With an array' => [
 				[0 => 'a', 1 => 'b', 2 => 'c', 3 => 'd', 4 => 'e'],
 				[0 => 'a', 1 => 'b', 2 => 'c', 3 => 'd', 4 => 'e']
-			),
+			],
 			'With a scalar value' => [
 				'abc',
 				'abc'
 			]
-		);
+		];
 	}
 }

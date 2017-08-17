@@ -22,12 +22,12 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 
 	public function cases()
 	{
-		return array(
+		return [
 			'With an empty array' => [
 				[],
 				[]
 			],
-			'With an indexed array' => array(
+			'With an indexed array' => [
 				[
 					'first',
 					'second',
@@ -38,8 +38,8 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 					'1 is second',
 					'2 is third',
 				],
-			),
-			'With an associative array' => array(
+			],
+			'With an associative array' => [
 				[
 					'a' => 'first',
 					'b' => 'second',
@@ -50,12 +50,12 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 					'b' => 'b is second',
 					'c' => 'c is third',
 				],
-			),
-			'With an empty object' => array(
+			],
+			'With an empty object' => [
 				(object) [],
 				[]
-			),
-			'With an object' => array(
+			],
+			'With an object' => [
 				(object) [
 					'a' => 'first',
 					'b' => 'second',
@@ -66,24 +66,24 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 					'b' => 'b is second',
 					'c' => 'c is third',
 				],
-			),
-			'With an empty ArrayObject' => array(
+			],
+			'With an empty ArrayObject' => [
 				new ArrayObject([]),
 				[]
-			),
-			'With an ArrayObject' => array(
-				new ArrayObject(array(
+			],
+			'With an ArrayObject' => [
+				new ArrayObject([
 					'a' => 'first',
 					'b' => 'second',
 					'c' => 'third',
-				)),
+				]),
 				[
 					'a' => 'a is first',
 					'b' => 'b is second',
 					'c' => 'c is third',
 				],
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -97,28 +97,28 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 
 	public function casesWithPath()
 	{
-		return array(
-			'With an array' => array(
-				array(
-					'w' => array(
+		return [
+			'With an array' => [
+				[
+					'w' => [
 						'a' => [
 							'b' => 'first'
 						]
-					),
+					],
 					'x' => [
 						'X' => 'missing'
 					],
-					'y' => array(
+					'y' => [
 						'a' => [
 							'b' => 'third'
 						]
-					),
-					'z' => array(
+					],
+					'z' => [
 						'a' => [
 							'b' => 'fourth'
 						]
-					)
-				),
+					]
+				],
 				'a.b',
 				[
 					'w' => 'first',
@@ -126,8 +126,8 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 					'y' => 'third',
 					'z' => 'fourth'
 				]
-			),
-		);
+			],
+		];
 	}
 
 	public function testWithoutIteratee()

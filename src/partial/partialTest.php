@@ -21,22 +21,22 @@ class partialTest extends PHPUnit_Framework_TestCase
 			return $a + $b + $c;
 		};
 
-		return array(
-			'With all function parameters pre-specified' => array(
+		return [
+			'With all function parameters pre-specified' => [
 				[$sum, 1, 2, 3],
 				[],
 				6
-			),
-			'With some function parameters pre-specified' => array(
+			],
+			'With some function parameters pre-specified' => [
 				[$sum, 1, 2],
 				[3],
 				6
-			),
-			'With no function parameters pre-specified' => array(
+			],
+			'With no function parameters pre-specified' => [
 				[$sum],
 				[1, 2, 3],
 				6
-			),
-		);
+			],
+		];
 	}
 }

@@ -53,13 +53,13 @@ class _Test extends PHPUnit_Framework_TestCase
 
 	public function casesForStandalone()
 	{
-		return array(
-			array(
+		return [
+			[
 				'map',
-				array(array(1, 2, 3), function ($n) { return $n * 2; }),
+				[[1, 2, 3], function ($n) { return $n * 2; }],
 				[2, 4, 6],
-			)
-		);
+			]
+		];
 	}
 
 	/**
@@ -68,22 +68,22 @@ class _Test extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneInvalid()
 	{
-		_::foobar(array(1, 2, 3));
+		_::foobar([1, 2, 3]);
 	}
 
 	public function testChain()
 	{
-		$chain = _::chain(array(1, 2, 3));
-		$this->assertEquals(array(1, 2, 3), $chain->value());
+		$chain = _::chain([1, 2, 3]);
+		$this->assertEquals([1, 2, 3], $chain->value());
 	}
 
 	public function testChainingWithArray()
 	{
-		$chain = _::chain(array(1, 2, 3))
+		$chain = _::chain([1, 2, 3])
 			->map(function ($n) { return $n * 2; })
 			->filter(function ($n) { return $n < 6; });
 
-		$this->assertEquals(array(2, 4), $chain->value());
+		$this->assertEquals([2, 4], $chain->value());
 	}
 
 	public function testChainingWithObject()
@@ -108,21 +108,21 @@ class _Test extends PHPUnit_Framework_TestCase
 			$this->assertTrue(true);
 		}
 
-		$actual = $chain->with(array(1, 2, 3))->value();
+		$actual = $chain->with([1, 2, 3])->value();
 		$expected = [2, 4];
 		$this->assertEquals($expected, $actual);
 	}
 
 	public function testChainingReuse()
 	{
-		$chain = _::chain(array(1, 2, 3))
+		$chain = _::chain([1, 2, 3])
 			->map(function ($n) { return $n * 2; });
 
-		$this->assertEquals(array(2, 4, 6), $chain->value());
+		$this->assertEquals([2, 4, 6], $chain->value());
 
-		$chain->with(array(4, 5, 6));
+		$chain->with([4, 5, 6]);
 
-		$this->assertEquals(array(8, 10, 12), $chain->value());
+		$this->assertEquals([8, 10, 12], $chain->value());
 	}
 
 	public function testValueCaching()
@@ -138,23 +138,23 @@ class _Test extends PHPUnit_Framework_TestCase
 			return $n * 2;
 		});
 
-		$this->assertEquals(array(2, 4, 6), $chain->value());
+		$this->assertEquals([2, 4, 6], $chain->value());
 		$this->assertEquals(3, $mapCallCount);
-		$this->assertEquals(array(2, 4, 6), $chain->value());
+		$this->assertEquals([2, 4, 6], $chain->value());
 		$this->assertEquals(3, $mapCallCount);
 
 		$chain->with((object) [4, 5, 6]);
 
-		$this->assertEquals(array(8, 10, 12), $chain->value());
+		$this->assertEquals([8, 10, 12], $chain->value());
 		$this->assertEquals(6, $mapCallCount);
-		$this->assertEquals(array(8, 10, 12), $chain->value());
+		$this->assertEquals([8, 10, 12], $chain->value());
 		$this->assertEquals(6, $mapCallCount);
 
 		$chain->map(function ($n) { return $n + 1;});
 
-		$this->assertEquals(array(9, 11, 13), $chain->value());
+		$this->assertEquals([9, 11, 13], $chain->value());
 		$this->assertEquals(9, $mapCallCount);
-		$this->assertEquals(array(9, 11, 13), $chain->value());
+		$this->assertEquals([9, 11, 13], $chain->value());
 		$this->assertEquals(9, $mapCallCount);
 	}
 
@@ -173,34 +173,34 @@ class _Test extends PHPUnit_Framework_TestCase
 	{
 		$chain = _::chain()->map(function ($n) { return $n * 2; });
 
-		$chain->with(array(1, 2, 3));
-		$this->assertEquals(array(2, 4, 6), $chain->value());
+		$chain->with([1, 2, 3]);
+		$this->assertEquals([2, 4, 6], $chain->value());
 
 		$clone = clone $chain;
 		$clone->map(function ($n) { return $n + 1; });
 
-		$clone->with(array(4, 5, 6));
-		$this->assertEquals(array(9, 11, 13), $clone->value());
+		$clone->with([4, 5, 6]);
+		$this->assertEquals([9, 11, 13], $clone->value());
 
-		$chain->with(array(1, 2, 3));
-		$this->assertEquals(array(2, 4, 6), $chain->value());
+		$chain->with([1, 2, 3]);
+		$this->assertEquals([2, 4, 6], $chain->value());
 	}
 
 	public function testCopy()
 	{
 		$chain = _::chain()->map(function ($n) { return $n * 2; });
 
-		$chain->with(array(1, 2, 3));
-		$this->assertEquals(array(2, 4, 6), $chain->value());
+		$chain->with([1, 2, 3]);
+		$this->assertEquals([2, 4, 6], $chain->value());
 
 		$clone = $chain->copy();
 		$clone->map(function ($n) { return $n + 1; });
 
-		$clone->with(array(4, 5, 6));
-		$this->assertEquals(array(9, 11, 13), $clone->value());
+		$clone->with([4, 5, 6]);
+		$this->assertEquals([9, 11, 13], $clone->value());
 
-		$chain->with(array(1, 2, 3));
-		$this->assertEquals(array(2, 4, 6), $chain->value());
+		$chain->with([1, 2, 3]);
+		$this->assertEquals([2, 4, 6], $chain->value());
 	}
 
 	/**
@@ -217,34 +217,34 @@ class _Test extends PHPUnit_Framework_TestCase
 
 	public function getTestCases()
 	{
-		return array(
+		return [
 			'With an empty array' => [
 				[]
 			],
-			'With an indexed array' => array(
+			'With an indexed array' => [
 				[
 					'first',
 					'second',
 					'third',
 				]
-			),
-			'With an associative array' => array(
+			],
+			'With an associative array' => [
 				[
 					'a' => 'first',
 					'b' => 'second',
 					'c' => 'third',
 				]
-			),
-			'With an empty object' => array(
+			],
+			'With an empty object' => [
 				(object) []
-			),
-			'With an object' => array(
+			],
+			'With an object' => [
 				(object) [
 					'a' => 'first',
 					'b' => 'second',
 					'c' => 'third',
 				]
-			),
+			],
 			'With an empty string' => [
 				''
 			],
@@ -257,7 +257,7 @@ class _Test extends PHPUnit_Framework_TestCase
 			'With null' => [
 				null
 			],
-		);
+		];
 	}
 
 	public function testDeferredEvaluation()
@@ -269,11 +269,11 @@ class _Test extends PHPUnit_Framework_TestCase
 
 		$this->assertEquals(
 			[2, 6],
-			$doubleOdds->with(array(1, 2, 3))->value()
+			$doubleOdds->with([1, 2, 3])->value()
 		);
 		$this->assertEquals(
 			[14, 18, 22, 26],
-			$doubleOdds->with(array(7, 9, 11, 13))->value()
+			$doubleOdds->with([7, 9, 11, 13])->value()
 		);
 	}
 
@@ -283,7 +283,7 @@ class _Test extends PHPUnit_Framework_TestCase
 	 */
 	public function testInvalidChainMethod()
 	{
-		$chain = _::chain(array(1, 2, 3));
+		$chain = _::chain([1, 2, 3]);
 		$chain->foo();
 	}
 

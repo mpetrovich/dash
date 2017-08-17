@@ -17,39 +17,39 @@ class differenceTest extends PHPUnit_Framework_TestCase
 
 	public function cases()
 	{
-		return array(
-			'With empty arrays' => array(
+		return [
+			'With empty arrays' => [
 				[
 					[],
 					[],
 					[],
 				],
 				[]
-			),
-			'With non-intersecting arrays' => array(
-				array(
+			],
+			'With non-intersecting arrays' => [
+				[
 					[6, 5],
 					[1, 2],
 					[3, 4],
-				),
+				],
 				[6, 5, 1, 2, 3, 4]
-			),
-			'With partially intersecting arrays' => array(
-				array(
+			],
+			'With partially intersecting arrays' => [
+				[
 					[4, 1, 2],
 					[1, 2, 3],
 					[1, 3, 5],
-				),
+				],
 				[4, 2, 3, 5]
-			),
-			'With fully overlapping arrays' => array(
-				array(
+			],
+			'With fully overlapping arrays' => [
+				[
 					[1, 2],
 					[2, 1],
 					[2, 1],
-				),
+				],
 				[]
-			),
-		);
+			],
+		];
 	}
 }

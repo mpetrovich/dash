@@ -123,7 +123,7 @@ Name | Type | Description
 **Example:** 
 ```php
 Dash\each(
-	array(1, 2, 3),
+	[1, 2, 3],
 	function($n) { echo $n; }
 );  // Prints "123"
 ```
@@ -160,31 +160,31 @@ Name | Type | Description
 
 **Example:** 
 ```php
-$iterable = array(
-	'a' => array(
+$iterable = [
+	'a' => [
 		'b' => 'value'
-	)
-);
+	]
+];
 Dash\get($iterable, 'a.b') == 'value';
 
 ```
 
 **Example:** Array elements can be referenced by index
 ```php
-$iterable = array(
-	'people' => array(
-		array('name' => 'Pete'),
-		array('name' => 'John'),
-		array('name' => 'Paul'),
-	)
-);
+$iterable = [
+	'people' => [
+		['name' => 'Pete'],
+		['name' => 'John'],
+		['name' => 'Paul'],
+	]
+];
 Dash\get($iterable, 'people.1.name') == 'John';
 
 ```
 
 **Example:** Keys with the same name as the full path can be used
 ```php
-$iterable = array('a.b.c' => 'value');
+$iterable = ['a.b.c' => 'value'];
 Dash\get($iterable, 'a.b.c') == 'value';
 ```
 map
@@ -208,31 +208,31 @@ Name | Type | Description
 **Example:** 
 ```php
 Dash\map(
-	array(1, 2, 3),
+	[1, 2, 3],
 	function($n) {
 		return $n * 2;
 	}
-) == array(2, 4, 6);
+) == [2, 4, 6];
 
 ```
 
 **Example:** 
 ```php
 Dash\map(
-	array('roses' => 'red', 'violets' => 'blue'),
+	['roses' => 'red', 'violets' => 'blue'],
 	function($color, $flower) {
 		return $flower . ' are ' . $color;
 	}
-) == array('roses are red', 'violets are blue');
+) == ['roses are red', 'violets are blue'];
 
 ```
 
 **Example:** With $iteratee as a path
 ```php
 Dash\map(
-	array('color' => 'red', 'color' => 'blue'),
+	['color' => 'red', 'color' => 'blue'],
 	'color'
-) == array('red', 'blue');
+) == ['red', 'blue'];
 ```
 mapValues
 ---
@@ -254,18 +254,18 @@ Name | Type | Description
 **Example:** 
 ```php
 Dash\map(
-	array(1, 2, 3),
+	[1, 2, 3],
 	function($n) { return $n * 2; }
-) == array(2, 4, 6);
+) == [2, 4, 6];
 
 ```
 
 **Example:** 
 ```php
 Dash\map(
-	array('roses' => 'red', 'violets' => 'blue'),
+	['roses' => 'red', 'violets' => 'blue'],
 	function($color, $flower) { return $flower . ' are ' . $color; }
-) == array('roses' => 'roses are red', 'violets' => 'violets are blue');
+) == ['roses' => 'roses are red', 'violets' => 'violets are blue'];
 ```
 pluck
 ---
@@ -285,15 +285,15 @@ Name | Type | Description
 **Example:** 
 ```php
 Dash\pluck(
-	array(
-		array('a' => array('b' => 1)),
-		array('a' => 'missing'),
-		array('a' => array('b' => 3)),
-		array('a' => array('b' => 4)),
-	),
+	[
+		['a' => ['b' => 1]],
+		['a' => 'missing'],
+		['a' => ['b' => 3]],
+		['a' => ['b' => 4]],
+	],
 	'a.b',
 	'default'
-) == array(1, 'default', 3, 4);
+) == [1, 'default', 3, 4];
 ```
 property
 ---
@@ -312,11 +312,11 @@ Name | Type | Description
 **Example:** 
 ```php
 $getter = Dash\property('a.b');
-$iterable = array(
-	'a' => array(
+$iterable = [
+	'a' => [
 		'b' => 'value'
-	)
-);
+	]
+];
 $getter($iterable) == 'value';
 
 ```
@@ -324,13 +324,13 @@ $getter($iterable) == 'value';
 **Example:** Array elements can be referenced by index
 ```php
 $getter = Dash\property('people.1.name');
-$iterable = array(
-	'people' => array(
-		array('name' => 'Pete'),
-		array('name' => 'John'),
-		array('name' => 'Paul'),
-	)
-);
+$iterable = [
+	'people' => [
+		['name' => 'Pete'],
+		['name' => 'John'],
+		['name' => 'Paul'],
+	]
+];
 $getter($iterable) == 'John';
 
 ```
@@ -338,7 +338,7 @@ $getter($iterable) == 'John';
 **Example:** Keys with the same name as the full path can be used
 ```php
 $getter = Dash\property('a.b.c');
-$iterable = array('a.b.c' => 'value');
+$iterable = ['a.b.c' => 'value'];
 $getter($iterable) == 'value';
 ```
 

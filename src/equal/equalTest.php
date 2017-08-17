@@ -16,7 +16,7 @@ class equalTest extends PHPUnit_Framework_TestCase
 
 	public function cases()
 	{
-		return array(
+		return [
 			'should return true when the values are identical' => [
 				3,
 				3,
@@ -32,6 +32,6 @@ class equalTest extends PHPUnit_Framework_TestCase
 				3,
 				false
 			],
-		);
+		];
 	}
 }

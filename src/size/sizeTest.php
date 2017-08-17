@@ -16,7 +16,7 @@ class sizeTest extends PHPUnit_Framework_TestCase
 
 	public function cases()
 	{
-		return array(
+		return [
 			'With null' => [
 				null,
 				null
@@ -45,26 +45,26 @@ class sizeTest extends PHPUnit_Framework_TestCase
 				[],
 				0
 			],
-			'With an array' => array(
+			'With an array' => [
 				[1, 2, 3],
 				3
-			),
-			'With an empty object' => array(
+			],
+			'With an empty object' => [
 				(object) [],
 				0
-			),
-			'With an object' => array(
+			],
+			'With an object' => [
 				(object) ['a' => 1, 'b' => 2, 'c' => 3],
 				3
-			),
-			'With an empty ArrayObject' => array(
+			],
+			'With an empty ArrayObject' => [
 				new ArrayObject([]),
 				0
-			),
-			'With an ArrayObject' => array(
-				new ArrayObject(array(1, 2, 3)),
+			],
+			'With an ArrayObject' => [
+				new ArrayObject([1, 2, 3]),
 				3
-			),
-		);
+			],
+		];
 	}
 }

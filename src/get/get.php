@@ -14,21 +14,21 @@ namespace Dash;
  * @return mixed Value at $path on the collection
  *
  * @example
-	$iterable = array(
+	$iterable = [
 		'a' => [
 			'b' => 'value'
 		]
-	);
+	];
 	Dash\get($iterable, 'a.b') == 'value';
  *
  * @example Array elements can be referenced by index
-	$iterable = array(
-		'people' => array(
+	$iterable = [
+		'people' => [
 			['name' => 'Pete'],
 			['name' => 'John'],
 			['name' => 'Paul'],
-		)
-	);
+		]
+	];
 	Dash\get($iterable, 'people.1.name') == 'John';
  *
  * @example Keys with the same name as the full path can be used

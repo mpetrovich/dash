@@ -14,71 +14,71 @@ class propertyTest extends PHPUnit_Framework_TestCase
 
 	public function casesForProperty()
 	{
-		return array(
-			'With a valid path for an object' => array(
-				(object) array(
-					'a' => (object) array(
+		return [
+			'With a valid path for an object' => [
+				(object) [
+					'a' => (object) [
 						'b' => (object) [
 							'c' => 'value'
 						]
-					)
-				),
+					]
+				],
 				'a.b.c',
 				'value'
-			),
-			'With an invalid path for an object' => array(
-				(object) array(
-					'a' => (object) array(
+			],
+			'With an invalid path for an object' => [
+				(object) [
+					'a' => (object) [
 						'b' => (object) [
 							'c' => 'value'
 						]
-					)
-				),
+					]
+				],
 				'a.X.c',
 				'default'
-			),
-			'With a valid array index' => array(
-				(object) array(
-					'a' => array(
-						(object) array(
+			],
+			'With a valid array index' => [
+				(object) [
+					'a' => [
+						(object) [
 							'x' => (object) [
 								'y' => 'other'
 							]
-						),
+						],
 						(object) [
 							'b' => 'value'
 						],
-					)
-				),
+					]
+				],
 				'a.1.b',
 				'value'
-			),
-			'With an invalid array index' => array(
-				(object) array(
-					'a' => array(
-						(object) array(
+			],
+			'With an invalid array index' => [
+				(object) [
+					'a' => [
+						(object) [
 							'x' => (object) [
 								'y' => 'other'
 							]
-						),
+						],
 						(object) [
 							'b' => 'value'
 						],
-					)
-				),
+					]
+				],
 				'a.2.b',
 				'default'
-			),
-			'With a matching direct array key' => array(
+			],
+			'With a matching direct array key' => [
 				['a.b.c' => 'value'],
 				'a.b.c',
 				'value'
-			),
-			'With a matching direct object property' => array(
+			],
+			'With a matching direct object property' => [
 				(object) ['a.b.c' => 'value'],
 				'a.b.c',
 				'value'
-			),
-		);
+			],
+		];
 	}
 }

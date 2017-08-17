@@ -26,48 +26,48 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 				[],
 				[],
 			],
-			'should return an array of the values of an indexed array' => array(
+			'should return an array of the values of an indexed array' => [
 				[3, 8, 2, 5],
 				[3, 8, 2, 5],
-			),
-			'should return an array of the values of an associative array' => array(
+			],
+			'should return an array of the values of an associative array' => [
 				['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
 				['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
-			),
+			],
 
 			/*
 				With stdClass
 			 */
 
-			'should return an empty array for an empty stdClass' => array(
+			'should return an empty array for an empty stdClass' => [
 				(object) [],
 				[],
-			),
-			'should return an array of the values of a stdClass' => array(
+			],
+			'should return an array of the values of a stdClass' => [
 				(object) [3, 8, 2, 5],
 				[3, 8, 2, 5],
-			),
-			'should return an array of the values of an associative array' => array(
+			],
+			'should return an array of the values of an associative array' => [
 				(object) ['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
 				['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
-			),
+			],
 
 			/*
 				With ArrayObject
 			 */
 
-			'should return an empty array for an empty ArrayObject' => array(
+			'should return an empty array for an empty ArrayObject' => [
 				new ArrayObject([]),
 				[],
-			),
-			'should return an array of the values of an indexed ArrayObject' => array(
-				new ArrayObject(array(3, 8, 2, 5)),
+			],
+			'should return an array of the values of an indexed ArrayObject' => [
+				new ArrayObject([3, 8, 2, 5]),
 				[3, 8, 2, 5],
-			),
-			'should return an array of the values of an associative ArrayObject' => array(
-				new ArrayObject(array('a' => 3, 'b' => 8, 'c' => 2, 'd' => 5)),
+			],
+			'should return an array of the values of an associative ArrayObject' => [
+				new ArrayObject(['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5]),
 				['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
-			),
+			],
 		];
 	}
 

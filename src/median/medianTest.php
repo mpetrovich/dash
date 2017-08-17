@@ -16,7 +16,7 @@ class medianTest extends PHPUnit_Framework_TestCase
 
 	public function cases()
 	{
-		return array(
+		return [
 
 			/*
 				With array
@@ -26,48 +26,48 @@ class medianTest extends PHPUnit_Framework_TestCase
 				[],
 				0
 			],
-			'should return the median of the values of an array with an even number of values' => array(
+			'should return the median of the values of an array with an even number of values' => [
 				[3, 8, 2, 5],
 				4
-			),
-			'should return the median of the values of an array with an odd number of values' => array(
+			],
+			'should return the median of the values of an array with an odd number of values' => [
 				[3, 8, 2, 13, 5],
 				5
-			),
+			],
 
 			/*
 				With stdClass
 			 */
 
-			'should return zero for an empty stdClass' => array(
+			'should return zero for an empty stdClass' => [
 				(object) [],
 				0
-			),
-			'should return the median of the values of an stdClass with an even number of values' => array(
+			],
+			'should return the median of the values of an stdClass with an even number of values' => [
 				(object) [3, 8, 2, 5],
 				4
-			),
-			'should return the median of the values of an stdClass with an odd number of values' => array(
+			],
+			'should return the median of the values of an stdClass with an odd number of values' => [
 				(object) [3, 8, 2, 13, 5],
 				5
-			),
+			],
 
 			/*
 				With ArrayObject
 			 */
 
-			'should return zero for an empty ArrayObject' => array(
+			'should return zero for an empty ArrayObject' => [
 				new ArrayObject([]),
 				0
-			),
-			'should return the median of the values of an ArrayObject with an even number of values' => array(
-				new ArrayObject(array(3, 8, 2, 5)),
+			],
+			'should return the median of the values of an ArrayObject with an even number of values' => [
+				new ArrayObject([3, 8, 2, 5]),
 				4
-			),
-			'should return the median of the values of an ArrayObject with an odd number of values' => array(
-				new ArrayObject(array(3, 8, 2, 13, 5)),
+			],
+			'should return the median of the values of an ArrayObject with an odd number of values' => [
+				new ArrayObject([3, 8, 2, 13, 5]),
 				5
-			),
-		);
+			],
+		];
 	}
 }

@@ -16,7 +16,7 @@ class isOddTest extends PHPUnit_Framework_TestCase
 
 	public function casesForIsOdd()
 	{
-		return array(
+		return [
 			'should return false for an even value' => [
 				4,
 				false
@@ -25,6 +25,6 @@ class isOddTest extends PHPUnit_Framework_TestCase
 				3,
 				true
 			],
-		);
+		];
 	}
 }

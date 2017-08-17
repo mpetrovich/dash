@@ -95,21 +95,21 @@ class allTest extends PHPUnit_Framework_TestCase
 				'expected' => true,
 			],
 			'With an ArrayObject with no items that satisfy the predicate' => [
-				'iterable' => new ArrayObject(array(1, 2, 3, 4)),
+				'iterable' => new ArrayObject([1, 2, 3, 4]),
 				'predicate' => function ($value) {
 					return $value < 0;
 				},
 				'expected' => false,
 			],
 			'With an ArrayObject with one item that satisfies the predicate' => [
-				'iterable' => new ArrayObject(array(1, 2, -3, 4)),
+				'iterable' => new ArrayObject([1, 2, -3, 4]),
 				'predicate' => function ($value) {
 					return $value < 0;
 				},
 				'expected' => false,
 			],
 			'With an ArrayObject with all items that satisfy the predicate' => [
-				'iterable' => new ArrayObject(array(-1, -2, -3, -4)),
+				'iterable' => new ArrayObject([-1, -2, -3, -4]),
 				'predicate' => function ($value) {
 					return $value < 0;
 				},

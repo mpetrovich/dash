@@ -14,22 +14,22 @@ namespace Dash;
  *
  * @example
 	$getter = Dash\property('a.b');
-	$iterable = array(
+	$iterable = [
 		'a' => [
 			'b' => 'value'
 		]
-	);
+	];
 	$getter($iterable) == 'value';
  *
  * @example Array elements can be referenced by index
 	$getter = Dash\property('people.1.name');
-	$iterable = array(
-		'people' => array(
+	$iterable = [
+		'people' => [
 			['name' => 'Pete'],
 			['name' => 'John'],
 			['name' => 'Paul'],
-		)
-	);
+		]
+	];
 	$getter($iterable) == 'John';
  *
  * @example Keys with the same name as the full path can be used
