@@ -85,13 +85,23 @@ $result = __([1, 2, 3, 4, 5])
 	->value();
 ```
 
-Sometimes you don't need the return value of the chain. In those cases, use `execute()` instead of `value()`. Without it, the chain won't be processed:
+Sometimes you don't need the return value of the chain. However, the chain isn't processed until `value()` is called. For semantic convenience, `execute()` is also an alias for `value()`:
 
 ```php
-_::chain([1, 2, 3, 4, 5])
+$chain = _::chain([1, 2, 3, 4, 5])
 	->reverse()
-	->each(function ($n) { echo "T-minus $n..."; })
-	->execute();
+	->each(function ($n) {
+		echo "T-minus $n...\n";
+		sleep(1);
+	});
+
+// Nothing echoed yet
+
+$chain->value();
+// or
+$chain->execute();
+
+// Now it starts...
 ```
 
 
