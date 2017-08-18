@@ -21,8 +21,10 @@ Table of contents
 - [ary](#ary)
 - [call](#call)
 
-### All
+### Utility
 - [assertType](#asserttype)
+- [compare](#compare)
+- [display](#display)
 
 ### Array
 - [at](#at)
@@ -30,10 +32,6 @@ Table of contents
 ### Dash
 - [chain](#chain)
 - [custom](#custom)
-
-### Utility
-- [compare](#compare)
-- [display](#display)
 
 ### Other
 - [equal](#equal)
@@ -524,7 +522,7 @@ $saveUser = function ($name, $email) { … };
 call($saveUser, 'John', 'jdoe@gmail.com');
 ```
 
-All
+Utility
 ===
 
 assertType
@@ -546,6 +544,40 @@ Name | Type | Description
 $input = [1, 2, 3];
 assertType($input, 'object');  // will throw
 ```
+compare
+---
+```php
+compare($a, $b): int
+```
+Returns -1, 0, +1 if $a is less than, equal to, or great than $b, respectively.
+
+
+Name | Type | Description
+--- | --- | ---
+`$a` | `mixed` | 
+`$b` | `mixed` | 
+
+
+**Example:** 
+```php
+compare(2, 3);  // === -1
+compare(2, 1);  // === +1
+compare(2, 2);  // === 0
+```
+display
+---
+```php
+display($value): mixed
+```
+Prints a value.
+
+
+Name | Type | Description
+--- | --- | ---
+`$value` | `mixed` | 
+
+
+
 
 Array
 ===
@@ -608,44 +640,6 @@ Name | Type | Description
 _::setCustom('double', function ($n) { return $n * 2; });
 _::chain([1, 2, 3])->map(Dash\custom('double'))->value();  // === [2, 4, 6]
 ```
-
-Utility
-===
-
-compare
----
-```php
-compare($a, $b): int
-```
-Returns -1, 0, +1 if $a is less than, equal to, or great than $b, respectively.
-
-
-Name | Type | Description
---- | --- | ---
-`$a` | `mixed` | 
-`$b` | `mixed` | 
-
-
-**Example:** 
-```php
-compare(2, 3);  // === -1
-compare(2, 1);  // === +1
-compare(2, 2);  // === 0
-```
-display
----
-```php
-display($value): mixed
-```
-Prints a value.
-
-
-Name | Type | Description
---- | --- | ---
-`$value` | `mixed` | 
-
-
-
 
 Other
 ===

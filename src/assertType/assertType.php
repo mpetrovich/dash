@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Throws an exception if $input's type is not $type.
  *
- * @category All
+ * @category Utility
  * @param mixed $input
  * @param string|array $type Single type or list of types
  * @return void
