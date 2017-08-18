@@ -14,7 +14,7 @@ namespace Dash;
 	$saveUser = function ($name, $email) { … };
 	call($saveUser, 'John', 'jdoe@gmail.com');
  */
-function call($callable)
+function call($callable /* , ...args */)
 {
 	$args = array_slice(func_get_args(), 1);
 	return call_user_func_array($callable, $args);

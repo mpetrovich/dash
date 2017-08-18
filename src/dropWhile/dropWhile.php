@@ -2,15 +2,23 @@
 
 namespace Dash;
 
-function dropWhile($input, $predicate = 'Dash\identity')
+/**
+ * Returns a subset of $iterable that excludes elements from the beginning.
+ * Elements are dropped until $predicate returns falsey.
+ *
+ * @param iterable $iterable
+ * @param callable $predicate Invoked with ($value, $key, $iterable)
+ * @return array
+ */
+function dropWhile($iterable, $predicate = 'Dash\identity')
 {
-	assertType($input, ['iterable']);
+	assertType($iterable, ['iterable']);
 
 	$keys = [];
 	$done = false;
 
-	foreach ($input as $key => $value) {
-		if (!$done && call_user_func($predicate, $value, $key)) {
+	foreach ($iterable as $key => $value) {
+		if (!$done && call_user_func($predicate, $value, $key, $iterable)) {
 			continue;
 		}
 		else {
@@ -19,5 +27,5 @@ function dropWhile($input, $predicate = 'Dash\identity')
 		}
 	}
 
-	return pick($input, $keys);
+	return pick($iterable, $keys);
 }

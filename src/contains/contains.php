@@ -3,12 +3,12 @@
 namespace Dash;
 
 /**
- * Checks whether $iterable has any $item values for which $comparator($target, $item) is truthy.
+ * Checks whether $iterable has any elements for which $comparator($target, $element) is truthy.
  *
  * @param iterable $iterable
- * @param mixed $target Value to compare $iterable items with
- * @param callable $comparator Invoked with ($target, $item) for each $item value in $iterable
- * @return bool true if $comparator returns truthy for any items in $iterable
+ * @param mixed $target Value to compare $iterable elements against
+ * @param callable $comparator Invoked with ($target, $element) for each $element value in $iterable
+ * @return boolean true if $comparator returns truthy for any elements in $iterable
  *
  * @example With loose equality comparison (the default)
 	contains([1, '2', 3], 2);  // === true

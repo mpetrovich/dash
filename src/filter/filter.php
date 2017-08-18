@@ -8,7 +8,7 @@ namespace Dash;
  *
  * @category Iterable
  * @param iterable $iterable
- * @param callable $predicate Callable invoked with ($value, $key) for each item in $iterable
+ * @param callable $predicate Callable invoked with ($value, $key, $iterable) for each item in $iterable
  * @return array
  */
 function filter($iterable, $predicate)
@@ -18,7 +18,7 @@ function filter($iterable, $predicate)
 
 	// @todo Check for existence of ARRAY_FILTER_USE_BOTH and use array_filter() if it exists
 	foreach ($iterable as $key => $value) {
-		if (call_user_func($predicate, $value, $key)) {
+		if (call_user_func($predicate, $value, $key, $iterable)) {
 			$filtered[$key] = $value;
 		}
 	}

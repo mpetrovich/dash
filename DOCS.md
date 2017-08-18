@@ -50,6 +50,7 @@ Table of contents
 - [is](#is)
 - [isEmpty](#isempty)
 - [isEven](#iseven)
+- [isIndexedArray](#isindexedarray)
 - [isOdd](#isodd)
 - [join](#join)
 - [keyBy](#keyby)
@@ -89,7 +90,7 @@ Iterable
 all
 ---
 ```php
-all($iterable, $predicate): bool
+all($iterable, $predicate): boolean
 ```
 Checks whether $predicate returns truthy for every item in $iterable.
 
@@ -108,7 +109,7 @@ all([1, 3, 5], 'Dash\isOdd');  // === true
 any
 ---
 ```php
-any($iterable, $predicate): bool
+any($iterable, $predicate): boolean
 ```
 Checks whether $predicate returns truthy for any item in $iterable.
 
@@ -137,7 +138,10 @@ Name | Type | Description
 `$iterable` | `iterable` | 
 
 
-
+**Example:** 
+```php
+average([2, 3, 5, 8]);  // === 4.5
+```
 each
 ---
 ```php
@@ -175,7 +179,7 @@ Keys and key order are preserved.
 Name | Type | Description
 --- | --- | ---
 `$iterable` | `iterable` | 
-`$predicate` | `callable` | Callable invoked with ($value, $key) for each item in $iterable
+`$predicate` | `callable` | Callable invoked with ($value, $key, $iterable) for each item in $iterable
 
 
 
@@ -421,7 +425,7 @@ $fileExists('foo.txt', 123, 456);  // file_exists() will only get called with 'f
 call
 ---
 ```php
-call($callable): mixed
+call($callable /* , ...args */): mixed
 ```
 Invokes a callable with arguments passed as individual parameters.
 
@@ -507,7 +511,7 @@ compare
 ```php
 compare($a, $b): int
 ```
-Returns -1, 0, +1 if $a is less than, equal to, or great than $b.
+Returns -1, 0, +1 if $a is less than, equal to, or great than $b, respectively.
 
 
 Name | Type | Description
@@ -518,23 +522,23 @@ Name | Type | Description
 
 **Example:** 
 ```php
-compare(8, 9);  // === -1
-compare(8, 4);  // === +1
-compare(8, 8);  // === 0
+compare(2, 3);  // === -1
+compare(2, 1);  // === +1
+compare(2, 2);  // === 0
 ```
 contains
 ---
 ```php
-contains($iterable, $target, $comparator = 'Dash\equal'): bool
+contains($iterable, $target, $comparator = 'Dash\equal'): boolean
 ```
-Checks whether $iterable has any $item values for which $comparator($target, $item) is truthy.
+Checks whether $iterable has any elements for which $comparator($target, $element) is truthy.
 
 
 Name | Type | Description
 --- | --- | ---
 `$iterable` | `iterable` | 
-`$target` | `mixed` | Value to compare $iterable items with
-`$comparator` | `callable` | Invoked with ($target, $item) for each $item value in $iterable
+`$target` | `mixed` | Value to compare $iterable elements against
+`$comparator` | `callable` | Invoked with ($target, $element) for each $element value in $iterable
 
 
 **Example:** With loose equality comparison (the default)
@@ -568,40 +572,69 @@ _::chain([1, 2, 3])->map(Dash\custom('double'))->value();  // === [2, 4, 6]
 deltas
 ---
 ```php
-deltas($iterable)
+deltas($iterable): array
 ```
+Returns a new array whose values are the differences between subsequent elements of a iterable.
 
 
+Name | Type | Description
+--- | --- | ---
+`$iterable` | `iterable` | 
 
 
-
+**Example:** 
+```php
+deltas([3, 8, 9, 9, 5, 13]);  // === [0, 5, 1, 0, -4, 8]
+```
 difference
 ---
 ```php
-difference()
+difference($iterable /* , ...iterables */): array
 ```
+Returns a subset of items from the first iterable that are not present in any of the other iterables.
 
 
+Name | Type | Description
+--- | --- | ---
+`$iterable` | `iterable` | Iterable to compare against
+`$iterables,...` | `iterable` | 
 
 
-
+**Example:** 
+```php
+diff(
+	[1, 2, 3, 4, 5, 6],
+	[1, 3, 5],
+	[2, 8]
+);  // === [4, 6]
+```
 display
 ---
 ```php
-display($value)
+display($value): mixed
 ```
+Prints a value.
 
 
+Name | Type | Description
+--- | --- | ---
+`$value` | `mixed` | 
 
 
 
 dropWhile
 ---
 ```php
-dropWhile($input, $predicate = 'Dash\identity')
+dropWhile($iterable, $predicate = 'Dash\identity'): array
 ```
+Returns a subset of $iterable that excludes elements from the beginning.
+Elements are dropped until $predicate returns falsey.
 
 
+Name | Type | Description
+--- | --- | ---
+`$iterable` | `iterable` | 
+`$predicate` | `callable` | Invoked with ($value, $key, $iterable)
 
 
 
@@ -785,6 +818,24 @@ isEven($value)
 
 
 
+isIndexedArray
+---
+```php
+isIndexedArray($input): boolean
+```
+Returns whether $input is an array with sequential integer keys that start at 0.
+
+
+Name | Type | Description
+--- | --- | ---
+`$input` | `mixed` | 
+
+
+**Example:** 
+```php
+isIndexedArray([1, 2, 3]);  // === true
+isIndexedArray(['a' => 1, 'b' => 2]);  // === false
+```
 isOdd
 ---
 ```php

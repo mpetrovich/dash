@@ -3,16 +3,16 @@
 namespace Dash;
 
 /**
- * Returns -1, 0, +1 if $a is less than, equal to, or great than $b.
+ * Returns -1, 0, +1 if $a is less than, equal to, or great than $b, respectively.
  *
  * @param mixed $a
  * @param mixed $b
  * @return int
  *
  * @example
-	compare(8, 9);  // === -1
-	compare(8, 4);  // === +1
-	compare(8, 8);  // === 0
+	compare(2, 3);  // === -1
+	compare(2, 1);  // === +1
+	compare(2, 2);  // === 0
  */
 function compare($a, $b)
 {

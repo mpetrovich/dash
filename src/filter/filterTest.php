@@ -54,55 +54,16 @@ class filterTest extends PHPUnit_Framework_TestCase
 		];
 	}
 
-	/**
-	 * @dataProvider casesPredicate
-	 */
-	public function testPredicate($input, $expectedCallCount)
+	public function testPredicate()
 	{
-		$keyValueMap = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
-		$callCount = 0;
+		$input = ['a' => 2];
 
-		$predicate = function ($value, $key) use ($keyValueMap, &$callCount) {
-			$callCount++;
-			$this->assertEquals($keyValueMap[$key], $value);
+		$predicate = function ($value, $key, $iterable) use ($input) {
+			$this->assertSame(2, $value);
+			$this->assertSame('a', $key);
+			$this->assertSame($input, $iterable);
 		};
 
 		Dash\filter($input, $predicate);
-
-		$this->assertEquals($expectedCallCount, $callCount);
-	}
-
-	public function casesPredicate()
-	{
-		return [
-			'With null' => [
-				'input' => null,
-				'expectedCallCount' => 0,
-			],
-			'With an empty array' => [
-				'input' => [],
-				'expectedCallCount' => 0,
-			],
-			'With an array' => [
-				'input' => [],
-				'expectedCallCount' => 0,
-			],
-			'With an empty stdClass' => [
-				'input' => (object) [],
-				'expectedCallCount' => 0,
-			],
-			'With a non-empty stdClass' => [
-				'input' => (object) ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
-				'expectedCallCount' => 4,
-			],
-			'With an empty ArrayObject' => [
-				'input' => new ArrayObject([]),
-				'expectedCallCount' => 0,
-			],
-			'With an ArrayObject' => [
-				'input' => new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]),
-				'expectedCallCount' => 4,
-			],
-		];
 	}
 }

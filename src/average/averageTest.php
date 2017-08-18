@@ -16,43 +16,40 @@ class averageTest extends PHPUnit_Framework_TestCase
 	public function cases()
 	{
 		return [
-
-			/*
-				With array
-			 */
-
 			'With an empty array' => [
 				[],
 				0
+			],
+			'With an array of one' => [
+				[3],
+				3
 			],
 			'With an array' => [
 				[2, 3, 5, 8],
 				4.5
 			],
-
-			/*
-				With stdClass
-			 */
-
 			'With an empty stdClass' => [
 				(object) [],
 				0
 			],
+			'With an stdClass of one' => [
+				(object) ['a' => 3],
+				3
+			],
 			'With an stdClass' => [
-				(object) [2, 3, 5, 8],
+				(object) ['a' => 2, 'b' => 3, 'c' => 5, 'd' => 8],
 				4.5
 			],
-
-			/*
-				With ArrayObject
-			 */
-
 			'With an empty ArrayObject' => [
 				new ArrayObject([]),
 				0
 			],
+			'With an ArrayObject of one' => [
+				new ArrayObject(['a' => 3]),
+				3
+			],
 			'With an ArrayObject' => [
-				new ArrayObject([2, 3, 5, 8]),
+				new ArrayObject(['a' => 2, 'b' => 3, 'c' => 5, 'd' => 8]),
 				4.5
 			],
 		];

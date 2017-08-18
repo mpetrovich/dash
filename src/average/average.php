@@ -8,6 +8,9 @@ namespace Dash;
  * @category Iterable
  * @param iterable $iterable
  * @return double Average value
+ *
+ * @example
+	average([2, 3, 5, 8]);  // === 4.5
  */
 function average($iterable)
 {

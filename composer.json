@@ -55,6 +55,7 @@
 			"src/is/is.php",
 			"src/isEmpty/isEmpty.php",
 			"src/isEven/isEven.php",
+			"src/isIndexedArray/isIndexedArray.php",
 			"src/isOdd/isOdd.php",
 			"src/join/join.php",
 			"src/keyBy/keyBy.php",

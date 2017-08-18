@@ -8,7 +8,7 @@ namespace Dash;
  * @category Iterable
  * @param mixed $iterable
  * @param callable $predicate A callable invoked with ($value, $key) that returns a boolean
- * @return bool true if $predicate returns truthy for every item in $iterable
+ * @return boolean true if $predicate returns truthy for every item in $iterable
  *
  * @example
 	all([1, 2, 3], function($n) { return $n > 5; });  // === false

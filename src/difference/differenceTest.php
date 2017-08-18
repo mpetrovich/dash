@@ -11,42 +11,49 @@ class differenceTest extends PHPUnit_Framework_TestCase
 	public function test($iterables, $expected)
 	{
 		list($iterable1, $iterable2, $iterable3) = $iterables;
-		$actual = Dash\difference($iterable1, $iterable2, $iterable3);
-		$this->assertEquals($expected, $actual);
+		$this->assertEquals($expected, Dash\difference($iterable1, $iterable2, $iterable3));
 	}
 
 	public function cases()
 	{
 		return [
-			'With empty arrays' => [
+			'With empty iterables' => [
 				[
 					[],
-					[],
-					[],
+					(object) [],
+					new ArrayObject([]),
 				],
 				[]
 			],
-			'With non-intersecting arrays' => [
+			'With non-intersecting iterables' => [
 				[
 					[6, 5],
-					[1, 2],
-					[3, 4],
+					(object) [1, 2],
+					new ArrayObject([3, 4]),
 				],
-				[6, 5, 1, 2, 3, 4]
+				[6, 5]
 			],
-			'With partially intersecting arrays' => [
+			'With an indexed array and partially intersecting iterables' => [
 				[
-					[4, 1, 2],
-					[1, 2, 3],
-					[1, 3, 5],
+					[4, 2, 1, 6],
+					(object) [3, 4, 5],
+					new ArrayObject([1, 3, 5]),
 				],
-				[4, 2, 3, 5]
+				[1 => 2, 3 => 6]
 			],
-			'With fully overlapping arrays' => [
+			'With an associative array and partially intersecting iterables' => [
+				[
+					['a' => 4, 'b' => 2, 'c' => 1],
+					(object) [3, 4, 5],
+					new ArrayObject([1, 3, 5]),
+				],
+				['b' => 2]
+			],
+			'With fully overlapping iterables' => [
 				[
 					[1, 2],
-					[2, 1],
-					[2, 1],
+					(object) [2, 1],
+					new ArrayObject([2, 1]),
 				],
 				[]
 			],

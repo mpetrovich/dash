@@ -85,8 +85,10 @@
 	</rule>
 	<rule ref="Squiz.Functions.MultiLineFunctionDeclaration">
 		<exclude name="Squiz.Functions.MultiLineFunctionDeclaration.ContentAfterBrace"/>
+		<exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingBetween"/>
 	</rule>
 	<rule ref="Squiz.PHP.CommentedOutCode">
+		<exclude name="Squiz.PHP.CommentedOutCode.Found"/>
 		<exclude-pattern>*Test.php</exclude-pattern>
 	</rule>
 	<rule ref="Squiz.PHP.DisallowSizeFunctionsInLoops"/>
