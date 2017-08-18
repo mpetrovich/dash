@@ -98,7 +98,7 @@ Checks whether $predicate returns truthy for every item in $iterable.
 
 
 Parameter | Type | Description
---- | --- | ---
+--- | --- | :---
 `$iterable` | `mixed` | 
 `$predicate` | `callable` | A callable invoked with ($value, $key) that returns a boolean
 
@@ -117,7 +117,7 @@ Checks whether $predicate returns truthy for any item in $iterable.
 
 
 Parameter | Type | Description
---- | --- | ---
+--- | --- | :---
 `$iterable` | `mixed` | 
 `$predicate` | `callable` | A callable invoked with ($value, $key) that returns a boolean
 
@@ -136,7 +136,7 @@ Gets the average of all values in $iterable.
 
 
 Parameter | Type | Description
---- | --- | ---
+--- | --- | :---
 `$iterable` | `iterable` | 
 
 
@@ -153,7 +153,7 @@ Checks whether $iterable has any elements for which $comparator($target, $elemen
 
 
 Parameter | Type | Description
---- | --- | ---
+--- | --- | :---
 `$iterable` | `iterable` | 
 `$target` | `mixed` | Value to compare $iterable elements against
 `$comparator` | `callable` | Invoked with ($target, $element) for each $element value in $iterable
@@ -178,7 +178,7 @@ Returns a new array whose values are the differences between subsequent elements
 
 
 Parameter | Type | Description
---- | --- | ---
+--- | --- | :---
 `$iterable` | `iterable` | 
 
 
@@ -195,7 +195,7 @@ Returns a subset of items from the first iterable that are not present in any of
 
 
 Parameter | Type | Description
---- | --- | ---
+--- | --- | :---
 `$iterable` | `iterable` | Iterable to compare against
 `$iterables,...` | `iterable` | 
 
@@ -218,7 +218,7 @@ Elements are dropped until $predicate returns falsey.
 
 
 Parameter | Type | Description
---- | --- | ---
+--- | --- | :---
 `$iterable` | `iterable` | 
 `$predicate` | `callable` | Invoked with ($value, $key, $iterable)
 
@@ -237,7 +237,7 @@ use a native `foreach` loop instead.
 
 
 Parameter | Type | Description
---- | --- | ---
+--- | --- | :---
 `$iterable` | `array\|object` | 
 `$iteratee` | `Callable` | Function called with (element, key, collection) for each element in $iterable. If $iteratee returns false, subsequent elements will be skipped and iteration will end. 
 
@@ -259,7 +259,7 @@ Keys and key order are preserved.
 
 
 Parameter | Type | Description
---- | --- | ---
+--- | --- | :---
 `$iterable` | `iterable` | 
 `$predicate` | `callable` | Callable invoked with ($value, $key, $iterable) for each item in $iterable
 
@@ -274,7 +274,7 @@ Gets the value at a path on a collection.
 
 
 Parameter | Type | Description
---- | --- | ---
+--- | --- | :---
 `$iterable` | `array\|object` | 
 `$path` | `string` | Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period
 `$default` | `mixed` | Default value to return if nothing exists at $path 
@@ -322,7 +322,7 @@ is returned.
 
 
 Parameter | Type | Description
---- | --- | ---
+--- | --- | :---
 `$iterable` | `array\|object` | 
 `$iteratee` | `Callable\|string` | Function called with (element, key, collection) for each element in $iterable. The return value of $iteratee will be used as the corresponding element in the returned array. If $iteratee is a string, property($iteratee) will be used as the iteratee function. 
 
@@ -368,7 +368,7 @@ Keys in the original collection _are_ preserved.
 
 
 Parameter | Type | Description
---- | --- | ---
+--- | --- | :---
 `$iterable` | `array\|object` | 
 `$iteratee` | `Callable` | Function called with (element, key, collection) for each element in $iterable. The return value of $iteratee will be used as the corresponding element in the returned array. 
 
@@ -398,7 +398,7 @@ Gets the value at a path for all elements in a collection.
 
 
 Parameter | Type | Description
---- | --- | ---
+--- | --- | :---
 `$iterable` | `array\|object` | 
 `$path` | `string` | Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period
 `$default` | `mixed` | 
@@ -426,7 +426,7 @@ Creates a function that returns the value at a path on a collection.
 
 
 Parameter | Type | Description
---- | --- | ---
+--- | --- | :---
 `$path` | `string\|function` | Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period. If it is a function, the same function is returned.
 `$default` | `mixed` | Default value to return if nothing exists at $path
 
@@ -475,7 +475,7 @@ apply($callable, $args): mixed
 Invokes a callable with arguments passed as a list.
 
 Parameter | Type | Description
---- | --- | ---
+--- | --- | :---
 `$callable` | `callable` | 
 `$args` | `array` | 
 
@@ -494,7 +494,7 @@ Wraps $callable in a new function that only accepts up to $ary arguments and ign
 
 
 Parameter | Type | Description
---- | --- | ---
+--- | --- | :---
 `$callable` | `callable` | 
 `$ary` | `int` | Number of arguments to accept
 
@@ -512,7 +512,7 @@ call($callable /* , ...args */): mixed
 Invokes a callable with arguments passed as individual parameters.
 
 Parameter | Type | Description
---- | --- | ---
+--- | --- | :---
 `$callable` | `callable` | 
 
 
@@ -534,7 +534,7 @@ Throws an exception if $input's type is not $type.
 
 
 Parameter | Type | Description
---- | --- | ---
+--- | --- | :---
 `$input` | `mixed` | 
 `$type` | `string\|array` | Single type or list of types
 
@@ -553,7 +553,7 @@ Returns -1, 0, +1 if $a is less than, equal to, or great than $b, respectively.
 
 
 Parameter | Type | Description
---- | --- | ---
+--- | --- | :---
 `$a` | `mixed` | 
 `$b` | `mixed` | 
 
@@ -573,7 +573,7 @@ Prints a value.
 
 
 Parameter | Type | Description
---- | --- | ---
+--- | --- | :---
 `$value` | `mixed` | 
 
 
@@ -590,7 +590,7 @@ at($iterable, $index): mixed
 Gets the value at the $index-th value of $iterable, ignoring key values.
 
 Parameter | Type | Description
---- | --- | ---
+--- | --- | :---
 `$iterable` | `iterable` | 
 `$index` | `int\|string` | 
 
@@ -617,7 +617,7 @@ chain($input = null): Dash\_
 Alias for _::chain()
 
 Parameter | Type | Description
---- | --- | ---
+--- | --- | :---
 `$input` | `mixed` | 
 
 
@@ -631,7 +631,7 @@ Gets a custom operation by name.
 
 
 Parameter | Type | Description
---- | --- | ---
+--- | --- | :---
 `$name` | `string` | Name of the custom operation
 
 
@@ -833,7 +833,7 @@ Returns whether $input is an array with sequential integer keys that start at 0.
 
 
 Parameter | Type | Description
---- | --- | ---
+--- | --- | :---
 `$input` | `mixed` | 
 
 
