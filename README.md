@@ -44,7 +44,7 @@ Usage
 Dash operations can be used alone or chained together.
 
 
-### Standalone operations
+### Operations
 As static methods:
 
 ```php
