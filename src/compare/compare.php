@@ -5,6 +5,7 @@ namespace Dash;
 /**
  * Returns -1, 0, +1 if $a is less than, equal to, or great than $b, respectively.
  *
+ * @category Utility
  * @param mixed $a
  * @param mixed $b
  * @return int

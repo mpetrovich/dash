@@ -5,6 +5,7 @@ namespace Dash;
 /**
  * Prints a value.
  *
+ * @category Utility
  * @param mixed $value
  * @return mixed $value
  */

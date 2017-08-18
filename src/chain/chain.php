@@ -6,6 +6,7 @@ namespace Dash;
  * Alias for _::chain()
  * @see _::chain()
  *
+ * @category Dash
  * @param mixed $input
  * @return Dash\_ New chain instance
  */

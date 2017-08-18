@@ -4,6 +4,10 @@ Table of contents
 - [all](#all)
 - [any](#any)
 - [average](#average)
+- [contains](#contains)
+- [deltas](#deltas)
+- [difference](#difference)
+- [dropWhile](#dropwhile)
 - [each](#each)
 - [filter](#filter)
 - [get](#get)
@@ -23,15 +27,15 @@ Table of contents
 ### Array
 - [at](#at)
 
-### Other
+### Dash
 - [chain](#chain)
-- [compare](#compare)
-- [contains](#contains)
 - [custom](#custom)
-- [deltas](#deltas)
-- [difference](#difference)
+
+### Utility
+- [compare](#compare)
 - [display](#display)
-- [dropWhile](#dropwhile)
+
+### Other
 - [equal](#equal)
 - [every](#every)
 - [find](#find)
@@ -142,6 +146,86 @@ Name | Type | Description
 ```php
 average([2, 3, 5, 8]);  // === 4.5
 ```
+contains
+---
+```php
+contains($iterable, $target, $comparator = 'Dash\equal'): boolean
+```
+Checks whether $iterable has any elements for which $comparator($target, $element) is truthy.
+
+
+Name | Type | Description
+--- | --- | ---
+`$iterable` | `iterable` | 
+`$target` | `mixed` | Value to compare $iterable elements against
+`$comparator` | `callable` | Invoked with ($target, $element) for each $element value in $iterable
+
+
+**Example:** With loose equality comparison (the default)
+```php
+contains([1, '2', 3], 2);  // === true
+
+```
+
+**Example:** With strict equality comparison
+```php
+contains([1, '2', 3], 2, 'Dash\identity');  // === false
+```
+deltas
+---
+```php
+deltas($iterable): array
+```
+Returns a new array whose values are the differences between subsequent elements of a iterable.
+
+
+Name | Type | Description
+--- | --- | ---
+`$iterable` | `iterable` | 
+
+
+**Example:** 
+```php
+deltas([3, 8, 9, 9, 5, 13]);  // === [0, 5, 1, 0, -4, 8]
+```
+difference
+---
+```php
+difference($iterable /* , ...iterables */): array
+```
+Returns a subset of items from the first iterable that are not present in any of the other iterables.
+
+
+Name | Type | Description
+--- | --- | ---
+`$iterable` | `iterable` | Iterable to compare against
+`$iterables,...` | `iterable` | 
+
+
+**Example:** 
+```php
+diff(
+	[1, 2, 3, 4, 5, 6],
+	[1, 3, 5],
+	[2, 8]
+);  // === [4, 6]
+```
+dropWhile
+---
+```php
+dropWhile($iterable, $predicate = 'Dash\identity'): array
+```
+Returns a subset of $iterable that excludes elements from the beginning.
+Elements are dropped until $predicate returns falsey.
+
+
+Name | Type | Description
+--- | --- | ---
+`$iterable` | `iterable` | 
+`$predicate` | `callable` | Invoked with ($value, $key, $iterable)
+
+
+
 each
 ---
 ```php
@@ -490,7 +574,7 @@ at([1, 3, 5, 8], 2);  // === 5
 at([3 => 'a', 2 => 'b', 1 => 'c', 0 => 'd'], 2);  // === 'c'
 ```
 
-Other
+Dash
 ===
 
 chain
@@ -505,6 +589,28 @@ Name | Type | Description
 `$input` | `mixed` | 
 
 
+
+custom
+---
+```php
+custom($name): function
+```
+Gets a custom operation by name.
+
+
+Name | Type | Description
+--- | --- | ---
+`$name` | `string` | Name of the custom operation
+
+
+**Example:** 
+```php
+_::setCustom('double', function ($n) { return $n * 2; });
+_::chain([1, 2, 3])->map(Dash\custom('double'))->value();  // === [2, 4, 6]
+```
+
+Utility
+===
 
 compare
 ---
@@ -526,88 +632,6 @@ compare(2, 3);  // === -1
 compare(2, 1);  // === +1
 compare(2, 2);  // === 0
 ```
-contains
----
-```php
-contains($iterable, $target, $comparator = 'Dash\equal'): boolean
-```
-Checks whether $iterable has any elements for which $comparator($target, $element) is truthy.
-
-
-Name | Type | Description
---- | --- | ---
-`$iterable` | `iterable` | 
-`$target` | `mixed` | Value to compare $iterable elements against
-`$comparator` | `callable` | Invoked with ($target, $element) for each $element value in $iterable
-
-
-**Example:** With loose equality comparison (the default)
-```php
-contains([1, '2', 3], 2);  // === true
-
-```
-
-**Example:** With strict equality comparison
-```php
-contains([1, '2', 3], 2, 'Dash\identity');  // === false
-```
-custom
----
-```php
-custom($name): function
-```
-Gets a custom operation by name.
-
-
-Name | Type | Description
---- | --- | ---
-`$name` | `string` | Name of the custom operation
-
-
-**Example:** 
-```php
-_::setCustom('double', function ($n) { return $n * 2; });
-_::chain([1, 2, 3])->map(Dash\custom('double'))->value();  // === [2, 4, 6]
-```
-deltas
----
-```php
-deltas($iterable): array
-```
-Returns a new array whose values are the differences between subsequent elements of a iterable.
-
-
-Name | Type | Description
---- | --- | ---
-`$iterable` | `iterable` | 
-
-
-**Example:** 
-```php
-deltas([3, 8, 9, 9, 5, 13]);  // === [0, 5, 1, 0, -4, 8]
-```
-difference
----
-```php
-difference($iterable /* , ...iterables */): array
-```
-Returns a subset of items from the first iterable that are not present in any of the other iterables.
-
-
-Name | Type | Description
---- | --- | ---
-`$iterable` | `iterable` | Iterable to compare against
-`$iterables,...` | `iterable` | 
-
-
-**Example:** 
-```php
-diff(
-	[1, 2, 3, 4, 5, 6],
-	[1, 3, 5],
-	[2, 8]
-);  // === [4, 6]
-```
 display
 ---
 ```php
@@ -622,21 +646,9 @@ Name | Type | Description
 
 
 
-dropWhile
----
-```php
-dropWhile($iterable, $predicate = 'Dash\identity'): array
-```
-Returns a subset of $iterable that excludes elements from the beginning.
-Elements are dropped until $predicate returns falsey.
 
-
-Name | Type | Description
---- | --- | ---
-`$iterable` | `iterable` | 
-`$predicate` | `callable` | Invoked with ($value, $key, $iterable)
-
-
+Other
+===
 
 equal
 ---

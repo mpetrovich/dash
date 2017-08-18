@@ -5,6 +5,7 @@ namespace Dash;
 /**
  * Checks whether $iterable has any elements for which $comparator($target, $element) is truthy.
  *
+ * @category Iterable
  * @param iterable $iterable
  * @param mixed $target Value to compare $iterable elements against
  * @param callable $comparator Invoked with ($target, $element) for each $element value in $iterable

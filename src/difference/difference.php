@@ -5,6 +5,7 @@ namespace Dash;
 /**
  * Returns a subset of items from the first iterable that are not present in any of the other iterables.
  *
+ * @category Iterable
  * @param iterable $iterable Iterable to compare against
  * @param iterable $iterables,...
  * @return array

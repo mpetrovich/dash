@@ -5,6 +5,7 @@ namespace Dash;
 /**
  * Gets a custom operation by name.
  *
+ * @category Dash
  * @param string $name Name of the custom operation
  * @return function The custom operation
  *
