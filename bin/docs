@@ -164,7 +164,7 @@ function renderDoc($op)
 		$paramsTable = _::reduce($op->params, function($output, $param) {
 			$type = str_replace('|', '\|', $param->type);
 			return $output . "`$param->name` | `$type` | $param->description\n";
-		}, "Name | Type | Description\n--- | --- | ---\n");
+		}, "Parameter | Type | Description\n--- | --- | ---\n");
 	}
 	else {
 		$paramsTable = '';
