@@ -747,13 +747,28 @@ groupBy($input, $groupBy, $defaultGroup = null)
 hasDirect
 ---
 ```php
-hasDirect($subject, $field)
+hasDirect($input, $field): boolean
+```
+Checks whether a value has a direct child field.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$input` | `mixed` | 
+`$field` | `string` | Name of the field
+
+
+**Example:** 
+```php
+hasDirect(['a' => ['b' => 1, 'c' => 2], 'a');  // === true
+hasDirect(['a' => ['b' => 1, 'c' => 2], 'b');  // === false
+
 ```
 
-
-
-
-
+**Example:** 
+```php
+hasDirect((object) ['a' => 1, 'b' => 2], 'b');  // === true
+```
 identical
 ---
 ```php
