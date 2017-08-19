@@ -9,6 +9,9 @@ namespace Dash;
  * @param mixed $a
  * @param mixed $b
  * @return boolean
+ *
+ * @example
+	equal('1', 1);  // === true
  */
 function equal($a, $b)
 {

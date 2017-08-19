@@ -11,6 +11,11 @@ Table of contents
 - [each](#each)
 - [every](#every)
 - [filter](#filter)
+- [find](#find)
+- [findKey](#findkey)
+- [findLast](#findlast)
+- [findValue](#findvalue)
+- [first](#first)
 - [get](#get)
 - [map](#map)
 - [mapValues](#mapvalues)
@@ -36,11 +41,6 @@ Table of contents
 - [custom](#custom)
 
 ### Other
-- [find](#find)
-- [findKey](#findkey)
-- [findLast](#findlast)
-- [findValue](#findvalue)
-- [first](#first)
 - [getDirect](#getdirect)
 - [getDirectRef](#getdirectref)
 - [groupBy](#groupby)
@@ -268,8 +268,7 @@ filter
 ```php
 filter($iterable, $predicate): array
 ```
-Returns a subset of $iterable for which $predicate is truthy.
-Keys and key order are preserved.
+Returns a subset of $iterable for which $predicate is truthy. Keys are preserved.
 
 
 Parameter | Type | Description
@@ -278,7 +277,108 @@ Parameter | Type | Description
 `$predicate` | `callable` | Callable invoked with ($value, $key, $iterable) for each item in $iterable
 
 
+**Example:** 
+```php
+filter([1, 2, 3, 4], function ($n) { return $n > 2; });  // === [3, 4]
+filter([1, 2, 3, 4], 'Dash\isEven');  // === [2, 4]
+```
+find
+---
+```php
+find($iterable, $predicate): array|null
+```
+Returns the key & value of the first element for which $predicate returns truthy.
 
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$predicate` | `callable\|mixed` | Value to compare against, or callable invoked with ($value, $key, $iterable)
+
+
+**Example:** With comparison value
+```php
+$array = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
+find($array, 3);  // === ['c', 3]
+find($array, 'Dash\isEven');  // === ['b', 2]
+```
+findKey
+---
+```php
+findKey($iterable, $predicate): string|integer|null
+```
+Returns the key of the first element for which $predicate returns truthy.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$predicate` | `callable\|mixed` | Value to compare against, or callable invoked with ($value, $key, $iterable)
+
+
+**Example:** With comparison value
+```php
+$array = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
+find($array, 3);  // === 'c'
+find($array, 'Dash\isEven');  // === 'b'
+```
+findLast
+---
+```php
+findLast($iterable, $predicate): array|null
+```
+Returns the key & value of the last element for which $predicate returns truthy.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$predicate` | `callable\|mixed` | Value to compare against, or callable invoked with ($value, $key, $iterable)
+
+
+**Example:** With comparison value
+```php
+$array = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
+find($array, 3);  // === ['c', 3]
+find($array, 'Dash\isEven');  // === ['d', 4]
+```
+findValue
+---
+```php
+findValue($iterable, $predicate): string|integer|null
+```
+Returns the value of the first element for which $predicate returns truthy.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$predicate` | `callable\|mixed` | Value to compare against, or callable invoked with ($value, $key, $iterable)
+
+
+**Example:** With comparison value
+```php
+$array = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
+find($array, 3);  // === 3
+find($array, 'Dash\isEven');  // === 2
+```
+first
+---
+```php
+first($iterable): mixed
+```
+Returns the first value of $iterable.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+
+
+**Example:** 
+```php
+first(['a' => '1st', 'b' => '2nd', 'c' => '3rd']);  // === '1st'
+```
 get
 ---
 ```php
@@ -606,7 +706,10 @@ Parameter | Type | Description
 `$b` | `mixed` | 
 
 
-
+**Example:** 
+```php
+equal('1', 1);  // === true
+```
 
 Array
 ===
@@ -672,56 +775,6 @@ _::chain([1, 2, 3])->map(Dash\custom('double'))->value();  // === [2, 4, 6]
 
 Other
 ===
-
-find
----
-```php
-find($iterable, $predicate)
-```
-
-
-
-
-
-findKey
----
-```php
-findKey($iterable, $predicate)
-```
-
-
-
-
-
-findLast
----
-```php
-findLast($iterable, $predicate)
-```
-
-
-
-
-
-findValue
----
-```php
-findValue($iterable, $predicate)
-```
-
-
-
-
-
-first
----
-```php
-first($iterable)
-```
-
-
-
-
 
 getDirect
 ---
