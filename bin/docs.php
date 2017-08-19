@@ -12,23 +12,23 @@ buildDocs($sourceDir, $destFilepath);
 function buildDocs($sourceDir, $destFilepath)
 {
 	$categories = _::chain(new FilesystemIterator($sourceDir))
-		->map(function($fileinfo) { return pathinfo($fileinfo)['filename']; })
-		->reject(function($name) { return $name === '' || $name[0] === '_'; })
-		->map(function($name) { return "src/$name/$name.php"; })
-		->filter(function($filepath) { return file_exists($filepath); })
+		->map(function ($fileinfo) { return pathinfo($fileinfo)['filename']; })
+		->reject(function ($name) { return $name === '' || $name[0] === '_'; })
+		->map(function ($name) { return "src/$name/$name.php"; })
+		->filter(function ($filepath) { return file_exists($filepath); })
 		->map('createDoc')
 		->groupBy('category', 'Other')
-		->each(function($docs) { return _::sort($docs, _::property('name')); })
+		->each(function ($docs) { return _::sort($docs, _::property('name')); })
 		->value();
 
 	_::chain($categories)
 		->map('renderCategory')
 		->join("\n")
-		->thru(function($renderedCategories) use ($categories) {
+		->thru(function ($renderedCategories) use ($categories) {
 			$tableOfContents = renderTableOfContents($categories);
 			return "$tableOfContents\n\n$renderedCategories";
 		})
-		->tap(function($content) use ($destFilepath) { file_put_contents($destFilepath, $content); })
+		->tap(function ($content) use ($destFilepath) { file_put_contents($destFilepath, $content); })
 		->execute();
 }
 
@@ -77,14 +77,14 @@ function parseDocblock($docblock)
 
 	// Description
 	$op->description = _::chain($lines)
-		->takeWhile(function($line) { return strpos($line, '@') === false; })
+		->takeWhile(function ($line) { return strpos($line, '@') === false; })
 		->join("\n")
 		->value();
 
 	// Category
 	$op->category = _::chain($lines)
-		->filter(function($line) { return strpos($line, '@category') === 0; })
-		->map(function($line) {
+		->filter(function ($line) { return strpos($line, '@category') === 0; })
+		->map(function ($line) {
 			$matches = [];
 			preg_match('/^@category\s+(.*)$/', $line, $matches);
 			$category = $matches[1];
@@ -95,8 +95,8 @@ function parseDocblock($docblock)
 
 	// Return type
 	$op->returnType = _::chain($lines)
-		->filter(function($line) { return strpos($line, '@return') === 0; })
-		->map(function($line) {
+		->filter(function ($line) { return strpos($line, '@return') === 0; })
+		->map(function ($line) {
 			$matches = [];
 			preg_match('/^@return\s+([\S]+)/', $line, $matches);
 			$returnType = $matches[1];
@@ -106,7 +106,7 @@ function parseDocblock($docblock)
 		->value();
 
 	// Parameters
-	$allParamLines = _::dropWhile($lines, function($line) {
+	$allParamLines = _::dropWhile($lines, function ($line) {
 		return strpos($line, '@param') !== 0;
 	});
 
@@ -134,7 +134,7 @@ function parseDocblock($docblock)
 	}
 
 	// Examples
-	$allExampleLines = _::dropWhile($lines, function($line) {
+	$allExampleLines = _::dropWhile($lines, function ($line) {
 		return strpos($line, '@example') !== 0;
 	});
 
@@ -161,7 +161,7 @@ function parseDocblock($docblock)
 function renderDoc($op)
 {
 	if ($op->params) {
-		$paramsTable = _::reduce($op->params, function($output, $param) {
+		$paramsTable = _::reduce($op->params, function ($output, $param) {
 			$type = str_replace('|', '\|', $param->type);
 			return $output . "`$param->name` | `$type` | $param->description\n";
 		}, "Parameter | Type | Description\n--- | --- | :---\n");
@@ -171,7 +171,7 @@ function renderDoc($op)
 	}
 
 	$examples = _::chain($op->examples)
-		->map(function($example) {
+		->map(function ($example) {
 			return <<<END
 **Example:** {$example->description}
 ```php
@@ -217,9 +217,9 @@ END;
 function renderTableOfContents($categories)
 {
 	$list = _::chain($categories)
-		->map(function($ops, $category) {
+		->map(function ($ops, $category) {
 			$opsList = _::chain($ops)
-				->map(function($op) { return "- [{$op->name}](#{$op->slug})"; })
+				->map(function ($op) { return "- [{$op->name}](#{$op->slug})"; })
 				->join("\n")
 				->value();
 
