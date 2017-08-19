@@ -4,6 +4,7 @@ namespace Dash;
 
 /**
  * @see all
+ * @codingStandardsIgnoreFile
  * @codeCoverageIgnore
  */
 function every($iterable, $predicate)
