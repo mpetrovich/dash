@@ -43,13 +43,16 @@ namespace Dash;
  */
 function map($iterable, $iteratee = 'Dash\identity')
 {
+	if (empty($iterable)) {
+		return [];
+	}
+
 	$iteratee = property($iteratee);
-	$array = toArray($iterable);
 	$mapped = [];
 
-	array_walk($array, function ($value, $key) use ($iterable, $iteratee, &$mapped) {
+	foreach ($iterable as $key => $value) {
 		$mapped[] = call_user_func($iteratee, $value, $key, $iterable);
-	});
+	}
 
 	return $mapped;
 }
