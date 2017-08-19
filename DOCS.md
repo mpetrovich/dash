@@ -9,6 +9,7 @@ Table of contents
 - [difference](#difference)
 - [dropWhile](#dropwhile)
 - [each](#each)
+- [every](#every)
 - [filter](#filter)
 - [get](#get)
 - [map](#map)
@@ -35,7 +36,6 @@ Table of contents
 
 ### Other
 - [equal](#equal)
-- [every](#every)
 - [find](#find)
 - [findKey](#findkey)
 - [findLast](#findlast)
@@ -227,27 +227,41 @@ Parameter | Type | Description
 each
 ---
 ```php
-each($iterable, $iteratee): array|object
+each($iterable, $iteratee): mixed
 ```
 Iterates over a collection and calls an iteratee function for each element.
 
-Any changes to the value, key, or collection from within the iteratee
-function are not persisted. If the original collection needs to be mutated,
-use a native `foreach` loop instead.
+Any changes to the value, key, or collection from within the iteratee function are not persisted.
 
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `array\|object` | 
-`$iteratee` | `Callable` | Function called with (element, key, collection) for each element in $iterable. If $iteratee returns false, subsequent elements will be skipped and iteration will end. 
+`$iterable` | `iterable` | 
+`$iteratee` | `callable` | Invoked with ($value, $key, $iterable) for each element in $iterable. If $iteratee returns false, iteration will end and subsequent elements will be skipped.
 
 
 **Example:** 
 ```php
-Dash\each(
-	[1, 2, 3],
-	function($n) { echo $n; }
-);  // Prints "123"
+each([1, 2, 3], function ($value, $index, $array) { // $array[$index] === $value });
+```
+every
+---
+```php
+every($iterable, $predicate): boolean
+```
+Checks whether $predicate returns truthy for every item in $iterable.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `mixed` | 
+`$predicate` | `callable` | A callable invoked with ($value, $key) that returns a boolean
+
+
+**Example:** 
+```php
+every([1, 2, 3], function($n) { return $n > 0; });  // === true
+every([1, 2, 3], 'Dash\isOdd');  // === false
 ```
 filter
 ---
@@ -647,20 +661,15 @@ Other
 equal
 ---
 ```php
-equal($a, $b)
+equal($a, $b): boolean
 ```
+Returns whether $a and $b are loosely equal.
 
 
-
-
-
-every
----
-```php
-every($iterable, $predicate)
-```
-
-
+Parameter | Type | Description
+--- | --- | :---
+`$a` | `mixed` | 
+`$b` | `mixed` | 
 
 
 
