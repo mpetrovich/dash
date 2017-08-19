@@ -9,7 +9,6 @@ Table of contents
 - [difference](#difference)
 - [dropWhile](#dropwhile)
 - [each](#each)
-- [every](#every)
 - [filter](#filter)
 - [find](#find)
 - [findKey](#findkey)
@@ -41,6 +40,7 @@ Table of contents
 - [custom](#custom)
 
 ### Other
+- [every](#every)
 - [getDirect](#getdirect)
 - [getDirectRef](#getdirectref)
 - [groupBy](#groupby)
@@ -243,25 +243,6 @@ Parameter | Type | Description
 **Example:** 
 ```php
 each([1, 2, 3], function ($value, $index, $array) { // $array[$index] === $value });
-```
-every
----
-```php
-every($iterable, $predicate): boolean
-```
-Checks whether $predicate returns truthy for every item in $iterable.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `mixed` | 
-`$predicate` | `callable` | A callable invoked with ($value, $key) that returns a boolean
-
-
-**Example:** 
-```php
-every([1, 2, 3], function($n) { return $n > 0; });  // === true
-every([1, 2, 3], 'Dash\isOdd');  // === false
 ```
 filter
 ---
@@ -775,6 +756,16 @@ _::chain([1, 2, 3])->map(Dash\custom('double'))->value();  // === [2, 4, 6]
 
 Other
 ===
+
+every
+---
+```php
+every($iterable, $predicate)
+```
+
+
+
+
 
 getDirect
 ---

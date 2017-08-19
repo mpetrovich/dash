@@ -16,5 +16,9 @@ namespace Dash;
  */
 function all($iterable, $predicate)
 {
-	return every($iterable, $predicate);
+	if (isEmpty($iterable)) {
+		return true;
+	}
+
+	return !any($iterable, negate($predicate));
 }
