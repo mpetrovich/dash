@@ -26,6 +26,7 @@ Table of contents
 - [assertType](#asserttype)
 - [compare](#compare)
 - [display](#display)
+- [equal](#equal)
 
 ### Array
 - [at](#at)
@@ -35,7 +36,6 @@ Table of contents
 - [custom](#custom)
 
 ### Other
-- [equal](#equal)
 - [find](#find)
 - [findKey](#findkey)
 - [findLast](#findlast)
@@ -592,6 +592,21 @@ Parameter | Type | Description
 
 
 
+equal
+---
+```php
+equal($a, $b): boolean
+```
+Returns whether $a and $b are loosely equal.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$a` | `mixed` | 
+`$b` | `mixed` | 
+
+
+
 
 Array
 ===
@@ -657,21 +672,6 @@ _::chain([1, 2, 3])->map(Dash\custom('double'))->value();  // === [2, 4, 6]
 
 Other
 ===
-
-equal
----
-```php
-equal($a, $b): boolean
-```
-Returns whether $a and $b are loosely equal.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$a` | `mixed` | 
-`$b` | `mixed` | 
-
-
 
 find
 ---
