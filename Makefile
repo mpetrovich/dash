@@ -38,7 +38,7 @@ endif
 #   make check-style op=map
 #
 check-style:
-	@vendor/bin/phpcs --standard=phpcs.xml -s src/$(op) bin/
+	@vendor/bin/phpcs --standard=phpcs.xml -s src/$(op)
 
 
 # Fixes code to match style rules
@@ -49,7 +49,7 @@ check-style:
 #   make fix-style op=map
 #
 fix-style:
-	@vendor/bin/phpcbf --standard=phpcs.xml -s src/$(op) bin/
+	@vendor/bin/phpcbf --standard=phpcs.xml -s src/$(op)
 
 
 # Builds documentation for all operations
