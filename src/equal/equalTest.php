@@ -10,24 +10,28 @@ class equalTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($a, $b, $expected)
 	{
-		$actual = Dash\equal($a, $b);
-		$this->assertSame($expected, $actual);
+		$this->assertSame($expected, Dash\equal($a, $b));
 	}
 
 	public function cases()
 	{
 		return [
-			'should return true when the values are identical' => [
+			'With identical values' => [
 				3,
 				3,
 				true
 			],
-			'should return true when the values are equal but not identical' => [
+			'With equal but not identical values' => [
 				'3',
 				3,
 				true
 			],
-			'should return false when the values are not equal' => [
+			'With inequal values of the same type' => [
+				4,
+				3,
+				false
+			],
+			'With inequal values of different types' => [
 				'4',
 				3,
 				false

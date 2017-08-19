@@ -86,4 +86,18 @@ class eachTest extends PHPUnit_Framework_TestCase
 			],
 		];
 	}
+
+	public function testShortCircuit()
+	{
+		$iterated = [];
+
+		Dash\each([1, 2, 3, 4, 5], function ($value) use (&$iterated) {
+			$iterated[] = $value;
+			if ($value === 3) {
+				return false;
+			}
+		});
+
+		$this->assertEquals([1, 2, 3], $iterated);
+	}
 }
