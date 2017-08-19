@@ -44,7 +44,7 @@ Usage
 Dash operations can be used alone or chained together.
 
 
-### Operations
+### Standalone
 As static methods:
 
 ```php
@@ -53,7 +53,7 @@ use Dash\_;
 _::map([1, 2, 3], function ($n) { return $n * 2; });  // === [2, 4, 6]
 ```
 
-or as standalone functions:
+or a namespaced functions:
 
 ```php
 Dash\map([1, 2, 3], function ($n) { return $n * 2; });  // === [2, 4, 6]
