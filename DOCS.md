@@ -1,7 +1,7 @@
 Table of contents
 ===
 ### Iterable
-- [all](#all) / every
+- [all](#all--every) / every
 - [any](#any)
 - [average](#average)
 - [contains](#contains)
@@ -53,7 +53,7 @@ Table of contents
 - [isIndexedArray](#isindexedarray)
 - [isOdd](#isodd)
 - [join](#join)
-- [keyBy](#keyby) / indexBy
+- [keyBy](#keyby--indexby) / indexBy
 - [keys](#keys)
 - [last](#last)
 - [matches](#matches)

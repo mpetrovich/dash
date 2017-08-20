@@ -40,7 +40,6 @@ function createDoc($filepath)
 
 	$name = pathinfo($filepath)['filename'];
 	$op->name = $name;
-	$op->slug = strtolower($name);
 
 	$op->signature = extractFunctionSignature($filepath);
 
@@ -259,7 +258,13 @@ function renderTableOfContents($categories)
 				->map(function ($op) {
 					$aliases = implode(' / ', $op->aliases);
 					$aliases = $aliases ? " / $aliases" : '';
-					return "- [{$op->name}](#{$op->slug})$aliases";
+
+					$slug = _::chain(array_merge([$op->name], $op->aliases))
+						->map(Dash\ary('strtolower', 1))
+						->join('--')
+						->value();
+
+					return "- [{$op->name}](#{$slug})$aliases";
 				})
 				->join("\n")
 				->value();
