@@ -46,7 +46,6 @@ Table of contents
 - [hasDirect](#hasdirect)
 - [identical](#identical)
 - [identity](#identity)
-- [indexBy](#indexby)
 - [intersection](#intersection)
 - [is](#is)
 - [isEmpty](#isempty)
@@ -54,7 +53,7 @@ Table of contents
 - [isIndexedArray](#isindexedarray)
 - [isOdd](#isodd)
 - [join](#join)
-- [keyBy](#keyby)
+- [keyBy](#keyby) / indexBy
 - [keys](#keys)
 - [last](#last)
 - [matches](#matches)
@@ -846,16 +845,6 @@ identity($value)
 
 
 
-indexBy
----
-```php
-indexBy($input, $indexBy = 'Dash\identity')
-```
-
-
-
-
-
 intersection
 ---
 ```php
@@ -934,7 +923,7 @@ join($input, $glue)
 
 
 
-keyBy
+keyBy / indexBy
 ---
 ```php
 keyBy($input, $keyBy = 'Dash\identity')
