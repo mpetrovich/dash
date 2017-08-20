@@ -1,6 +1,7 @@
 Changelog
 ===
 - [Planned](#planned)
+- [0.6.0](#060)
 - [0.5.0](#050)
 - [0.4.0](#040)
 - [0.3.0](#030)
@@ -12,6 +13,26 @@ Planned
 ---
 - Feature-parity with similar libraries
 - Performance improvements
+
+
+0.6.0
+---
+- Breaking changes:
+	- Renamed `_::execute()` to `_::run()`
+	- Renamed `_::setGlobalAlias()` to `_::addGlobalAlias()`
+- New operations:
+	- `apply()`
+	- `ary()`
+	- `call()`
+	- `copy()`
+	- `custom()`
+	- `display()`
+	- `dropWhile()`
+	- `getDirect()`
+	- `getDirectRef()`
+	- `hasDirect()`
+	- `is()`
+	- `result()`
 
 
 0.5.0
@@ -44,24 +65,27 @@ Planned
 
 0.2.0
 ---
-- Renamed `Dash\Dash` class to `Dash\_`
-- Renamed `::with()` to `::chain()`
-- Removed `Dash\Collections` and `Dash\Functions` sub-namespaces; now all functions are in the root `Dash` namespace
-- Removed support for PHP 5.3
+- Breaking changes:
+	- Renamed `Dash\Dash` class to `Dash\_`
+	- Renamed `::with()` to `::chain()`
+	- Removed `Dash\Collections` and `Dash\Functions` sub-namespaces; now all functions are in the root `Dash` namespace
+	- Removed support for PHP 5.3
 
 
 0.1.0
 ---
 - Standalone and chained usage
 - Deferred evaluation
-- New operations:
+- Initial operations:
 	- `any()`
 	- `at()`
 	- `average()`
+	- `compare()`
 	- `contains()`
 	- `deltas()`
 	- `difference()`
 	- `each()`
+	- `equal()`
 	- `every()`
 	- `filter()`
 	- `find()`
@@ -70,8 +94,12 @@ Planned
 	- `findValue()`
 	- `first()`
 	- `get()`
+	- `identical()`
+	- `identity()`
 	- `intersection()`
 	- `isEmpty()`
+	- `isEven()`
+	- `isOdd()`
 	- `keys()`
 	- `last()`
 	- `map()`
@@ -81,6 +109,9 @@ Planned
 	- `max()`
 	- `median()`
 	- `min()`
+	- `negate()`
+	- `partial()`
+	- `partialRight()`
 	- `pluck()`
 	- `property()`
 	- `reduce()`
@@ -97,12 +128,3 @@ Planned
 	- `values()`
 	- `where()`
 	- `without()`
-	- `compare()`
-	- `equal()`
-	- `identical()`
-	- `identity()`
-	- `isEven()`
-	- `isOdd()`
-	- `negate()`
-	- `partial()`
-	- `partialRight()`
