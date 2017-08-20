@@ -8,21 +8,21 @@ namespace Dash;
  * @category Iterable
  * @param string|function $path Path of the property to retrieve;
  *                              can be nested by delimiting each sub-property or array index with a period.
- *                              If it is a function, the same function is returned.
+ *                              If it is already a function, the same function is returned.
  * @param mixed $default Default value to return if nothing exists at $path
  * @return function Function that accepts a collection and returns the value at $path on the collection
  *
  * @example
-	$getter = Dash\property('a.b');
+	$getter = property('a.b');
 	$iterable = [
 		'a' => [
 			'b' => 'value'
 		]
 	];
-	$getter($iterable) == 'value';
+	$getter($iterable);  // === 'value';
  *
  * @example Array elements can be referenced by index
-	$getter = Dash\property('people.1.name');
+	$getter = property('people.1.name');
 	$iterable = [
 		'people' => [
 			['name' => 'Pete'],
@@ -30,12 +30,12 @@ namespace Dash;
 			['name' => 'Paul'],
 		]
 	];
-	$getter($iterable) == 'John';
+	$getter($iterable) === 'John';
  *
  * @example Keys with the same name as the full path can be used
-	$getter = Dash\property('a.b.c');
+	$getter = property('a.b.c');
 	$iterable = ['a.b.c' => 'value'];
-	$getter($iterable) == 'value';
+	$getter($iterable);  // === 'value';
  */
 function property($path, $default = null)
 {
