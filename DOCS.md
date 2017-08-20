@@ -67,6 +67,7 @@ Table of contents
 - [pick](#pick)
 - [reduce](#reduce)
 - [reject](#reject)
+- [result](#result)
 - [reverse](#reverse)
 - [set](#set)
 - [size](#size)
@@ -534,25 +535,25 @@ Creates a function that returns the value at a path on a collection.
 
 Parameter | Type | Description
 --- | --- | :---
-`$path` | `string\|function` | Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period. If it is a function, the same function is returned.
+`$path` | `string\|function` | Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period. If it is already a function, the same function is returned.
 `$default` | `mixed` | Default value to return if nothing exists at $path
 
 
 **Example:** 
 ```php
-$getter = Dash\property('a.b');
+$getter = property('a.b');
 $iterable = [
 	'a' => [
 		'b' => 'value'
 	]
 ];
-$getter($iterable) == 'value';
+$getter($iterable);  // === 'value';
 
 ```
 
 **Example:** Array elements can be referenced by index
 ```php
-$getter = Dash\property('people.1.name');
+$getter = property('people.1.name');
 $iterable = [
 	'people' => [
 		['name' => 'Pete'],
@@ -560,15 +561,15 @@ $iterable = [
 		['name' => 'Paul'],
 	]
 ];
-$getter($iterable) == 'John';
+$getter($iterable) === 'John';
 
 ```
 
 **Example:** Keys with the same name as the full path can be used
 ```php
-$getter = Dash\property('a.b.c');
+$getter = property('a.b.c');
 $iterable = ['a.b.c' => 'value'];
-$getter($iterable) == 'value';
+$getter($iterable);  // === 'value';
 ```
 
 Function
@@ -1057,6 +1058,16 @@ reject
 ---
 ```php
 reject($iterable, $predicate)
+```
+
+
+
+
+
+result
+---
+```php
+result($input, $path, $default = null)
 ```
 
 
