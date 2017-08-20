@@ -30,7 +30,7 @@ function buildDocs($sourceDir, $destFilepath)
 			return "$tableOfContents\n\n$renderedCategories";
 		})
 		->tap(function ($content) use ($destFilepath) { file_put_contents($destFilepath, $content); })
-		->execute();
+		->run();
 }
 
 function createDoc($filepath)
@@ -185,7 +185,7 @@ function resolveAliases($ops)
 		->each(function ($op) use (&$nonAliases) {
 			$nonAliases[$op->aliasOf]->aliases[] = $op->name;
 		})
-		->execute();
+		->run();
 
 	return _::values($nonAliases);
 }

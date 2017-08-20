@@ -192,7 +192,7 @@ class _
 	 * @see value()
 	 * @return mixed
 	 */
-	public function execute()
+	public function run()
 	{
 		return $this->value();
 	}

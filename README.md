@@ -85,7 +85,7 @@ $result = __([1, 2, 3, 4, 5])
 	->value();
 ```
 
-Sometimes you don't need the return value of the chain. However, the chain isn't processed until `value()` is called. For semantic convenience, `execute()` is also an alias for `value()`:
+Sometimes you don't need the return value of the chain. However, the chain isn't processed until `value()` is called. For semantic convenience, `run()` is also an alias for `value()`:
 
 ```php
 $chain = _::chain([1, 2, 3, 4, 5])
@@ -99,14 +99,14 @@ $chain = _::chain([1, 2, 3, 4, 5])
 
 $chain->value();
 // or
-$chain->execute();
+$chain->run();
 
 // Now it starts...
 ```
 
 
 ### Lazy evaluation
-Chained operations are not evaluated until `value()` or `execute()` is called. Furthermore, the input data can be changed and evaluated multiple times via `with()`. This makes it simple to create reusable chains:
+Chained operations are not evaluated until `value()` or `run()` is called. Furthermore, the input data can be changed and evaluated multiple times via `with()`. This makes it simple to create reusable chains:
 
 ```php
 $chain = _::chain()
