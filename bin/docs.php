@@ -17,6 +17,7 @@ function buildDocs($sourceDir, $destFilepath)
 		->map(function ($name) { return "src/$name/$name.php"; })
 		->filter(function ($filepath) { return file_exists($filepath); })
 		->map('createDoc')
+		->thru('resolveAliases')
 		->groupBy('category', 'Other')
 		->each(function ($docs) { return _::sort($docs, _::property('name')); })
 		->value();
@@ -93,6 +94,20 @@ function parseDocblock($docblock)
 		->first()
 		->value();
 
+	// Alias
+	$op->aliasOf = _::chain($lines)
+		->filter(function ($line) { return strpos($line, '@see') === 0; })
+		->map(function ($line) {
+			$matches = [];
+			preg_match('/^@see\s+(.*)$/', $line, $matches);
+			$aliasOf = $matches[1];
+			return $aliasOf;
+		})
+		->first()
+		->value();
+
+	$op->isAlias = !is_null($op->aliasOf);
+
 	// Return type
 	$op->returnType = _::chain($lines)
 		->filter(function ($line) { return strpos($line, '@return') === 0; })
@@ -158,8 +173,28 @@ function parseDocblock($docblock)
 	return $op;
 }
 
+function resolveAliases($ops)
+{
+	$nonAliases = _::chain($ops)
+		->map(function ($op) { $op->aliases = []; return $op; })
+		->reject('isAlias')
+		->indexBy('name')
+		->value();
+
+	_::chain($ops)
+		->filter('isAlias')
+		->each(function ($op) use (&$nonAliases) {
+			$nonAliases[$op->aliasOf]->aliases[] = $op->name;
+		})
+		->execute();
+
+	return _::values($nonAliases);
+}
+
 function renderDoc($op)
 {
+	$aliases = $op->aliases ? sprintf(' / %s', implode(' / ', $op->aliases)) : '';
+
 	if ($op->params) {
 		$paramsTable = _::reduce($op->params, function ($output, $param) {
 			$type = str_replace('|', '\|', $param->type);
@@ -185,7 +220,7 @@ END;
 	$returnType = $op->returnType ? ": {$op->returnType}" : '';
 
 	return <<<END
-{$op->name}
+{$op->name}$aliases
 ---
 ```php
 {$op->signature}$returnType
@@ -201,6 +236,7 @@ END;
 function renderCategory($docs, $category)
 {
 	$renderedDocs = _::chain($docs)
+		->reject('isAlias')
 		->map('renderDoc')
 		->join("\n")
 		->value();
@@ -219,7 +255,12 @@ function renderTableOfContents($categories)
 	$list = _::chain($categories)
 		->map(function ($ops, $category) {
 			$opsList = _::chain($ops)
-				->map(function ($op) { return "- [{$op->name}](#{$op->slug})"; })
+				->reject('isAlias')
+				->map(function ($op) {
+					$aliases = implode(' / ', $op->aliases);
+					$aliases = $aliases ? " / $aliases" : '';
+					return "- [{$op->name}](#{$op->slug})$aliases";
+				})
 				->join("\n")
 				->value();
 

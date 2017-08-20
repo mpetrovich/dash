@@ -1,7 +1,7 @@
 Table of contents
 ===
 ### Iterable
-- [all](#all)
+- [all](#all) / every
 - [any](#any)
 - [average](#average)
 - [contains](#contains)
@@ -40,7 +40,6 @@ Table of contents
 - [custom](#custom)
 
 ### Other
-- [every](#every)
 - [getDirect](#getdirect)
 - [getDirectRef](#getdirectref)
 - [groupBy](#groupby)
@@ -89,7 +88,7 @@ Table of contents
 Iterable
 ===
 
-all
+all / every
 ---
 ```php
 all($iterable, $predicate): boolean
@@ -262,6 +261,20 @@ Parameter | Type | Description
 ```php
 filter([1, 2, 3, 4], function ($n) { return $n > 2; });  // === [3, 4]
 filter([1, 2, 3, 4], 'Dash\isEven');  // === [2, 4]
+
+```
+
+**Example:** With matchesProperty() shorthand
+```php
+filter([
+	['name' => 'abc', 'active' => false],
+	['name' => 'def', 'active' => true],
+	['name' => 'ghi', 'active' => true],
+], 'active');
+// === [
+	['name' => 'def', 'active' => true],
+	['name' => 'ghi', 'active' => true]
+]
 ```
 find
 ---
@@ -729,6 +742,7 @@ chain($input = null): Dash\_
 ```
 Alias for _::chain()
 
+
 Parameter | Type | Description
 --- | --- | :---
 `$input` | `mixed` | 
@@ -756,16 +770,6 @@ _::chain([1, 2, 3])->map(Dash\custom('double'))->value();  // === [2, 4, 6]
 
 Other
 ===
-
-every
----
-```php
-every($iterable, $predicate)
-```
-
-
-
-
 
 getDirect
 ---
