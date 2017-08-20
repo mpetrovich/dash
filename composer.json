@@ -76,6 +76,7 @@
 			"src/property/property.php",
 			"src/reduce/reduce.php",
 			"src/reject/reject.php",
+			"src/result/result.php",
 			"src/reverse/reverse.php",
 			"src/set/set.php",
 			"src/size/size.php",
