@@ -10,18 +10,21 @@ class isEvenTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneIsEven($value, $expected)
 	{
-		$actual = Dash\isEven($value);
-		$this->assertSame($expected, $actual);
+		$this->assertSame($expected, Dash\isEven($value));
 	}
 
 	public function casesForIsEven()
 	{
 		return [
-			'should return true for an even value' => [
+			'should return true for an even integer' => [
 				4,
 				true
 			],
-			'should return false for an odd value' => [
+			'should return true for an even double' => [
+				4.7,
+				true
+			],
+			'should return false for an odd integer' => [
 				3,
 				false
 			],

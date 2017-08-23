@@ -48,10 +48,7 @@ Table of contents
 ### Other
 - [intersection](#intersection)
 - [is](#is)
-- [isEmpty](#isempty)
-- [isEven](#iseven)
 - [isIndexedArray](#isindexedarray)
-- [isOdd](#isodd)
 - [join](#join)
 - [keyBy](#keyby--indexby) / indexBy
 - [keys](#keys)
@@ -83,6 +80,11 @@ Table of contents
 - [values](#values)
 - [where](#where)
 - [without](#without)
+- [](#--isempty) / isEmpty
+
+### Number
+- [isEven](#iseven)
+- [isOdd](#isodd)
 
 
 Iterable
@@ -452,7 +454,7 @@ Like getDirect(), but returns a reference to the value at the given key of an it
 
 Parameter | Type | Description
 --- | --- | :---
-`&$iterable` | `iterable` | 
+`$iterable` | `iterable` | 
 `$key` | `string` | 
 
 
@@ -935,26 +937,6 @@ is($value, $type)
 
 
 
-isEmpty
----
-```php
-isEmpty($input)
-```
-
-
-
-
-
-isEven
----
-```php
-isEven($value)
-```
-
-
-
-
-
 isIndexedArray
 ---
 ```php
@@ -973,16 +955,6 @@ Parameter | Type | Description
 isIndexedArray([1, 2, 3]);  // === true
 isIndexedArray(['a' => 1, 'b' => 2]);  // === false
 ```
-isOdd
----
-```php
-isOdd($value)
-```
-
-
-
-
-
 join
 ---
 ```php
@@ -1293,3 +1265,59 @@ without($iterable, $excluded, $predicate = null)
 
 
 
+ / isEmpty
+---
+```php
+
+```
+
+
+
+
+
+
+Number
+===
+
+isEven
+---
+```php
+isEven($value): boolean
+```
+Checks whether a number is even.
+
+If a double is provided, only its integer component is evaluated.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `number` | 
+
+
+**Example:** 
+```php
+isEven(3);  // === false
+isEven(4);  // === true
+isEven(4.7);  // === true
+```
+isOdd
+---
+```php
+isOdd($value): boolean
+```
+Checks whether a number is odd.
+
+If a double is provided, only its integer component is evaluated.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `number` | 
+
+
+**Example:** 
+```php
+isOdd(4);  // === false
+isOdd(3);  // === true
+isOdd(3.7);  // === true
+```

@@ -10,19 +10,22 @@ class isOddTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneIsOdd($value, $expected)
 	{
-		$actual = Dash\isOdd($value);
-		$this->assertSame($expected, $actual);
+		$this->assertSame($expected, Dash\isOdd($value));
 	}
 
 	public function casesForIsOdd()
 	{
 		return [
-			'should return false for an even value' => [
+			'should return false for an even integer' => [
 				4,
 				false
 			],
-			'should return true for an odd value' => [
+			'should return true for an odd integer' => [
 				3,
+				true
+			],
+			'should return true for an odd double' => [
+				3.7,
 				true
 			],
 		];
