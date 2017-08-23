@@ -10,12 +10,13 @@ class identityTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($value, $expected)
 	{
-		$actual = Dash\identity($value);
-		$this->assertSame($expected, $actual);
+		$this->assertSame($expected, Dash\identity($value));
 	}
 
 	public function cases()
 	{
+		$a = new ArrayObject([1, 2, 3]);
+
 		return [
 			'With an empty array' => [
 				[],
@@ -28,7 +29,11 @@ class identityTest extends PHPUnit_Framework_TestCase
 			'With a scalar value' => [
 				'abc',
 				'abc'
-			]
+			],
+			'With an ArrayObject' => [
+				$a,
+				$a
+			],
 		];
 	}
 }

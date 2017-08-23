@@ -7,8 +7,9 @@ namespace Dash;
  *
  * @category Iterable
  * @param array|object $iterable
- * @param string $path Path of the property to retrieve;
- *                     can be nested by delimiting each sub-property or array index with a period
+ * @param callable|string $path Callable used to retrieve the value or path of the property to retrieve;
+ *                              Paths can be nested by delimiting each sub-property or array index with a period,
+ *                              eg. 'a.b.0.c'
  * @param mixed $default Default value to return if nothing exists at $path
  *
  * @return mixed Value at $path on the collection

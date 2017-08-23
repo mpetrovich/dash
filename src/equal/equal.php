@@ -3,7 +3,7 @@
 namespace Dash;
 
 /**
- * Returns whether $a and $b are loosely equal.
+ * Checks whether two values are loosely equal (same value, but types can be different).
  *
  * @category Utility
  * @param mixed $a
@@ -11,7 +11,12 @@ namespace Dash;
  * @return boolean
  *
  * @example
-	equal('1', 1);  // === true
+	equal(3, '3');  // === true
+	equal(3, 3);    // === true
+ *
+ * @example
+	equal([1, 2, 3], [1, '2', 3]);  // === true
+	equal([1, 2, 3], [1, 2, 3]);    // === true
  */
 function equal($a, $b)
 {

@@ -8,9 +8,9 @@ class hasDirectTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($input, $field, $expected)
+	public function test($input, $key, $expected)
 	{
-		$this->assertEquals($expected, Dash\hasDirect($input, $field));
+		$this->assertEquals($expected, Dash\hasDirect($input, $key));
 	}
 
 	public function cases()
@@ -18,57 +18,57 @@ class hasDirectTest extends PHPUnit_Framework_TestCase
 		return [
 			'With null' => [
 				'input' => null,
-				'field' => 'foo',
+				'key' => 'foo',
 				'expected' => false,
 			],
 			'With a number' => [
 				'input' => 123.45,
-				'field' => 'foo',
+				'key' => 'foo',
 				'expected' => false,
 			],
 			'With a string' => [
 				'input' => 'hello',
-				'field' => 'foo',
+				'key' => 'foo',
 				'expected' => false,
 			],
 			'With an non-stdClass object' => [
 				'input' => new DateTime(),
-				'field' => 'getTimestamp',
+				'key' => 'getTimestamp',
 				'expected' => false,
 			],
 			'With an empty array' => [
 				'input' => [],
-				'field' => 0,
+				'key' => 0,
 				'expected' => false,
 			],
 			'With an indexed array' => [
 				'input' => [2, 3, 5, 8],
-				'field' => 2,
+				'key' => 2,
 				'expected' => true,
 			],
 			'With an associative array' => [
 				'input' => ['a' => 1, 'b' => 2, 'c' => 3],
-				'field' => 'b',
+				'key' => 'b',
 				'expected' => true,
 			],
 			'With an empty stdClass' => [
 				'input' => (object) [],
-				'field' => 'b',
+				'key' => 'b',
 				'expected' => false,
 			],
 			'With an stdClass' => [
 				'input' => (object) ['a' => 1, 'b' => 2, 'c' => 3],
-				'field' => 'b',
+				'key' => 'b',
 				'expected' => true,
 			],
 			'With an empty ArrayObject' => [
 				'input' => new ArrayObject([]),
-				'field' => 'b',
+				'key' => 'b',
 				'expected' => false,
 			],
 			'With an ArrayObject' => [
 				'input' => new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3]),
-				'field' => 'b',
+				'key' => 'b',
 				'expected' => true,
 			],
 		];

@@ -13,7 +13,7 @@ namespace Dash;
  */
 function dropWhile($iterable, $predicate = 'Dash\identity')
 {
-	assertType($iterable, ['iterable']);
+	assertType($iterable, 'iterable');
 
 	$keys = [];
 	$done = false;

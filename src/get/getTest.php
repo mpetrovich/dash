@@ -8,9 +8,9 @@ class getTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($iterable, $path, $expected)
+	public function test($input, $path, $expected)
 	{
-		$actual = Dash\get($iterable, $path, 'default');
+		$actual = Dash\get($input, $path, 'default');
 		$this->assertEquals($expected, $actual);
 	}
 
@@ -79,6 +79,11 @@ class getTest extends PHPUnit_Framework_TestCase
 			'With a matching direct object property' => [
 				(object) ['a.b.c' => 'value'],
 				'a.b.c',
+				'value'
+			],
+			'With a callable path' => [
+				(object) ['foo' => 'value'],
+				function ($iterable) { return $iterable->foo; },
 				'value'
 			],
 		];

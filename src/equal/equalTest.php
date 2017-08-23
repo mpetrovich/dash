@@ -36,6 +36,21 @@ class equalTest extends PHPUnit_Framework_TestCase
 				3,
 				false
 			],
+			'With two identical arrays' => [
+				[1, 2, 3],
+				[1, 2, 3],
+				true
+			],
+			'With two non-identical arrays' => [
+				[1, 2, 3],
+				[1, '2', 3],
+				true
+			],
+			'With two non-identical numbers' => [
+				123,
+				123.0,
+				true
+			],
 		];
 	}
 }

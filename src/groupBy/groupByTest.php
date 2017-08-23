@@ -22,6 +22,11 @@ class groupByTest extends PHPUnit_Framework_TestCase
 				'expected' => [true => [1, 3, 5], false => [2, 4]],
 			],
 			[
+				'input' => [2.1, 2.5, 3.5, 3.9, 4],
+				'groupBy' => 'floor',
+				'expected' => [2 => [2.1, 2.5], 3 => [3.5, 3.9], 4 => [4]],
+			],
+			[
 				'input' => [
 					['name' => 'John', 'gender' => 'male'],
 					['name' => 'Alice', 'gender' => 'female'],

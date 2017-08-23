@@ -2,17 +2,32 @@
 
 namespace Dash;
 
-function getDirect($input, $field, $default = null)
+/**
+ * Gets the value at the given key of an iterable.
+ *
+ * @category Iterable
+ * @param iterable $iterable
+ * @param string $key
+ * @param mixed $default Value to return if no value at $key exists
+ * @return mixed
+ *
+ * @example With an array
+	getDirect(['a' => 'one', 'b' => 'two'], 'b');  // === 'two'
+ *
+ * @example With an object
+	getDirect((object) ['a' => 'one', 'b' => 'two'], 'b');  // === 'two'
+ */
+function getDirect($iterable, $key, $default = null)
 {
-	if (is_array($input) && array_key_exists($field, $input)) {
-		$value = $input[$field];
+	if (is_array($iterable) && array_key_exists($key, $iterable)) {
+		$value = $iterable[$key];
 	}
-	elseif (is_object($input) && property_exists($input, $field)) {
-		$value = $input->$field;
+	elseif (is_object($iterable) && property_exists($iterable, $key)) {
+		$value = $iterable->$key;
 	}
 	else {
-		$array = toArray($input);
-		$value = isset($array[$field]) ? $array[$field] : $default;
+		$array = toArray($iterable);
+		$value = isset($array[$key]) ? $array[$key] : $default;
 	}
 
 	return $value;

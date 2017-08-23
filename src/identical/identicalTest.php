@@ -10,8 +10,7 @@ class identicalTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($a, $b, $expected)
 	{
-		$actual = Dash\identical($a, $b);
-		$this->assertSame($expected, $actual);
+		$this->assertSame($expected, Dash\identical($a, $b));
 	}
 
 	public function cases()
@@ -47,14 +46,9 @@ class identicalTest extends PHPUnit_Framework_TestCase
 				'def',
 				false
 			],
-			'With two identical numbers' => [
-				123,
-				123,
-				true
-			],
 			'With two non-identical numbers' => [
 				123,
-				321,
+				123.0,
 				false
 			],
 			'With two identical booleans' => [

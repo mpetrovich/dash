@@ -3,10 +3,11 @@
 namespace Dash;
 
 /**
- * Checks whether a value has a direct child field.
+ * Checks whether an iterable has a value at a given key.
  *
- * @param mixed $input
- * @param string $field Name of the field
+ * @category Iterable
+ * @param array|object|ArrayAccess $iterable
+ * @param string $key
  * @return boolean
  *
  * @example
@@ -16,9 +17,9 @@ namespace Dash;
  * @example
 	hasDirect((object) ['a' => 1, 'b' => 2], 'b');  // === true
  */
-function hasDirect($input, $field)
+function hasDirect($iterable, $key)
 {
-	return is_array($input) && array_key_exists($field, $input)
-		|| is_object($input) && property_exists($input, $field)
-		|| $input instanceof \ArrayAccess && $input->offsetExists($field);
+	return is_array($iterable) && array_key_exists($key, $iterable)
+		|| is_object($iterable) && property_exists($iterable, $key)
+		|| $iterable instanceof \ArrayAccess && $iterable->offsetExists($key);
 }
