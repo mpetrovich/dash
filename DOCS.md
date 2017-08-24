@@ -20,6 +20,7 @@ Table of contents
 - [getDirectRef](#getdirectref)
 - [groupBy](#groupby)
 - [hasDirect](#hasdirect)
+- [isEmpty](#isempty)
 - [join](#join)
 - [keyBy](#keyby--indexby) / indexBy
 - [keys](#keys)
@@ -80,7 +81,6 @@ Table of contents
 - [values](#values)
 - [where](#where)
 - [without](#without)
-- [](#--isempty) / isEmpty
 
 ### Number
 - [isEven](#iseven)
@@ -510,6 +510,28 @@ hasDirect(['a' => ['b' => 1, 'c' => 2], 'b');  // === false
 **Example:** 
 ```php
 hasDirect((object) ['a' => 1, 'b' => 2], 'b');  // === true
+```
+isEmpty
+---
+```php
+isEmpty($input): boolean
+```
+Checks whether a value is an empty iterable or value.
+
+A value is empty if it is an iterable of size zero or loosely equals false.
+
+Parameter | Type | Description
+--- | --- | :---
+`$input` | `mixed` | 
+
+
+**Example:** 
+```php
+isEmpty([]);                 // === true
+isEmpty(new ArrayObject());  // === true
+isEmpty('');                 // === true
+isEmpty(0);                  // === true
+isEmpty([0]);                // === false
 ```
 join
 ---
@@ -1331,16 +1353,6 @@ without
 ---
 ```php
 without($iterable, $excluded, $predicate = null)
-```
-
-
-
-
-
- / isEmpty
----
-```php
-
 ```
 
 
