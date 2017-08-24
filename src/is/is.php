@@ -2,6 +2,31 @@
 
 namespace Dash;
 
+/**
+ * Checks whether a value is of a particular data type.
+ *
+ * @category Utility
+ * @param mixed $value Value to check
+ * @param string|array $type Single type to check or a list of possible types; types can be:
+ *                           a native data type (eg. 'string', 'array'),
+ *                           a type corresponding to a native is_<type>() function (eg. 'numeric'),
+ *                           a class instance (eg. 'DateTime')
+ * @return boolean
+ *
+ * @example With a native data type
+	is([1, 2, 3], 'array');  // === true
+ *
+ * @example With a type corresponding to a native is_<type>() method
+	is(3.14, 'numeric');  // === true
+ *
+ * @example 'iterable', in contrast with is_iterable(), returns true for stdClass objects
+	$obj = (objec) [1, 2, 3];
+	is_iterable($obj);     // === false
+	is($obj, 'iterable');  // === true
+ *
+ * @example With a class instance
+	is(new ArrayObject([1, 2, 3]), 'ArrayObject');  // === true
+ */
 function is($value, $type)
 {
 	$customTypeChecks = [
@@ -10,6 +35,7 @@ function is($value, $type)
 				|| $value instanceof \Traversable
 				|| $value instanceof \stdClass;
 		},
+		'number' => 'is_numeric',
 	];
 
 	$types = (array) $type;

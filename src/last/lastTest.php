@@ -10,8 +10,7 @@ class lastTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $expected)
 	{
-		$actual = Dash\last($iterable);
-		$this->assertEquals($expected, $actual);
+		$this->assertEquals($expected, Dash\last($iterable));
 	}
 
 	public function cases()
@@ -19,15 +18,23 @@ class lastTest extends PHPUnit_Framework_TestCase
 		return [
 			'With an empty array' => [
 				[],
-				null
+				null,
 			],
 			'With an array' => [
 				['a', 'b', 'c'],
-				'c'
+				'c',
 			],
 			'With an array with null as the last element' => [
 				['a', 'b', null],
-				null
+				null,
+			],
+			'With an ArrayObject' => [
+				new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3]),
+				3,
+			],
+			'With a DirectoryIterator' => [
+				new FilesystemIterator(__DIR__, FilesystemIterator::CURRENT_AS_PATHNAME),
+				__DIR__ . '/lastTest.php',
 			],
 		];
 	}

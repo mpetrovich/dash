@@ -10,8 +10,7 @@ class keysTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $expected)
 	{
-		$actual = Dash\keys($iterable);
-		$this->assertEquals($expected, $actual);
+		$this->assertEquals($expected, Dash\keys($iterable));
 	}
 
 	public function cases()

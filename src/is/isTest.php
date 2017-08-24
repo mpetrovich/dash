@@ -97,6 +97,11 @@ class isTest extends PHPUnit_Framework_TestCase
 				'type' => 'iterable',
 				'expected' => true,
 			],
+			'With one type and an ArrayObject' => [
+				'input' => new ArrayObject([1, 2, 3]),
+				'type' => 'ArrayObject',
+				'expected' => true,
+			],
 
 			/*
 				With several types
