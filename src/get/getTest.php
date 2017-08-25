@@ -81,7 +81,7 @@ class getTest extends PHPUnit_Framework_TestCase
 				'a.b.c',
 				'value'
 			],
-			'With a callable path' => [
+			'With a callable iteratee' => [
 				(object) ['foo' => 'value'],
 				function ($iterable) { return $iterable->foo; },
 				'value'

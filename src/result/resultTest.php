@@ -42,14 +42,14 @@ class resultTest extends PHPUnit_Framework_TestCase
 			],
 			'With a callable value' => [
 				'input' => [
-					'dates' => [
-						'start' => new \DateTime('2017-01-01'),
-						'end' => new \DateTime('2017-01-03'),
+					'a' => [
+						'b' => new ArrayObject([1, 2, 3]),
+						'c' => new ArrayObject([4, 5]),
 					],
 				],
-				'path' => 'dates.start.getTimestamp',
+				'path' => 'a.b.count',
 				'default' => 'default',
-				'expected' => 1483246800,
+				'expected' => 3,
 			]
 		];
 	}
