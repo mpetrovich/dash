@@ -850,7 +850,7 @@ union
 ```php
 union(/* ...iterables */): array
 ```
-Returns a new array containing values of $iterable that are present in all other arguments.
+Returns a new array containing the unique values, in order, of all arguments.
 
 Iterable keys are preseved.
 
