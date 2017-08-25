@@ -2,7 +2,20 @@
 
 namespace Dash;
 
-function size($input, $encoding = 'utf8')
+/**
+ * Returns the number of elements (for iterables) or characters (for strings) in $input.
+ *
+ * @category Utility
+ * @param iterable|string $input
+ * @param string $encoding (optional) The character encoding of $input if it is a string;
+ *                         see mb_list_encodings() for the list of supported encodings
+ * @return integer
+ *
+ * @example
+	size([1, 2, 3]);  // === 3
+	size('Hello!');  // === 6
+ */
+function size($input, $encoding = 'UTF-8')
 {
 	if (is_array($input) || $input instanceof Countable) {
 		$size = count($input);

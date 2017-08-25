@@ -38,6 +38,8 @@ Table of contents
 - [reject](#reject)
 - [result](#result)
 - [reverse](#reverse)
+- [set](#set)
+- [sort](#sort)
 - [sum](#sum)
 - [take](#take)
 - [takeRight](#takeright)
@@ -58,6 +60,7 @@ Table of contents
 - [identical](#identical)
 - [identity](#identity)
 - [is](#is)
+- [size](#size)
 
 ### Array
 - [at](#at)
@@ -76,9 +79,6 @@ Table of contents
 - [partial](#partial)
 - [partialRight](#partialright)
 - [pick](#pick)
-- [set](#set)
-- [size](#size)
-- [sort](#sort)
 - [takeWhile](#takewhile)
 - [tap](#tap)
 - [thru](#thru)
@@ -387,7 +387,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `array\|object` | 
 `$path` | `callable\|string` | Callable used to retrieve the value or path of the property to retrieve; Paths can be nested by delimiting each sub-property or array index with a period, eg. 'a.b.0.c'
-`$default` | `mixed` | Default value to return if nothing exists at $path 
+`$default` | `mixed` | Default value to return if nothing exists at $path
 
 
 **Example:** 
@@ -1002,6 +1002,83 @@ reverse(['a', 'b', 'c', 'd', 'e']);
 reverse(['a' => 'one', 'b' => 'two', 'c' => 'three']);
 // === ['c' => 'three', 'b' => 'two', 'a' => 'one']
 ```
+set
+---
+```php
+set(&$input, $path, $value): array|object
+```
+Sets the value at a path on $iterable, which will be modified.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `array\|object` | 
+`$path` | `string` | Path at which to set $value; can be a nested path (eg. 'a.b.0.c'), and non-existent intermediate array/objects will be created
+`$value` | `mixed` | Value to set at $path
+
+
+**Example:** 
+```php
+$input = [
+	'a' => [1, 2],
+	'b' => [3, 4],
+	'c' => [5, 6],
+];
+set($input, 'a', [7, 8, 9]);  // Setting a direct field
+set($input, 'b.0', 10);  // Setting a nested field using an array index
+// $input === [
+	'a' => [7, 8, 9],
+	'b' => [10, 4],
+	'c' => [5, 6],
+]
+
+```
+
+**Example:** Matching intermediate array wrappers are created when the deepest path is an array
+```php
+$input = [];
+set($input, 'a.b.c', 'value');
+// $input === [
+	'a' => [
+		'b' => [
+			'c' => 'value'
+		]
+	]
+]
+
+```
+
+**Example:** Matching intermediate object wrappers are created when the deepest path is an object
+```php
+$input = (object) [];
+set($input, 'a.b.c', 'value');
+// $input === (object) [
+	'a' => (object) [
+		'b' => (object) [
+			'c' => 'value'
+		]
+	]
+]
+```
+sort
+---
+```php
+sort($iterable, $comparator = 'Dash\compare'): array
+```
+Returns a new array containing the sorted values of $iterable. Keys are preserved.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$comparator` | `callable` | 
+
+
+**Example:** 
+```php
+sort([4, 1, 3, 2]);
+// === [1, 2, 3, 4]
+```
 sum
 ---
 ```php
@@ -1372,6 +1449,25 @@ is($obj, 'iterable');  // === true
 ```php
 is(new ArrayObject([1, 2, 3]), 'ArrayObject');  // === true
 ```
+size
+---
+```php
+size($input, $encoding = 'UTF-8'): integer
+```
+Returns the number of elements (for iterables) or characters (for strings) in $input.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$input` | `iterable\|string` | 
+`$encoding` | `string` | (optional) The character encoding of $input if it is a string; see mb_list_encodings() for the list of supported encodings
+
+
+**Example:** 
+```php
+size([1, 2, 3]);  // === 3
+size('Hello!');  // === 6
+```
 
 Array
 ===
@@ -1529,36 +1625,6 @@ pick
 ---
 ```php
 pick($input, $keys)
-```
-
-
-
-
-
-set
----
-```php
-set(&$input, $path, $value)
-```
-
-
-
-
-
-size
----
-```php
-size($input, $encoding = 'utf8')
-```
-
-
-
-
-
-sort
----
-```php
-sort($iterable, $comparator = 'Dash\compare')
 ```
 
 

@@ -11,7 +11,6 @@ namespace Dash;
  *                              Paths can be nested by delimiting each sub-property or array index with a period,
  *                              eg. 'a.b.0.c'
  * @param mixed $default Default value to return if nothing exists at $path
- *
  * @return mixed Value at $path on the collection
  *
  * @example
