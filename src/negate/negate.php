@@ -2,10 +2,17 @@
 
 namespace Dash;
 
-function negate($function)
+/**
+ * Returns a new function that negates the return value of $predicate when invoked.
+ *
+ * @category Callable
+ * @param callable $predicate
+ * @return callable
+ */
+function negate($predicate)
 {
-	$negated = function () use ($function) {
-		return !call_user_func_array($function, func_get_args());
+	$negated = function () use ($predicate) {
+		return !call_user_func_array($predicate, func_get_args());
 	};
 
 	return $negated;

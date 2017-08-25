@@ -2,6 +2,16 @@
 
 namespace Dash;
 
+/**
+ * Returns the median value of an iterable.
+ *
+ * @category Iterable
+ * @param iterable $iterable
+ * @return mixed|null Null if $iterable is empty
+ *
+ * @example
+	median([3, 8, 2, 5]);  // === 4
+ */
 function median($iterable)
 {
 	$size = size($iterable);

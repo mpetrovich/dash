@@ -8,9 +8,8 @@ class unionTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($iterables, $expected)
+	public function test($iterable1, $iterable2, $iterable3, $expected)
 	{
-		list($iterable1, $iterable2, $iterable3) = $iterables;
 		$actual = Dash\union($iterable1, $iterable2, $iterable3);
 		$this->assertEquals($expected, $actual);
 	}
@@ -19,50 +18,41 @@ class unionTest extends PHPUnit_Framework_TestCase
 	{
 		return [
 			'With empty arrays' => [
-				[
-					[],
-					[],
-					[],
-				],
+				[],
+				[],
+				[],
 				[]
 			],
 			'With non-intersecting arrays' => [
-				[
-					[6, 5],
-					[1, 2],
-					[3, 4],
-				],
+				[6, 5],
+				[1, 2],
+				[3, 4],
 				[6, 5, 1, 2, 3, 4]
 			],
 			'With partially intersecting arrays' => [
-				[
-					[4, 1, 2],
-					[1, 2, 3],
-					[1, 3, 5],
-				],
+				[4, 1, 2],
+				[1, 2, 3],
+				[1, 3, 5],
 				[4, 1, 2, 3, 5]
 			],
 			'With fully overlapping arrays' => [
-				[
-					[1, 2],
-					[2, 1],
-					[2, 1],
-				],
+				[1, 2],
+				[2, 1],
+				[2, 1],
 				[1, 2]
 			],
+			'With ArrayObject instances' => [
+				new ArrayObject([4, 1, 6, 2]),
+				new ArrayObject([1, 2, 3, 7]),
+				new ArrayObject([1, 3, 5, 2]),
+				[4, 1, 6, 2, 3, 7, 5]
+			],
+			'With stdClass instances' => [
+				(object) ['d' => 4, 'a' => 1, 'f' => 6, 'b' => 2],
+				(object) ['x' => 1, 'y' => 2, 'z' => 3],
+				(object) ['m' => 1, 'o' => 3, 'q' => 5, 'n' => 2],
+				[4, 1, 6, 2, 3, 5]
+			],
 		];
-	}
-
-	public function testUnionWithSingleArray()
-	{
-		$iterables = [
-			[4, 1, 2],
-			[1, 2, 3],
-			[1, 3, 5],
-		];
-		$expected = [4, 1, 2, 3, 5];
-		$actual = Dash\union($iterables);
-
-		$this->assertEquals($expected, $actual);
 	}
 }

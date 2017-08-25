@@ -10,8 +10,7 @@ class minTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $expected)
 	{
-		$actual = Dash\min($iterable);
-		$this->assertEquals($expected, $actual);
+		$this->assertEquals($expected, Dash\min($iterable));
 	}
 
 	public function cases()

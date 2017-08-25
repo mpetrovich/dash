@@ -20,6 +20,7 @@ Table of contents
 - [getDirectRef](#getdirectref)
 - [groupBy](#groupby)
 - [hasDirect](#hasdirect)
+- [intersection](#intersection)
 - [isEmpty](#isempty)
 - [join](#join)
 - [keyBy](#keyby--indexby) / indexBy
@@ -27,8 +28,13 @@ Table of contents
 - [last](#last)
 - [map](#map)
 - [mapValues](#mapvalues)
+- [max](#max)
+- [median](#median)
+- [min](#min)
 - [pluck](#pluck)
 - [property](#property)
+- [union](#union)
+- [values](#values)
 
 ### Function
 - [apply](#apply)
@@ -52,14 +58,13 @@ Table of contents
 - [chain](#chain)
 - [custom](#custom)
 
+### Number
+- [isEven](#iseven)
+- [isOdd](#isodd)
+
 ### Other
-- [intersection](#intersection)
 - [matches](#matches)
 - [matchesProperty](#matchesproperty)
-- [max](#max)
-- [median](#median)
-- [min](#min)
-- [negate](#negate)
 - [partial](#partial)
 - [partialRight](#partialright)
 - [pick](#pick)
@@ -77,14 +82,11 @@ Table of contents
 - [tap](#tap)
 - [thru](#thru)
 - [toArray](#toarray)
-- [union](#union)
-- [values](#values)
 - [where](#where)
 - [without](#without)
 
-### Number
-- [isEven](#iseven)
-- [isOdd](#isodd)
+### Callable
+- [negate](#negate)
 
 
 Iterable
@@ -511,6 +513,29 @@ hasDirect(['a' => ['b' => 1, 'c' => 2], 'b');  // === false
 ```php
 hasDirect((object) ['a' => 1, 'b' => 2], 'b');  // === true
 ```
+intersection
+---
+```php
+intersection($iterable /* , ...iterables */): array
+```
+Returns a new array containing values of $iterable that are present in all other arguments.
+
+Iterable keys are preseved.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | Iterable to compare against
+`$iterables,...` | `iterable` | 
+
+
+**Example:** 
+```php
+intersection(
+	[1, 3, 5, 8],
+	[1, 2, 3, 4]
+);  // === [0 => 1, 1 => 3]
+```
 isEmpty
 ---
 ```php
@@ -697,6 +722,57 @@ Dash\map(
 	function($color, $flower) { return $flower . ' are ' . $color; }
 ) == ['roses' => 'roses are red', 'violets' => 'violets are blue'];
 ```
+max
+---
+```php
+max($iterable): mixed|null
+```
+Returns the maximum value of an iterable.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+
+
+**Example:** 
+```php
+max([3, 8, 2, 5]);  // === 8
+```
+median
+---
+```php
+median($iterable): mixed|null
+```
+Returns the median value of an iterable.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+
+
+**Example:** 
+```php
+median([3, 8, 2, 5]);  // === 4
+```
+min
+---
+```php
+min($iterable): mixed|null
+```
+Returns the minimum value of an iterable.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+
+
+**Example:** 
+```php
+min([3, 8, 2, 5]);  // === 2
+```
 pluck
 ---
 ```php
@@ -770,6 +846,46 @@ $getter($iterable) === 'John';
 $getter = property('a.b.c');
 $iterable = ['a.b.c' => 'value'];
 $getter($iterable);  // === 'value';
+```
+union
+---
+```php
+union(/* ...iterables */): array
+```
+Returns a new array containing values of $iterable that are present in all other arguments.
+
+Iterable keys are preseved.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterables,...` | `iterable` | 
+
+
+**Example:** 
+```php
+intersection(
+	[1, 3, 5, 8],
+	[1, 2, 3, 4]
+);  // === [1, 3, 5, 8, 2, 4]
+```
+values
+---
+```php
+values($iterable): array
+```
+Gets the values of an iterable as an array.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+
+
+**Example:** 
+```php
+values(['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5]);
+// === [3, 8, 2, 5]
 ```
 
 Function
@@ -1076,18 +1192,54 @@ _::setCustom('double', function ($n) { return $n * 2; });
 _::chain([1, 2, 3])->map(Dash\custom('double'))->value();  // === [2, 4, 6]
 ```
 
-Other
+Number
 ===
 
-intersection
+isEven
 ---
 ```php
-intersection($iterables)
+isEven($value): boolean
+```
+Checks whether a number is even.
+
+If a double is provided, only its integer component is evaluated.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `number` | 
+
+
+**Example:** 
+```php
+isEven(3);  // === false
+isEven(4);  // === true
+isEven(4.7);  // === true
+```
+isOdd
+---
+```php
+isOdd($value): boolean
+```
+Checks whether a number is odd.
+
+If a double is provided, only its integer component is evaluated.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `number` | 
+
+
+**Example:** 
+```php
+isOdd(4);  // === false
+isOdd(3);  // === true
+isOdd(3.7);  // === true
 ```
 
-
-
-
+Other
+===
 
 matches
 ---
@@ -1103,46 +1255,6 @@ matchesProperty
 ---
 ```php
 matchesProperty($path, $value)
-```
-
-
-
-
-
-max
----
-```php
-max($iterable)
-```
-
-
-
-
-
-median
----
-```php
-median($iterable)
-```
-
-
-
-
-
-min
----
-```php
-min($iterable)
-```
-
-
-
-
-
-negate
----
-```php
-negate($function)
 ```
 
 
@@ -1319,26 +1431,6 @@ toArray($value)
 
 
 
-union
----
-```php
-union($iterables)
-```
-
-
-
-
-
-values
----
-```php
-values($iterable)
-```
-
-
-
-
-
 where
 ---
 ```php
@@ -1360,48 +1452,20 @@ without($iterable, $excluded, $predicate = null)
 
 
 
-Number
+Callable
 ===
 
-isEven
+negate
 ---
 ```php
-isEven($value): boolean
+negate($predicate): callable
 ```
-Checks whether a number is even.
-
-If a double is provided, only its integer component is evaluated.
+Returns a new function that negates the return value of $predicate when invoked.
 
 
 Parameter | Type | Description
 --- | --- | :---
-`$value` | `number` | 
+`$predicate` | `callable` | 
 
 
-**Example:** 
-```php
-isEven(3);  // === false
-isEven(4);  // === true
-isEven(4.7);  // === true
-```
-isOdd
----
-```php
-isOdd($value): boolean
-```
-Checks whether a number is odd.
 
-If a double is provided, only its integer component is evaluated.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$value` | `number` | 
-
-
-**Example:** 
-```php
-isOdd(4);  // === false
-isOdd(3);  // === true
-isOdd(3.7);  // === true
-```

@@ -10,8 +10,7 @@ class maxTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $expected)
 	{
-		$actual = Dash\max($iterable);
-		$this->assertEquals($expected, $actual);
+		$this->assertEquals($expected, Dash\max($iterable));
 	}
 
 	public function cases()
