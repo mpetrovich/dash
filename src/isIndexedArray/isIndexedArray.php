@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Returns whether $input is an array with sequential integer keys that start at 0.
  *
- * @category Array
+ * @category Iterable
  * @param mixed $input
  * @return boolean
  *

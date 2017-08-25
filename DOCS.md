@@ -22,6 +22,7 @@ Table of contents
 - [hasDirect](#hasdirect)
 - [intersection](#intersection)
 - [isEmpty](#isempty)
+- [isIndexedArray](#isindexedarray)
 - [join](#join)
 - [keyBy](#keyby--indexby) / indexBy
 - [keys](#keys)
@@ -37,6 +38,7 @@ Table of contents
 - [reject](#reject)
 - [result](#result)
 - [reverse](#reverse)
+- [sum](#sum)
 - [take](#take)
 - [takeRight](#takeright)
 - [union](#union)
@@ -59,7 +61,6 @@ Table of contents
 
 ### Array
 - [at](#at)
-- [isIndexedArray](#isindexedarray)
 
 ### Dash
 - [chain](#chain)
@@ -78,7 +79,6 @@ Table of contents
 - [set](#set)
 - [size](#size)
 - [sort](#sort)
-- [sum](#sum)
 - [takeWhile](#takewhile)
 - [tap](#tap)
 - [thru](#thru)
@@ -556,6 +556,24 @@ isEmpty('');                 // === true
 isEmpty(0);                  // === true
 isEmpty([0]);                // === false
 ```
+isIndexedArray
+---
+```php
+isIndexedArray($input): boolean
+```
+Returns whether $input is an array with sequential integer keys that start at 0.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$input` | `mixed` | 
+
+
+**Example:** 
+```php
+isIndexedArray([1, 2, 3]);             // === true
+isIndexedArray(['a' => 1, 'b' => 2]);  // === false
+```
 join
 ---
 ```php
@@ -984,6 +1002,23 @@ reverse(['a', 'b', 'c', 'd', 'e']);
 reverse(['a' => 'one', 'b' => 'two', 'c' => 'three']);
 // === ['c' => 'three', 'b' => 'two', 'a' => 'one']
 ```
+sum
+---
+```php
+sum($iterable): double
+```
+Gets the sum of all values in $iterable.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+
+
+**Example:** 
+```php
+sum([1, 2, 3, 4]);  // === 10
+```
 take
 ---
 ```php
@@ -1364,24 +1399,6 @@ at([1, 3, 5, 8], 2);  // === 5
 ```php
 at([3 => 'a', 2 => 'b', 1 => 'c', 0 => 'd'], 2);  // === 'c'
 ```
-isIndexedArray
----
-```php
-isIndexedArray($input): boolean
-```
-Returns whether $input is an array with sequential integer keys that start at 0.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$input` | `mixed` | 
-
-
-**Example:** 
-```php
-isIndexedArray([1, 2, 3]);             // === true
-isIndexedArray(['a' => 1, 'b' => 2]);  // === false
-```
 
 Dash
 ===
@@ -1542,16 +1559,6 @@ sort
 ---
 ```php
 sort($iterable, $comparator = 'Dash\compare')
-```
-
-
-
-
-
-sum
----
-```php
-sum($iterable)
 ```
 
 
