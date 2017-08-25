@@ -14,23 +14,23 @@ namespace Dash;
  * @throws UnexpectedValueException if $value cannot be set at $path (eg. trying to set a property on a number)
  *
  * @example
-	$input = [
+	$iterable = [
 		'a' => [1, 2],
 		'b' => [3, 4],
 		'c' => [5, 6],
 	];
-	set($input, 'a', [7, 8, 9]);  // Setting a direct field
-	set($input, 'b.0', 10);  // Setting a nested field using an array index
-	// $input === [
+	set($iterable, 'a', [7, 8, 9]);  // Setting a direct field
+	set($iterable, 'b.0', 10);  // Setting a nested field using an array index
+	// $iterable === [
 		'a' => [7, 8, 9],
 		'b' => [10, 4],
 		'c' => [5, 6],
 	]
  *
  * @example Matching intermediate array wrappers are created when the deepest path is an array
-	$input = [];
-	set($input, 'a.b.c', 'value');
-	// $input === [
+	$iterable = [];
+	set($iterable, 'a.b.c', 'value');
+	// $iterable === [
 		'a' => [
 			'b' => [
 				'c' => 'value'
@@ -39,9 +39,9 @@ namespace Dash;
 	]
  *
  * @example Matching intermediate object wrappers are created when the deepest path is an object
-	$input = (object) [];
-	set($input, 'a.b.c', 'value');
-	// $input === (object) [
+	$iterable = (object) [];
+	set($iterable, 'a.b.c', 'value');
+	// $iterable === (object) [
 		'a' => (object) [
 			'b' => (object) [
 				'c' => 'value'
@@ -49,11 +49,11 @@ namespace Dash;
 		]
 	]
  */
-function set(&$input, $path, $value)
+function set(&$iterable, $path, $value)
 {
 	$steps = explode('.', $path);
 
-	for ($target = &$input; $steps;) {
+	for ($target = &$iterable; $steps;) {
 		$step = array_shift($steps);
 
 		if (!isset($target)) {
@@ -74,5 +74,5 @@ function set(&$input, $path, $value)
 
 	$target = $value;
 
-	return $input;
+	return $iterable;
 }

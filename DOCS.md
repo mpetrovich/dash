@@ -1005,7 +1005,7 @@ reverse(['a' => 'one', 'b' => 'two', 'c' => 'three']);
 set
 ---
 ```php
-set(&$input, $path, $value): array|object
+set(&$iterable, $path, $value): array|object
 ```
 Sets the value at a path on $iterable, which will be modified.
 
@@ -1019,14 +1019,14 @@ Parameter | Type | Description
 
 **Example:** 
 ```php
-$input = [
+$iterable = [
 	'a' => [1, 2],
 	'b' => [3, 4],
 	'c' => [5, 6],
 ];
-set($input, 'a', [7, 8, 9]);  // Setting a direct field
-set($input, 'b.0', 10);  // Setting a nested field using an array index
-// $input === [
+set($iterable, 'a', [7, 8, 9]);  // Setting a direct field
+set($iterable, 'b.0', 10);  // Setting a nested field using an array index
+// $iterable === [
 	'a' => [7, 8, 9],
 	'b' => [10, 4],
 	'c' => [5, 6],
@@ -1036,9 +1036,9 @@ set($input, 'b.0', 10);  // Setting a nested field using an array index
 
 **Example:** Matching intermediate array wrappers are created when the deepest path is an array
 ```php
-$input = [];
-set($input, 'a.b.c', 'value');
-// $input === [
+$iterable = [];
+set($iterable, 'a.b.c', 'value');
+// $iterable === [
 	'a' => [
 		'b' => [
 			'c' => 'value'
@@ -1050,9 +1050,9 @@ set($input, 'a.b.c', 'value');
 
 **Example:** Matching intermediate object wrappers are created when the deepest path is an object
 ```php
-$input = (object) [];
-set($input, 'a.b.c', 'value');
-// $input === (object) [
+$iterable = (object) [];
+set($iterable, 'a.b.c', 'value');
+// $iterable === (object) [
 	'a' => (object) [
 		'b' => (object) [
 			'c' => 'value'
