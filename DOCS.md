@@ -1013,7 +1013,17 @@ Parameter | Type | Description
 `$value` | `mixed` | 
 
 
-
+**Example:** 
+```php
+display([1, 2, 3]);
+// echoes:
+Array
+(
+	[0] => 1
+	[1] => 2
+	[2] => 3
+)
+```
 equal
 ---
 ```php
