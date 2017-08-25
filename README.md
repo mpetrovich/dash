@@ -1,4 +1,4 @@
-Dash &nbsp; [![Build Status](https://travis-ci.org/mpetrovich/Dash.svg?branch=master)](https://travis-ci.org/mpetrovich/Dash) [![codecov](https://codecov.io/gh/mpetrovich/Dash/branch/master/graph/badge.svg)](https://codecov.io/gh/mpetrovich/Dash)
+Dash &nbsp; [![Latest Stable Version](https://poser.pugx.org/mpetrovich/dash/version)](https://packagist.org/packages/mpetrovich/dash) [![Build Status](https://travis-ci.org/mpetrovich/Dash.svg?branch=master)](https://travis-ci.org/mpetrovich/Dash) [![codecov](https://codecov.io/gh/mpetrovich/Dash/branch/master/graph/badge.svg)](https://codecov.io/gh/mpetrovich/Dash)
 ===
 A functional utility library (like Underscore and Lodash) for PHP.
 
