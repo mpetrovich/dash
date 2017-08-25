@@ -6,7 +6,7 @@ namespace Dash;
  * Invokes a callable with arguments passed as a list.
  * @todo Add $context parameter
  *
- * @category Function
+ * @category Callable
  * @param callable $callable
  * @param array $args
  * @return mixed Return value of $callable

@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Wraps $callable in a new function that only accepts up to $ary arguments and ignores the rest.
  *
- * @category Function
+ * @category Callable
  * @param callable $callable
  * @param int $ary Number of arguments to accept
  * @return callable New function that, when invoked, will call $callable with up to $ary arguments

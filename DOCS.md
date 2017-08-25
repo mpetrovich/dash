@@ -36,10 +36,11 @@ Table of contents
 - [union](#union)
 - [values](#values)
 
-### Function
+### Callable
 - [apply](#apply)
 - [ary](#ary)
 - [call](#call)
+- [negate](#negate)
 
 ### Utility
 - [assertType](#asserttype)
@@ -84,9 +85,6 @@ Table of contents
 - [toArray](#toarray)
 - [where](#where)
 - [without](#without)
-
-### Callable
-- [negate](#negate)
 
 
 Iterable
@@ -888,7 +886,7 @@ values(['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5]);
 // === [3, 8, 2, 5]
 ```
 
-Function
+Callable
 ===
 
 apply
@@ -945,6 +943,20 @@ Parameter | Type | Description
 $saveUser = function ($name, $email) { … };
 call($saveUser, 'John', 'jdoe@gmail.com');
 ```
+negate
+---
+```php
+negate($predicate): callable
+```
+Returns a new function that negates the return value of $predicate when invoked.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$predicate` | `callable` | 
+
+
+
 
 Utility
 ===
@@ -1448,24 +1460,6 @@ without($iterable, $excluded, $predicate = null)
 ```
 
 
-
-
-
-
-Callable
-===
-
-negate
----
-```php
-negate($predicate): callable
-```
-Returns a new function that negates the return value of $predicate when invoked.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$predicate` | `callable` | 
 
 
 
