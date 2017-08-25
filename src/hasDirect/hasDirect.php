@@ -3,7 +3,7 @@
 namespace Dash;
 
 /**
- * Checks whether an iterable has a value at a given key.
+ * Checks whether an iterable has a value or callable at a given key.
  *
  * @category Iterable
  * @param array|object|ArrayAccess $iterable
@@ -21,5 +21,6 @@ function hasDirect($iterable, $key)
 {
 	return is_array($iterable) && array_key_exists($key, $iterable)
 		|| is_object($iterable) && property_exists($iterable, $key)
-		|| $iterable instanceof \ArrayAccess && $iterable->offsetExists($key);
+		|| $iterable instanceof \ArrayAccess && $iterable->offsetExists($key)
+		|| method_exists($iterable, $key);
 }

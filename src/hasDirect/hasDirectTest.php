@@ -31,10 +31,10 @@ class hasDirectTest extends PHPUnit_Framework_TestCase
 				'key' => 'foo',
 				'expected' => false,
 			],
-			'With an non-stdClass object' => [
+			'With a callable method' => [
 				'input' => new DateTime(),
 				'key' => 'getTimestamp',
-				'expected' => false,
+				'expected' => true,
 			],
 			'With an empty array' => [
 				'input' => [],

@@ -3,7 +3,7 @@
 namespace Dash;
 
 /**
- * Gets the value at the given key of an iterable.
+ * Gets the value or callable at the given key of an iterable.
  *
  * @category Iterable
  * @param iterable $iterable
@@ -24,6 +24,11 @@ function getDirect($iterable, $key, $default = null)
 	}
 	elseif (is_object($iterable) && property_exists($iterable, $key)) {
 		$value = $iterable->$key;
+	}
+	elseif (method_exists($iterable, $key)) {
+		$value = function () use ($iterable, $key) {
+			return call_user_func_array([$iterable, $key], func_get_args());
+		};
 	}
 	else {
 		$array = toArray($iterable);

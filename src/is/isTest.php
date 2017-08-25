@@ -103,6 +103,15 @@ class isTest extends PHPUnit_Framework_TestCase
 				'expected' => true,
 			],
 
+			'With one type and a DirectoryIterator' => [
+				'input' => new FilesystemIterator(
+					__DIR__,
+					FilesystemIterator::KEY_AS_PATHNAME | FilesystemIterator::CURRENT_AS_FILEINFO
+				),
+				'type' => 'iterable',
+				'expected' => true,
+			],
+
 			/*
 				With several types
 			 */

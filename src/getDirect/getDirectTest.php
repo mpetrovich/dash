@@ -84,4 +84,10 @@ class getDirectTest extends PHPUnit_Framework_TestCase
 			],
 		];
 	}
+
+	public function testCallable()
+	{
+		$callable = Dash\get(new DateTime('2017-01-01'), 'getTimestamp');
+		$this->assertEquals(1483246800, $callable());
+	}
 }

@@ -31,6 +31,19 @@ class rejectTest extends PHPUnit_Framework_TestCase
 				'predicate' => 'Dash\isEven',
 				'expected' => [0 => 1, 2 => 3],
 			],
+			'With matchesProperty() shorthand with an array' => [
+				'input' => [
+					'a' => ['name' => 'John', 'age' => 30, 'gender' => 'male', 'active' => false],
+					'b' => ['name' => 'Jane', 'age' => 27, 'gender' => 'female', 'active' => true],
+					'c' => ['name' => 'Kane', 'age' => 33, 'gender' => 'male', 'active' => false],
+					'd' => ['name' => 'Pete', 'age' => 35, 'gender' => 'male', 'active' => true],
+				],
+				'predicate' => 'active',
+				'expected' => [
+					'a' => ['name' => 'John', 'age' => 30, 'gender' => 'male', 'active' => false],
+					'c' => ['name' => 'Kane', 'age' => 33, 'gender' => 'male', 'active' => false],
+				],
+			],
 			'With an empty stdClass' => [
 				'input' => (object) [],
 				'predicate' => 'Dash\isEven',

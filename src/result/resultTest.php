@@ -40,6 +40,17 @@ class resultTest extends PHPUnit_Framework_TestCase
 				'default' => 'default',
 				'expected' => 'value',
 			],
+			'With a callable value' => [
+				'input' => [
+					'dates' => [
+						'start' => new \DateTime('2017-01-01'),
+						'end' => new \DateTime('2017-01-03'),
+					],
+				],
+				'path' => 'dates.start.getTimestamp',
+				'default' => 'default',
+				'expected' => 1483246800,
+			]
 		];
 	}
 }

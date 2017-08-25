@@ -33,6 +33,12 @@ Table of contents
 - [min](#min)
 - [pluck](#pluck)
 - [property](#property)
+- [reduce](#reduce)
+- [reject](#reject)
+- [result](#result)
+- [reverse](#reverse)
+- [take](#take)
+- [takeRight](#takeright)
 - [union](#union)
 - [values](#values)
 
@@ -69,16 +75,10 @@ Table of contents
 - [partial](#partial)
 - [partialRight](#partialright)
 - [pick](#pick)
-- [reduce](#reduce)
-- [reject](#reject)
-- [result](#result)
-- [reverse](#reverse)
 - [set](#set)
 - [size](#size)
 - [sort](#sort)
 - [sum](#sum)
-- [take](#take)
-- [takeRight](#takeright)
 - [takeWhile](#takewhile)
 - [tap](#tap)
 - [thru](#thru)
@@ -424,7 +424,7 @@ getDirect
 ```php
 getDirect($iterable, $key, $default = null): mixed
 ```
-Gets the value at the given key of an iterable.
+Gets the value or callable at the given key of an iterable.
 
 
 Parameter | Type | Description
@@ -491,7 +491,7 @@ hasDirect
 ```php
 hasDirect($iterable, $key): boolean
 ```
-Checks whether an iterable has a value at a given key.
+Checks whether an iterable has a value or callable at a given key.
 
 
 Parameter | Type | Description
@@ -844,6 +844,211 @@ $getter($iterable) === 'John';
 $getter = property('a.b.c');
 $iterable = ['a.b.c' => 'value'];
 $getter($iterable);  // === 'value';
+```
+reduce
+---
+```php
+reduce($iterable, $iteratee, $initial = []): mixed
+```
+Iteratively reduces $iterable to a single value by way of $iteratee.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$iteratee` | `callable` | Invoked with ($result, $value, $key) for each ($key, $value) in $iterable and the current $result. $iteratee should return the updated $result
+`$initial` | `mixed` | (optional) Initial value
+
+
+**Example:** Computes the sum
+```php
+reduce([1, 2, 3, 4], function ($result, $value) {
+	return $result + $value;
+}, 0);
+// === 10
+```
+reject
+---
+```php
+reject($iterable, $predicate): array
+```
+Returns a subset of $iterable for which $predicate is falsey. Keys are preserved.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$predicate` | `callable` | Callable invoked with ($value, $key, $iterable) for each item in $iterable
+
+
+**Example:** 
+```php
+reject([1, 2, 3, 4], function ($n) { return $n > 2; });  // === [1, 2]
+reject([1, 2, 3, 4], 'Dash\isEven');  // === [1, 3]
+
+```
+
+**Example:** With matchesProperty() shorthand
+```php
+reject([
+	['name' => 'abc', 'active' => false],
+	['name' => 'def', 'active' => true],
+	['name' => 'ghi', 'active' => true],
+], 'active');
+// === [
+	['name' => 'abc', 'active' => true],
+]
+```
+result
+---
+```php
+result($iterable, $path, $default = null): mixed
+```
+Like get(), but if the resolved value is callable, it will invoke the callable and return its result.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `array\|object` | 
+`$path` | `callable\|string` | Callable used to retrieve the value or path of the property to retrieve; Paths can be nested by delimiting each sub-property or array index with a period, eg. 'a.b.0.c'
+`$default` | `mixed` | Default value to return if nothing exists at $path 
+
+
+**Example:** 
+```php
+$iterable = [
+	'a' => [
+		'b' => 'value'
+	]
+];
+result($iterable, 'a.b');
+// === 'value'
+
+```
+
+**Example:** Array elements can be referenced by index
+```php
+$iterable = [
+	'people' => [
+		['name' => 'Pete'],
+		['name' => 'John'],
+		['name' => 'Paul'],
+	]
+];
+result($iterable, 'people.1.name');
+// === 'John'
+
+```
+
+**Example:** Keys with the same name as the full path can be used
+```php
+$iterable = ['a.b.c' => 'value'];
+result($iterable, 'a.b.c');
+// === 'value'
+
+```
+
+**Example:** With a callable value
+```php
+$iterable = [
+	'dates' => [
+		'start' => new DateTime('2017-01-01'),
+		'end' => new DateTime('2017-01-03'),
+	]
+]
+result($iterable, 'dates.start.getTimestamp');
+// === 1483246800
+```
+reverse
+---
+```php
+reverse($iterable): array
+```
+Returns a new array with elements in reverse order. Non-integer keys are preserved.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+
+
+**Example:** 
+```php
+reverse(['a', 'b', 'c', 'd', 'e']);
+// === ['e', 'd', 'c', 'b', 'a']
+
+```
+
+**Example:** 
+```php
+reverse(['a' => 'one', 'b' => 'two', 'c' => 'three']);
+// === ['c' => 'three', 'b' => 'two', 'a' => 'one']
+```
+take
+---
+```php
+take($iterable, $count = 1): array
+```
+Returns a new array of the first $count elements of $iterable. Non-integer keys are preserved.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$count` | `integer` | If negative, all except the last $count elements will be returned
+
+
+**Example:** 
+```php
+take(['a', 'b', 'c', 'd', 'e'], 3);
+// === ['a', 'b', 'c']
+
+```
+
+**Example:** 
+```php
+take(['a' => 'one', 'b' => 'two', 'c' => 'three', 'd' => 'four'], 2);
+// === ['a' => 'one', 'b' => 'two']
+
+```
+
+**Example:** With a negative $count
+```php
+take(['a', 'b', 'c', 'd', 'e'], -2);
+// === ['a', 'b', 'c']
+```
+takeRight
+---
+```php
+takeRight($iterable, $count = 1): array
+```
+Returns a new array of the last $count elements of $iterable. Non-integer keys are preserved.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$count` | `integer` | If negative, all except the first $count elements will be returned
+
+
+**Example:** 
+```php
+takeRight(['a', 'b', 'c', 'd', 'e'], 3);
+// === ['c', 'd', 'e']
+
+```
+
+**Example:** 
+```php
+takeRight(['a' => 'one', 'b' => 'two', 'c' => 'three', 'd' => 'four'], 2);
+// === ['c' => 'three', 'd' => 'four']
+
+```
+
+**Example:** With a negative $count
+```php
+takeRight(['a', 'b', 'c', 'd', 'e'], -2);
+// === ['c', 'd', 'e']
 ```
 union
 ---
@@ -1313,46 +1518,6 @@ pick($input, $keys)
 
 
 
-reduce
----
-```php
-reduce($iterable, $iteratee, $initial = [])
-```
-
-
-
-
-
-reject
----
-```php
-reject($iterable, $predicate)
-```
-
-
-
-
-
-result
----
-```php
-result($input, $path, $default = null)
-```
-
-
-
-
-
-reverse
----
-```php
-reverse($iterable)
-```
-
-
-
-
-
 set
 ---
 ```php
@@ -1387,26 +1552,6 @@ sum
 ---
 ```php
 sum($iterable)
-```
-
-
-
-
-
-take
----
-```php
-take($iterable, $count = 1, $fromStart = 0)
-```
-
-
-
-
-
-takeRight
----
-```php
-takeRight($iterable, $count = 1, $fromEnd = 0)
 ```
 
 
