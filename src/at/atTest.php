@@ -22,19 +22,29 @@ class atTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'With an empty array' => [
-				[],
-				2,
-				null
+				'iterable' => [],
+				'index' => 2,
+				'expected' => null,
 			],
 			'With an indexed array' => [
-				[2, 3, 5, 8],
-				2,
-				5
+				'iterable' => [2, 3, 5, 8],
+				'index' => 2,
+				'expected' => 5,
+			],
+			'With an indexed array but an invalid index' => [
+				'iterable' => [2, 3, 5, 8],
+				'index' => 4,
+				'expected' => null,
+			],
+			'With an out-of-order indexed array' => [
+				'iterable' => [3 => 2, 1 => 3, 0 => 5, 2 => 8],
+				'index' => 2,
+				'expected' => 5,
 			],
 			'With an associative array' => [
-				[3 => 2, 1 => 3, 0 => 5, 2 => 8],
-				2,
-				5
+				'iterable' => ['a' => 'one', 'b' => 'two', 'c' => 'three', 'd' => 'four'],
+				'index' => 2,
+				'expected' => 'three',
 			],
 
 			/*
@@ -42,14 +52,19 @@ class atTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'With an empty stdClass' => [
-				(object) [],
-				2,
-				null
+				'iterable' => (object) [],
+				'index' => 2,
+				'expected' => null,
 			],
 			'With an stdClass' => [
-				(object) [2, 3, 5, 8],
-				2,
-				5
+				'iterable' => (object) [2, 3, 5, 8],
+				'index' => 2,
+				'expected' => 5,
+			],
+			'With an stdClass' => [
+				'iterable' => (object) ['a' => 'one', 'b' => 'two', 'c' => 'three', 'd' => 'four'],
+				'index' => 2,
+				'expected' => 'three',
 			],
 
 			/*
@@ -57,14 +72,14 @@ class atTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'With an empty ArrayObject' => [
-				new ArrayObject([]),
-				2,
-				null
+				'iterable' => new ArrayObject([]),
+				'index' => 2,
+				'expected' => null,
 			],
 			'With an ArrayObject' => [
-				new ArrayObject([2, 3, 5, 8]),
-				2,
-				5
+				'iterable' => new ArrayObject(['a' => 'one', 'b' => 'two', 'c' => 'three', 'd' => 'four']),
+				'index' => 2,
+				'expected' => 'three',
 			],
 		];
 	}

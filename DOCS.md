@@ -3,6 +3,7 @@ Table of contents
 ### Iterable
 - [all](#all--every) / every
 - [any](#any)
+- [at](#at)
 - [average](#average)
 - [contains](#contains)
 - [deltas](#deltas)
@@ -71,9 +72,6 @@ Table of contents
 - [is](#is)
 - [size](#size)
 
-### Array
-- [at](#at)
-
 ### Dash
 - [chain](#chain)
 - [custom](#custom)
@@ -125,6 +123,32 @@ Parameter | Type | Description
 ```php
 all([1, 2, 3], function($n) { return $n > 5; });  // === false
 all([1, 2, 3], 'Dash\isEven');  // === true
+```
+at
+---
+```php
+at($iterable, $index, $default = null): mixed
+```
+Gets the value of the literal $index-th element of $iterable, ignoring key values.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$index` | `int` | 0-based index
+`$default` | `mixed` | Value to return if $index is out of bounds
+
+
+**Example:** 
+```php
+at(['a', 'b', 'c', 'd'], 2);  // === 'c'
+
+```
+
+**Example:** Keys are ignored; the literal i-th position is returned
+```php
+$input = (object) ['a' => 'one', 'b' => 'two', 'c' => 'three', 'd' => 'four'];
+at($input, 2);  // === 'three'
 ```
 average
 ---
@@ -1690,33 +1714,6 @@ Parameter | Type | Description
 ```php
 size([1, 2, 3]);  // === 3
 size('Hello!');  // === 6
-```
-
-Array
-===
-
-at
----
-```php
-at($iterable, $index): mixed
-```
-Gets the value at the $index-th value of $iterable, ignoring key values.
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$index` | `int\|string` | 
-
-
-**Example:** 
-```php
-at([1, 3, 5, 8], 2);  // === 5
-
-```
-
-**Example:** Keys are ignored; the literal i-th position is returned
-```php
-at([3 => 'a', 2 => 'b', 1 => 'c', 0 => 'd'], 2);  // === 'c'
 ```
 
 Dash
