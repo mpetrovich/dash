@@ -1323,6 +1323,8 @@ partial($callable /* , ...args */): callable
 ```
 Creates a function that invokes $callable with the given set of arguments prepended to any others passed in.
 
+Pass Dash\PLACEHOLDER as a placeholder to replace with call-time arguments.
+
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1334,11 +1336,21 @@ Parameter | Type | Description
 $greet = function ($greeting, $name) {
 	return "$greeting, $name!";
 };
-$sayHello = partial($greet, 'Hello');
-$sayHowdy = partial($greet, 'Howdy');
+$sayHello = Dash\partial($greet, 'Hello');
+$sayHowdy = Dash\partial($greet, 'Howdy');
 
 $sayHello('Mark');  // === 'Hello, Mark!'
 $sayHowdy('Jane');  // === 'Howdy, Jane!'
+
+```
+
+**Example:** 
+```php
+$greet = function ($greeting, $salutation, $name) {
+	return "$greeting, $salutation $name!";
+};
+$greetMr = Dash\partial($greet, Dash\PLACEHOLDER, 'Mr.');
+$greetMr('Hello', 'Mark');  // === 'Hello, Mr. Mark!'
 ```
 partialRight
 ---
@@ -1358,11 +1370,21 @@ Parameter | Type | Description
 $greet = function ($greeting, $name) {
 	return "$greeting, $name!";
 };
-$greetMark = partial($greet, 'Mark');
-$greetJane = partial($greet, 'Jane');
+$greetMark = Dash\partial($greet, 'Mark');
+$greetJane = Dash\partial($greet, 'Jane');
 
 $greetMark('Hello');  // === 'Hello, Mark!'
 $greetJane('Howdy');  // === 'Howdy, Jane!'
+
+```
+
+**Example:** 
+```php
+$greet = function ($greeting, $salutation, $name) {
+	return "$greeting, $salutation $name!";
+};
+$greetMr = Dash\partialRight($greet, 'Mr.', Dash\PLACEHOLDER);
+$greetMr('Hello', 'Mark');  // === 'Hello, Mr. Mark!'
 ```
 
 Utility

@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Creates a function that invokes $callable with the given set of arguments appended to any others passed in.
  *
+ * Pass Dash\PLACEHOLDER as a placeholder to replace with call-time arguments.
+ *
  * @category Callable
  * @param callable $callable
  * @return callable
@@ -13,11 +15,18 @@ namespace Dash;
 	$greet = function ($greeting, $name) {
 		return "$greeting, $name!";
 	};
-	$greetMark = partial($greet, 'Mark');
-	$greetJane = partial($greet, 'Jane');
+	$greetMark = Dash\partial($greet, 'Mark');
+	$greetJane = Dash\partial($greet, 'Jane');
 
 	$greetMark('Hello');  // === 'Hello, Mark!'
 	$greetJane('Howdy');  // === 'Howdy, Jane!'
+ *
+ * @example With a placeholder
+	$greet = function ($greeting, $salutation, $name) {
+		return "$greeting, $salutation $name!";
+	};
+	$greetMr = Dash\partialRight($greet, 'Mr.', Dash\PLACEHOLDER);
+	$greetMr('Hello', 'Mark');  // === 'Hello, Mr. Mark!'
  */
 function partialRight($callable /* , ...args */)
 {
@@ -25,8 +34,23 @@ function partialRight($callable /* , ...args */)
 	array_shift($fixedArgs);  // Removes $callable
 
 	$partial = function () use ($callable, $fixedArgs) {
-		$args = array_merge(func_get_args(), $fixedArgs);
+		$args = [];
+		$runtimeArgs = func_get_args();
+
+		while ($fixedArgs || $runtimeArgs) {
+			if ($fixedArgs) {
+				$fixedArg = array_pop($fixedArgs);
+				$arg = ($fixedArg === \Dash\PLACEHOLDER) ? array_pop($runtimeArgs) : $fixedArg;
+				array_unshift($args, $arg);
+			}
+			elseif ($runtimeArgs) {
+				$arg = array_pop($runtimeArgs);
+				array_unshift($args, $arg);
+			}
+		}
+
 		return call_user_func_array($callable, $args);
 	};
+
 	return $partial;
 }

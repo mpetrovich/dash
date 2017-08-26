@@ -23,4 +23,14 @@ class partialTest extends PHPUnit_Framework_TestCase
 		$partial = Dash\partial($concat, 3, 4, 5);
 		$this->assertSame('3, 4, 5', $partial());
 	}
+
+	public function testPlaceholders()
+	{
+		$concat = function (/* ...elements */) {
+			return implode(', ', func_get_args());
+		};
+
+		$partial = Dash\partial($concat, 1, Dash\PLACEHOLDER, 3, 4, Dash\PLACEHOLDER);
+		$this->assertSame('1, 2, 3, 4, 5, 6, 7', $partial(2, 5, 6, 7));
+	}
 }
