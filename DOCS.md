@@ -192,7 +192,7 @@ contains([1, '2', 3], 2);  // === true
 
 **Example:** With strict equality comparison
 ```php
-contains([1, '2', 3], 2, 'Dash\identity');  // === false
+contains([1, '2', 3], 2, 'Dash\identical');  // === false
 ```
 deltas
 ---

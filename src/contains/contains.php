@@ -15,7 +15,7 @@ namespace Dash;
 	contains([1, '2', 3], 2);  // === true
  *
  * @example With strict equality comparison
-	contains([1, '2', 3], 2, 'Dash\identity');  // === false
+	contains([1, '2', 3], 2, 'Dash\identical');  // === false
  */
 function contains($iterable, $target, $comparator = 'Dash\equal')
 {
