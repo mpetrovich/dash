@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers Dash\is
+ * @covers Dash\isType
  */
 class isTest extends PHPUnit_Framework_TestCase
 {
