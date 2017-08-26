@@ -1771,7 +1771,7 @@ Parameter | Type | Description
 thru
 ---
 ```php
-thru($value, callable $interceptor): iterable
+thru($iterable, callable $interceptor): iterable
 ```
 Invokes interceptor with ($iterable) and returns its result.
 
