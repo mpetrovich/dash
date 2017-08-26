@@ -13,8 +13,7 @@ Planned
 ---
 - Feature-parity with similar libraries ([1](https://github.com/bdelespierre/underscore.php), [2](https://github.com/Anahkiasen/underscore-php), [3](https://github.com/maciejczyzewski/bottomline), [4](http://github.com/brianhaveri/Underscore.php), [5](https://lodash.com/docs/))
 - Performance improvements
-
-See the [progress here](PROGRESS.md).
+- Support for automatic currying
 
 
 0.6.0
