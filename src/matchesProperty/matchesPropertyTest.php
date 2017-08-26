@@ -1,19 +1,20 @@
 <?php
 
-
+/**
+ * @covers Dash\matchesProperty
+ */
 class matchesPropertyTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForMatchesProperty
+	 * @dataProvider cases
 	 */
-	public function testMatchesProperty($path, $value, $iterable, $expected)
+	public function test($path, $value, $iterable, $expected)
 	{
 		$matches = Dash\matchesProperty($path, $value);
-		$actual = $matches($iterable);
-		$this->assertEquals($expected, $actual);
+		$this->assertEquals($expected, $matches($iterable));
 	}
 
-	public function casesForMatchesProperty()
+	public function cases()
 	{
 		return [
 			'With a matching array' => [

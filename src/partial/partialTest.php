@@ -5,38 +5,22 @@
  */
 class partialTest extends PHPUnit_Framework_TestCase
 {
-	/**
-	 * @dataProvider casesForPartial
-	 */
-	public function testStandalonePartial($partialArgs, $invokeArgs, $expected)
+	public function test()
 	{
-		$partial = call_user_func_array('Dash\partial', $partialArgs);
-		$actual = call_user_func_array($partial, $invokeArgs);
-		$this->assertSame($expected, $actual);
-	}
-
-	public function casesForPartial()
-	{
-		$sum = function ($a, $b, $c) {
-			return $a + $b + $c;
+		$concat = function (/* ...elements */) {
+			return implode(', ', func_get_args());
 		};
 
-		return [
-			'With all function parameters pre-specified' => [
-				[$sum, 1, 2, 3],
-				[],
-				6
-			],
-			'With some function parameters pre-specified' => [
-				[$sum, 1, 2],
-				[3],
-				6
-			],
-			'With no function parameters pre-specified' => [
-				[$sum],
-				[1, 2, 3],
-				6
-			],
-		];
+		// With no fixed args
+		$partial = Dash\partial($concat);
+		$this->assertSame('1, 2, 3', $partial(1, 2, 3));
+
+		// With some fixed args
+		$partial = Dash\partial($concat, 1, 2);
+		$this->assertSame('1, 2, 3, 4', $partial(3, 4));
+
+		// With only fixed args
+		$partial = Dash\partial($concat, 3, 4, 5);
+		$this->assertSame('3, 4, 5', $partial());
 	}
 }

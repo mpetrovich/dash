@@ -29,6 +29,8 @@ Table of contents
 - [last](#last)
 - [map](#map)
 - [mapValues](#mapvalues)
+- [matches](#matches)
+- [matchesProperty](#matchesproperty)
 - [max](#max)
 - [median](#median)
 - [min](#min)
@@ -51,6 +53,8 @@ Table of contents
 - [ary](#ary)
 - [call](#call)
 - [negate](#negate)
+- [partial](#partial)
+- [partialRight](#partialright)
 
 ### Utility
 - [assertType](#asserttype)
@@ -74,10 +78,6 @@ Table of contents
 - [isOdd](#isodd)
 
 ### Other
-- [matches](#matches)
-- [matchesProperty](#matchesproperty)
-- [partial](#partial)
-- [partialRight](#partialright)
 - [pick](#pick)
 - [takeWhile](#takewhile)
 - [tap](#tap)
@@ -738,6 +738,48 @@ Dash\map(
 	function($color, $flower) { return $flower . ' are ' . $color; }
 ) == ['roses' => 'roses are red', 'violets' => 'violets are blue'];
 ```
+matches
+---
+```php
+matches($properties): callable
+```
+Creates a function with signature (iterable $iterable) that returns true
+if $iterable contains all key-value pairs in $properties,
+using loose equality for value comparison.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$properties` | `iterable` | Key-value pairs that the returned function will match its input against
+
+
+**Example:** 
+```php
+$matcher = matches(['b' => 2, 'd' => 4]);
+$matcher(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]);  // === true
+$matcher(['a' => 1, 'b' => 2, 'c' => 3, 'e' => 5]);  // === false
+```
+matchesProperty
+---
+```php
+matchesProperty($path, $value): callable
+```
+Creates a function with signature (iterable $iterable) that returns true
+if it has a value at $path that is loosely equal to $value.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$path` | `string` | Any valid path supported by Dash\get()
+`$value` | `mixed` | Value to compare against
+
+
+**Example:** 
+```php
+$matcher = matchesProperty('c', 3);
+$matcher(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]);  // === true
+$matcher(['a' => 1, 'b' => 2, 'd' => 4, 'e' => 5]);  // === false
+```
 max
 ---
 ```php
@@ -1274,6 +1316,54 @@ Parameter | Type | Description
 
 
 
+partial
+---
+```php
+partial($callable /* , ...args */): callable
+```
+Creates a function that invokes $callable with the given set of arguments prepended to any others passed in.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+
+
+**Example:** 
+```php
+$greet = function ($greeting, $name) {
+	return "$greeting, $name!";
+};
+$sayHello = partial($greet, 'Hello');
+$sayHowdy = partial($greet, 'Howdy');
+
+$sayHello('Mark');  // === 'Hello, Mark!'
+$sayHowdy('Jane');  // === 'Howdy, Jane!'
+```
+partialRight
+---
+```php
+partialRight($callable /* , ...args */): callable
+```
+Creates a function that invokes $callable with the given set of arguments appended to any others passed in.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+
+
+**Example:** 
+```php
+$greet = function ($greeting, $name) {
+	return "$greeting, $name!";
+};
+$greetMark = partial($greet, 'Mark');
+$greetJane = partial($greet, 'Jane');
+
+$greetMark('Hello');  // === 'Hello, Mark!'
+$greetJane('Howdy');  // === 'Howdy, Jane!'
+```
 
 Utility
 ===
@@ -1580,46 +1670,6 @@ isOdd(3.7);  // === true
 
 Other
 ===
-
-matches
----
-```php
-matches($properties)
-```
-
-
-
-
-
-matchesProperty
----
-```php
-matchesProperty($path, $value)
-```
-
-
-
-
-
-partial
----
-```php
-partial($function)
-```
-
-
-
-
-
-partialRight
----
-```php
-partialRight($function)
-```
-
-
-
-
 
 pick
 ---
