@@ -3,6 +3,11 @@
 namespace Dash;
 
 /**
+ * Placeholder parameter for partial(), partialRight(), etc.
+ */
+const _ = "\0\0";
+
+/**
  * Point of entry for standalone and chained operations.
  *
  * All operations can be accessed as static methods (eg. _::map() )

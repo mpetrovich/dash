@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Creates a function that invokes $callable with the given set of arguments appended to any others passed in.
  *
- * Pass Dash\PLACEHOLDER as a placeholder to replace with call-time arguments.
+ * Pass Dash\_ as a placeholder to replace with call-time arguments.
  *
  * @category Callable
  * @param callable $callable
@@ -25,7 +25,7 @@ namespace Dash;
 	$greet = function ($greeting, $salutation, $name) {
 		return "$greeting, $salutation $name!";
 	};
-	$greetMr = Dash\partialRight($greet, 'Mr.', Dash\PLACEHOLDER);
+	$greetMr = Dash\partialRight($greet, 'Mr.', Dash\_);
 	$greetMr('Hello', 'Mark');  // === 'Hello, Mr. Mark!'
  */
 function partialRight($callable /* , ...args */)
@@ -40,7 +40,7 @@ function partialRight($callable /* , ...args */)
 		while ($fixedArgs || $runtimeArgs) {
 			if ($fixedArgs) {
 				$fixedArg = array_pop($fixedArgs);
-				$arg = ($fixedArg === \Dash\PLACEHOLDER) ? array_pop($runtimeArgs) : $fixedArg;
+				$arg = ($fixedArg === \Dash\_) ? array_pop($runtimeArgs) : $fixedArg;
 				array_unshift($args, $arg);
 			}
 			elseif ($runtimeArgs) {

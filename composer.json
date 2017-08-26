@@ -18,6 +18,7 @@
 			"Dash\\": ["src/"]
 		},
 		"files": [
+			"src/_.php",
 			"src/all/all.php",
 			"src/any/any.php",
 			"src/apply/apply.php",

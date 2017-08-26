@@ -2,12 +2,10 @@
 
 namespace Dash;
 
-const PLACEHOLDER = "\0\0";
-
 /**
  * Creates a function that invokes $callable with the given set of arguments prepended to any others passed in.
  *
- * Pass Dash\PLACEHOLDER as a placeholder to replace with call-time arguments.
+ * Use Dash\_ as a placeholder to replace with call-time arguments.
  *
  * @category Callable
  * @param callable $callable
@@ -27,7 +25,7 @@ const PLACEHOLDER = "\0\0";
 	$greet = function ($greeting, $salutation, $name) {
 		return "$greeting, $salutation $name!";
 	};
-	$greetMr = Dash\partial($greet, Dash\PLACEHOLDER, 'Mr.');
+	$greetMr = Dash\partial($greet, Dash\_, 'Mr.');
 	$greetMr('Hello', 'Mark');  // === 'Hello, Mr. Mark!'
  */
 function partial($callable /* , ...args */)
@@ -42,7 +40,7 @@ function partial($callable /* , ...args */)
 		while ($fixedArgs || $runtimeArgs) {
 			if ($fixedArgs) {
 				$fixedArg = array_shift($fixedArgs);
-				$args[] = ($fixedArg === \Dash\PLACEHOLDER) ? array_shift($runtimeArgs) : $fixedArg;
+				$args[] = ($fixedArg === \Dash\_) ? array_shift($runtimeArgs) : $fixedArg;
 			}
 			elseif ($runtimeArgs) {
 				$args[] = array_shift($runtimeArgs);

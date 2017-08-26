@@ -30,7 +30,7 @@ class partialRightTest extends PHPUnit_Framework_TestCase
 			return implode(', ', func_get_args());
 		};
 
-		$partial = Dash\partialRight($concat, 3, Dash\PLACEHOLDER, 5, 6, Dash\PLACEHOLDER);
+		$partial = Dash\partialRight($concat, 3, Dash\_, 5, 6, Dash\_);
 		$this->assertSame('1, 2, 3, 4, 5, 6, 7', $partial(1, 2, 4, 7));
 	}
 }
