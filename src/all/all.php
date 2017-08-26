@@ -10,6 +10,8 @@ namespace Dash;
  * @param callable $predicate A callable invoked with ($value, $key) that returns a boolean
  * @return boolean true if $predicate returns truthy for every item in $iterable
  *
+ * @see every
+ *
  * @example
 	all([1, 2, 3], function($n) { return $n > 5; });  // === false
 	all([1, 3, 5], 'Dash\isOdd');  // === true
@@ -21,4 +23,12 @@ function all($iterable, $predicate)
 	}
 
 	return !any($iterable, negate($predicate));
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function every()
+{
+	return call_user_func_array('Dash\all', func_get_args());
 }

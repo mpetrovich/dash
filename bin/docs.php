@@ -17,7 +17,6 @@ function buildDocs($sourceDir, $destFilepath)
 		->map(function ($name) { return "src/$name/$name.php"; })
 		->filter(function ($filepath) { return file_exists($filepath); })
 		->map('createDoc')
-		->thru('resolveAliases')
 		->groupBy('category', 'Other')
 		->each(function ($docs) { return _::sort($docs, _::property('name')); })
 		->value();
@@ -94,18 +93,16 @@ function parseDocblock($docblock)
 		->value();
 
 	// Alias
-	$op->aliasOf = _::chain($lines)
+	$op->aliases = _::chain($lines)
 		->filter(function ($line) { return strpos($line, '@see') === 0; })
-		->map(function ($line) {
+		->first()
+		->thru(function ($line) {
 			$matches = [];
 			preg_match('/^@see\s+(.*)$/', $line, $matches);
-			$aliasOf = $matches[1];
-			return $aliasOf;
+			$aliases = $matches[1];
+			return $aliases ? explode(', ', $aliases) : [];
 		})
-		->first()
 		->value();
-
-	$op->isAlias = !is_null($op->aliasOf);
 
 	// Return type
 	$op->returnType = _::chain($lines)
@@ -172,24 +169,6 @@ function parseDocblock($docblock)
 	return $op;
 }
 
-function resolveAliases($ops)
-{
-	$nonAliases = _::chain($ops)
-		->map(function ($op) { $op->aliases = []; return $op; })
-		->reject('isAlias')
-		->indexBy('name')
-		->value();
-
-	_::chain($ops)
-		->filter('isAlias')
-		->each(function ($op) use (&$nonAliases) {
-			$nonAliases[$op->aliasOf]->aliases[] = $op->name;
-		})
-		->run();
-
-	return _::values($nonAliases);
-}
-
 function renderDoc($op)
 {
 	$aliases = $op->aliases ? sprintf(' / %s', implode(' / ', $op->aliases)) : '';
@@ -235,7 +214,6 @@ END;
 function renderCategory($docs, $category)
 {
 	$renderedDocs = _::chain($docs)
-		->reject('isAlias')
 		->map('renderDoc')
 		->join("\n")
 		->value();
@@ -254,10 +232,9 @@ function renderTableOfContents($categories)
 	$list = _::chain($categories)
 		->map(function ($ops, $category) {
 			$opsList = _::chain($ops)
-				->reject('isAlias')
 				->map(function ($op) {
 					$aliases = implode(' / ', $op->aliases);
-					$aliases = $aliases ? " / $aliases" : '';
+					$aliases = $op->aliases ? " / $aliases" : '';
 
 					$slug = _::chain(array_merge([$op->name], $op->aliases))
 						->map(Dash\ary('strtolower', 1))

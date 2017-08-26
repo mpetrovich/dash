@@ -11,6 +11,7 @@ class allTest extends PHPUnit_Framework_TestCase
 	public function test($iterable, $predicate, $expected)
 	{
 		$this->assertEquals($expected, Dash\all($iterable, $predicate));
+		$this->assertEquals($expected, Dash\every($iterable, $predicate));
 	}
 
 	public function cases()

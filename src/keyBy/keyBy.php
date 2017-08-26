@@ -10,6 +10,8 @@ namespace Dash;
  * @param callable $iteratee (optional) Invoked with ($element) for each element of $iterable
  * @return array map of key => grouped elements
  *
+ * @see indexBy
+ *
  * @example
 	keyBy([
 		['name' => 'John', 'gender' => 'male'],
@@ -35,4 +37,12 @@ function keyBy($iterable, $iteratee = 'Dash\identity')
 		$grouped[$key] = $value;
 		return $grouped;
 	});
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function indexBy()
+{
+	return call_user_func_array('Dash\keyBy', func_get_args());
 }
