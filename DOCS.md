@@ -7,7 +7,7 @@ Table of contents
 - [average](#average)
 - [contains](#contains)
 - [deltas](#deltas)
-- [difference](#difference)
+- [difference](#difference--diff) / diff
 - [dropWhile](#dropwhile)
 - [each](#each)
 - [filter](#filter)
@@ -21,10 +21,10 @@ Table of contents
 - [getDirectRef](#getdirectref)
 - [groupBy](#groupby)
 - [hasDirect](#hasdirect)
-- [intersection](#intersection)
+- [intersection](#intersection--intersec) / intersec
 - [isEmpty](#isempty)
 - [isIndexedArray](#isindexedarray)
-- [join](#join)
+- [join](#join--implode) / implode
 - [keyBy](#keyby--indexby) / indexBy
 - [keys](#keys)
 - [last](#last)
@@ -70,7 +70,7 @@ Table of contents
 - [identical](#identical)
 - [identity](#identity)
 - [is](#is)
-- [size](#size)
+- [size](#size--count) / count
 
 ### Dash
 - [chain](#chain)
@@ -209,7 +209,7 @@ Parameter | Type | Description
 ```php
 deltas([3, 8, 9, 9, 5, 13]);  // === [0, 5, 1, 0, -4, 8]
 ```
-difference
+difference / diff
 ---
 ```php
 difference($iterable /* , ...iterables */): array
@@ -539,7 +539,7 @@ hasDirect(['a' => ['b' => 1, 'c' => 2], 'b');  // === false
 ```php
 hasDirect((object) ['a' => 1, 'b' => 2], 'b');  // === true
 ```
-intersection
+intersection / intersec
 ---
 ```php
 intersection($iterable /* , ...iterables */): array
@@ -602,7 +602,7 @@ Parameter | Type | Description
 isIndexedArray([1, 2, 3]);             // === true
 isIndexedArray(['a' => 1, 'b' => 2]);  // === false
 ```
-join
+join / implode
 ---
 ```php
 join($iterable, $separator): string
@@ -1702,7 +1702,7 @@ is($obj, 'iterable');  // === true
 ```php
 is(new ArrayObject([1, 2, 3]), 'ArrayObject');  // === true
 ```
-size
+size / count
 ---
 ```php
 size($input, $encoding = 'UTF-8'): integer
