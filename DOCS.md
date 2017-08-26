@@ -21,7 +21,7 @@ Table of contents
 - [getDirectRef](#getdirectref)
 - [groupBy](#groupby)
 - [hasDirect](#hasdirect)
-- [intersection](#intersection--intersec) / intersec
+- [intersection](#intersection--intersect) / intersect
 - [isEmpty](#isempty)
 - [isIndexedArray](#isindexedarray)
 - [join](#join--implode) / implode
@@ -539,7 +539,7 @@ hasDirect(['a' => ['b' => 1, 'c' => 2], 'b');  // === false
 ```php
 hasDirect((object) ['a' => 1, 'b' => 2], 'b');  // === true
 ```
-intersection / intersec
+intersection / intersect
 ---
 ```php
 intersection($iterable /* , ...iterables */): array
