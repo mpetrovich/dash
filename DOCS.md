@@ -480,7 +480,13 @@ Parameter | Type | Description
 `$key` | `string` | 
 
 
-
+**Example:** 
+```php
+$obj = (object) ['key' => 'value'];
+$ref = Dash\getDirectRef($obj, 'key');
+$ref = 'changed';
+// $obj->key === 'changed'
+```
 groupBy
 ---
 ```php

@@ -10,6 +10,12 @@ namespace Dash;
  * @param string $key
  * @return mixed
  * @throws \UnexpectedValueException if no value exists at $key
+ *
+ * @example
+	$obj = (object) ['key' => 'value'];
+	$ref = Dash\getDirectRef($obj, 'key');
+	$ref = 'changed';
+	// $obj->key === 'changed'
  */
 function &getDirectRef(&$iterable, $key)
 {
