@@ -9,7 +9,7 @@ Contributing
 
 Adding new operations
 ---
-**If you want to add custom Dash operations for your own application, see [`Dash\custom()`](https://github.com/mpetrovich/Dash/blob/master/DOCS.md#custom).**
+**If you want to add custom Dash operations for your own application, see [`_::setCustom()`](https://github.com/mpetrovich/Dash#custom-operations).**
 To contribute new operations to the main Dash repository, read on.
 
 Dash's modular design makes it easy to add new operations.
