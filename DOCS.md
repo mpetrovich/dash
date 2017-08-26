@@ -69,7 +69,7 @@ Table of contents
 - [equal](#equal)
 - [identical](#identical)
 - [identity](#identity)
-- [is](#is)
+- [isType](#istype)
 - [size](#size--count) / count
 
 ### Dash
@@ -1664,10 +1664,10 @@ Parameter | Type | Description
 $a = new ArrayObject();
 identity($a);  // === $a
 ```
-is
+isType
 ---
 ```php
-is($value, $type): boolean
+isType($value, $type): boolean
 ```
 Checks whether a value is of a particular data type.
 
@@ -1680,13 +1680,13 @@ Parameter | Type | Description
 
 **Example:** With a native data type
 ```php
-is([1, 2, 3], 'array');  // === true
+isType([1, 2, 3], 'array');  // === true
 
 ```
 
 **Example:** With a type corresponding to a native is_<type>() method
 ```php
-is(3.14, 'numeric');  // === true
+isType(3.14, 'numeric');  // === true
 
 ```
 
@@ -1694,13 +1694,13 @@ is(3.14, 'numeric');  // === true
 ```php
 $obj = (objec) [1, 2, 3];
 is_iterable($obj);     // === false
-is($obj, 'iterable');  // === true
+isType($obj, 'iterable');  // === true
 
 ```
 
 **Example:** With a class instance
 ```php
-is(new ArrayObject([1, 2, 3]), 'ArrayObject');  // === true
+isType(new ArrayObject([1, 2, 3]), 'ArrayObject');  // === true
 ```
 size / count
 ---

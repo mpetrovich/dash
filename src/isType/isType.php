@@ -14,20 +14,20 @@ namespace Dash;
  * @return boolean
  *
  * @example With a native data type
-	is([1, 2, 3], 'array');  // === true
+	isType([1, 2, 3], 'array');  // === true
  *
  * @example With a type corresponding to a native is_<type>() method
-	is(3.14, 'numeric');  // === true
+	isType(3.14, 'numeric');  // === true
  *
  * @example 'iterable', in contrast with is_iterable(), returns true for stdClass objects
 	$obj = (objec) [1, 2, 3];
 	is_iterable($obj);     // === false
-	is($obj, 'iterable');  // === true
+	isType($obj, 'iterable');  // === true
  *
  * @example With a class instance
-	is(new ArrayObject([1, 2, 3]), 'ArrayObject');  // === true
+	isType(new ArrayObject([1, 2, 3]), 'ArrayObject');  // === true
  */
-function is($value, $type)
+function isType($value, $type)
 {
 	$customTypeChecks = [
 		'iterable' => function ($value) {

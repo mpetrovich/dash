@@ -10,7 +10,7 @@ class isTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($input, $type, $expected)
 	{
-		$this->assertEquals($expected, Dash\is($input, $type));
+		$this->assertEquals($expected, Dash\isType($input, $type));
 	}
 
 	public function cases()

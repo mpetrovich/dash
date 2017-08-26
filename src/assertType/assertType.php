@@ -17,7 +17,7 @@ namespace Dash;
  */
 function assertType($input, $type)
 {
-	if (!is($input, $type)) {
+	if (!isType($input, $type)) {
 		throw new \InvalidArgumentException(sprintf(
 			'Expected %s but was given %s',
 			\implode(' or ', (array) $type),

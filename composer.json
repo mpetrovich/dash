@@ -50,7 +50,7 @@
 			"src/identical/identical.php",
 			"src/identity/identity.php",
 			"src/intersection/intersection.php",
-			"src/is/is.php",
+			"src/isType/isType.php",
 			"src/isEmpty/isEmpty.php",
 			"src/isEven/isEven.php",
 			"src/isIndexedArray/isIndexedArray.php",
