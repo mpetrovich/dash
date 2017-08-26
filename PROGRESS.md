@@ -1,0 +1,304 @@
+To review
+---
+- [ ] all
+- [ ] any
+- [ ] apply
+- [ ] ary
+- [ ] assertType
+- [ ] at
+- [ ] average
+- [ ] call
+- [ ] chain
+- [ ] compare
+- [ ] contains
+- [ ] custom
+- [ ] deltas
+- [ ] difference
+- [ ] display
+- [ ] dropWhile
+- [ ] each
+- [ ] equal
+- [ ] filter
+- [ ] find
+- [ ] findKey
+- [ ] findLast
+- [ ] findValue
+- [ ] first
+- [ ] get
+- [ ] getDirect
+- [ ] getDirectRef
+- [ ] groupBy
+- [ ] hasDirect
+- [ ] identical
+- [ ] identity
+- [ ] intersection
+- [ ] isEmpty
+- [ ] isEven
+- [ ] isIndexedArray
+- [ ] isOdd
+- [ ] isType
+- [ ] join
+- [ ] keyBy
+- [ ] keys
+- [ ] last
+- [ ] map
+- [ ] mapValues
+- [ ] matches
+- [ ] matchesProperty
+- [ ] max
+- [ ] median
+- [ ] min
+- [ ] negate
+- [ ] partial
+- [ ] partialRight
+- [ ] pick
+- [ ] pluck
+- [ ] property
+- [ ] reduce
+- [ ] reject
+- [ ] result
+- [ ] reverse
+- [ ] set
+- [ ] size
+- [ ] sort
+- [ ] sum
+- [ ] take
+- [ ] takeRight
+- [ ] takeWhile
+- [ ] tap
+- [ ] thru
+- [ ] toArray
+- [ ] union
+- [ ] values
+- [ ] where
+- [ ] without
+
+### For each
+
+Implementation
+- Compare to other implementations
+- Input type assertions
+- Performance (eg. avoid native `array_*` methods)
+
+Documentation
+- Category
+- Parameters, return value, exceptions
+- Aliases
+- Examples
+
+Tests
+- null
+- empty string
+- string
+- number
+- DateTime
+- empty array
+- indexed array
+- associative array
+- empty stdClass
+- stdClass
+- empty ArrayObject
+- ArrayObject
+- DirectoryIterator
+- exceptions
+
+
+To add
+---
+- [ ] accord
+- [ ] after
+- [ ] append
+- [ ] arsort
+- [ ] asort
+- [ ] before
+- [ ] bindClass
+- [ ] cache
+- [ ] change_key_case
+- [ ] chunk
+- [ ] clean
+- [ ] clon
+- [ ] column
+- [ ] combine
+- [ ] compact
+- [ ] compose
+- [ ] constant
+- [ ] count
+- [ ] count_values
+- [ ] countBy
+- [ ] current
+- [ ] defaults
+- [ ] diff
+- [ ] diff_assoc
+- [ ] diff_key
+- [ ] diff_uassoc
+- [ ] diff_ukey
+- [ ] duplicate
+- [ ] eachReference
+- [ ] ease
+- [ ] end
+- [ ] endsWith
+- [ ] escape
+- [ ] every
+- [ ] exclude
+- [ ] explode
+- [ ] extend
+- [ ] extract
+- [ ] fill
+- [ ] fill_keys
+- [ ] findWhere
+- [ ] flatten
+- [ ] flip
+- [ ] forge
+- [ ] fromCSV
+- [ ] fromJSON
+- [ ] fromXML
+- [ ] functions
+- [ ] group
+- [ ] has
+- [ ] hasKeys
+- [ ] implode
+- [ ] in_array
+- [ ] includ
+- [ ] indexBy
+- [ ] indexOf
+- [ ] initial
+- [ ] intersect
+- [ ] intersect_assoc
+- [ ] intersect_key
+- [ ] intersect_uassoc
+- [ ] intersect_ukey
+- [ ] invert
+- [ ] invoke
+- [ ] is
+- [ ] isArray
+- [ ] isBoolean
+- [ ] isDate
+- [ ] isEmail
+- [ ] isEqual
+- [ ] isFinite
+- [ ] isFloat
+- [ ] isFunction
+- [ ] isInteger
+- [ ] isIp
+- [ ] isNaN
+- [ ] isNull
+- [ ] isNumber
+- [ ] isObject
+- [ ] isResource
+- [ ] isScalar
+- [ ] isString
+- [ ] isTraversable
+- [ ] isUrl
+- [ ] key
+- [ ] key_exists
+- [ ] krsort
+- [ ] ksort
+- [ ] lastIndexOf
+- [ ] lastly
+- [ ] length
+- [ ] limit
+- [ ] list
+- [ ] lower
+- [ ] matchesAny
+- [ ] memoize
+- [ ] merge
+- [ ] merge_recursive
+- [ ] methods
+- [ ] mixin
+- [ ] multisort
+- [ ] natcasesort
+- [ ] natsort
+- [ ] next
+- [ ] noop
+- [ ] now
+- [ ] obj
+- [ ] omit
+- [ ] once
+- [ ] only
+- [ ] pad
+- [ ] padding
+- [ ] paddingLeft
+- [ ] paddingRight
+- [ ] pairs
+- [ ] partition
+- [ ] patch
+- [ ] plural
+- [ ] pop
+- [ ] pos
+- [ ] prepend
+- [ ] prev
+- [ ] product
+- [ ] provide
+- [ ] push
+- [ ] rand
+- [ ] random
+- [ ] randomize
+- [ ] range
+- [ ] reduceRight
+- [ ] remove
+- [ ] removeFirst
+- [ ] removeLast
+- [ ] repeat
+- [ ] replace
+- [ ] replace_recursive
+- [ ] replaceKeys
+- [ ] replaceValue
+- [ ] reset
+- [ ] rest
+- [ ] rsort
+- [ ] sample
+- [ ] search
+- [ ] shift
+- [ ] shuffle
+- [ ] singular
+- [ ] sizeof
+- [ ] slice
+- [ ] sliceFrom
+- [ ] sliceTo
+- [ ] slug
+- [ ] some
+- [ ] sortBy
+- [ ] sortedIndex
+- [ ] sortKeys
+- [ ] splice
+- [ ] startsWith
+- [ ] template
+- [ ] throttle
+- [ ] times
+- [ ] title
+- [ ] toBoolean
+- [ ] toCamelCase
+- [ ] toCSV
+- [ ] toggle
+- [ ] toInteger
+- [ ] toJSON
+- [ ] toObject
+- [ ] toPascalCase
+- [ ] toSnakeCase
+- [ ] toString
+- [ ] truncate
+- [ ] typeOf
+- [ ] uasort
+- [ ] udiff
+- [ ] udiff_assoc
+- [ ] udiff_uassoc
+- [ ] uintersect
+- [ ] uintersect_assoc
+- [ ] uintersect_uassoc
+- [ ] uksort
+- [ ] unease
+- [ ] unescape
+- [ ] uniq
+- [ ] unique
+- [ ] uniqueId
+- [ ] unpack
+- [ ] unshift
+- [ ] upper
+- [ ] urlify
+- [ ] usort
+- [ ] value
+- [ ] walk
+- [ ] walk_recursive
+- [ ] words
+- [ ] wrap
+- [ ] zip
