@@ -100,7 +100,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `mixed` | 
 `$predicate` | `callable` | A callable invoked with ($value, $key) that returns a boolean
-
+**Returns** | `boolean` | true if $predicate returns truthy for every item in $iterable
 
 **Example:** 
 ```php
@@ -119,7 +119,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `mixed` | 
 `$predicate` | `callable` | A callable invoked with ($value, $key) that returns a boolean
-
+**Returns** | `boolean` | 
 
 **Example:** 
 ```php
@@ -139,7 +139,7 @@ Parameter | Type | Description
 `$iterable` | `iterable` | 
 `$index` | `int` | 0-based index
 `$default` | `mixed` | Value to return if $index is out of bounds
-
+**Returns** | `mixed` | 
 
 **Example:** 
 ```php
@@ -163,7 +163,7 @@ Gets the average of all values in $iterable.
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
-
+**Returns** | `double` | Average value
 
 **Example:** 
 ```php
@@ -182,7 +182,7 @@ Parameter | Type | Description
 `$iterable` | `iterable` | 
 `$target` | `mixed` | Value to compare $iterable elements against
 `$comparator` | `callable` | Invoked with ($target, $value) for each value in $iterable
-
+**Returns** | `boolean` | true if $comparator returns truthy for any elements in $iterable
 
 **Example:** With loose equality comparison (the default)
 ```php
@@ -205,7 +205,7 @@ Returns a new array whose values are the differences between subsequent elements
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
-
+**Returns** | `array` | 
 
 **Example:** 
 ```php
@@ -223,7 +223,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | Iterable to compare against
 `$iterables,...` | `iterable` | 
-
+**Returns** | `array` | 
 
 **Example:** 
 ```php
@@ -246,7 +246,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
 `$predicate` | `callable` | Invoked with ($value, $key, $iterable)
-
+**Returns** | `array` | 
 
 
 each
@@ -263,7 +263,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
 `$iteratee` | `callable` | Invoked with ($value, $key, $iterable) for each element in $iterable. If $iteratee returns false, iteration will end and subsequent elements will be skipped.
-
+**Returns** | `mixed` | $iterable
 
 **Example:** 
 ```php
@@ -281,7 +281,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
 `$predicate` | `callable` | Callable invoked with ($value, $key, $iterable) for each item in $iterable
-
+**Returns** | `array` | 
 
 **Example:** 
 ```php
@@ -314,7 +314,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
 `$predicate` | `callable\|mixed` | Value to compare against, or callable invoked with ($value, $key, $iterable)
-
+**Returns** | `array\|null` | [$key, $value] of the matching key/index and value, or null if not found
 
 **Example:** With comparison value
 ```php
@@ -334,7 +334,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
 `$predicate` | `callable\|mixed` | Value to compare against, or callable invoked with ($value, $key, $iterable)
-
+**Returns** | `string\|integer\|null` | Key of the matching element, or null if not found
 
 **Example:** With comparison value
 ```php
@@ -354,7 +354,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
 `$predicate` | `callable\|mixed` | Value to compare against, or callable invoked with ($value, $key, $iterable)
-
+**Returns** | `array\|null` | [$key, $value] of the matching key/index and value, or null if not found
 
 **Example:** With comparison value
 ```php
@@ -374,7 +374,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
 `$predicate` | `callable\|mixed` | Value to compare against, or callable invoked with ($value, $key, $iterable)
-
+**Returns** | `string\|integer\|null` | Value of the matching element, or null if not found
 
 **Example:** With comparison value
 ```php
@@ -393,7 +393,7 @@ Returns the first value of $iterable.
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
-
+**Returns** | `mixed` | 
 
 **Example:** 
 ```php
@@ -412,7 +412,7 @@ Parameter | Type | Description
 `$iterable` | `array\|object` | 
 `$path` | `callable\|string` | Callable used to retrieve the value or path of the property to retrieve; Paths can be nested by delimiting each sub-property or array index with a period, eg. 'a.b.0.c'
 `$default` | `mixed` | Default value to return if nothing exists at $path
-
+**Returns** | `mixed` | Value at $path on the collection
 
 **Example:** 
 ```php
@@ -456,7 +456,7 @@ Parameter | Type | Description
 `$iterable` | `iterable` | 
 `$key` | `string` | 
 `$default` | `mixed` | Value to return if no value at $key exists
-
+**Returns** | `mixed` | 
 
 **Example:** With an array
 ```php
@@ -480,7 +480,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
 `$key` | `string` | 
-
+**Returns** | `mixed` | 
 
 **Example:** 
 ```php
@@ -502,7 +502,7 @@ Parameter | Type | Description
 `$iterable` | `iterable` | 
 `$iteratee` | `callable` | (optional) Invoked with ($element) for each element of $iterable
 `$defaultGroup` | `string` | (optional) Elements with null $iteratee return values will be in this group
-
+**Returns** | `array` | map of key => grouped elements
 
 **Example:** 
 ```php
@@ -528,7 +528,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `array\|object\|ArrayAccess` | 
 `$key` | `string` | 
-
+**Returns** | `boolean` | 
 
 **Example:** 
 ```php
@@ -555,7 +555,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | Iterable to compare against
 `$iterables,...` | `iterable` | 
-
+**Returns** | `array` | 
 
 **Example:** 
 ```php
@@ -576,7 +576,7 @@ A value is empty if it is an iterable of size zero or loosely equals false.
 Parameter | Type | Description
 --- | --- | :---
 `$input` | `mixed` | 
-
+**Returns** | `boolean` | 
 
 **Example:** 
 ```php
@@ -597,7 +597,7 @@ Returns whether $input is an array with sequential integer keys that start at 0.
 Parameter | Type | Description
 --- | --- | :---
 `$input` | `mixed` | 
-
+**Returns** | `boolean` | 
 
 **Example:** 
 ```php
@@ -616,7 +616,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
 `$separator` | `string` | 
-
+**Returns** | `string` | 
 
 **Example:** 
 ```php
@@ -634,7 +634,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
 `$iteratee` | `callable` | (optional) Invoked with ($element) for each element of $iterable
-
+**Returns** | `array` | map of key => grouped elements
 
 **Example:** 
 ```php
@@ -664,7 +664,7 @@ Gets the keys of an iterable as an array.
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
-
+**Returns** | `array` | 
 
 **Example:** 
 ```php
@@ -682,7 +682,7 @@ Returns the last value of $iterable.
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
-
+**Returns** | `mixed` | 
 
 **Example:** 
 ```php
@@ -704,7 +704,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `array\|object` | 
 `$iteratee` | `Callable\|string` | Function called with (element, key, collection) for each element in $iterable. The return value of $iteratee will be used as the corresponding element in the returned array. If $iteratee is a string, property($iteratee) will be used as the iteratee function. 
-
+**Returns** | `array` | 
 
 **Example:** 
 ```php
@@ -750,7 +750,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `array\|object` | 
 `$iteratee` | `Callable` | Function called with (element, key, collection) for each element in $iterable. The return value of $iteratee will be used as the corresponding element in the returned array. 
-
+**Returns** | `array` | 
 
 **Example:** 
 ```php
@@ -780,7 +780,7 @@ all key-value pairs in $properties, using loose equality for value comparison.
 Parameter | Type | Description
 --- | --- | :---
 `$properties` | `iterable` | Key-value pairs that the returned function will match its input against
-
+**Returns** | `callable` | with signature (iterable $iterable)
 
 **Example:** 
 ```php
@@ -801,7 +801,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$path` | `string` | Any valid path supported by Dash\get()
 `$value` | `mixed` | Value to compare against
-
+**Returns** | `callable` | with signature (iterable $iterable)
 
 **Example:** 
 ```php
@@ -820,7 +820,7 @@ Returns the maximum value of an iterable.
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
-
+**Returns** | `mixed\|null` | Null if $iterable is empty
 
 **Example:** 
 ```php
@@ -837,7 +837,7 @@ Returns the median value of an iterable.
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
-
+**Returns** | `mixed\|null` | Null if $iterable is empty
 
 **Example:** 
 ```php
@@ -854,7 +854,7 @@ Returns the minimum value of an iterable.
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
-
+**Returns** | `mixed\|null` | Null if $iterable is empty
 
 **Example:** 
 ```php
@@ -872,7 +872,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
 `$keys` | `string\|array` | 
-
+**Returns** | `array\|object` | array if $iterable is array-like, object if $iterable is object-like
 
 **Example:** 
 ```php
@@ -892,7 +892,7 @@ Parameter | Type | Description
 `$iterable` | `array\|object` | 
 `$path` | `string` | Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period
 `$default` | `mixed` | 
-
+**Returns** | `array` | 
 
 **Example:** 
 ```php
@@ -920,7 +920,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$path` | `string\|function` | Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period. If it is already a function, the same function is returned.
 `$default` | `mixed` | Default value to return if nothing exists at $path
-
+**Returns** | `function` | Function that accepts a collection and returns the value at $path on the collection
 
 **Example:** 
 ```php
@@ -967,7 +967,7 @@ Parameter | Type | Description
 `$iterable` | `iterable` | 
 `$iteratee` | `callable` | Invoked with ($result, $value, $key) for each ($key, $value) in $iterable and the current $result. $iteratee should return the updated $result
 `$initial` | `mixed` | (optional) Initial value
-
+**Returns** | `mixed` | 
 
 **Example:** Computes the sum
 ```php
@@ -988,7 +988,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
 `$predicate` | `callable` | Callable invoked with ($value, $key, $iterable) for each item in $iterable
-
+**Returns** | `array` | 
 
 **Example:** 
 ```php
@@ -1021,7 +1021,7 @@ Parameter | Type | Description
 `$iterable` | `array\|object` | 
 `$path` | `callable\|string` | Callable used to retrieve the value or path of the property to retrieve; Paths can be nested by delimiting each sub-property or array index with a period, eg. 'a.b.0.c'
 `$default` | `mixed` | Default value to return if nothing exists at $path 
-
+**Returns** | `mixed` | Value at $path on the collection
 
 **Example:** 
 ```php
@@ -1079,7 +1079,7 @@ Returns a new array with elements in reverse order. Non-integer keys are preserv
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
-
+**Returns** | `array` | 
 
 **Example:** 
 ```php
@@ -1106,7 +1106,7 @@ Parameter | Type | Description
 `$iterable` | `array\|object` | 
 `$path` | `string` | Path at which to set $value; can be a nested path (eg. 'a.b.0.c'), and non-existent intermediate array/objects will be created
 `$value` | `mixed` | Value to set at $path
-
+**Returns** | `array\|object` | the modified $iterable
 
 **Example:** 
 ```php
@@ -1163,7 +1163,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
 `$comparator` | `callable` | 
-
+**Returns** | `array` | 
 
 **Example:** 
 ```php
@@ -1181,7 +1181,7 @@ Gets the sum of all values in $iterable.
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
-
+**Returns** | `double` | 
 
 **Example:** 
 ```php
@@ -1199,7 +1199,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
 `$count` | `integer` | If negative, all except the last $count elements will be returned
-
+**Returns** | `array` | 
 
 **Example:** 
 ```php
@@ -1232,7 +1232,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
 `$count` | `integer` | If negative, all except the first $count elements will be returned
-
+**Returns** | `array` | 
 
 **Example:** 
 ```php
@@ -1265,7 +1265,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
 `$predicate` | `callable` | Invoked with ($value, $key)
-
+**Returns** | `array\|object` | Array for array-like $iterable, object for object-like $iterable
 
 **Example:** 
 ```php
@@ -1290,7 +1290,7 @@ Returns an array representation of $iterable.
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
-
+**Returns** | `array` | 
 
 **Example:** 
 ```php
@@ -1310,7 +1310,7 @@ Iterable keys are preseved.
 Parameter | Type | Description
 --- | --- | :---
 `$iterables,...` | `iterable` | 
-
+**Returns** | `array` | 
 
 **Example:** 
 ```php
@@ -1330,7 +1330,7 @@ Gets the values of an iterable as an array.
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
-
+**Returns** | `array` | 
 
 **Example:** 
 ```php
@@ -1349,7 +1349,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
 `$properties` | `iterable` | 
-
+**Returns** | `array` | 
 
 **Example:** 
 ```php
@@ -1378,7 +1378,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
 `$exclude` | `array` | Values to exclude
-
+**Returns** | `array` | Subset of $iterable
 
 **Example:** 
 ```php
@@ -1400,7 +1400,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$callable` | `callable` | 
 `$args` | `array` | 
-
+**Returns** | `mixed` | Return value of $callable
 
 **Example:** 
 ```php
@@ -1419,7 +1419,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$callable` | `callable` | 
 `$ary` | `int` | Number of arguments to accept
-
+**Returns** | `callable` | New function that, when invoked, will call $callable with up to $ary arguments
 
 **Example:** 
 ```php
@@ -1436,7 +1436,7 @@ Invokes a callable with arguments passed as individual parameters.
 Parameter | Type | Description
 --- | --- | :---
 `$callable` | `callable` | 
-
+**Returns** | `mixed` | Return value of $callable
 
 **Example:** 
 ```php
@@ -1454,7 +1454,7 @@ Returns a new function that negates the return value of $predicate when invoked.
 Parameter | Type | Description
 --- | --- | :---
 `$predicate` | `callable` | 
-
+**Returns** | `callable` | 
 
 
 partial
@@ -1470,7 +1470,7 @@ Pass Dash\PLACEHOLDER as a placeholder to replace with call-time arguments.
 Parameter | Type | Description
 --- | --- | :---
 `$callable` | `callable` | 
-
+**Returns** | `callable` | 
 
 **Example:** 
 ```php
@@ -1506,7 +1506,7 @@ Pass Dash\PLACEHOLDER as a placeholder to replace with call-time arguments.
 Parameter | Type | Description
 --- | --- | :---
 `$callable` | `callable` | 
-
+**Returns** | `callable` | 
 
 **Example:** 
 ```php
@@ -1545,7 +1545,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$input` | `mixed` | 
 `$type` | `string\|array` | Single type or list of types
-
+**Returns** | `void` | 
 
 **Example:** 
 ```php
@@ -1564,7 +1564,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$a` | `mixed` | 
 `$b` | `mixed` | 
-
+**Returns** | `int` | 
 
 **Example:** 
 ```php
@@ -1583,7 +1583,7 @@ Prints a value.
 Parameter | Type | Description
 --- | --- | :---
 `$value` | `mixed` | 
-
+**Returns** | `mixed` | $value
 
 **Example:** 
 ```php
@@ -1608,7 +1608,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$a` | `mixed` | 
 `$b` | `mixed` | 
-
+**Returns** | `boolean` | 
 
 **Example:** 
 ```php
@@ -1634,7 +1634,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$a` | `mixed` | 
 `$b` | `mixed` | 
-
+**Returns** | `boolean` | 
 
 **Example:** 
 ```php
@@ -1659,7 +1659,7 @@ Returns the first argument it receives.
 Parameter | Type | Description
 --- | --- | :---
 `$value` | `mixed` | 
-
+**Returns** | `mixed` | $value itself
 
 **Example:** 
 ```php
@@ -1678,7 +1678,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$value` | `mixed` | Value to check
 `$type` | `string\|array` | Single type to check or a list of possible types; types can be: a native data type (eg. 'string', 'array'), a type corresponding to a native is_<type>() function (eg. 'numeric'), a class instance (eg. 'DateTime')
-
+**Returns** | `boolean` | 
 
 **Example:** With a native data type
 ```php
@@ -1716,7 +1716,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$input` | `iterable\|string` | 
 `$encoding` | `string` | (optional) The character encoding of $input if it is a string; see mb_list_encodings() for the list of supported encodings
-
+**Returns** | `integer` | 
 
 **Example:** 
 ```php
@@ -1738,7 +1738,7 @@ Alias for _::chain()
 Parameter | Type | Description
 --- | --- | :---
 `$input` | `mixed` | 
-
+**Returns** | `Dash\_` | New chain instance
 
 
 custom
@@ -1752,7 +1752,7 @@ Gets a custom operation by name.
 Parameter | Type | Description
 --- | --- | :---
 `$name` | `string` | Name of the custom operation
-
+**Returns** | `function` | The custom operation
 
 **Example:** 
 ```php
@@ -1773,7 +1773,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
 `$interceptor` | `callable` | Invoked with ($iterable)
-
+**Returns** | `iterable` | $iterable
 
 
 thru
@@ -1788,7 +1788,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
 `$interceptor` | `callable` | Invoked with ($iterable)
-
+**Returns** | `iterable` | Result of $interceptor($iterable)
 
 
 
@@ -1808,7 +1808,7 @@ If a double is provided, only its integer component is evaluated.
 Parameter | Type | Description
 --- | --- | :---
 `$value` | `number` | 
-
+**Returns** | `boolean` | 
 
 **Example:** 
 ```php
@@ -1829,7 +1829,7 @@ If a double is provided, only its integer component is evaluated.
 Parameter | Type | Description
 --- | --- | :---
 `$value` | `number` | 
-
+**Returns** | `boolean` | 
 
 **Example:** 
 ```php

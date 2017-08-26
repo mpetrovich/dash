@@ -25,7 +25,7 @@ $result = __([1, 2, 3, 4, 5])
 Features
 ---
 - Works with arrays, objects, [`Traversable`](http://php.net/manual/en/class.traversable.php), [`DirectoryIterator`](http://php.net/manual/en/class.directoryiterator.php), and more
-- [Operations](#operations)
+- [Standalone operations](#standalone)
 - [Chaining](#chaining)
 - [Lazy evaluation](#lazy-evaluation)
 - [Custom operations](#custom-operations)

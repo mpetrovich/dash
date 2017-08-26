@@ -104,14 +104,18 @@ function parseDocblock($docblock)
 		})
 		->value();
 
-	// Return type
-	$op->returnType = _::chain($lines)
+	// Return value
+	$op->return = _::chain($lines)
 		->filter(function ($line) { return strpos($line, '@return') === 0; })
 		->map(function ($line) {
 			$matches = [];
-			preg_match('/^@return\s+([\S]+)/', $line, $matches);
-			$returnType = $matches[1];
-			return $returnType;
+			preg_match('/^@return\s+([\S]+)\s*(.*)?/', $line, $matches);
+			$type = $matches[1];
+			$description = $matches[2];
+			return (object) [
+				'type' => $type,
+				'description' => $description,
+			];
 		})
 		->first()
 		->value();
@@ -183,6 +187,17 @@ function renderDoc($op)
 		$paramsTable = '';
 	}
 
+	if ($op->return) {
+		$type = str_replace('|', '\|', $op->return->type);
+		$description = $op->return->description;
+		$returnTable = <<<END
+**Returns** | `$type` | $description
+END;
+	}
+	else {
+		$returnTable = '';
+	}
+
 	$examples = _::chain($op->examples)
 		->map(function ($example) {
 			return <<<END
@@ -195,7 +210,7 @@ END;
 		->join("\n\n")
 		->value();
 
-	$returnType = $op->returnType ? ": {$op->returnType}" : '';
+	$returnType = $op->return->type ? ": {$op->return->type}" : '';
 
 	return <<<END
 {$op->name}$aliases
@@ -205,7 +220,7 @@ END;
 ```
 {$op->description}
 
-$paramsTable
+$paramsTable$returnTable
 
 $examples
 END;
