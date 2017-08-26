@@ -82,7 +82,6 @@ Table of contents
 
 all
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -113,7 +112,6 @@ Tests
 
 any
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -144,7 +142,6 @@ Tests
 
 apply
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -175,7 +172,6 @@ Tests
 
 ary
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -206,7 +202,6 @@ Tests
 
 assertType
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -237,7 +232,6 @@ Tests
 
 at
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -268,7 +262,6 @@ Tests
 
 average
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -299,7 +292,6 @@ Tests
 
 call
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -330,7 +322,6 @@ Tests
 
 chain
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -361,7 +352,6 @@ Tests
 
 compare
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -392,7 +382,6 @@ Tests
 
 contains
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -423,7 +412,6 @@ Tests
 
 custom
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -454,7 +442,6 @@ Tests
 
 deltas
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -485,7 +472,6 @@ Tests
 
 difference
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -516,7 +502,6 @@ Tests
 
 display
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -547,7 +532,6 @@ Tests
 
 dropWhile
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -578,7 +562,6 @@ Tests
 
 each
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -609,7 +592,6 @@ Tests
 
 equal
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -640,7 +622,6 @@ Tests
 
 filter
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -671,7 +652,6 @@ Tests
 
 find
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -702,7 +682,6 @@ Tests
 
 findKey
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -733,7 +712,6 @@ Tests
 
 findLast
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -764,7 +742,6 @@ Tests
 
 findValue
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -795,7 +772,6 @@ Tests
 
 first
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -826,7 +802,6 @@ Tests
 
 get
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -857,7 +832,6 @@ Tests
 
 getDirect
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -888,7 +862,6 @@ Tests
 
 getDirectRef
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -919,7 +892,6 @@ Tests
 
 groupBy
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -950,7 +922,6 @@ Tests
 
 hasDirect
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -981,7 +952,6 @@ Tests
 
 identical
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1012,7 +982,6 @@ Tests
 
 identity
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1043,7 +1012,6 @@ Tests
 
 intersection
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1074,7 +1042,6 @@ Tests
 
 isEmpty
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1105,7 +1072,6 @@ Tests
 
 isEven
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1136,7 +1102,6 @@ Tests
 
 isIndexedArray
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1167,7 +1132,6 @@ Tests
 
 isOdd
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1198,7 +1162,6 @@ Tests
 
 isType
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1229,7 +1192,6 @@ Tests
 
 join
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1260,7 +1222,6 @@ Tests
 
 keyBy
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1291,7 +1252,6 @@ Tests
 
 keys
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1322,7 +1282,6 @@ Tests
 
 last
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1353,7 +1312,6 @@ Tests
 
 map
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1384,7 +1342,6 @@ Tests
 
 mapValues
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1415,7 +1372,6 @@ Tests
 
 matches
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1446,7 +1402,6 @@ Tests
 
 matchesProperty
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1477,7 +1432,6 @@ Tests
 
 max
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1508,7 +1462,6 @@ Tests
 
 median
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1539,7 +1492,6 @@ Tests
 
 min
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1570,7 +1522,6 @@ Tests
 
 negate
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1601,7 +1552,6 @@ Tests
 
 partial
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1632,7 +1582,6 @@ Tests
 
 partialRight
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1663,7 +1612,6 @@ Tests
 
 pick
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1694,7 +1642,6 @@ Tests
 
 pluck
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1725,7 +1672,6 @@ Tests
 
 property
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1756,7 +1702,6 @@ Tests
 
 reduce
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1787,7 +1732,6 @@ Tests
 
 reject
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1818,7 +1762,6 @@ Tests
 
 result
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1849,7 +1792,6 @@ Tests
 
 reverse
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1880,7 +1822,6 @@ Tests
 
 set
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1911,7 +1852,6 @@ Tests
 
 size
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1942,7 +1882,6 @@ Tests
 
 sort
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -1973,7 +1912,6 @@ Tests
 
 sum
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -2004,7 +1942,6 @@ Tests
 
 take
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -2035,7 +1972,6 @@ Tests
 
 takeRight
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -2066,7 +2002,6 @@ Tests
 
 takeWhile
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -2097,7 +2032,6 @@ Tests
 
 tap
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -2128,7 +2062,6 @@ Tests
 
 thru
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -2159,7 +2092,6 @@ Tests
 
 toArray
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -2190,7 +2122,6 @@ Tests
 
 union
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -2221,7 +2152,6 @@ Tests
 
 values
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -2252,7 +2182,6 @@ Tests
 
 where
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
@@ -2283,7 +2212,6 @@ Tests
 
 without
 ---
-Features
 - [ ] Compare to other implementations
 
 Documentation
