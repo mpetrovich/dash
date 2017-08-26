@@ -1,37 +1,10 @@
 Contributing
 ===
 
-##### Jump to:
-- [How to contribute](#how-to-contribute)
-- [Running tests](#running-tests)
+##### You can contribute by:
+- [Reporting issues](https://github.com/mpetrovich/Dash/issues/new)
+- [Submitting feature requests](https://github.com/mpetrovich/Dash/issues/new?labels=enhancement)
 - [Adding new operations](#adding-new-operations)
-
-
-How to contribute
----
-- [Report issues](https://github.com/mpetrovich/Dash/issues)
-- [Submit feature requests](https://github.com/mpetrovich/Dash/issues)
-- [Create pull requests](https://github.com/mpetrovich/Dash/pulls)
-
-
-Running tests
----
-This repository includes a makefile with several useful commands:
-
-#### `make test [op=<operation>]`
-Runs all unit tests (via PHPUnit) or only those for the specified `<operation>` (eg. `map`, `filter`).
-
-#### `make test-coverage [op=<operation>]`
-Generates unit test code coverage (via PHPUnit) for all tests or only those for the specified `<operation>` (eg. `map`, `filter`).
-
-#### `make check-style [op=<operation>]`
-Checks code formatting (via PHPCS) across all source or only those for the specified `<operation>` (eg. `map`, `filter`).
-
-#### `make fix-style [op=<operation>]`
-Checks and tries to automatically fix code formatting issues across all source or only those for the specified `<operation>` (eg. `map`, `filter`). Not all formatting issues can be fixed automatically.
-
-#### `make docs`
-Auto-generates the Markdown file containing documentation for all operations, `DOCS.md`.
 
 
 Adding new operations
@@ -148,3 +121,23 @@ In alphabetical order, too.
 			…
 			"src/sort/squares.php",
 ```
+
+
+Running tests
+---
+This repository includes a makefile with several useful commands:
+
+#### `make test [op=<operation>]`
+Runs all unit tests (via PHPUnit) or only those for the specified `<operation>` (eg. `map`, `filter`).
+
+#### `make test-coverage [op=<operation>]`
+Generates unit test code coverage (via PHPUnit) for all tests or only those for the specified `<operation>` (eg. `map`, `filter`).
+
+#### `make check-style [op=<operation>]`
+Checks code formatting (via PHPCS) across all source or only those for the specified `<operation>` (eg. `map`, `filter`).
+
+#### `make fix-style [op=<operation>]`
+Checks and tries to automatically fix code formatting issues across all source or only those for the specified `<operation>` (eg. `map`, `filter`). Not all formatting issues can be fixed automatically.
+
+#### `make docs`
+Auto-generates the Markdown file containing documentation for all operations, `DOCS.md`.
