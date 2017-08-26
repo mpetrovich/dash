@@ -140,9 +140,7 @@ In alphabetical order, too.
 Aliasing existing operations
 ---
 
-Aliases to existing methods should be added as functions within their aliased file:
-
-_src/all/all.php:_
+Aliases to existing methods should be added as functions within their aliased file. For example, in `src/all/all.php`:
 ```php
 …
 
