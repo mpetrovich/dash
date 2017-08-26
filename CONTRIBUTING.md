@@ -5,6 +5,8 @@ Contributing
 - [Reporting issues](https://github.com/mpetrovich/Dash/issues/new)
 - [Submitting feature requests](https://github.com/mpetrovich/Dash/issues/new?labels=enhancement)
 - [Adding new operations](#adding-new-operations)
+- [Aliasing existing operations](#aliasing-existing-operations)
+- [Running tests](#running-tests)
 
 
 Adding new operations
@@ -32,7 +34,9 @@ src/squares/squares.php
 
 #### 2. Define the new `squares` operation as a freestanding function within the `Dash` namespace.
 
-Leverage other Dash operations to keep the code simple and performant, and remember to include function-level phpdocs. Note that since the file is within the `Dash` namespace, other operations can be accessed without the `Dash\` namespace qualifier.
+Leverage other Dash operations to keep the code simple and performant. Write function-level phpdocs that include category, parameters, return values, any exceptions, and examples.
+
+Note that since the file is within the `Dash` namespace, other operations can be accessed without the `Dash\` namespace qualifier. Remember to escape native global functions that have the same name as Dash functions (eg. `count()`, `implode()`).
 
 ```php
 <?php
@@ -40,8 +44,15 @@ Leverage other Dash operations to keep the code simple and performant, and remem
 namespace Dash;
 
 /**
+ * Returns an array with the squared values of $iterable.
+ *
+ * @category Iterable
  * @param iterable $iterable
  * @return array $iterable with each of its values squared
+ *
+ * @example
+	Dash\squares([1, 2, 3, 4]);
+	// === [1, 4, 9, 16]
  */
 function squares($iterable)
 {
@@ -124,6 +135,44 @@ In alphabetical order, too.
 			…
 			"src/sort/squares.php",
 ```
+
+
+Aliasing existing operations
+---
+
+Aliases to existing methods should be added as functions within their aliased file:
+
+_src/all/all.php:_
+```php
+…
+
+/**
+ * …
+ * @return …
+ *
+ * @see every
+ *
+ * @example
+	…
+ */
+function all($iterable, $predicate)
+{
+	…
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function every()
+{
+	return call_user_func_array('Dash\all', func_get_args());
+}
+```
+
+Note:
+- The new `every()` function that's a proxy for `all()`
+- The addition of `@see every` that names the alias; multiple aliases should be comma-with-space-separated (eg. `@see foo, bar`)
+- The addition of a `@codingStandardsIgnoreStart` annotation to ignore code style checks for the alias
 
 
 Running tests
