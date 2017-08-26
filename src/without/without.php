@@ -2,14 +2,22 @@
 
 namespace Dash;
 
-function without($iterable, $excluded, $predicate = null)
+/**
+ * Returns a new array of $iterable that excludes all values in $exclude, using loose equality for comparison.
+ *
+ * @category Iterable
+ * @param iterable $iterable
+ * @param array $exclude Values to exclude
+ * @return array Subset of $iterable
+ *
+ * @example
+	without(['a', 'b', 'c', 'd'], ['b', 'c']);
+	// === ['a', 'd']
+ */
+function without($iterable, $exclude)
 {
-	if ($predicate === null) {
-		$predicate = 'Dash\equal';
-	}
-
-	$without = reject($iterable, function ($value) use ($excluded, $predicate) {
-		return contains($excluded, $value, $predicate);
+	$without = reject($iterable, function ($value) use ($exclude) {
+		return contains($exclude, $value);
 	});
 
 	return $without;

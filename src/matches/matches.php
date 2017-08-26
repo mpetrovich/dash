@@ -3,9 +3,8 @@
 namespace Dash;
 
 /**
- * Creates a function with signature (iterable $iterable) that returns true
- * if $iterable contains all key-value pairs in $properties,
- * using loose equality for value comparison.
+ * Creates a function with signature (iterable $iterable) that returns true if $iterable contains
+ * all key-value pairs in $properties, using loose equality for value comparison.
  *
  * @category Iterable
  * @param iterable $properties Key-value pairs that the returned function will match its input against

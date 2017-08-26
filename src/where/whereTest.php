@@ -18,41 +18,55 @@ class whereTest extends PHPUnit_Framework_TestCase
 	{
 		return [
 			'With an empty array' => [
-				[],
-				['age' => 30],
-				[]
+				'iterable' => [],
+				'properties' => ['age' => 30],
+				'expected' => [],
 			],
 			'With an empty object' => [
-				(object) [],
-				['age' => 30],
-				[]
+				'iterable' => (object) [],
+				'properties' => ['age' => 30],
+				'expected' => [],
 			],
-			'With non-empty arrays' => [
-				[
-					0 => ['name' => 'Jane', 'age' => 25, 'gender' => 'f'],
-					1 => ['name' => 'Mike', 'age' => 30, 'gender' => 'm'],
-					2 => ['name' => 'Abby', 'age' => 30, 'gender' => 'f'],
-					3 => ['name' => 'Pete', 'age' => 45, 'gender' => 'm'],
-					4 => ['name' => 'Kate', 'age' => 30, 'gender' => 'f'],
+			'With an indexed array' => [
+				'iterable' => [
+					['name' => 'Jane', 'age' => 25, 'gender' => 'f'],
+					['name' => 'Mike', 'age' => 30, 'gender' => 'm'],
+					['name' => 'Abby', 'age' => 30, 'gender' => 'f'],
+					['name' => 'Pete', 'age' => 45, 'gender' => 'm'],
+					['name' => 'Kate', 'age' => 30, 'gender' => 'f'],
 				],
-				['gender' => 'f', 'age' => 30],
-				[
-					2 => ['name' => 'Abby', 'age' => 30, 'gender' => 'f'],
-					4 => ['name' => 'Kate', 'age' => 30, 'gender' => 'f'],
+				'properties' => ['gender' => 'f', 'age' => 30],
+				'expected' => [
+					['name' => 'Abby', 'age' => 30, 'gender' => 'f'],
+					['name' => 'Kate', 'age' => 30, 'gender' => 'f'],
 				],
 			],
-			'With non-empty objects' => [
-				[
-					0 => (object) ['name' => 'Jane', 'age' => 25, 'gender' => 'f'],
-					1 => (object) ['name' => 'Mike', 'age' => 30, 'gender' => 'm'],
-					2 => (object) ['name' => 'Abby', 'age' => 30, 'gender' => 'f'],
-					3 => (object) ['name' => 'Pete', 'age' => 45, 'gender' => 'm'],
-					4 => (object) ['name' => 'Kate', 'age' => 30, 'gender' => 'f'],
+			'With an associative array' => [
+				'iterable' => [
+					'a' => ['name' => 'Jane', 'age' => 25, 'gender' => 'f'],
+					'b' => ['name' => 'Mike', 'age' => 30, 'gender' => 'm'],
+					'c' => ['name' => 'Abby', 'age' => 30, 'gender' => 'f'],
+					'd' => ['name' => 'Pete', 'age' => 45, 'gender' => 'm'],
+					'e' => ['name' => 'Kate', 'age' => 30, 'gender' => 'f'],
 				],
-				['gender' => 'f', 'age' => 30],
-				[
-					2 => (object) ['name' => 'Abby', 'age' => 30, 'gender' => 'f'],
-					4 => (object) ['name' => 'Kate', 'age' => 30, 'gender' => 'f'],
+				'properties' => ['gender' => 'f', 'age' => 30],
+				'expected' => [
+					'c' => ['name' => 'Abby', 'age' => 30, 'gender' => 'f'],
+					'e' => ['name' => 'Kate', 'age' => 30, 'gender' => 'f'],
+				],
+			],
+			'With an object' => [
+				'iterable' => [
+					'a' => (object) ['name' => 'Jane', 'age' => 25, 'gender' => 'f'],
+					'b' => (object) ['name' => 'Mike', 'age' => 30, 'gender' => 'm'],
+					'c' => (object) ['name' => 'Abby', 'age' => 30, 'gender' => 'f'],
+					'd' => (object) ['name' => 'Pete', 'age' => 45, 'gender' => 'm'],
+					'e' => (object) ['name' => 'Kate', 'age' => 30, 'gender' => 'f'],
+				],
+				'properties' => ['gender' => 'f', 'age' => 30],
+				'expected' => [
+					'c' => (object) ['name' => 'Abby', 'age' => 30, 'gender' => 'f'],
+					'e' => (object) ['name' => 'Kate', 'age' => 30, 'gender' => 'f'],
 				],
 			],
 		];

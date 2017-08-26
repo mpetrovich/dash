@@ -2,18 +2,26 @@
 
 namespace Dash;
 
-function pick($input, $keys)
+/**
+ * Returns a subset of $iterable with the specified keys.
+ *
+ * @category Iterable
+ * @param iterable $iterable
+ * @param string|array $keys
+ * @return array|object array if $iterable is array-like, object if $iterable is object-like
+ *
+ * @example
+	pick(['a' => 'one', 'b' => 'two', 'c' => 'three'], ['b', 'c']);
+	// === ['b' => 'two', 'c' => 'three']
+ */
+function pick($iterable, $keys)
 {
-	assertType($input, ['iterable']);
+	assertType($iterable, ['iterable']);
 
 	$keys = (array) $keys;
-	$picked = [];
+	$picked = filter($iterable, function ($value, $key) use ($keys) {
+		return \in_array($key, $keys);
+	});
 
-	foreach ($input as $key => $value) {
-		if (in_array($key, $keys)) {
-			$picked[$key] = $value;
-		}
-	}
-
-	return is_object($input) ? (object) $picked : $picked;
+	return is_object($iterable) ? (object) $picked : $picked;
 }

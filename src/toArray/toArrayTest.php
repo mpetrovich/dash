@@ -10,27 +10,35 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $expected)
 	{
-		$actual = Dash\toArray($iterable);
-		$this->assertEquals($expected, $actual);
+		$this->assertEquals($expected, Dash\toArray($iterable));
 	}
 
 	public function cases()
 	{
 		return [
 
+			'With null' => [
+				'hello',
+				['hello'],
+			],
+			'With a string' => [
+				null,
+				[],
+			],
+
 			/*
 				With array
 			 */
 
-			'should return an empty array for an empty array' => [
+			'With an empty array' => [
 				[],
 				[],
 			],
-			'should return an array of the values of an indexed array' => [
+			'With an indexed array' => [
 				[3, 8, 2, 5],
 				[3, 8, 2, 5],
 			],
-			'should return an array of the values of an associative array' => [
+			'With an associative array' => [
 				['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
 				['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
 			],
@@ -39,15 +47,15 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 				With stdClass
 			 */
 
-			'should return an empty array for an empty stdClass' => [
+			'With an empty stdClass' => [
 				(object) [],
 				[],
 			],
-			'should return an array of the values of a stdClass' => [
+			'With a stdClass' => [
 				(object) [3, 8, 2, 5],
 				[3, 8, 2, 5],
 			],
-			'should return an array of the values of an associative array' => [
+			'With an associative array' => [
 				(object) ['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
 				['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
 			],
@@ -56,15 +64,15 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 				With ArrayObject
 			 */
 
-			'should return an empty array for an empty ArrayObject' => [
+			'With an empty ArrayObject' => [
 				new ArrayObject([]),
 				[],
 			],
-			'should return an array of the values of an indexed ArrayObject' => [
+			'With an indexed ArrayObject' => [
 				new ArrayObject([3, 8, 2, 5]),
 				[3, 8, 2, 5],
 			],
-			'should return an array of the values of an associative ArrayObject' => [
+			'With an associative ArrayObject' => [
 				new ArrayObject(['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5]),
 				['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
 			],

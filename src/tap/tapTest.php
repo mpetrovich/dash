@@ -12,12 +12,13 @@ class tapTest extends PHPUnit_Framework_TestCase
 	{
 		$passed = null;
 
-		$output = Dash\tap($input, function ($input) use (&$passed) {
-			$passed = $input;
+		$output = Dash\tap($input, function ($passed) use ($input) {
+			$this->assertSame($input, $passed);
+			$passed = 'changed';
+			return $passed;
 		});
 
 		$this->assertSame($input, $output);
-		$this->assertSame($input, $passed);
 	}
 
 	public function cases()

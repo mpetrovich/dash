@@ -10,8 +10,7 @@ class thruTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $interceptor, $expected)
 	{
-		$actual = Dash\thru($iterable, $interceptor);
-		$this->assertSame($expected, $actual);
+		$this->assertSame($expected, Dash\thru($iterable, $interceptor));
 	}
 
 	public function cases()

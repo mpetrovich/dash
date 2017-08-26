@@ -158,7 +158,7 @@ class _Test extends PHPUnit_Framework_TestCase
 		$this->assertEquals(9, $mapCallCount);
 	}
 
-	public function testExecute()
+	public function testRun()
 	{
 		$obj = (object) ['a' => 1];
 

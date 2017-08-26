@@ -34,6 +34,7 @@ Table of contents
 - [max](#max)
 - [median](#median)
 - [min](#min)
+- [pick](#pick)
 - [pluck](#pluck)
 - [property](#property)
 - [reduce](#reduce)
@@ -45,8 +46,12 @@ Table of contents
 - [sum](#sum)
 - [take](#take)
 - [takeRight](#takeright)
+- [takeWhile](#takewhile)
+- [toArray](#toarray)
 - [union](#union)
 - [values](#values)
+- [where](#where)
+- [without](#without)
 
 ### Callable
 - [apply](#apply)
@@ -72,19 +77,12 @@ Table of contents
 ### Dash
 - [chain](#chain)
 - [custom](#custom)
+- [tap](#tap)
+- [thru](#thru)
 
 ### Number
 - [isEven](#iseven)
 - [isOdd](#isodd)
-
-### Other
-- [pick](#pick)
-- [takeWhile](#takewhile)
-- [tap](#tap)
-- [thru](#thru)
-- [toArray](#toarray)
-- [where](#where)
-- [without](#without)
 
 
 Iterable
@@ -150,14 +148,14 @@ contains
 ```php
 contains($iterable, $target, $comparator = 'Dash\equal'): boolean
 ```
-Checks whether $iterable has any elements for which $comparator($target, $element) is truthy.
+Checks whether $iterable has any elements for which $comparator returns truthy.
 
 
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
 `$target` | `mixed` | Value to compare $iterable elements against
-`$comparator` | `callable` | Invoked with ($target, $element) for each $element value in $iterable
+`$comparator` | `callable` | Invoked with ($target, $value) for each value in $iterable
 
 
 **Example:** With loose equality comparison (the default)
@@ -743,9 +741,8 @@ matches
 ```php
 matches($properties): callable
 ```
-Creates a function with signature (iterable $iterable) that returns true
-if $iterable contains all key-value pairs in $properties,
-using loose equality for value comparison.
+Creates a function with signature (iterable $iterable) that returns true if $iterable contains
+all key-value pairs in $properties, using loose equality for value comparison.
 
 
 Parameter | Type | Description
@@ -831,6 +828,25 @@ Parameter | Type | Description
 ```php
 min([3, 8, 2, 5]);  // === 2
 ```
+pick
+---
+```php
+pick($iterable, $keys): array|object
+```
+Returns a subset of $iterable with the specified keys.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$keys` | `string\|array` | 
+
+
+**Example:** 
+```php
+pick(['a' => 'one', 'b' => 'two', 'c' => 'three'], ['b', 'c']);
+// === ['b' => 'two', 'c' => 'three']
+```
 pluck
 ---
 ```php
@@ -848,7 +864,7 @@ Parameter | Type | Description
 
 **Example:** 
 ```php
-Dash\pluck(
+pluck(
 	[
 		['a' => ['b' => 1]],
 		['a' => 'missing'],
@@ -857,7 +873,8 @@ Dash\pluck(
 	],
 	'a.b',
 	'default'
-) == [1, 'default', 3, 4];
+);
+// == [1, 'default', 3, 4];
 ```
 property
 ---
@@ -1204,6 +1221,50 @@ takeRight(['a' => 'one', 'b' => 'two', 'c' => 'three', 'd' => 'four'], 2);
 takeRight(['a', 'b', 'c', 'd', 'e'], -2);
 // === ['c', 'd', 'e']
 ```
+takeWhile
+---
+```php
+takeWhile($iterable, $predicate = 'Dash\identity'): array|object
+```
+Returns a subset of $iterable taken from the beginning until $predicate returns falsey.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$predicate` | `callable` | Invoked with ($value, $key)
+
+
+**Example:** 
+```php
+takeWhile([2, 4, 6, 7, 8, 10], 'Dash\isEven');
+// === [2, 4, 6]
+
+```
+
+**Example:** 
+```php
+takeWhile((object) ['a' => 2, 'b' => 4, 'c' => 5, 'd' => 6], 'Dash\isEven');
+// === (object) ['a' => 2, 'b' => 4]
+```
+toArray
+---
+```php
+toArray($iterable): array
+```
+Returns an array representation of $iterable.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+
+
+**Example:** 
+```php
+toArray((object) ['a' => 'one', 'b' => 'two']);
+// === ['a' => 'one', 'b' => 'two']
+```
 union
 ---
 ```php
@@ -1243,6 +1304,54 @@ Parameter | Type | Description
 ```php
 values(['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5]);
 // === [3, 8, 2, 5]
+```
+where
+---
+```php
+where($iterable, $properties): array
+```
+Returns all elements of $iterable containing key-value pairs that loosely equal $properties.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$properties` | `iterable` | 
+
+
+**Example:** 
+```php
+$input = [
+	['name' => 'Jane', 'age' => 25, 'gender' => 'f'],
+	['name' => 'Mike', 'age' => 30, 'gender' => 'm'],
+	['name' => 'Abby', 'age' => 30, 'gender' => 'f'],
+	['name' => 'Pete', 'age' => 45, 'gender' => 'm'],
+	['name' => 'Kate', 'age' => 30, 'gender' => 'f'],
+];
+where($input, ['gender' => 'f', 'age' => 30]);
+// === [
+	['name' => 'Abby', 'age' => 30, 'gender' => 'f'],
+	['name' => 'Kate', 'age' => 30, 'gender' => 'f'],
+]
+```
+without
+---
+```php
+without($iterable, $exclude): array
+```
+Returns a new array of $iterable that excludes all values in $exclude, using loose equality for comparison.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$exclude` | `array` | Values to exclude
+
+
+**Example:** 
+```php
+without(['a', 'b', 'c', 'd'], ['b', 'c']);
+// === ['a', 'd']
 ```
 
 Callable
@@ -1344,7 +1453,7 @@ $sayHowdy('Jane');  // === 'Howdy, Jane!'
 
 ```
 
-**Example:** 
+**Example:** With a placeholder
 ```php
 $greet = function ($greeting, $salutation, $name) {
 	return "$greeting, $salutation $name!";
@@ -1358,6 +1467,8 @@ partialRight
 partialRight($callable /* , ...args */): callable
 ```
 Creates a function that invokes $callable with the given set of arguments appended to any others passed in.
+
+Pass Dash\PLACEHOLDER as a placeholder to replace with call-time arguments.
 
 
 Parameter | Type | Description
@@ -1378,7 +1489,7 @@ $greetJane('Howdy');  // === 'Howdy, Jane!'
 
 ```
 
-**Example:** 
+**Example:** With a placeholder
 ```php
 $greet = function ($greeting, $salutation, $name) {
 	return "$greeting, $salutation $name!";
@@ -1643,6 +1754,38 @@ Parameter | Type | Description
 _::setCustom('double', function ($n) { return $n * 2; });
 _::chain([1, 2, 3])->map(Dash\custom('double'))->value();  // === [2, 4, 6]
 ```
+tap
+---
+```php
+tap($iterable, callable $interceptor): iterable
+```
+Invokes $interceptor with ($iterable) and returns $iterable.
+
+Note: Any changes to $iterable in $interceptor will not be persisted.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$interceptor` | `callable` | Invoked with ($iterable)
+
+
+
+thru
+---
+```php
+thru($value, callable $interceptor): iterable
+```
+Invokes interceptor with ($iterable) and returns its result.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$interceptor` | `callable` | Invoked with ($iterable)
+
+
+
 
 Number
 ===
@@ -1689,77 +1832,3 @@ isOdd(4);  // === false
 isOdd(3);  // === true
 isOdd(3.7);  // === true
 ```
-
-Other
-===
-
-pick
----
-```php
-pick($input, $keys)
-```
-
-
-
-
-
-takeWhile
----
-```php
-takeWhile($input, $predicate = 'Dash\identity')
-```
-
-
-
-
-
-tap
----
-```php
-tap($iterable, callable $interceptor)
-```
-
-
-
-
-
-thru
----
-```php
-thru($value, callable $interceptor)
-```
-
-
-
-
-
-toArray
----
-```php
-toArray($value)
-```
-
-
-
-
-
-where
----
-```php
-where($iterable, $properties)
-```
-
-
-
-
-
-without
----
-```php
-without($iterable, $excluded, $predicate = null)
-```
-
-
-
-
-

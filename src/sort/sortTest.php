@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @covers Dash\set
+ * @covers Dash\sort
  */
 class sortTest extends PHPUnit_Framework_TestCase
 {

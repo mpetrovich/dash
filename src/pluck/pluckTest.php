@@ -10,8 +10,7 @@ class pluckTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $path, $expected)
 	{
-		$actual = Dash\pluck($iterable, $path);
-		$this->assertEquals($expected, $actual);
+		$this->assertEquals($expected, Dash\pluck($iterable, $path));
 	}
 
 	public function cases()

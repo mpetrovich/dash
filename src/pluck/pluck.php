@@ -13,7 +13,7 @@ namespace Dash;
  * @return array
  *
  * @example
-	Dash\pluck(
+	pluck(
 		[
 			['a' => ['b' => 1]],
 			['a' => 'missing'],
@@ -22,7 +22,8 @@ namespace Dash;
 		],
 		'a.b',
 		'default'
-	) == [1, 'default', 3, 4];
+	);
+	// == [1, 'default', 3, 4];
  */
 function pluck($iterable, $path, $default = null)
 {

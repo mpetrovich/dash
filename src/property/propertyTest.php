@@ -16,29 +16,29 @@ class propertyTest extends PHPUnit_Framework_TestCase
 	{
 		return [
 			'With a valid path for an object' => [
-				(object) [
+				'iterable' => (object) [
 					'a' => (object) [
 						'b' => (object) [
 							'c' => 'value'
 						]
 					]
 				],
-				'a.b.c',
-				'value'
+				'path' => 'a.b.c',
+				'expected' => 'value',
 			],
 			'With an invalid path for an object' => [
-				(object) [
+				'iterable' => (object) [
 					'a' => (object) [
 						'b' => (object) [
 							'c' => 'value'
 						]
 					]
 				],
-				'a.X.c',
-				'default'
+				'path' => 'a.X.c',
+				'expected' => 'default',
 			],
 			'With a valid array index' => [
-				(object) [
+				'iterable' => (object) [
 					'a' => [
 						(object) [
 							'x' => (object) [
@@ -50,11 +50,11 @@ class propertyTest extends PHPUnit_Framework_TestCase
 						],
 					]
 				],
-				'a.1.b',
-				'value'
+				'path' => 'a.1.b',
+				'expected' => 'value',
 			],
 			'With an invalid array index' => [
-				(object) [
+				'iterable' => (object) [
 					'a' => [
 						(object) [
 							'x' => (object) [
@@ -66,18 +66,23 @@ class propertyTest extends PHPUnit_Framework_TestCase
 						],
 					]
 				],
-				'a.2.b',
-				'default'
+				'path' => 'a.2.b',
+				'expected' => 'default',
 			],
 			'With a matching direct array key' => [
-				['a.b.c' => 'value'],
-				'a.b.c',
-				'value'
+				'iterable' => ['a.b.c' => 'value'],
+				'path' => 'a.b.c',
+				'expected' => 'value',
 			],
 			'With a matching direct object property' => [
-				(object) ['a.b.c' => 'value'],
-				'a.b.c',
-				'value'
+				'iterable' => (object) ['a.b.c' => 'value'],
+				'path' => 'a.b.c',
+				'expected' => 'value',
+			],
+			'With a getter function as a path' => [
+				'iterable' => ['a.b.c' => 'value'],
+				'path' => function ($iterable) { return $iterable['a.b.c']; },
+				'expected' => 'value',
 			],
 		];
 	}

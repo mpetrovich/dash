@@ -2,13 +2,29 @@
 
 namespace Dash;
 
-function takeWhile($input, $predicate = 'Dash\identity')
+/**
+ * Returns a subset of $iterable taken from the beginning until $predicate returns falsey.
+ *
+ * @category Iterable
+ * @param iterable $iterable
+ * @param callable $predicate Invoked with ($value, $key)
+ * @return array|object Array for array-like $iterable, object for object-like $iterable
+ *
+ * @example
+	takeWhile([2, 4, 6, 7, 8, 10], 'Dash\isEven');
+	// === [2, 4, 6]
+ *
+ * @example
+	takeWhile((object) ['a' => 2, 'b' => 4, 'c' => 5, 'd' => 6], 'Dash\isEven');
+	// === (object) ['a' => 2, 'b' => 4]
+ */
+function takeWhile($iterable, $predicate = 'Dash\identity')
 {
-	assertType($input, ['iterable']);
+	assertType($iterable, ['iterable']);
 
 	$keys = [];
 
-	foreach ($input as $key => $value) {
+	foreach ($iterable as $key => $value) {
 		if (call_user_func($predicate, $value, $key)) {
 			$keys[] = $key;
 		}
@@ -17,5 +33,5 @@ function takeWhile($input, $predicate = 'Dash\identity')
 		}
 	}
 
-	return pick($input, $keys);
+	return pick($iterable, $keys);
 }
