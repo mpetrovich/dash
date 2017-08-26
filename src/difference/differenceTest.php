@@ -2,6 +2,7 @@
 
 /**
  * @covers Dash\difference
+ * @covers Dash\diff
  */
 class differenceTest extends PHPUnit_Framework_TestCase
 {

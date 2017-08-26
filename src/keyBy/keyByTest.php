@@ -2,6 +2,7 @@
 
 /**
  * @covers Dash\keyBy
+ * @covers Dash\indexBy
  */
 class keyByTest extends PHPUnit_Framework_TestCase
 {

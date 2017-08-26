@@ -2,6 +2,7 @@
 
 /**
  * @covers Dash\intersection
+ * @covers Dash\intersect
  */
 class intersectionTest extends PHPUnit_Framework_TestCase
 {

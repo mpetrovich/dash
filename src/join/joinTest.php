@@ -2,6 +2,7 @@
 
 /**
  * @covers Dash\join
+ * @covers Dash\implode
  */
 class joinTest extends PHPUnit_Framework_TestCase
 {

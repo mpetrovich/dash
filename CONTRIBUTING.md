@@ -172,6 +172,8 @@ Note:
 - The addition of `@see every` that names the alias; multiple aliases should be comma-with-space-separated (eg. `@see foo, bar`)
 - The addition of a `@codingStandardsIgnoreStart` annotation to ignore code style checks for the alias
 
+Finally, unit tests for the aliased function should be updated to also test the alias. Don't forget to add an `@covers` annotation for the alias as well.
+
 
 Running tests
 ---

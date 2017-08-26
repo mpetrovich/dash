@@ -2,6 +2,7 @@
 
 /**
  * @covers Dash\size
+ * @covers Dash\count
  */
 class sizeTest extends PHPUnit_Framework_TestCase
 {

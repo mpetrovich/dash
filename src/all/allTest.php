@@ -2,6 +2,7 @@
 
 /**
  * @covers Dash\all
+ * @covers Dash\every
  */
 class allTest extends PHPUnit_Framework_TestCase
 {
