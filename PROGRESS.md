@@ -87,15 +87,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -120,15 +118,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -153,15 +149,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -186,15 +180,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -219,15 +211,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -252,15 +242,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -285,15 +273,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -318,15 +304,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -351,15 +335,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -384,15 +366,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -417,15 +397,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -450,15 +428,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -483,15 +459,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -516,15 +490,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -549,15 +521,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -582,15 +552,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -615,15 +583,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -648,15 +614,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -681,15 +645,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -714,15 +676,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -747,15 +707,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -780,15 +738,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -813,15 +769,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -846,15 +800,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -879,15 +831,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -912,15 +862,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -945,15 +893,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -978,15 +924,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1011,15 +955,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1044,15 +986,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1077,15 +1017,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1110,15 +1048,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1143,15 +1079,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1176,15 +1110,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1209,15 +1141,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1242,15 +1172,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1275,15 +1203,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1308,15 +1234,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1341,15 +1265,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1374,15 +1296,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1407,15 +1327,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1440,15 +1358,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1473,15 +1389,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1506,15 +1420,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1539,15 +1451,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1572,15 +1482,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1605,15 +1513,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1638,15 +1544,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1671,15 +1575,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1704,15 +1606,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1737,15 +1637,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1770,15 +1668,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1803,15 +1699,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1836,15 +1730,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1869,15 +1761,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1902,15 +1792,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1935,15 +1823,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -1968,15 +1854,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -2001,15 +1885,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -2034,15 +1916,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -2067,15 +1947,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -2100,15 +1978,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -2133,15 +2009,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -2166,15 +2040,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -2199,15 +2071,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -2232,15 +2102,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -2265,15 +2133,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -2298,15 +2164,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -2331,15 +2195,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -2364,15 +2226,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -2397,15 +2257,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
@@ -2430,15 +2288,13 @@ Features
 
 Documentation
 - [ ] Category
-- [ ] Parameters
-- [ ] Return value
-- [ ] Exceptions
+- [ ] Parameters, return value, exceptions
 - [ ] Aliases
 - [ ] Examples
 
 Implementation
 - [ ] Input type assertions
-- [ ] Avoid native array_* methods
+- [ ] Performance (eg. avoid native `array_*` methods)
 
 Tests
 - [ ] null
