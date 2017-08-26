@@ -256,6 +256,8 @@ END;
 		->value();
 
 	return <<<END
+Is there an operation you'd like to see? [Open an issue](https://github.com/mpetrovich/Dash/issues/new?labels=enhancement) and get others to vote on it!
+
 Table of contents
 ===
 $list

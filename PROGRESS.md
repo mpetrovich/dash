@@ -1,5 +1,11 @@
 This document tracks the progress towards Dash 1.0
 
+Is there an operation you'd like to see? [Open an issue](https://github.com/mpetrovich/Dash/issues/new?labels=enhancement) and get others to vote on it!
+
+Jump to:
+- [Existing operations to review](#existing-operations-to-review)
+- [New operations to consider](#new-operations-to-consider)
+
 
 Existing operations to review
 ===

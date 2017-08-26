@@ -15,7 +15,7 @@ $result = __([1, 2, 3, 4, 5])
 
 ##### Jump to:
 - [Features](#features)
-- [Function docs](DOCS.md)
+- [Supported operations](DOCS.md)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Changelog](CHANGELOG.md)
