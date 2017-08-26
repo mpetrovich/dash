@@ -108,6 +108,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 any
@@ -138,6 +139,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 apply
@@ -168,6 +170,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 ary
@@ -198,6 +201,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 assertType
@@ -228,6 +232,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 at
@@ -258,6 +263,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 average
@@ -288,6 +294,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 call
@@ -318,6 +325,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 chain
@@ -348,6 +356,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 compare
@@ -378,6 +387,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 contains
@@ -408,6 +418,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 custom
@@ -438,6 +449,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 deltas
@@ -468,6 +480,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 difference
@@ -498,6 +511,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 display
@@ -528,6 +542,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 dropWhile
@@ -558,6 +573,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 each
@@ -588,6 +604,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 equal
@@ -618,6 +635,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 filter
@@ -648,6 +666,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 find
@@ -678,6 +697,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 findKey
@@ -708,6 +728,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 findLast
@@ -738,6 +759,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 findValue
@@ -768,6 +790,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 first
@@ -798,6 +821,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 get
@@ -828,6 +852,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 getDirect
@@ -858,6 +883,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 getDirectRef
@@ -888,6 +914,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 groupBy
@@ -918,6 +945,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 hasDirect
@@ -948,6 +976,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 identical
@@ -978,6 +1007,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 identity
@@ -1008,6 +1038,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 intersection
@@ -1038,6 +1069,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 isEmpty
@@ -1068,6 +1100,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 isEven
@@ -1098,6 +1131,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 isIndexedArray
@@ -1128,6 +1162,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 isOdd
@@ -1158,6 +1193,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 isType
@@ -1188,6 +1224,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 join
@@ -1218,6 +1255,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 keyBy
@@ -1248,6 +1286,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 keys
@@ -1278,6 +1317,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 last
@@ -1308,6 +1348,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 map
@@ -1338,6 +1379,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 mapValues
@@ -1368,6 +1410,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 matches
@@ -1398,6 +1441,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 matchesProperty
@@ -1428,6 +1472,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 max
@@ -1458,6 +1503,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 median
@@ -1488,6 +1534,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 min
@@ -1518,6 +1565,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 negate
@@ -1548,6 +1596,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 partial
@@ -1578,6 +1627,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 partialRight
@@ -1608,6 +1658,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 pick
@@ -1638,6 +1689,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 pluck
@@ -1668,6 +1720,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 property
@@ -1698,6 +1751,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 reduce
@@ -1728,6 +1782,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 reject
@@ -1758,6 +1813,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 result
@@ -1788,6 +1844,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 reverse
@@ -1818,6 +1875,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 set
@@ -1848,6 +1906,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 size
@@ -1878,6 +1937,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 sort
@@ -1908,6 +1968,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 sum
@@ -1938,6 +1999,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 take
@@ -1968,6 +2030,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 takeRight
@@ -1998,6 +2061,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 takeWhile
@@ -2028,6 +2092,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 tap
@@ -2058,6 +2123,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 thru
@@ -2088,6 +2154,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 toArray
@@ -2118,6 +2185,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 union
@@ -2148,6 +2216,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 values
@@ -2178,6 +2247,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 where
@@ -2208,6 +2278,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 without
@@ -2238,6 +2309,7 @@ Tests
 - [ ] empty ArrayObject
 - [ ] ArrayObject
 - [ ] DirectoryIterator
+- [ ] Exceptions
 
 
 New operations to consider
