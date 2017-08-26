@@ -10,6 +10,8 @@ namespace Dash;
  * @param iterable $iterables,...
  * @return array
  *
+ * @see diff
+ *
  * @example
 	diff(
 		[1, 2, 3, 4, 5, 6],
@@ -34,4 +36,12 @@ function difference($iterable /* , ...iterables */)
 	}
 
 	return $diff;
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function diff()
+{
+	return call_user_func_array('Dash\difference', func_get_args());
 }

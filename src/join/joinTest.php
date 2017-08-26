@@ -11,6 +11,7 @@ class joinTest extends PHPUnit_Framework_TestCase
 	public function test($input, $separator, $expected)
 	{
 		$this->assertEquals($expected, Dash\join($input, $separator));
+		$this->assertEquals($expected, Dash\implode($input, $separator));
 	}
 
 	public function cases()

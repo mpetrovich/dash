@@ -11,6 +11,7 @@ class sizeTest extends PHPUnit_Framework_TestCase
 	public function test($iterable, $expected)
 	{
 		$this->assertEquals($expected, Dash\size($iterable));
+		$this->assertEquals($expected, Dash\count($iterable));
 	}
 
 	public function cases()

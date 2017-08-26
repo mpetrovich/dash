@@ -11,6 +11,8 @@ namespace Dash;
  *                         see mb_list_encodings() for the list of supported encodings
  * @return integer
  *
+ * @see count
+ *
  * @example
 	size([1, 2, 3]);  // === 3
 	size('Hello!');  // === 6
@@ -18,7 +20,7 @@ namespace Dash;
 function size($input, $encoding = 'UTF-8')
 {
 	if (is_array($input) || $input instanceof Countable) {
-		$size = count($input);
+		$size = \count($input);
 	}
 	elseif (is($input, 'iterable')) {
 		$size = 0;
@@ -34,4 +36,12 @@ function size($input, $encoding = 'UTF-8')
 	}
 
 	return $size;
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function count()
+{
+	return call_user_func_array('Dash\size', func_get_args());
 }

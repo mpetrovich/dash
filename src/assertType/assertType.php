@@ -20,7 +20,7 @@ function assertType($input, $type)
 	if (!is($input, $type)) {
 		throw new \InvalidArgumentException(sprintf(
 			'Expected %s but was given %s',
-			implode(' or ', (array) $type),
+			\implode(' or ', (array) $type),
 			\gettype($input)
 		));
 	}

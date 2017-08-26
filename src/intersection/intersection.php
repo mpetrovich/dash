@@ -12,6 +12,8 @@ namespace Dash;
  * @param iterable $iterables,...
  * @return array
  *
+ * @see intersec
+ *
  * @example
 	intersection(
 		[1, 3, 5, 8],
@@ -22,4 +24,12 @@ function intersection($iterable /* , ...iterables */)
 {
 	$iterables = map(func_get_args(), 'Dash\toArray');
 	return call_user_func_array('array_intersect', $iterables);
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function intersect()
+{
+	return call_user_func_array('Dash\intersection', func_get_args());
 }
