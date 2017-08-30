@@ -18,6 +18,8 @@ namespace Dash;
  */
 function all($iterable, $predicate)
 {
+	assertType($iterable, 'iterable', __FUNCTION__);
+
 	if (isEmpty($iterable)) {
 		return true;
 	}

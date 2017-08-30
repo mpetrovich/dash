@@ -21,7 +21,7 @@ namespace Dash;
  */
 function groupBy($iterable, $iteratee = 'Dash\identity', $defaultGroup = null)
 {
-	assertType($iterable, 'iterable');
+	assertType($iterable, 'iterable', __FUNCTION__);
 
 	return reduce($iterable, function ($grouped, $value) use ($iteratee, $defaultGroup) {
 		$key = get($value, $iteratee);

@@ -20,7 +20,7 @@ namespace Dash;
  */
 function takeWhile($iterable, $predicate = 'Dash\identity')
 {
-	assertType($iterable, ['iterable']);
+	assertType($iterable, 'iterable', __FUNCTION__);
 
 	$keys = [];
 

@@ -30,7 +30,7 @@ namespace Dash;
  */
 function keyBy($iterable, $iteratee = 'Dash\identity')
 {
-	assertType($iterable, ['iterable']);
+	assertType($iterable, 'iterable', __FUNCTION__);
 
 	return reduce($iterable, function ($grouped, $value) use ($iteratee) {
 		$key = get($value, $iteratee);

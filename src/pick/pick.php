@@ -16,7 +16,7 @@ namespace Dash;
  */
 function pick($iterable, $keys)
 {
-	assertType($iterable, ['iterable']);
+	assertType($iterable, 'iterable', __FUNCTION__);
 
 	$keys = (array) $keys;
 	$picked = filter($iterable, function ($value, $key) use ($keys) {

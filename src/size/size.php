@@ -9,7 +9,7 @@ namespace Dash;
  * @param iterable|string $input
  * @param string $encoding (optional) The character encoding of $input if it is a string;
  *                         see mb_list_encodings() for the list of supported encodings
- * @return integer
+ * @return integer|null Null for non-iterable/string input
  *
  * @see count
  *
