@@ -11,7 +11,9 @@ To review
 - [ ] chain
 - [ ] compare
 - [ ] contains
+- [ ] currify
 - [ ] curry
+- [ ] curryN
 - [ ] custom
 - [ ] deltas
 - [ ] difference
@@ -78,9 +80,11 @@ To review
 ### For each
 
 Implementation
-- Compare to other implementations
-- Input type assertions
-- Performance (eg. avoid native `array_*` methods)
+- Review implementations
+- Review performance
+- Note differences wrt. other libraries
+- Add parameter type assertions
+- Add curried variant
 
 Documentation
 - Category
@@ -89,6 +93,7 @@ Documentation
 - Examples
 
 Tests
+- @covers (including aliases, curried)
 - null
 - empty string
 - string
@@ -155,7 +160,6 @@ To add
 - [ ] count_values
 - [ ] countBy
 - [ ] current
-- [ ] curryN
 - [ ] curryRight
 - [ ] dec
 - [ ] defaults

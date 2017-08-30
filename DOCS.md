@@ -80,6 +80,12 @@ Table of contents
 - [tap](#tap)
 - [thru](#thru)
 
+### Other
+- [currify](#currify)
+- [curry](#curry)
+- [curryN](#curryn)
+- [rotate](#rotate)
+
 ### Number
 - [isEven](#iseven)
 - [isOdd](#isodd)
@@ -98,8 +104,8 @@ Checks whether $predicate returns truthy for every item in $iterable.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `mixed` | 
-`$predicate` | `callable` | A callable invoked with ($value, $key) that returns a boolean
+`$iterable` | `iterable` | 
+`$predicate` | `callable` | Invoked with ($value, $key) that returns a boolean
 **Returns** | `boolean` | true if $predicate returns truthy for every item in $iterable
 
 **Example:** 
@@ -1536,7 +1542,7 @@ Utility
 assertType
 ---
 ```php
-assertType($input, $type): void
+assertType($input, $type, $function = __FUNCTION__): void
 ```
 Throws an exception if $input's type is not $type.
 
@@ -1545,6 +1551,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$input` | `mixed` | 
 `$type` | `string\|array` | Single type or list of types
+`$function` | `string` | (optional) Name of function where assertType() was called
 **Returns** | `void` | 
 
 **Example:** 
@@ -1707,7 +1714,7 @@ isType(new ArrayObject([1, 2, 3]), 'ArrayObject');  // === true
 size / count
 ---
 ```php
-size($input, $encoding = 'UTF-8'): integer
+size($input, $encoding = 'UTF-8'): integer|null
 ```
 Returns the number of elements (for iterables) or characters (for strings) in $input.
 
@@ -1716,7 +1723,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$input` | `iterable\|string` | 
 `$encoding` | `string` | (optional) The character encoding of $input if it is a string; see mb_list_encodings() for the list of supported encodings
-**Returns** | `integer` | 
+**Returns** | `integer\|null` | Null for non-iterable/string input
 
 **Example:** 
 ```php
@@ -1789,6 +1796,50 @@ Parameter | Type | Description
 `$iterable` | `iterable` | 
 `$interceptor` | `callable` | Invoked with ($iterable)
 **Returns** | `iterable` | Result of $interceptor($iterable)
+
+
+
+Other
+===
+
+currify
+---
+```php
+currify($callable, array $args = [])
+```
+
+
+
+
+
+curry
+---
+```php
+curry($callable /*, ...args */)
+```
+
+
+
+
+
+curryN
+---
+```php
+curryN($callable, $totalArgs /*, ...args */)
+```
+
+
+
+
+
+rotate
+---
+```php
+rotate($iterable, $count = 1)
+```
+
+
+
 
 
 
