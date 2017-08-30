@@ -1,3 +1,42 @@
+Requirements
+---
+
+### Implementation
+- Review implementations
+- Compare with other libraries
+	- http://brianhaveri.github.io/Underscore.php
+	- http://anahkiasen.github.io/underscore-php
+	- https://github.com/maciejczyzewski/bottomline
+	- https://github.com/bdelespierre/underscore.php
+	- https://lodash.com/docs
+	- http://ramdajs.com/docs
+- Add parameter type assertions
+- Add curried variant
+
+### Documentation
+- Category
+- Parameters, return value, exceptions
+- Aliases
+- Examples
+
+### Testing
+- @covers (for aliases, curried too)
+- null
+- empty string
+- string
+- number
+- DateTime
+- empty array
+- indexed array
+- associative array
+- empty stdClass
+- stdClass
+- empty ArrayObject
+- ArrayObject
+- DirectoryIterator
+- exceptions
+
+
 To review
 ---
 - [ ] all
@@ -76,38 +115,6 @@ To review
 - [ ] values
 - [ ] where
 - [ ] without
-
-### For each
-
-Implementation
-- Review implementations
-- Review performance
-- Note differences wrt. other libraries
-- Add parameter type assertions
-- Add curried variant
-
-Documentation
-- Category
-- Parameters, return value, exceptions
-- Aliases
-- Examples
-
-Tests
-- @covers (including aliases, curried)
-- null
-- empty string
-- string
-- number
-- DateTime
-- empty array
-- indexed array
-- associative array
-- empty stdClass
-- stdClass
-- empty ArrayObject
-- ArrayObject
-- DirectoryIterator
-- exceptions
 
 
 To add
