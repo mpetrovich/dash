@@ -59,6 +59,7 @@ To review
 - [ ] reject
 - [ ] result
 - [ ] reverse
+- [ ] rotate
 - [ ] set
 - [ ] size
 - [ ] sort
