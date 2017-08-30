@@ -6,8 +6,8 @@ namespace Dash;
  * Checks whether $predicate returns truthy for every item in $iterable.
  *
  * @category Iterable
- * @param mixed $iterable
- * @param callable $predicate A callable invoked with ($value, $key) that returns a boolean
+ * @param iterable $iterable
+ * @param callable $predicate Invoked with ($value, $key) that returns a boolean
  * @return boolean true if $predicate returns truthy for every item in $iterable
  *
  * @see every
@@ -28,7 +28,23 @@ function all($iterable, $predicate)
 /**
  * @codingStandardsIgnoreStart
  */
+function _all(/* predicate, iterable */)
+{
+	return currify('Dash\all', func_get_args());
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
 function every()
 {
 	return call_user_func_array('Dash\all', func_get_args());
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _every(/* predicate, iterable */)
+{
+	return currify('Dash\all', func_get_args());
 }

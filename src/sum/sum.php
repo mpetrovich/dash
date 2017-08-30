@@ -20,3 +20,11 @@ function sum($iterable)
 
 	return $sum;
 }
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _sum(/* iterable */)
+{
+	return currify('Dash\sum', func_get_args());
+}

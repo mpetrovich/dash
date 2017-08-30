@@ -2,6 +2,7 @@
 
 /**
  * @covers Dash\equal
+ * @covers Dash\_equal
  */
 class equalTest extends PHPUnit_Framework_TestCase
 {
@@ -11,6 +12,15 @@ class equalTest extends PHPUnit_Framework_TestCase
 	public function test($a, $b, $expected)
 	{
 		$this->assertSame($expected, Dash\equal($a, $b));
+	}
+
+	/**
+	 * @dataProvider cases
+	 */
+	public function testCurried($a, $b, $expected)
+	{
+		$equal = Dash\_equal($a);
+		$this->assertSame($expected, $equal($b));
 	}
 
 	public function cases()

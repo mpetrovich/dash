@@ -22,3 +22,11 @@ function equal($a, $b)
 {
 	return $a == $b;
 }
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _equal(/* a, b */)
+{
+	return call_user_func_array('Dash\curry', array_merge(['Dash\equal'], func_get_args()));
+}

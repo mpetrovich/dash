@@ -2,7 +2,9 @@
 
 /**
  * @covers Dash\all
+ * @covers Dash\_all
  * @covers Dash\every
+ * @covers Dash\_every
  */
 class allTest extends PHPUnit_Framework_TestCase
 {
@@ -13,6 +15,18 @@ class allTest extends PHPUnit_Framework_TestCase
 	{
 		$this->assertEquals($expected, Dash\all($iterable, $predicate));
 		$this->assertEquals($expected, Dash\every($iterable, $predicate));
+	}
+
+	/**
+	 * @dataProvider cases
+	 */
+	public function testCurried($iterable, $predicate, $expected)
+	{
+		$all = Dash\_all($predicate);
+		$this->assertEquals($expected, $all($iterable));
+
+		$every = Dash\_every($predicate);
+		$this->assertEquals($expected, $every($iterable));
 	}
 
 	public function cases()

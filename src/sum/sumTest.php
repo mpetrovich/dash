@@ -2,6 +2,7 @@
 
 /**
  * @covers Dash\sum
+ * @covers Dash\_sum
  */
 class sumTest extends PHPUnit_Framework_TestCase
 {
@@ -11,6 +12,15 @@ class sumTest extends PHPUnit_Framework_TestCase
 	public function test($iterable, $expected)
 	{
 		$this->assertEquals($expected, Dash\sum($iterable));
+	}
+
+	/**
+	 * @dataProvider cases
+	 */
+	public function testCurried($iterable, $expected)
+	{
+		$sum = Dash\_sum();
+		$this->assertEquals($expected, $sum($iterable));
 	}
 
 	public function cases()
