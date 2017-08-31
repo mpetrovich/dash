@@ -1,6 +1,8 @@
 <?php
 
 /**
+ * These tests crash with code coverage, so they've been moved here.
+ *
  * @codeCoverageIgnore
  * @codingStandardsIgnoreFile
  */
