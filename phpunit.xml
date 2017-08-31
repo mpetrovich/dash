@@ -5,7 +5,6 @@
 	<testsuites>
 		<testsuite>
 			<directory suffix="Test.php">src</directory>
-			<directory suffix="TestUncovered.php">src</directory>
 		</testsuite>
 	</testsuites>
 
@@ -14,7 +13,6 @@
 			<directory suffix=".php">src</directory>
 			<exclude>
 				<directory suffix="Test.php">src</directory>
-				<directory suffix="TestUncovered.php">src</directory>
 			</exclude>
 		</whitelist>
 	</filter>
