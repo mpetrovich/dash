@@ -152,31 +152,6 @@ class allTest extends PHPUnit_Framework_TestCase
 				'predicate' => 'Dash\isOdd',
 				'expected' => true,
 			],
-
-			/*
-				With DirectoryIterator
-			 */
-
-			'With a DirectoryIterator with all items that satisfy the predicate' => [
-				'iterable' => new \FilesystemIterator(
-					__DIR__,
-					\FilesystemIterator::KEY_AS_PATHNAME | \FilesystemIterator::CURRENT_AS_FILEINFO
-				),
-				'predicate' => function ($fileinfo, $path) {
-					return strpos($fileinfo->getFilename(), 'all') === 0;
-				},
-				'expected' => true,
-			],
-			'With a DirectoryIterator with no items that satisfy the predicate' => [
-				'iterable' => new \FilesystemIterator(
-					__DIR__,
-					\FilesystemIterator::KEY_AS_PATHNAME | \FilesystemIterator::CURRENT_AS_FILEINFO
-				),
-				'predicate' => function ($fileinfo, $path) {
-					return strpos($fileinfo->getFilename(), 'nonexistent') === 0;
-				},
-				'expected' => false,
-			],
 		];
 	}
 
