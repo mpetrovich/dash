@@ -21,5 +21,10 @@ namespace Dash;
  */
 function isEmpty($input)
 {
+	if ($input instanceof \DirectoryIterator) {
+		// empty() segfaults with DirectoryIterator
+		return count(toArray($input)) === 0;
+	}
+
 	return empty($input) || size($input) === 0;
 }

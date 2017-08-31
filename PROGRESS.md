@@ -21,9 +21,11 @@ Requirements
 
 ### Testing
 - @covers (for aliases, curried too)
+- exceptions
 - null
 - empty string
 - string
+- zero number
 - number
 - DateTime
 - empty array
@@ -34,12 +36,11 @@ Requirements
 - empty ArrayObject
 - ArrayObject
 - DirectoryIterator
-- exceptions
 
 
 To review
 ---
-- [ ] all
+- [x] all
 - [ ] any
 - [ ] apply
 - [ ] ary

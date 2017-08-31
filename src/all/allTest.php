@@ -34,32 +34,62 @@ class allTest extends PHPUnit_Framework_TestCase
 		return [
 
 			/*
-				With array
+				With indexed array
 			 */
 
 			'With an empty array' => [
 				'iterable' => [],
-				'predicate' => function ($value, $key) { return $value < 0; },
+				'predicate' => 'Dash\isOdd',
 				'expected' => true,
 			],
 			'With an array with no items that satisfy the predicate' => [
-				'iterable' => [1, 2, 3, 4],
-				'predicate' => function ($value) { return $value < 0; },
+				'iterable' => [2, 4, 6, 8],
+				'predicate' => 'Dash\isOdd',
 				'expected' => false,
 			],
 			'With an array with one item that satisfies the predicate' => [
-				'iterable' => [1, 2, -3, 4],
-				'predicate' => function ($value) { return $value < 0; },
+				'iterable' => [2, 4, 5, 6],
+				'predicate' => 'Dash\isOdd',
 				'expected' => false,
 			],
 			'With an array with several items that satisfy the predicate' => [
-				'iterable' => [1, -2, -3, 4],
-				'predicate' => function ($value) { return $value < 0; },
+				'iterable' => [1, 3, 4, 7],
+				'predicate' => 'Dash\isOdd',
 				'expected' => false,
 			],
 			'With an array with all items that satisfy the predicate' => [
-				'iterable' => [-1, -2, -3, -4],
-				'predicate' => function ($value) { return $value < 0; },
+				'iterable' => [1, 3, 5, 7],
+				'predicate' => 'Dash\isOdd',
+				'expected' => true,
+			],
+
+			/*
+				With associative array
+			 */
+
+			'With an empty array' => [
+				'iterable' => [],
+				'predicate' => 'Dash\isOdd',
+				'expected' => true,
+			],
+			'With an array with no items that satisfy the predicate' => [
+				'iterable' => ['a' => 2, 'b' => 4, 'c' => 6, 'd' => 8],
+				'predicate' => 'Dash\isOdd',
+				'expected' => false,
+			],
+			'With an array with one item that satisfies the predicate' => [
+				'iterable' => ['a' => 2, 'b' => 4, 'c' => 5, 'd' => 6],
+				'predicate' => 'Dash\isOdd',
+				'expected' => false,
+			],
+			'With an array with several items that satisfy the predicate' => [
+				'iterable' => ['a' => 1, 'b' => 3, 'c' => 4, 'd' => 7],
+				'predicate' => 'Dash\isOdd',
+				'expected' => false,
+			],
+			'With an array with all items that satisfy the predicate' => [
+				'iterable' => ['a' => 1, 'b' => 3, 'c' => 5, 'd' => 7],
+				'predicate' => 'Dash\isOdd',
 				'expected' => true,
 			],
 
@@ -69,27 +99,27 @@ class allTest extends PHPUnit_Framework_TestCase
 
 			'With an empty stdClass' => [
 				'iterable' => (object) [],
-				'predicate' => function ($value, $key) { return $value < 0; },
+				'predicate' => 'Dash\isOdd',
 				'expected' => true,
 			],
 			'With an stdClass with no items that satisfy the predicate' => [
-				'iterable' => (object) [1, 2, 3, 4],
-				'predicate' => function ($value) { return $value < 0; },
+				'iterable' => (object) ['a' => 2, 'b' => 4, 'c' => 6],
+				'predicate' => 'Dash\isOdd',
 				'expected' => false,
 			],
 			'With an stdClass with one item that satisfies the predicate' => [
-				'iterable' => (object) [1, 2, -3, 4],
-				'predicate' => function ($value) { return $value < 0; },
+				'iterable' => (object) ['a' => 2, 'b' => 3, 'c' => 6],
+				'predicate' => 'Dash\isOdd',
 				'expected' => false,
 			],
 			'With an stdClass with several items that satisfy the predicate' => [
-				'iterable' => (object) [1, -2, -3, 4],
-				'predicate' => function ($value) { return $value < 0; },
+				'iterable' => (object) ['a' => 1, 'b' => 4, 'c' => 5],
+				'predicate' => 'Dash\isOdd',
 				'expected' => false,
 			],
 			'With an stdClass with all items that satisfy the predicate' => [
-				'iterable' => (object) [-1, -2, -3, -4],
-				'predicate' => function ($value) { return $value < 0; },
+				'iterable' => (object) ['a' => 1, 'b' => 3, 'c' => 5],
+				'predicate' => 'Dash\isOdd',
 				'expected' => true,
 			],
 
@@ -99,28 +129,165 @@ class allTest extends PHPUnit_Framework_TestCase
 
 			'With an empty ArrayObject' => [
 				'iterable' => new ArrayObject([]),
-				'predicate' => function ($value, $key) { return $value < 0; },
+				'predicate' => 'Dash\isOdd',
 				'expected' => true,
 			],
 			'With an ArrayObject with no items that satisfy the predicate' => [
-				'iterable' => new ArrayObject([1, 2, 3, 4]),
-				'predicate' => function ($value) { return $value < 0; },
+				'iterable' => new ArrayObject(['a' => 2, 'b' => 4, 'c' => 6]),
+				'predicate' => 'Dash\isOdd',
 				'expected' => false,
 			],
 			'With an ArrayObject with one item that satisfies the predicate' => [
-				'iterable' => new ArrayObject([1, 2, -3, 4]),
-				'predicate' => function ($value) { return $value < 0; },
+				'iterable' => new ArrayObject(['a' => 2, 'b' => 3, 'c' => 6]),
+				'predicate' => 'Dash\isOdd',
 				'expected' => false,
 			],
 			'With an ArrayObject with several items that satisfy the predicate' => [
-				'iterable' => new ArrayObject([1, -2, -3, 4]),
-				'predicate' => function ($value) { return $value < 0; },
+				'iterable' => new ArrayObject(['a' => 1, 'b' => 4, 'c' => 5]),
+				'predicate' => 'Dash\isOdd',
 				'expected' => false,
 			],
 			'With an ArrayObject with all items that satisfy the predicate' => [
-				'iterable' => new ArrayObject([-1, -2, -3, -4]),
-				'predicate' => function ($value) { return $value < 0; },
+				'iterable' => new ArrayObject(['a' => 1, 'b' => 3, 'c' => 5]),
+				'predicate' => 'Dash\isOdd',
 				'expected' => true,
+			],
+
+			/*
+				With DirectoryIterator
+			 */
+
+			'With a DirectoryIterator with all items that satisfy the predicate' => [
+				'iterable' => new \FilesystemIterator(
+					__DIR__,
+					\FilesystemIterator::KEY_AS_PATHNAME | \FilesystemIterator::CURRENT_AS_FILEINFO
+				),
+				'predicate' => function ($fileinfo, $path) {
+					return strpos($fileinfo->getFilename(), 'all') === 0;
+				},
+				'expected' => true,
+			],
+			'With a DirectoryIterator with no items that satisfy the predicate' => [
+				'iterable' => new \FilesystemIterator(
+					__DIR__,
+					\FilesystemIterator::KEY_AS_PATHNAME | \FilesystemIterator::CURRENT_AS_FILEINFO
+				),
+				'predicate' => function ($fileinfo, $path) {
+					return strpos($fileinfo->getFilename(), 'nonexistent') === 0;
+				},
+				'expected' => false,
+			],
+		];
+	}
+
+	public function testPredicate()
+	{
+		$iterated = [];
+
+		$predicate = function ($value, $key) use (&$iterated) {
+			$iterated[$key] = $value;
+			return true;
+		};
+
+		$iterable = ['a' => 1, 'b' => 2, 'c' => 3];
+		$result = Dash\all($iterable, $predicate);
+
+		$this->assertTrue($result);
+		$this->assertSame($iterable, $iterated);
+	}
+
+	public function testShortCircuiting()
+	{
+		$iterated = [];
+
+		$predicate = function ($value, $key) use (&$iterated) {
+			$iterated[$key] = $value;
+			return $value < 2;
+		};
+
+		$iterable = [1, 2, 3, 4];
+		$result = Dash\all($iterable, $predicate);
+
+		$this->assertFalse($result);
+		$this->assertSame([1, 2], $iterated);
+	}
+
+	/**
+	 * @dataProvider casesDefaultPredicate
+	 */
+	public function testDefaultPredicate($iterable, $expected)
+	{
+		$this->assertEquals($expected, Dash\all($iterable));
+		$this->assertEquals($expected, Dash\every($iterable));
+	}
+
+	public function casesDefaultPredicate()
+	{
+		return [
+			'With an empty array' => [
+				'iterable' => [],
+				'expected' => true,
+			],
+			'With an array of truthy values' => [
+				'iterable' => [1, true, 'hello'],
+				'expected' => true,
+			],
+			'With an array of values with mixed truthiness' => [
+				'iterable' => [true, 0, true],
+				'expected' => false,
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider casesTypeAssertions
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testTypeAssertions($iterable, $type)
+	{
+		try {
+			Dash\all($iterable);
+		}
+		catch (Exception $e) {
+			$this->assertEquals("Dash\all expects iterable but was given $type", $e->getMessage());
+			throw $e;
+		}
+
+		try {
+			Dash\every($iterable);
+		}
+		catch (Exception $e) {
+			$this->assertEquals("Dash\all expects iterable but was given $type", $e->getMessage());
+			throw $e;
+		}
+	}
+
+	public function casesTypeAssertions()
+	{
+		return [
+			'With null' => [
+				'iterable' => null,
+				'type' => 'NULL',
+			],
+			'With an empty string' => [
+				'iterable' => '',
+				'type' => 'string',
+			],
+			'With a string' => [
+				'iterable' => 'hello',
+				'type' => 'string',
+			],
+			'With a zero number' => [
+				'iterable' => 0,
+				'type' => 'integer',
+			],
+			'With a number' => [
+				'iterable' => 3.14,
+				'type' => 'double',
+			],
+			'With a DateTime' => [
+				'iterable' => new DateTime(),
+				'type' => 'DateTime',
 			],
 		];
 	}

@@ -3,26 +3,36 @@
 namespace Dash;
 
 /**
- * Checks whether $predicate returns truthy for every item in $iterable.
+ * Checks whether `$predicate` returns truthy for every item in `$iterable`.
+ *
+ * Iteration will stop at the first falsey return value.
+ *
+ * Note: Returns true if `$iterable` is empty, because everything is true of empty iterables.
+ * @link https://en.wikipedia.org/wiki/Vacuous_truth
  *
  * @category Iterable
  * @param iterable $iterable
- * @param callable $predicate Invoked with ($value, $key) that returns a boolean
- * @return boolean true if $predicate returns truthy for every item in $iterable
+ * @param callable $predicate (optional) Invoked with each `($value, $key)` in `$iterable`
+ * @return boolean true if `$predicate` returns truthy for every item in `$iterable`
  *
  * @see every
  *
  * @example
-	all([1, 2, 3], function($n) { return $n > 5; });  // === false
-	all([1, 3, 5], 'Dash\isOdd');  // === true
+	Dash\all([1, 3, 5], function($n) { return $n != 3; });
+	// === false
+
+	Dash\all([1, 3, 5], 'Dash\isOdd');
+	// === true
+
+	Dash\all([], 'Dash\isOdd');
+	// === true
+
+	Dash\all((object) ['a' => 1, 'b' => 3, 'c' => 5], 'Dash\isOdd');
+	// === true
  */
-function all($iterable, $predicate)
+function all($iterable, $predicate = 'Dash\identity')
 {
 	assertType($iterable, 'iterable', __FUNCTION__);
-
-	if (isEmpty($iterable)) {
-		return true;
-	}
 
 	return !any($iterable, negate($predicate));
 }

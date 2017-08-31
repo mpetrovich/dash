@@ -23,7 +23,7 @@ function assertType($input, $type, $function = __FUNCTION__)
 			'%s expects %s but was given %s',
 			$function,
 			\implode(' or ', (array) $type),
-			\gettype($input)
+			is_object($input) ? get_class($input) : gettype($input)
 		));
 	}
 }
