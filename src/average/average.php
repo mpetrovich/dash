@@ -24,9 +24,8 @@ function average($iterable)
 	if ($size === 0) {
 		return null;
 	}
-	else {
-		return sum($iterable) / $size;
-	}
+
+	return sum($iterable) / $size;
 }
 
 /**
