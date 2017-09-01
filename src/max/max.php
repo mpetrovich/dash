@@ -3,18 +3,24 @@
 namespace Dash;
 
 /**
- * Returns the maximum value of an iterable.
+ * Gets the maximum value of all elements in `$iterable`.
  *
- * @category Iterable
+ * @category Statistics
  * @param iterable $iterable
- * @return mixed|null Null if $iterable is empty
+ * @return mixed|null Null if `$iterable` is empty
  *
  * @example
-	max([3, 8, 2, 5]);  // === 8
+	Dash\max([3, 8, 2, 5]);
+	// === 8
+
+	Dash\max([]);
+	// === null
  */
 function max($iterable)
 {
-	if (isEmpty($iterable)) {
+	assertType($iterable, 'iterable', __FUNCTION__);
+
+	if (size($iterable) === 0) {
 		return null;
 	}
 
@@ -23,4 +29,12 @@ function max($iterable)
 	}, -INF);
 
 	return $max;
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _max(/* iterable */)
+{
+	return currify('Dash\max', func_get_args());
 }

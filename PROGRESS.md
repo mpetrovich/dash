@@ -92,7 +92,7 @@ To review
 - [ ] mapValues
 - [ ] matches
 - [ ] matchesProperty
-- [ ] max
+- [x] max
 - [ ] median
 - [x] min
 - [ ] negate

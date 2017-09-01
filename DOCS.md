@@ -27,6 +27,8 @@ Table of contents
 
 ### Statistics
 - [average](#average--mean) / mean
+- [max](#max)
+- [min](#min)
 
 ### Dash
 - [chain](#chain)
@@ -62,9 +64,7 @@ Table of contents
 - [mapValues](#mapvalues)
 - [matches](#matches)
 - [matchesProperty](#matchesproperty)
-- [max](#max)
 - [median](#median)
-- [min](#min)
 - [pick](#pick)
 - [pluck](#pluck)
 - [property](#property)
@@ -572,6 +572,48 @@ Parameter | Type | Description
 ```php
 Dash\average([2, 3, 5, 8]);
 // === 4.5
+```
+max
+---
+```php
+max($iterable): mixed|null
+```
+Gets the maximum value of all elements in `$iterable`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+**Returns** | `mixed\|null` | Null if `$iterable` is empty
+
+**Example:** 
+```php
+Dash\max([3, 8, 2, 5]);
+// === 8
+
+Dash\max([]);
+// === null
+```
+min
+---
+```php
+min($iterable): mixed|null
+```
+Gets the minimum value of all elements in `$iterable`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+**Returns** | `mixed\|null` | Null if `$iterable` is empty
+
+**Example:** 
+```php
+Dash\min([3, 8, 2, 5]);
+// === 2
+
+Dash\min([]);
+// === null
 ```
 
 Dash
@@ -1285,23 +1327,6 @@ $matcher = matchesProperty('c', 3);
 $matcher(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]);  // === true
 $matcher(['a' => 1, 'b' => 2, 'd' => 4, 'e' => 5]);  // === false
 ```
-max
----
-```php
-max($iterable): mixed|null
-```
-Returns the maximum value of an iterable.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-**Returns** | `mixed\|null` | Null if $iterable is empty
-
-**Example:** 
-```php
-max([3, 8, 2, 5]);  // === 8
-```
 median
 ---
 ```php
@@ -1318,23 +1343,6 @@ Parameter | Type | Description
 **Example:** 
 ```php
 median([3, 8, 2, 5]);  // === 4
-```
-min
----
-```php
-min($iterable): mixed|null
-```
-Returns the minimum value of an iterable.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-**Returns** | `mixed\|null` | Null if $iterable is empty
-
-**Example:** 
-```php
-min([3, 8, 2, 5]);  // === 2
 ```
 pick
 ---
