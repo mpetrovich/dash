@@ -43,22 +43,22 @@ class allTest extends PHPUnit_Framework_TestCase
 				With indexed array
 			 */
 
-			'With an indexed array with no items that satisfy the predicate' => [
+			'With an indexed array with no elements that satisfy the predicate' => [
 				'iterable' => [2, 4, 6, 8],
 				'predicate' => 'Dash\isOdd',
 				'expected' => false,
 			],
-			'With an indexed array with one item that satisfies the predicate' => [
+			'With an indexed array with one element that satisfies the predicate' => [
 				'iterable' => [2, 4, 5, 6],
 				'predicate' => 'Dash\isOdd',
 				'expected' => false,
 			],
-			'With an indexed array with several items that satisfy the predicate' => [
+			'With an indexed array with several elements that satisfy the predicate' => [
 				'iterable' => [1, 3, 4, 7],
 				'predicate' => 'Dash\isOdd',
 				'expected' => false,
 			],
-			'With an indexed array with all items that satisfy the predicate' => [
+			'With an indexed array with all elements that satisfy the predicate' => [
 				'iterable' => [1, 3, 5, 7],
 				'predicate' => 'Dash\isOdd',
 				'expected' => true,
@@ -68,22 +68,22 @@ class allTest extends PHPUnit_Framework_TestCase
 				With associative array
 			 */
 
-			'With an associative array with no items that satisfy the predicate' => [
+			'With an associative array with no elements that satisfy the predicate' => [
 				'iterable' => ['a' => 2, 'b' => 4, 'c' => 6, 'd' => 8],
 				'predicate' => 'Dash\isOdd',
 				'expected' => false,
 			],
-			'With an associative array with one item that satisfies the predicate' => [
+			'With an associative array with one element that satisfies the predicate' => [
 				'iterable' => ['a' => 2, 'b' => 4, 'c' => 5, 'd' => 6],
 				'predicate' => 'Dash\isOdd',
 				'expected' => false,
 			],
-			'With an associative array with several items that satisfy the predicate' => [
+			'With an associative array with several elements that satisfy the predicate' => [
 				'iterable' => ['a' => 1, 'b' => 3, 'c' => 4, 'd' => 7],
 				'predicate' => 'Dash\isOdd',
 				'expected' => false,
 			],
-			'With an associative array with all items that satisfy the predicate' => [
+			'With an associative array with all elements that satisfy the predicate' => [
 				'iterable' => ['a' => 1, 'b' => 3, 'c' => 5, 'd' => 7],
 				'predicate' => 'Dash\isOdd',
 				'expected' => true,
@@ -98,22 +98,22 @@ class allTest extends PHPUnit_Framework_TestCase
 				'predicate' => 'Dash\isOdd',
 				'expected' => true,
 			],
-			'With an stdClass with no items that satisfy the predicate' => [
+			'With an stdClass with no elements that satisfy the predicate' => [
 				'iterable' => (object) ['a' => 2, 'b' => 4, 'c' => 6],
 				'predicate' => 'Dash\isOdd',
 				'expected' => false,
 			],
-			'With an stdClass with one item that satisfies the predicate' => [
+			'With an stdClass with one element that satisfies the predicate' => [
 				'iterable' => (object) ['a' => 2, 'b' => 3, 'c' => 6],
 				'predicate' => 'Dash\isOdd',
 				'expected' => false,
 			],
-			'With an stdClass with several items that satisfy the predicate' => [
+			'With an stdClass with several elements that satisfy the predicate' => [
 				'iterable' => (object) ['a' => 1, 'b' => 4, 'c' => 5],
 				'predicate' => 'Dash\isOdd',
 				'expected' => false,
 			],
-			'With an stdClass with all items that satisfy the predicate' => [
+			'With an stdClass with all elements that satisfy the predicate' => [
 				'iterable' => (object) ['a' => 1, 'b' => 3, 'c' => 5],
 				'predicate' => 'Dash\isOdd',
 				'expected' => true,
@@ -128,22 +128,22 @@ class allTest extends PHPUnit_Framework_TestCase
 				'predicate' => 'Dash\isOdd',
 				'expected' => true,
 			],
-			'With an ArrayObject with no items that satisfy the predicate' => [
+			'With an ArrayObject with no elements that satisfy the predicate' => [
 				'iterable' => new ArrayObject(['a' => 2, 'b' => 4, 'c' => 6]),
 				'predicate' => 'Dash\isOdd',
 				'expected' => false,
 			],
-			'With an ArrayObject with one item that satisfies the predicate' => [
+			'With an ArrayObject with one element that satisfies the predicate' => [
 				'iterable' => new ArrayObject(['a' => 2, 'b' => 3, 'c' => 6]),
 				'predicate' => 'Dash\isOdd',
 				'expected' => false,
 			],
-			'With an ArrayObject with several items that satisfy the predicate' => [
+			'With an ArrayObject with several elements that satisfy the predicate' => [
 				'iterable' => new ArrayObject(['a' => 1, 'b' => 4, 'c' => 5]),
 				'predicate' => 'Dash\isOdd',
 				'expected' => false,
 			],
-			'With an ArrayObject with all items that satisfy the predicate' => [
+			'With an ArrayObject with all elements that satisfy the predicate' => [
 				'iterable' => new ArrayObject(['a' => 1, 'b' => 3, 'c' => 5]),
 				'predicate' => 'Dash\isOdd',
 				'expected' => true,

@@ -14,7 +14,11 @@ Requirements
 - Add curried variant
 
 ### Documentation
-- Category
+- Category:
+	- Query
+	- Transform
+	- Statistics
+	- String
 - Parameters, return value, exceptions
 - Aliases
 - Examples
@@ -41,7 +45,7 @@ Requirements
 To review
 ---
 - [x] all
-- [ ] any
+- [x] any
 - [ ] apply
 - [ ] ary
 - [ ] assertType
@@ -314,6 +318,7 @@ To add
 - [ ] methods
 - [ ] minBy
 - [ ] mixin
+- [ ] mode
 - [ ] modulo
 - [ ] multiply
 - [ ] multisort

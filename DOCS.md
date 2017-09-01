@@ -2,11 +2,39 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/mpet
 
 Table of contents
 ===
-### Iterable
+### Query
 - [all](#all--every) / every
 - [any](#any--some) / some
 - [at](#at)
-- [average](#average)
+
+### Callable
+- [apply](#apply)
+- [ary](#ary)
+- [call](#call)
+- [negate](#negate)
+- [partial](#partial)
+- [partialRight](#partialright)
+
+### Utility
+- [assertType](#asserttype)
+- [compare](#compare)
+- [display](#display)
+- [equal](#equal)
+- [identical](#identical)
+- [identity](#identity)
+- [isType](#istype)
+- [size](#size--count) / count
+
+### Statistics
+- [average](#average--mean) / mean
+
+### Dash
+- [chain](#chain)
+- [custom](#custom)
+- [tap](#tap)
+- [thru](#thru)
+
+### Iterable
 - [contains](#contains)
 - [deltas](#deltas)
 - [difference](#difference--diff) / diff
@@ -56,30 +84,6 @@ Table of contents
 - [where](#where)
 - [without](#without)
 
-### Callable
-- [apply](#apply)
-- [ary](#ary)
-- [call](#call)
-- [negate](#negate)
-- [partial](#partial)
-- [partialRight](#partialright)
-
-### Utility
-- [assertType](#asserttype)
-- [compare](#compare)
-- [display](#display)
-- [equal](#equal)
-- [identical](#identical)
-- [identity](#identity)
-- [isType](#istype)
-- [size](#size--count) / count
-
-### Dash
-- [chain](#chain)
-- [custom](#custom)
-- [tap](#tap)
-- [thru](#thru)
-
 ### Other
 - [currify](#currify)
 - [curry](#curry)
@@ -91,7 +95,7 @@ Table of contents
 - [isOdd](#isodd)
 
 
-Iterable
+Query
 ===
 
 all / every
@@ -208,23 +212,439 @@ Dash\at(['a' => 'first', 'b' => 'second', 'c' => 'third'], 2);
 Dash\at(['a', 'b', 'c'], 5, 'none');
 // === 'none'
 ```
-average
+
+Callable
+===
+
+apply
+---
+```php
+apply($callable, $args): mixed
+```
+Invokes a callable with arguments passed as a list.
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+`$args` | `array` | 
+**Returns** | `mixed` | Return value of $callable
+
+**Example:** 
+```php
+$saveUser = function ($name, $email) { … };
+apply($saveUser, ['John', 'jdoe@gmail.com']);
+```
+ary
+---
+```php
+ary($callable, $ary): callable
+```
+Wraps $callable in a new function that only accepts up to $ary arguments and ignores the rest.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+`$ary` | `int` | Number of arguments to accept
+**Returns** | `callable` | New function that, when invoked, will call $callable with up to $ary arguments
+
+**Example:** 
+```php
+$fileExists = ary('file_exists', 1);
+$fileExists('foo.txt', 123, 456);  // file_exists() will only get called with 'foo.txt'
+```
+call
+---
+```php
+call($callable /* , ...args */): mixed
+```
+Invokes a callable with arguments passed as individual parameters.
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+**Returns** | `mixed` | Return value of $callable
+
+**Example:** 
+```php
+$saveUser = function ($name, $email) { … };
+call($saveUser, 'John', 'jdoe@gmail.com');
+```
+negate
+---
+```php
+negate($predicate): callable
+```
+Returns a new function that negates the return value of $predicate when invoked.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$predicate` | `callable` | 
+**Returns** | `callable` | 
+
+
+partial
+---
+```php
+partial($callable /* , ...args */): callable
+```
+Creates a function that invokes $callable with the given set of arguments prepended to any others passed in.
+
+Use Dash\_ as a placeholder to replace with call-time arguments.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+**Returns** | `callable` | 
+
+**Example:** 
+```php
+$greet = function ($greeting, $name) {
+	return "$greeting, $name!";
+};
+$sayHello = Dash\partial($greet, 'Hello');
+$sayHowdy = Dash\partial($greet, 'Howdy');
+
+$sayHello('Mark');  // === 'Hello, Mark!'
+$sayHowdy('Jane');  // === 'Howdy, Jane!'
+
+```
+
+**Example:** With a placeholder
+```php
+$greet = function ($greeting, $salutation, $name) {
+	return "$greeting, $salutation $name!";
+};
+$greetMr = Dash\partial($greet, Dash\_, 'Mr.');
+$greetMr('Hello', 'Mark');  // === 'Hello, Mr. Mark!'
+```
+partialRight
+---
+```php
+partialRight($callable /* , ...args */): callable
+```
+Creates a function that invokes $callable with the given set of arguments appended to any others passed in.
+
+Pass Dash\_ as a placeholder to replace with call-time arguments.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+**Returns** | `callable` | 
+
+**Example:** 
+```php
+$greet = function ($greeting, $name) {
+	return "$greeting, $name!";
+};
+$greetMark = Dash\partial($greet, 'Mark');
+$greetJane = Dash\partial($greet, 'Jane');
+
+$greetMark('Hello');  // === 'Hello, Mark!'
+$greetJane('Howdy');  // === 'Howdy, Jane!'
+
+```
+
+**Example:** With a placeholder
+```php
+$greet = function ($greeting, $salutation, $name) {
+	return "$greeting, $salutation $name!";
+};
+$greetMr = Dash\partialRight($greet, 'Mr.', Dash\_);
+$greetMr('Hello', 'Mark');  // === 'Hello, Mr. Mark!'
+```
+
+Utility
+===
+
+assertType
+---
+```php
+assertType($input, $type, $function = __FUNCTION__): void
+```
+Throws an exception if $input's type is not $type.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$input` | `mixed` | 
+`$type` | `string\|array` | Single type or list of types
+`$function` | `string` | (optional) Name of function where assertType() was called
+**Returns** | `void` | 
+
+**Example:** 
+```php
+$input = [1, 2, 3];
+assertType($input, 'object');  // will throw
+```
+compare
+---
+```php
+compare($a, $b): int
+```
+Returns -1, 0, +1 if $a is less than, equal to, or great than $b, respectively.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$a` | `mixed` | 
+`$b` | `mixed` | 
+**Returns** | `int` | 
+
+**Example:** 
+```php
+compare(2, 3);  // === -1
+compare(2, 1);  // === +1
+compare(2, 2);  // === 0
+```
+display
+---
+```php
+display($value): mixed
+```
+Prints a value.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `mixed` | 
+**Returns** | `mixed` | $value
+
+**Example:** 
+```php
+display([1, 2, 3]);
+// echoes:
+Array
+(
+	[0] => 1
+	[1] => 2
+	[2] => 3
+)
+```
+equal
+---
+```php
+equal($a, $b): boolean
+```
+Checks whether two values are loosely equal (same value, but types can be different).
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$a` | `mixed` | 
+`$b` | `mixed` | 
+**Returns** | `boolean` | 
+
+**Example:** 
+```php
+equal(3, '3');  // === true
+equal(3, 3);    // === true
+
+```
+
+**Example:** 
+```php
+equal([1, 2, 3], [1, '2', 3]);  // === true
+equal([1, 2, 3], [1, 2, 3]);    // === true
+```
+identical
+---
+```php
+identical($a, $b): boolean
+```
+Checks whether two values are strictly equal (same value and type).
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$a` | `mixed` | 
+`$b` | `mixed` | 
+**Returns** | `boolean` | 
+
+**Example:** 
+```php
+identical(3, '3');  // === false
+identical(3, 3);    // === true
+
+```
+
+**Example:** 
+```php
+identical([1, 2, 3], [1, '2', 3]);  // === false
+identical([1, 2, 3], [1, 2, 3]);    // === true
+```
+identity
+---
+```php
+identity($value): mixed
+```
+Returns the first argument it receives.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `mixed` | 
+**Returns** | `mixed` | $value itself
+
+**Example:** 
+```php
+$a = new ArrayObject();
+identity($a);  // === $a
+```
+isType
+---
+```php
+isType($value, $type): boolean
+```
+Checks whether a value is of a particular data type.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `mixed` | Value to check
+`$type` | `string\|array` | Single type to check or a list of possible types; types can be: a native data type (eg. 'string', 'array'), a type corresponding to a native is_<type>() function (eg. 'numeric'), a class instance (eg. 'DateTime')
+**Returns** | `boolean` | 
+
+**Example:** With a native data type
+```php
+isType([1, 2, 3], 'array');  // === true
+
+```
+
+**Example:** With a type corresponding to a native is_<type>() method
+```php
+isType(3.14, 'numeric');  // === true
+
+```
+
+**Example:** 'iterable', in contrast with is_iterable(), returns true for stdClass objects
+```php
+$obj = (objec) [1, 2, 3];
+is_iterable($obj);     // === false
+isType($obj, 'iterable');  // === true
+
+```
+
+**Example:** With a class instance
+```php
+isType(new ArrayObject([1, 2, 3]), 'ArrayObject');  // === true
+```
+size / count
+---
+```php
+size($input, $encoding = 'UTF-8'): integer|null
+```
+Returns the number of elements (for iterables) or characters (for strings) in $input.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$input` | `iterable\|string` | 
+`$encoding` | `string` | (optional) The character encoding of $input if it is a string; see mb_list_encodings() for the list of supported encodings
+**Returns** | `integer\|null` | Null for non-iterable/string input
+
+**Example:** 
+```php
+size([1, 2, 3]);  // === 3
+size('Hello!');  // === 6
+```
+
+Statistics
+===
+
+average / mean
 ---
 ```php
 average($iterable): double
 ```
-Gets the average of all values in $iterable.
+Gets the average value of all elements in `$iterable`.
 
 
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
-**Returns** | `double` | Average value
+**Returns** | `double` | 
 
 **Example:** 
 ```php
-average([2, 3, 5, 8]);  // === 4.5
+Dash\average([2, 3, 5, 8]);
+// === 4.5
 ```
+
+Dash
+===
+
+chain
+---
+```php
+chain($input = null): Dash\_
+```
+Alias for _::chain()
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$input` | `mixed` | 
+**Returns** | `Dash\_` | New chain instance
+
+
+custom
+---
+```php
+custom($name): function
+```
+Gets a custom operation by name.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$name` | `string` | Name of the custom operation
+**Returns** | `function` | The custom operation
+
+**Example:** 
+```php
+_::setCustom('double', function ($n) { return $n * 2; });
+_::chain([1, 2, 3])->map(Dash\custom('double'))->value();  // === [2, 4, 6]
+```
+tap
+---
+```php
+tap($iterable, callable $interceptor): iterable
+```
+Invokes $interceptor with ($iterable) and returns $iterable.
+
+Note: Any changes to $iterable in $interceptor will not be persisted.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$interceptor` | `callable` | Invoked with ($iterable)
+**Returns** | `iterable` | $iterable
+
+
+thru
+---
+```php
+thru($iterable, callable $interceptor): iterable
+```
+Invokes interceptor with ($iterable) and returns its result.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$interceptor` | `callable` | Invoked with ($iterable)
+**Returns** | `iterable` | Result of $interceptor($iterable)
+
+
+
+Iterable
+===
+
 contains
 ---
 ```php
@@ -1441,413 +1861,6 @@ Parameter | Type | Description
 without(['a', 'b', 'c', 'd'], ['b', 'c']);
 // === ['a', 'd']
 ```
-
-Callable
-===
-
-apply
----
-```php
-apply($callable, $args): mixed
-```
-Invokes a callable with arguments passed as a list.
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` | 
-`$args` | `array` | 
-**Returns** | `mixed` | Return value of $callable
-
-**Example:** 
-```php
-$saveUser = function ($name, $email) { … };
-apply($saveUser, ['John', 'jdoe@gmail.com']);
-```
-ary
----
-```php
-ary($callable, $ary): callable
-```
-Wraps $callable in a new function that only accepts up to $ary arguments and ignores the rest.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` | 
-`$ary` | `int` | Number of arguments to accept
-**Returns** | `callable` | New function that, when invoked, will call $callable with up to $ary arguments
-
-**Example:** 
-```php
-$fileExists = ary('file_exists', 1);
-$fileExists('foo.txt', 123, 456);  // file_exists() will only get called with 'foo.txt'
-```
-call
----
-```php
-call($callable /* , ...args */): mixed
-```
-Invokes a callable with arguments passed as individual parameters.
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` | 
-**Returns** | `mixed` | Return value of $callable
-
-**Example:** 
-```php
-$saveUser = function ($name, $email) { … };
-call($saveUser, 'John', 'jdoe@gmail.com');
-```
-negate
----
-```php
-negate($predicate): callable
-```
-Returns a new function that negates the return value of $predicate when invoked.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$predicate` | `callable` | 
-**Returns** | `callable` | 
-
-
-partial
----
-```php
-partial($callable /* , ...args */): callable
-```
-Creates a function that invokes $callable with the given set of arguments prepended to any others passed in.
-
-Use Dash\_ as a placeholder to replace with call-time arguments.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` | 
-**Returns** | `callable` | 
-
-**Example:** 
-```php
-$greet = function ($greeting, $name) {
-	return "$greeting, $name!";
-};
-$sayHello = Dash\partial($greet, 'Hello');
-$sayHowdy = Dash\partial($greet, 'Howdy');
-
-$sayHello('Mark');  // === 'Hello, Mark!'
-$sayHowdy('Jane');  // === 'Howdy, Jane!'
-
-```
-
-**Example:** With a placeholder
-```php
-$greet = function ($greeting, $salutation, $name) {
-	return "$greeting, $salutation $name!";
-};
-$greetMr = Dash\partial($greet, Dash\_, 'Mr.');
-$greetMr('Hello', 'Mark');  // === 'Hello, Mr. Mark!'
-```
-partialRight
----
-```php
-partialRight($callable /* , ...args */): callable
-```
-Creates a function that invokes $callable with the given set of arguments appended to any others passed in.
-
-Pass Dash\_ as a placeholder to replace with call-time arguments.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` | 
-**Returns** | `callable` | 
-
-**Example:** 
-```php
-$greet = function ($greeting, $name) {
-	return "$greeting, $name!";
-};
-$greetMark = Dash\partial($greet, 'Mark');
-$greetJane = Dash\partial($greet, 'Jane');
-
-$greetMark('Hello');  // === 'Hello, Mark!'
-$greetJane('Howdy');  // === 'Howdy, Jane!'
-
-```
-
-**Example:** With a placeholder
-```php
-$greet = function ($greeting, $salutation, $name) {
-	return "$greeting, $salutation $name!";
-};
-$greetMr = Dash\partialRight($greet, 'Mr.', Dash\_);
-$greetMr('Hello', 'Mark');  // === 'Hello, Mr. Mark!'
-```
-
-Utility
-===
-
-assertType
----
-```php
-assertType($input, $type, $function = __FUNCTION__): void
-```
-Throws an exception if $input's type is not $type.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$input` | `mixed` | 
-`$type` | `string\|array` | Single type or list of types
-`$function` | `string` | (optional) Name of function where assertType() was called
-**Returns** | `void` | 
-
-**Example:** 
-```php
-$input = [1, 2, 3];
-assertType($input, 'object');  // will throw
-```
-compare
----
-```php
-compare($a, $b): int
-```
-Returns -1, 0, +1 if $a is less than, equal to, or great than $b, respectively.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$a` | `mixed` | 
-`$b` | `mixed` | 
-**Returns** | `int` | 
-
-**Example:** 
-```php
-compare(2, 3);  // === -1
-compare(2, 1);  // === +1
-compare(2, 2);  // === 0
-```
-display
----
-```php
-display($value): mixed
-```
-Prints a value.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$value` | `mixed` | 
-**Returns** | `mixed` | $value
-
-**Example:** 
-```php
-display([1, 2, 3]);
-// echoes:
-Array
-(
-	[0] => 1
-	[1] => 2
-	[2] => 3
-)
-```
-equal
----
-```php
-equal($a, $b): boolean
-```
-Checks whether two values are loosely equal (same value, but types can be different).
-
-
-Parameter | Type | Description
---- | --- | :---
-`$a` | `mixed` | 
-`$b` | `mixed` | 
-**Returns** | `boolean` | 
-
-**Example:** 
-```php
-equal(3, '3');  // === true
-equal(3, 3);    // === true
-
-```
-
-**Example:** 
-```php
-equal([1, 2, 3], [1, '2', 3]);  // === true
-equal([1, 2, 3], [1, 2, 3]);    // === true
-```
-identical
----
-```php
-identical($a, $b): boolean
-```
-Checks whether two values are strictly equal (same value and type).
-
-
-Parameter | Type | Description
---- | --- | :---
-`$a` | `mixed` | 
-`$b` | `mixed` | 
-**Returns** | `boolean` | 
-
-**Example:** 
-```php
-identical(3, '3');  // === false
-identical(3, 3);    // === true
-
-```
-
-**Example:** 
-```php
-identical([1, 2, 3], [1, '2', 3]);  // === false
-identical([1, 2, 3], [1, 2, 3]);    // === true
-```
-identity
----
-```php
-identity($value): mixed
-```
-Returns the first argument it receives.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$value` | `mixed` | 
-**Returns** | `mixed` | $value itself
-
-**Example:** 
-```php
-$a = new ArrayObject();
-identity($a);  // === $a
-```
-isType
----
-```php
-isType($value, $type): boolean
-```
-Checks whether a value is of a particular data type.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$value` | `mixed` | Value to check
-`$type` | `string\|array` | Single type to check or a list of possible types; types can be: a native data type (eg. 'string', 'array'), a type corresponding to a native is_<type>() function (eg. 'numeric'), a class instance (eg. 'DateTime')
-**Returns** | `boolean` | 
-
-**Example:** With a native data type
-```php
-isType([1, 2, 3], 'array');  // === true
-
-```
-
-**Example:** With a type corresponding to a native is_<type>() method
-```php
-isType(3.14, 'numeric');  // === true
-
-```
-
-**Example:** 'iterable', in contrast with is_iterable(), returns true for stdClass objects
-```php
-$obj = (objec) [1, 2, 3];
-is_iterable($obj);     // === false
-isType($obj, 'iterable');  // === true
-
-```
-
-**Example:** With a class instance
-```php
-isType(new ArrayObject([1, 2, 3]), 'ArrayObject');  // === true
-```
-size / count
----
-```php
-size($input, $encoding = 'UTF-8'): integer|null
-```
-Returns the number of elements (for iterables) or characters (for strings) in $input.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$input` | `iterable\|string` | 
-`$encoding` | `string` | (optional) The character encoding of $input if it is a string; see mb_list_encodings() for the list of supported encodings
-**Returns** | `integer\|null` | Null for non-iterable/string input
-
-**Example:** 
-```php
-size([1, 2, 3]);  // === 3
-size('Hello!');  // === 6
-```
-
-Dash
-===
-
-chain
----
-```php
-chain($input = null): Dash\_
-```
-Alias for _::chain()
-
-
-Parameter | Type | Description
---- | --- | :---
-`$input` | `mixed` | 
-**Returns** | `Dash\_` | New chain instance
-
-
-custom
----
-```php
-custom($name): function
-```
-Gets a custom operation by name.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$name` | `string` | Name of the custom operation
-**Returns** | `function` | The custom operation
-
-**Example:** 
-```php
-_::setCustom('double', function ($n) { return $n * 2; });
-_::chain([1, 2, 3])->map(Dash\custom('double'))->value();  // === [2, 4, 6]
-```
-tap
----
-```php
-tap($iterable, callable $interceptor): iterable
-```
-Invokes $interceptor with ($iterable) and returns $iterable.
-
-Note: Any changes to $iterable in $interceptor will not be persisted.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$interceptor` | `callable` | Invoked with ($iterable)
-**Returns** | `iterable` | $iterable
-
-
-thru
----
-```php
-thru($iterable, callable $interceptor): iterable
-```
-Invokes interceptor with ($iterable) and returns its result.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$interceptor` | `callable` | Invoked with ($iterable)
-**Returns** | `iterable` | Result of $interceptor($iterable)
-
-
 
 Other
 ===
