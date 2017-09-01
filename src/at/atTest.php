@@ -27,15 +27,16 @@ class atTest extends PHPUnit_Framework_TestCase
 	{
 		return [
 
-			/*
-				With array
-			 */
-
 			'With an empty array' => [
 				'iterable' => [],
 				'index' => 2,
 				'expected' => null,
 			],
+
+			/*
+				With indexed array
+			 */
+
 			'With an indexed array' => [
 				'iterable' => [2, 3, 5, 8],
 				'index' => 2,
@@ -51,15 +52,20 @@ class atTest extends PHPUnit_Framework_TestCase
 				'index' => 4,
 				'expected' => null,
 			],
-			'With an associative array with integer keys' => [
-				'iterable' => [3 => 2, 1 => 3, 0 => 5, 2 => 8],
-				'index' => 2,
-				'expected' => 5,
-			],
+
+			/*
+				With associative array
+			 */
+
 			'With an associative array' => [
 				'iterable' => ['a' => 'one', 'b' => 'two', 'c' => 'three', 'd' => 'four'],
 				'index' => 2,
 				'expected' => 'three',
+			],
+			'With an associative array with integer keys' => [
+				'iterable' => [3 => 2, 1 => 3, 0 => 5, 2 => 8],
+				'index' => 2,
+				'expected' => 5,
 			],
 
 			/*

@@ -3,18 +3,24 @@
 namespace Dash;
 
 /**
- * Returns the minimum value of an iterable.
+ * Gets the minimum value of all elements in `$iterable`.
  *
- * @category Iterable
+ * @category Statistics
  * @param iterable $iterable
- * @return mixed|null Null if $iterable is empty
+ * @return mixed|null Null if `$iterable` is empty
  *
  * @example
-	min([3, 8, 2, 5]);  // === 2
+	Dash\min([3, 8, 2, 5]);
+	// === 2
+
+	Dash\min([]);
+	// === null
  */
 function min($iterable)
 {
-	if (isEmpty($iterable)) {
+	assertType($iterable, 'iterable', __FUNCTION__);
+
+	if (size($iterable) === 0) {
 		return null;
 	}
 
@@ -23,4 +29,12 @@ function min($iterable)
 	}, +INF);
 
 	return $min;
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _min(/* iterable */)
+{
+	return currify('Dash\min', func_get_args());
 }

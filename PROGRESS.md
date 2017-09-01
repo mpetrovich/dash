@@ -49,8 +49,8 @@ To review
 - [ ] apply
 - [ ] ary
 - [ ] assertType
-- [ ] at
-- [ ] average
+- [x] at
+- [x] average
 - [ ] call
 - [ ] chain
 - [ ] compare
@@ -94,7 +94,7 @@ To review
 - [ ] matchesProperty
 - [ ] max
 - [ ] median
-- [ ] min
+- [x] min
 - [ ] negate
 - [ ] partial
 - [ ] partialRight

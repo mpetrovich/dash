@@ -17,6 +17,18 @@ class averageTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expected, Dash\mean($iterable));
 	}
 
+	/**
+	 * @dataProvider cases
+	 */
+	public function testCurried($iterable, $expected)
+	{
+		$average = Dash\_average();
+		$this->assertEquals($expected, $average($iterable));
+
+		$mean = Dash\_mean();
+		$this->assertEquals($expected, $mean($iterable));
+	}
+
 	public function cases()
 	{
 		return [
