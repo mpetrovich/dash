@@ -124,6 +124,16 @@ Dash\all([], 'Dash\isOdd');
 
 Dash\all((object) ['a' => 1, 'b' => 3, 'c' => 5], 'Dash\isOdd');
 // === true
+
+```
+
+**Example:** With the default predicate
+```php
+Dash\any([true, true, true]);
+// === true
+
+Dash\any([true, false, true]);
+// === false
 ```
 any / some
 ---
@@ -154,32 +164,49 @@ Dash\any([], 'Dash\isOdd');
 
 Dash\any((object) ['a' => 1, 'b' => 2, 'c' => 3], 'Dash\isEven');
 // === true
+
+```
+
+**Example:** With the default predicate
+```php
+Dash\any([false, true, true]);
+// === true
+
+Dash\any([false, false, false]);
+// === false
 ```
 at
 ---
 ```php
 at($iterable, $index, $default = null): mixed
 ```
-Gets the value of the literal $index-th element of $iterable, ignoring key values.
+Iterates over `$iterable` and returns the value of the `$index`th element, ignoring keys.
 
 
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
-`$index` | `int` | 0-based index
-`$default` | `mixed` | Value to return if $index is out of bounds
-**Returns** | `mixed` | 
+`$index` | `numeric` | 0-based index
+`$default` | `mixed` | (optional) Value to return if `$index` is out of bounds
+**Returns** | `mixed` | Value of the `$index`th item of `$iterable, ignoring keys
 
 **Example:** 
 ```php
-at(['a', 'b', 'c', 'd'], 2);  // === 'c'
+Dash\at(['a', 'b', 'c'], 0);
+// === 'c'
+
+Dash\at([2 => 'a', 1 => 'b', 0 => 'c'], 0);
+// === 'c'
+
+Dash\at(['a' => 'first', 'b' => 'second', 'c' => 'third'], 2);
+// === 'third'
 
 ```
 
-**Example:** Keys are ignored; the literal i-th position is returned
+**Example:** With a custom default value
 ```php
-$input = (object) ['a' => 'one', 'b' => 'two', 'c' => 'three', 'd' => 'four'];
-at($input, 2);  // === 'three'
+Dash\at(['a', 'b', 'c'], 5, 'none');
+// === 'none'
 ```
 average
 ---

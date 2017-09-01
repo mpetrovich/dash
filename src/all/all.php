@@ -29,6 +29,13 @@ namespace Dash;
 
 	Dash\all((object) ['a' => 1, 'b' => 3, 'c' => 5], 'Dash\isOdd');
 	// === true
+ *
+ * @example With the default predicate
+	Dash\any([true, true, true]);
+	// === true
+
+	Dash\any([true, false, true]);
+	// === false
  */
 function all($iterable, $predicate = 'Dash\identity')
 {

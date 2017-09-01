@@ -26,6 +26,13 @@ namespace Dash;
 
 	Dash\any((object) ['a' => 1, 'b' => 2, 'c' => 3], 'Dash\isEven');
 	// === true
+ *
+ * @example With the default predicate
+	Dash\any([false, true, true]);
+	// === true
+
+	Dash\any([false, false, false]);
+	// === false
  */
 function any($iterable, $predicate = 'Dash\identity')
 {
