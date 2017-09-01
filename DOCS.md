@@ -4,7 +4,7 @@ Table of contents
 ===
 ### Iterable
 - [all](#all--every) / every
-- [any](#any)
+- [any](#any--some) / some
 - [at](#at)
 - [average](#average)
 - [contains](#contains)
@@ -97,40 +97,63 @@ Iterable
 all / every
 ---
 ```php
-all($iterable, $predicate): boolean
+all($iterable, $predicate = 'Dash\identity'): boolean
 ```
-Checks whether $predicate returns truthy for every item in $iterable.
+Checks whether `$predicate` returns truthy for every item in `$iterable`.
+
+Iteration will stop at the first falsey return value.
+
+Note: Returns true if `$iterable` is empty, because everything is true of empty iterables.
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$predicate` | `callable` | (optional) Invoked with `($value, $key, $iterable)` for each element in `$iterable`
+**Returns** | `boolean` | true if `$predicate` returns truthy for every item in `$iterable`
+
+**Example:** 
+```php
+Dash\all([1, 3, 5], 'Dash\isOdd');
+// === true
+
+Dash\all([1, 3, 5], function ($n) { return $n != 3; });
+// === false
+
+Dash\all([], 'Dash\isOdd');
+// === true
+
+Dash\all((object) ['a' => 1, 'b' => 3, 'c' => 5], 'Dash\isOdd');
+// === true
+```
+any / some
+---
+```php
+any($iterable, $predicate = 'Dash\identity'): boolean
+```
+Checks whether `$predicate` returns truthy for any item in `$iterable`.
+
+Iteration will stop at the first truthy return value.
 
 
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
-`$predicate` | `callable` | Invoked with ($value, $key) that returns a boolean
-**Returns** | `boolean` | true if $predicate returns truthy for every item in $iterable
+`$predicate` | `callable` | (optional) Invoked with `($value, $key, $iterable)` for each element in `$iterable`
+**Returns** | `boolean` | true if `$predicate` returns truthy for any item in `$iterable`
 
 **Example:** 
 ```php
-all([1, 2, 3], function($n) { return $n > 5; });  // === false
-all([1, 3, 5], 'Dash\isOdd');  // === true
-```
-any
----
-```php
-any($iterable, $predicate): boolean
-```
-Checks whether $predicate returns truthy for any item in $iterable.
+Dash\any([1, 2, 3], 'Dash\isEven');
+// === true
 
+Dash\any([1, 2, 3], function ($n) { return $n > 5; });
+// === false
 
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `mixed` | 
-`$predicate` | `callable` | A callable invoked with ($value, $key) that returns a boolean
-**Returns** | `boolean` | 
+Dash\any([], 'Dash\isOdd');
+// === false
 
-**Example:** 
-```php
-all([1, 2, 3], function($n) { return $n > 5; });  // === false
-all([1, 2, 3], 'Dash\isEven');  // === true
+Dash\any((object) ['a' => 1, 'b' => 2, 'c' => 3], 'Dash\isEven');
+// === true
 ```
 at
 ---

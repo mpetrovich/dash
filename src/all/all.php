@@ -12,17 +12,17 @@ namespace Dash;
  *
  * @category Iterable
  * @param iterable $iterable
- * @param callable $predicate (optional) Invoked with each `($value, $key)` in `$iterable`
+ * @param callable $predicate (optional) Invoked with `($value, $key, $iterable)` for each element in `$iterable`
  * @return boolean true if `$predicate` returns truthy for every item in `$iterable`
  *
  * @see every
  *
  * @example
-	Dash\all([1, 3, 5], function($n) { return $n != 3; });
-	// === false
-
 	Dash\all([1, 3, 5], 'Dash\isOdd');
 	// === true
+
+	Dash\all([1, 3, 5], function ($n) { return $n != 3; });
+	// === false
 
 	Dash\all([], 'Dash\isOdd');
 	// === true

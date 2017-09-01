@@ -155,16 +155,17 @@ class allTest extends PHPUnit_Framework_TestCase
 		];
 	}
 
-	public function testPredicate()
+	public function testPredicateArgs()
 	{
+		$iterable = ['a' => 1, 'b' => 2, 'c' => 3];
 		$iterated = [];
 
-		$predicate = function ($value, $key) use (&$iterated) {
+		$predicate = function ($value, $key, $passedIterable) use (&$iterated, $iterable) {
 			$iterated[$key] = $value;
+			$this->assertSame($iterable, $passedIterable);
 			return true;
 		};
 
-		$iterable = ['a' => 1, 'b' => 2, 'c' => 3];
 		$result = Dash\all($iterable, $predicate);
 
 		$this->assertTrue($result);
@@ -208,7 +209,7 @@ class allTest extends PHPUnit_Framework_TestCase
 				'expected' => true,
 			],
 			'With an array of values with mixed truthiness' => [
-				'iterable' => [true, 0, true],
+				'iterable' => [0, 1, true],
 				'expected' => false,
 			],
 		];

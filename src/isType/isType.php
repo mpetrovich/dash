@@ -40,15 +40,21 @@ function isType($value, $type)
 
 	$types = (array) $type;
 
-	$isAnyType = any($types, function ($type) use ($value, $customTypeChecks) {
+	$isAnyType = false;
+
+	foreach ($types as $type) {
 		$customTypeCheck = isset($customTypeChecks[$type]) ? $customTypeChecks[$type] : null;
 		$isInstanceOf = function ($value) use ($type) { return $value instanceof $type; };
 
 		$typeCheck = $customTypeCheck ?: (function_exists("is_$type") ? "is_$type" : $isInstanceOf);
 
 		$isType = call_user_func($typeCheck, $value);
-		return $isType;
-	});
+
+		if ($isType) {
+			$isAnyType = true;
+			break;
+		}
+	}
 
 	return $isAnyType;
 }
