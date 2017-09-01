@@ -28,6 +28,7 @@ Table of contents
 ### Statistics
 - [average](#average--mean) / mean
 - [max](#max)
+- [median](#median)
 - [min](#min)
 
 ### Dash
@@ -64,7 +65,6 @@ Table of contents
 - [mapValues](#mapvalues)
 - [matches](#matches)
 - [matchesProperty](#matchesproperty)
-- [median](#median)
 - [pick](#pick)
 - [pluck](#pluck)
 - [property](#property)
@@ -558,7 +558,7 @@ Statistics
 average / mean
 ---
 ```php
-average($iterable): double
+average($iterable): double|null
 ```
 Gets the average value of all elements in `$iterable`.
 
@@ -566,7 +566,7 @@ Gets the average value of all elements in `$iterable`.
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable` | 
-**Returns** | `double` | 
+**Returns** | `double\|null` | Null if `$iterable` is empty
 
 **Example:** 
 ```php
@@ -593,6 +593,27 @@ Dash\max([3, 8, 2, 5]);
 
 Dash\max([]);
 // === null
+```
+median
+---
+```php
+median($iterable): mixed|null
+```
+Returns the median value of an iterable.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+**Returns** | `mixed\|null` | Null if `$iterable` is empty
+
+**Example:** 
+```php
+Dash\median([3, 2, 1, 5, 4]);
+// === 3
+
+Dash\median([3, 2, 1, 4]);
+// === 2.5
 ```
 min
 ---
@@ -1326,23 +1347,6 @@ Parameter | Type | Description
 $matcher = matchesProperty('c', 3);
 $matcher(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]);  // === true
 $matcher(['a' => 1, 'b' => 2, 'd' => 4, 'e' => 5]);  // === false
-```
-median
----
-```php
-median($iterable): mixed|null
-```
-Returns the median value of an iterable.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-**Returns** | `mixed\|null` | Null if $iterable is empty
-
-**Example:** 
-```php
-median([3, 8, 2, 5]);  // === 4
 ```
 pick
 ---

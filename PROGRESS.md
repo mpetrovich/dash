@@ -94,7 +94,7 @@ To review
 - [ ] matches
 - [ ] matchesProperty
 - [x] max
-- [ ] median
+- [x] median
 - [x] min
 - [ ] negate
 - [ ] partial
@@ -354,6 +354,7 @@ To add
 - [ ] pathEq
 - [ ] pathOr
 - [ ] pathSatisfies
+- [ ] percentile
 - [ ] pickAll
 - [ ] pickBy
 - [ ] pipe

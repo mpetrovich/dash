@@ -2,6 +2,7 @@
 
 /**
  * @covers Dash\median
+ * @covers Dash\_median
  */
 class medianTest extends PHPUnit_Framework_TestCase
 {
@@ -10,63 +11,138 @@ class medianTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $expected)
 	{
-		$actual = Dash\median($iterable);
-		$this->assertEquals($expected, $actual);
+		$this->assertSame($expected, Dash\median($iterable));
+	}
+
+	/**
+	 * @dataProvider cases
+	 */
+	public function testCurried($iterable, $expected)
+	{
+		$median = Dash\_median();
+		$this->assertSame($expected, $median($iterable));
 	}
 
 	public function cases()
 	{
 		return [
 
+			'With an empty array' => [
+				'iterable' => [],
+				'expected' => null,
+			],
+
 			/*
-				With array
+				With indexed array
 			 */
 
-			'should return zero for an empty array' => [
-				[],
-				0
+			'With an indexed array with one element' => [
+				'iterable' => [3],
+				'expected' => 3,
 			],
-			'should return the median of the values of an array with an even number of values' => [
-				[3, 8, 2, 5],
-				4
+			'With an indexed array with an odd number of elements' => [
+				'iterable' => [2, 1, 5, 3, 4],
+				'expected' => 3,
 			],
-			'should return the median of the values of an array with an odd number of values' => [
-				[3, 8, 2, 13, 5],
-				5
+			'With an indexed array with an even number of elements' => [
+				'iterable' => [2, 1, 3, 4],
+				'expected' => 2.5,
+			],
+
+			/*
+				With associative array
+			 */
+
+			'With an associative array with one element' => [
+				'iterable' => ['a' => 3],
+				'expected' => 3,
+			],
+			'With an associative with an odd number of elements' => [
+				'iterable' => ['a' => 2, 'b' => 1, 'c' => 5, 'd' => 3, 'e' => 4],
+				'expected' => 3,
+			],
+			'With an associative array with an even number of elements' => [
+				'iterable' => ['a' => 2, 'b' => 1, 'c' => 3, 'd' => 4],
+				'expected' => 2.5,
 			],
 
 			/*
 				With stdClass
 			 */
 
-			'should return zero for an empty stdClass' => [
-				(object) [],
-				0
+			'With an empty stdClass' => [
+				'iterable' => (object) [],
+				'expected' => null,
 			],
-			'should return the median of the values of an stdClass with an even number of values' => [
-				(object) [3, 8, 2, 5],
-				4
+			'With an stdClass with an odd number of elements' => [
+				'iterable' => (object) ['a' => 2, 'b' => 1, 'c' => 5, 'd' => 3, 'e' => 4],
+				'expected' => 3,
 			],
-			'should return the median of the values of an stdClass with an odd number of values' => [
-				(object) [3, 8, 2, 13, 5],
-				5
+			'With an stdClass array with an even number of elements' => [
+				'iterable' => (object) ['a' => 2, 'b' => 1, 'c' => 3, 'd' => 4],
+				'expected' => 2.5,
 			],
 
 			/*
 				With ArrayObject
 			 */
 
-			'should return zero for an empty ArrayObject' => [
-				new ArrayObject([]),
-				0
+			'With an empty ArrayObject' => [
+				'iterable' => new ArrayObject([]),
+				'expected' => null,
 			],
-			'should return the median of the values of an ArrayObject with an even number of values' => [
-				new ArrayObject([3, 8, 2, 5]),
-				4
+			'With an ArrayObject with an odd number of elements' => [
+				'iterable' => new ArrayObject(['a' => 2, 'b' => 1, 'c' => 5, 'd' => 3, 'e' => 4]),
+				'expected' => 3,
 			],
-			'should return the median of the values of an ArrayObject with an odd number of values' => [
-				new ArrayObject([3, 8, 2, 13, 5]),
-				5
+			'With an ArrayObject array with an even number of elements' => [
+				'iterable' => new ArrayObject(['a' => 2, 'b' => 1, 'c' => 3, 'd' => 4]),
+				'expected' => 2.5,
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider casesTypeAssertions
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testTypeAssertions($iterable, $type)
+	{
+		try {
+			Dash\median($iterable);
+		}
+		catch (Exception $e) {
+			$this->assertSame("Dash\median expects iterable but was given $type", $e->getMessage());
+			throw $e;
+		}
+	}
+
+	public function casesTypeAssertions()
+	{
+		return [
+			'With null' => [
+				'iterable' => null,
+				'type' => 'NULL',
+			],
+			'With an empty string' => [
+				'iterable' => '',
+				'type' => 'string',
+			],
+			'With a string' => [
+				'iterable' => 'hello',
+				'type' => 'string',
+			],
+			'With a zero number' => [
+				'iterable' => 0,
+				'type' => 'integer',
+			],
+			'With a number' => [
+				'iterable' => 3.14,
+				'type' => 'double',
+			],
+			'With a DateTime' => [
+				'iterable' => new DateTime(),
+				'type' => 'DateTime',
 			],
 		];
 	}
