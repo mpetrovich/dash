@@ -13,8 +13,8 @@ class anyTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $predicate, $expected)
 	{
-		$this->assertEquals($expected, Dash\any($iterable, $predicate));
-		$this->assertEquals($expected, Dash\some($iterable, $predicate));
+		$this->assertSame($expected, Dash\any($iterable, $predicate));
+		$this->assertSame($expected, Dash\some($iterable, $predicate));
 	}
 
 	/**
@@ -23,10 +23,10 @@ class anyTest extends PHPUnit_Framework_TestCase
 	public function testCurried($iterable, $predicate, $expected)
 	{
 		$any = Dash\_any($predicate);
-		$this->assertEquals($expected, $any($iterable));
+		$this->assertSame($expected, $any($iterable));
 
 		$some = Dash\_some($predicate);
-		$this->assertEquals($expected, $some($iterable));
+		$this->assertSame($expected, $some($iterable));
 	}
 
 	public function cases()
@@ -189,8 +189,8 @@ class anyTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testDefaultPredicate($iterable, $expected)
 	{
-		$this->assertEquals($expected, Dash\any($iterable));
-		$this->assertEquals($expected, Dash\some($iterable));
+		$this->assertSame($expected, Dash\any($iterable));
+		$this->assertSame($expected, Dash\some($iterable));
 	}
 
 	public function casesDefaultPredicate()
@@ -221,7 +221,7 @@ class anyTest extends PHPUnit_Framework_TestCase
 			Dash\any($iterable);
 		}
 		catch (Exception $e) {
-			$this->assertEquals("Dash\any expects iterable but was given $type", $e->getMessage());
+			$this->assertSame("Dash\any expects iterable but was given $type", $e->getMessage());
 			throw $e;
 		}
 
@@ -229,7 +229,7 @@ class anyTest extends PHPUnit_Framework_TestCase
 			Dash\some($iterable);
 		}
 		catch (Exception $e) {
-			$this->assertEquals("Dash\any expects iterable but was given $type", $e->getMessage());
+			$this->assertSame("Dash\any expects iterable but was given $type", $e->getMessage());
 			throw $e;
 		}
 	}

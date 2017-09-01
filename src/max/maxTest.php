@@ -11,7 +11,7 @@ class maxTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $expected)
 	{
-		$this->assertEquals($expected, Dash\max($iterable));
+		$this->assertSame($expected, Dash\max($iterable));
 	}
 
 	/**
@@ -20,7 +20,7 @@ class maxTest extends PHPUnit_Framework_TestCase
 	public function testCurried($iterable, $expected)
 	{
 		$max = Dash\_max();
-		$this->assertEquals($expected, $max($iterable));
+		$this->assertSame($expected, $max($iterable));
 	}
 
 	public function cases()
@@ -112,7 +112,7 @@ class maxTest extends PHPUnit_Framework_TestCase
 			Dash\max($iterable);
 		}
 		catch (Exception $e) {
-			$this->assertEquals("Dash\max expects iterable but was given $type", $e->getMessage());
+			$this->assertSame("Dash\max expects iterable but was given $type", $e->getMessage());
 			throw $e;
 		}
 	}

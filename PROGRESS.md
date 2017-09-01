@@ -25,6 +25,7 @@ Requirements
 
 ### Testing
 - @covers (for aliases, curried too)
+- use assertSame() instead of assertEquals()
 - exceptions
 - null
 - empty string

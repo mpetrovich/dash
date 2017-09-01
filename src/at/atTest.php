@@ -11,7 +11,7 @@ class atTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $index, $expected)
 	{
-		$this->assertEquals($expected, Dash\at($iterable, $index));
+		$this->assertSame($expected, Dash\at($iterable, $index));
 	}
 
 	/**
@@ -20,7 +20,7 @@ class atTest extends PHPUnit_Framework_TestCase
 	public function testCurried($iterable, $index, $expected)
 	{
 		$at = Dash\_at($index, null);
-		$this->assertEquals($expected, $at($iterable));
+		$this->assertSame($expected, $at($iterable));
 	}
 
 	public function cases()
@@ -115,7 +115,7 @@ class atTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testDefault($iterable, $index, $default, $expected)
 	{
-		$this->assertEquals($expected, Dash\at($iterable, $index, $default));
+		$this->assertSame($expected, Dash\at($iterable, $index, $default));
 	}
 
 	public function casesDefault()
@@ -158,7 +158,7 @@ class atTest extends PHPUnit_Framework_TestCase
 			Dash\at($iterable, 0);
 		}
 		catch (Exception $e) {
-			$this->assertEquals("Dash\at expects iterable but was given $type", $e->getMessage());
+			$this->assertSame("Dash\at expects iterable but was given $type", $e->getMessage());
 			throw $e;
 		}
 	}
@@ -203,7 +203,7 @@ class atTest extends PHPUnit_Framework_TestCase
 			Dash\at([1, 2, 3], $index);
 		}
 		catch (Exception $e) {
-			$this->assertEquals("Dash\at expects numeric but was given $type", $e->getMessage());
+			$this->assertSame("Dash\at expects numeric but was given $type", $e->getMessage());
 			throw $e;
 		}
 	}

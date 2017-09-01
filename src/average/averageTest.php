@@ -13,8 +13,8 @@ class averageTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $expected)
 	{
-		$this->assertEquals($expected, Dash\average($iterable));
-		$this->assertEquals($expected, Dash\mean($iterable));
+		$this->assertSame($expected, Dash\average($iterable));
+		$this->assertSame($expected, Dash\mean($iterable));
 	}
 
 	/**
@@ -23,10 +23,10 @@ class averageTest extends PHPUnit_Framework_TestCase
 	public function testCurried($iterable, $expected)
 	{
 		$average = Dash\_average();
-		$this->assertEquals($expected, $average($iterable));
+		$this->assertSame($expected, $average($iterable));
 
 		$mean = Dash\_mean();
-		$this->assertEquals($expected, $mean($iterable));
+		$this->assertSame($expected, $mean($iterable));
 	}
 
 	public function cases()
@@ -35,7 +35,7 @@ class averageTest extends PHPUnit_Framework_TestCase
 
 			'With an empty array' => [
 				'iterable' => [],
-				'expected' => 0,
+				'expected' => null,
 			],
 
 			/*
@@ -70,7 +70,7 @@ class averageTest extends PHPUnit_Framework_TestCase
 
 			'With an empty stdClass' => [
 				'iterable' => (object) [],
-				'expected' => 0,
+				'expected' => null,
 			],
 			'With an stdClass with one element' => [
 				'iterable' => (object) ['a' => 3],
@@ -87,7 +87,7 @@ class averageTest extends PHPUnit_Framework_TestCase
 
 			'With an empty ArrayObject' => [
 				'iterable' => new ArrayObject([]),
-				'expected' => 0,
+				'expected' => null,
 			],
 			'With an ArrayObject with one element' => [
 				'iterable' => new ArrayObject(['a' => 3]),
@@ -110,7 +110,7 @@ class averageTest extends PHPUnit_Framework_TestCase
 			Dash\average($iterable);
 		}
 		catch (Exception $e) {
-			$this->assertEquals("Dash\average expects iterable but was given $type", $e->getMessage());
+			$this->assertSame("Dash\average expects iterable but was given $type", $e->getMessage());
 			throw $e;
 		}
 
@@ -118,7 +118,7 @@ class averageTest extends PHPUnit_Framework_TestCase
 			Dash\mean($iterable);
 		}
 		catch (Exception $e) {
-			$this->assertEquals("Dash\average expects iterable but was given $type", $e->getMessage());
+			$this->assertSame("Dash\average expects iterable but was given $type", $e->getMessage());
 			throw $e;
 		}
 	}

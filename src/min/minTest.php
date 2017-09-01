@@ -11,7 +11,7 @@ class minTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $expected)
 	{
-		$this->assertEquals($expected, Dash\min($iterable));
+		$this->assertSame($expected, Dash\min($iterable));
 	}
 
 	/**
@@ -20,7 +20,7 @@ class minTest extends PHPUnit_Framework_TestCase
 	public function testCurried($iterable, $expected)
 	{
 		$min = Dash\_min();
-		$this->assertEquals($expected, $min($iterable));
+		$this->assertSame($expected, $min($iterable));
 	}
 
 	public function cases()
@@ -112,7 +112,7 @@ class minTest extends PHPUnit_Framework_TestCase
 			Dash\min($iterable);
 		}
 		catch (Exception $e) {
-			$this->assertEquals("Dash\min expects iterable but was given $type", $e->getMessage());
+			$this->assertSame("Dash\min expects iterable but was given $type", $e->getMessage());
 			throw $e;
 		}
 	}

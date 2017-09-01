@@ -7,7 +7,7 @@ namespace Dash;
  *
  * @category Statistics
  * @param iterable $iterable
- * @return double
+ * @return double|null Null if `$iterable` is empty
  *
  * @see mean
  *
@@ -22,7 +22,7 @@ function average($iterable)
 	$size = size($iterable);
 
 	if ($size === 0) {
-		return 0;
+		return null;
 	}
 	else {
 		return sum($iterable) / $size;
