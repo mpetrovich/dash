@@ -32,6 +32,7 @@ Table of contents
 - [max](#max)
 - [median](#median)
 - [min](#min)
+- [sum](#sum)
 
 ### Dash
 - [chain](#chain)
@@ -76,7 +77,6 @@ Table of contents
 - [reverse](#reverse)
 - [set](#set)
 - [sort](#sort)
-- [sum](#sum)
 - [take](#take)
 - [takeRight](#takeright)
 - [takeWhile](#takewhile)
@@ -684,6 +684,27 @@ Dash\min([3, 8, 2, 5]);
 
 Dash\min([]);
 // === null
+```
+sum
+---
+```php
+sum($iterable): numeric
+```
+Gets the sum of all element values in `$iterable`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+**Returns** | `numeric` | Zero if `$iterable` is empty
+
+**Example:** 
+```php
+sum([2, 3, 5, 8]);
+// === 18
+
+sum([]);
+// === 0
 ```
 
 Dash
@@ -1706,23 +1727,6 @@ Parameter | Type | Description
 ```php
 sort([4, 1, 3, 2]);
 // === [1, 2, 3, 4]
-```
-sum
----
-```php
-sum($iterable): double
-```
-Gets the sum of all values in $iterable.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-**Returns** | `double` | 
-
-**Example:** 
-```php
-sum([1, 2, 3, 4]);  // === 10
 ```
 take
 ---

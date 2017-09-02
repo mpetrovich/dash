@@ -3,17 +3,23 @@
 namespace Dash;
 
 /**
- * Gets the sum of all values in $iterable.
+ * Gets the sum of all element values in `$iterable`.
  *
- * @category Iterable
+ * @category Statistics
  * @param iterable $iterable
- * @return double
+ * @return numeric Zero if `$iterable` is empty
  *
  * @example
-	sum([1, 2, 3, 4]);  // === 10
+	sum([2, 3, 5, 8]);
+	// === 18
+
+	sum([]);
+	// === 0
  */
 function sum($iterable)
 {
+	assertType($iterable, 'iterable', __FUNCTION__);
+
 	$sum = reduce($iterable, function ($sum, $value) {
 		return $sum += $value;
 	}, 0);

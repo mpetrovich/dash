@@ -110,7 +110,7 @@ To review
 - [ ] set
 - [ ] size
 - [ ] sort
-- [ ] sum
+- [x] sum
 - [ ] take
 - [ ] takeRight
 - [ ] takeWhile
