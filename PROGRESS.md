@@ -53,9 +53,9 @@ To review
 - [ ] curry
 - [ ] curryN
 - [ ] custom
+- [x] debug
 - [ ] deltas
 - [ ] difference
-- [ ] display
 - [ ] dropWhile
 - [ ] each
 - [ ] equal

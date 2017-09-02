@@ -17,7 +17,7 @@ Table of contents
 ### Utility
 - [assertType](#asserttype)
 - [compare](#compare)
-- [display](#display)
+- [debug](#debug)
 - [equal](#equal)
 - [identical](#identical)
 - [identity](#identity)
@@ -403,29 +403,35 @@ compare(2, 3);  // === -1
 compare(2, 1);  // === +1
 compare(2, 2);  // === 0
 ```
-display
+debug
 ---
 ```php
-display($value): mixed
+debug($value /* , ...value */): mixed
 ```
-Prints a value.
+Prints debugging information for one or more values.
 
 
 Parameter | Type | Description
 --- | --- | :---
-`$value` | `mixed` | 
-**Returns** | `mixed` | $value
+`$value` | `mixed` | (variadic) One or more values to debug
+**Returns** | `mixed` | The first argument
 
 **Example:** 
 ```php
-display([1, 2, 3]);
-// echoes:
-Array
-(
-	[0] => 1
-	[1] => 2
-	[2] => 3
-)
+$returned = Dash\debug([1, 2, 3], 'hello', 3.14);
+// $returned === [1, 2, 3]
+
+// Prints:
+array(3) {
+  [0] =>
+  int(1)
+  [1] =>
+  int(2)
+  [2] =>
+  int(3)
+}
+string(5) "hello"
+double(3.14)
 ```
 equal
 ---
