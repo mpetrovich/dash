@@ -366,4 +366,15 @@ class _Test extends PHPUnit_Framework_TestCase
 
 		_::unsetCustom('double');
 	}
+
+	/**
+	 * @expectedException BadMethodCallException
+	 * @expectedExceptionMessage Curried method _map() cannot be called in a chain. Use the non-curried map() instead.
+	 */
+	public function testChainingCurried()
+	{
+		_::chain([1, 2, 3])
+			->_map('Dash\isOdd')
+			->run();
+	}
 }

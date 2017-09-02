@@ -165,6 +165,11 @@ class _
 	 */
 	public function __call($method, $args)
 	{
+		if (strpos($method, '_') === 0) {
+			$original = substr($method, 1);
+			throw new \BadMethodCallException("Curried method $method() cannot be called in a chain. Use the non-curried $original() instead.");
+		}
+
 		$this->operations[] = $this->toOperation($method, $args);
 		$this->output = null;
 		return $this;
