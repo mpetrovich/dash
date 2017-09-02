@@ -247,7 +247,7 @@ Dash\apply($func, ['morning', 'John']);
 
 ```
 
-**Example:** Curried
+**Example:** Curried version accepts arguments in the same order
 ```php
 $func = function ($time, $name) {
 	return "Good $time, $name";
@@ -307,7 +307,7 @@ Dash\call($func, 'morning', 'John');
 
 ```
 
-**Example:** Curried
+**Example:** Curried version accepts arguments in the same order
 ```php
 $func = function ($time, $name) {
 	return "Good $time, $name";

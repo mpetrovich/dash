@@ -21,7 +21,7 @@ namespace Dash;
 	Dash\apply($func, ['morning', 'John']);
 	// === 'Good morning, John'
  *
- * @example Curried
+ * @example Curried version accepts arguments in the same order
 	$func = function ($time, $name) {
 		return "Good $time, $name";
 	};
