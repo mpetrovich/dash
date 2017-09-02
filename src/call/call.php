@@ -3,19 +3,45 @@
 namespace Dash;
 
 /**
- * Invokes a callable with arguments passed as individual parameters.
- * @todo Add $context parameter
+ * Invokes `$callable` with an inline list of arguments.
  *
- * @category Callable
+ * Note: Contrary to other curried methods, the curried version of this method
+ * accepts arguments in the same order as the original method.
+ *
+ * @category Function
  * @param callable $callable
- * @return mixed Return value of $callable
+ * @param mixed ...$args Inline arguments to pass to `$callable`
+ * @return mixed Return value of `$callable`
  *
  * @example
-	$saveUser = function ($name, $email) { … };
-	call($saveUser, 'John', 'jdoe@gmail.com');
+	$func = function ($time, $name) {
+		return "Good $time, $name";
+	};
+
+	Dash\call($func, 'morning', 'John');
+	// === 'Good morning, John'
+ *
+ * @example Curried
+	$func = function ($time, $name) {
+		return "Good $time, $name";
+	};
+
+	$call = Dash\_call($func);
+
+	$call('morning', 'John');
+	// === 'Good morning, John'
  */
-function call($callable /* , ...args */)
+function call(callable $callable /* , ...args */)
 {
 	$args = array_slice(func_get_args(), 1);
 	return call_user_func_array($callable, $args);
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _call(/* callable, ...args */)
+{
+	$args = array_merge(['Dash\call'], func_get_args());
+	return call_user_func_array('Dash\curry', $args);
 }

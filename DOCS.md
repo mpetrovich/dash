@@ -9,10 +9,10 @@ Table of contents
 
 ### Function
 - [apply](#apply)
+- [call](#call)
 
 ### Callable
 - [ary](#ary)
-- [call](#call)
 - [negate](#negate)
 - [partial](#partial)
 - [partialRight](#partialright)
@@ -257,6 +257,45 @@ $apply = Dash\_apply($func);
 $apply(['morning', 'John']);
 // === 'Good morning, John'
 ```
+call
+---
+```php
+call(callable $callable /* , ...args */): mixed
+```
+Invokes `$callable` with an inline list of arguments.
+
+Note: Contrary to other curried methods, the curried version of this method
+accepts arguments in the same order as the original method.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+`...$args` | `mixed` | Inline arguments to pass to `$callable`
+**Returns** | `mixed` | Return value of `$callable`
+
+**Example:** 
+```php
+$func = function ($time, $name) {
+	return "Good $time, $name";
+};
+
+Dash\call($func, 'morning', 'John');
+// === 'Good morning, John'
+
+```
+
+**Example:** Curried
+```php
+$func = function ($time, $name) {
+	return "Good $time, $name";
+};
+
+$call = Dash\_call($func);
+
+$call('morning', 'John');
+// === 'Good morning, John'
+```
 
 Callable
 ===
@@ -279,23 +318,6 @@ Parameter | Type | Description
 ```php
 $fileExists = ary('file_exists', 1);
 $fileExists('foo.txt', 123, 456);  // file_exists() will only get called with 'foo.txt'
-```
-call
----
-```php
-call($callable /* , ...args */): mixed
-```
-Invokes a callable with arguments passed as individual parameters.
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` | 
-**Returns** | `mixed` | Return value of $callable
-
-**Example:** 
-```php
-$saveUser = function ($name, $email) { … };
-call($saveUser, 'John', 'jdoe@gmail.com');
 ```
 negate
 ---

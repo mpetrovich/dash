@@ -52,7 +52,7 @@ To review
 - [ ] assertType
 - [x] at
 - [x] average
-- [ ] call
+- [x] call
 - [ ] chain
 - [ ] compare
 - [ ] contains
