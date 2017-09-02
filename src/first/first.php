@@ -3,18 +3,52 @@
 namespace Dash;
 
 /**
- * Returns the first value of $iterable.
+ * Gets the value of the first element in `$iterable`.
  *
- * @category Iterable
+ * @category Query
  * @param iterable $iterable
- * @return mixed
+ * @return mixed|null Null if `$iterable` is empty
+ *
+ * @see head
  *
  * @example
-	first(['a' => '1st', 'b' => '2nd', 'c' => '3rd']);  // === '1st'
+	Dash\first(['a' => 'one', 'b' => 'two', 'c' => 'three']);
+	// === 'one'
+
+	Dash\first([]);
+	// === null
  */
 function first($iterable)
 {
+	assertType($iterable, 'iterable', __FUNCTION__);
+
 	foreach ($iterable as $value) {
 		return $value;
 	}
+
+	return null;
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _first(/* iterable */)
+{
+	return currify('Dash\first', func_get_args());
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function head()
+{
+	return call_user_func_array('Dash\first', func_get_args());
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _head(/* iterable */)
+{
+	return currify('Dash\first', func_get_args());
 }

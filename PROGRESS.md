@@ -64,7 +64,7 @@ To review
 - [ ] findKey
 - [ ] findLast
 - [ ] findValue
-- [ ] first
+- [x] first
 - [ ] get
 - [ ] getDirect
 - [ ] getDirectRef

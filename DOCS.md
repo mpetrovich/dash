@@ -6,6 +6,7 @@ Table of contents
 - [all](#all--every) / every
 - [any](#any--some) / some
 - [at](#at)
+- [first](#first--head) / head
 
 ### Function
 - [apply](#apply)
@@ -48,7 +49,6 @@ Table of contents
 - [findKey](#findkey)
 - [findLast](#findlast)
 - [findValue](#findvalue)
-- [first](#first)
 - [get](#get)
 - [getDirect](#getdirect)
 - [getDirectRef](#getdirectref)
@@ -214,6 +214,27 @@ Dash\at(['a' => 'first', 'b' => 'second', 'c' => 'third'], 2);
 ```php
 Dash\at(['a', 'b', 'c'], 5, 'none');
 // === 'none'
+```
+first / head
+---
+```php
+first($iterable): mixed|null
+```
+Gets the value of the first element in `$iterable`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+**Returns** | `mixed\|null` | Null if `$iterable` is empty
+
+**Example:** 
+```php
+Dash\first(['a' => 'one', 'b' => 'two', 'c' => 'three']);
+// === 'one'
+
+Dash\first([]);
+// === null
 ```
 
 Function
@@ -950,23 +971,6 @@ Parameter | Type | Description
 $array = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
 find($array, 3);  // === 3
 find($array, 'Dash\isEven');  // === 2
-```
-first
----
-```php
-first($iterable): mixed
-```
-Returns the first value of $iterable.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-**Returns** | `mixed` | 
-
-**Example:** 
-```php
-first(['a' => '1st', 'b' => '2nd', 'c' => '3rd']);  // === '1st'
 ```
 get
 ---
