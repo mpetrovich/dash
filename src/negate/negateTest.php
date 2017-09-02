@@ -2,17 +2,26 @@
 
 /**
  * @covers Dash\negate
+ * @covers Dash\_negate
  */
 class negateTest extends PHPUnit_Framework_TestCase
 {
 	public function test()
 	{
-		$isPositive = function ($value) {
-			return $value > 0;
-		};
-		$isNotPositive = Dash\negate($isPositive);
+		$isEven = function ($n) { return $n % 2 === 0; };
+		$isOdd = Dash\negate($isEven);
 
-		$this->assertSame(true, $isPositive(3));
-		$this->assertSame(false, $isNotPositive(3));
+		$this->assertFalse($isEven(3));
+		$this->assertTrue($isOdd(3));
+	}
+
+	public function testCurried()
+	{
+		$isEven = function ($n) { return $n % 2 === 0; };
+		$isOdd = Dash\_negate();
+		$isOdd2 = $isOdd($isEven);
+
+		$this->assertFalse($isEven(3));
+		$this->assertTrue($isOdd2(3));
 	}
 }

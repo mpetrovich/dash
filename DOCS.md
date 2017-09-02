@@ -11,6 +11,7 @@ Table of contents
 - [apply](#apply)
 - [ary](#ary)
 - [call](#call)
+- [negate](#negate)
 - [unary](#unary)
 
 ### Utility
@@ -93,7 +94,6 @@ Table of contents
 - [isOdd](#isodd)
 
 ### Callable
-- [negate](#negate)
 - [partial](#partial)
 - [partialRight](#partialright)
 
@@ -317,6 +317,27 @@ $call = Dash\_call($func);
 
 $call('morning', 'John');
 // === 'Good morning, John'
+```
+negate
+---
+```php
+negate(callable $predicate): callable
+```
+Creates a new function that negates the return value of `$predicate`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$predicate` | `callable` | 
+**Returns** | `callable` | New function
+
+**Example:** 
+```php
+$isEven = function ($n) { return $n % 2 === 0; };
+$isOdd = Dash\negate($isEven);
+
+$isEven(3);  // === false
+$isOdd(3);   // === true
 ```
 unary
 ---
@@ -1952,20 +1973,6 @@ isOdd(3.7);  // === true
 
 Callable
 ===
-
-negate
----
-```php
-negate($predicate): callable
-```
-Returns a new function that negates the return value of $predicate when invoked.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$predicate` | `callable` | 
-**Returns** | `callable` | 
-
 
 partial
 ---

@@ -3,13 +3,6 @@ Requirements
 
 ### Implementation
 - Review implementations
-- Compare with other libraries
-	- http://brianhaveri.github.io/Underscore.php
-	- http://anahkiasen.github.io/underscore-php
-	- https://github.com/maciejczyzewski/bottomline
-	- https://github.com/bdelespierre/underscore.php
-	- https://lodash.com/docs
-	- http://ramdajs.com/docs
 - Add parameter type assertions
 - Add curried variant
 
@@ -96,7 +89,7 @@ To review
 - [x] max
 - [x] median
 - [x] min
-- [ ] negate
+- [x] negate
 - [ ] partial
 - [ ] partialRight
 - [ ] pick
