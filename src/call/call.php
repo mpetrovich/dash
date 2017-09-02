@@ -10,6 +10,7 @@ namespace Dash;
  *
  * @category Function
  * @param callable $callable
+ * @codingStandardsIgnoreLine
  * @param mixed ...$args Inline arguments to pass to `$callable`
  * @return mixed Return value of `$callable`
  *
