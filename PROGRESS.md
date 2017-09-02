@@ -459,7 +459,7 @@ To add
 - [ ] uintersect_uassoc
 - [ ] uksort
 - [ ] unapply
-- [ ] unary
+- [x] unary
 - [ ] uncurryN
 - [ ] unease
 - [ ] unescape

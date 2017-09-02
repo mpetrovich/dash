@@ -11,6 +11,7 @@ Table of contents
 - [apply](#apply)
 - [ary](#ary)
 - [call](#call)
+- [unary](#unary)
 
 ### Utility
 - [assertType](#asserttype)
@@ -316,6 +317,26 @@ $call = Dash\_call($func);
 
 $call('morning', 'John');
 // === 'Good morning, John'
+```
+unary
+---
+```php
+unary(callable $callable): callable
+```
+Creates a new function that invokes `$callable` with a single argument and ignores the rest.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+**Returns** | `callable` | New function
+
+**Example:** 
+```php
+$isNumeric = Dash\unary('is_numeric');
+
+Dash\map([1, 'a', 2.0, '3'], $isNumeric);
+// === [1, 2.0, '3']
 ```
 
 Utility

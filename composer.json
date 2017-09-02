@@ -91,6 +91,7 @@
 			"src/tap/tap.php",
 			"src/thru/thru.php",
 			"src/toArray/toArray.php",
+			"src/unary/unary.php",
 			"src/union/union.php",
 			"src/values/values.php",
 			"src/where/where.php",
