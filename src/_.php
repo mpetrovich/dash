@@ -156,6 +156,7 @@ class _
 	 * @param string $method Method name
 	 * @param array $args Method args
 	 * @return _ The chain
+	 * @throws BadMethodCallException if $method is curried, since only non-curried methods can be chained
 	 *
 	 * @example
 		_::chain([1, 2, 3])
@@ -167,7 +168,9 @@ class _
 	{
 		if (strpos($method, '_') === 0) {
 			$original = substr($method, 1);
-			throw new \BadMethodCallException("Curried method $method() cannot be called in a chain. Use the non-curried $original() instead.");
+			throw new \BadMethodCallException(
+				"Curried method $method() cannot be called in a chain. Use the non-curried $original() instead."
+			);
 		}
 
 		$this->operations[] = $this->toOperation($method, $args);
