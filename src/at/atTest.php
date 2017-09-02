@@ -26,7 +26,6 @@ class atTest extends PHPUnit_Framework_TestCase
 	public function cases()
 	{
 		return [
-
 			'With an empty array' => [
 				'iterable' => [],
 				'index' => 2,

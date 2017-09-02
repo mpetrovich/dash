@@ -39,6 +39,19 @@ class curryTest extends PHPUnit_Framework_TestCase
 		$second = $first(1, 2, 3);
 		$this->assertSame('1, 2, 3', $second);
 
+		$first = Dash\curry($callable, 1);
+		$second = $first(2, 3);
+		$this->assertSame('1, 2, 3', $second);
+
+		$first = Dash\curry($callable, 1);
+		$second = $first(2);
+		$third = $second(3);
+		$this->assertSame('1, 2, 3', $third);
+
+		$first = Dash\curry($callable, 1, 2);
+		$second = $first(3);
+		$this->assertSame('1, 2, 3', $second);
+
 		$first = Dash\curry($callable, 1, 2, 3);
 		$this->assertSame('1, 2, 3', $first);
 	}

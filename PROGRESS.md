@@ -47,7 +47,7 @@ To review
 ---
 - [x] all
 - [x] any
-- [ ] apply
+- [x] apply
 - [ ] ary
 - [ ] assertType
 - [x] at

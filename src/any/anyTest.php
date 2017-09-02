@@ -32,7 +32,6 @@ class anyTest extends PHPUnit_Framework_TestCase
 	public function cases()
 	{
 		return [
-
 			'With an empty array' => [
 				'iterable' => [],
 				'predicate' => 'Dash\isOdd',

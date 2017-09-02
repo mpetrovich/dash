@@ -7,8 +7,10 @@ Table of contents
 - [any](#any--some) / some
 - [at](#at)
 
-### Callable
+### Function
 - [apply](#apply)
+
+### Callable
 - [ary](#ary)
 - [call](#call)
 - [negate](#negate)
@@ -213,27 +215,52 @@ Dash\at(['a', 'b', 'c'], 5, 'none');
 // === 'none'
 ```
 
-Callable
+Function
 ===
 
 apply
 ---
 ```php
-apply($callable, $args): mixed
+apply(callable $callable, $args): mixed
 ```
-Invokes a callable with arguments passed as a list.
+Invokes `$callable` with a list of arguments.
+
+Note: Contrary to other curried methods, the curried version of this method
+accepts arguments in the same order as the original method.
+
 
 Parameter | Type | Description
 --- | --- | :---
 `$callable` | `callable` | 
-`$args` | `array` | 
-**Returns** | `mixed` | Return value of $callable
+`$args` | `iterable` | Arguments to pass to `$callable`
+**Returns** | `mixed` | Return value of `$callable`
 
 **Example:** 
 ```php
-$saveUser = function ($name, $email) { … };
-apply($saveUser, ['John', 'jdoe@gmail.com']);
+$func = function ($time, $name) {
+	return "Good $time, $name";
+};
+
+Dash\apply($func, ['morning', 'John']);
+// === 'Good morning, John'
+
 ```
+
+**Example:** Curried
+```php
+$func = function ($time, $name) {
+	return "Good $time, $name";
+};
+
+$apply = Dash\_apply($func);
+
+$apply(['morning', 'John']);
+// === 'Good morning, John'
+```
+
+Callable
+===
+
 ary
 ---
 ```php
