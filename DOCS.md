@@ -2,7 +2,7 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/mpet
 
 Table of contents
 ===
-### Query
+### Collection - Query
 - [all](#all--every) / every
 - [any](#any--some) / some
 - [at](#at)
@@ -98,7 +98,7 @@ Table of contents
 - [partialRight](#partialright)
 
 
-Query
+Collection - Query
 ===
 
 all / every
