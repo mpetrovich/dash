@@ -157,7 +157,7 @@ class atTest extends PHPUnit_Framework_TestCase
 			Dash\at($iterable, 0);
 		}
 		catch (Exception $e) {
-			$this->assertSame("Dash\at expects iterable but was given $type", $e->getMessage());
+			$this->assertSame("Dash\\at expects iterable but was given $type", $e->getMessage());
 			throw $e;
 		}
 	}
@@ -202,7 +202,7 @@ class atTest extends PHPUnit_Framework_TestCase
 			Dash\at([1, 2, 3], $index);
 		}
 		catch (Exception $e) {
-			$this->assertSame("Dash\at expects numeric but was given $type", $e->getMessage());
+			$this->assertSame("Dash\\at expects numeric but was given $type", $e->getMessage());
 			throw $e;
 		}
 	}

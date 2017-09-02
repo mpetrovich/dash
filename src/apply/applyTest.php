@@ -113,7 +113,7 @@ class applyTest extends PHPUnit_Framework_TestCase
 			Dash\apply(function () {}, $args);
 		}
 		catch (Exception $e) {
-			$this->assertSame("Dash\apply expects iterable but was given $type", $e->getMessage());
+			$this->assertSame("Dash\\apply expects iterable but was given $type", $e->getMessage());
 			throw $e;
 		}
 	}

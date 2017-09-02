@@ -103,7 +103,7 @@ class sumTest extends PHPUnit_Framework_TestCase
 			Dash\sum($iterable);
 		}
 		catch (Exception $e) {
-			$this->assertSame("Dash\sum expects iterable but was given $type", $e->getMessage());
+			$this->assertSame("Dash\\sum expects iterable but was given $type", $e->getMessage());
 			throw $e;
 		}
 	}

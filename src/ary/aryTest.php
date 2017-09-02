@@ -88,7 +88,7 @@ class aryTest extends PHPUnit_Framework_TestCase
 			Dash\ary(function () {}, $arity);
 		}
 		catch (Exception $e) {
-			$this->assertSame("Dash\ary expects numeric but was given $type", $e->getMessage());
+			$this->assertSame("Dash\\ary expects numeric but was given $type", $e->getMessage());
 			throw $e;
 		}
 	}

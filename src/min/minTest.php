@@ -111,7 +111,7 @@ class minTest extends PHPUnit_Framework_TestCase
 			Dash\min($iterable);
 		}
 		catch (Exception $e) {
-			$this->assertSame("Dash\min expects iterable but was given $type", $e->getMessage());
+			$this->assertSame("Dash\\min expects iterable but was given $type", $e->getMessage());
 			throw $e;
 		}
 	}

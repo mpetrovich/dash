@@ -111,7 +111,7 @@ class medianTest extends PHPUnit_Framework_TestCase
 			Dash\median($iterable);
 		}
 		catch (Exception $e) {
-			$this->assertSame("Dash\median expects iterable but was given $type", $e->getMessage());
+			$this->assertSame("Dash\\median expects iterable but was given $type", $e->getMessage());
 			throw $e;
 		}
 	}
