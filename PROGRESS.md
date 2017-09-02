@@ -48,7 +48,7 @@ To review
 - [x] all
 - [x] any
 - [x] apply
-- [ ] ary
+- [x] ary
 - [ ] assertType
 - [x] at
 - [x] average

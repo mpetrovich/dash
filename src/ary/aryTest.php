@@ -2,58 +2,123 @@
 
 /**
  * @covers Dash\ary
+ * @covers Dash\_ary
  */
 class aryTest extends PHPUnit_Framework_TestCase
 {
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($args, $ary, $expectedArgs)
+	public function test($args, $arity, $expected)
 	{
-		$func = function () use ($expectedArgs) {
-			$this->assertEquals($expectedArgs, func_get_args());
+		$func = function () {
+			return func_get_args();
 		};
-		$funcAried = Dash\ary($func, $ary);
-		call_user_func_array($funcAried, $args);
+
+		$ary = Dash\ary($func, $arity);
+		$this->assertSame($expected, call_user_func_array($ary, $args));
+	}
+
+	/**
+	 * @dataProvider cases
+	 */
+	public function testCurried($args, $arity, $expected)
+	{
+		$func = function () {
+			return func_get_args();
+		};
+
+		$ary = Dash\_ary($arity);
+		$this->assertSame($expected, call_user_func_array($ary($func), $args));
 	}
 
 	public function cases()
 	{
 		return [
-			'Excessive ary' => [
-				'args' => ['a', 1, 'b', 2],
-				'ary' => 5,
-				'expectedArgs' => ['a', 1, 'b', 2],
+			'With no args' => [
+				'args' => [],
+				'arity' => 3,
+				'expected' => [],
 			],
-			'Full ary' => [
-				'args' => ['a', 1, 'b', 2],
-				'ary' => 4,
-				'expectedArgs' => ['a', 1, 'b', 2],
+			'With negative arity' => [
+				'args' => ['a', 'b', 'c', 'd'],
+				'arity' => -1,
+				'expected' => [],
 			],
-			[
-				'args' => ['a', 1, 'b', 2],
-				'ary' => 3,
-				'expectedArgs' => ['a', 1, 'b'],
+			'With zero arity' => [
+				'args' => ['a', 'b', 'c', 'd'],
+				'arity' => 0,
+				'expected' => [],
 			],
-			[
-				'args' => ['a', 1, 'b', 2],
-				'ary' => 2,
-				'expectedArgs' => ['a', 1],
+			'With arity of one' => [
+				'args' => ['a', 'b', 'c', 'd'],
+				'arity' => 1,
+				'expected' => ['a'],
 			],
-			[
-				'args' => ['a', 1, 'b', 2],
-				'ary' => 1,
-				'expectedArgs' => ['a'],
+			'With arity less than the number of args' => [
+				'args' => ['a', 'b', 'c', 'd'],
+				'arity' => 3,
+				'expected' => ['a', 'b', 'c'],
 			],
-			'Zero ary' => [
-				'args' => ['a', 1, 'b', 2],
-				'ary' => 0,
-				'expectedArgs' => [],
+			'With arity equal to the number of args' => [
+				'args' => ['a', 'b', 'c', 'd'],
+				'arity' => 4,
+				'expected' => ['a', 'b', 'c', 'd'],
 			],
-			'Negative ary' => [
-				'args' => ['a', 1, 'b', 2],
-				'ary' => -1,
-				'expectedArgs' => [],
+			'With arity greater than the number of args' => [
+				'args' => ['a', 'b', 'c', 'd'],
+				'arity' => 5,
+				'expected' => ['a', 'b', 'c', 'd'],
+			],
+			'With a numeric string arity' => [
+				'args' => ['a', 'b', 'c', 'd'],
+				'arity' => '2',
+				'expected' => ['a', 'b'],
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider casesTypeAssertions
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testTypeAssertions($arity, $type)
+	{
+		try {
+			Dash\ary(function () {}, $arity);
+		}
+		catch (Exception $e) {
+			$this->assertSame("Dash\ary expects numeric but was given $type", $e->getMessage());
+			throw $e;
+		}
+	}
+
+	public function casesTypeAssertions()
+	{
+		return [
+			'With null' => [
+				'arity' => null,
+				'type' => 'NULL',
+			],
+			'With a non-numeric string' => [
+				'arity' => 'hello',
+				'type' => 'string',
+			],
+			'With a DateTime' => [
+				'arity' => new DateTime(),
+				'type' => 'DateTime',
+			],
+			'With an array' => [
+				'arity' => [1, 2, 3],
+				'type' => 'array',
+			],
+			'With an stdClass' => [
+				'arity' => (object) [1, 2, 3],
+				'type' => 'stdClass',
+			],
+			'With an ArrayObject' => [
+				'arity' => new ArrayObject([1, 2, 3]),
+				'type' => 'ArrayObject',
 			],
 		];
 	}

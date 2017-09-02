@@ -9,13 +9,8 @@ Table of contents
 
 ### Function
 - [apply](#apply)
-- [call](#call)
-
-### Callable
 - [ary](#ary)
-- [negate](#negate)
-- [partial](#partial)
-- [partialRight](#partialright)
+- [call](#call)
 
 ### Utility
 - [assertType](#asserttype)
@@ -95,6 +90,11 @@ Table of contents
 ### Number
 - [isEven](#iseven)
 - [isOdd](#isodd)
+
+### Callable
+- [negate](#negate)
+- [partial](#partial)
+- [partialRight](#partialright)
 
 
 Query
@@ -257,6 +257,27 @@ $apply = Dash\_apply($func);
 $apply(['morning', 'John']);
 // === 'Good morning, John'
 ```
+ary
+---
+```php
+ary(callable $callable, $arity): callable
+```
+Creates a new function that invokes `$callable` with up to `$arity` arguments and ignores the rest.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+`$arity` | `integer` | Maximum number of arguments to accept
+**Returns** | `callable` | New function
+
+**Example:** 
+```php
+$isNumeric = Dash\ary('is_numeric', 1);
+
+Dash\map([1, 'a', 2.0, '3'], $isNumeric);
+// === [1, 2.0, '3']
+```
 call
 ---
 ```php
@@ -295,115 +316,6 @@ $call = Dash\_call($func);
 
 $call('morning', 'John');
 // === 'Good morning, John'
-```
-
-Callable
-===
-
-ary
----
-```php
-ary($callable, $ary): callable
-```
-Wraps $callable in a new function that only accepts up to $ary arguments and ignores the rest.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` | 
-`$ary` | `int` | Number of arguments to accept
-**Returns** | `callable` | New function that, when invoked, will call $callable with up to $ary arguments
-
-**Example:** 
-```php
-$fileExists = ary('file_exists', 1);
-$fileExists('foo.txt', 123, 456);  // file_exists() will only get called with 'foo.txt'
-```
-negate
----
-```php
-negate($predicate): callable
-```
-Returns a new function that negates the return value of $predicate when invoked.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$predicate` | `callable` | 
-**Returns** | `callable` | 
-
-
-partial
----
-```php
-partial($callable /* , ...args */): callable
-```
-Creates a function that invokes $callable with the given set of arguments prepended to any others passed in.
-
-Use Dash\_ as a placeholder to replace with call-time arguments.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` | 
-**Returns** | `callable` | 
-
-**Example:** 
-```php
-$greet = function ($greeting, $name) {
-	return "$greeting, $name!";
-};
-$sayHello = Dash\partial($greet, 'Hello');
-$sayHowdy = Dash\partial($greet, 'Howdy');
-
-$sayHello('Mark');  // === 'Hello, Mark!'
-$sayHowdy('Jane');  // === 'Howdy, Jane!'
-
-```
-
-**Example:** With a placeholder
-```php
-$greet = function ($greeting, $salutation, $name) {
-	return "$greeting, $salutation $name!";
-};
-$greetMr = Dash\partial($greet, Dash\_, 'Mr.');
-$greetMr('Hello', 'Mark');  // === 'Hello, Mr. Mark!'
-```
-partialRight
----
-```php
-partialRight($callable /* , ...args */): callable
-```
-Creates a function that invokes $callable with the given set of arguments appended to any others passed in.
-
-Pass Dash\_ as a placeholder to replace with call-time arguments.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` | 
-**Returns** | `callable` | 
-
-**Example:** 
-```php
-$greet = function ($greeting, $name) {
-	return "$greeting, $name!";
-};
-$greetMark = Dash\partial($greet, 'Mark');
-$greetJane = Dash\partial($greet, 'Jane');
-
-$greetMark('Hello');  // === 'Hello, Mark!'
-$greetJane('Howdy');  // === 'Howdy, Jane!'
-
-```
-
-**Example:** With a placeholder
-```php
-$greet = function ($greeting, $salutation, $name) {
-	return "$greeting, $salutation $name!";
-};
-$greetMr = Dash\partialRight($greet, 'Mr.', Dash\_);
-$greetMr('Hello', 'Mark');  // === 'Hello, Mr. Mark!'
 ```
 
 Utility
@@ -2015,4 +1927,94 @@ Parameter | Type | Description
 isOdd(4);  // === false
 isOdd(3);  // === true
 isOdd(3.7);  // === true
+```
+
+Callable
+===
+
+negate
+---
+```php
+negate($predicate): callable
+```
+Returns a new function that negates the return value of $predicate when invoked.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$predicate` | `callable` | 
+**Returns** | `callable` | 
+
+
+partial
+---
+```php
+partial($callable /* , ...args */): callable
+```
+Creates a function that invokes $callable with the given set of arguments prepended to any others passed in.
+
+Use Dash\_ as a placeholder to replace with call-time arguments.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+**Returns** | `callable` | 
+
+**Example:** 
+```php
+$greet = function ($greeting, $name) {
+	return "$greeting, $name!";
+};
+$sayHello = Dash\partial($greet, 'Hello');
+$sayHowdy = Dash\partial($greet, 'Howdy');
+
+$sayHello('Mark');  // === 'Hello, Mark!'
+$sayHowdy('Jane');  // === 'Howdy, Jane!'
+
+```
+
+**Example:** With a placeholder
+```php
+$greet = function ($greeting, $salutation, $name) {
+	return "$greeting, $salutation $name!";
+};
+$greetMr = Dash\partial($greet, Dash\_, 'Mr.');
+$greetMr('Hello', 'Mark');  // === 'Hello, Mr. Mark!'
+```
+partialRight
+---
+```php
+partialRight($callable /* , ...args */): callable
+```
+Creates a function that invokes $callable with the given set of arguments appended to any others passed in.
+
+Pass Dash\_ as a placeholder to replace with call-time arguments.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+**Returns** | `callable` | 
+
+**Example:** 
+```php
+$greet = function ($greeting, $name) {
+	return "$greeting, $name!";
+};
+$greetMark = Dash\partial($greet, 'Mark');
+$greetJane = Dash\partial($greet, 'Jane');
+
+$greetMark('Hello');  // === 'Hello, Mark!'
+$greetJane('Howdy');  // === 'Howdy, Jane!'
+
+```
+
+**Example:** With a placeholder
+```php
+$greet = function ($greeting, $salutation, $name) {
+	return "$greeting, $salutation $name!";
+};
+$greetMr = Dash\partialRight($greet, 'Mr.', Dash\_);
+$greetMr('Hello', 'Mark');  // === 'Hello, Mr. Mark!'
 ```

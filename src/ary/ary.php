@@ -3,22 +3,34 @@
 namespace Dash;
 
 /**
- * Wraps $callable in a new function that only accepts up to $ary arguments and ignores the rest.
+ * Creates a new function that invokes `$callable` with up to `$arity` arguments and ignores the rest.
  *
- * @category Callable
+ * @category Function
  * @param callable $callable
- * @param int $ary Number of arguments to accept
- * @return callable New function that, when invoked, will call $callable with up to $ary arguments
+ * @param integer $arity Maximum number of arguments to accept
+ * @return callable New function
  *
  * @example
-	$fileExists = ary('file_exists', 1);
-	$fileExists('foo.txt', 123, 456);  // file_exists() will only get called with 'foo.txt'
+	$isNumeric = Dash\ary('is_numeric', 1);
+
+	Dash\map([1, 'a', 2.0, '3'], $isNumeric);
+	// === [1, 2.0, '3']
  */
-function ary($callable, $ary)
+function ary(callable $callable, $arity)
 {
-	return function () use ($callable, $ary) {
-		$ary = \max(0, $ary);
-		$args = array_slice(func_get_args(), 0, $ary);
+	assertType($arity, 'numeric', __FUNCTION__);
+
+	return function () use ($callable, $arity) {
+		$arity = \max(0, intval($arity));
+		$args = array_slice(func_get_args(), 0, $arity);
 		return call_user_func_array($callable, $args);
 	};
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _ary(/* arity, callable */)
+{
+	return currify('Dash\ary', func_get_args());
 }
