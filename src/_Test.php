@@ -13,10 +13,10 @@ class _Test extends PHPUnit_Framework_TestCase
 		$chain = __([1, 2, 3]);
 
 		$this->assertInstanceOf('Dash\_', $chain);
-		$this->assertEquals([1, 2, 3], $chain->value());
+		$this->assertSame([1, 2, 3], $chain->value());
 
 		$chain->map(function ($n) { return $n * 2; });
-		$this->assertEquals([2, 4, 6], $chain->value());
+		$this->assertSame([2, 4, 6], $chain->value());
 	}
 
 	public function testGlobalAliasCustom()
@@ -25,10 +25,10 @@ class _Test extends PHPUnit_Framework_TestCase
 		$chain = dash([1, 2, 3]);
 
 		$this->assertInstanceOf('Dash\_', $chain);
-		$this->assertEquals([1, 2, 3], $chain->value());
+		$this->assertSame([1, 2, 3], $chain->value());
 
 		$chain->map(function ($n) { return $n * 2; });
-		$this->assertEquals([2, 4, 6], $chain->value());
+		$this->assertSame([2, 4, 6], $chain->value());
 	}
 
 	/**
@@ -48,7 +48,7 @@ class _Test extends PHPUnit_Framework_TestCase
 	public function testStandalone($method, $args, $expected)
 	{
 		$actual = call_user_func_array('Dash\_::' . $method, $args);
-		$this->assertEquals($expected, $actual);
+		$this->assertSame($expected, $actual);
 	}
 
 	public function casesForStandalone()
@@ -74,7 +74,7 @@ class _Test extends PHPUnit_Framework_TestCase
 	public function testChain()
 	{
 		$chain = _::chain([1, 2, 3]);
-		$this->assertEquals([1, 2, 3], $chain->value());
+		$this->assertSame([1, 2, 3], $chain->value());
 	}
 
 	public function testChainingWithArray()
@@ -83,7 +83,7 @@ class _Test extends PHPUnit_Framework_TestCase
 			->map(function ($n) { return $n * 2; })
 			->filter(function ($n) { return $n < 6; });
 
-		$this->assertEquals([2, 4], $chain->value());
+		$this->assertSame([2, 4], $chain->value());
 	}
 
 	public function testChainingWithObject()
@@ -110,7 +110,7 @@ class _Test extends PHPUnit_Framework_TestCase
 
 		$actual = $chain->with([1, 2, 3])->value();
 		$expected = [2, 4];
-		$this->assertEquals($expected, $actual);
+		$this->assertSame($expected, $actual);
 	}
 
 	public function testChainingReuse()
@@ -118,11 +118,11 @@ class _Test extends PHPUnit_Framework_TestCase
 		$chain = _::chain([1, 2, 3])
 			->map(function ($n) { return $n * 2; });
 
-		$this->assertEquals([2, 4, 6], $chain->value());
+		$this->assertSame([2, 4, 6], $chain->value());
 
 		$chain->with([4, 5, 6]);
 
-		$this->assertEquals([8, 10, 12], $chain->value());
+		$this->assertSame([8, 10, 12], $chain->value());
 	}
 
 	public function testValueCaching()
@@ -138,24 +138,24 @@ class _Test extends PHPUnit_Framework_TestCase
 			return $n * 2;
 		});
 
-		$this->assertEquals([2, 4, 6], $chain->value());
-		$this->assertEquals(3, $mapCallCount);
-		$this->assertEquals([2, 4, 6], $chain->value());
-		$this->assertEquals(3, $mapCallCount);
+		$this->assertSame([2, 4, 6], $chain->value());
+		$this->assertSame(3, $mapCallCount);
+		$this->assertSame([2, 4, 6], $chain->value());
+		$this->assertSame(3, $mapCallCount);
 
 		$chain->with((object) [4, 5, 6]);
 
-		$this->assertEquals([8, 10, 12], $chain->value());
-		$this->assertEquals(6, $mapCallCount);
-		$this->assertEquals([8, 10, 12], $chain->value());
-		$this->assertEquals(6, $mapCallCount);
+		$this->assertSame([8, 10, 12], $chain->value());
+		$this->assertSame(6, $mapCallCount);
+		$this->assertSame([8, 10, 12], $chain->value());
+		$this->assertSame(6, $mapCallCount);
 
 		$chain->map(function ($n) { return $n + 1;});
 
-		$this->assertEquals([9, 11, 13], $chain->value());
-		$this->assertEquals(9, $mapCallCount);
-		$this->assertEquals([9, 11, 13], $chain->value());
-		$this->assertEquals(9, $mapCallCount);
+		$this->assertSame([9, 11, 13], $chain->value());
+		$this->assertSame(9, $mapCallCount);
+		$this->assertSame([9, 11, 13], $chain->value());
+		$this->assertSame(9, $mapCallCount);
 	}
 
 	public function testRun()
@@ -174,16 +174,16 @@ class _Test extends PHPUnit_Framework_TestCase
 		$chain = _::chain()->map(function ($n) { return $n * 2; });
 
 		$chain->with([1, 2, 3]);
-		$this->assertEquals([2, 4, 6], $chain->value());
+		$this->assertSame([2, 4, 6], $chain->value());
 
 		$clone = clone $chain;
 		$clone->map(function ($n) { return $n + 1; });
 
 		$clone->with([4, 5, 6]);
-		$this->assertEquals([9, 11, 13], $clone->value());
+		$this->assertSame([9, 11, 13], $clone->value());
 
 		$chain->with([1, 2, 3]);
-		$this->assertEquals([2, 4, 6], $chain->value());
+		$this->assertSame([2, 4, 6], $chain->value());
 	}
 
 	public function testCopy()
@@ -191,16 +191,16 @@ class _Test extends PHPUnit_Framework_TestCase
 		$chain = _::chain()->map(function ($n) { return $n * 2; });
 
 		$chain->with([1, 2, 3]);
-		$this->assertEquals([2, 4, 6], $chain->value());
+		$this->assertSame([2, 4, 6], $chain->value());
 
 		$clone = $chain->copy();
 		$clone->map(function ($n) { return $n + 1; });
 
 		$clone->with([4, 5, 6]);
-		$this->assertEquals([9, 11, 13], $clone->value());
+		$this->assertSame([9, 11, 13], $clone->value());
 
 		$chain->with([1, 2, 3]);
-		$this->assertEquals([2, 4, 6], $chain->value());
+		$this->assertSame([2, 4, 6], $chain->value());
 	}
 
 	/**
@@ -267,11 +267,11 @@ class _Test extends PHPUnit_Framework_TestCase
 			->filter('Dash\_::isOdd')
 			->map(function ($n) { return $n * 2; });
 
-		$this->assertEquals(
+		$this->assertSame(
 			[2, 6],
 			$doubleOdds->with([1, 2, 3])->value()
 		);
-		$this->assertEquals(
+		$this->assertSame(
 			[14, 18, 22, 26],
 			$doubleOdds->with([7, 9, 11, 13])->value()
 		);
@@ -297,7 +297,7 @@ class _Test extends PHPUnit_Framework_TestCase
 			return $value * 3;
 		});
 
-		$this->assertEquals(12, _::triple(4));
+		$this->assertSame(12, _::triple(4));
 
 		/*
 			Tests unsetCustom()
@@ -323,7 +323,7 @@ class _Test extends PHPUnit_Framework_TestCase
 			return _::map($array, function ($n) use ($add) { return $n + $add; });
 		});
 
-		$this->assertEquals(
+		$this->assertSame(
 			[4, 5, 6],
 			_::chain([1, 2, 3])->addEach(3)->value()
 		);
@@ -337,7 +337,7 @@ class _Test extends PHPUnit_Framework_TestCase
 			return $value * 3;
 		});
 
-		$this->assertEquals(12, _::triple(4));
+		$this->assertSame(12, _::triple(4));
 
 		_::unsetCustom('triple');
 	}
@@ -348,7 +348,7 @@ class _Test extends PHPUnit_Framework_TestCase
 			return $value * 2;
 		});
 
-		$this->assertEquals(8, _::chain(4)->double()->value());
+		$this->assertSame(8, _::chain(4)->double()->value());
 
 		_::unsetCustom('double');
 	}
@@ -359,7 +359,7 @@ class _Test extends PHPUnit_Framework_TestCase
 			return $value * 2;
 		});
 
-		$this->assertEquals(
+		$this->assertSame(
 			[2, 4, 6],
 			_::chain([1, 2, 3])->map('Dash\_::double')->value()
 		);
