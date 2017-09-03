@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Gets the values of an iterable as an array.
  *
- * @category Iterable: Query
+ * @category Iterable
  * @param iterable $iterable
  * @return array
  *

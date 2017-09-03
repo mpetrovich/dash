@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Returns an array representation of $iterable.
  *
- * @category Iterable: Transform
+ * @category Iterable
  * @param iterable $iterable
  * @return array
  *

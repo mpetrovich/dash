@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Returns a new array with elements in reverse order. Non-integer keys are preserved.
  *
- * @category Iterable: Transform
+ * @category Iterable
  * @param iterable $iterable
  * @return array
  *

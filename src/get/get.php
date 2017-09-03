@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Gets the value at a path on a collection.
  *
- * @category Iterable: Query
+ * @category Iterable
  * @param array|object $iterable
  * @param callable|string $path Callable used to retrieve the value or path of the property to retrieve;
  *                              Paths can be nested by delimiting each sub-property or array index with a period,

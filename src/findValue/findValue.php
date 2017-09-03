@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Returns the value of the first element for which $predicate returns truthy.
  *
- * @category Iterable: Query
+ * @category Iterable
  * @param iterable $iterable
  * @param callable|mixed $predicate Value to compare against, or callable invoked with ($value, $key, $iterable)
  * @return string|integer|null Value of the matching element, or null if not found
