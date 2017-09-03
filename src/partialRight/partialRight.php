@@ -7,7 +7,7 @@ namespace Dash;
  *
  * Pass Dash\_ as a placeholder to replace with call-time arguments.
  *
- * @category Function
+ * @category Callable
  * @param callable $callable
  * @return callable
  *

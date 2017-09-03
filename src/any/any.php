@@ -7,7 +7,7 @@ namespace Dash;
  *
  * Iteration will stop at the first truthy return value.
  *
- * @category Collection: Query
+ * @category Iterable: Query
  * @param iterable $iterable
  * @param callable $predicate (optional) Invoked with `($value, $key, $iterable)` for each element in `$iterable`
  * @return boolean true if `$predicate` returns truthy for any item in `$iterable`

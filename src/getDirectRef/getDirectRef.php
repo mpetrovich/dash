@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Like getDirect(), but returns a reference to the value at the given key of an iterable.
  *
- * @category Collection
+ * @category Iterable: Query
  * @param iterable $iterable
  * @param string $key
  * @return mixed

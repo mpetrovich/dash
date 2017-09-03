@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Gets the value or callable at the given key of an iterable.
  *
- * @category Collection
+ * @category Iterable: Query
  * @param iterable $iterable
  * @param string $key
  * @param mixed $default Value to return if no value at $key exists

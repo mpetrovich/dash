@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Gets the minimum value of all elements in `$iterable`.
  *
- * @category Collection: Statistics
+ * @category Iterable: Statistics
  * @param iterable $iterable
  * @return mixed|null Null if `$iterable` is empty
  *

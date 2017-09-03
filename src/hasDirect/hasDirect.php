@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Checks whether an iterable has a value or callable at a given key.
  *
- * @category Collection
+ * @category Iterable: Query
  * @param array|object|ArrayAccess $iterable
  * @param string $key
  * @return boolean

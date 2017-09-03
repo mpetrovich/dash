@@ -8,7 +8,7 @@ namespace Dash;
  * Note: Contrary to other curried methods, the curried version of this method
  * accepts arguments in the same order as the original method.
  *
- * @category Function
+ * @category Callable
  * @param callable $callable
  * @codingStandardsIgnoreLine
  * @param mixed ...$args Inline arguments to pass to `$callable`

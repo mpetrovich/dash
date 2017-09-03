@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Gets the sum of all element values in `$iterable`.
  *
- * @category Collection: Statistics
+ * @category Iterable: Statistics
  * @param iterable $iterable
  * @return numeric Zero if `$iterable` is empty
  *

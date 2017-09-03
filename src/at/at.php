@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Iterates over `$iterable` and returns the value of the `$index`th element, ignoring keys.
  *
- * @category Collection: Query
+ * @category Iterable: Query
  * @param iterable $iterable
  * @param numeric $index 0-based index
  * @param mixed $default (optional) Value to return if `$index` is out of bounds

@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Returns a subset of $iterable for which $predicate is falsey. Keys are preserved.
  *
- * @category Collection
+ * @category Iterable: Query
  * @param iterable $iterable
  * @param callable $predicate Callable invoked with ($value, $key, $iterable) for each item in $iterable
  * @return array

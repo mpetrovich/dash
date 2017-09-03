@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Returns a new array of the last $count elements of $iterable. Non-integer keys are preserved.
  *
- * @category Collection
+ * @category Iterable: Query
  * @param iterable $iterable
  * @param integer $count If negative, all except the first $count elements will be returned
  * @return array

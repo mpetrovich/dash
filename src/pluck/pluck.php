@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Gets the value at a path for all elements in a collection.
  *
- * @category Collection
+ * @category Iterable: Query
  * @param array|object $iterable
  * @param string $path Path of the property to retrieve;
  *                     can be nested by delimiting each sub-property or array index with a period

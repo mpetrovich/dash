@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Returns a subset of $iterable with the specified keys.
  *
- * @category Collection
+ * @category Iterable: Query
  * @param iterable $iterable
  * @param string|array $keys
  * @return array|object array if $iterable is array-like, object if $iterable is object-like

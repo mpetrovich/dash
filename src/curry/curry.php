@@ -3,7 +3,7 @@
 namespace Dash;
 
 /**
- * @category Function
+ * @category Callable
  * @param callable $callable
  * @return mixed
  */

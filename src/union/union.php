@@ -7,7 +7,7 @@ namespace Dash;
  *
  * Iterable keys are preseved.
  *
- * @category Collection
+ * @category Iterable: Query
  * @param iterable $iterables,...
  * @return array
  *

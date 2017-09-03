@@ -3,7 +3,7 @@
 namespace Dash;
 
 /**
- * @category Collection: Transform
+ * @category Iterable: Transform
  * @param iterable $iterable
  * @param numeric $count
  * @return array|object

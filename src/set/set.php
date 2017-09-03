@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Sets the value at a path on $iterable, which will be modified.
  *
- * @category Collection
+ * @category Iterable: Transform
  * @param array|object $iterable
  * @param string $path Path at which to set $value; can be a nested path (eg. 'a.b.0.c'),
  *                     and non-existent intermediate array/objects will be created

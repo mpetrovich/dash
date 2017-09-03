@@ -2,68 +2,7 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/mpet
 
 Table of contents
 ===
-### Collection
-- [contains](#contains)
-- [deltas](#deltas)
-- [difference](#difference--diff) / diff
-- [dropWhile](#dropwhile)
-- [each](#each)
-- [filter](#filter)
-- [find](#find)
-- [findKey](#findkey)
-- [findLast](#findlast)
-- [findValue](#findvalue)
-- [get](#get)
-- [getDirect](#getdirect)
-- [getDirectRef](#getdirectref)
-- [groupBy](#groupby)
-- [hasDirect](#hasdirect)
-- [intersection](#intersection--intersect) / intersect
-- [isEmpty](#isempty)
-- [isIndexedArray](#isindexedarray)
-- [join](#join--implode) / implode
-- [keyBy](#keyby--indexby) / indexBy
-- [keys](#keys)
-- [map](#map)
-- [mapValues](#mapvalues)
-- [matches](#matches)
-- [matchesProperty](#matchesproperty)
-- [pick](#pick)
-- [pluck](#pluck)
-- [property](#property)
-- [reduce](#reduce)
-- [reject](#reject)
-- [result](#result)
-- [reverse](#reverse)
-- [set](#set)
-- [sort](#sort)
-- [take](#take)
-- [takeRight](#takeright)
-- [takeWhile](#takewhile)
-- [toArray](#toarray)
-- [union](#union)
-- [values](#values)
-- [where](#where)
-- [without](#without)
-
-### Collection: Query
-- [all](#all--every) / every
-- [any](#any--some) / some
-- [at](#at)
-- [first](#first--head) / head
-- [last](#last)
-
-### Collection: Statistics
-- [average](#average--mean) / mean
-- [max](#max)
-- [median](#median)
-- [min](#min)
-- [sum](#sum)
-
-### Collection: Transform
-- [rotate](#rotate)
-
-### Function
+### Callable
 - [apply](#apply)
 - [ary](#ary)
 - [call](#call)
@@ -74,6 +13,64 @@ Table of contents
 - [partial](#partial)
 - [partialRight](#partialright)
 - [unary](#unary)
+
+### Iterable: Query
+- [all](#all--every) / every
+- [any](#any--some) / some
+- [at](#at)
+- [contains](#contains)
+- [difference](#difference--diff) / diff
+- [each](#each)
+- [filter](#filter)
+- [find](#find)
+- [findKey](#findkey)
+- [findLast](#findlast)
+- [findValue](#findvalue)
+- [first](#first--head) / head
+- [get](#get)
+- [getDirect](#getdirect)
+- [getDirectRef](#getdirectref)
+- [hasDirect](#hasdirect)
+- [intersection](#intersection--intersect) / intersect
+- [isIndexedArray](#isindexedarray)
+- [keys](#keys)
+- [last](#last)
+- [matches](#matches)
+- [matchesProperty](#matchesproperty)
+- [pick](#pick)
+- [pluck](#pluck)
+- [property](#property)
+- [reject](#reject)
+- [result](#result)
+- [take](#take)
+- [takeRight](#takeright)
+- [takeWhile](#takewhile)
+- [union](#union)
+- [values](#values)
+- [where](#where)
+- [without](#without)
+
+### Iterable: Statistics
+- [average](#average--mean) / mean
+- [deltas](#deltas)
+- [max](#max)
+- [median](#median)
+- [min](#min)
+- [sum](#sum)
+
+### Iterable: Transform
+- [dropWhile](#dropwhile)
+- [groupBy](#groupby)
+- [join](#join--implode) / implode
+- [keyBy](#keyby--indexby) / indexBy
+- [map](#map)
+- [mapValues](#mapvalues)
+- [reduce](#reduce)
+- [reverse](#reverse)
+- [rotate](#rotate)
+- [set](#set)
+- [sort](#sort)
+- [toArray](#toarray)
 
 ### Number
 - [isEven](#iseven)
@@ -88,1415 +85,14 @@ Table of contents
 - [equal](#equal)
 - [identical](#identical)
 - [identity](#identity)
+- [isEmpty](#isempty)
 - [isType](#istype)
 - [size](#size--count) / count
 - [tap](#tap)
 - [thru](#thru)
 
 
-Collection
-===
-
-contains
----
-```php
-contains($iterable, $target, $comparator = 'Dash\equal'): boolean
-```
-Checks whether $iterable has any elements for which $comparator returns truthy.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$target` | `mixed` | Value to compare $iterable elements against
-`$comparator` | `callable` | Invoked with ($target, $value) for each value in $iterable
-**Returns** | `boolean` | true if $comparator returns truthy for any elements in $iterable
-
-**Example:** With loose equality comparison (the default)
-```php
-contains([1, '2', 3], 2);  // === true
-
-```
-
-**Example:** With strict equality comparison
-```php
-contains([1, '2', 3], 2, 'Dash\identical');  // === false
-```
-deltas
----
-```php
-deltas($iterable): array
-```
-Returns a new array whose values are the differences between subsequent elements of a iterable.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-**Returns** | `array` | 
-
-**Example:** 
-```php
-deltas([3, 8, 9, 9, 5, 13]);  // === [0, 5, 1, 0, -4, 8]
-```
-difference / diff
----
-```php
-difference($iterable /* , ...iterables */): array
-```
-Returns a subset of items from the first iterable that are not present in any of the other iterables.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | Iterable to compare against
-`$iterables,...` | `iterable` | 
-**Returns** | `array` | 
-
-**Example:** 
-```php
-diff(
-	[1, 2, 3, 4, 5, 6],
-	[1, 3, 5],
-	[2, 8]
-);  // === [4, 6]
-```
-dropWhile
----
-```php
-dropWhile($iterable, $predicate = 'Dash\identity'): array
-```
-Returns a subset of $iterable that excludes elements from the beginning.
-Elements are dropped until $predicate returns falsey.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$predicate` | `callable` | Invoked with ($value, $key, $iterable)
-**Returns** | `array` | 
-
-
-each
----
-```php
-each($iterable, $iteratee): mixed
-```
-Iterates over a collection and calls an iteratee function for each element.
-
-Any changes to the value, key, or collection from within the iteratee function are not persisted.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$iteratee` | `callable` | Invoked with ($value, $key, $iterable) for each element in $iterable. If $iteratee returns false, iteration will end and subsequent elements will be skipped.
-**Returns** | `mixed` | $iterable
-
-**Example:** 
-```php
-each([1, 2, 3], function ($value, $index, $array) { // $array[$index] === $value });
-```
-filter
----
-```php
-filter($iterable, $predicate): array
-```
-Returns a subset of $iterable for which $predicate is truthy. Keys are preserved.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$predicate` | `callable` | Callable invoked with ($value, $key, $iterable) for each item in $iterable
-**Returns** | `array` | 
-
-**Example:** 
-```php
-filter([1, 2, 3, 4], function ($n) { return $n > 2; });  // === [3, 4]
-filter([1, 2, 3, 4], 'Dash\isEven');  // === [2, 4]
-
-```
-
-**Example:** With matchesProperty() shorthand
-```php
-filter([
-	['name' => 'abc', 'active' => false],
-	['name' => 'def', 'active' => true],
-	['name' => 'ghi', 'active' => true],
-], 'active');
-// === [
-	['name' => 'def', 'active' => true],
-	['name' => 'ghi', 'active' => true]
-]
-```
-find
----
-```php
-find($iterable, $predicate): array|null
-```
-Returns the key & value of the first element for which $predicate returns truthy.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$predicate` | `callable\|mixed` | Value to compare against, or callable invoked with ($value, $key, $iterable)
-**Returns** | `array\|null` | [$key, $value] of the matching key/index and value, or null if not found
-
-**Example:** With comparison value
-```php
-$array = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
-find($array, 3);  // === ['c', 3]
-find($array, 'Dash\isEven');  // === ['b', 2]
-```
-findKey
----
-```php
-findKey($iterable, $predicate): string|integer|null
-```
-Returns the key of the first element for which $predicate returns truthy.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$predicate` | `callable\|mixed` | Value to compare against, or callable invoked with ($value, $key, $iterable)
-**Returns** | `string\|integer\|null` | Key of the matching element, or null if not found
-
-**Example:** With comparison value
-```php
-$array = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
-find($array, 3);  // === 'c'
-find($array, 'Dash\isEven');  // === 'b'
-```
-findLast
----
-```php
-findLast($iterable, $predicate): array|null
-```
-Returns the key & value of the last element for which $predicate returns truthy.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$predicate` | `callable\|mixed` | Value to compare against, or callable invoked with ($value, $key, $iterable)
-**Returns** | `array\|null` | [$key, $value] of the matching key/index and value, or null if not found
-
-**Example:** With comparison value
-```php
-$array = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
-find($array, 3);  // === ['c', 3]
-find($array, 'Dash\isEven');  // === ['d', 4]
-```
-findValue
----
-```php
-findValue($iterable, $predicate): string|integer|null
-```
-Returns the value of the first element for which $predicate returns truthy.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$predicate` | `callable\|mixed` | Value to compare against, or callable invoked with ($value, $key, $iterable)
-**Returns** | `string\|integer\|null` | Value of the matching element, or null if not found
-
-**Example:** With comparison value
-```php
-$array = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
-find($array, 3);  // === 3
-find($array, 'Dash\isEven');  // === 2
-```
-get
----
-```php
-get($iterable, $path, $default = null): mixed
-```
-Gets the value at a path on a collection.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `array\|object` | 
-`$path` | `callable\|string` | Callable used to retrieve the value or path of the property to retrieve; Paths can be nested by delimiting each sub-property or array index with a period, eg. 'a.b.0.c'
-`$default` | `mixed` | Default value to return if nothing exists at $path
-**Returns** | `mixed` | Value at $path on the collection
-
-**Example:** 
-```php
-$iterable = [
-	'a' => [
-		'b' => 'value'
-	]
-];
-Dash\get($iterable, 'a.b') == 'value';
-
-```
-
-**Example:** Array elements can be referenced by index
-```php
-$iterable = [
-	'people' => [
-		['name' => 'Pete'],
-		['name' => 'John'],
-		['name' => 'Paul'],
-	]
-];
-Dash\get($iterable, 'people.1.name') == 'John';
-
-```
-
-**Example:** Keys with the same name as the full path can be used
-```php
-$iterable = ['a.b.c' => 'value'];
-Dash\get($iterable, 'a.b.c') == 'value';
-```
-getDirect
----
-```php
-getDirect($iterable, $key, $default = null): mixed
-```
-Gets the value or callable at the given key of an iterable.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$key` | `string` | 
-`$default` | `mixed` | Value to return if no value at $key exists
-**Returns** | `mixed` | 
-
-**Example:** With an array
-```php
-getDirect(['a' => 'one', 'b' => 'two'], 'b');  // === 'two'
-
-```
-
-**Example:** With an object
-```php
-getDirect((object) ['a' => 'one', 'b' => 'two'], 'b');  // === 'two'
-```
-getDirectRef
----
-```php
-: mixed
-```
-Like getDirect(), but returns a reference to the value at the given key of an iterable.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$key` | `string` | 
-**Returns** | `mixed` | 
-
-**Example:** 
-```php
-$obj = (object) ['key' => 'value'];
-$ref = Dash\getDirectRef($obj, 'key');
-$ref = 'changed';
-// $obj->key === 'changed'
-```
-groupBy
----
-```php
-groupBy($iterable, $iteratee = 'Dash\identity', $defaultGroup = null): array
-```
-Groups elements by the common values generated by an iteratee.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$iteratee` | `callable` | (optional) Invoked with ($element) for each element of $iterable
-`$defaultGroup` | `string` | (optional) Elements with null $iteratee return values will be in this group
-**Returns** | `array` | map of key => grouped elements
-
-**Example:** 
-```php
-groupBy([1, 2, 3, 4, 5], 'Dash\isOdd');
-// === [true => [1, 3, 5], false => [2, 4]]
-
-```
-
-**Example:** 
-```php
-groupBy([2.1, 2.5, 3.5, 3.9, 4], 'Dash\isOdd');
-// === [2 => [2.1, 2.5], 3 => [3.5, 3.9], 4 => [4]]
-```
-hasDirect
----
-```php
-hasDirect($iterable, $key): boolean
-```
-Checks whether an iterable has a value or callable at a given key.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `array\|object\|ArrayAccess` | 
-`$key` | `string` | 
-**Returns** | `boolean` | 
-
-**Example:** 
-```php
-hasDirect(['a' => ['b' => 1, 'c' => 2], 'a');  // === true
-hasDirect(['a' => ['b' => 1, 'c' => 2], 'b');  // === false
-
-```
-
-**Example:** 
-```php
-hasDirect((object) ['a' => 1, 'b' => 2], 'b');  // === true
-```
-intersection / intersect
----
-```php
-intersection($iterable /* , ...iterables */): array
-```
-Returns a new array containing values of $iterable that are present in all other arguments.
-
-Iterable keys are preseved.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | Iterable to compare against
-`$iterables,...` | `iterable` | 
-**Returns** | `array` | 
-
-**Example:** 
-```php
-intersection(
-	[1, 3, 5, 8],
-	[1, 2, 3, 4]
-);  // === [0 => 1, 1 => 3]
-```
-isEmpty
----
-```php
-isEmpty($input): boolean
-```
-Checks whether a value is an empty iterable or value.
-
-A value is empty if it is an iterable of size zero or loosely equals false.
-
-Parameter | Type | Description
---- | --- | :---
-`$input` | `mixed` | 
-**Returns** | `boolean` | 
-
-**Example:** 
-```php
-isEmpty([]);                 // === true
-isEmpty(new ArrayObject());  // === true
-isEmpty('');                 // === true
-isEmpty(0);                  // === true
-isEmpty([0]);                // === false
-```
-isIndexedArray
----
-```php
-isIndexedArray($input): boolean
-```
-Returns whether $input is an array with sequential integer keys that start at 0.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$input` | `mixed` | 
-**Returns** | `boolean` | 
-
-**Example:** 
-```php
-isIndexedArray([1, 2, 3]);             // === true
-isIndexedArray(['a' => 1, 'b' => 2]);  // === false
-```
-join / implode
----
-```php
-join($iterable, $separator): string
-```
-Concatenates all elements in $iterable to a string, each separated by $separator.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$separator` | `string` | 
-**Returns** | `string` | 
-
-**Example:** 
-```php
-join([123, 456, 789], '-');  // === '123-456-789'
-```
-keyBy / indexBy
----
-```php
-keyBy($iterable, $iteratee = 'Dash\identity'): array
-```
-Keys elements by the common values generated by an iteratee.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$iteratee` | `callable` | (optional) Invoked with ($element) for each element of $iterable
-**Returns** | `array` | map of key => grouped elements
-
-**Example:** 
-```php
-keyBy([
-	['name' => 'John', 'gender' => 'male'],
-	['name' => 'Alice', 'gender' => 'female'],
-	['name' => 'Jane', 'gender' => 'female'],
-	['name' => 'Peter', 'gender' => 'male'],
-	['name' => 'Fred', 'gender' => 'male'],
-], 'name');
-// === [
-	'John'  => ['name' => 'John', 'gender' => 'male'],
-	'Alice' => ['name' => 'Alice', 'gender' => 'female'],
-	'Jane'  => ['name' => 'Jane', 'gender' => 'female'],
-	'Peter' => ['name' => 'Peter', 'gender' => 'male'],
-	'Fred'  => ['name' => 'Fred', 'gender' => 'male'],
-]
-```
-keys
----
-```php
-keys($iterable): array
-```
-Gets the keys of an iterable as an array.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-**Returns** | `array` | 
-
-**Example:** 
-```php
-keys(['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5]);
-// === ['a', 'b', 'c', 'd']
-```
-map
----
-```php
-map($iterable, $iteratee = 'Dash\identity'): array
-```
-Creates a new indexed array of values by running each element in a
-collection through an iteratee function.
-
-Keys in the original collection are _not_ preserved; a freshly indexed array
-is returned.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `array\|object` | 
-`$iteratee` | `Callable\|string` | Function called with (element, key, collection) for each element in $iterable. The return value of $iteratee will be used as the corresponding element in the returned array. If $iteratee is a string, property($iteratee) will be used as the iteratee function. 
-**Returns** | `array` | 
-
-**Example:** 
-```php
-Dash\map(
-	[1, 2, 3],
-	function($n) {
-		return $n * 2;
-	}
-) == [2, 4, 6];
-
-```
-
-**Example:** 
-```php
-Dash\map(
-	['roses' => 'red', 'violets' => 'blue'],
-	function($color, $flower) {
-		return $flower . ' are ' . $color;
-	}
-) == ['roses are red', 'violets are blue'];
-
-```
-
-**Example:** With $iteratee as a path
-```php
-Dash\map(
-	['color' => 'red', 'color' => 'blue'],
-	'color'
-) == ['red', 'blue'];
-```
-mapValues
----
-```php
-mapValues($iterable, $iteratee = 'Dash\identity'): array
-```
-Creates a new array of values by running each element in a collection
-through an iteratee function.
-
-Keys in the original collection _are_ preserved.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `array\|object` | 
-`$iteratee` | `Callable` | Function called with (element, key, collection) for each element in $iterable. The return value of $iteratee will be used as the corresponding element in the returned array. 
-**Returns** | `array` | 
-
-**Example:** 
-```php
-Dash\map(
-	[1, 2, 3],
-	function($n) { return $n * 2; }
-) == [2, 4, 6];
-
-```
-
-**Example:** 
-```php
-Dash\map(
-	['roses' => 'red', 'violets' => 'blue'],
-	function($color, $flower) { return $flower . ' are ' . $color; }
-) == ['roses' => 'roses are red', 'violets' => 'violets are blue'];
-```
-matches
----
-```php
-matches($properties): callable
-```
-Creates a function with signature (iterable $iterable) that returns true if $iterable contains
-all key-value pairs in $properties, using loose equality for value comparison.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$properties` | `iterable` | Key-value pairs that the returned function will match its input against
-**Returns** | `callable` | with signature (iterable $iterable)
-
-**Example:** 
-```php
-$matcher = matches(['b' => 2, 'd' => 4]);
-$matcher(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]);  // === true
-$matcher(['a' => 1, 'b' => 2, 'c' => 3, 'e' => 5]);  // === false
-```
-matchesProperty
----
-```php
-matchesProperty($path, $value): callable
-```
-Creates a function with signature (iterable $iterable) that returns true
-if it has a value at $path that is loosely equal to $value.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$path` | `string` | Any valid path supported by Dash\get()
-`$value` | `mixed` | Value to compare against
-**Returns** | `callable` | with signature (iterable $iterable)
-
-**Example:** 
-```php
-$matcher = matchesProperty('c', 3);
-$matcher(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]);  // === true
-$matcher(['a' => 1, 'b' => 2, 'd' => 4, 'e' => 5]);  // === false
-```
-pick
----
-```php
-pick($iterable, $keys): array|object
-```
-Returns a subset of $iterable with the specified keys.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$keys` | `string\|array` | 
-**Returns** | `array\|object` | array if $iterable is array-like, object if $iterable is object-like
-
-**Example:** 
-```php
-pick(['a' => 'one', 'b' => 'two', 'c' => 'three'], ['b', 'c']);
-// === ['b' => 'two', 'c' => 'three']
-```
-pluck
----
-```php
-pluck($iterable, $path, $default = null): array
-```
-Gets the value at a path for all elements in a collection.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `array\|object` | 
-`$path` | `string` | Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period
-`$default` | `mixed` | 
-**Returns** | `array` | 
-
-**Example:** 
-```php
-pluck(
-	[
-		['a' => ['b' => 1]],
-		['a' => 'missing'],
-		['a' => ['b' => 3]],
-		['a' => ['b' => 4]],
-	],
-	'a.b',
-	'default'
-);
-// == [1, 'default', 3, 4];
-```
-property
----
-```php
-property($path, $default = null): function
-```
-Creates a function that returns the value at a path on a collection.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$path` | `string\|function` | Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period. If it is already a function, the same function is returned.
-`$default` | `mixed` | Default value to return if nothing exists at $path
-**Returns** | `function` | Function that accepts a collection and returns the value at $path on the collection
-
-**Example:** 
-```php
-$getter = property('a.b');
-$iterable = [
-	'a' => [
-		'b' => 'value'
-	]
-];
-$getter($iterable);  // === 'value';
-
-```
-
-**Example:** Array elements can be referenced by index
-```php
-$getter = property('people.1.name');
-$iterable = [
-	'people' => [
-		['name' => 'Pete'],
-		['name' => 'John'],
-		['name' => 'Paul'],
-	]
-];
-$getter($iterable) === 'John';
-
-```
-
-**Example:** Keys with the same name as the full path can be used
-```php
-$getter = property('a.b.c');
-$iterable = ['a.b.c' => 'value'];
-$getter($iterable);  // === 'value';
-```
-reduce
----
-```php
-reduce($iterable, $iteratee, $initial = []): mixed
-```
-Iteratively reduces $iterable to a single value by way of $iteratee.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$iteratee` | `callable` | Invoked with ($result, $value, $key) for each ($key, $value) in $iterable and the current $result. $iteratee should return the updated $result
-`$initial` | `mixed` | (optional) Initial value
-**Returns** | `mixed` | 
-
-**Example:** Computes the sum
-```php
-reduce([1, 2, 3, 4], function ($result, $value) {
-	return $result + $value;
-}, 0);
-// === 10
-```
-reject
----
-```php
-reject($iterable, $predicate): array
-```
-Returns a subset of $iterable for which $predicate is falsey. Keys are preserved.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$predicate` | `callable` | Callable invoked with ($value, $key, $iterable) for each item in $iterable
-**Returns** | `array` | 
-
-**Example:** 
-```php
-reject([1, 2, 3, 4], function ($n) { return $n > 2; });  // === [1, 2]
-reject([1, 2, 3, 4], 'Dash\isEven');  // === [1, 3]
-
-```
-
-**Example:** With matchesProperty() shorthand
-```php
-reject([
-	['name' => 'abc', 'active' => false],
-	['name' => 'def', 'active' => true],
-	['name' => 'ghi', 'active' => true],
-], 'active');
-// === [
-	['name' => 'abc', 'active' => true],
-]
-```
-result
----
-```php
-result($iterable, $path, $default = null): mixed
-```
-Like get(), but if the resolved value is callable, it will invoke the callable and return its result.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `array\|object` | 
-`$path` | `callable\|string` | Callable used to retrieve the value or path of the property to retrieve; Paths can be nested by delimiting each sub-property or array index with a period, eg. 'a.b.0.c'
-`$default` | `mixed` | Default value to return if nothing exists at $path 
-**Returns** | `mixed` | Value at $path on the collection
-
-**Example:** 
-```php
-$iterable = [
-	'a' => [
-		'b' => 'value'
-	]
-];
-result($iterable, 'a.b');
-// === 'value'
-
-```
-
-**Example:** Array elements can be referenced by index
-```php
-$iterable = [
-	'people' => [
-		['name' => 'Pete'],
-		['name' => 'John'],
-		['name' => 'Paul'],
-	]
-];
-result($iterable, 'people.1.name');
-// === 'John'
-
-```
-
-**Example:** Keys with the same name as the full path can be used
-```php
-$iterable = ['a.b.c' => 'value'];
-result($iterable, 'a.b.c');
-// === 'value'
-
-```
-
-**Example:** With a callable value
-```php
-$iterable = [
-	'dates' => [
-		'start' => new DateTime('2017-01-01'),
-		'end' => new DateTime('2017-01-03'),
-	]
-]
-result($iterable, 'dates.start.getTimestamp');
-// === 1483246800
-```
-reverse
----
-```php
-reverse($iterable): array
-```
-Returns a new array with elements in reverse order. Non-integer keys are preserved.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-**Returns** | `array` | 
-
-**Example:** 
-```php
-reverse(['a', 'b', 'c', 'd', 'e']);
-// === ['e', 'd', 'c', 'b', 'a']
-
-```
-
-**Example:** 
-```php
-reverse(['a' => 'one', 'b' => 'two', 'c' => 'three']);
-// === ['c' => 'three', 'b' => 'two', 'a' => 'one']
-```
-set
----
-```php
-set(&$iterable, $path, $value): array|object
-```
-Sets the value at a path on $iterable, which will be modified.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `array\|object` | 
-`$path` | `string` | Path at which to set $value; can be a nested path (eg. 'a.b.0.c'), and non-existent intermediate array/objects will be created
-`$value` | `mixed` | Value to set at $path
-**Returns** | `array\|object` | the modified $iterable
-
-**Example:** 
-```php
-$iterable = [
-	'a' => [1, 2],
-	'b' => [3, 4],
-	'c' => [5, 6],
-];
-set($iterable, 'a', [7, 8, 9]);  // Setting a direct field
-set($iterable, 'b.0', 10);  // Setting a nested field using an array index
-// $iterable === [
-	'a' => [7, 8, 9],
-	'b' => [10, 4],
-	'c' => [5, 6],
-]
-
-```
-
-**Example:** Matching intermediate array wrappers are created when the deepest path is an array
-```php
-$iterable = [];
-set($iterable, 'a.b.c', 'value');
-// $iterable === [
-	'a' => [
-		'b' => [
-			'c' => 'value'
-		]
-	]
-]
-
-```
-
-**Example:** Matching intermediate object wrappers are created when the deepest path is an object
-```php
-$iterable = (object) [];
-set($iterable, 'a.b.c', 'value');
-// $iterable === (object) [
-	'a' => (object) [
-		'b' => (object) [
-			'c' => 'value'
-		]
-	]
-]
-```
-sort
----
-```php
-sort($iterable, $comparator = 'Dash\compare'): array
-```
-Returns a new array containing the sorted values of $iterable. Keys are preserved.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$comparator` | `callable` | 
-**Returns** | `array` | 
-
-**Example:** 
-```php
-sort([4, 1, 3, 2]);
-// === [1, 2, 3, 4]
-```
-take
----
-```php
-take($iterable, $count = 1): array
-```
-Returns a new array of the first $count elements of $iterable. Non-integer keys are preserved.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$count` | `integer` | If negative, all except the last $count elements will be returned
-**Returns** | `array` | 
-
-**Example:** 
-```php
-take(['a', 'b', 'c', 'd', 'e'], 3);
-// === ['a', 'b', 'c']
-
-```
-
-**Example:** 
-```php
-take(['a' => 'one', 'b' => 'two', 'c' => 'three', 'd' => 'four'], 2);
-// === ['a' => 'one', 'b' => 'two']
-
-```
-
-**Example:** With a negative $count
-```php
-take(['a', 'b', 'c', 'd', 'e'], -2);
-// === ['a', 'b', 'c']
-```
-takeRight
----
-```php
-takeRight($iterable, $count = 1): array
-```
-Returns a new array of the last $count elements of $iterable. Non-integer keys are preserved.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$count` | `integer` | If negative, all except the first $count elements will be returned
-**Returns** | `array` | 
-
-**Example:** 
-```php
-takeRight(['a', 'b', 'c', 'd', 'e'], 3);
-// === ['c', 'd', 'e']
-
-```
-
-**Example:** 
-```php
-takeRight(['a' => 'one', 'b' => 'two', 'c' => 'three', 'd' => 'four'], 2);
-// === ['c' => 'three', 'd' => 'four']
-
-```
-
-**Example:** With a negative $count
-```php
-takeRight(['a', 'b', 'c', 'd', 'e'], -2);
-// === ['c', 'd', 'e']
-```
-takeWhile
----
-```php
-takeWhile($iterable, $predicate = 'Dash\identity'): array|object
-```
-Returns a subset of $iterable taken from the beginning until $predicate returns falsey.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$predicate` | `callable` | Invoked with ($value, $key)
-**Returns** | `array\|object` | Array for array-like $iterable, object for object-like $iterable
-
-**Example:** 
-```php
-takeWhile([2, 4, 6, 7, 8, 10], 'Dash\isEven');
-// === [2, 4, 6]
-
-```
-
-**Example:** 
-```php
-takeWhile((object) ['a' => 2, 'b' => 4, 'c' => 5, 'd' => 6], 'Dash\isEven');
-// === (object) ['a' => 2, 'b' => 4]
-```
-toArray
----
-```php
-toArray($iterable): array
-```
-Returns an array representation of $iterable.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-**Returns** | `array` | 
-
-**Example:** 
-```php
-toArray((object) ['a' => 'one', 'b' => 'two']);
-// === ['a' => 'one', 'b' => 'two']
-```
-union
----
-```php
-union(/* ...iterables */): array
-```
-Returns a new array containing the unique values, in order, of all arguments.
-
-Iterable keys are preseved.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterables,...` | `iterable` | 
-**Returns** | `array` | 
-
-**Example:** 
-```php
-intersection(
-	[1, 3, 5, 8],
-	[1, 2, 3, 4]
-);  // === [1, 3, 5, 8, 2, 4]
-```
-values
----
-```php
-values($iterable): array
-```
-Gets the values of an iterable as an array.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-**Returns** | `array` | 
-
-**Example:** 
-```php
-values(['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5]);
-// === [3, 8, 2, 5]
-```
-where
----
-```php
-where($iterable, $properties): array
-```
-Returns all elements of $iterable containing key-value pairs that loosely equal $properties.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$properties` | `iterable` | 
-**Returns** | `array` | 
-
-**Example:** 
-```php
-$input = [
-	['name' => 'Jane', 'age' => 25, 'gender' => 'f'],
-	['name' => 'Mike', 'age' => 30, 'gender' => 'm'],
-	['name' => 'Abby', 'age' => 30, 'gender' => 'f'],
-	['name' => 'Pete', 'age' => 45, 'gender' => 'm'],
-	['name' => 'Kate', 'age' => 30, 'gender' => 'f'],
-];
-where($input, ['gender' => 'f', 'age' => 30]);
-// === [
-	['name' => 'Abby', 'age' => 30, 'gender' => 'f'],
-	['name' => 'Kate', 'age' => 30, 'gender' => 'f'],
-]
-```
-without
----
-```php
-without($iterable, $exclude): array
-```
-Returns a new array of $iterable that excludes all values in $exclude, using loose equality for comparison.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$exclude` | `array` | Values to exclude
-**Returns** | `array` | Subset of $iterable
-
-**Example:** 
-```php
-without(['a', 'b', 'c', 'd'], ['b', 'c']);
-// === ['a', 'd']
-```
-
-Collection: Query
-===
-
-all / every
----
-```php
-all($iterable, $predicate = 'Dash\identity'): boolean
-```
-Checks whether `$predicate` returns truthy for every item in `$iterable`.
-
-Iteration will stop at the first falsey return value.
-
-Note: Returns true if `$iterable` is empty, because everything is true of empty iterables.
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$predicate` | `callable` | (optional) Invoked with `($value, $key, $iterable)` for each element in `$iterable`
-**Returns** | `boolean` | true if `$predicate` returns truthy for every item in `$iterable`
-
-**Example:** 
-```php
-Dash\all([1, 3, 5], 'Dash\isOdd');
-// === true
-
-Dash\all([1, 3, 5], function ($n) { return $n != 3; });
-// === false
-
-Dash\all([], 'Dash\isOdd');
-// === true
-
-Dash\all((object) ['a' => 1, 'b' => 3, 'c' => 5], 'Dash\isOdd');
-// === true
-
-```
-
-**Example:** With the default predicate
-```php
-Dash\any([true, true, true]);
-// === true
-
-Dash\any([true, false, true]);
-// === false
-```
-any / some
----
-```php
-any($iterable, $predicate = 'Dash\identity'): boolean
-```
-Checks whether `$predicate` returns truthy for any item in `$iterable`.
-
-Iteration will stop at the first truthy return value.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$predicate` | `callable` | (optional) Invoked with `($value, $key, $iterable)` for each element in `$iterable`
-**Returns** | `boolean` | true if `$predicate` returns truthy for any item in `$iterable`
-
-**Example:** 
-```php
-Dash\any([1, 2, 3], 'Dash\isEven');
-// === true
-
-Dash\any([1, 2, 3], function ($n) { return $n > 5; });
-// === false
-
-Dash\any([], 'Dash\isOdd');
-// === false
-
-Dash\any((object) ['a' => 1, 'b' => 2, 'c' => 3], 'Dash\isEven');
-// === true
-
-```
-
-**Example:** With the default predicate
-```php
-Dash\any([false, true, true]);
-// === true
-
-Dash\any([false, false, false]);
-// === false
-```
-at
----
-```php
-at($iterable, $index, $default = null): mixed
-```
-Iterates over `$iterable` and returns the value of the `$index`th element, ignoring keys.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$index` | `numeric` | 0-based index
-`$default` | `mixed` | (optional) Value to return if `$index` is out of bounds
-**Returns** | `mixed` | Value of the `$index`th item of `$iterable, ignoring keys
-
-**Example:** 
-```php
-Dash\at(['a', 'b', 'c'], 0);
-// === 'c'
-
-Dash\at([2 => 'a', 1 => 'b', 0 => 'c'], 0);
-// === 'c'
-
-Dash\at(['a' => 'first', 'b' => 'second', 'c' => 'third'], 2);
-// === 'third'
-
-```
-
-**Example:** With a custom default value
-```php
-Dash\at(['a', 'b', 'c'], 5, 'none');
-// === 'none'
-```
-first / head
----
-```php
-first($iterable): mixed|null
-```
-Gets the value of the first element in `$iterable`.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-**Returns** | `mixed\|null` | Null if `$iterable` is empty
-
-**Example:** 
-```php
-Dash\first(['a' => 'one', 'b' => 'two', 'c' => 'three']);
-// === 'one'
-
-Dash\first([]);
-// === null
-```
-last
----
-```php
-last($iterable): mixed|null
-```
-Gets the value of the last element in `$iterable`.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-**Returns** | `mixed\|null` | Null if `$iterable` is empty
-
-**Example:** 
-```php
-Dash\last(['a' => 'one', 'b' => 'two', 'c' => 'three']);
-// === 'three'
-
-Dash\last([]);
-// === null
-```
-
-Collection: Statistics
-===
-
-average / mean
----
-```php
-average($iterable): double|null
-```
-Gets the average value of all elements in `$iterable`.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-**Returns** | `double\|null` | Null if `$iterable` is empty
-
-**Example:** 
-```php
-Dash\average([2, 3, 5, 8]);
-// === 4.5
-```
-max
----
-```php
-max($iterable): mixed|null
-```
-Gets the maximum value of all elements in `$iterable`.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-**Returns** | `mixed\|null` | Null if `$iterable` is empty
-
-**Example:** 
-```php
-Dash\max([3, 8, 2, 5]);
-// === 8
-
-Dash\max([]);
-// === null
-```
-median
----
-```php
-median($iterable): mixed|null
-```
-Returns the median value of an iterable.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-**Returns** | `mixed\|null` | Null if `$iterable` is empty
-
-**Example:** 
-```php
-Dash\median([3, 2, 1, 5, 4]);
-// === 3
-
-Dash\median([3, 2, 1, 4]);
-// === 2.5
-```
-min
----
-```php
-min($iterable): mixed|null
-```
-Gets the minimum value of all elements in `$iterable`.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-**Returns** | `mixed\|null` | Null if `$iterable` is empty
-
-**Example:** 
-```php
-Dash\min([3, 8, 2, 5]);
-// === 2
-
-Dash\min([]);
-// === null
-```
-sum
----
-```php
-sum($iterable): numeric
-```
-Gets the sum of all element values in `$iterable`.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-**Returns** | `numeric` | Zero if `$iterable` is empty
-
-**Example:** 
-```php
-sum([2, 3, 5, 8]);
-// === 18
-
-sum([]);
-// === 0
-```
-
-Collection: Transform
-===
-
-rotate
----
-```php
-rotate($iterable, $count = 1): array|object
-```
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$count` | `numeric` | 
-**Returns** | `array\|object` | 
-
-
-
-Function
+Callable
 ===
 
 apply
@@ -1753,6 +349,1382 @@ Dash\map([1, 'a', 2.0, '3'], $isNumeric);
 // === [1, 2.0, '3']
 ```
 
+Iterable: Query
+===
+
+all / every
+---
+```php
+all($iterable, $predicate = 'Dash\identity'): boolean
+```
+Checks whether `$predicate` returns truthy for every item in `$iterable`.
+
+Iteration will stop at the first falsey return value.
+
+Note: Returns true if `$iterable` is empty, because everything is true of empty iterables.
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$predicate` | `callable` | (optional) Invoked with `($value, $key, $iterable)` for each element in `$iterable`
+**Returns** | `boolean` | true if `$predicate` returns truthy for every item in `$iterable`
+
+**Example:** 
+```php
+Dash\all([1, 3, 5], 'Dash\isOdd');
+// === true
+
+Dash\all([1, 3, 5], function ($n) { return $n != 3; });
+// === false
+
+Dash\all([], 'Dash\isOdd');
+// === true
+
+Dash\all((object) ['a' => 1, 'b' => 3, 'c' => 5], 'Dash\isOdd');
+// === true
+
+```
+
+**Example:** With the default predicate
+```php
+Dash\any([true, true, true]);
+// === true
+
+Dash\any([true, false, true]);
+// === false
+```
+any / some
+---
+```php
+any($iterable, $predicate = 'Dash\identity'): boolean
+```
+Checks whether `$predicate` returns truthy for any item in `$iterable`.
+
+Iteration will stop at the first truthy return value.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$predicate` | `callable` | (optional) Invoked with `($value, $key, $iterable)` for each element in `$iterable`
+**Returns** | `boolean` | true if `$predicate` returns truthy for any item in `$iterable`
+
+**Example:** 
+```php
+Dash\any([1, 2, 3], 'Dash\isEven');
+// === true
+
+Dash\any([1, 2, 3], function ($n) { return $n > 5; });
+// === false
+
+Dash\any([], 'Dash\isOdd');
+// === false
+
+Dash\any((object) ['a' => 1, 'b' => 2, 'c' => 3], 'Dash\isEven');
+// === true
+
+```
+
+**Example:** With the default predicate
+```php
+Dash\any([false, true, true]);
+// === true
+
+Dash\any([false, false, false]);
+// === false
+```
+at
+---
+```php
+at($iterable, $index, $default = null): mixed
+```
+Iterates over `$iterable` and returns the value of the `$index`th element, ignoring keys.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$index` | `numeric` | 0-based index
+`$default` | `mixed` | (optional) Value to return if `$index` is out of bounds
+**Returns** | `mixed` | Value of the `$index`th item of `$iterable, ignoring keys
+
+**Example:** 
+```php
+Dash\at(['a', 'b', 'c'], 0);
+// === 'c'
+
+Dash\at([2 => 'a', 1 => 'b', 0 => 'c'], 0);
+// === 'c'
+
+Dash\at(['a' => 'first', 'b' => 'second', 'c' => 'third'], 2);
+// === 'third'
+
+```
+
+**Example:** With a custom default value
+```php
+Dash\at(['a', 'b', 'c'], 5, 'none');
+// === 'none'
+```
+contains
+---
+```php
+contains($iterable, $target, $comparator = 'Dash\equal'): boolean
+```
+Checks whether $iterable has any elements for which $comparator returns truthy.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$target` | `mixed` | Value to compare $iterable elements against
+`$comparator` | `callable` | Invoked with ($target, $value) for each value in $iterable
+**Returns** | `boolean` | true if $comparator returns truthy for any elements in $iterable
+
+**Example:** With loose equality comparison (the default)
+```php
+contains([1, '2', 3], 2);  // === true
+
+```
+
+**Example:** With strict equality comparison
+```php
+contains([1, '2', 3], 2, 'Dash\identical');  // === false
+```
+difference / diff
+---
+```php
+difference($iterable /* , ...iterables */): array
+```
+Returns a subset of items from the first iterable that are not present in any of the other iterables.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | Iterable to compare against
+`$iterables,...` | `iterable` | 
+**Returns** | `array` | 
+
+**Example:** 
+```php
+diff(
+	[1, 2, 3, 4, 5, 6],
+	[1, 3, 5],
+	[2, 8]
+);  // === [4, 6]
+```
+each
+---
+```php
+each($iterable, $iteratee): mixed
+```
+Iterates over a collection and calls an iteratee function for each element.
+
+Any changes to the value, key, or collection from within the iteratee function are not persisted.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$iteratee` | `callable` | Invoked with ($value, $key, $iterable) for each element in $iterable. If $iteratee returns false, iteration will end and subsequent elements will be skipped.
+**Returns** | `mixed` | $iterable
+
+**Example:** 
+```php
+each([1, 2, 3], function ($value, $index, $array) { // $array[$index] === $value });
+```
+filter
+---
+```php
+filter($iterable, $predicate): array
+```
+Returns a subset of $iterable for which $predicate is truthy. Keys are preserved.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$predicate` | `callable` | Callable invoked with ($value, $key, $iterable) for each item in $iterable
+**Returns** | `array` | 
+
+**Example:** 
+```php
+filter([1, 2, 3, 4], function ($n) { return $n > 2; });  // === [3, 4]
+filter([1, 2, 3, 4], 'Dash\isEven');  // === [2, 4]
+
+```
+
+**Example:** With matchesProperty() shorthand
+```php
+filter([
+	['name' => 'abc', 'active' => false],
+	['name' => 'def', 'active' => true],
+	['name' => 'ghi', 'active' => true],
+], 'active');
+// === [
+	['name' => 'def', 'active' => true],
+	['name' => 'ghi', 'active' => true]
+]
+```
+find
+---
+```php
+find($iterable, $predicate): array|null
+```
+Returns the key & value of the first element for which $predicate returns truthy.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$predicate` | `callable\|mixed` | Value to compare against, or callable invoked with ($value, $key, $iterable)
+**Returns** | `array\|null` | [$key, $value] of the matching key/index and value, or null if not found
+
+**Example:** With comparison value
+```php
+$array = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
+find($array, 3);  // === ['c', 3]
+find($array, 'Dash\isEven');  // === ['b', 2]
+```
+findKey
+---
+```php
+findKey($iterable, $predicate): string|integer|null
+```
+Returns the key of the first element for which $predicate returns truthy.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$predicate` | `callable\|mixed` | Value to compare against, or callable invoked with ($value, $key, $iterable)
+**Returns** | `string\|integer\|null` | Key of the matching element, or null if not found
+
+**Example:** With comparison value
+```php
+$array = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
+find($array, 3);  // === 'c'
+find($array, 'Dash\isEven');  // === 'b'
+```
+findLast
+---
+```php
+findLast($iterable, $predicate): array|null
+```
+Returns the key & value of the last element for which $predicate returns truthy.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$predicate` | `callable\|mixed` | Value to compare against, or callable invoked with ($value, $key, $iterable)
+**Returns** | `array\|null` | [$key, $value] of the matching key/index and value, or null if not found
+
+**Example:** With comparison value
+```php
+$array = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
+find($array, 3);  // === ['c', 3]
+find($array, 'Dash\isEven');  // === ['d', 4]
+```
+findValue
+---
+```php
+findValue($iterable, $predicate): string|integer|null
+```
+Returns the value of the first element for which $predicate returns truthy.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$predicate` | `callable\|mixed` | Value to compare against, or callable invoked with ($value, $key, $iterable)
+**Returns** | `string\|integer\|null` | Value of the matching element, or null if not found
+
+**Example:** With comparison value
+```php
+$array = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
+find($array, 3);  // === 3
+find($array, 'Dash\isEven');  // === 2
+```
+first / head
+---
+```php
+first($iterable): mixed|null
+```
+Gets the value of the first element in `$iterable`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+**Returns** | `mixed\|null` | Null if `$iterable` is empty
+
+**Example:** 
+```php
+Dash\first(['a' => 'one', 'b' => 'two', 'c' => 'three']);
+// === 'one'
+
+Dash\first([]);
+// === null
+```
+get
+---
+```php
+get($iterable, $path, $default = null): mixed
+```
+Gets the value at a path on a collection.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `array\|object` | 
+`$path` | `callable\|string` | Callable used to retrieve the value or path of the property to retrieve; Paths can be nested by delimiting each sub-property or array index with a period, eg. 'a.b.0.c'
+`$default` | `mixed` | Default value to return if nothing exists at $path
+**Returns** | `mixed` | Value at $path on the collection
+
+**Example:** 
+```php
+$iterable = [
+	'a' => [
+		'b' => 'value'
+	]
+];
+Dash\get($iterable, 'a.b') == 'value';
+
+```
+
+**Example:** Array elements can be referenced by index
+```php
+$iterable = [
+	'people' => [
+		['name' => 'Pete'],
+		['name' => 'John'],
+		['name' => 'Paul'],
+	]
+];
+Dash\get($iterable, 'people.1.name') == 'John';
+
+```
+
+**Example:** Keys with the same name as the full path can be used
+```php
+$iterable = ['a.b.c' => 'value'];
+Dash\get($iterable, 'a.b.c') == 'value';
+```
+getDirect
+---
+```php
+getDirect($iterable, $key, $default = null): mixed
+```
+Gets the value or callable at the given key of an iterable.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$key` | `string` | 
+`$default` | `mixed` | Value to return if no value at $key exists
+**Returns** | `mixed` | 
+
+**Example:** With an array
+```php
+getDirect(['a' => 'one', 'b' => 'two'], 'b');  // === 'two'
+
+```
+
+**Example:** With an object
+```php
+getDirect((object) ['a' => 'one', 'b' => 'two'], 'b');  // === 'two'
+```
+getDirectRef
+---
+```php
+: mixed
+```
+Like getDirect(), but returns a reference to the value at the given key of an iterable.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$key` | `string` | 
+**Returns** | `mixed` | 
+
+**Example:** 
+```php
+$obj = (object) ['key' => 'value'];
+$ref = Dash\getDirectRef($obj, 'key');
+$ref = 'changed';
+// $obj->key === 'changed'
+```
+hasDirect
+---
+```php
+hasDirect($iterable, $key): boolean
+```
+Checks whether an iterable has a value or callable at a given key.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `array\|object\|ArrayAccess` | 
+`$key` | `string` | 
+**Returns** | `boolean` | 
+
+**Example:** 
+```php
+hasDirect(['a' => ['b' => 1, 'c' => 2], 'a');  // === true
+hasDirect(['a' => ['b' => 1, 'c' => 2], 'b');  // === false
+
+```
+
+**Example:** 
+```php
+hasDirect((object) ['a' => 1, 'b' => 2], 'b');  // === true
+```
+intersection / intersect
+---
+```php
+intersection($iterable /* , ...iterables */): array
+```
+Returns a new array containing values of $iterable that are present in all other arguments.
+
+Iterable keys are preseved.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | Iterable to compare against
+`$iterables,...` | `iterable` | 
+**Returns** | `array` | 
+
+**Example:** 
+```php
+intersection(
+	[1, 3, 5, 8],
+	[1, 2, 3, 4]
+);  // === [0 => 1, 1 => 3]
+```
+isIndexedArray
+---
+```php
+isIndexedArray($input): boolean
+```
+Returns whether $input is an array with sequential integer keys that start at 0.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$input` | `mixed` | 
+**Returns** | `boolean` | 
+
+**Example:** 
+```php
+isIndexedArray([1, 2, 3]);             // === true
+isIndexedArray(['a' => 1, 'b' => 2]);  // === false
+```
+keys
+---
+```php
+keys($iterable): array
+```
+Gets the keys of an iterable as an array.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+**Returns** | `array` | 
+
+**Example:** 
+```php
+keys(['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5]);
+// === ['a', 'b', 'c', 'd']
+```
+last
+---
+```php
+last($iterable): mixed|null
+```
+Gets the value of the last element in `$iterable`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+**Returns** | `mixed\|null` | Null if `$iterable` is empty
+
+**Example:** 
+```php
+Dash\last(['a' => 'one', 'b' => 'two', 'c' => 'three']);
+// === 'three'
+
+Dash\last([]);
+// === null
+```
+matches
+---
+```php
+matches($properties): callable
+```
+Creates a function with signature (iterable $iterable) that returns true if $iterable contains
+all key-value pairs in $properties, using loose equality for value comparison.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$properties` | `iterable` | Key-value pairs that the returned function will match its input against
+**Returns** | `callable` | with signature (iterable $iterable)
+
+**Example:** 
+```php
+$matcher = matches(['b' => 2, 'd' => 4]);
+$matcher(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]);  // === true
+$matcher(['a' => 1, 'b' => 2, 'c' => 3, 'e' => 5]);  // === false
+```
+matchesProperty
+---
+```php
+matchesProperty($path, $value): callable
+```
+Creates a function with signature (iterable $iterable) that returns true
+if it has a value at $path that is loosely equal to $value.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$path` | `string` | Any valid path supported by Dash\get()
+`$value` | `mixed` | Value to compare against
+**Returns** | `callable` | with signature (iterable $iterable)
+
+**Example:** 
+```php
+$matcher = matchesProperty('c', 3);
+$matcher(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]);  // === true
+$matcher(['a' => 1, 'b' => 2, 'd' => 4, 'e' => 5]);  // === false
+```
+pick
+---
+```php
+pick($iterable, $keys): array|object
+```
+Returns a subset of $iterable with the specified keys.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$keys` | `string\|array` | 
+**Returns** | `array\|object` | array if $iterable is array-like, object if $iterable is object-like
+
+**Example:** 
+```php
+pick(['a' => 'one', 'b' => 'two', 'c' => 'three'], ['b', 'c']);
+// === ['b' => 'two', 'c' => 'three']
+```
+pluck
+---
+```php
+pluck($iterable, $path, $default = null): array
+```
+Gets the value at a path for all elements in a collection.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `array\|object` | 
+`$path` | `string` | Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period
+`$default` | `mixed` | 
+**Returns** | `array` | 
+
+**Example:** 
+```php
+pluck(
+	[
+		['a' => ['b' => 1]],
+		['a' => 'missing'],
+		['a' => ['b' => 3]],
+		['a' => ['b' => 4]],
+	],
+	'a.b',
+	'default'
+);
+// == [1, 'default', 3, 4];
+```
+property
+---
+```php
+property($path, $default = null): function
+```
+Creates a function that returns the value at a path on a collection.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$path` | `string\|function` | Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period. If it is already a function, the same function is returned.
+`$default` | `mixed` | Default value to return if nothing exists at $path
+**Returns** | `function` | Function that accepts a collection and returns the value at $path on the collection
+
+**Example:** 
+```php
+$getter = property('a.b');
+$iterable = [
+	'a' => [
+		'b' => 'value'
+	]
+];
+$getter($iterable);  // === 'value';
+
+```
+
+**Example:** Array elements can be referenced by index
+```php
+$getter = property('people.1.name');
+$iterable = [
+	'people' => [
+		['name' => 'Pete'],
+		['name' => 'John'],
+		['name' => 'Paul'],
+	]
+];
+$getter($iterable) === 'John';
+
+```
+
+**Example:** Keys with the same name as the full path can be used
+```php
+$getter = property('a.b.c');
+$iterable = ['a.b.c' => 'value'];
+$getter($iterable);  // === 'value';
+```
+reject
+---
+```php
+reject($iterable, $predicate): array
+```
+Returns a subset of $iterable for which $predicate is falsey. Keys are preserved.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$predicate` | `callable` | Callable invoked with ($value, $key, $iterable) for each item in $iterable
+**Returns** | `array` | 
+
+**Example:** 
+```php
+reject([1, 2, 3, 4], function ($n) { return $n > 2; });  // === [1, 2]
+reject([1, 2, 3, 4], 'Dash\isEven');  // === [1, 3]
+
+```
+
+**Example:** With matchesProperty() shorthand
+```php
+reject([
+	['name' => 'abc', 'active' => false],
+	['name' => 'def', 'active' => true],
+	['name' => 'ghi', 'active' => true],
+], 'active');
+// === [
+	['name' => 'abc', 'active' => true],
+]
+```
+result
+---
+```php
+result($iterable, $path, $default = null): mixed
+```
+Like get(), but if the resolved value is callable, it will invoke the callable and return its result.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `array\|object` | 
+`$path` | `callable\|string` | Callable used to retrieve the value or path of the property to retrieve; Paths can be nested by delimiting each sub-property or array index with a period, eg. 'a.b.0.c'
+`$default` | `mixed` | Default value to return if nothing exists at $path 
+**Returns** | `mixed` | Value at $path on the collection
+
+**Example:** 
+```php
+$iterable = [
+	'a' => [
+		'b' => 'value'
+	]
+];
+result($iterable, 'a.b');
+// === 'value'
+
+```
+
+**Example:** Array elements can be referenced by index
+```php
+$iterable = [
+	'people' => [
+		['name' => 'Pete'],
+		['name' => 'John'],
+		['name' => 'Paul'],
+	]
+];
+result($iterable, 'people.1.name');
+// === 'John'
+
+```
+
+**Example:** Keys with the same name as the full path can be used
+```php
+$iterable = ['a.b.c' => 'value'];
+result($iterable, 'a.b.c');
+// === 'value'
+
+```
+
+**Example:** With a callable value
+```php
+$iterable = [
+	'dates' => [
+		'start' => new DateTime('2017-01-01'),
+		'end' => new DateTime('2017-01-03'),
+	]
+]
+result($iterable, 'dates.start.getTimestamp');
+// === 1483246800
+```
+take
+---
+```php
+take($iterable, $count = 1): array
+```
+Returns a new array of the first $count elements of $iterable. Non-integer keys are preserved.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$count` | `integer` | If negative, all except the last $count elements will be returned
+**Returns** | `array` | 
+
+**Example:** 
+```php
+take(['a', 'b', 'c', 'd', 'e'], 3);
+// === ['a', 'b', 'c']
+
+```
+
+**Example:** 
+```php
+take(['a' => 'one', 'b' => 'two', 'c' => 'three', 'd' => 'four'], 2);
+// === ['a' => 'one', 'b' => 'two']
+
+```
+
+**Example:** With a negative $count
+```php
+take(['a', 'b', 'c', 'd', 'e'], -2);
+// === ['a', 'b', 'c']
+```
+takeRight
+---
+```php
+takeRight($iterable, $count = 1): array
+```
+Returns a new array of the last $count elements of $iterable. Non-integer keys are preserved.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$count` | `integer` | If negative, all except the first $count elements will be returned
+**Returns** | `array` | 
+
+**Example:** 
+```php
+takeRight(['a', 'b', 'c', 'd', 'e'], 3);
+// === ['c', 'd', 'e']
+
+```
+
+**Example:** 
+```php
+takeRight(['a' => 'one', 'b' => 'two', 'c' => 'three', 'd' => 'four'], 2);
+// === ['c' => 'three', 'd' => 'four']
+
+```
+
+**Example:** With a negative $count
+```php
+takeRight(['a', 'b', 'c', 'd', 'e'], -2);
+// === ['c', 'd', 'e']
+```
+takeWhile
+---
+```php
+takeWhile($iterable, $predicate = 'Dash\identity'): array|object
+```
+Returns a subset of $iterable taken from the beginning until $predicate returns falsey.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$predicate` | `callable` | Invoked with ($value, $key)
+**Returns** | `array\|object` | Array for array-like $iterable, object for object-like $iterable
+
+**Example:** 
+```php
+takeWhile([2, 4, 6, 7, 8, 10], 'Dash\isEven');
+// === [2, 4, 6]
+
+```
+
+**Example:** 
+```php
+takeWhile((object) ['a' => 2, 'b' => 4, 'c' => 5, 'd' => 6], 'Dash\isEven');
+// === (object) ['a' => 2, 'b' => 4]
+```
+union
+---
+```php
+union(/* ...iterables */): array
+```
+Returns a new array containing the unique values, in order, of all arguments.
+
+Iterable keys are preseved.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterables,...` | `iterable` | 
+**Returns** | `array` | 
+
+**Example:** 
+```php
+intersection(
+	[1, 3, 5, 8],
+	[1, 2, 3, 4]
+);  // === [1, 3, 5, 8, 2, 4]
+```
+values
+---
+```php
+values($iterable): array
+```
+Gets the values of an iterable as an array.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+**Returns** | `array` | 
+
+**Example:** 
+```php
+values(['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5]);
+// === [3, 8, 2, 5]
+```
+where
+---
+```php
+where($iterable, $properties): array
+```
+Returns all elements of $iterable containing key-value pairs that loosely equal $properties.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$properties` | `iterable` | 
+**Returns** | `array` | 
+
+**Example:** 
+```php
+$input = [
+	['name' => 'Jane', 'age' => 25, 'gender' => 'f'],
+	['name' => 'Mike', 'age' => 30, 'gender' => 'm'],
+	['name' => 'Abby', 'age' => 30, 'gender' => 'f'],
+	['name' => 'Pete', 'age' => 45, 'gender' => 'm'],
+	['name' => 'Kate', 'age' => 30, 'gender' => 'f'],
+];
+where($input, ['gender' => 'f', 'age' => 30]);
+// === [
+	['name' => 'Abby', 'age' => 30, 'gender' => 'f'],
+	['name' => 'Kate', 'age' => 30, 'gender' => 'f'],
+]
+```
+without
+---
+```php
+without($iterable, $exclude): array
+```
+Returns a new array of $iterable that excludes all values in $exclude, using loose equality for comparison.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$exclude` | `array` | Values to exclude
+**Returns** | `array` | Subset of $iterable
+
+**Example:** 
+```php
+without(['a', 'b', 'c', 'd'], ['b', 'c']);
+// === ['a', 'd']
+```
+
+Iterable: Statistics
+===
+
+average / mean
+---
+```php
+average($iterable): double|null
+```
+Gets the average value of all elements in `$iterable`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+**Returns** | `double\|null` | Null if `$iterable` is empty
+
+**Example:** 
+```php
+Dash\average([2, 3, 5, 8]);
+// === 4.5
+```
+deltas
+---
+```php
+deltas($iterable): array
+```
+Returns a new array whose values are the differences between subsequent elements of a iterable.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+**Returns** | `array` | 
+
+**Example:** 
+```php
+deltas([3, 8, 9, 9, 5, 13]);  // === [0, 5, 1, 0, -4, 8]
+```
+max
+---
+```php
+max($iterable): mixed|null
+```
+Gets the maximum value of all elements in `$iterable`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+**Returns** | `mixed\|null` | Null if `$iterable` is empty
+
+**Example:** 
+```php
+Dash\max([3, 8, 2, 5]);
+// === 8
+
+Dash\max([]);
+// === null
+```
+median
+---
+```php
+median($iterable): mixed|null
+```
+Returns the median value of an iterable.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+**Returns** | `mixed\|null` | Null if `$iterable` is empty
+
+**Example:** 
+```php
+Dash\median([3, 2, 1, 5, 4]);
+// === 3
+
+Dash\median([3, 2, 1, 4]);
+// === 2.5
+```
+min
+---
+```php
+min($iterable): mixed|null
+```
+Gets the minimum value of all elements in `$iterable`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+**Returns** | `mixed\|null` | Null if `$iterable` is empty
+
+**Example:** 
+```php
+Dash\min([3, 8, 2, 5]);
+// === 2
+
+Dash\min([]);
+// === null
+```
+sum
+---
+```php
+sum($iterable): numeric
+```
+Gets the sum of all element values in `$iterable`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+**Returns** | `numeric` | Zero if `$iterable` is empty
+
+**Example:** 
+```php
+sum([2, 3, 5, 8]);
+// === 18
+
+sum([]);
+// === 0
+```
+
+Iterable: Transform
+===
+
+dropWhile
+---
+```php
+dropWhile($iterable, $predicate = 'Dash\identity'): array
+```
+Returns a subset of $iterable that excludes elements from the beginning.
+Elements are dropped until $predicate returns falsey.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$predicate` | `callable` | Invoked with ($value, $key, $iterable)
+**Returns** | `array` | 
+
+
+groupBy
+---
+```php
+groupBy($iterable, $iteratee = 'Dash\identity', $defaultGroup = null): array
+```
+Groups elements by the common values generated by an iteratee.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$iteratee` | `callable` | (optional) Invoked with ($element) for each element of $iterable
+`$defaultGroup` | `string` | (optional) Elements with null $iteratee return values will be in this group
+**Returns** | `array` | map of key => grouped elements
+
+**Example:** 
+```php
+groupBy([1, 2, 3, 4, 5], 'Dash\isOdd');
+// === [true => [1, 3, 5], false => [2, 4]]
+
+```
+
+**Example:** 
+```php
+groupBy([2.1, 2.5, 3.5, 3.9, 4], 'Dash\isOdd');
+// === [2 => [2.1, 2.5], 3 => [3.5, 3.9], 4 => [4]]
+```
+join / implode
+---
+```php
+join($iterable, $separator): string
+```
+Concatenates all elements in $iterable to a string, each separated by $separator.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$separator` | `string` | 
+**Returns** | `string` | 
+
+**Example:** 
+```php
+join([123, 456, 789], '-');  // === '123-456-789'
+```
+keyBy / indexBy
+---
+```php
+keyBy($iterable, $iteratee = 'Dash\identity'): array
+```
+Keys elements by the common values generated by an iteratee.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$iteratee` | `callable` | (optional) Invoked with ($element) for each element of $iterable
+**Returns** | `array` | map of key => grouped elements
+
+**Example:** 
+```php
+keyBy([
+	['name' => 'John', 'gender' => 'male'],
+	['name' => 'Alice', 'gender' => 'female'],
+	['name' => 'Jane', 'gender' => 'female'],
+	['name' => 'Peter', 'gender' => 'male'],
+	['name' => 'Fred', 'gender' => 'male'],
+], 'name');
+// === [
+	'John'  => ['name' => 'John', 'gender' => 'male'],
+	'Alice' => ['name' => 'Alice', 'gender' => 'female'],
+	'Jane'  => ['name' => 'Jane', 'gender' => 'female'],
+	'Peter' => ['name' => 'Peter', 'gender' => 'male'],
+	'Fred'  => ['name' => 'Fred', 'gender' => 'male'],
+]
+```
+map
+---
+```php
+map($iterable, $iteratee = 'Dash\identity'): array
+```
+Creates a new indexed array of values by running each element in a
+collection through an iteratee function.
+
+Keys in the original collection are _not_ preserved; a freshly indexed array
+is returned.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `array\|object` | 
+`$iteratee` | `Callable\|string` | Function called with (element, key, collection) for each element in $iterable. The return value of $iteratee will be used as the corresponding element in the returned array. If $iteratee is a string, property($iteratee) will be used as the iteratee function. 
+**Returns** | `array` | 
+
+**Example:** 
+```php
+Dash\map(
+	[1, 2, 3],
+	function($n) {
+		return $n * 2;
+	}
+) == [2, 4, 6];
+
+```
+
+**Example:** 
+```php
+Dash\map(
+	['roses' => 'red', 'violets' => 'blue'],
+	function($color, $flower) {
+		return $flower . ' are ' . $color;
+	}
+) == ['roses are red', 'violets are blue'];
+
+```
+
+**Example:** With $iteratee as a path
+```php
+Dash\map(
+	['color' => 'red', 'color' => 'blue'],
+	'color'
+) == ['red', 'blue'];
+```
+mapValues
+---
+```php
+mapValues($iterable, $iteratee = 'Dash\identity'): array
+```
+Creates a new array of values by running each element in a collection
+through an iteratee function.
+
+Keys in the original collection _are_ preserved.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `array\|object` | 
+`$iteratee` | `Callable` | Function called with (element, key, collection) for each element in $iterable. The return value of $iteratee will be used as the corresponding element in the returned array. 
+**Returns** | `array` | 
+
+**Example:** 
+```php
+Dash\map(
+	[1, 2, 3],
+	function($n) { return $n * 2; }
+) == [2, 4, 6];
+
+```
+
+**Example:** 
+```php
+Dash\map(
+	['roses' => 'red', 'violets' => 'blue'],
+	function($color, $flower) { return $flower . ' are ' . $color; }
+) == ['roses' => 'roses are red', 'violets' => 'violets are blue'];
+```
+reduce
+---
+```php
+reduce($iterable, $iteratee, $initial = []): mixed
+```
+Iteratively reduces $iterable to a single value by way of $iteratee.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$iteratee` | `callable` | Invoked with ($result, $value, $key) for each ($key, $value) in $iterable and the current $result. $iteratee should return the updated $result
+`$initial` | `mixed` | (optional) Initial value
+**Returns** | `mixed` | 
+
+**Example:** Computes the sum
+```php
+reduce([1, 2, 3, 4], function ($result, $value) {
+	return $result + $value;
+}, 0);
+// === 10
+```
+reverse
+---
+```php
+reverse($iterable): array
+```
+Returns a new array with elements in reverse order. Non-integer keys are preserved.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+**Returns** | `array` | 
+
+**Example:** 
+```php
+reverse(['a', 'b', 'c', 'd', 'e']);
+// === ['e', 'd', 'c', 'b', 'a']
+
+```
+
+**Example:** 
+```php
+reverse(['a' => 'one', 'b' => 'two', 'c' => 'three']);
+// === ['c' => 'three', 'b' => 'two', 'a' => 'one']
+```
+rotate
+---
+```php
+rotate($iterable, $count = 1): array|object
+```
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$count` | `numeric` | 
+**Returns** | `array\|object` | 
+
+
+set
+---
+```php
+set(&$iterable, $path, $value): array|object
+```
+Sets the value at a path on $iterable, which will be modified.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `array\|object` | 
+`$path` | `string` | Path at which to set $value; can be a nested path (eg. 'a.b.0.c'), and non-existent intermediate array/objects will be created
+`$value` | `mixed` | Value to set at $path
+**Returns** | `array\|object` | the modified $iterable
+
+**Example:** 
+```php
+$iterable = [
+	'a' => [1, 2],
+	'b' => [3, 4],
+	'c' => [5, 6],
+];
+set($iterable, 'a', [7, 8, 9]);  // Setting a direct field
+set($iterable, 'b.0', 10);  // Setting a nested field using an array index
+// $iterable === [
+	'a' => [7, 8, 9],
+	'b' => [10, 4],
+	'c' => [5, 6],
+]
+
+```
+
+**Example:** Matching intermediate array wrappers are created when the deepest path is an array
+```php
+$iterable = [];
+set($iterable, 'a.b.c', 'value');
+// $iterable === [
+	'a' => [
+		'b' => [
+			'c' => 'value'
+		]
+	]
+]
+
+```
+
+**Example:** Matching intermediate object wrappers are created when the deepest path is an object
+```php
+$iterable = (object) [];
+set($iterable, 'a.b.c', 'value');
+// $iterable === (object) [
+	'a' => (object) [
+		'b' => (object) [
+			'c' => 'value'
+		]
+	]
+]
+```
+sort
+---
+```php
+sort($iterable, $comparator = 'Dash\compare'): array
+```
+Returns a new array containing the sorted values of $iterable. Keys are preserved.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+`$comparator` | `callable` | 
+**Returns** | `array` | 
+
+**Example:** 
+```php
+sort([4, 1, 3, 2]);
+// === [1, 2, 3, 4]
+```
+toArray
+---
+```php
+toArray($iterable): array
+```
+Returns an array representation of $iterable.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+**Returns** | `array` | 
+
+**Example:** 
+```php
+toArray((object) ['a' => 'one', 'b' => 'two']);
+// === ['a' => 'one', 'b' => 'two']
+```
+
 Number
 ===
 
@@ -1973,6 +1945,28 @@ Parameter | Type | Description
 ```php
 $a = new ArrayObject();
 identity($a);  // === $a
+```
+isEmpty
+---
+```php
+isEmpty($input): boolean
+```
+Checks whether a value is an empty iterable or value.
+
+A value is empty if it is an iterable of size zero or loosely equals false.
+
+Parameter | Type | Description
+--- | --- | :---
+`$input` | `mixed` | 
+**Returns** | `boolean` | 
+
+**Example:** 
+```php
+isEmpty([]);                 // === true
+isEmpty(new ArrayObject());  // === true
+isEmpty('');                 // === true
+isEmpty(0);                  // === true
+isEmpty([0]);                // === false
 ```
 isType
 ---

@@ -6,7 +6,7 @@ namespace Dash;
  * Creates a function with signature (iterable $iterable) that returns true if $iterable contains
  * all key-value pairs in $properties, using loose equality for value comparison.
  *
- * @category Collection
+ * @category Iterable: Query
  * @param iterable $properties Key-value pairs that the returned function will match its input against
  * @return callable with signature (iterable $iterable)
  *

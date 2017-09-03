@@ -6,7 +6,7 @@ namespace Dash;
  * Creates a function with signature (iterable $iterable) that returns true
  * if it has a value at $path that is loosely equal to $value.
  *
- * @category Collection
+ * @category Iterable: Query
  * @param string $path Any valid path supported by Dash\get()
  * @param mixed $value Value to compare against
  * @return callable with signature (iterable $iterable)

@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Concatenates all elements in $iterable to a string, each separated by $separator.
  *
- * @category Collection
+ * @category Iterable: Transform
  * @param iterable $iterable
  * @param string $separator
  * @return string

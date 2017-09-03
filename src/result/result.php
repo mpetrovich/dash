@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Like get(), but if the resolved value is callable, it will invoke the callable and return its result.
  *
- * @category Collection
+ * @category Iterable: Query
  * @param array|object $iterable
  * @param callable|string $path Callable used to retrieve the value or path of the property to retrieve;
  *                              Paths can be nested by delimiting each sub-property or array index with a period,

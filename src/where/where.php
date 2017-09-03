@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Returns all elements of $iterable containing key-value pairs that loosely equal $properties.
  *
- * @category Collection
+ * @category Iterable: Query
  * @param iterable $iterable
  * @param iterable $properties
  * @return array

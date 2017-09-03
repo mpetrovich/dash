@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Creates a new function that invokes `$callable` with a single argument and ignores the rest.
  *
- * @category Function
+ * @category Callable
  * @param callable $callable
  * @return callable New function
  *

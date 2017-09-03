@@ -6,7 +6,7 @@ namespace Dash;
  * Returns a subset of $iterable that excludes elements from the beginning.
  * Elements are dropped until $predicate returns falsey.
  *
- * @category Collection
+ * @category Iterable: Transform
  * @param iterable $iterable
  * @param callable $predicate Invoked with ($value, $key, $iterable)
  * @return array
