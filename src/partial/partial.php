@@ -22,11 +22,14 @@ namespace Dash;
 	$sayHowdy('Jane');  // === 'Howdy, Jane!'
  *
  * @example With a placeholder
-	$greet = function ($greeting, $salutation, $name) {
-		return "$greeting, $salutation $name!";
+	$greet = function ($greeting, $name) {
+		return "$greeting, $name!";
 	};
-	$greetMr = Dash\partial($greet, Dash\_, 'Mr.');
-	$greetMr('Hello', 'Mark');  // === 'Hello, Mr. Mark!'
+	$greetMark = Dash\partial($greet, Dash\_, 'Mark');
+	$greetJane = Dash\partial($greet, Dash\_, 'Jane');
+
+	$greetMark('Hello');  // === 'Hello, Mark!'
+	$greetJane('Howdy');  // === 'Howdy, Jane!'
  */
 function partial($callable /* , ...args */)
 {
