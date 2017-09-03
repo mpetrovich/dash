@@ -25,6 +25,7 @@ Table of contents
 - [identity](#identity)
 - [isType](#istype)
 - [size](#size--count) / count
+- [tap](#tap)
 
 ### Statistics
 - [average](#average--mean) / mean
@@ -36,7 +37,6 @@ Table of contents
 ### Dash
 - [chain](#chain)
 - [custom](#custom)
-- [tap](#tap)
 - [thru](#thru)
 
 ### Iterable
@@ -602,6 +602,32 @@ Parameter | Type | Description
 size([1, 2, 3]);  // === 3
 size('Hello!');  // === 6
 ```
+tap
+---
+```php
+tap($value, callable $interceptor): mixed
+```
+Invokes `$interceptor` with `($value)` and returns `$value` unchanged.
+
+Note: Any changes made to `$value` in `$interceptor` will not be returned.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `mixed` | 
+`$interceptor` | `callable` | Invoked with `($value)`
+**Returns** | `mixed` | Original `$value`
+
+**Example:** 
+```php
+_::chain([1, 2, 3])
+	->filter('Dash\isOdd')
+	->tap(function ($value) {
+		// $value === [1, 3]
+		print_r($value);
+	})
+	->value();
+```
 
 Statistics
 ===
@@ -744,23 +770,6 @@ Parameter | Type | Description
 _::setCustom('double', function ($n) { return $n * 2; });
 _::chain([1, 2, 3])->map(Dash\custom('double'))->value();  // === [2, 4, 6]
 ```
-tap
----
-```php
-tap($iterable, callable $interceptor): iterable
-```
-Invokes $interceptor with ($iterable) and returns $iterable.
-
-Note: Any changes to $iterable in $interceptor will not be persisted.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$interceptor` | `callable` | Invoked with ($iterable)
-**Returns** | `iterable` | $iterable
-
-
 thru
 ---
 ```php

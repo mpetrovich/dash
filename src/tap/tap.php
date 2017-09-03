@@ -3,17 +3,34 @@
 namespace Dash;
 
 /**
- * Invokes $interceptor with ($iterable) and returns $iterable.
+ * Invokes `$interceptor` with `($value)` and returns `$value` unchanged.
  *
- * Note: Any changes to $iterable in $interceptor will not be persisted.
+ * Note: Any changes made to `$value` in `$interceptor` will not be returned.
  *
- * @category Dash
- * @param iterable $iterable
- * @param callable $interceptor Invoked with ($iterable)
- * @return iterable $iterable
+ * @category Utility
+ * @param mixed $value
+ * @param callable $interceptor Invoked with `($value)`
+ * @return mixed Original `$value`
+ *
+ * @example
+	_::chain([1, 2, 3])
+		->filter('Dash\isOdd')
+		->tap(function ($value) {
+			// $value === [1, 3]
+			print_r($value);
+		})
+		->value();
  */
-function tap($iterable, callable $interceptor)
+function tap($value, callable $interceptor)
 {
-	call_user_func($interceptor, $iterable);
-	return $iterable;
+	call_user_func($interceptor, $value);
+	return $value;
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _tap(/* interceptor, value */)
+{
+	return currify('Dash\tap', func_get_args());
 }
