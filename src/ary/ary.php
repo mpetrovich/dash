@@ -13,7 +13,7 @@ namespace Dash;
  * @example
 	$isNumeric = Dash\ary('is_numeric', 1);
 
-	Dash\map([1, 'a', 2.0, '3'], $isNumeric);
+	Dash\filter([1, 2.0, '3', 'a'], $isNumeric);
 	// === [1, 2.0, '3']
  */
 function ary(callable $callable, $arity)

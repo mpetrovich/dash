@@ -151,4 +151,10 @@ class firstTest extends PHPUnit_Framework_TestCase
 			],
 		];
 	}
+
+	public function testExamples()
+	{
+		$this->assertSame('one', Dash\first(['a' => 'one', 'b' => 'two', 'c' => 'three']));
+		$this->assertSame(null, Dash\first([]));
+	}
 }

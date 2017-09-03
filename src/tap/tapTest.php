@@ -70,4 +70,29 @@ class tapTest extends PHPUnit_Framework_TestCase
 			],
 		];
 	}
+
+	public function testExample()
+	{
+		ob_start();
+
+		$result = Dash\_::chain([1, 3, 4])
+			->filter('Dash\isOdd')
+			->tap(function ($value) {
+				// $value === [1, 3]
+				print_r($value);  // @codingStandardsIgnoreLine
+			})
+			->value();
+
+		$output = ob_get_clean();
+		$expectedOutput = <<<'END'
+Array
+(
+    [0] => 1
+    [1] => 3
+)
+END;
+
+		$this->assertSame(trim($expectedOutput), trim($output));
+		$this->assertSame([1, 3], $result);
+	}
 }

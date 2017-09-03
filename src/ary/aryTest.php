@@ -122,4 +122,10 @@ class aryTest extends PHPUnit_Framework_TestCase
 			],
 		];
 	}
+
+	public function testExamples()
+	{
+		$isNumeric = Dash\ary('is_numeric', 1);
+		$this->assertSame([1, 2.0, '3'], Dash\filter([1, 2.0, '3', 'a'], $isNumeric));
+	}
 }

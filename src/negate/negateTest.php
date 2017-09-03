@@ -24,4 +24,13 @@ class negateTest extends PHPUnit_Framework_TestCase
 		$this->assertFalse($isEven(3));
 		$this->assertTrue($isOdd2(3));
 	}
+
+	public function testExamples()
+	{
+		$isEven = function ($n) { return $n % 2 === 0; };
+		$isOdd = Dash\negate($isEven);
+
+		$this->assertSame(false, $isEven(3));
+		$this->assertSame(true, $isOdd(3));
+	}
 }

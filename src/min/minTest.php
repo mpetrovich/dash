@@ -145,4 +145,10 @@ class minTest extends PHPUnit_Framework_TestCase
 			],
 		];
 	}
+
+	public function testExamples()
+	{
+		$this->assertSame(2, Dash\min([3, 8, 2, 5]));
+		$this->assertSame(null, Dash\min([]));
+	}
 }

@@ -10,10 +10,10 @@ namespace Dash;
  * @return numeric Zero if `$iterable` is empty
  *
  * @example
-	sum([2, 3, 5, 8]);
+	Dash\sum([2, 3, 5, 8]);
 	// === 18
 
-	sum([]);
+	Dash\sum([]);
 	// === 0
  */
 function sum($iterable)

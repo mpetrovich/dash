@@ -262,4 +262,14 @@ class anyTest extends PHPUnit_Framework_TestCase
 			],
 		];
 	}
+
+	public function testExamples()
+	{
+		$this->assertSame(true, Dash\any([1, 2, 3], 'Dash\isEven'));
+		$this->assertSame(false, Dash\any([1, 2, 3], function ($n) { return $n > 5; }));
+		$this->assertSame(false, Dash\any([], 'Dash\isOdd'));
+		$this->assertSame(true, Dash\any((object) ['a' => 1, 'b' => 2, 'c' => 3], 'Dash\isEven'));
+		$this->assertSame(true, Dash\any([false, true, true]));
+		$this->assertSame(false, Dash\any([false, false, false]));
+	}
 }

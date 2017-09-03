@@ -145,4 +145,10 @@ class medianTest extends PHPUnit_Framework_TestCase
 			],
 		];
 	}
+
+	public function testExamples()
+	{
+		$this->assertSame(3, Dash\median([3, 2, 1, 5, 4]));
+		$this->assertSame(2.5, Dash\median([3, 2, 1, 4]));
+	}
 }

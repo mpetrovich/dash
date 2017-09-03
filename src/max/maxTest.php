@@ -145,4 +145,10 @@ class maxTest extends PHPUnit_Framework_TestCase
 			],
 		];
 	}
+
+	public function testExamples()
+	{
+		$this->assertSame(8, Dash\max([3, 8, 2, 5]));
+		$this->assertSame(null, Dash\max([]));
+	}
 }

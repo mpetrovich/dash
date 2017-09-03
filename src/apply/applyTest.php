@@ -147,4 +147,18 @@ class applyTest extends PHPUnit_Framework_TestCase
 			],
 		];
 	}
+
+	public function testExamples()
+	{
+		$func = function ($time, $name) {
+			return "Good $time, $name";
+		};
+		$this->assertSame('Good morning, John', Dash\apply($func, ['morning', 'John']));
+
+		$func = function ($time, $name) {
+			return "Good $time, $name";
+		};
+		$apply = Dash\_apply($func);
+		$this->assertSame('Good morning, John', $apply(['morning', 'John']));
+	}
 }

@@ -2,7 +2,6 @@
 
 /**
  * @covers Dash\call
- * @covers Dash\_call
  */
 class callTest extends PHPUnit_Framework_TestCase
 {
@@ -36,13 +35,11 @@ class callTest extends PHPUnit_Framework_TestCase
 		$this->assertSame(10, Dash\call($func, 1, 2, 3, 4));
 	}
 
-	public function testCurried()
+	public function testExamples()
 	{
-		$func = function () {
-			$this->assertSame([1, 2, 3, 4], func_get_args());
-			return Dash\sum(func_get_args());
+		$func = function ($time, $name) {
+			return "Good $time, $name";
 		};
-
-		$this->assertSame(10, Dash\_call($func, 1, 2, 3, 4));
+		$this->assertSame('Good morning, John', Dash\call($func, 'morning', 'John'));
 	}
 }

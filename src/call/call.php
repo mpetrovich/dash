@@ -5,8 +5,7 @@ namespace Dash;
 /**
  * Invokes `$callable` with an inline list of arguments.
  *
- * Note: Contrary to other curried methods, the curried version of this method
- * accepts arguments in the same order as the original method.
+ * Note: No curried function exists for this operation.
  *
  * @category Callable
  * @param callable $callable
@@ -21,28 +20,9 @@ namespace Dash;
 
 	Dash\call($func, 'morning', 'John');
 	// === 'Good morning, John'
- *
- * @example Curried version accepts arguments in the same order
-	$func = function ($time, $name) {
-		return "Good $time, $name";
-	};
-
-	$call = Dash\_call($func);
-
-	$call('morning', 'John');
-	// === 'Good morning, John'
  */
 function call(callable $callable /* , ...args */)
 {
 	$args = array_slice(func_get_args(), 1);
 	return call_user_func_array($callable, $args);
-}
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _call(/* callable, ...args */)
-{
-	$args = array_merge(['Dash\call'], func_get_args());
-	return call_user_func_array('Dash\curry', $args);
 }

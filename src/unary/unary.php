@@ -12,7 +12,7 @@ namespace Dash;
  * @example
 	$isNumeric = Dash\unary('is_numeric');
 
-	Dash\map([1, 'a', 2.0, '3'], $isNumeric);
+	Dash\filter([1, 2.0, '3', 'a'], $isNumeric);
 	// === [1, 2.0, '3']
  */
 function unary(callable $callable)

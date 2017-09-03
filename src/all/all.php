@@ -31,10 +31,10 @@ namespace Dash;
 	// === true
  *
  * @example With the default predicate
-	Dash\any([true, true, true]);
+	Dash\all([true, true, true]);
 	// === true
 
-	Dash\any([true, false, true]);
+	Dash\all([true, false, true]);
 	// === false
  */
 function all($iterable, $predicate = 'Dash\identity')

@@ -13,10 +13,10 @@ namespace Dash;
  *
  * @example
 	Dash\at(['a', 'b', 'c'], 0);
-	// === 'c'
+	// === 'a'
 
 	Dash\at([2 => 'a', 1 => 'b', 0 => 'c'], 0);
-	// === 'c'
+	// === 'a'
 
 	Dash\at(['a' => 'first', 'b' => 'second', 'c' => 'third'], 2);
 	// === 'third'

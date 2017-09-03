@@ -228,4 +228,12 @@ class atTest extends PHPUnit_Framework_TestCase
 			],
 		];
 	}
+
+	public function testExamples()
+	{
+		$this->assertSame('a', Dash\at(['a', 'b', 'c'], 0));
+		$this->assertSame('a', Dash\at([2 => 'a', 1 => 'b', 0 => 'c'], 0));
+		$this->assertSame('third', Dash\at(['a' => 'first', 'b' => 'second', 'c' => 'third'], 2));
+		$this->assertSame('none', Dash\at(['a', 'b', 'c'], 5, 'none'));
+	}
 }

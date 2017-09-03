@@ -137,4 +137,10 @@ class lastTest extends PHPUnit_Framework_TestCase
 			],
 		];
 	}
+
+	public function testExamples()
+	{
+		$this->assertSame('three', Dash\last(['a' => 'one', 'b' => 'two', 'c' => 'three']));
+		$this->assertSame(null, Dash\last([]));
+	}
 }

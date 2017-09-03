@@ -137,4 +137,10 @@ class sumTest extends PHPUnit_Framework_TestCase
 			],
 		];
 	}
+
+	public function testExamples()
+	{
+		$this->assertSame(18, Dash\sum([2, 3, 5, 8]));
+		$this->assertSame(0, Dash\sum([]));
+	}
 }

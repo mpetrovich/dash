@@ -148,7 +148,7 @@ Parameter | Type | Description
 ```php
 $isNumeric = Dash\ary('is_numeric', 1);
 
-Dash\map([1, 'a', 2.0, '3'], $isNumeric);
+Dash\filter([1, 2.0, '3', 'a'], $isNumeric);
 // === [1, 2.0, '3']
 ```
 call
@@ -158,8 +158,7 @@ call(callable $callable /* , ...args */): mixed
 ```
 Invokes `$callable` with an inline list of arguments.
 
-Note: Contrary to other curried methods, the curried version of this method
-accepts arguments in the same order as the original method.
+Note: No curried function exists for this operation.
 
 
 Parameter | Type | Description
@@ -175,19 +174,6 @@ $func = function ($time, $name) {
 };
 
 Dash\call($func, 'morning', 'John');
-// === 'Good morning, John'
-
-```
-
-**Example:** Curried version accepts arguments in the same order
-```php
-$func = function ($time, $name) {
-	return "Good $time, $name";
-};
-
-$call = Dash\_call($func);
-
-$call('morning', 'John');
 // === 'Good morning, John'
 ```
 currify
@@ -348,7 +334,7 @@ Parameter | Type | Description
 ```php
 $isNumeric = Dash\unary('is_numeric');
 
-Dash\map([1, 'a', 2.0, '3'], $isNumeric);
+Dash\filter([1, 2.0, '3', 'a'], $isNumeric);
 // === [1, 2.0, '3']
 ```
 
@@ -390,10 +376,10 @@ Dash\all((object) ['a' => 1, 'b' => 3, 'c' => 5], 'Dash\isOdd');
 
 **Example:** With the default predicate
 ```php
-Dash\any([true, true, true]);
+Dash\all([true, true, true]);
 // === true
 
-Dash\any([true, false, true]);
+Dash\all([true, false, true]);
 // === false
 ```
 any / some
@@ -454,10 +440,10 @@ Parameter | Type | Description
 **Example:** 
 ```php
 Dash\at(['a', 'b', 'c'], 0);
-// === 'c'
+// === 'a'
 
 Dash\at([2 => 'a', 1 => 'b', 0 => 'c'], 0);
-// === 'c'
+// === 'a'
 
 Dash\at(['a' => 'first', 'b' => 'second', 'c' => 'third'], 2);
 // === 'third'
@@ -1515,10 +1501,10 @@ Parameter | Type | Description
 
 **Example:** 
 ```php
-sum([2, 3, 5, 8]);
+Dash\sum([2, 3, 5, 8]);
 // === 18
 
-sum([]);
+Dash\sum([]);
 // === 0
 ```
 take
@@ -2038,7 +2024,7 @@ Parameter | Type | Description
 
 **Example:** 
 ```php
-$result = _::chain([1, 2, 3])
+$result = _::chain([1, 3, 4])
 	->filter('Dash\isOdd')
 	->tap(function ($value) {
 		// $value === [1, 3]
@@ -2064,7 +2050,7 @@ Parameter | Type | Description
 
 **Example:** 
 ```php
-$result = _::chain([1, 2, 3])
+$result = _::chain([1, 3, 4])
 	->filter('Dash\isOdd')
 	->thru(function ($value) {
 		// $value === [1, 3]

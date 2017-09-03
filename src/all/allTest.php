@@ -262,4 +262,14 @@ class allTest extends PHPUnit_Framework_TestCase
 			],
 		];
 	}
+
+	public function testExamples()
+	{
+		$this->assertSame(true, Dash\all([1, 3, 5], 'Dash\isOdd'));
+		$this->assertSame(false, Dash\all([1, 3, 5], function ($n) { return $n != 3; }));
+		$this->assertSame(true, Dash\all([], 'Dash\isOdd'));
+		$this->assertSame(true, Dash\all((object) ['a' => 1, 'b' => 3, 'c' => 5], 'Dash\isOdd'));
+		$this->assertSame(true, Dash\all([true, true, true]));
+		$this->assertSame(false, Dash\all([true, false, true]));
+	}
 }

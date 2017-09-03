@@ -7,12 +7,10 @@ Requirements
 - Add curried variant
 
 ### Documentation
-- Category:
-	- Query
-	- Transform
-	- Statistics
-	- String
-- Parameters, return value, exceptions
+- Category
+- Parameters
+- Return value
+- Exceptions
 - Aliases
 - Examples
 

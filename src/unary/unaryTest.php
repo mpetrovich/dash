@@ -45,4 +45,10 @@ class unaryTest extends PHPUnit_Framework_TestCase
 			],
 		];
 	}
+
+	public function testExamples()
+	{
+		$isNumeric = Dash\unary('is_numeric');
+		$this->assertSame([1, 2.0, '3'], Dash\filter([1, 2.0, '3', 'a'], $isNumeric));
+	}
 }

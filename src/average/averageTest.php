@@ -151,4 +151,9 @@ class averageTest extends PHPUnit_Framework_TestCase
 			],
 		];
 	}
+
+	public function testExamples()
+	{
+		$this->assertSame(4.5, Dash\average([2, 3, 5, 8]));
+	}
 }
