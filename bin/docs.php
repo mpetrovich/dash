@@ -18,6 +18,10 @@ function buildDocs($sourceDir, $destFilepath)
 		->filter(function ($filepath) { return file_exists($filepath); })
 		->map('createDoc')
 		->groupBy('category', 'Other')
+		->thru(function ($categories) {
+			ksort($categories);
+			return $categories;
+		})
 		->each(function ($docs) { return _::sort($docs, _::property('name')); })
 		->value();
 
