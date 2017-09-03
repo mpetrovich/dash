@@ -15,18 +15,21 @@ namespace Dash;
 	$greet = function ($greeting, $name) {
 		return "$greeting, $name!";
 	};
-	$greetMark = Dash\partial($greet, 'Mark');
-	$greetJane = Dash\partial($greet, 'Jane');
+	$greetMark = Dash\partialRight($greet, 'Mark');
+	$greetJane = Dash\partialRight($greet, 'Jane');
 
-	$greetMark('Hello');  // === 'Hello, Mark!'
-	$greetJane('Howdy');  // === 'Howdy, Jane!'
+	$this->assertSame('Hello, Mark!', $greetMark('Hello'));
+	$this->assertSame('Howdy, Jane!', $greetJane('Howdy'));
  *
  * @example With a placeholder
-	$greet = function ($greeting, $salutation, $name) {
-		return "$greeting, $salutation $name!";
+	$greet = function ($greeting, $name) {
+		return "$greeting, $name!";
 	};
-	$greetMr = Dash\partialRight($greet, 'Mr.', Dash\_);
-	$greetMr('Hello', 'Mark');  // === 'Hello, Mr. Mark!'
+	$sayHello = Dash\partialRight($greet, 'Hello', Dash\_);
+	$sayHowdy = Dash\partialRight($greet, 'Howdy', Dash\_);
+
+	$this->assertSame('Hello, Mark!', $sayHello('Mark'));
+	$this->assertSame('Howdy, Jane!', $sayHowdy('Jane'));
  */
 function partialRight($callable /* , ...args */)
 {
