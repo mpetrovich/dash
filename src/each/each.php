@@ -7,7 +7,7 @@ namespace Dash;
  *
  * Any changes to the value, key, or collection from within the iteratee function are not persisted.
  *
- * @category Iterable
+ * @category Collection
  * @param iterable $iterable
  * @param callable $iteratee Invoked with ($value, $key, $iterable) for each element in $iterable.
  *                           If $iteratee returns false, iteration will end and subsequent elements will be skipped.

@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Returns a new array containing the sorted values of $iterable. Keys are preserved.
  *
- * @category Iterable
+ * @category Collection
  * @param iterable $iterable
  * @param callable $comparator
  * @return array

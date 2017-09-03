@@ -2,7 +2,12 @@
 
 namespace Dash;
 
-function curry($callable /*, ...args */)
+/**
+ * @category Function
+ * @param callable $callable
+ * @return mixed
+ */
+function curry(callable $callable /*, ...args */)
 {
 	$args = func_get_args();
 	array_shift($args);

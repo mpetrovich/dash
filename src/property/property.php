@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Creates a function that returns the value at a path on a collection.
  *
- * @category Iterable
+ * @category Collection
  * @param string|function $path Path of the property to retrieve;
  *                              can be nested by delimiting each sub-property or array index with a period.
  *                              If it is already a function, the same function is returned.

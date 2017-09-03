@@ -2,6 +2,12 @@
 
 namespace Dash;
 
+/**
+ * @category Collection: Transform
+ * @param iterable $iterable
+ * @param numeric $count
+ * @return array|object
+ */
 function rotate($iterable, $count = 1)
 {
 	assertType($iterable, 'iterable', __FUNCTION__);

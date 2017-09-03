@@ -2,6 +2,12 @@
 
 namespace Dash;
 
+/**
+ * @category Function
+ * @param callable $callable
+ * @param numeric $totalArgs
+ * @return mixed
+ */
 function curryN($callable, $totalArgs /*, ...args */)
 {
 	$args = func_get_args();

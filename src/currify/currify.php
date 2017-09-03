@@ -2,6 +2,12 @@
 
 namespace Dash;
 
+/**
+ * @category Function
+ * @param callable $callable
+ * @param array $args
+ * @return mixed
+ */
 function currify($callable, array $args = [])
 {
 	$curryable = function () use ($callable) {

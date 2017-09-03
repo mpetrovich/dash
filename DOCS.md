@@ -2,7 +2,7 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/mpet
 
 Table of contents
 ===
-### Iterable: Query
+### Collection: Query
 - [all](#all--every) / every
 - [any](#any--some) / some
 - [at](#at)
@@ -13,12 +13,19 @@ Table of contents
 - [apply](#apply)
 - [ary](#ary)
 - [call](#call)
+- [currify](#currify)
+- [curry](#curry)
+- [curryN](#curryn)
 - [negate](#negate)
+- [partial](#partial)
+- [partialRight](#partialright)
 - [unary](#unary)
 
 ### Utility
 - [assertType](#asserttype)
+- [chain](#chain)
 - [compare](#compare)
+- [custom](#custom)
 - [debug](#debug)
 - [equal](#equal)
 - [identical](#identical)
@@ -28,18 +35,14 @@ Table of contents
 - [tap](#tap)
 - [thru](#thru)
 
-### Statistics
+### Collection: Statistics
 - [average](#average--mean) / mean
 - [max](#max)
 - [median](#median)
 - [min](#min)
 - [sum](#sum)
 
-### Dash
-- [chain](#chain)
-- [custom](#custom)
-
-### Iterable
+### Collection
 - [contains](#contains)
 - [deltas](#deltas)
 - [difference](#difference--diff) / diff
@@ -83,22 +86,15 @@ Table of contents
 - [where](#where)
 - [without](#without)
 
-### Other
-- [currify](#currify)
-- [curry](#curry)
-- [curryN](#curryn)
-- [rotate](#rotate)
-
 ### Number
 - [isEven](#iseven)
 - [isOdd](#isodd)
 
-### Callable
-- [partial](#partial)
-- [partialRight](#partialright)
+### Collection: Transform
+- [rotate](#rotate)
 
 
-Iterable: Query
+Collection: Query
 ===
 
 all / every
@@ -360,6 +356,47 @@ $call = Dash\_call($func);
 $call('morning', 'John');
 // === 'Good morning, John'
 ```
+currify
+---
+```php
+currify($callable, array $args = []): mixed
+```
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+`$args` | `array` | 
+**Returns** | `mixed` | 
+
+
+curry
+---
+```php
+curry(callable $callable /*, ...args */): mixed
+```
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+**Returns** | `mixed` | 
+
+
+curryN
+---
+```php
+curryN($callable, $totalArgs /*, ...args */): mixed
+```
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+`$totalArgs` | `numeric` | 
+**Returns** | `mixed` | 
+
+
 negate
 ---
 ```php
@@ -380,6 +417,78 @@ $isOdd = Dash\negate($isEven);
 
 $isEven(3);  // === false
 $isOdd(3);   // === true
+```
+partial
+---
+```php
+partial($callable /* , ...args */): callable
+```
+Creates a function that invokes $callable with the given set of arguments prepended to any others passed in.
+
+Use Dash\_ as a placeholder to replace with call-time arguments.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+**Returns** | `callable` | 
+
+**Example:** 
+```php
+$greet = function ($greeting, $name) {
+	return "$greeting, $name!";
+};
+$sayHello = Dash\partial($greet, 'Hello');
+$sayHowdy = Dash\partial($greet, 'Howdy');
+
+$sayHello('Mark');  // === 'Hello, Mark!'
+$sayHowdy('Jane');  // === 'Howdy, Jane!'
+
+```
+
+**Example:** With a placeholder
+```php
+$greet = function ($greeting, $salutation, $name) {
+	return "$greeting, $salutation $name!";
+};
+$greetMr = Dash\partial($greet, Dash\_, 'Mr.');
+$greetMr('Hello', 'Mark');  // === 'Hello, Mr. Mark!'
+```
+partialRight
+---
+```php
+partialRight($callable /* , ...args */): callable
+```
+Creates a function that invokes $callable with the given set of arguments appended to any others passed in.
+
+Pass Dash\_ as a placeholder to replace with call-time arguments.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+**Returns** | `callable` | 
+
+**Example:** 
+```php
+$greet = function ($greeting, $name) {
+	return "$greeting, $name!";
+};
+$greetMark = Dash\partial($greet, 'Mark');
+$greetJane = Dash\partial($greet, 'Jane');
+
+$greetMark('Hello');  // === 'Hello, Mark!'
+$greetJane('Howdy');  // === 'Howdy, Jane!'
+
+```
+
+**Example:** With a placeholder
+```php
+$greet = function ($greeting, $salutation, $name) {
+	return "$greeting, $salutation $name!";
+};
+$greetMr = Dash\partialRight($greet, 'Mr.', Dash\_);
+$greetMr('Hello', 'Mark');  // === 'Hello, Mr. Mark!'
 ```
 unary
 ---
@@ -425,6 +534,20 @@ Parameter | Type | Description
 $input = [1, 2, 3];
 assertType($input, 'object');  // will throw
 ```
+chain
+---
+```php
+chain($input = null): Dash\_
+```
+Alias for _::chain()
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$input` | `mixed` | 
+**Returns** | `Dash\_` | New chain instance
+
+
 compare
 ---
 ```php
@@ -444,6 +567,24 @@ Parameter | Type | Description
 compare(2, 3);  // === -1
 compare(2, 1);  // === +1
 compare(2, 2);  // === 0
+```
+custom
+---
+```php
+custom($name): function
+```
+Gets a custom operation by name.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$name` | `string` | Name of the custom operation
+**Returns** | `function` | The custom operation
+
+**Example:** 
+```php
+_::setCustom('double', function ($n) { return $n * 2; });
+_::chain([1, 2, 3])->map(Dash\custom('double'))->value();  // === [2, 4, 6]
 ```
 debug
 ---
@@ -658,7 +799,7 @@ $result = _::chain([1, 2, 3])
 // $result === [1, 3, 1]
 ```
 
-Statistics
+Collection: Statistics
 ===
 
 average / mean
@@ -764,43 +905,7 @@ sum([]);
 // === 0
 ```
 
-Dash
-===
-
-chain
----
-```php
-chain($input = null): Dash\_
-```
-Alias for _::chain()
-
-
-Parameter | Type | Description
---- | --- | :---
-`$input` | `mixed` | 
-**Returns** | `Dash\_` | New chain instance
-
-
-custom
----
-```php
-custom($name): function
-```
-Gets a custom operation by name.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$name` | `string` | Name of the custom operation
-**Returns** | `function` | The custom operation
-
-**Example:** 
-```php
-_::setCustom('double', function ($n) { return $n * 2; });
-_::chain([1, 2, 3])->map(Dash\custom('double'))->value();  // === [2, 4, 6]
-```
-
-Iterable
+Collection
 ===
 
 contains
@@ -1918,50 +2023,6 @@ without(['a', 'b', 'c', 'd'], ['b', 'c']);
 // === ['a', 'd']
 ```
 
-Other
-===
-
-currify
----
-```php
-currify($callable, array $args = [])
-```
-
-
-
-
-
-curry
----
-```php
-curry($callable /*, ...args */)
-```
-
-
-
-
-
-curryN
----
-```php
-curryN($callable, $totalArgs /*, ...args */)
-```
-
-
-
-
-
-rotate
----
-```php
-rotate($iterable, $count = 1)
-```
-
-
-
-
-
-
 Number
 ===
 
@@ -2008,78 +2069,20 @@ isOdd(3);  // === true
 isOdd(3.7);  // === true
 ```
 
-Callable
+Collection: Transform
 ===
 
-partial
+rotate
 ---
 ```php
-partial($callable /* , ...args */): callable
+rotate($iterable, $count = 1): array|object
 ```
-Creates a function that invokes $callable with the given set of arguments prepended to any others passed in.
-
-Use Dash\_ as a placeholder to replace with call-time arguments.
 
 
 Parameter | Type | Description
 --- | --- | :---
-`$callable` | `callable` | 
-**Returns** | `callable` | 
-
-**Example:** 
-```php
-$greet = function ($greeting, $name) {
-	return "$greeting, $name!";
-};
-$sayHello = Dash\partial($greet, 'Hello');
-$sayHowdy = Dash\partial($greet, 'Howdy');
-
-$sayHello('Mark');  // === 'Hello, Mark!'
-$sayHowdy('Jane');  // === 'Howdy, Jane!'
-
-```
-
-**Example:** With a placeholder
-```php
-$greet = function ($greeting, $salutation, $name) {
-	return "$greeting, $salutation $name!";
-};
-$greetMr = Dash\partial($greet, Dash\_, 'Mr.');
-$greetMr('Hello', 'Mark');  // === 'Hello, Mr. Mark!'
-```
-partialRight
----
-```php
-partialRight($callable /* , ...args */): callable
-```
-Creates a function that invokes $callable with the given set of arguments appended to any others passed in.
-
-Pass Dash\_ as a placeholder to replace with call-time arguments.
+`$iterable` | `iterable` | 
+`$count` | `numeric` | 
+**Returns** | `array\|object` | 
 
 
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` | 
-**Returns** | `callable` | 
-
-**Example:** 
-```php
-$greet = function ($greeting, $name) {
-	return "$greeting, $name!";
-};
-$greetMark = Dash\partial($greet, 'Mark');
-$greetJane = Dash\partial($greet, 'Jane');
-
-$greetMark('Hello');  // === 'Hello, Mark!'
-$greetJane('Howdy');  // === 'Howdy, Jane!'
-
-```
-
-**Example:** With a placeholder
-```php
-$greet = function ($greeting, $salutation, $name) {
-	return "$greeting, $salutation $name!";
-};
-$greetMr = Dash\partialRight($greet, 'Mr.', Dash\_);
-$greetMr('Hello', 'Mark');  // === 'Hello, Mr. Mark!'
-```

@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Returns a new array whose values are the differences between subsequent elements of a iterable.
  *
- * @category Iterable
+ * @category Collection
  * @param iterable $iterable
  * @return array
  *
