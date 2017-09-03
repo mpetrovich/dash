@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Gets the value of the first element in `$iterable`.
  *
- * @category Collection - Query
+ * @category Collection: Query
  * @param iterable $iterable
  * @return mixed|null Null if `$iterable` is empty
  *
