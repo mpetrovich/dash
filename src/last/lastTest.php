@@ -3,8 +3,6 @@
 /**
  * @covers Dash\last
  * @covers Dash\_last
- * @covers Dash\end
- * @covers Dash\_end
  */
 class lastTest extends PHPUnit_Framework_TestCase
 {
@@ -14,7 +12,6 @@ class lastTest extends PHPUnit_Framework_TestCase
 	public function test($iterable, $expected)
 	{
 		$this->assertEquals($expected, Dash\last($iterable));
-		$this->assertEquals($expected, Dash\end($iterable));
 	}
 
 	/**
@@ -24,9 +21,6 @@ class lastTest extends PHPUnit_Framework_TestCase
 	{
 		$last = Dash\_last();
 		$this->assertSame($expected, $last($iterable));
-
-		$end = Dash\_end();
-		$this->assertSame($expected, $end($iterable));
 	}
 
 	public function cases()
@@ -107,14 +101,6 @@ class lastTest extends PHPUnit_Framework_TestCase
 	{
 		try {
 			Dash\last($iterable);
-		}
-		catch (Exception $e) {
-			$this->assertSame("Dash\\last expects iterable but was given $type", $e->getMessage());
-			throw $e;
-		}
-
-		try {
-			Dash\end($iterable);
 		}
 		catch (Exception $e) {
 			$this->assertSame("Dash\\last expects iterable but was given $type", $e->getMessage());

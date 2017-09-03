@@ -9,8 +9,6 @@ namespace Dash;
  * @param iterable $iterable
  * @return mixed|null Null if `$iterable` is empty
  *
- * @see end
- *
  * @example
 	Dash\last(['a' => 'one', 'b' => 'two', 'c' => 'three']);
 	// === 'three'
@@ -34,22 +32,6 @@ function last($iterable)
  * @codingStandardsIgnoreStart
  */
 function _last(/* iterable */)
-{
-	return currify('Dash\last', func_get_args());
-}
-
-/**
- * @codingStandardsIgnoreStart
- */
-function end()
-{
-	return call_user_func_array('Dash\last', func_get_args());
-}
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _end(/* iterable */)
 {
 	return currify('Dash\last', func_get_args());
 }

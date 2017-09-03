@@ -7,7 +7,7 @@ Table of contents
 - [any](#any--some) / some
 - [at](#at)
 - [first](#first--head) / head
-- [last](#last--end) / end
+- [last](#last)
 
 ### Function
 - [apply](#apply)
@@ -236,7 +236,7 @@ Dash\first(['a' => 'one', 'b' => 'two', 'c' => 'three']);
 Dash\first([]);
 // === null
 ```
-last / end
+last
 ---
 ```php
 last($iterable): mixed|null
