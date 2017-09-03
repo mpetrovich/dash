@@ -3,14 +3,34 @@
 namespace Dash;
 
 /**
- * Invokes interceptor with ($iterable) and returns its result.
+ * Invokes `$interceptor` with `($value)` and returns its result.
  *
- * @category Dash
- * @param iterable $iterable
- * @param callable $interceptor Invoked with ($iterable)
- * @return iterable Result of $interceptor($iterable)
+ * @category Utility
+ * @param mixed $value
+ * @param callable $interceptor Invoked with `($value)`
+ * @return mixed Return value of `$interceptor($value)`
+ *
+ * @example
+	$result = _::chain([1, 2, 3])
+		->filter('Dash\isOdd')
+		->thru(function ($value) {
+			// $value === [1, 3]
+			$value[] = $value[0];
+			return $value;
+		})
+		->value();
+
+	// $result === [1, 3, 1]
  */
-function thru($iterable, callable $interceptor)
+function thru($value, callable $interceptor)
 {
-	return call_user_func($interceptor, $iterable);
+	return call_user_func($interceptor, $value);
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _thru(/* interceptor, value */)
+{
+	return currify('Dash\thru', func_get_args());
 }

@@ -26,6 +26,7 @@ Table of contents
 - [isType](#istype)
 - [size](#size--count) / count
 - [tap](#tap)
+- [thru](#thru)
 
 ### Statistics
 - [average](#average--mean) / mean
@@ -37,7 +38,6 @@ Table of contents
 ### Dash
 - [chain](#chain)
 - [custom](#custom)
-- [thru](#thru)
 
 ### Iterable
 - [contains](#contains)
@@ -620,13 +620,42 @@ Parameter | Type | Description
 
 **Example:** 
 ```php
-_::chain([1, 2, 3])
+$result = _::chain([1, 2, 3])
 	->filter('Dash\isOdd')
 	->tap(function ($value) {
 		// $value === [1, 3]
 		print_r($value);
 	})
 	->value();
+
+// $result === [1, 3]
+```
+thru
+---
+```php
+thru($value, callable $interceptor): mixed
+```
+Invokes `$interceptor` with `($value)` and returns its result.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `mixed` | 
+`$interceptor` | `callable` | Invoked with `($value)`
+**Returns** | `mixed` | Return value of `$interceptor($value)`
+
+**Example:** 
+```php
+$result = _::chain([1, 2, 3])
+	->filter('Dash\isOdd')
+	->thru(function ($value) {
+		// $value === [1, 3]
+		$value[] = $value[0];
+		return $value;
+	})
+	->value();
+
+// $result === [1, 3, 1]
 ```
 
 Statistics
@@ -770,21 +799,6 @@ Parameter | Type | Description
 _::setCustom('double', function ($n) { return $n * 2; });
 _::chain([1, 2, 3])->map(Dash\custom('double'))->value();  // === [2, 4, 6]
 ```
-thru
----
-```php
-thru($iterable, callable $interceptor): iterable
-```
-Invokes interceptor with ($iterable) and returns its result.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-`$interceptor` | `callable` | Invoked with ($iterable)
-**Returns** | `iterable` | Result of $interceptor($iterable)
-
-
 
 Iterable
 ===

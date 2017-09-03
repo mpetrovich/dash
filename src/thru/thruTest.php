@@ -2,34 +2,71 @@
 
 /**
  * @covers Dash\thru
+ * @covers Dash\_thru
  */
 class thruTest extends PHPUnit_Framework_TestCase
 {
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($iterable, $interceptor, $expected)
+	public function test($value)
 	{
-		$this->assertSame($expected, Dash\thru($iterable, $interceptor));
+		$passed = null;
+
+		$result = Dash\thru($value, function ($passed) use ($value) {
+			$this->assertSame($value, $passed);
+			$passed = 'changed';
+			return $passed;
+		});
+
+		$this->assertSame('changed', $result);
+	}
+
+	/**
+	 * @dataProvider cases
+	 */
+	public function testCurried($value)
+	{
+		$passed = null;
+
+		$thru = Dash\_thru(function ($passed) use ($value) {
+			$this->assertSame($value, $passed);
+			$passed = 'changed';
+			return $passed;
+		});
+
+		$this->assertSame('changed', $thru($value));
 	}
 
 	public function cases()
 	{
 		return [
-			'should return the modified collection when the interceptor returns a modifed collection' => [
-				['a' => 1, 'b' => 2],
-				function ($iterable) {
-					$iterable['c'] = 3;
-					return $iterable;
-				},
-				['a' => 1, 'b' => 2, 'c' => 3]
+			'With null' => [
+				'value' => null,
 			],
-			'should return the new collection when the interceptor returns a new collection' => [
-				['a' => 1, 'b' => 2],
-				function () {
-					return [2, 3, 5];
-				},
-				[2, 3, 5]
+			'With a number' => [
+				'value' => 3.14,
+			],
+			'With a string' => [
+				'value' => 'hello',
+			],
+			'With a DateTime' => [
+				'value' => new DateTime(),
+			],
+			'With an empty array' => [
+				'value' => [],
+			],
+			'With an indexed array' => [
+				'value' => [1, 2, 3],
+			],
+			'With an associative array' => [
+				'value' => ['a' => 1, 'b' => 2, 'c' => 3],
+			],
+			'With an stdClass' => [
+				'value' => (object) [1, 2, 3],
+			],
+			'With an ArrayObject' => [
+				'value' => new ArrayObject([1, 2, 3]),
 			],
 		];
 	}

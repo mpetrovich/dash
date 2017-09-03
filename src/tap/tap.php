@@ -13,13 +13,15 @@ namespace Dash;
  * @return mixed Original `$value`
  *
  * @example
-	_::chain([1, 2, 3])
+	$result = _::chain([1, 2, 3])
 		->filter('Dash\isOdd')
 		->tap(function ($value) {
 			// $value === [1, 3]
 			print_r($value);
 		})
 		->value();
+
+	// $result === [1, 3]
  */
 function tap($value, callable $interceptor)
 {
