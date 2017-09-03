@@ -107,8 +107,8 @@ To review
 - [ ] take
 - [ ] takeRight
 - [ ] takeWhile
-- [ ] tap
-- [ ] thru
+- [x] tap
+- [x] thru
 - [ ] toArray
 - [ ] union
 - [ ] values
