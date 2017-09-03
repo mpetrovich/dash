@@ -44,4 +44,9 @@ class currifyTest extends PHPUnit_Framework_TestCase
 		$third = $second([1, 2, 3]);
 		$this->assertSame('2017-01-01 123: 1-2-3', $third);
 	}
+
+	public function testWithRotate()
+	{
+		$this->markTestIncomplete();
+	}
 }

@@ -42,6 +42,5 @@ function apply(callable $callable, $args)
  */
 function _apply(/* callable, args */)
 {
-	$args = array_merge(['Dash\apply'], func_get_args());
-	return call_user_func_array('Dash\curry', $args);
+	return currify('Dash\apply', func_get_args(), 0);
 }

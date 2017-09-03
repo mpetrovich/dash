@@ -193,7 +193,7 @@ $call('morning', 'John');
 currify
 ---
 ```php
-currify($callable, array $args = []): mixed
+currify($callable, array $args = [], $rotate = -1): mixed
 ```
 
 
@@ -201,6 +201,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$callable` | `callable` | 
 `$args` | `array` | 
+`$rotate` | `numeric` | 
 **Returns** | `mixed` | 
 
 
