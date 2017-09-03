@@ -7,6 +7,7 @@ Table of contents
 - [any](#any--some) / some
 - [at](#at)
 - [first](#first--head) / head
+- [last](#last--end) / end
 
 ### Function
 - [apply](#apply)
@@ -60,7 +61,6 @@ Table of contents
 - [join](#join--implode) / implode
 - [keyBy](#keyby--indexby) / indexBy
 - [keys](#keys)
-- [last](#last)
 - [map](#map)
 - [mapValues](#mapvalues)
 - [matches](#matches)
@@ -234,6 +234,27 @@ Dash\first(['a' => 'one', 'b' => 'two', 'c' => 'three']);
 // === 'one'
 
 Dash\first([]);
+// === null
+```
+last / end
+---
+```php
+last($iterable): mixed|null
+```
+Gets the value of the last element in `$iterable`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable` | 
+**Returns** | `mixed\|null` | Null if `$iterable` is empty
+
+**Example:** 
+```php
+Dash\last(['a' => 'one', 'b' => 'two', 'c' => 'three']);
+// === 'three'
+
+Dash\last([]);
 // === null
 ```
 
@@ -1243,23 +1264,6 @@ Parameter | Type | Description
 ```php
 keys(['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5]);
 // === ['a', 'b', 'c', 'd']
-```
-last
----
-```php
-last($iterable): mixed
-```
-Returns the last value of $iterable.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable` | 
-**Returns** | `mixed` | 
-
-**Example:** 
-```php
-last(['a' => '1st', 'b' => '2nd', 'c' => '3rd']);  // === '3rd'
 ```
 map
 ---
