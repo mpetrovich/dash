@@ -81,7 +81,7 @@ To review
 - [ ] join
 - [ ] keyBy
 - [ ] keys
-- [ ] last
+- [x] last
 - [ ] map
 - [ ] mapValues
 - [ ] matches
