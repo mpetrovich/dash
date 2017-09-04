@@ -82,6 +82,9 @@ class _
 	 *
 	 * @param string $name Operation name
 	 * @param callable $callable Operation function
+	 * @param boolean $makeCurryable (optional) If true, a curried variant of the operation will also be added,
+	 *                               with arguments rotated by 1 so that the first argument is now last,
+	 *                               the second argument is now first, the third is now second, and so on
 	 * @return void
 	 * @throws Exception when attempting to create a custom method with the same name as a built-in Dash operation
 	 *
@@ -96,8 +99,17 @@ class _
 		});
 		_::chain([1, 2, 3])->addEach(3)->value();
 		// === [4, 5, 6]
+	 *
+	 * @example With automatic currying
+		_::setCustom('addEach', function ($iterable, $add) {
+			return _::map($iterable, function ($n) use ($add) { return $n + $add; });
+		});
+
+		$add3 = _::_addEach(3);
+		$add3([1, 2, 3]);
+		// === [4, 5, 6]
 	 */
-	public static function setCustom($name, callable $callable)
+	public static function setCustom($name, callable $callable, $makeCurryable = true)
 	{
 		if (is_callable("\\Dash\\$name")) {
 			throw new \Exception(
@@ -106,6 +118,13 @@ class _
 		}
 
 		self::$customFunctions[$name] = $callable;
+
+		if ($makeCurryable) {
+			$curried = function () use ($callable) {
+				return currify($callable, func_get_args());
+			};
+			self::$customFunctions["_$name"] = $curried;
+		}
 	}
 
 	/**
@@ -122,7 +141,7 @@ class _
 	 */
 	public static function unsetCustom($name)
 	{
-		unset(self::$customFunctions[$name]);
+		unset(self::$customFunctions[$name], self::$customFunctions["_$name"]);
 	}
 
 	/**
@@ -282,14 +301,14 @@ class _
 	/**
 	 * Custom operation functions.
 	 *
-	 * @var array
+	 * @var array of operation name => callable
 	 */
 	private static $customFunctions = [];
 
 	/**
 	 * The function operations to execute on this chain.
 	 *
-	 * @var array
+	 * @var array of callable
 	 */
 	private $operations = [];
 

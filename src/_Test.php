@@ -95,7 +95,7 @@ class _Test extends PHPUnit_Framework_TestCase
 
 		try {
 			$chain->value();
-			$this->assertFalse(true, 'This should never be called');
+			$this->assertTrue(false, 'This should never be called');
 		}
 		catch (Exception $e) {
 			$this->assertTrue(true);
@@ -138,15 +138,12 @@ class _Test extends PHPUnit_Framework_TestCase
 		_::unsetCustom('triple');
 
 		try {
-			$isStillSet = false;
 			_::triple(2);
-			$isStillSet = true;
+			$this->assertTrue(false, 'This should never be called');
 		}
 		catch (Exception $e) {
-			// Swallowed
+			$this->assertTrue(true);
 		}
-
-		$this->assertFalse($isStillSet);
 	}
 
 	/**
@@ -221,6 +218,51 @@ class _Test extends PHPUnit_Framework_TestCase
 		);
 
 		_::unsetCustom('double');
+	}
+
+	public function testCustomOperationWithAutoCurrying()
+	{
+		_::setCustom('addEach', function ($iterable, $add) {
+			return _::map($iterable, function ($n) use ($add) { return $n + $add; });
+		});
+
+		$add3 = _::_addEach(3);
+		$this->assertSame([4, 5, 6], $add3([1, 2, 3]));
+
+		_::unsetCustom('addEach');
+
+		try {
+			_::addEach([1, 2, 3], 3);
+			$this->assertTrue(false, 'This should never be called');
+		}
+		catch (Exception $e) {
+			$this->assertTrue(true);
+		}
+
+		try {
+			_::_addEach([1, 2, 3], 3);
+			$this->assertTrue(false, 'This should never be called');
+		}
+		catch (Exception $e) {
+			$this->assertTrue(true);
+		}
+	}
+
+	public function testCustomOperationWithoutAutoCurrying()
+	{
+		_::setCustom('addEach', function ($iterable, $add) {
+			return _::map($iterable, function ($n) use ($add) { return $n + $add; });
+		}, false);
+
+		try {
+			$add3 = _::_addEach(3);
+			$this->assertTrue(false, 'This should never be called');
+		}
+		catch (BadMethodCallException $e) {
+			$this->assertTrue(true);
+		}
+
+		_::unsetCustom('addEach');
 	}
 
 	/*
