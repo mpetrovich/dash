@@ -331,7 +331,7 @@ class _
 	 *
 	 * @param string $method Operation name (built-in or custom)
 	 * @return callable Callable function for `$method`
-	 * @throws \BadMethodCallException if `$method` is not callable
+	 * @throws BadMethodCallException if `$method` is not callable
 	 */
 	private static function toCallable($method)
 	{

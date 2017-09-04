@@ -29,6 +29,10 @@ namespace Dash;
  */
 function isType($value, $type)
 {
+	if (!$type) {
+		return true;
+	}
+
 	$customTypeChecks = [
 		'iterable' => function ($value) {
 			return is_array($value)

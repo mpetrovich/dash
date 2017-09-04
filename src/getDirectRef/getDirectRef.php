@@ -9,7 +9,7 @@ namespace Dash;
  * @param iterable $iterable
  * @param string $key
  * @return mixed
- * @throws \UnexpectedValueException if no value exists at $key
+ * @throws UnexpectedValueException if no value exists at $key
  *
  * @example
 	$obj = (object) ['key' => 'value'];

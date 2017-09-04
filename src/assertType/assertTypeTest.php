@@ -2,6 +2,7 @@
 
 /**
  * @covers Dash\assertType
+ * @covers Dash\_assertType
  */
 class assertTypeTest extends PHPUnit_Framework_TestCase
 {
@@ -13,9 +14,26 @@ class assertTypeTest extends PHPUnit_Framework_TestCase
 		Dash\assertType($input, $type);
 	}
 
+	/**
+	 * @dataProvider cases
+	 */
+	public function testCurried($input, $type)
+	{
+		$assertType = Dash\_assertType($type, __FUNCTION__);
+		$assertType($input);
+	}
+
 	public function cases()
 	{
 		return [
+			'With a null type' => [
+				'input' => 'hello',
+				'type' => null,
+			],
+			'With an empty string type' => [
+				'input' => 'hello',
+				'type' => '',
+			],
 			'With one type' => [
 				'input' => 'hello',
 				'type' => 'string',
@@ -28,20 +46,51 @@ class assertTypeTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @expectedException \InvalidArgumentException
-	 * @expectedExceptionMessage Dash\assertType expects string but was given integer
+	 * @dataProvider casesException
 	 */
-	public function testExceptionWithOneType()
+	public function testException($input, $type, $expected)
 	{
-		Dash\assertType(42, 'string');
+		try {
+			Dash\assertType($input, $type);
+			$this->assertTrue(false, 'This should never be called');
+		}
+		catch (InvalidArgumentException $e) {
+			$this->assertSame($expected, $e->getMessage());
+		}
+
+		try {
+			$assertType = Dash\_assertType($type, 'Dash\assertType');
+			$assertType($input);
+			$this->assertTrue(false, 'This should never be called');
+		}
+		catch (InvalidArgumentException $e) {
+			$this->assertSame($expected, $e->getMessage());
+		}
 	}
 
-	/**
-	 * @expectedException \InvalidArgumentException
-	 * @expectedExceptionMessage Dash\assertType expects null or array or object but was given double
-	 */
-	public function testExceptionWithSeveralTypes()
+	public function casesException()
 	{
-		Dash\assertType(3.14, ['null', 'array', 'object']);
+		return [
+			'With a single type and scalar input' => [
+				'input' => 42,
+				'type' => 'string',
+				'expected' => 'Dash\assertType expects string but was given integer',
+			],
+			'With a single type and DateTime input' => [
+				'input' => new DateTime(),
+				'type' => 'string',
+				'expected' => 'Dash\assertType expects string but was given DateTime',
+			],
+			'With a single type and stdClass input' => [
+				'input' => (object) [],
+				'type' => 'string',
+				'expected' => 'Dash\assertType expects string but was given stdClass',
+			],
+			'With multiple types' => [
+				'input' => 3.14,
+				'type' => ['null', 'array', 'object'],
+				'expected' => 'Dash\assertType expects null or array or object but was given double',
+			],
+		];
 	}
 }

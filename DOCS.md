@@ -1431,22 +1431,30 @@ Utility
 assertType
 ---
 ```php
-assertType($input, $type, $function = __FUNCTION__): void
+assertType($input, $type, $funcName = __FUNCTION__): void
 ```
-Throws an exception if $input's type is not $type.
+Throws an `InvalidArgumentException` exception if `$input` is not of type `$type`.
+If `$input` is an accepted type, this function is a no-op.
+
+See Dash\isType() for the available types.
 
 
 Parameter | Type | Description
 --- | --- | :---
 `$input` | `mixed` | 
-`$type` | `string\|array` | Single type or list of types
-`$function` | `string` | (optional) Name of function where assertType() was called
+`$type` | `string\|array` | Single type to check or a list of accepted types
+`$funcName` | `string` | (optional) Name of the calling function where `assertType()` was called; this is used in the thrown exception message and aids debugging
 **Returns** | `void` | 
 
 **Example:** 
 ```php
 $input = [1, 2, 3];
-assertType($input, 'object');  // will throw
+Dash\assertType($input, 'iterable');
+// Does not throw an exception
+
+$input = [1, 2, 3];
+Dash\assertType($input, 'object');
+// Throws an exception
 ```
 chain
 ---

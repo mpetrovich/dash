@@ -42,7 +42,7 @@ To review
 - [x] any
 - [x] apply
 - [x] ary
-- [ ] assertType
+- [x] assertType
 - [x] at
 - [x] average
 - [x] call
