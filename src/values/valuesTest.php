@@ -10,7 +10,7 @@ class valuesTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($input, $expected)
 	{
-		$this->assertEquals($expected, Dash\values($input));
+		$this->assertSame($expected, Dash\values($input));
 	}
 
 	public function cases()

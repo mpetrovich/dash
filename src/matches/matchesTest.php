@@ -11,7 +11,7 @@ class matchesTest extends PHPUnit_Framework_TestCase
 	public function test($properties, $value, $expected)
 	{
 		$matches = Dash\matches($properties);
-		$this->assertEquals($expected, $matches($value));
+		$this->assertSame($expected, $matches($value));
 	}
 
 	public function cases()

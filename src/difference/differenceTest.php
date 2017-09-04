@@ -12,8 +12,8 @@ class differenceTest extends PHPUnit_Framework_TestCase
 	public function test($iterables, $expected)
 	{
 		list($iterable1, $iterable2, $iterable3) = $iterables;
-		$this->assertEquals($expected, Dash\difference($iterable1, $iterable2, $iterable3));
-		$this->assertEquals($expected, Dash\diff($iterable1, $iterable2, $iterable3));
+		$this->assertSame($expected, Dash\difference($iterable1, $iterable2, $iterable3));
+		$this->assertSame($expected, Dash\diff($iterable1, $iterable2, $iterable3));
 	}
 
 	public function cases()

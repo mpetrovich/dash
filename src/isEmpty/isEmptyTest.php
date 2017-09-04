@@ -10,7 +10,7 @@ class isEmptyTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($input, $expected)
 	{
-		$this->assertEquals($expected, Dash\isEmpty($input));
+		$this->assertSame($expected, Dash\isEmpty($input));
 	}
 
 	public function cases()

@@ -10,7 +10,7 @@ class findValueTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $predicate, $expected)
 	{
-		$this->assertEquals($expected, Dash\findValue($iterable, $predicate));
+		$this->assertSame($expected, Dash\findValue($iterable, $predicate));
 	}
 
 	public function cases()

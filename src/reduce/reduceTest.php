@@ -10,7 +10,7 @@ class reduceTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($input, $iteratee, $initial, $expected)
 	{
-		$this->assertEquals($expected, Dash\reduce($input, $iteratee, $initial));
+		$this->assertSame($expected, Dash\reduce($input, $iteratee, $initial));
 	}
 
 	public function cases()

@@ -11,8 +11,8 @@ class keyByTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($input, $keyBy, $expected)
 	{
-		$this->assertEquals($expected, Dash\keyBy($input, $keyBy));
-		$this->assertEquals($expected, Dash\indexBy($input, $keyBy));
+		$this->assertSame($expected, Dash\keyBy($input, $keyBy));
+		$this->assertSame($expected, Dash\indexBy($input, $keyBy));
 	}
 
 	public function cases()

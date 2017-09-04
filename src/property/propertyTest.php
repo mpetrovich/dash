@@ -9,7 +9,7 @@ class propertyTest extends PHPUnit_Framework_TestCase
 	public function testProperty($iterable, $path, $expected)
 	{
 		$getter = Dash\property($path, 'default');
-		$this->assertEquals($expected, $getter($iterable));
+		$this->assertSame($expected, $getter($iterable));
 	}
 
 	public function casesForProperty()

@@ -11,7 +11,7 @@ class customTest extends PHPUnit_Framework_TestCase
 			return $value * 2;
 		});
 
-		$this->assertEquals(
+		$this->assertSame(
 			[2, 4, 6],
 			Dash\_::chain([1, 2, 3])->map(Dash\custom('double'))->value()
 		);

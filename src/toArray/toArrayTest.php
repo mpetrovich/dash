@@ -10,7 +10,7 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $expected)
 	{
-		$this->assertEquals($expected, Dash\toArray($iterable));
+		$this->assertSame($expected, Dash\toArray($iterable));
 	}
 
 	public function cases()

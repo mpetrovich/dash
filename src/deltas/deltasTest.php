@@ -10,7 +10,7 @@ class deltasTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $expected)
 	{
-		$this->assertEquals($expected, Dash\deltas($iterable));
+		$this->assertSame($expected, Dash\deltas($iterable));
 	}
 
 	public function cases()

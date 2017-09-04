@@ -10,7 +10,7 @@ class findTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($input, $predicate, $expected)
 	{
-		$this->assertEquals($expected, Dash\find($input, $predicate));
+		$this->assertSame($expected, Dash\find($input, $predicate));
 	}
 
 	public function cases()

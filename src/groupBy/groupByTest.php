@@ -10,7 +10,7 @@ class groupByTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($input, $groupBy, $expected)
 	{
-		$this->assertEquals($expected, Dash\groupBy($input, $groupBy));
+		$this->assertSame($expected, Dash\groupBy($input, $groupBy));
 	}
 
 	public function cases()

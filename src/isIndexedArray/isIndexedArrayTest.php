@@ -10,7 +10,7 @@ class isIndexedArrayTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($input, $expected)
 	{
-		$this->assertEquals($expected, Dash\isIndexedArray($input));
+		$this->assertSame($expected, Dash\isIndexedArray($input));
 	}
 
 	public function cases()

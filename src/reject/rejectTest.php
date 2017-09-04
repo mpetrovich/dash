@@ -10,7 +10,7 @@ class rejectTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($input, $predicate, $expected)
 	{
-		$this->assertEquals($expected, Dash\reject($input, $predicate));
+		$this->assertSame($expected, Dash\reject($input, $predicate));
 	}
 
 	public function cases()
@@ -77,12 +77,12 @@ class rejectTest extends PHPUnit_Framework_TestCase
 
 		$predicate = function ($value, $key) use ($keyValueMap, &$callCount) {
 			$callCount++;
-			$this->assertEquals($keyValueMap[$key], $value);
+			$this->assertSame($keyValueMap[$key], $value);
 		};
 
 		Dash\reject($input, $predicate);
 
-		$this->assertEquals($expectedCallCount, $callCount);
+		$this->assertSame($expectedCallCount, $callCount);
 	}
 
 	public function casesPredicate()

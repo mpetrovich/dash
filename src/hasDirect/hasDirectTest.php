@@ -10,7 +10,7 @@ class hasDirectTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($input, $key, $expected)
 	{
-		$this->assertEquals($expected, Dash\hasDirect($input, $key));
+		$this->assertSame($expected, Dash\hasDirect($input, $key));
 	}
 
 	public function cases()

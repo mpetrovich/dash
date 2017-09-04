@@ -11,7 +11,7 @@ class reverseTest extends PHPUnit_Framework_TestCase
 	public function test($iterable, $expected)
 	{
 		$actual = Dash\reverse($iterable);
-		$this->assertEquals($expected, $actual);
+		$this->assertSame($expected, $actual);
 	}
 
 	public function cases()

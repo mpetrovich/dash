@@ -10,7 +10,7 @@ class findKeyTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $predicate, $expected)
 	{
-		$this->assertEquals($expected, Dash\findKey($iterable, $predicate));
+		$this->assertSame($expected, Dash\findKey($iterable, $predicate));
 	}
 
 	public function cases()

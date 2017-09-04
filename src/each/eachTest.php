@@ -18,7 +18,7 @@ class eachTest extends PHPUnit_Framework_TestCase
 		};
 
 		Dash\each($iterable, $iteratee);
-		$this->assertEquals($expected, $iterated);
+		$this->assertSame($expected, $iterated);
 	}
 
 	public function cases()
@@ -98,6 +98,6 @@ class eachTest extends PHPUnit_Framework_TestCase
 			}
 		});
 
-		$this->assertEquals([1, 2, 3], $iterated);
+		$this->assertSame([1, 2, 3], $iterated);
 	}
 }

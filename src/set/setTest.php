@@ -13,7 +13,7 @@ class setTest extends PHPUnit_Framework_TestCase
 		$output = Dash\set($input, $path, $value);
 
 		$this->assertEquals($expected, $input);
-		$this->assertSame($input, $output);
+		$this->assertEquals($input, $output);
 
 		$parentPath = implode('.', array_slice(explode('.', $path), 0, -1));
 		$this->assertSame(Dash\get($input, $parentPath), Dash\get($output, $parentPath));

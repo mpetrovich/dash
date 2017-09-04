@@ -10,7 +10,7 @@ class filterTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($input, $predicate, $expected)
 	{
-		$this->assertEquals($expected, Dash\filter($input, $predicate));
+		$this->assertSame($expected, Dash\filter($input, $predicate));
 	}
 
 	public function cases()

@@ -13,8 +13,8 @@ class joinTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $separator, $expected)
 	{
-		$this->assertEquals($expected, Dash\join($iterable, $separator));
-		$this->assertEquals($expected, Dash\implode($iterable, $separator));
+		$this->assertSame($expected, Dash\join($iterable, $separator));
+		$this->assertSame($expected, Dash\implode($iterable, $separator));
 	}
 
 	/**

@@ -17,7 +17,7 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 		};
 
 		$actual = Dash\mapValues($iterable, $iteratee);
-		$this->assertEquals($expected, $actual);
+		$this->assertSame($expected, $actual);
 	}
 
 	public function cases()
@@ -92,7 +92,7 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 	public function testWithPath($iterable, $path, $expected)
 	{
 		$actual = Dash\mapValues($iterable, $path);
-		$this->assertEquals($expected, $actual);
+		$this->assertSame($expected, $actual);
 	}
 
 	public function casesWithPath()
@@ -135,6 +135,6 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 		$iterable = [0 => 'a', 1 => 'b', 2 => 'c'];
 		$actual = Dash\mapValues($iterable);
 		$expected = $iterable;
-		$this->assertEquals($expected, $actual);
+		$this->assertSame($expected, $actual);
 	}
 }

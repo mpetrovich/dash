@@ -10,7 +10,7 @@ class containsTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($input, $target, $comparator, $expected)
 	{
-		$this->assertEquals($expected, Dash\contains($input, $target, $comparator));
+		$this->assertSame($expected, Dash\contains($input, $target, $comparator));
 	}
 
 	public function cases()

@@ -10,7 +10,7 @@ class getDirectTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($input, $key, $default, $expected)
 	{
-		$this->assertEquals($expected, Dash\getDirect($input, $key, $default));
+		$this->assertSame($expected, Dash\getDirect($input, $key, $default));
 	}
 
 	public function cases()
@@ -89,6 +89,6 @@ class getDirectTest extends PHPUnit_Framework_TestCase
 	{
 		$callable = Dash\getDirect(new ArrayObject([1, 2, 3]), 'count');
 		$this->assertInternalType('callable', $callable);
-		$this->assertEquals(3, call_user_func($callable));
+		$this->assertSame(3, call_user_func($callable));
 	}
 }

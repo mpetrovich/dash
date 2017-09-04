@@ -82,7 +82,7 @@ class squaresTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($input, $expected)
 	{
-		$this->assertEquals($expected, Dash\squares($input));
+		$this->assertSame($expected, Dash\squares($input));
 	}
 
 	public function cases()

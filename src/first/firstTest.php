@@ -13,8 +13,8 @@ class firstTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $expected)
 	{
-		$this->assertEquals($expected, Dash\first($iterable));
-		$this->assertEquals($expected, Dash\head($iterable));
+		$this->assertSame($expected, Dash\first($iterable));
+		$this->assertSame($expected, Dash\head($iterable));
 	}
 
 	/**

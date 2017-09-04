@@ -11,7 +11,7 @@ class sortTest extends PHPUnit_Framework_TestCase
 	public function test($iterable, $expected)
 	{
 		$original = $iterable;
-		$this->assertEquals($expected, Dash\sort($iterable));
+		$this->assertSame($expected, Dash\sort($iterable));
 		$this->assertSame($original, $iterable, 'Original iterable should not be modified');
 	}
 
@@ -71,6 +71,6 @@ class sortTest extends PHPUnit_Framework_TestCase
 	public function testComparator()
 	{
 		$comparator = function ($a, $b) { return $b - $a; };
-		$this->assertEquals([4, 3, 2, 1], Dash\sort([1, 2, 3, 4], $comparator));
+		$this->assertSame([4, 3, 2, 1], Dash\sort([1, 2, 3, 4], $comparator));
 	}
 }

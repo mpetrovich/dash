@@ -10,7 +10,7 @@ class findLastTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $predicate, $expected)
 	{
-		$this->assertEquals($expected, Dash\findLast($iterable, $predicate));
+		$this->assertSame($expected, Dash\findLast($iterable, $predicate));
 	}
 
 	public function cases()

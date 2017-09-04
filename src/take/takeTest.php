@@ -10,7 +10,7 @@ class takeTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $count, $expected)
 	{
-		$this->assertEquals($expected, Dash\take($iterable, $count));
+		$this->assertSame($expected, Dash\take($iterable, $count));
 	}
 
 	public function cases()

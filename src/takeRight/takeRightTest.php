@@ -10,7 +10,7 @@ class takeRightTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $count, $expected)
 	{
-		$this->assertEquals($expected, Dash\takeRight($iterable, $count));
+		$this->assertSame($expected, Dash\takeRight($iterable, $count));
 	}
 
 	public function cases()

@@ -11,8 +11,8 @@ class intersectionTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable1, $iterable2, $iterable3, $expected)
 	{
-		$this->assertEquals($expected, Dash\intersection($iterable1, $iterable2, $iterable3));
-		$this->assertEquals($expected, Dash\intersect($iterable1, $iterable2, $iterable3));
+		$this->assertSame($expected, Dash\intersection($iterable1, $iterable2, $iterable3));
+		$this->assertSame($expected, Dash\intersect($iterable1, $iterable2, $iterable3));
 	}
 
 	public function cases()

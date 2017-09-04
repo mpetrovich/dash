@@ -10,7 +10,7 @@ class withoutTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $without, $expected)
 	{
-		$this->assertEquals($expected, Dash\without($iterable, $without));
+		$this->assertSame($expected, Dash\without($iterable, $without));
 	}
 
 	public function cases()

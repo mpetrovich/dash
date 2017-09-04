@@ -11,7 +11,7 @@ class unionTest extends PHPUnit_Framework_TestCase
 	public function test($iterable1, $iterable2, $iterable3, $expected)
 	{
 		$actual = Dash\union($iterable1, $iterable2, $iterable3);
-		$this->assertEquals($expected, $actual);
+		$this->assertSame($expected, $actual);
 	}
 
 	public function cases()

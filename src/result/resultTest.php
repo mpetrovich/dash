@@ -10,7 +10,7 @@ class resultTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($input, $path, $default, $expected)
 	{
-		$this->assertEquals($expected, Dash\result($input, $path, $default));
+		$this->assertSame($expected, Dash\result($input, $path, $default));
 	}
 
 	public function cases()

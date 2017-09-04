@@ -11,7 +11,7 @@ class rotateTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $count, $expected)
 	{
-		$this->assertEquals($expected, Dash\rotate($iterable, $count));
+		$this->assertSame($expected, Dash\rotate($iterable, $count));
 	}
 
 	/**
@@ -20,7 +20,7 @@ class rotateTest extends PHPUnit_Framework_TestCase
 	public function testCurried($iterable, $count, $expected)
 	{
 		$rotate = Dash\_rotate($count);
-		$this->assertEquals($expected, $rotate($iterable));
+		$this->assertSame($expected, $rotate($iterable));
 	}
 
 	public function cases()

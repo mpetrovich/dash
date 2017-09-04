@@ -11,7 +11,7 @@ class sumTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $expected)
 	{
-		$this->assertEquals($expected, Dash\sum($iterable));
+		$this->assertSame($expected, Dash\sum($iterable));
 	}
 
 	/**
@@ -20,7 +20,7 @@ class sumTest extends PHPUnit_Framework_TestCase
 	public function testCurried($iterable, $expected)
 	{
 		$sum = Dash\_sum();
-		$this->assertEquals($expected, $sum($iterable));
+		$this->assertSame($expected, $sum($iterable));
 	}
 
 	public function cases()

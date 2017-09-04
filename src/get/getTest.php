@@ -11,7 +11,7 @@ class getTest extends PHPUnit_Framework_TestCase
 	public function test($input, $path, $expected)
 	{
 		$actual = Dash\get($input, $path, 'default');
-		$this->assertEquals($expected, $actual);
+		$this->assertSame($expected, $actual);
 	}
 
 	public function cases()

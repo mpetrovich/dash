@@ -11,7 +11,7 @@ class lastTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $expected)
 	{
-		$this->assertEquals($expected, Dash\last($iterable));
+		$this->assertSame($expected, Dash\last($iterable));
 	}
 
 	/**
