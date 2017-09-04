@@ -57,7 +57,7 @@ To review
 - [ ] difference
 - [ ] dropWhile
 - [ ] each
-- [ ] equal
+- [x] equal
 - [ ] filter
 - [ ] find
 - [ ] findKey
@@ -69,13 +69,13 @@ To review
 - [ ] getDirectRef
 - [ ] groupBy
 - [ ] hasDirect
-- [ ] identical
+- [x] identical
 - [ ] identity
 - [ ] intersection
 - [ ] isEmpty
-- [ ] isEven
+- [x] isEven
 - [ ] isIndexedArray
-- [ ] isOdd
+- [x] isOdd
 - [ ] isType
 - [ ] join
 - [ ] keyBy
@@ -385,6 +385,7 @@ To add
 - [ ] replaceValue
 - [ ] reset
 - [ ] rest
+- [ ] rotateRight
 - [ ] rsort
 - [ ] sample
 - [ ] scan

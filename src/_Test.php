@@ -317,6 +317,16 @@ class _Test extends PHPUnit_Framework_TestCase
 		$this->assertFalse($isStillSet);
 	}
 
+	/**
+	 * @expectedException Exception
+	 * @codingStandardsIgnoreLine
+	 * @expectedExceptionMessage Cannot create a custom method named 'map'; Dash\map() already exists and cannot be overridden
+	 */
+	public function testCustomFunctionSetBuiltIn()
+	{
+		_::setCustom('map', function ($n) {});
+	}
+
 	public function testCustomFunctionWithArray()
 	{
 		_::setCustom('addEach', function ($array, $add) {

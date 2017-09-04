@@ -3,7 +3,7 @@
 namespace Dash;
 
 /**
- * Checks whether two values are strictly equal (same value and type).
+ * Checks whether `$a` and `$b` are strictly equal (same value and type).
  *
  * @category Utility
  * @param mixed $a
@@ -11,14 +11,27 @@ namespace Dash;
  * @return boolean
  *
  * @example
-	identical(3, '3');  // === false
-	identical(3, 3);    // === true
- *
- * @example
-	identical([1, 2, 3], [1, '2', 3]);  // === false
-	identical([1, 2, 3], [1, 2, 3]);    // === true
+	Dash\identical(3, '3');
+	// === false
+
+	Dash\identical(3, 3);
+	// === true
+
+	Dash\identical([1, 2, 3], [1, '2', 3]);
+	// === false
+
+	Dash\identical([1, 2, 3], [1, 2, 3]);
+	// === true
  */
 function identical($a, $b)
 {
 	return $a === $b;
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _identical(/* b, a */)
+{
+	return currify('Dash\identical', func_get_args());
 }

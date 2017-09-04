@@ -5,18 +5,34 @@ namespace Dash;
 /**
  * Checks whether a number is even.
  *
- * If a double is provided, only its integer component is evaluated.
+ * If a double is provided, only its truncated integer component is evaluated.
  *
  * @category Number
- * @param number $value
- * @return boolean
+ * @param numeric $value
+ * @return boolean True if `$value` is an even number, false otherwise
  *
  * @example
-	isEven(3);  // === false
-	isEven(4);  // === true
-	isEven(4.7);  // === true
+	Dash\isEven(3);
+	// === false
+
+	Dash\isEven(4);
+	// === true
+
+	Dash\isEven(4.9);
+	// === true
+
+	Dash\isEven('a');
+	// === false
  */
 function isEven($value)
 {
-	return $value % 2 === 0;
+	return is_numeric($value) && ($value % 2 === 0);
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _isEven(/* value */)
+{
+	return currify('Dash\isEven', func_get_args());
 }

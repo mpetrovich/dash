@@ -75,6 +75,7 @@ class _
 	 * @param string $name Operation name
 	 * @param callable $callable Operation function
 	 * @return void
+	 * @throws Exception when attempting to create a custom method with the same name as a built-in Dash operation
 	 *
 	 * @example Custom scalar operation
 		_::setCustom('triple', function($n) { return $n * 3; });
@@ -94,6 +95,12 @@ class _
 	 */
 	public static function setCustom($name, callable $callable)
 	{
+		if (is_callable("\\Dash\\$name")) {
+			throw new \Exception(
+				"Cannot create a custom method named '$name'; Dash\\$name() already exists and cannot be overridden"
+			);
+		}
+
 		self::$customFunctions[$name] = $callable;
 	}
 
@@ -262,11 +269,11 @@ class _
 	 */
 	private static function toCallable($method)
 	{
-		if (isset(self::$customFunctions[$method])) {
-			return self::$customFunctions[$method];
+		if (is_callable("\\Dash\\$method")) {
+			return "\\Dash\\$method";
 		}
-		elseif (is_callable("\\Dash\\{$method}")) {
-			return "\\Dash\\{$method}";
+		elseif (isset(self::$customFunctions[$method])) {
+			return self::$customFunctions[$method];
 		}
 		else {
 			throw new \BadMethodCallException("No callable method found for \"$method\"");

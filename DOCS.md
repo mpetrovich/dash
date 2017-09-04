@@ -1716,19 +1716,27 @@ isEven($value): boolean
 ```
 Checks whether a number is even.
 
-If a double is provided, only its integer component is evaluated.
+If a double is provided, only its truncated integer component is evaluated.
 
 
 Parameter | Type | Description
 --- | --- | :---
-`$value` | `number` | 
-**Returns** | `boolean` | 
+`$value` | `numeric` | 
+**Returns** | `boolean` | True if `$value` is an even number, false otherwise
 
 **Example:** 
 ```php
-isEven(3);  // === false
-isEven(4);  // === true
-isEven(4.7);  // === true
+Dash\isEven(3);
+// === false
+
+Dash\isEven(4);
+// === true
+
+Dash\isEven(4.9);
+// === true
+
+Dash\isEven('a');
+// === false
 ```
 isOdd
 ---
@@ -1737,19 +1745,27 @@ isOdd($value): boolean
 ```
 Checks whether a number is odd.
 
-If a double is provided, only its integer component is evaluated.
+If a double is provided, only its truncated integer component is evaluated.
 
 
 Parameter | Type | Description
 --- | --- | :---
-`$value` | `number` | 
-**Returns** | `boolean` | 
+`$value` | `numeric` | 
+**Returns** | `boolean` | True if `$value` is an odd number, false otherwise
 
 **Example:** 
 ```php
-isOdd(4);  // === false
-isOdd(3);  // === true
-isOdd(3.7);  // === true
+Dash\isOdd(3);
+// === true
+
+Dash\isOdd(4);
+// === false
+
+Dash\isOdd(5.9);
+// === true
+
+Dash\isOdd('a');
+// === false
 ```
 
 Utility
@@ -1862,7 +1878,7 @@ equal
 ```php
 equal($a, $b): boolean
 ```
-Checks whether two values are loosely equal (same value, but types can be different).
+Checks whether `$a` and `$b` are loosely equal (same value, possibly different types).
 
 
 Parameter | Type | Description
@@ -1873,22 +1889,24 @@ Parameter | Type | Description
 
 **Example:** 
 ```php
-equal(3, '3');  // === true
-equal(3, 3);    // === true
+Dash\equal(3, '3');
+// === true
 
-```
+Dash\equal(3, 3);
+// === true
 
-**Example:** 
-```php
-equal([1, 2, 3], [1, '2', 3]);  // === true
-equal([1, 2, 3], [1, 2, 3]);    // === true
+Dash\equal([1, 2, 3], [1, '2', 3]);
+// === true
+
+Dash\equal([1, 2, 3], [3, 2, 1]);
+// === false
 ```
 identical
 ---
 ```php
 identical($a, $b): boolean
 ```
-Checks whether two values are strictly equal (same value and type).
+Checks whether `$a` and `$b` are strictly equal (same value and type).
 
 
 Parameter | Type | Description
@@ -1899,15 +1917,17 @@ Parameter | Type | Description
 
 **Example:** 
 ```php
-identical(3, '3');  // === false
-identical(3, 3);    // === true
+Dash\identical(3, '3');
+// === false
 
-```
+Dash\identical(3, 3);
+// === true
 
-**Example:** 
-```php
-identical([1, 2, 3], [1, '2', 3]);  // === false
-identical([1, 2, 3], [1, 2, 3]);    // === true
+Dash\identical([1, 2, 3], [1, '2', 3]);
+// === false
+
+Dash\identical([1, 2, 3], [1, 2, 3]);
+// === true
 ```
 identity
 ---
