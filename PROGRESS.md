@@ -78,7 +78,7 @@ To review
 - [ ] isIndexedArray
 - [x] isOdd
 - [ ] isType
-- [ ] join
+- [x] join
 - [ ] keyBy
 - [ ] keys
 - [x] last

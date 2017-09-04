@@ -614,7 +614,8 @@ join / implode
 ```php
 join($iterable, $separator): string
 ```
-Concatenates all elements in $iterable to a string, each separated by $separator.
+Concatenates the string value of all elements in `$iterable`,
+with each value separated by `$separator`.
 
 
 Parameter | Type | Description
@@ -625,7 +626,11 @@ Parameter | Type | Description
 
 **Example:** 
 ```php
-join([123, 456, 789], '-');  // === '123-456-789'
+Dash\join([123, 456, 789], '-');
+// === '123-456-789'
+
+Dash\join(['a' => 1, 'b' => 2, 'c' => 3], ', ');
+// === '1, 2, 3'
 ```
 keyBy / indexBy
 ---
