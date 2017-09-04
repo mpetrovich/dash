@@ -32,4 +32,11 @@ class compareTest extends PHPUnit_Framework_TestCase
 			'$a < $b' => [2, 3, -1],
 		];
 	}
+
+	public function testExamples()
+	{
+		$this->assertLessThan(0, Dash\compare(2, 3));
+		$this->assertGreaterThan(0, Dash\compare(2, 1));
+		$this->assertSame(0, Dash\compare(2, 2));
+	}
 }

@@ -34,7 +34,7 @@ class partialTest extends PHPUnit_Framework_TestCase
 		$this->assertSame('1, 2, 3, 4, 5, 6, 7', $partial(2, 5, 6, 7));
 	}
 
-	public function testExample()
+	public function testExamples()
 	{
 		$greet = function ($greeting, $name) {
 			return "$greeting, $name!";

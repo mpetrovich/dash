@@ -64,4 +64,11 @@ class identityTest extends PHPUnit_Framework_TestCase
 			],
 		];
 	}
+
+	public function testExamples()
+	{
+		$a = new ArrayObject();
+		$b = Dash\identity($a);
+		$this->assertSame($a, $b);
+	}
 }

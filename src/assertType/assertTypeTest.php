@@ -93,4 +93,20 @@ class assertTypeTest extends PHPUnit_Framework_TestCase
 			],
 		];
 	}
+
+	public function testExamples()
+	{
+		$input = [1, 2, 3];
+		Dash\assertType($input, 'iterable');
+		// Does not throw an exception
+
+		try {
+			$input = [1, 2, 3];
+			Dash\assertType($input, 'object');
+			$this->assertTrue(false, 'This should never be called');
+		}
+		catch (InvalidArgumentException $e) {
+			$this->assertTrue(true);
+		}
+	}
 }

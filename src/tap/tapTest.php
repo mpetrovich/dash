@@ -71,7 +71,7 @@ class tapTest extends PHPUnit_Framework_TestCase
 		];
 	}
 
-	public function testExample()
+	public function testExamples()
 	{
 		ob_start();
 

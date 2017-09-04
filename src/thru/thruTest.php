@@ -71,7 +71,7 @@ class thruTest extends PHPUnit_Framework_TestCase
 		];
 	}
 
-	public function testExample()
+	public function testExamples()
 	{
 		$result = Dash\_::chain([1, 3, 4])
 			->filter('Dash\isOdd')
