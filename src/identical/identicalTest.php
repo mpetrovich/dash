@@ -26,10 +26,15 @@ class identicalTest extends PHPUnit_Framework_TestCase
 	public function cases()
 	{
 		return [
-			'With identical values' => [
+			'With identical numbers' => [
 				'a' => 3,
 				'b' => 3,
 				'expected' => true,
+			],
+			'With two equal but non-identical numbers' => [
+				'a' => 123,
+				'b' => 123.0,
+				'expected' => false,
 			],
 			'With equal but not identical string/integer values' => [
 				'a' => '3',
@@ -71,9 +76,14 @@ class identicalTest extends PHPUnit_Framework_TestCase
 				'b' => [3, 2, 1],
 				'expected' => false,
 			],
-			'With two equal but non-identical numbers' => [
-				'a' => 123,
-				'b' => 123.0,
+			'With two arrays containing identical values but different keys' => [
+				'a' => ['a' => 1, 'b' => 2, 'c' => 3],
+				'b' => ['a' => 1, 'd' => 2, 'c' => 3],
+				'expected' => false,
+			],
+			'With two arrays containing equal but not identical nested arrays' => [
+				'a' => ['a' => [1, 2], 'b' => [3, 4, 5]],
+				'b' => ['a' => [1, '2'], 'b' => [3.0, 4, 5]],
 				'expected' => false,
 			],
 		];
