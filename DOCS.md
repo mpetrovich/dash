@@ -1472,22 +1472,31 @@ Dash\chain([1, 2, 3])
 compare
 ---
 ```php
-compare($a, $b): int
+compare($a, $b): integer
 ```
-Returns -1, 0, +1 if $a is less than, equal to, or great than $b, respectively.
+Returns a number less than, equal to, or greater than zero
+if `$a` is less than, equal to, or greater than `$b`.
+
+Uses loose equality for comparison. For comparison tables across data types,
+see: http://php.net/manual/en/types.comparisons.php
 
 
 Parameter | Type | Description
 --- | --- | :---
 `$a` | `mixed` | 
 `$b` | `mixed` | 
-**Returns** | `int` | 
+**Returns** | `integer` | 
 
 **Example:** 
 ```php
-compare(2, 3);  // === -1
-compare(2, 1);  // === +1
-compare(2, 2);  // === 0
+Dash\compare(2, 3);
+// < 0
+
+Dash\compare(2, 1);
+// > 0
+
+Dash\compare(2, 2);
+// === 0
 ```
 custom
 ---

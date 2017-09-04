@@ -47,7 +47,7 @@ To review
 - [x] average
 - [x] call
 - [x] chain
-- [ ] compare
+- [x] compare
 - [ ] contains
 - [ ] currify
 - [ ] curry
@@ -152,6 +152,7 @@ To add
 - [ ] combine
 - [ ] compact
 - [ ] comparator
+- [ ] compareStrict
 - [ ] complement
 - [ ] compose
 - [ ] composeK
