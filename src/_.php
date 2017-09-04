@@ -3,45 +3,52 @@
 namespace Dash;
 
 /**
- * Placeholder parameter for partial(), partialRight(), etc.
+ * Placeholder parameter for partial(), curry(), etc.
+ * @see partial, curry
  */
 const _ = "\0\0";
 
 /**
- * Point of entry for standalone and chained operations.
+ * Used to manage and access operations.
  *
- * All operations can be accessed as static methods (eg. _::map() )
- * or as chained methods (eg. _::chain()->map() ).
+ * All operations can be accessed as standalone static methods (eg. `_::map()`)
+ * or as chained methods (eg. `_::chain()->map()`).
  *
- * @example Standalone operations
-	_::map([1, 2, 3], function($n) { return $n * 2; });  // === [2, 4, 6]
+ * @example As standalone operations
+	_::map([1, 2, 3], function ($n) { return $n * 2; });
+	// === [2, 4, 6]
  *
- * @example Chained operations
+ * @example As chained operations
 	_::chain([1, 2, 3])
-		->map(function($n) { return $n * 2; })
-		->filter(function($n) { return $n > 2; })
-		->value();  // === [4, 6]
+		->filter(function ($n) { return $n < 3; })
+		->map(function ($n) { return $n * 2; })
+		->value();
+	// === [2, 4]
  */
 class _
 {
 	/**
-	 * Creates a global function alias for _::chain().
+	 * Creates a global function alias for `_::chain()`.
 	 *
-	 * @param string $alias Name of the global function
+	 * Note: This method should only be called once per `$alias`.
+	 *
+	 * @param string $alias Name of the global function to create
 	 * @return void
+	 * @throws RuntimeException if a global function with the same name already exists
 	 *
-	 * @example Aliases _::chain() to dash()
+	 * @example Aliases `_::chain()` to `dash()`
 		_::addGlobalAlias('dash');
 
 		dash([1, 2, 3])
-			->map(function($n) { return $n * 2; })
-			->filter(function($n) { return $n > 2; })
-			->value();  // === [4, 6]
+			->filter(function ($n) { return $n < 3; })
+			->map(function ($n) { return $n * 2; })
+			->value();
+		// === [2, 4]
 	 */
 	public static function addGlobalAlias($alias = '__')
 	{
-		if (function_exists($alias) && !$alias() instanceof _) {
-			throw new \RuntimeException("$alias() already defined");
+		if (function_exists($alias)) {
+			throw new \RuntimeException("A global function $alias() already exists");
 		}
 
 		if (!function_exists($alias)) {
@@ -50,16 +57,17 @@ class _
 	}
 
 	/**
-	 * Starts a new chain.
+	 * Creates a new chain.
 	 *
-	 * @param mixed $input (optional) Initial value of the chain
-	 * @return _ A new chain
+	 * @param mixed $input (optional) Initial input value of the chain
+	 * @return Dash\_ A new chain
 	 *
 	 * @example
 		_::chain([1, 2, 3])
-			->map(function($n) { return $n * 2; })
-			->filter(function($n) { return $n > 2; })
-			->value();  // === [4, 6]
+			->filter(function ($n) { return $n < 3; })
+			->map(function ($n) { return $n * 2; })
+			->value();
+		// === [2, 4]
 	 */
 	public static function chain($input = null)
 	{
@@ -77,21 +85,17 @@ class _
 	 * @return void
 	 * @throws Exception when attempting to create a custom method with the same name as a built-in Dash operation
 	 *
-	 * @example Custom scalar operation
-		_::setCustom('triple', function($n) { return $n * 3; });
-		_::triple(4);  // === 12
+	 * @example Custom operation for numbers
+		_::setCustom('triple', function ($n) { return $n * 3; });
+		_::triple(4);
+		// === 12
 	 *
-	 * @example Custom collection operation
-		_::setCustom('addOne', function($array) {
-			return _::map($array, function($n) { return $n + 1; });
+	 * @example Custom operation for iterables
+		_::setCustom('addEach', function ($iterable, $add) {
+			return _::map($iterable, function ($n) use ($add) { return $n + $add; });
 		});
-		_::chain([1, 2, 3])->addOne()->value();  // === [2, 3, 4]
-	 *
-	 * @example Custom collection operation with parameters
-		_::setCustom('addEach', function($array, $add) {
-			return _::map($array, function($n) use ($add) { return $n + $add; });
-		});
-		_::chain([1, 2, 3])->addEach(3)->value();  // === [4, 5, 6]
+		_::chain([1, 2, 3])->addEach(3)->value();
+		// === [4, 5, 6]
 	 */
 	public static function setCustom($name, callable $callable)
 	{
@@ -107,8 +111,14 @@ class _
 	/**
 	 * Removes a custom operation.
 	 *
-	 * @param string $name Operation name
+	 * @param string $name Name of the operation that was added via `setCustom()`
 	 * @return void
+	 *
+	 * @example
+		_::setCustom('triple', function ($n) { return $n * 3; });
+		_::triple(4);  // === 12
+		_::unsetCustom('triple');
+		_::triple(4);  // Throws an exception
 	 */
 	public static function unsetCustom($name)
 	{
@@ -116,14 +126,16 @@ class _
 	}
 
 	/**
-	 * Performs an operation statically. (eg. _::map() )
+	 * Executes a standalone operation.
 	 *
 	 * @param string $method Method name
 	 * @param array $args Method arguments
-	 * @return mixed Return value of the called method
+	 * @return mixed Return value of the method
+	 * @throws BadMethodCallException if an invalid operation is called
 	 *
 	 * @example
-		_::map([1, 2, 3], function($n) { return $n * 2; });  // === [2, 4, 6]
+		_::map([1, 2, 3], function($n) { return $n * 2; });
+		// === [2, 4, 6]
 	 */
 	public static function __callStatic($method, $args)
 	{
@@ -132,23 +144,24 @@ class _
 	}
 
 	/**
-	 * Sets the initial value of a chain.
+	 * Sets the input value of a chain.
+	 *
+	 * Can be called multiple times on the same chain.
 	 *
 	 * @param mixed $input
 	 * @return _ The chain
 	 *
 	 * @example With an array
-		$chain = _::chain([1, 2, 3]);
-		$chain->value();  // === [1, 2, 3]
+		_::chain()->with([1, 2, 3])->value();
+		// === [1, 2, 3]
 	 *
-	 * @example With an object
-		$obj = (object) ['foo' => 'bar'];
-		$chain->with($obj);
-		$chain->value();  // === ['foo' => 'bar']
+	 * @example With an stdClass
+		_::chain()->with((object) ['a' => 1, 'b' => 2, 'c' => 3])->value();
+		// === (object) ['a' => 1, 'b' => 2, 'c' => 3]
 	 *
-	 * @example With a scalar
-		$chain->with(3.14);
-		$chain->value();  // === 3.14
+	 * @example With a number
+		_::chain()->with(3.14)->value();
+		// === 3.14
 	 */
 	public function with($input = null)
 	{
@@ -158,44 +171,20 @@ class _
 	}
 
 	/**
-	 * Performs an operation on the chain. (eg. _::chain()->map() )
+	 * Executes all chained operations with the latest input.
 	 *
-	 * @param string $method Method name
-	 * @param array $args Method args
-	 * @return _ The chain
-	 * @throws BadMethodCallException if $method is curried, since only non-curried methods can be chained
+	 * The result is cached, and multiple calls to value() will returned the cached value
+	 * until the input value is changed or more operations are added to the chain.
 	 *
-	 * @example
-		_::chain([1, 2, 3])
-			->map(function($n) { return $n * 2; })
-			->filter(function($n) { return $n > 2; })
-			->value();  // === [4, 6]
-	 */
-	public function __call($method, $args)
-	{
-		if (strpos($method, '_') === 0) {
-			$original = substr($method, 1);
-			throw new \BadMethodCallException(
-				"Curried method $method() cannot be called in a chain. Use the non-curried $original() instead."
-			);
-		}
-
-		$this->operations[] = $this->toOperation($method, $args);
-		$this->output = null;
-		return $this;
-	}
-
-	/**
-	 * Executes all chained operations and returns the result.
-	 *
-	 * The result is cached so that multiple calls to value() on the same chain
-	 * won't execute the operations more than once.
-	 *
-	 * @return mixed
+	 * @return mixed The result of all chained operations on the input
 	 *
 	 * @example
-		$chain = _::chain([1, 2, 3]);
-		$chain->value();  // === [1, 2, 3]
+		$chain = _::chain([1, 2, 3])->map(function ($n) { return $n * 2; });
+		// map() is not called yet
+
+		$chain->value();
+		// Only now is map() called
+		// === [2, 4, 6]
 	 */
 	public function value()
 	{
@@ -207,10 +196,16 @@ class _
 	}
 
 	/**
-	 * Alias for value().
+	 * Alias for value(). Useful for chains whose output is not needed.
 	 *
 	 * @see value()
 	 * @return mixed
+	 *
+	 * @example
+		_::chain([1, 2, 3])
+			->each(function ($n) { echo $n; })
+			->run();
+		// Prints: 123
 	 */
 	public function run()
 	{
@@ -218,13 +213,65 @@ class _
 	}
 
 	/**
-	 * Returns a new copy of this chain.
+	 * Returns a new, independent copy of this chain.
+	 *
+	 * Future changes to this copy will not affect this original chain.
+	 * This method is the same as cloning the chain.
 	 *
 	 * @return _
+	 *
+	 * @example
+		$original = _::chain()->map(function ($n) { return $n * 2; });
+
+		$original->with([1, 2, 3]);
+		$original->value();
+		// === [2, 4, 6]
+
+		$copy = $original->copy();
+		$copy->map(function ($n) { return $n + 1; });
+
+		$copy->with([4, 5, 6]);
+		$copy->value();
+		// === [9, 11, 13]
+
+		$original->with([1, 2, 3]);
+		$original->value();
+		// === [2, 4, 6]
 	 */
 	public function copy()
 	{
 		return clone $this;
+	}
+
+	/**
+	 * Executes a chained operation on this chain.
+	 *
+	 * @param string $method Method name
+	 * @param array $args Method args
+	 * @return _ The chain
+	 * @throws BadMethodCallException if `$method` is curried, because only uncurried methods can be chained
+	 *
+	 * @example
+		_::chain([1, 2, 3])
+			->filter(function($n) { return $n < 3; })
+			->map(function($n) { return $n * 2; })
+			->value();
+		// === [2, 4]
+	 */
+	public function __call($method, $args)
+	{
+		$isCurried = (strpos($method, '_') === 0);
+
+		if ($isCurried) {
+			$original = substr($method, 1);
+			throw new \BadMethodCallException(
+				"Curried method $method() cannot be called in a chain; use the uncurried $original() method instead"
+			);
+		}
+
+		$this->operations[] = $this->toOperation($method, $args);
+		$this->output = null;
+		return $this;
 	}
 
 	/*
@@ -233,39 +280,39 @@ class _
 	 */
 
 	/**
-	 * Custom function operations.
+	 * Custom operation functions.
 	 *
 	 * @var array
 	 */
 	private static $customFunctions = [];
 
 	/**
-	 * The function operations to perform.
+	 * The function operations to execute on this chain.
 	 *
 	 * @var array
 	 */
 	private $operations = [];
 
 	/**
-	 * The input value of the chain.
+	 * The current input value of this chain.
 	 *
 	 * @var mixed
 	 */
 	private $input = null;
 
 	/**
-	 * The output value of the chain.
+	 * The cached output value (if any) of this chain.
 	 *
 	 * @var mixed
 	 */
 	private $output = null;
 
 	/**
-	 * Returns a callable for the given Dash operation.
+	 * Returns a callable function for the specified operation.
 	 *
-	 * @param string $method Dash function name
-	 * @return callable Callable for $method
-	 * @throws \BadMethodCallException if $method is not callable
+	 * @param string $method Operation name (built-in or custom)
+	 * @return callable Callable function for `$method`
+	 * @throws \BadMethodCallException if `$method` is not callable
 	 */
 	private static function toCallable($method)
 	{
@@ -276,14 +323,14 @@ class _
 			return self::$customFunctions[$method];
 		}
 		else {
-			throw new \BadMethodCallException("No callable method found for \"$method\"");
+			throw new \BadMethodCallException("No operation named '$method' found");
 		}
 	}
 
 	/**
 	 * Constructs a new chain.
 	 *
-	 * @param mixed $input (optional) Initial value of the chain
+	 * @param mixed $input (optional) Input value of the chain
 	 * @return void
 	 */
 	private function __construct($input = null)
@@ -292,11 +339,11 @@ class _
 	}
 
 	/**
-	 * Wraps a method to be called with the given arguments.
+	 * Creates a new callable function that will invoke `$method` with `$args`.
 	 *
 	 * @param string $method Method name
 	 * @param array $args Method arguments
-	 * @return callable Closure that will invoke $method with $args when called
+	 * @return callable Callable function that will invoke `$method` with `$args` when called
 	 */
 	private function toOperation($method, $args)
 	{
@@ -311,10 +358,10 @@ class _
 	}
 
 	/**
-	 * Executes all chained operations.
+	 * Gets the result of all chained operations using `$input` as the initial input value.
 	 *
 	 * @param mixed $input
-	 * @return array|scalar Normalized result of all operations on the given initial value
+	 * @return array|scalar Result of all operations on `$input`
 	 */
 	private function getOutput($input)
 	{
