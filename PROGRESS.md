@@ -46,7 +46,7 @@ To review
 - [x] at
 - [x] average
 - [x] call
-- [ ] chain
+- [x] chain
 - [ ] compare
 - [ ] contains
 - [ ] currify

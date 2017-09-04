@@ -1453,15 +1453,22 @@ chain
 ```php
 chain($input = null): Dash\_
 ```
-Alias for _::chain()
+Creates a new chain. Alias for `_::chain()`.
 
 
 Parameter | Type | Description
 --- | --- | :---
-`$input` | `mixed` | 
-**Returns** | `Dash\_` | New chain instance
+`$input` | `mixed` | (optional) Initial input value of the chain
+**Returns** | `Dash\_` | A new chain
 
-
+**Example:** 
+```php
+Dash\chain([1, 2, 3])
+	->filter(function ($n) { return $n < 3; })
+	->map(function ($n) { return $n * 2; })
+	->value();
+// === [2, 4]
+```
 compare
 ---
 ```php
