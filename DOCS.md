@@ -1940,12 +1940,13 @@ Returns the first argument it receives.
 Parameter | Type | Description
 --- | --- | :---
 `$value` | `mixed` | 
-**Returns** | `mixed` | $value itself
+**Returns** | `mixed` | `$value` unmodified
 
 **Example:** 
 ```php
 $a = new ArrayObject();
-identity($a);  // === $a
+$b = Dash\identity($a);
+// $b === $a
 ```
 isEmpty
 ---

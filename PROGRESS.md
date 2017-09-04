@@ -37,6 +37,7 @@ Requirements
 
 To review
 ---
+- [ ] _
 - [x] all
 - [x] any
 - [x] apply
@@ -70,7 +71,7 @@ To review
 - [ ] groupBy
 - [ ] hasDirect
 - [x] identical
-- [ ] identity
+- [x] identity
 - [ ] intersection
 - [ ] isEmpty
 - [x] isEven

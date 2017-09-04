@@ -7,13 +7,22 @@ namespace Dash;
  *
  * @category Utility
  * @param mixed $value
- * @return mixed $value itself
+ * @return mixed `$value` unmodified
  *
  * @example
 	$a = new ArrayObject();
-	identity($a);  // === $a
+	$b = Dash\identity($a);
+	// $b === $a
  */
 function identity($value)
 {
 	return $value;
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _identity(/* value */)
+{
+	return currify('Dash\identity', func_get_args());
 }
