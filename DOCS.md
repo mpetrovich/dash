@@ -2,7 +2,7 @@ Operations
 ===
 Is there an operation you'd like to see? [Open an issue](https://github.com/mpetrovich/Dash/issues/new?labels=enhancement) or vote on an existing one.
 
-Iterable | Utility | Callable | Number
+[Iterable](#iterable) | [Utility](#utility) | [Callable](#callable) | [Number](#number)
 :--- | :--- | :--- | :---
 [all](#all--every) / every | [assertType](#asserttype) | [apply](#apply) | [isEven](#iseven)
 [any](#any--some) / some | [chain](#chain) | [ary](#ary) | [isOdd](#isodd)

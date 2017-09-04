@@ -255,8 +255,21 @@ function renderTableOfContents($categories)
 			$lines = [];
 
 			// Table header
-			$lines[] = _::chain($categories)->keys()->join(' | ')->value();
-			$lines[] = _::chain($categories)->map(function () { return ':---'; })->join(' | ')->value();
+			$lines[] = _::chain($categories)
+				->keys()
+				->map(function ($name) {
+					$slug = strtolower($name);
+					return "[$name](#$slug)";
+				})
+				->join(' | ')
+				->value();
+
+			$lines[] = _::chain($categories)
+				->map(function () {
+					return ':---';
+				})
+				->join(' | ')
+				->value();
 
 			while (true) {
 				$isAllEmpty = true;
