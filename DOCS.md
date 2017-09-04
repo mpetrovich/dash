@@ -668,7 +668,7 @@ keys
 ```php
 keys($iterable): array
 ```
-Gets the keys of an iterable as an array.
+Gets the keys of `$iterable` as an array.
 
 
 Parameter | Type | Description
@@ -678,8 +678,8 @@ Parameter | Type | Description
 
 **Example:** 
 ```php
-keys(['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5]);
-// === ['a', 'b', 'c', 'd']
+Dash\keys(['c' => 3, 'a' => 1, 'b' => 2]);
+// === ['c', 'a', 'b']
 ```
 last
 ---

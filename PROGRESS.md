@@ -80,7 +80,7 @@ To review
 - [ ] isType
 - [x] join
 - [ ] keyBy
-- [ ] keys
+- [x] keys
 - [x] last
 - [ ] map
 - [ ] mapValues
