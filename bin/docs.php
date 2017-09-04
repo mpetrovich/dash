@@ -19,7 +19,9 @@ function buildDocs($sourceDir, $destFilepath)
 		->map('createDoc')
 		->groupBy('category', 'Other')
 		->thru(function ($categories) {
-			ksort($categories);
+			uasort($categories, function ($categoryA, $categoryB) {
+				return count($categoryB) - count($categoryA);
+			});
 			return $categories;
 		})
 		->each(function ($docs) { return _::sort($docs, _::property('name')); })
@@ -248,37 +250,53 @@ END;
 
 function renderTableOfContents($categories)
 {
-	$list = _::chain($categories)
-		->map(function ($ops, $category) {
-			$opsList = _::chain($ops)
-				->map(function ($op) {
-					$aliases = implode(' / ', $op->aliases);
-					$aliases = $op->aliases ? " / $aliases" : '';
+	$table = _::chain($categories)
+		->thru(function ($categories) {
+			$lines = [];
 
-					$slug = _::chain(array_merge([$op->name], $op->aliases))
-						->map(Dash\ary('strtolower', 1))
-						->join('--')
-						->value();
+			// Table header
+			$lines[] = _::chain($categories)->keys()->join(' | ')->value();
+			$lines[] = _::chain($categories)->map(function () { return ':---'; })->join(' | ')->value();
 
-					return "- [{$op->name}](#{$slug})$aliases";
-				})
-				->join("\n")
-				->value();
+			while (true) {
+				$isAllEmpty = true;
+				$columns = [];
 
-			return <<<END
-### $category
-$opsList
+				foreach ($categories as $category => &$ops) {
+					if ($ops) {
+						$op = array_shift($ops);
+						$aliases = implode(' / ', $op->aliases);
+						$aliases = $op->aliases ? " / $aliases" : '';
+						$slug = _::chain(array_merge([$op->name], $op->aliases))
+							->map(Dash\ary('strtolower', 1))
+							->join('--')
+							->value();
 
-END;
+						$columns[] = "[{$op->name}](#{$slug})$aliases";
+						$isAllEmpty = false;
+					}
+					else {
+						$columns[] = '';
+					}
+				}
+
+				if ($isAllEmpty || !$columns) {
+					break;
+				}
+
+				$lines[] = implode(' | ', $columns);
+			}
+
+			return $lines;
 		})
 		->join("\n")
 		->value();
 
 	return <<<END
-Is there an operation you'd like to see? [Open an issue](https://github.com/mpetrovich/Dash/issues/new?labels=enhancement) and get others to vote on it!
-
-Table of contents
+Operations
 ===
-$list
+Is there an operation you'd like to see? [Open an issue](https://github.com/mpetrovich/Dash/issues/new?labels=enhancement) or vote on an existing one.
+
+$table
 END;
 }

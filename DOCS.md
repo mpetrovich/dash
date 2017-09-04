@@ -1,342 +1,61 @@
-Is there an operation you'd like to see? [Open an issue](https://github.com/mpetrovich/Dash/issues/new?labels=enhancement) and get others to vote on it!
-
-Table of contents
+Operations
 ===
-### Callable
-- [apply](#apply)
-- [ary](#ary)
-- [call](#call)
-- [currify](#currify)
-- [curry](#curry)
-- [curryN](#curryn)
-- [negate](#negate)
-- [partial](#partial)
-- [partialRight](#partialright)
-- [unary](#unary)
+Is there an operation you'd like to see? [Open an issue](https://github.com/mpetrovich/Dash/issues/new?labels=enhancement) or vote on an existing one.
 
-### Iterable
-- [all](#all--every) / every
-- [any](#any--some) / some
-- [at](#at)
-- [average](#average--mean) / mean
-- [contains](#contains)
-- [deltas](#deltas)
-- [difference](#difference--diff) / diff
-- [dropWhile](#dropwhile)
-- [each](#each)
-- [filter](#filter)
-- [find](#find)
-- [findKey](#findkey)
-- [findLast](#findlast)
-- [findValue](#findvalue)
-- [first](#first--head) / head
-- [get](#get)
-- [getDirect](#getdirect)
-- [getDirectRef](#getdirectref)
-- [groupBy](#groupby)
-- [hasDirect](#hasdirect)
-- [intersection](#intersection--intersect) / intersect
-- [isIndexedArray](#isindexedarray)
-- [join](#join--implode) / implode
-- [keyBy](#keyby--indexby) / indexBy
-- [keys](#keys)
-- [last](#last)
-- [map](#map)
-- [mapValues](#mapvalues)
-- [matches](#matches)
-- [matchesProperty](#matchesproperty)
-- [max](#max)
-- [median](#median)
-- [min](#min)
-- [pick](#pick)
-- [pluck](#pluck)
-- [property](#property)
-- [reduce](#reduce)
-- [reject](#reject)
-- [result](#result)
-- [reverse](#reverse)
-- [rotate](#rotate)
-- [set](#set)
-- [sort](#sort)
-- [sum](#sum)
-- [take](#take)
-- [takeRight](#takeright)
-- [takeWhile](#takewhile)
-- [toArray](#toarray)
-- [union](#union)
-- [values](#values)
-- [where](#where)
-- [without](#without)
-
-### Number
-- [isEven](#iseven)
-- [isOdd](#isodd)
-
-### Utility
-- [assertType](#asserttype)
-- [chain](#chain)
-- [compare](#compare)
-- [custom](#custom)
-- [debug](#debug)
-- [equal](#equal)
-- [identical](#identical)
-- [identity](#identity)
-- [isEmpty](#isempty)
-- [isType](#istype)
-- [size](#size--count) / count
-- [tap](#tap)
-- [thru](#thru)
-
-
-Callable
-===
-
-apply
----
-```php
-apply(callable $callable, $args): mixed
-```
-Invokes `$callable` with a list of arguments.
-
-Note: Contrary to other curried methods, the curried version of this method
-accepts arguments in the same order as the original method.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` | 
-`$args` | `iterable` | Arguments to pass to `$callable`
-**Returns** | `mixed` | Return value of `$callable`
-
-**Example:** 
-```php
-$func = function ($time, $name) {
-	return "Good $time, $name";
-};
-
-Dash\apply($func, ['morning', 'John']);
-// === 'Good morning, John'
-
-```
-
-**Example:** Curried version accepts arguments in the same order
-```php
-$func = function ($time, $name) {
-	return "Good $time, $name";
-};
-
-$apply = Dash\_apply($func);
-
-$apply(['morning', 'John']);
-// === 'Good morning, John'
-```
-ary
----
-```php
-ary(callable $callable, $arity): callable
-```
-Creates a new function that invokes `$callable` with up to `$arity` arguments and ignores the rest.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` | 
-`$arity` | `integer` | Maximum number of arguments to accept
-**Returns** | `callable` | New function
-
-**Example:** 
-```php
-$isNumeric = Dash\ary('is_numeric', 1);
-
-Dash\filter([1, 2.0, '3', 'a'], $isNumeric);
-// === [1, 2.0, '3']
-```
-call
----
-```php
-call(callable $callable /* , ...args */): mixed
-```
-Invokes `$callable` with an inline list of arguments.
-
-Note: No curried function exists for this operation.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` | 
-`...$args` | `mixed` | Inline arguments to pass to `$callable`
-**Returns** | `mixed` | Return value of `$callable`
-
-**Example:** 
-```php
-$func = function ($time, $name) {
-	return "Good $time, $name";
-};
-
-Dash\call($func, 'morning', 'John');
-// === 'Good morning, John'
-```
-currify
----
-```php
-currify($callable, array $args = [], $rotate = -1): mixed
-```
-
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` | 
-`$args` | `array` | 
-`$rotate` | `numeric` | 
-**Returns** | `mixed` | 
-
-
-curry
----
-```php
-curry(callable $callable /*, ...args */): mixed
-```
-
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` | 
-**Returns** | `mixed` | 
-
-
-curryN
----
-```php
-curryN($callable, $totalArgs /*, ...args */): mixed
-```
-
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` | 
-`$totalArgs` | `numeric` | 
-**Returns** | `mixed` | 
-
-
-negate
----
-```php
-negate(callable $predicate): callable
-```
-Creates a new function that negates the return value of `$predicate`.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$predicate` | `callable` | 
-**Returns** | `callable` | New function
-
-**Example:** 
-```php
-$isEven = function ($n) { return $n % 2 === 0; };
-$isOdd = Dash\negate($isEven);
-
-$isEven(3);  // === false
-$isOdd(3);   // === true
-```
-partial
----
-```php
-partial($callable /* , ...args */): callable
-```
-Creates a function that invokes $callable with the given set of arguments prepended to any others passed in.
-
-Use Dash\_ as a placeholder to replace with call-time arguments.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` | 
-**Returns** | `callable` | 
-
-**Example:** 
-```php
-$greet = function ($greeting, $name) {
-	return "$greeting, $name!";
-};
-$sayHello = Dash\partial($greet, 'Hello');
-$sayHowdy = Dash\partial($greet, 'Howdy');
-
-$sayHello('Mark');  // === 'Hello, Mark!'
-$sayHowdy('Jane');  // === 'Howdy, Jane!'
-
-```
-
-**Example:** With a placeholder
-```php
-$greet = function ($greeting, $name) {
-	return "$greeting, $name!";
-};
-$greetMark = Dash\partial($greet, Dash\_, 'Mark');
-$greetJane = Dash\partial($greet, Dash\_, 'Jane');
-
-$greetMark('Hello');  // === 'Hello, Mark!'
-$greetJane('Howdy');  // === 'Howdy, Jane!'
-```
-partialRight
----
-```php
-partialRight($callable /* , ...args */): callable
-```
-Creates a function that invokes $callable with the given set of arguments appended to any others passed in.
-
-Pass Dash\_ as a placeholder to replace with call-time arguments.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` | 
-**Returns** | `callable` | 
-
-**Example:** 
-```php
-$greet = function ($greeting, $name) {
-	return "$greeting, $name!";
-};
-$greetMark = Dash\partialRight($greet, 'Mark');
-$greetJane = Dash\partialRight($greet, 'Jane');
-
-$this->assertSame('Hello, Mark!', $greetMark('Hello'));
-$this->assertSame('Howdy, Jane!', $greetJane('Howdy'));
-
-```
-
-**Example:** With a placeholder
-```php
-$greet = function ($greeting, $name) {
-	return "$greeting, $name!";
-};
-$sayHello = Dash\partialRight($greet, 'Hello', Dash\_);
-$sayHowdy = Dash\partialRight($greet, 'Howdy', Dash\_);
-
-$this->assertSame('Hello, Mark!', $sayHello('Mark'));
-$this->assertSame('Howdy, Jane!', $sayHowdy('Jane'));
-```
-unary
----
-```php
-unary(callable $callable): callable
-```
-Creates a new function that invokes `$callable` with a single argument and ignores the rest.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` | 
-**Returns** | `callable` | New function
-
-**Example:** 
-```php
-$isNumeric = Dash\unary('is_numeric');
-
-Dash\filter([1, 2.0, '3', 'a'], $isNumeric);
-// === [1, 2.0, '3']
-```
+Iterable | Utility | Callable | Number
+:--- | :--- | :--- | :---
+[all](#all--every) / every | [assertType](#asserttype) | [apply](#apply) | [isEven](#iseven)
+[any](#any--some) / some | [chain](#chain) | [ary](#ary) | [isOdd](#isodd)
+[at](#at) | [compare](#compare) | [call](#call) | 
+[average](#average--mean) / mean | [custom](#custom) | [currify](#currify) | 
+[contains](#contains) | [debug](#debug) | [curry](#curry) | 
+[deltas](#deltas) | [equal](#equal) | [curryN](#curryn) | 
+[difference](#difference--diff) / diff | [identical](#identical) | [negate](#negate) | 
+[dropWhile](#dropwhile) | [identity](#identity) | [partial](#partial) | 
+[each](#each) | [isEmpty](#isempty) | [partialRight](#partialright) | 
+[filter](#filter) | [isType](#istype) | [unary](#unary) | 
+[find](#find) | [size](#size--count) / count |  | 
+[findKey](#findkey) | [tap](#tap) |  | 
+[findLast](#findlast) | [thru](#thru) |  | 
+[findValue](#findvalue) |  |  | 
+[first](#first--head) / head |  |  | 
+[get](#get) |  |  | 
+[getDirect](#getdirect) |  |  | 
+[getDirectRef](#getdirectref) |  |  | 
+[groupBy](#groupby) |  |  | 
+[hasDirect](#hasdirect) |  |  | 
+[intersection](#intersection--intersect) / intersect |  |  | 
+[isIndexedArray](#isindexedarray) |  |  | 
+[join](#join--implode) / implode |  |  | 
+[keyBy](#keyby--indexby) / indexBy |  |  | 
+[keys](#keys) |  |  | 
+[last](#last) |  |  | 
+[map](#map) |  |  | 
+[mapValues](#mapvalues) |  |  | 
+[matches](#matches) |  |  | 
+[matchesProperty](#matchesproperty) |  |  | 
+[max](#max) |  |  | 
+[median](#median) |  |  | 
+[min](#min) |  |  | 
+[pick](#pick) |  |  | 
+[pluck](#pluck) |  |  | 
+[property](#property) |  |  | 
+[reduce](#reduce) |  |  | 
+[reject](#reject) |  |  | 
+[result](#result) |  |  | 
+[reverse](#reverse) |  |  | 
+[rotate](#rotate) |  |  | 
+[set](#set) |  |  | 
+[sort](#sort) |  |  | 
+[sum](#sum) |  |  | 
+[take](#take) |  |  | 
+[takeRight](#takeright) |  |  | 
+[takeWhile](#takewhile) |  |  | 
+[toArray](#toarray) |  |  | 
+[union](#union) |  |  | 
+[values](#values) |  |  | 
+[where](#where) |  |  | 
+[without](#without) |  |  | 
 
 Iterable
 ===
@@ -1706,68 +1425,6 @@ without(['a', 'b', 'c', 'd'], ['b', 'c']);
 // === ['a', 'd']
 ```
 
-Number
-===
-
-isEven
----
-```php
-isEven($value): boolean
-```
-Checks whether a number is even.
-
-If a double is provided, only its truncated integer component is evaluated.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$value` | `numeric` | 
-**Returns** | `boolean` | True if `$value` is an even number, false otherwise
-
-**Example:** 
-```php
-Dash\isEven(3);
-// === false
-
-Dash\isEven(4);
-// === true
-
-Dash\isEven(4.9);
-// === true
-
-Dash\isEven('a');
-// === false
-```
-isOdd
----
-```php
-isOdd($value): boolean
-```
-Checks whether a number is odd.
-
-If a double is provided, only its truncated integer component is evaluated.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$value` | `numeric` | 
-**Returns** | `boolean` | True if `$value` is an odd number, false otherwise
-
-**Example:** 
-```php
-Dash\isOdd(3);
-// === true
-
-Dash\isOdd(4);
-// === false
-
-Dash\isOdd(5.9);
-// === true
-
-Dash\isOdd('a');
-// === false
-```
-
 Utility
 ===
 
@@ -2081,4 +1738,316 @@ $result = _::chain([1, 3, 4])
 	->value();
 
 // $result === [1, 3, 1]
+```
+
+Callable
+===
+
+apply
+---
+```php
+apply(callable $callable, $args): mixed
+```
+Invokes `$callable` with a list of arguments.
+
+Note: Contrary to other curried methods, the curried version of this method
+accepts arguments in the same order as the original method.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+`$args` | `iterable` | Arguments to pass to `$callable`
+**Returns** | `mixed` | Return value of `$callable`
+
+**Example:** 
+```php
+$func = function ($time, $name) {
+	return "Good $time, $name";
+};
+
+Dash\apply($func, ['morning', 'John']);
+// === 'Good morning, John'
+
+```
+
+**Example:** Curried version accepts arguments in the same order
+```php
+$func = function ($time, $name) {
+	return "Good $time, $name";
+};
+
+$apply = Dash\_apply($func);
+
+$apply(['morning', 'John']);
+// === 'Good morning, John'
+```
+ary
+---
+```php
+ary(callable $callable, $arity): callable
+```
+Creates a new function that invokes `$callable` with up to `$arity` arguments and ignores the rest.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+`$arity` | `integer` | Maximum number of arguments to accept
+**Returns** | `callable` | New function
+
+**Example:** 
+```php
+$isNumeric = Dash\ary('is_numeric', 1);
+
+Dash\filter([1, 2.0, '3', 'a'], $isNumeric);
+// === [1, 2.0, '3']
+```
+call
+---
+```php
+call(callable $callable /* , ...args */): mixed
+```
+Invokes `$callable` with an inline list of arguments.
+
+Note: No curried function exists for this operation.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+`...$args` | `mixed` | Inline arguments to pass to `$callable`
+**Returns** | `mixed` | Return value of `$callable`
+
+**Example:** 
+```php
+$func = function ($time, $name) {
+	return "Good $time, $name";
+};
+
+Dash\call($func, 'morning', 'John');
+// === 'Good morning, John'
+```
+currify
+---
+```php
+currify($callable, array $args = [], $rotate = -1): mixed
+```
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+`$args` | `array` | 
+`$rotate` | `numeric` | 
+**Returns** | `mixed` | 
+
+
+curry
+---
+```php
+curry(callable $callable /*, ...args */): mixed
+```
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+**Returns** | `mixed` | 
+
+
+curryN
+---
+```php
+curryN($callable, $totalArgs /*, ...args */): mixed
+```
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+`$totalArgs` | `numeric` | 
+**Returns** | `mixed` | 
+
+
+negate
+---
+```php
+negate(callable $predicate): callable
+```
+Creates a new function that negates the return value of `$predicate`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$predicate` | `callable` | 
+**Returns** | `callable` | New function
+
+**Example:** 
+```php
+$isEven = function ($n) { return $n % 2 === 0; };
+$isOdd = Dash\negate($isEven);
+
+$isEven(3);  // === false
+$isOdd(3);   // === true
+```
+partial
+---
+```php
+partial($callable /* , ...args */): callable
+```
+Creates a function that invokes $callable with the given set of arguments prepended to any others passed in.
+
+Use Dash\_ as a placeholder to replace with call-time arguments.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+**Returns** | `callable` | 
+
+**Example:** 
+```php
+$greet = function ($greeting, $name) {
+	return "$greeting, $name!";
+};
+$sayHello = Dash\partial($greet, 'Hello');
+$sayHowdy = Dash\partial($greet, 'Howdy');
+
+$sayHello('Mark');  // === 'Hello, Mark!'
+$sayHowdy('Jane');  // === 'Howdy, Jane!'
+
+```
+
+**Example:** With a placeholder
+```php
+$greet = function ($greeting, $name) {
+	return "$greeting, $name!";
+};
+$greetMark = Dash\partial($greet, Dash\_, 'Mark');
+$greetJane = Dash\partial($greet, Dash\_, 'Jane');
+
+$greetMark('Hello');  // === 'Hello, Mark!'
+$greetJane('Howdy');  // === 'Howdy, Jane!'
+```
+partialRight
+---
+```php
+partialRight($callable /* , ...args */): callable
+```
+Creates a function that invokes $callable with the given set of arguments appended to any others passed in.
+
+Pass Dash\_ as a placeholder to replace with call-time arguments.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+**Returns** | `callable` | 
+
+**Example:** 
+```php
+$greet = function ($greeting, $name) {
+	return "$greeting, $name!";
+};
+$greetMark = Dash\partialRight($greet, 'Mark');
+$greetJane = Dash\partialRight($greet, 'Jane');
+
+$this->assertSame('Hello, Mark!', $greetMark('Hello'));
+$this->assertSame('Howdy, Jane!', $greetJane('Howdy'));
+
+```
+
+**Example:** With a placeholder
+```php
+$greet = function ($greeting, $name) {
+	return "$greeting, $name!";
+};
+$sayHello = Dash\partialRight($greet, 'Hello', Dash\_);
+$sayHowdy = Dash\partialRight($greet, 'Howdy', Dash\_);
+
+$this->assertSame('Hello, Mark!', $sayHello('Mark'));
+$this->assertSame('Howdy, Jane!', $sayHowdy('Jane'));
+```
+unary
+---
+```php
+unary(callable $callable): callable
+```
+Creates a new function that invokes `$callable` with a single argument and ignores the rest.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+**Returns** | `callable` | New function
+
+**Example:** 
+```php
+$isNumeric = Dash\unary('is_numeric');
+
+Dash\filter([1, 2.0, '3', 'a'], $isNumeric);
+// === [1, 2.0, '3']
+```
+
+Number
+===
+
+isEven
+---
+```php
+isEven($value): boolean
+```
+Checks whether a number is even.
+
+If a double is provided, only its truncated integer component is evaluated.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `numeric` | 
+**Returns** | `boolean` | True if `$value` is an even number, false otherwise
+
+**Example:** 
+```php
+Dash\isEven(3);
+// === false
+
+Dash\isEven(4);
+// === true
+
+Dash\isEven(4.9);
+// === true
+
+Dash\isEven('a');
+// === false
+```
+isOdd
+---
+```php
+isOdd($value): boolean
+```
+Checks whether a number is odd.
+
+If a double is provided, only its truncated integer component is evaluated.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `numeric` | 
+**Returns** | `boolean` | True if `$value` is an odd number, false otherwise
+
+**Example:** 
+```php
+Dash\isOdd(3);
+// === true
+
+Dash\isOdd(4);
+// === false
+
+Dash\isOdd(5.9);
+// === true
+
+Dash\isOdd('a');
+// === false
 ```
