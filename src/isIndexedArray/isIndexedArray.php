@@ -3,22 +3,36 @@
 namespace Dash;
 
 /**
- * Returns whether $input is an array with sequential integer keys that start at 0.
+ * Checks whether `$value` is an array with sequential integer keys starting at 0.
  *
  * @category Iterable
- * @param mixed $input
- * @return boolean
+ * @param mixed $value
+ * @return boolean True if `$value` is an indexed array, false otherwise
  *
  * @example
-	isIndexedArray([1, 2, 3]);             // === true
-	isIndexedArray(['a' => 1, 'b' => 2]);  // === false
+	Dash\isIndexedArray(['a', 'b', 'c']);
+	// === true
+
+	Dash\isIndexedArray([1 => 'a', 'b', 'c']);
+	// === false
+
+	Dash\isIndexedArray(['a' => 1, 'b' => 2]);
+	// === false
  */
-function isIndexedArray($input)
+function isIndexedArray($value)
 {
-	if (!is_array($input)) {
+	if (!is_array($value)) {
 		return false;
 	}
 
-	$keys = array_keys($input);
+	$keys = array_keys($value);
 	return array_keys($keys) === $keys;
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _isIndexedArray(/* value */)
+{
+	return currify('Dash\isIndexedArray', func_get_args());
 }

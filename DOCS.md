@@ -594,20 +594,26 @@ intersection(
 isIndexedArray
 ---
 ```php
-isIndexedArray($input): boolean
+isIndexedArray($value): boolean
 ```
-Returns whether $input is an array with sequential integer keys that start at 0.
+Checks whether `$value` is an array with sequential integer keys starting at 0.
 
 
 Parameter | Type | Description
 --- | --- | :---
-`$input` | `mixed` | 
-**Returns** | `boolean` | 
+`$value` | `mixed` | 
+**Returns** | `boolean` | True if `$value` is an indexed array, false otherwise
 
 **Example:** 
 ```php
-isIndexedArray([1, 2, 3]);             // === true
-isIndexedArray(['a' => 1, 'b' => 2]);  // === false
+Dash\isIndexedArray(['a', 'b', 'c']);
+// === true
+
+Dash\isIndexedArray([1 => 'a', 'b', 'c']);
+// === false
+
+Dash\isIndexedArray(['a' => 1, 'b' => 2]);
+// === false
 ```
 join / implode
 ---

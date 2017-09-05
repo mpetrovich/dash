@@ -75,7 +75,7 @@ To review
 - [ ] intersection
 - [ ] isEmpty
 - [x] isEven
-- [ ] isIndexedArray
+- [x] isIndexedArray
 - [x] isOdd
 - [x] isType
 - [x] join
