@@ -109,7 +109,7 @@ class averageTest extends PHPUnit_Framework_TestCase
 			Dash\average($iterable);
 		}
 		catch (Exception $e) {
-			$this->assertSame("Dash\\average expects iterable but was given $type", $e->getMessage());
+			$this->assertSame("Dash\\average expects iterable or stdClass but was given $type", $e->getMessage());
 			throw $e;
 		}
 
@@ -117,7 +117,7 @@ class averageTest extends PHPUnit_Framework_TestCase
 			Dash\mean($iterable);
 		}
 		catch (Exception $e) {
-			$this->assertSame("Dash\\average expects iterable but was given $type", $e->getMessage());
+			$this->assertSame("Dash\\average expects iterable or stdClass but was given $type", $e->getMessage());
 			throw $e;
 		}
 	}

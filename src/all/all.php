@@ -11,7 +11,7 @@ namespace Dash;
  * @link https://en.wikipedia.org/wiki/Vacuous_truth
  *
  * @category Iterable
- * @param iterable $iterable
+ * @param iterable|stdClass $iterable
  * @param callable $predicate (optional) Invoked with `($value, $key, $iterable)` for each element in `$iterable`
  * @return boolean true if `$predicate` returns truthy for every item in `$iterable`
  *
@@ -39,7 +39,7 @@ namespace Dash;
  */
 function all($iterable, $predicate = 'Dash\identity')
 {
-	assertType($iterable, 'iterable', __FUNCTION__);
+	assertType($iterable, ['iterable', 'stdClass'], __FUNCTION__);
 
 	return !any($iterable, negate($predicate));
 }

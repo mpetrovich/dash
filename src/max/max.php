@@ -6,7 +6,7 @@ namespace Dash;
  * Gets the maximum value of all elements in `$iterable`.
  *
  * @category Iterable
- * @param iterable $iterable
+ * @param iterable|stdClass $iterable
  * @return mixed|null Null if `$iterable` is empty
  *
  * @example
@@ -18,7 +18,7 @@ namespace Dash;
  */
 function max($iterable)
 {
-	assertType($iterable, 'iterable', __FUNCTION__);
+	assertType($iterable, ['iterable', 'stdClass'], __FUNCTION__);
 
 	if (size($iterable) === 0) {
 		return null;

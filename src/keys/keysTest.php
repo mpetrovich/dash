@@ -103,7 +103,7 @@ class keysTest extends PHPUnit_Framework_TestCase
 			Dash\keys($iterable);
 		}
 		catch (Exception $e) {
-			$this->assertSame("Dash\\keys expects iterable but was given $type", $e->getMessage());
+			$this->assertSame("Dash\\keys expects iterable or stdClass but was given $type", $e->getMessage());
 			throw $e;
 		}
 	}

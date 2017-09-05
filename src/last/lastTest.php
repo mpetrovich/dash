@@ -103,7 +103,7 @@ class lastTest extends PHPUnit_Framework_TestCase
 			Dash\last($iterable);
 		}
 		catch (Exception $e) {
-			$this->assertSame("Dash\\last expects iterable but was given $type", $e->getMessage());
+			$this->assertSame("Dash\\last expects iterable or stdClass but was given $type", $e->getMessage());
 			throw $e;
 		}
 	}

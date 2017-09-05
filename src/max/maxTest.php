@@ -111,7 +111,7 @@ class maxTest extends PHPUnit_Framework_TestCase
 			Dash\max($iterable);
 		}
 		catch (Exception $e) {
-			$this->assertSame("Dash\\max expects iterable but was given $type", $e->getMessage());
+			$this->assertSame("Dash\\max expects iterable or stdClass but was given $type", $e->getMessage());
 			throw $e;
 		}
 	}

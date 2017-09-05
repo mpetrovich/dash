@@ -6,14 +6,10 @@ namespace Dash;
  * Checks whether a value is of a particular data type.
  *
  * A types can be:
- * 1. a native data type: `string`, `array`, `integer`, etc.
- * 2. a type corresponding to a native `is_*()` function: `numeric` (for `is_numeric()`),
- *    `callable` (for `is_callable()`), etc.
- * 3. a class name: `DateTime`, `Dash\_`, etc.
- * 4. a custom type (see below)
- *
- * Custom types:
- * - `iterable`: Like `is_iterable()` but also returns true for `stdClass` objects
+ * - a native data type: `string`, `array`, `integer`, etc.
+ * - a type corresponding to a native `is_*()` function:
+ *   `numeric` (for `is_numeric()`), `callable` (for `is_callable()`), etc.
+ * - a class name: `stdClass`, `DateTime`, `Dash\_`, etc.
  *
  * @category Utility
  * @param mixed $value
@@ -32,12 +28,9 @@ namespace Dash;
 	Dash\isType(new ArrayObject([1, 2, 3]), 'ArrayObject');
 	// === true
  *
- * @example With a custom `iterable` type
-	Dash\isType((object) [1, 2, 3], 'iterable');
+ * @example With multiple types
+	Dash\isType((object) [1, 2, 3], ['array', 'object']);
 	// === true
-
-	Dash\isType((object) [1, 2, 3], 'iterable');
-	// === false
  */
 function isType($value, $type)
 {
@@ -48,11 +41,9 @@ function isType($value, $type)
 	$types = (array) $type;
 
 	foreach ($types as $type) {
-		if ($type === 'iterable') {
-			// Custom type
-			$isType = is_array($value)
-				|| $value instanceof \Traversable
-				|| $value instanceof \stdClass;
+		if ($type === 'iterable' && !function_exists("is_$type")) {
+			// Polyfills is_iterable() since it's only in PHP 7.1+
+			$isType = is_array($value) || $value instanceof \Traversable;
 		}
 		elseif (function_exists("is_$type")) {
 			// is_*() function type

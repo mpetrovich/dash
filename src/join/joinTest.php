@@ -125,7 +125,7 @@ class joinTest extends PHPUnit_Framework_TestCase
 			Dash\join($iterable, ', ');
 		}
 		catch (Exception $e) {
-			$this->assertSame("Dash\\join expects iterable but was given $type", $e->getMessage());
+			$this->assertSame("Dash\\join expects iterable or stdClass but was given $type", $e->getMessage());
 			throw $e;
 		}
 	}

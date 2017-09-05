@@ -8,7 +8,7 @@ namespace Dash;
  * Iterable keys are preseved.
  *
  * @category Iterable
- * @param iterable $iterables,...
+ * @param iterable|stdClass $iterables,...
  * @return array
  *
  * @example

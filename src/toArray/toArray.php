@@ -6,7 +6,7 @@ namespace Dash;
  * Returns an array representation of $iterable.
  *
  * @category Iterable
- * @param iterable $iterable
+ * @param iterable|stdClass $iterable
  * @return array
  *
  * @example

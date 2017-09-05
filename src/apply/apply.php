@@ -10,7 +10,7 @@ namespace Dash;
  *
  * @category Callable
  * @param callable $callable
- * @param iterable $args Arguments to pass to `$callable`
+ * @param iterable|stdClass $args Arguments to pass to `$callable`
  * @return mixed Return value of `$callable`
  *
  * @example
@@ -33,7 +33,7 @@ namespace Dash;
  */
 function apply(callable $callable, $args)
 {
-	assertType($args, 'iterable', __FUNCTION__);
+	assertType($args, ['iterable', 'stdClass'], __FUNCTION__);
 	return call_user_func_array($callable, values($args));
 }
 

@@ -109,7 +109,7 @@ class firstTest extends PHPUnit_Framework_TestCase
 			Dash\first($iterable);
 		}
 		catch (Exception $e) {
-			$this->assertSame("Dash\\first expects iterable but was given $type", $e->getMessage());
+			$this->assertSame("Dash\\first expects iterable or stdClass but was given $type", $e->getMessage());
 			throw $e;
 		}
 
@@ -117,7 +117,7 @@ class firstTest extends PHPUnit_Framework_TestCase
 			Dash\head($iterable);
 		}
 		catch (Exception $e) {
-			$this->assertSame("Dash\\first expects iterable but was given $type", $e->getMessage());
+			$this->assertSame("Dash\\first expects iterable or stdClass but was given $type", $e->getMessage());
 			throw $e;
 		}
 	}

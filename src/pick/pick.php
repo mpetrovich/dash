@@ -6,7 +6,7 @@ namespace Dash;
  * Returns a subset of $iterable with the specified keys.
  *
  * @category Iterable
- * @param iterable $iterable
+ * @param iterable|stdClass $iterable
  * @param string|array $keys
  * @return array|object array if $iterable is array-like, object if $iterable is object-like
  *
@@ -16,7 +16,7 @@ namespace Dash;
  */
 function pick($iterable, $keys)
 {
-	assertType($iterable, 'iterable', __FUNCTION__);
+	assertType($iterable, ['iterable', 'stdClass'], __FUNCTION__);
 
 	$keys = (array) $keys;
 	$picked = filter($iterable, function ($value, $key) use ($keys) {

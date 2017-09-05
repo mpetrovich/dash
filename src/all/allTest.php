@@ -220,7 +220,7 @@ class allTest extends PHPUnit_Framework_TestCase
 			Dash\all($iterable);
 		}
 		catch (Exception $e) {
-			$this->assertSame("Dash\\all expects iterable but was given $type", $e->getMessage());
+			$this->assertSame("Dash\\all expects iterable or stdClass but was given $type", $e->getMessage());
 			throw $e;
 		}
 
@@ -228,7 +228,7 @@ class allTest extends PHPUnit_Framework_TestCase
 			Dash\every($iterable);
 		}
 		catch (Exception $e) {
-			$this->assertSame("Dash\\all expects iterable but was given $type", $e->getMessage());
+			$this->assertSame("Dash\\all expects iterable or stdClass but was given $type", $e->getMessage());
 			throw $e;
 		}
 	}

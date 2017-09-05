@@ -6,7 +6,7 @@ namespace Dash;
  * Gets the keys of `$iterable` as an array.
  *
  * @category Iterable
- * @param iterable $iterable
+ * @param iterable|stdClass $iterable
  * @return array
  *
  * @example
@@ -15,7 +15,7 @@ namespace Dash;
  */
 function keys($iterable)
 {
-	assertType($iterable, 'iterable', __FUNCTION__);
+	assertType($iterable, ['iterable', 'stdClass'], __FUNCTION__);
 
 	return map($iterable, function ($value, $key) {
 		return $key;

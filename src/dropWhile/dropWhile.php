@@ -7,13 +7,13 @@ namespace Dash;
  * Elements are dropped until $predicate returns falsey.
  *
  * @category Iterable
- * @param iterable $iterable
+ * @param iterable|stdClass $iterable
  * @param callable $predicate Invoked with ($value, $key, $iterable)
  * @return array
  */
 function dropWhile($iterable, $predicate = 'Dash\identity')
 {
-	assertType($iterable, 'iterable', __FUNCTION__);
+	assertType($iterable, ['iterable', 'stdClass'], __FUNCTION__);
 
 	$keys = [];
 	$done = false;

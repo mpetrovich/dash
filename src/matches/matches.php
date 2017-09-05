@@ -7,7 +7,7 @@ namespace Dash;
  * all key-value pairs in $properties, using loose equality for value comparison.
  *
  * @category Iterable
- * @param iterable $properties Key-value pairs that the returned function will match its input against
+ * @param iterable|stdClass $properties Key-value pairs that the returned function will match its input against
  * @return callable with signature (iterable $iterable)
  *
  * @example

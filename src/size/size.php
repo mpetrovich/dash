@@ -22,7 +22,7 @@ function size($input, $encoding = 'UTF-8')
 	if (is_array($input) || $input instanceof Countable) {
 		$size = \count($input);
 	}
-	elseif (isType($input, 'iterable')) {
+	elseif (isType($input, ['iterable', 'stdClass'])) {
 		$size = 0;
 		foreach ($input as $value) {
 			$size++;

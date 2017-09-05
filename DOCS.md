@@ -73,7 +73,7 @@ Note: Returns true if `$iterable` is empty, because everything is true of empty 
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 `$predicate` | `callable` | (optional) Invoked with `($value, $key, $iterable)` for each element in `$iterable`
 **Returns** | `boolean` | true if `$predicate` returns truthy for every item in `$iterable`
 
@@ -113,7 +113,7 @@ Iteration will stop at the first truthy return value.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 `$predicate` | `callable` | (optional) Invoked with `($value, $key, $iterable)` for each element in `$iterable`
 **Returns** | `boolean` | true if `$predicate` returns truthy for any item in `$iterable`
 
@@ -151,7 +151,7 @@ Iterates over `$iterable` and returns the value of the `$index`th element, ignor
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 `$index` | `numeric` | 0-based index
 `$default` | `mixed` | (optional) Value to return if `$index` is out of bounds
 **Returns** | `mixed` | Value of the `$index`th item of `$iterable, ignoring keys
@@ -184,7 +184,7 @@ Gets the average value of all elements in `$iterable`.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 **Returns** | `double\|null` | Null if `$iterable` is empty
 
 **Example:** 
@@ -202,7 +202,7 @@ Checks whether $iterable has any elements for which $comparator returns truthy.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 `$target` | `mixed` | Value to compare $iterable elements against
 `$comparator` | `callable` | Invoked with ($target, $value) for each value in $iterable
 **Returns** | `boolean` | true if $comparator returns truthy for any elements in $iterable
@@ -227,7 +227,7 @@ Returns a new array whose values are the differences between subsequent elements
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 **Returns** | `array` | 
 
 **Example:** 
@@ -244,8 +244,8 @@ Returns a subset of items from the first iterable that are not present in any of
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | Iterable to compare against
-`$iterables,...` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | Iterable to compare against
+`$iterables,...` | `iterable\|stdClass` | 
 **Returns** | `array` | 
 
 **Example:** 
@@ -267,7 +267,7 @@ Elements are dropped until $predicate returns falsey.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 `$predicate` | `callable` | Invoked with ($value, $key, $iterable)
 **Returns** | `array` | 
 
@@ -284,7 +284,7 @@ Any changes to the value, key, or collection from within the iteratee function a
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 `$iteratee` | `callable` | Invoked with ($value, $key, $iterable) for each element in $iterable. If $iteratee returns false, iteration will end and subsequent elements will be skipped.
 **Returns** | `mixed` | $iterable
 
@@ -302,7 +302,7 @@ Returns a subset of $iterable for which $predicate is truthy. Keys are preserved
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 `$predicate` | `callable` | Callable invoked with ($value, $key, $iterable) for each item in $iterable
 **Returns** | `array` | 
 
@@ -335,7 +335,7 @@ Returns the key & value of the first element for which $predicate returns truthy
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 `$predicate` | `callable\|mixed` | Value to compare against, or callable invoked with ($value, $key, $iterable)
 **Returns** | `array\|null` | [$key, $value] of the matching key/index and value, or null if not found
 
@@ -355,7 +355,7 @@ Returns the key of the first element for which $predicate returns truthy.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 `$predicate` | `callable\|mixed` | Value to compare against, or callable invoked with ($value, $key, $iterable)
 **Returns** | `string\|integer\|null` | Key of the matching element, or null if not found
 
@@ -375,7 +375,7 @@ Returns the key & value of the last element for which $predicate returns truthy.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 `$predicate` | `callable\|mixed` | Value to compare against, or callable invoked with ($value, $key, $iterable)
 **Returns** | `array\|null` | [$key, $value] of the matching key/index and value, or null if not found
 
@@ -395,7 +395,7 @@ Returns the value of the first element for which $predicate returns truthy.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 `$predicate` | `callable\|mixed` | Value to compare against, or callable invoked with ($value, $key, $iterable)
 **Returns** | `string\|integer\|null` | Value of the matching element, or null if not found
 
@@ -415,7 +415,7 @@ Gets the value of the first element in `$iterable`.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 **Returns** | `mixed\|null` | Null if `$iterable` is empty
 
 **Example:** 
@@ -480,7 +480,7 @@ Gets the value or callable at the given key of an iterable.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 `$key` | `string` | 
 `$default` | `mixed` | Value to return if no value at $key exists
 **Returns** | `mixed` | 
@@ -505,7 +505,7 @@ Like getDirect(), but returns a reference to the value at the given key of an it
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 `$key` | `string` | 
 **Returns** | `mixed` | 
 
@@ -526,7 +526,7 @@ Groups elements by the common values generated by an iteratee.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 `$iteratee` | `callable` | (optional) Invoked with ($element) for each element of $iterable
 `$defaultGroup` | `string` | (optional) Elements with null $iteratee return values will be in this group
 **Returns** | `array` | map of key => grouped elements
@@ -580,8 +580,8 @@ Iterable keys are preseved.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | Iterable to compare against
-`$iterables,...` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | Iterable to compare against
+`$iterables,...` | `iterable\|stdClass` | 
 **Returns** | `array` | 
 
 **Example:** 
@@ -620,7 +620,7 @@ with each value separated by `$separator`.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 `$separator` | `string` | 
 **Returns** | `string` | 
 
@@ -642,7 +642,7 @@ Keys elements by the common values generated by an iteratee.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 `$iteratee` | `callable` | (optional) Invoked with ($element) for each element of $iterable
 **Returns** | `array` | map of key => grouped elements
 
@@ -673,7 +673,7 @@ Gets the keys of `$iterable` as an array.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 **Returns** | `array` | 
 
 **Example:** 
@@ -691,7 +691,7 @@ Gets the value of the last element in `$iterable`.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 **Returns** | `mixed\|null` | Null if `$iterable` is empty
 
 **Example:** 
@@ -793,7 +793,7 @@ all key-value pairs in $properties, using loose equality for value comparison.
 
 Parameter | Type | Description
 --- | --- | :---
-`$properties` | `iterable` | Key-value pairs that the returned function will match its input against
+`$properties` | `iterable\|stdClass` | Key-value pairs that the returned function will match its input against
 **Returns** | `callable` | with signature (iterable $iterable)
 
 **Example:** 
@@ -833,7 +833,7 @@ Gets the maximum value of all elements in `$iterable`.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 **Returns** | `mixed\|null` | Null if `$iterable` is empty
 
 **Example:** 
@@ -854,7 +854,7 @@ Returns the median value of an iterable.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 **Returns** | `mixed\|null` | Null if `$iterable` is empty
 
 **Example:** 
@@ -875,7 +875,7 @@ Gets the minimum value of all elements in `$iterable`.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 **Returns** | `mixed\|null` | Null if `$iterable` is empty
 
 **Example:** 
@@ -896,7 +896,7 @@ Returns a subset of $iterable with the specified keys.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 `$keys` | `string\|array` | 
 **Returns** | `array\|object` | array if $iterable is array-like, object if $iterable is object-like
 
@@ -990,7 +990,7 @@ Iteratively reduces $iterable to a single value by way of $iteratee.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 `$iteratee` | `callable` | Invoked with ($result, $value, $key) for each ($key, $value) in $iterable and the current $result. $iteratee should return the updated $result
 `$initial` | `mixed` | (optional) Initial value
 **Returns** | `mixed` | 
@@ -1012,7 +1012,7 @@ Returns a subset of $iterable for which $predicate is falsey. Keys are preserved
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 `$predicate` | `callable` | Callable invoked with ($value, $key, $iterable) for each item in $iterable
 **Returns** | `array` | 
 
@@ -1104,7 +1104,7 @@ Returns a new array with elements in reverse order. Non-integer keys are preserv
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 **Returns** | `array` | 
 
 **Example:** 
@@ -1128,7 +1128,7 @@ rotate($iterable, $count = 1): array|object
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 `$count` | `numeric` | 
 **Returns** | `array\|object` | 
 
@@ -1201,7 +1201,7 @@ Returns a new array containing the sorted values of $iterable. Keys are preserve
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 `$comparator` | `callable` | 
 **Returns** | `array` | 
 
@@ -1220,7 +1220,7 @@ Gets the sum of all element values in `$iterable`.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 **Returns** | `numeric` | Zero if `$iterable` is empty
 
 **Example:** 
@@ -1241,7 +1241,7 @@ Returns a new array of the first $count elements of $iterable. Non-integer keys 
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 `$count` | `integer` | If negative, all except the last $count elements will be returned
 **Returns** | `array` | 
 
@@ -1274,7 +1274,7 @@ Returns a new array of the last $count elements of $iterable. Non-integer keys a
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 `$count` | `integer` | If negative, all except the first $count elements will be returned
 **Returns** | `array` | 
 
@@ -1307,7 +1307,7 @@ Returns a subset of $iterable taken from the beginning until $predicate returns 
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 `$predicate` | `callable` | Invoked with ($value, $key)
 **Returns** | `array\|object` | Array for array-like $iterable, object for object-like $iterable
 
@@ -1333,7 +1333,7 @@ Returns an array representation of $iterable.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 **Returns** | `array` | 
 
 **Example:** 
@@ -1353,7 +1353,7 @@ Iterable keys are preseved.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterables,...` | `iterable` | 
+`$iterables,...` | `iterable\|stdClass` | 
 **Returns** | `array` | 
 
 **Example:** 
@@ -1373,7 +1373,7 @@ Gets the values of an iterable as an array.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 **Returns** | `array` | 
 
 **Example:** 
@@ -1391,8 +1391,8 @@ Returns all elements of $iterable containing key-value pairs that loosely equal 
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
-`$properties` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
+`$properties` | `iterable\|stdClass` | 
 **Returns** | `array` | 
 
 **Example:** 
@@ -1420,7 +1420,7 @@ Returns a new array of $iterable that excludes all values in $exclude, using loo
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable` | 
+`$iterable` | `iterable\|stdClass` | 
 `$exclude` | `array` | Values to exclude
 **Returns** | `array` | Subset of $iterable
 
@@ -1454,7 +1454,7 @@ Parameter | Type | Description
 **Example:** 
 ```php
 $value = [1, 2, 3];
-Dash\assertType($value, 'iterable');
+Dash\assertType($value, ['iterable', 'stdClass']);
 // Does not throw an exception
 
 $value = [1, 2, 3];
@@ -1664,14 +1664,10 @@ isType($value, $type): boolean
 Checks whether a value is of a particular data type.
 
 A types can be:
-1. a native data type: `string`, `array`, `integer`, etc.
-2. a type corresponding to a native `is_*()` function: `numeric` (for `is_numeric()`),
-`callable` (for `is_callable()`), etc.
-3. a class name: `DateTime`, `Dash\_`, etc.
-4. a custom type (see below)
-
-Custom types:
-- `iterable`: Like `is_iterable()` but also returns true for `stdClass` objects
+- a native data type: `string`, `array`, `integer`, etc.
+- a type corresponding to a native `is_*()` function:
+`numeric` (for `is_numeric()`), `callable` (for `is_callable()`), etc.
+- a class name: `stdClass`, `DateTime`, `Dash\_`, etc.
 
 
 Parameter | Type | Description
@@ -1701,13 +1697,10 @@ Dash\isType(new ArrayObject([1, 2, 3]), 'ArrayObject');
 
 ```
 
-**Example:** With a custom `iterable` type
+**Example:** With multiple types
 ```php
-Dash\isType((object) [1, 2, 3], 'iterable');
+Dash\isType((object) [1, 2, 3], ['array', 'object']);
 // === true
-
-Dash\isType((object) [1, 2, 3], 'iterable');
-// === false
 ```
 size / count
 ---
@@ -1801,7 +1794,7 @@ accepts arguments in the same order as the original method.
 Parameter | Type | Description
 --- | --- | :---
 `$callable` | `callable` | 
-`$args` | `iterable` | Arguments to pass to `$callable`
+`$args` | `iterable\|stdClass` | Arguments to pass to `$callable`
 **Returns** | `mixed` | Return value of `$callable`
 
 **Example:** 

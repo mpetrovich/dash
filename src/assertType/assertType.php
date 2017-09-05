@@ -18,7 +18,7 @@ namespace Dash;
  *
  * @example
 	$value = [1, 2, 3];
-	Dash\assertType($value, 'iterable');
+	Dash\assertType($value, ['iterable', 'stdClass']);
 	// Does not throw an exception
 
 	$value = [1, 2, 3];

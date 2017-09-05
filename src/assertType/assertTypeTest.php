@@ -97,7 +97,7 @@ class assertTypeTest extends PHPUnit_Framework_TestCase
 	public function testExamples()
 	{
 		$value = [1, 2, 3];
-		Dash\assertType($value, 'iterable');
+		Dash\assertType($value, ['iterable', 'stdClass']);
 		// Does not throw an exception
 
 		try {

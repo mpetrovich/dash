@@ -4,13 +4,13 @@ namespace Dash;
 
 /**
  * @category Iterable
- * @param iterable $iterable
+ * @param iterable|stdClass $iterable
  * @param numeric $count
  * @return array|object
  */
 function rotate($iterable, $count = 1)
 {
-	assertType($iterable, 'iterable', __FUNCTION__);
+	assertType($iterable, ['iterable', 'stdClass'], __FUNCTION__);
 
 	$size = size($iterable);
 

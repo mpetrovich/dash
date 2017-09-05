@@ -99,7 +99,7 @@ class isTest extends PHPUnit_Framework_TestCase
 			[
 				'value' => (object) [1, 2, 3],
 				'type' => 'iterable',
-				'expected' => true,
+				'expected' => false,
 			],
 			[
 				'value' => new ArrayObject([1, 2, 3]),
@@ -182,6 +182,11 @@ class isTest extends PHPUnit_Framework_TestCase
 			[
 				'value' => (object) [1, 2, 3],
 				'type' => ['array', 'iterable'],
+				'expected' => false,
+			],
+			[
+				'value' => (object) [1, 2, 3],
+				'type' => ['stdClass', 'iterable'],
 				'expected' => true,
 			],
 			[
@@ -202,6 +207,6 @@ class isTest extends PHPUnit_Framework_TestCase
 		$this->assertSame(true, Dash\isType([1, 2, 3], 'array'));
 		$this->assertSame(true, Dash\isType(3.14, 'numeric'));
 		$this->assertSame(true, Dash\isType(new ArrayObject([1, 2, 3]), 'ArrayObject'));
-		$this->assertSame(true, Dash\isType((object) [1, 2, 3], 'iterable'));
+		$this->assertSame(true, Dash\isType((object) [1, 2, 3], ['array', 'object']));
 	}
 }

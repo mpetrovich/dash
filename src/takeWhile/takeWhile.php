@@ -6,7 +6,7 @@ namespace Dash;
  * Returns a subset of $iterable taken from the beginning until $predicate returns falsey.
  *
  * @category Iterable
- * @param iterable $iterable
+ * @param iterable|stdClass $iterable
  * @param callable $predicate Invoked with ($value, $key)
  * @return array|object Array for array-like $iterable, object for object-like $iterable
  *
@@ -20,7 +20,7 @@ namespace Dash;
  */
 function takeWhile($iterable, $predicate = 'Dash\identity')
 {
-	assertType($iterable, 'iterable', __FUNCTION__);
+	assertType($iterable, ['iterable', 'stdClass'], __FUNCTION__);
 
 	$keys = [];
 

@@ -6,7 +6,7 @@ namespace Dash;
  * Iterates over `$iterable` and returns the value of the `$index`th element, ignoring keys.
  *
  * @category Iterable
- * @param iterable $iterable
+ * @param iterable|stdClass $iterable
  * @param numeric $index 0-based index
  * @param mixed $default (optional) Value to return if `$index` is out of bounds
  * @return mixed Value of the `$index`th item of `$iterable, ignoring keys
@@ -27,7 +27,7 @@ namespace Dash;
  */
 function at($iterable, $index, $default = null)
 {
-	assertType($iterable, 'iterable', __FUNCTION__);
+	assertType($iterable, ['iterable', 'stdClass'], __FUNCTION__);
 	assertType($index, 'numeric', __FUNCTION__);
 
 	$values = values($iterable);

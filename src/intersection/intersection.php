@@ -8,8 +8,8 @@ namespace Dash;
  * Iterable keys are preseved.
  *
  * @category Iterable
- * @param iterable $iterable Iterable to compare against
- * @param iterable $iterables,...
+ * @param iterable|stdClass $iterable Iterable to compare against
+ * @param iterable|stdClass $iterables,...
  * @return array
  *
  * @see intersect

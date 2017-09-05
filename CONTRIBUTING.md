@@ -47,7 +47,7 @@ namespace Dash;
  * Returns an array with the squared values of $iterable.
  *
  * @category Iterable
- * @param iterable $iterable
+ * @param iterable|stdClass $iterable
  * @return array $iterable with each of its values squared
  *
  * @example

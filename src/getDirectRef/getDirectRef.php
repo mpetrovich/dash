@@ -6,7 +6,7 @@ namespace Dash;
  * Like getDirect(), but returns a reference to the value at the given key of an iterable.
  *
  * @category Iterable
- * @param iterable $iterable
+ * @param iterable|stdClass $iterable
  * @param string $key
  * @return mixed
  * @throws UnexpectedValueException if no value exists at $key
