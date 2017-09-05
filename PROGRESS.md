@@ -77,7 +77,7 @@ To review
 - [x] isEven
 - [ ] isIndexedArray
 - [x] isOdd
-- [ ] isType
+- [x] isType
 - [x] join
 - [ ] keyBy
 - [x] keys

@@ -5,27 +5,39 @@ namespace Dash;
 /**
  * Checks whether a value is of a particular data type.
  *
+ * A types can be:
+ * 1. a native data type: `string`, `array`, `integer`, etc.
+ * 2. a type corresponding to a native `is_*()` function: `numeric` (for `is_numeric()`),
+ *    `callable` (for `is_callable()`), etc.
+ * 3. a class name: `DateTime`, `Dash\_`, etc.
+ * 4. a custom type (see below)
+ *
+ * Custom types:
+ * - `iterable`: Like `is_iterable()` but also returns true for `stdClass` objects
+ *
  * @category Utility
- * @param mixed $value Value to check
- * @param string|array $type Single type to check or a list of possible types; types can be:
- *                           a native data type (eg. 'string', 'array'),
- *                           a type corresponding to a native is_<type>() function (eg. 'numeric'),
- *                           a class instance (eg. 'DateTime')
+ * @param mixed $value
+ * @param string|array $type Single type to check or a list of accepted types
  * @return boolean
  *
  * @example With a native data type
-	isType([1, 2, 3], 'array');  // === true
+	Dash\isType([1, 2, 3], 'array');
+	// === true
  *
- * @example With a type corresponding to a native is_<type>() method
-	isType(3.14, 'numeric');  // === true
+ * @example With a type corresponding to a native `is_*()` function
+	Dash\isType(3.14, 'numeric');
+	// === true
  *
- * @example 'iterable', in contrast with is_iterable(), returns true for stdClass objects
-	$obj = (objec) [1, 2, 3];
-	is_iterable($obj);     // === false
-	isType($obj, 'iterable');  // === true
+ * @example With a class name
+	Dash\isType(new ArrayObject([1, 2, 3]), 'ArrayObject');
+	// === true
  *
- * @example With a class instance
-	isType(new ArrayObject([1, 2, 3]), 'ArrayObject');  // === true
+ * @example With a custom `iterable` type
+	Dash\isType((object) [1, 2, 3], 'iterable');
+	// === true
+
+	Dash\isType((object) [1, 2, 3], 'iterable');
+	// === false
  */
 function isType($value, $type)
 {
@@ -33,32 +45,36 @@ function isType($value, $type)
 		return true;
 	}
 
-	$customTypeChecks = [
-		'iterable' => function ($value) {
-			return is_array($value)
-				|| $value instanceof \Traversable
-				|| $value instanceof \stdClass;
-		},
-		'number' => 'is_numeric',
-	];
-
 	$types = (array) $type;
 
-	$isAnyType = false;
-
 	foreach ($types as $type) {
-		$customTypeCheck = isset($customTypeChecks[$type]) ? $customTypeChecks[$type] : null;
-		$isInstanceOf = function ($value) use ($type) { return $value instanceof $type; };
-
-		$typeCheck = $customTypeCheck ?: (function_exists("is_$type") ? "is_$type" : $isInstanceOf);
-
-		$isType = call_user_func($typeCheck, $value);
+		if ($type === 'iterable') {
+			// Custom type
+			$isType = is_array($value)
+				|| $value instanceof \Traversable
+				|| $value instanceof \stdClass;
+		}
+		elseif (function_exists("is_$type")) {
+			// is_*() function type
+			$isType = call_user_func("is_$type", $value);
+		}
+		else {
+			// Class type
+			$isType = ($value instanceof $type);
+		}
 
 		if ($isType) {
-			$isAnyType = true;
-			break;
+			return true;
 		}
 	}
 
-	return $isAnyType;
+	return false;
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _isType(/* type, value */)
+{
+	return currify('Dash\isType', func_get_args());
 }

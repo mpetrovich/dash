@@ -21,7 +21,7 @@
 	<rule ref="Generic.Functions.OpeningFunctionBraceBsdAllman"/>
 	<rule ref="Generic.Metrics.CyclomaticComplexity">
 		<properties>
-			<property name="complexity" value="5"/>
+			<property name="complexity" value="6"/>
 			<property name="absoluteComplexity" value="10"/>
 		</properties>
 	</rule>

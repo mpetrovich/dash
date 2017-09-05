@@ -1436,29 +1436,29 @@ Utility
 assertType
 ---
 ```php
-assertType($input, $type, $funcName = __FUNCTION__): void
+assertType($value, $type, $funcName = __FUNCTION__): void
 ```
-Throws an `InvalidArgumentException` exception if `$input` is not of type `$type`.
-If `$input` is an accepted type, this function is a no-op.
+Throws an `InvalidArgumentException` exception if `$value` is not of type `$type`.
+If `$value` is an accepted type, this function is a no-op.
 
 See Dash\isType() for the available types.
 
 
 Parameter | Type | Description
 --- | --- | :---
-`$input` | `mixed` | 
+`$value` | `mixed` | 
 `$type` | `string\|array` | Single type to check or a list of accepted types
 `$funcName` | `string` | (optional) Name of the calling function where `assertType()` was called; this is used in the thrown exception message and aids debugging
 **Returns** | `void` | 
 
 **Example:** 
 ```php
-$input = [1, 2, 3];
-Dash\assertType($input, 'iterable');
+$value = [1, 2, 3];
+Dash\assertType($value, 'iterable');
 // Does not throw an exception
 
-$input = [1, 2, 3];
-Dash\assertType($input, 'object');
+$value = [1, 2, 3];
+Dash\assertType($value, 'object');
 // Throws an exception
 ```
 chain
@@ -1663,36 +1663,51 @@ isType($value, $type): boolean
 ```
 Checks whether a value is of a particular data type.
 
+A types can be:
+1. a native data type: `string`, `array`, `integer`, etc.
+2. a type corresponding to a native `is_*()` function: `numeric` (for `is_numeric()`),
+`callable` (for `is_callable()`), etc.
+3. a class name: `DateTime`, `Dash\_`, etc.
+4. a custom type (see below)
+
+Custom types:
+- `iterable`: Like `is_iterable()` but also returns true for `stdClass` objects
+
 
 Parameter | Type | Description
 --- | --- | :---
-`$value` | `mixed` | Value to check
-`$type` | `string\|array` | Single type to check or a list of possible types; types can be: a native data type (eg. 'string', 'array'), a type corresponding to a native is_<type>() function (eg. 'numeric'), a class instance (eg. 'DateTime')
+`$value` | `mixed` | 
+`$type` | `string\|array` | Single type to check or a list of accepted types
 **Returns** | `boolean` | 
 
 **Example:** With a native data type
 ```php
-isType([1, 2, 3], 'array');  // === true
+Dash\isType([1, 2, 3], 'array');
+// === true
 
 ```
 
-**Example:** With a type corresponding to a native is_<type>() method
+**Example:** With a type corresponding to a native `is_*()` function
 ```php
-isType(3.14, 'numeric');  // === true
+Dash\isType(3.14, 'numeric');
+// === true
 
 ```
 
-**Example:** 'iterable', in contrast with is_iterable(), returns true for stdClass objects
+**Example:** With a class name
 ```php
-$obj = (objec) [1, 2, 3];
-is_iterable($obj);     // === false
-isType($obj, 'iterable');  // === true
+Dash\isType(new ArrayObject([1, 2, 3]), 'ArrayObject');
+// === true
 
 ```
 
-**Example:** With a class instance
+**Example:** With a custom `iterable` type
 ```php
-isType(new ArrayObject([1, 2, 3]), 'ArrayObject');  // === true
+Dash\isType((object) [1, 2, 3], 'iterable');
+// === true
+
+Dash\isType((object) [1, 2, 3], 'iterable');
+// === false
 ```
 size / count
 ---

@@ -3,13 +3,13 @@
 namespace Dash;
 
 /**
- * Throws an `InvalidArgumentException` exception if `$input` is not of type `$type`.
- * If `$input` is an accepted type, this function is a no-op.
+ * Throws an `InvalidArgumentException` exception if `$value` is not of type `$type`.
+ * If `$value` is an accepted type, this function is a no-op.
  *
  * See Dash\isType() for the available types.
  *
  * @category Utility
- * @param mixed $input
+ * @param mixed $value
  * @param string|array $type Single type to check or a list of accepted types
  * @param string $funcName (optional) Name of the calling function where `assertType()` was called;
  *                         this is used in the thrown exception message and aids debugging
@@ -17,22 +17,22 @@ namespace Dash;
  * @throws InvalidArgumentException
  *
  * @example
-	$input = [1, 2, 3];
-	Dash\assertType($input, 'iterable');
+	$value = [1, 2, 3];
+	Dash\assertType($value, 'iterable');
 	// Does not throw an exception
 
-	$input = [1, 2, 3];
-	Dash\assertType($input, 'object');
+	$value = [1, 2, 3];
+	Dash\assertType($value, 'object');
 	// Throws an exception
  */
-function assertType($input, $type, $funcName = __FUNCTION__)
+function assertType($value, $type, $funcName = __FUNCTION__)
 {
-	if (!isType($input, $type)) {
+	if (!isType($value, $type)) {
 		throw new \InvalidArgumentException(sprintf(
 			'%s expects %s but was given %s',
 			$funcName,
 			\implode(' or ', (array) $type),
-			is_object($input) ? get_class($input) : gettype($input)
+			is_object($value) ? get_class($value) : gettype($value)
 		));
 	}
 }
