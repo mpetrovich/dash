@@ -28,6 +28,21 @@ class isTest extends PHPUnit_Framework_TestCase
 		return [
 
 			/*
+				With no type
+			 */
+
+			[
+				'value' => null,
+				'type' => false,
+				'expected' => true,
+			],
+			[
+				'value' => null,
+				'type' => null,
+				'expected' => true,
+			],
+
+			/*
 				With one type
 			 */
 
