@@ -2,6 +2,7 @@
 
 /**
  * @covers Dash\isEmpty
+ * @covers Dash\_isEmpty
  */
 class isEmptyTest extends PHPUnit_Framework_TestCase
 {
@@ -11,6 +12,15 @@ class isEmptyTest extends PHPUnit_Framework_TestCase
 	public function test($input, $expected)
 	{
 		$this->assertSame($expected, Dash\isEmpty($input));
+	}
+
+	/**
+	 * @dataProvider cases
+	 */
+	public function testCurried($value, $expected)
+	{
+		$isEmpty = Dash\_isEmpty();
+		$this->assertSame($expected, $isEmpty($value));
 	}
 
 	public function cases()
@@ -48,7 +58,7 @@ class isEmptyTest extends PHPUnit_Framework_TestCase
 				'input' => (object) [],
 				'expected' => true,
 			],
-			'With a non-empty stdClass' => [
+			'With an stdClass' => [
 				'input' => (object) ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
 				'expected' => false,
 			],
@@ -60,6 +70,20 @@ class isEmptyTest extends PHPUnit_Framework_TestCase
 				'input' => new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]),
 				'expected' => false,
 			],
+			'With an DirectoryIterator' => [
+				'input' => new \FilesystemIterator(__DIR__),
+				'expected' => false,
+			],
 		];
+	}
+
+	public function testExamples()
+	{
+		$this->assertSame(true, Dash\isEmpty([]));
+		$this->assertSame(true, Dash\isEmpty((object) []));
+		$this->assertSame(true, Dash\isEmpty(new ArrayObject()));
+		$this->assertSame(true, Dash\isEmpty(''));
+		$this->assertSame(true, Dash\isEmpty(0));
+		$this->assertSame(false, Dash\isEmpty([0]));
 	}
 }

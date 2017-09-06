@@ -3,7 +3,7 @@
 namespace Dash;
 
 /**
- * Checks whether a value is of a particular data type.
+ * Checks whether `$value` is of a particular data type.
  *
  * A types can be:
  * - a native data type: `string`, `array`, `integer`, etc.

@@ -3,7 +3,7 @@
 namespace Dash;
 
 /**
- * Checks whether a number is odd.
+ * Checks whether `$value` is an odd number.
  *
  * If a double is provided, only its truncated integer component is evaluated.
  *

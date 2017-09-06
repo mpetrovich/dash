@@ -3,28 +3,48 @@
 namespace Dash;
 
 /**
- * Checks whether a value is an empty iterable or value.
+ * Checks whether `$value` is empty.
  *
  * A value is empty if it is an iterable of size zero or loosely equals false.
  * @link http://php.net/manual/en/function.empty.php
  *
  * @category Utility
- * @param mixed $input
- * @return boolean
+ * @param mixed $value
+ * @return boolean True if `$value` is empty, false otherwise
  *
  * @example
-	isEmpty([]);                 // === true
-	isEmpty(new ArrayObject());  // === true
-	isEmpty('');                 // === true
-	isEmpty(0);                  // === true
-	isEmpty([0]);                // === false
+	Dash\isEmpty([]);
+	// === true
+
+	Dash\isEmpty((object) []);
+	// === true
+
+	Dash\isEmpty(new ArrayObject());
+	// === true
+
+	Dash\isEmpty('');
+	// === true
+
+	Dash\isEmpty(0);
+	// === true
+
+	Dash\isEmpty([0]);
+	// === false
  */
-function isEmpty($input)
+function isEmpty($value)
 {
-	if ($input instanceof \DirectoryIterator) {
-		// empty() segfaults with DirectoryIterator
-		return count(toArray($input)) === 0;
+	// Special case since empty() segfaults with DirectoryIterator
+	if ($value instanceof \DirectoryIterator) {
+		return count(toArray($value)) === 0;
 	}
 
-	return empty($input) || size($input) === 0;
+	return empty($value) || size($value) === 0;
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _isEmpty(/* value */)
+{
+	return currify('Dash\isEmpty', func_get_args());
 }

@@ -1643,31 +1643,43 @@ $b = Dash\identity($a);
 isEmpty
 ---
 ```php
-isEmpty($input): boolean
+isEmpty($value): boolean
 ```
-Checks whether a value is an empty iterable or value.
+Checks whether `$value` is empty.
 
 A value is empty if it is an iterable of size zero or loosely equals false.
 
 Parameter | Type | Description
 --- | --- | :---
-`$input` | `mixed` | 
-**Returns** | `boolean` | 
+`$value` | `mixed` | 
+**Returns** | `boolean` | True if `$value` is empty, false otherwise
 
 **Example:** 
 ```php
-isEmpty([]);                 // === true
-isEmpty(new ArrayObject());  // === true
-isEmpty('');                 // === true
-isEmpty(0);                  // === true
-isEmpty([0]);                // === false
+Dash\isEmpty([]);
+// === true
+
+Dash\isEmpty((object) []);
+// === true
+
+Dash\isEmpty(new ArrayObject());
+// === true
+
+Dash\isEmpty('');
+// === true
+
+Dash\isEmpty(0);
+// === true
+
+Dash\isEmpty([0]);
+// === false
 ```
 isType
 ---
 ```php
 isType($value, $type): boolean
 ```
-Checks whether a value is of a particular data type.
+Checks whether `$value` is of a particular data type.
 
 A types can be:
 - a native data type: `string`, `array`, `integer`, etc.
@@ -2041,7 +2053,7 @@ isEven
 ```php
 isEven($value): boolean
 ```
-Checks whether a number is even.
+Checks whether `$value` is an even number.
 
 If a double is provided, only its truncated integer component is evaluated.
 
@@ -2070,7 +2082,7 @@ isOdd
 ```php
 isOdd($value): boolean
 ```
-Checks whether a number is odd.
+Checks whether `$value` is an odd number.
 
 If a double is provided, only its truncated integer component is evaluated.
 

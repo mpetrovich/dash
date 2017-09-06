@@ -73,7 +73,7 @@ To review
 - [x] identical
 - [x] identity
 - [ ] intersection
-- [ ] isEmpty
+- [x] isEmpty
 - [x] isEven
 - [x] isIndexedArray
 - [x] isOdd
