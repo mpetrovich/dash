@@ -86,6 +86,20 @@ function parseDocblock($docblock)
 		->join("\n")
 		->value();
 
+	// Related
+	$op->related = _::chain($lines)
+		->filter(function ($line) { return strpos($line, '@see') === 0; })
+		->map(function ($line) {
+			$matches = [];
+			preg_match('/^@see\s+(.*)$/', $line, $matches);
+			$related = explode(', ', $matches[1]);
+			return $related;
+		})
+		->reduce(function ($flattened, $related) {
+			return array_merge($flattened, $related);
+		}, [])
+		->value();
+
 	// Category
 	$op->category = _::chain($lines)
 		->filter(function ($line) { return strpos($line, '@category') === 0; })
@@ -183,6 +197,16 @@ function renderDoc($op)
 {
 	$aliases = $op->aliases ? sprintf(' / %s', implode(' / ', $op->aliases)) : '';
 
+	$related = _::chain((array) $op->related)
+		->map(function ($op) {
+			$slug = strtolower(str_replace('()', '', $op));
+			return "[$op](#$slug)";
+		})
+		->join(', ')
+		->value();
+
+	$related = $related ? "Related: $related" : '';
+
 	if ($op->params) {
 		$paramsTable = _::reduce($op->params, function ($output, $param) {
 			$type = str_replace('|', '\|', $param->type);
@@ -225,6 +249,7 @@ END;
 {$op->signature}$returnType
 ```
 {$op->description}
+$related
 
 $paramsTable$returnTable
 

@@ -4,7 +4,7 @@ namespace Dash;
 
 /**
  * Placeholder parameter for partial(), curry(), etc.
- * @see partial, curry
+ * @see partial(), curry()
  */
 const _ = "\0\0";
 
