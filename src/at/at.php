@@ -7,7 +7,7 @@ namespace Dash;
  *
  * @category Iterable
  * @param iterable|stdClass|null $iterable
- * @param numeric $index 0-based index
+ * @param integer $index 0-based index
  * @param mixed $default (optional) Value to return if `$index` is out of bounds
  * @return mixed Value of the `$index`th item of `$iterable, ignoring keys
  *

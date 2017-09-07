@@ -49,5 +49,5 @@ function mean()
  */
 function _mean(/* iterable */)
 {
-	return currify('Dash\average', func_get_args());
+	return call_user_func_array('Dash\_average', func_get_args());
 }

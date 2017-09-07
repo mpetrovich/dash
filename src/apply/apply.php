@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Invokes `$callable` with a list of arguments.
  *
- * Note: Contrary to other curried methods, the curried version of this method
+ * Note: Contrary to other curried operations, the curried version of this operation
  * accepts arguments in the same order as the original method.
  *
  * @category Callable

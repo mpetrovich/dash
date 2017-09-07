@@ -2,70 +2,94 @@
 
 /**
  * @covers Dash\size
+ * @covers Dash\_size
  * @covers Dash\count
+ * @covers Dash\_count
  */
 class sizeTest extends PHPUnit_Framework_TestCase
 {
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($iterable, $expected)
+	public function test($value, $expected)
 	{
-		$this->assertSame($expected, Dash\size($iterable));
-		$this->assertSame($expected, Dash\count($iterable));
+		$this->assertEquals($expected, Dash\size($value));
+		$this->assertEquals($expected, Dash\count($value));
+	}
+
+	/**
+	 * @dataProvider cases
+	 */
+	public function testCurried($value, $expected)
+	{
+		$size = Dash\_size('UTF-8');
+		$this->assertEquals($expected, $size($value));
+
+		$count = Dash\_count('UTF-8');
+		$this->assertEquals($expected, $count($value));
 	}
 
 	public function cases()
 	{
 		return [
 			'With null' => [
-				null,
-				0
+				'value' => null,
+				'expected' => 0,
 			],
 			'With a zero number' => [
-				0.0,
-				0
+				'value' => 0.0,
+				'expected' => 0,
 			],
 			'With a number' => [
-				3.14,
-				0
+				'value' => 3.14,
+				'expected' => 0,
 			],
 			'With an empty string' => [
-				'',
-				0
+				'value' => '',
+				'expected' => 0,
 			],
 			'With a string' => [
-				'hello',
-				5
+				'value' => 'hello',
+				'expected' => 5,
 			],
 			'With a multibyte string' => [
-				'Björk',
-				5
+				'value' => 'Björk',
+				'expected' => 5,
+			],
+			'With a DateTime' => [
+				'value' => new DateTime(),
+				'expected' => 0,
 			],
 			'With an empty array' => [
-				[],
-				0
+				'value' => [],
+				'expected' => 0,
 			],
 			'With an array' => [
-				[1, 2, 3],
-				3
+				'value' => [1, 2, 3],
+				'expected' => 3,
 			],
-			'With an empty object' => [
-				(object) [],
-				0
+			'With an empty stdClass' => [
+				'value' => (object) [],
+				'expected' => 0,
 			],
-			'With an object' => [
-				(object) ['a' => 1, 'b' => 2, 'c' => 3],
-				3
+			'With an stdClass' => [
+				'value' => (object) ['a' => 1, 'b' => 2, 'c' => 3],
+				'expected' => 3,
 			],
 			'With an empty ArrayObject' => [
-				new ArrayObject([]),
-				0
+				'value' => new ArrayObject([]),
+				'expected' => 0,
 			],
 			'With an ArrayObject' => [
-				new ArrayObject([1, 2, 3]),
-				3
+				'value' => new ArrayObject([1, 2, 3]),
+				'expected' => 3,
 			],
 		];
+	}
+
+	public function testExamples()
+	{
+		$this->assertSame(3, Dash\size([1, 2, 3]));
+		$this->assertSame(7, Dash\size('Beyoncé'));
 	}
 }

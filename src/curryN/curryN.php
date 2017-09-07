@@ -5,10 +5,10 @@ namespace Dash;
 /**
  * @category Callable
  * @param callable $callable
- * @param numeric $totalArgs
+ * @param integer $totalArgs
  * @return mixed
  */
-function curryN($callable, $totalArgs /*, ...args */)
+function curryN(callable $callable, $totalArgs /*, ...args */)
 {
 	$args = func_get_args();
 	array_shift($args);

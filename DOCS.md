@@ -8,13 +8,13 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/mpet
 [any](#any--some) / some | [chain](#chain) | [ary](#ary) | [isOdd](#isodd)
 [at](#at) | [compare](#compare) | [call](#call) | 
 [average](#average--mean) / mean | [custom](#custom) | [currify](#currify) | 
-[contains](#contains) | [debug](#debug) | [curry](#curry) | 
-[deltas](#deltas) | [equal](#equal) | [curryN](#curryn) | 
-[difference](#difference--diff) / diff | [identical](#identical) | [negate](#negate) | 
-[dropWhile](#dropwhile) | [identity](#identity) | [partial](#partial) | 
-[each](#each) | [isEmpty](#isempty) | [partialRight](#partialright) | 
-[filter](#filter) | [isType](#istype) | [unary](#unary) | 
-[find](#find) | [size](#size--count) / count |  | 
+[contains](#contains) | [debug](#debug) | [currifyN](#currifyn) | 
+[deltas](#deltas) | [equal](#equal) | [curry](#curry) | 
+[difference](#difference--diff) / diff | [identical](#identical) | [curryN](#curryn) | 
+[dropWhile](#dropwhile) | [identity](#identity) | [negate](#negate) | 
+[each](#each) | [isEmpty](#isempty) | [partial](#partial) | 
+[filter](#filter) | [isType](#istype) | [partialRight](#partialright) | 
+[find](#find) | [size](#size--count) / count | [unary](#unary) | 
 [findKey](#findkey) | [tap](#tap) |  | 
 [findLast](#findlast) | [thru](#thru) |  | 
 [findValue](#findvalue) |  |  | 
@@ -168,7 +168,7 @@ Iterates over `$iterable` and returns the value of the `$index`th element, ignor
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable\|stdClass\|null` | 
-`$index` | `numeric` | 0-based index
+`$index` | `integer` | 0-based index
 `$default` | `mixed` | (optional) Value to return if `$index` is out of bounds
 **Returns** | `mixed` | Value of the `$index`th item of `$iterable, ignoring keys
 
@@ -1426,7 +1426,7 @@ rotate($iterable, $count = 1): array|object
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable\|stdClass` | 
-`$count` | `numeric` | 
+`$count` | `integer` | 
 **Returns** | `array\|object` | 
 
 
@@ -2143,22 +2143,28 @@ size / count
 [Operations](#operations) › [Utility](#utility)
 
 ```php
-size($input, $encoding = 'UTF-8'): integer
+size($value, $encoding = 'UTF-8'): integer
 ```
-Returns the number of elements (for iterables) or characters (for strings) in $input.
+Gets the number of items in `$value`.
+
+For iterables, this is the number of elements.
+For strings, this is number of characters.
 
 
 
 Parameter | Type | Description
 --- | --- | :---
-`$input` | `iterable\|string` | 
-`$encoding` | `string` | (optional) The character encoding of $input if it is a string; see mb_list_encodings() for the list of supported encodings
-**Returns** | `integer` | Zero for non-iterable input
+`$value` | `iterable\|string` | 
+`$encoding` | `string` | (optional) The character encoding of `$value` if it is a string; see `mb_list_encodings()` for the list of supported encodings
+**Returns** | `integer` | Zero if `$value` is neither iterable nor a string
 
 **Example:** 
 ```php
-size([1, 2, 3]);  // === 3
-size('Hello!');  // === 6
+Dash\size([1, 2, 3]);
+// === 3
+
+Dash\size('Beyoncé');
+// === 7
 ```
 
 [↑ Top](#operations)
@@ -2243,7 +2249,7 @@ apply(callable $callable, $args): mixed
 ```
 Invokes `$callable` with a list of arguments.
 
-Note: Contrary to other curried methods, the curried version of this method
+Note: Contrary to other curried operations, the curried version of this operation
 accepts arguments in the same order as the original method.
 
 
@@ -2342,7 +2348,7 @@ currify
 [Operations](#operations) › [Callable](#callable)
 
 ```php
-currify($callable, array $args = [], $rotate = -1): mixed
+currify(callable $callable, array $args = [], $rotate = -1): mixed
 ```
 
 
@@ -2350,6 +2356,28 @@ currify($callable, array $args = [], $rotate = -1): mixed
 Parameter | Type | Description
 --- | --- | :---
 `$callable` | `callable` | 
+`$args` | `array` | 
+`$rotate` | `numeric` | 
+**Returns** | `mixed` | 
+
+
+
+[↑ Top](#operations)
+
+currifyN
+---
+[Operations](#operations) › [Callable](#callable)
+
+```php
+currifyN(callable $callable, $totalArgs, array $args = [], $rotate = -1): mixed
+```
+
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+`$totalArgs` | `integer` | 
 `$args` | `array` | 
 `$rotate` | `numeric` | 
 **Returns** | `mixed` | 
@@ -2382,7 +2410,7 @@ curryN
 [Operations](#operations) › [Callable](#callable)
 
 ```php
-curryN($callable, $totalArgs /*, ...args */): mixed
+curryN(callable $callable, $totalArgs /*, ...args */): mixed
 ```
 
 
@@ -2390,7 +2418,7 @@ curryN($callable, $totalArgs /*, ...args */): mixed
 Parameter | Type | Description
 --- | --- | :---
 `$callable` | `callable` | 
-`$totalArgs` | `numeric` | 
+`$totalArgs` | `integer` | 
 **Returns** | `mixed` | 
 
 

@@ -50,6 +50,7 @@ To review
 - [x] compare
 - [ ] contains
 - [ ] currify
+- [ ] currifyN
 - [ ] curry
 - [ ] curryN
 - [ ] custom
@@ -101,7 +102,7 @@ To review
 - [ ] reverse
 - [ ] rotate
 - [ ] set
-- [ ] size
+- [x] size
 - [ ] sort
 - [x] sum
 - [ ] take

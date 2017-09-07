@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * @category Iterable
  * @param iterable|stdClass $iterable
- * @param numeric $count
+ * @param integer $count
  * @return array|object
  */
 function rotate($iterable, $count = 1)
