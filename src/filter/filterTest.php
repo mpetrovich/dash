@@ -26,6 +26,11 @@ class filterTest extends PHPUnit_Framework_TestCase
 	public function cases()
 	{
 		return [
+			'With null' => [
+				'iterable' => null,
+				'predicate' => 'Dash\isOdd',
+				'expected' => [],
+			],
 			'With an empty array' => [
 				'iterable' => [],
 				'predicate' => 'Dash\isOdd',
@@ -306,7 +311,10 @@ class filterTest extends PHPUnit_Framework_TestCase
 			Dash\filter($iterable);
 		}
 		catch (Exception $e) {
-			$this->assertSame("Dash\\filter expects iterable or stdClass but was given $type", $e->getMessage());
+			$this->assertSame(
+				"Dash\\filter expects iterable or stdClass or null but was given $type",
+				$e->getMessage()
+			);
 			throw $e;
 		}
 	}
@@ -314,10 +322,6 @@ class filterTest extends PHPUnit_Framework_TestCase
 	public function casesTypeAssertions()
 	{
 		return [
-			'With null' => [
-				'iterable' => null,
-				'type' => 'NULL',
-			],
 			'With an empty string' => [
 				'iterable' => '',
 				'type' => 'string',

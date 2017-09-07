@@ -315,7 +315,7 @@ Related: [reject()](#reject)
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
+`$iterable` | `iterable\|stdClass\|null` | 
 `$predicate` | `callable\|string\|array` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable`; if a string, will get elements with a truthy value for that field/index; if an array of form `[$field, $value]`, will get elements where the field/index loosely equals `$value`
 **Returns** | `array` | List of elements in `$iterable` that satisfy `$predicate`
 
@@ -1082,7 +1082,7 @@ Related: [filter()](#filter)
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
+`$iterable` | `iterable\|stdClass\|null` | 
 `$predicate` | `callable\|string\|array` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable`; if a string, will get elements with a falsey value for that field/index; if an array of form `[$field, $value]`, will get elements where the field/index does not loosely equal `$value`
 **Returns** | `array` | List of elements in `$iterable` that do not satisfy `$predicate`
 

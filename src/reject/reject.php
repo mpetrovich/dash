@@ -11,7 +11,7 @@ namespace Dash;
  * @see filter()
  *
  * @category Iterable
- * @param iterable|stdClass $iterable
+ * @param iterable|stdClass|null $iterable
  * @param callable|string|array $predicate (optional) If a callable, invoked with `($value, $key, $iterable)`
  *                                         for each element in `$iterable`;
  *                                         if a string, will get elements with a falsey value for that field/index;
@@ -53,7 +53,7 @@ namespace Dash;
  */
 function reject($iterable, $predicate = 'Dash\identity')
 {
-	assertType($iterable, ['iterable', 'stdClass'], __FUNCTION__);
+	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
 
 	if (empty($iterable)) {
 		return [];
