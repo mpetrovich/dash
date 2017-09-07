@@ -9,7 +9,7 @@ namespace Dash;
  * @param iterable|string $input
  * @param string $encoding (optional) The character encoding of $input if it is a string;
  *                         see mb_list_encodings() for the list of supported encodings
- * @return integer|null Null for non-iterable/string input
+ * @return integer Zero for non-iterable input
  *
  * @alias count
  *
@@ -32,7 +32,7 @@ function size($input, $encoding = 'UTF-8')
 		$size = mb_strlen($input, $encoding);
 	}
 	else {
-		$size = null;
+		$size = 0;
 	}
 
 	return $size;

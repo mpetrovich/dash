@@ -26,6 +26,11 @@ class atTest extends PHPUnit_Framework_TestCase
 	public function cases()
 	{
 		return [
+			'With null' => [
+				'iterable' => null,
+				'index' => 2,
+				'expected' => null,
+			],
 			'With an empty array' => [
 				'iterable' => [],
 				'index' => 2,
@@ -157,7 +162,7 @@ class atTest extends PHPUnit_Framework_TestCase
 			Dash\at($iterable, 0);
 		}
 		catch (Exception $e) {
-			$this->assertSame("Dash\\at expects iterable or stdClass but was given $type", $e->getMessage());
+			$this->assertSame("Dash\\at expects iterable or stdClass or null but was given $type", $e->getMessage());
 			throw $e;
 		}
 	}
@@ -165,10 +170,6 @@ class atTest extends PHPUnit_Framework_TestCase
 	public function casesIterableTypeAssertions()
 	{
 		return [
-			'With null' => [
-				'iterable' => null,
-				'type' => 'NULL',
-			],
 			'With an empty string' => [
 				'iterable' => '',
 				'type' => 'string',

@@ -6,7 +6,7 @@ namespace Dash;
  * Gets the sum of all element values in `$iterable`.
  *
  * @category Iterable
- * @param iterable|stdClass $iterable
+ * @param iterable|stdClass|null $iterable
  * @return numeric Zero if `$iterable` is empty
  *
  * @example
@@ -18,7 +18,7 @@ namespace Dash;
  */
 function sum($iterable)
 {
-	assertType($iterable, ['iterable', 'stdClass'], __FUNCTION__);
+	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
 
 	$sum = reduce($iterable, function ($sum, $value) {
 		return $sum += $value;

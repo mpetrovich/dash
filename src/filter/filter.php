@@ -55,7 +55,7 @@ function filter($iterable, $predicate = 'Dash\identity')
 {
 	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
 
-	if (empty($iterable)) {
+	if (is_null($iterable)) {
 		return [];
 	}
 

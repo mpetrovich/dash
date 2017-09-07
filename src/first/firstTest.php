@@ -32,6 +32,10 @@ class firstTest extends PHPUnit_Framework_TestCase
 	public function cases()
 	{
 		return [
+			'With null' => [
+				'iterable' => null,
+				'expected' => null,
+			],
 			'With an empty array' => [
 				'iterable' => [],
 				'expected' => null,
@@ -109,7 +113,7 @@ class firstTest extends PHPUnit_Framework_TestCase
 			Dash\first($iterable);
 		}
 		catch (Exception $e) {
-			$this->assertSame("Dash\\first expects iterable or stdClass but was given $type", $e->getMessage());
+			$this->assertSame("Dash\\first expects iterable or stdClass or null but was given $type", $e->getMessage());
 			throw $e;
 		}
 
@@ -117,7 +121,7 @@ class firstTest extends PHPUnit_Framework_TestCase
 			Dash\head($iterable);
 		}
 		catch (Exception $e) {
-			$this->assertSame("Dash\\first expects iterable or stdClass but was given $type", $e->getMessage());
+			$this->assertSame("Dash\\first expects iterable or stdClass or null but was given $type", $e->getMessage());
 			throw $e;
 		}
 	}
@@ -125,10 +129,6 @@ class firstTest extends PHPUnit_Framework_TestCase
 	public function casesTypeAssertions()
 	{
 		return [
-			'With null' => [
-				'iterable' => null,
-				'type' => 'NULL',
-			],
 			'With an empty string' => [
 				'iterable' => '',
 				'type' => 'string',

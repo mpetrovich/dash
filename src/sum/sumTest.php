@@ -26,6 +26,10 @@ class sumTest extends PHPUnit_Framework_TestCase
 	public function cases()
 	{
 		return [
+			'With null' => [
+				'iterable' => null,
+				'expected' => 0,
+			],
 			'With an empty array' => [
 				'iterable' => [],
 				'expected' => 0,
@@ -103,7 +107,7 @@ class sumTest extends PHPUnit_Framework_TestCase
 			Dash\sum($iterable);
 		}
 		catch (Exception $e) {
-			$this->assertSame("Dash\\sum expects iterable or stdClass but was given $type", $e->getMessage());
+			$this->assertSame("Dash\\sum expects iterable or stdClass or null but was given $type", $e->getMessage());
 			throw $e;
 		}
 	}
@@ -111,10 +115,6 @@ class sumTest extends PHPUnit_Framework_TestCase
 	public function casesTypeAssertions()
 	{
 		return [
-			'With null' => [
-				'iterable' => null,
-				'type' => 'NULL',
-			],
 			'With an empty string' => [
 				'iterable' => '',
 				'type' => 'string',

@@ -32,6 +32,11 @@ class joinTest extends PHPUnit_Framework_TestCase
 	public function cases()
 	{
 		return [
+			'With null' => [
+				'iterable' => null,
+				'separator' => ', ',
+				'expected' => '',
+			],
 			'With an empty array' => [
 				'iterable' => [],
 				'separator' => ', ',
@@ -125,7 +130,7 @@ class joinTest extends PHPUnit_Framework_TestCase
 			Dash\join($iterable, ', ');
 		}
 		catch (Exception $e) {
-			$this->assertSame("Dash\\join expects iterable or stdClass but was given $type", $e->getMessage());
+			$this->assertSame("Dash\\join expects iterable or stdClass or null but was given $type", $e->getMessage());
 			throw $e;
 		}
 	}
@@ -133,10 +138,6 @@ class joinTest extends PHPUnit_Framework_TestCase
 	public function casesIterableTypeAssertions()
 	{
 		return [
-			'With null' => [
-				'iterable' => null,
-				'type' => 'NULL',
-			],
 			'With an empty string' => [
 				'iterable' => '',
 				'type' => 'string',

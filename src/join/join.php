@@ -7,7 +7,7 @@ namespace Dash;
  * with each value separated by `$separator`.
  *
  * @category Iterable
- * @param iterable|stdClass $iterable
+ * @param iterable|stdClass|null $iterable
  * @param string $separator
  * @return string
  *
@@ -22,7 +22,7 @@ namespace Dash;
  */
 function join($iterable, $separator)
 {
-	assertType($iterable, ['iterable', 'stdClass'], __FUNCTION__);
+	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
 	assertType($separator, 'string', __FUNCTION__);
 
 	return \implode($separator, toArray($iterable));

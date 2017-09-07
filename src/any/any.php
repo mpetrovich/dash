@@ -8,7 +8,7 @@ namespace Dash;
  * Iteration will stop at the first truthy return value.
  *
  * @category Iterable
- * @param iterable|stdClass $iterable
+ * @param iterable|stdClass|null $iterable
  * @param callable $predicate (optional) Invoked with `($value, $key, $iterable)` for each element in `$iterable`
  * @return boolean true if `$predicate` returns truthy for any item in `$iterable`
  *
@@ -36,7 +36,11 @@ namespace Dash;
  */
 function any($iterable, $predicate = 'Dash\identity')
 {
-	assertType($iterable, ['iterable', 'stdClass'], __FUNCTION__);
+	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
+
+	if (is_null($iterable)) {
+		return false;
+	}
 
 	foreach ($iterable as $key => $value) {
 		if (call_user_func($predicate, $value, $key, $iterable)) {

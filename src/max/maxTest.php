@@ -30,6 +30,10 @@ class maxTest extends PHPUnit_Framework_TestCase
 				'iterable' => [],
 				'expected' => null,
 			],
+			'With null' => [
+				'iterable' => null,
+				'expected' => null,
+			],
 
 			/*
 				With indexed array
@@ -111,7 +115,7 @@ class maxTest extends PHPUnit_Framework_TestCase
 			Dash\max($iterable);
 		}
 		catch (Exception $e) {
-			$this->assertSame("Dash\\max expects iterable or stdClass but was given $type", $e->getMessage());
+			$this->assertSame("Dash\\max expects iterable or stdClass or null but was given $type", $e->getMessage());
 			throw $e;
 		}
 	}
@@ -119,10 +123,6 @@ class maxTest extends PHPUnit_Framework_TestCase
 	public function casesTypeAssertions()
 	{
 		return [
-			'With null' => [
-				'iterable' => null,
-				'type' => 'NULL',
-			],
 			'With an empty string' => [
 				'iterable' => '',
 				'type' => 'string',

@@ -32,6 +32,10 @@ class averageTest extends PHPUnit_Framework_TestCase
 	public function cases()
 	{
 		return [
+			'With null' => [
+				'iterable' => null,
+				'expected' => null,
+			],
 			'With an empty array' => [
 				'iterable' => [],
 				'expected' => null,
@@ -109,7 +113,10 @@ class averageTest extends PHPUnit_Framework_TestCase
 			Dash\average($iterable);
 		}
 		catch (Exception $e) {
-			$this->assertSame("Dash\\average expects iterable or stdClass but was given $type", $e->getMessage());
+			$this->assertSame(
+				"Dash\\average expects iterable or stdClass or null but was given $type",
+				$e->getMessage()
+			);
 			throw $e;
 		}
 
@@ -117,7 +124,10 @@ class averageTest extends PHPUnit_Framework_TestCase
 			Dash\mean($iterable);
 		}
 		catch (Exception $e) {
-			$this->assertSame("Dash\\average expects iterable or stdClass but was given $type", $e->getMessage());
+			$this->assertSame(
+				"Dash\\average expects iterable or stdClass or null but was given $type",
+				$e->getMessage()
+			);
 			throw $e;
 		}
 	}
@@ -125,10 +135,6 @@ class averageTest extends PHPUnit_Framework_TestCase
 	public function casesTypeAssertions()
 	{
 		return [
-			'With null' => [
-				'iterable' => null,
-				'type' => 'NULL',
-			],
 			'With an empty string' => [
 				'iterable' => '',
 				'type' => 'string',

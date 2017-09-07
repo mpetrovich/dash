@@ -6,7 +6,7 @@ namespace Dash;
  * Gets the average value of all elements in `$iterable`.
  *
  * @category Iterable
- * @param iterable|stdClass $iterable
+ * @param iterable|stdClass|null $iterable
  * @return double|null Null if `$iterable` is empty
  *
  * @alias mean
@@ -17,7 +17,7 @@ namespace Dash;
  */
 function average($iterable)
 {
-	assertType($iterable, ['iterable', 'stdClass'], __FUNCTION__);
+	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
 
 	$size = size($iterable);
 

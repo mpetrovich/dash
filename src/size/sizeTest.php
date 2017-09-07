@@ -20,15 +20,15 @@ class sizeTest extends PHPUnit_Framework_TestCase
 		return [
 			'With null' => [
 				null,
-				null
+				0
 			],
 			'With a zero number' => [
 				0.0,
-				null
+				0
 			],
 			'With a number' => [
 				3.14,
-				null
+				0
 			],
 			'With an empty string' => [
 				'',

@@ -33,12 +33,7 @@ namespace Dash;
  */
 function isEmpty($value)
 {
-	// Special case since empty() segfaults with DirectoryIterator
-	if ($value instanceof \DirectoryIterator) {
-		return count(toArray($value)) === 0;
-	}
-
-	return empty($value) || size($value) === 0;
+	return isType($value, ['iterable', 'stdClass']) ? size($value) === 0 : empty($value);
 }
 
 /**

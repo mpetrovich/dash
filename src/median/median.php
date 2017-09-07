@@ -6,7 +6,7 @@ namespace Dash;
  * Returns the median value of an iterable.
  *
  * @category Iterable
- * @param iterable|stdClass $iterable
+ * @param iterable|stdClass|null $iterable
  * @return mixed|null Null if `$iterable` is empty
  *
  * @example
@@ -18,7 +18,7 @@ namespace Dash;
  */
 function median($iterable)
 {
-	assertType($iterable, ['iterable', 'stdClass'], __FUNCTION__);
+	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
 
 	$size = size($iterable);
 

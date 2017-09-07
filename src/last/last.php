@@ -6,7 +6,7 @@ namespace Dash;
  * Gets the value of the last element in `$iterable`.
  *
  * @category Iterable
- * @param iterable|stdClass $iterable
+ * @param iterable|stdClass|null $iterable
  * @return mixed|null Null if `$iterable` is empty
  *
  * @example
@@ -18,7 +18,11 @@ namespace Dash;
  */
 function last($iterable)
 {
-	assertType($iterable, ['iterable', 'stdClass'], __FUNCTION__);
+	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
+
+	if (is_null($iterable)) {
+		return null;
+	}
 
 	$value = null;
 
