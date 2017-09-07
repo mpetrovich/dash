@@ -10,7 +10,7 @@ namespace Dash;
  * @param callable $iteratee (optional) Invoked with ($element) for each element of $iterable
  * @return array map of key => grouped elements
  *
- * @see indexBy
+ * @alias indexBy
  *
  * @example
 	keyBy([

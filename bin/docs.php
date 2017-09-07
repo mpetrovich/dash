@@ -100,11 +100,11 @@ function parseDocblock($docblock)
 
 	// Alias
 	$op->aliases = _::chain($lines)
-		->filter(function ($line) { return strpos($line, '@see') === 0; })
+		->filter(function ($line) { return strpos($line, '@alias') === 0; })
 		->first()
 		->thru(function ($line) {
 			$matches = [];
-			preg_match('/^@see\s+(.*)$/', $line, $matches);
+			preg_match('/^@alias\s+(.*)$/', $line, $matches);
 			$aliases = $matches[1];
 			return $aliases ? explode(', ', $aliases) : [];
 		})

@@ -12,7 +12,7 @@ namespace Dash;
  * @param iterable|stdClass $iterables,...
  * @return array
  *
- * @see intersect
+ * @alias intersect
  *
  * @example
 	intersection(

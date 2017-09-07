@@ -15,7 +15,7 @@ namespace Dash;
  * @param callable $predicate (optional) Invoked with `($value, $key, $iterable)` for each element in `$iterable`
  * @return boolean true if `$predicate` returns truthy for every item in `$iterable`
  *
- * @see every
+ * @alias every
  *
  * @example
 	Dash\all([1, 3, 5], 'Dash\isOdd');

@@ -11,7 +11,7 @@ namespace Dash;
  *                         see mb_list_encodings() for the list of supported encodings
  * @return integer|null Null for non-iterable/string input
  *
- * @see count
+ * @alias count
  *
  * @example
 	size([1, 2, 3]);  // === 3

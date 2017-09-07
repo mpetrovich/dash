@@ -11,7 +11,7 @@ namespace Dash;
  * @param string $separator
  * @return string
  *
- * @see implode
+ * @alias implode
  *
  * @example
 	Dash\join([123, 456, 789], '-');

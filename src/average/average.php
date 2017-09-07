@@ -9,7 +9,7 @@ namespace Dash;
  * @param iterable|stdClass $iterable
  * @return double|null Null if `$iterable` is empty
  *
- * @see mean
+ * @alias mean
  *
  * @example
 	Dash\average([2, 3, 5, 8]);

@@ -10,7 +10,7 @@ namespace Dash;
  * @param iterable|stdClass $iterables,...
  * @return array
  *
- * @see diff
+ * @alias diff
  *
  * @example
 	diff(

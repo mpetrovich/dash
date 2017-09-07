@@ -12,7 +12,7 @@ namespace Dash;
  * @param callable $predicate (optional) Invoked with `($value, $key, $iterable)` for each element in `$iterable`
  * @return boolean true if `$predicate` returns truthy for any item in `$iterable`
  *
- * @see some
+ * @alias some
  *
  * @example
 	Dash\any([1, 2, 3], 'Dash\isEven');

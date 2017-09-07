@@ -148,7 +148,7 @@ Aliases to existing methods should be added as functions within their aliased fi
  * …
  * @return …
  *
- * @see every
+ * @alias every
  *
  * @example
 	…
@@ -169,7 +169,7 @@ function every()
 
 Note:
 - The new `every()` function that's a proxy for `all()`
-- The addition of `@see every` that names the alias; multiple aliases should be comma-with-space-separated (eg. `@see foo, bar`)
+- The addition of `@alias every` that names the alias; multiple aliases should be comma-with-space-separated (eg. `@alias foo, bar`)
 - The addition of a `@codingStandardsIgnoreStart` annotation to ignore code style checks for the alias
 
 Finally, unit tests for the aliased function should be updated to also test the alias. Don't forget to add an `@covers` annotation for the alias as well.

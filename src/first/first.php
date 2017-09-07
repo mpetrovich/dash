@@ -9,7 +9,7 @@ namespace Dash;
  * @param iterable|stdClass $iterable
  * @return mixed|null Null if `$iterable` is empty
  *
- * @see head
+ * @alias head
  *
  * @example
 	Dash\first(['a' => 'one', 'b' => 'two', 'c' => 'three']);
