@@ -3,32 +3,38 @@
 namespace Dash;
 
 /**
- * Returns an array representation of $iterable.
+ * Gets an array representation of `$iterable`.
  *
  * @category Iterable
  * @param iterable|stdClass $iterable
- * @return array
+ * @return array Empty array if `$iterable` is not iterable
  *
  * @example
-	toArray((object) ['a' => 'one', 'b' => 'two']);
-	// === ['a' => 'one', 'b' => 'two']
+	Dash\toArray((object) ['a' => 1, 'b' => 2]);
+	// === ['a' => 1, 'b' => 2]
+
+	Dash\toArray(new FilesystemIterator(__DIR__));
+	// === [ SplFileInfo, SplFileInfo, ... ]
  */
 function toArray($iterable)
 {
-	if ($iterable instanceof \DirectoryIterator) {
-		// iterator_to_array() doesn't work as expected with DirectoryIterator
-		// https://bugs.php.net/bug.php?id=49755
+	if (isType($iterable, ['Traversable', 'stdClass'])) {
 		$array = [];
 		foreach ($iterable as $key => $val) {
 			$array[$key] = is_object($val) ? clone $val : $val;
 		}
-	}
-	elseif ($iterable instanceof \Traversable) {
-		$array = iterator_to_array($iterable);
 	}
 	else {
 		$array = (array) $iterable;
 	}
 
 	return $array;
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _toArray(/* iterable */)
+{
+	return currify('Dash\toArray', func_get_args());
 }

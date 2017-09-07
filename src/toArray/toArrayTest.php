@@ -2,6 +2,7 @@
 
 /**
  * @covers Dash\toArray
+ * @covers Dash\_toArray
  */
 class toArrayTest extends PHPUnit_Framework_TestCase
 {
@@ -13,17 +14,37 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 		$this->assertSame($expected, Dash\toArray($iterable));
 	}
 
+	/**
+	 * @dataProvider cases
+	 */
+	public function testCurried($iterable, $expected)
+	{
+		$toArray = Dash\_toArray();
+		$this->assertSame($expected, $toArray($iterable));
+	}
+
 	public function cases()
 	{
 		return [
-
 			'With null' => [
-				'hello',
-				['hello'],
+				'iterable' => null,
+				'expected' => [],
 			],
 			'With a string' => [
-				null,
-				[],
+				'iterable' => 'hello',
+				'expected' => ['hello'],
+			],
+			'With a number' => [
+				'iterable' => 3.14,
+				'expected' => [3.14],
+			],
+			'With a DateTime' => [
+				'iterable' => new DateTime('@0'),
+				'expected' => [
+					'date' => '1970-01-01 00:00:00.000000',
+					'timezone_type' => 1,
+					'timezone' => '+00:00',
+				],
 			],
 
 			/*
@@ -31,16 +52,16 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'With an empty array' => [
-				[],
-				[],
+				'iterable' => [],
+				'expected' => [],
 			],
 			'With an indexed array' => [
-				[3, 8, 2, 5],
-				[3, 8, 2, 5],
+				'iterable' => [3, 8, 2, 5],
+				'expected' => [3, 8, 2, 5],
 			],
 			'With an associative array' => [
-				['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
-				['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
+				'iterable' => ['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
+				'expected' => ['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
 			],
 
 			/*
@@ -48,16 +69,16 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'With an empty stdClass' => [
-				(object) [],
-				[],
+				'iterable' => (object) [],
+				'expected' => [],
 			],
-			'With a stdClass' => [
-				(object) [3, 8, 2, 5],
-				[3, 8, 2, 5],
+			'With an stdClass of an indexed array' => [
+				'iterable' => (object) [3, 8, 2, 5],
+				'expected' => [3, 8, 2, 5],
 			],
-			'With an associative array' => [
-				(object) ['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
-				['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
+			'With an stdClass of an associative array' => [
+				'iterable' => (object) ['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
+				'expected' => ['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
 			],
 
 			/*
@@ -65,16 +86,16 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'With an empty ArrayObject' => [
-				new ArrayObject([]),
-				[],
+				'iterable' => new ArrayObject([]),
+				'expected' => [],
 			],
-			'With an indexed ArrayObject' => [
-				new ArrayObject([3, 8, 2, 5]),
-				[3, 8, 2, 5],
+			'With an ArrayObject of an indexed array' => [
+				'iterable' => new ArrayObject([3, 8, 2, 5]),
+				'expected' => [3, 8, 2, 5],
 			],
-			'With an associative ArrayObject' => [
-				new ArrayObject(['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5]),
-				['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
+			'With an ArrayObject of an associative array' => [
+				'iterable' => new ArrayObject(['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5]),
+				'expected' => ['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
 			],
 		];
 	}
@@ -106,5 +127,11 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 			$prevValue = $value;
 			$i++;
 		}
+	}
+
+	public function testExamples()
+	{
+		$this->assertSame(['a' => 1, 'b' => 2], Dash\toArray((object) ['a' => 1, 'b' => 2]));
+		$this->assertCount(2, Dash\toArray(new FilesystemIterator(__DIR__)));
 	}
 }

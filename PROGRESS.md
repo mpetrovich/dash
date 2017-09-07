@@ -110,7 +110,7 @@ To review
 - [ ] takeWhile
 - [x] tap
 - [x] thru
-- [ ] toArray
+- [x] toArray
 - [ ] union
 - [ ] values
 - [ ] where

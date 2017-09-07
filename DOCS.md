@@ -1666,19 +1666,22 @@ toArray
 ```php
 toArray($iterable): array
 ```
-Returns an array representation of $iterable.
+Gets an array representation of `$iterable`.
 
 
 
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable\|stdClass` | 
-**Returns** | `array` | 
+**Returns** | `array` | Empty array if `$iterable` is not iterable
 
 **Example:** 
 ```php
-toArray((object) ['a' => 'one', 'b' => 'two']);
-// === ['a' => 'one', 'b' => 'two']
+Dash\toArray((object) ['a' => 1, 'b' => 2]);
+// === ['a' => 1, 'b' => 2]
+
+Dash\toArray(new FilesystemIterator(__DIR__));
+// === [ SplFileInfo, SplFileInfo, ... ]
 ```
 
 [↑ Top](#operations)
