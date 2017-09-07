@@ -59,7 +59,7 @@ To review
 - [ ] dropWhile
 - [ ] each
 - [x] equal
-- [ ] filter
+- [x] filter
 - [ ] find
 - [ ] findKey
 - [ ] findLast
