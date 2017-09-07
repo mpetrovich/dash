@@ -19,6 +19,8 @@ namespace Dash;
  */
 function hasDirect($iterable, $key)
 {
+	assertType($key, ['numeric', 'string'], __FUNCTION__);
+
 	return is_array($iterable) && array_key_exists($key, $iterable)
 		|| is_object($iterable) && property_exists($iterable, $key)
 		|| $iterable instanceof \ArrayAccess && $iterable->offsetExists($key)

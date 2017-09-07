@@ -203,6 +203,10 @@ class anyTest extends PHPUnit_Framework_TestCase
 				'iterable' => [1, true, 'hello'],
 				'expected' => true,
 			],
+			'With an array of falsey values' => [
+				'iterable' => [0, false, ''],
+				'expected' => false,
+			],
 			'With an array of values with mixed truthiness' => [
 				'iterable' => [0, 1, true],
 				'expected' => true,

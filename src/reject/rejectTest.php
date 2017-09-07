@@ -29,7 +29,7 @@ class rejectTest extends PHPUnit_Framework_TestCase
 			'With an array' => [
 				'input' => [1, 2, 3],
 				'predicate' => 'Dash\isEven',
-				'expected' => [0 => 1, 2 => 3],
+				'expected' => [1, 3],
 			],
 			'With matchesProperty() shorthand with an array' => [
 				'input' => [

@@ -19,7 +19,7 @@ class dropWhileTest extends PHPUnit_Framework_TestCase
 			'With an indexed array' => [
 				'input' => [2, 4, 6, 7, 8, 10],
 				'predicate' => 'Dash\isEven',
-				'expected' => [3 => 7, 4 => 8, 5 => 10],
+				'expected' => [7, 8, 10],
 			],
 			'With an associative array' => [
 				'input' => ['a' => 2, 'b' => 4, 'c' => 6, 'd' => 7, 'e' => 8, 'f' => 10],

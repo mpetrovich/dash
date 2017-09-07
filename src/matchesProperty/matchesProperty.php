@@ -16,7 +16,7 @@ namespace Dash;
 	$matcher(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]);  // === true
 	$matcher(['a' => 1, 'b' => 2, 'd' => 4, 'e' => 5]);  // === false
  */
-function matchesProperty($path, $value)
+function matchesProperty($path, $value = true)
 {
 	$matches = function ($iterable) use ($path, $value) {
 		return get($iterable, $path) == $value;
