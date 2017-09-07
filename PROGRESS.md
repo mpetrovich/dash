@@ -96,7 +96,7 @@ To review
 - [ ] pluck
 - [ ] property
 - [ ] reduce
-- [ ] reject
+- [x] reject
 - [ ] result
 - [ ] reverse
 - [ ] rotate

@@ -1034,33 +1034,57 @@ reduce([1, 2, 3, 4], function ($result, $value) {
 reject
 ---
 ```php
-reject($iterable, $predicate): array
+reject($iterable, $predicate = 'Dash\identity'): array
 ```
-Returns a subset of $iterable for which $predicate is falsey. Keys are preserved.
+Gets a list of elements in `$iterable` for which `$predicate` returns falsey.
+Keys are preserved unless `$iterable` is an indexed array.
+
+An indexed array is one with sequential integer keys starting at zero. See Dash\isIndexedArray
 
 
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable\|stdClass` | 
-`$predicate` | `callable` | Callable invoked with ($value, $key, $iterable) for each item in $iterable
-**Returns** | `array` | 
+`$predicate` | `callable\|string\|array` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable`; if a string, will get elements with a falsey value for that field/index; if an array of form `[$field, $value]`, will get elements where the field/index does not loosely equal `$value`
+**Returns** | `array` | List of elements in `$iterable` that do not satisfy `$predicate`
 
 **Example:** 
 ```php
-reject([1, 2, 3, 4], function ($n) { return $n > 2; });  // === [1, 2]
-reject([1, 2, 3, 4], 'Dash\isEven');  // === [1, 3]
+Dash\reject([1, 2, 3, 4], 'Dash\isOdd');
+// === [2, 4]
+
+Dash\reject(
+	[3 => 'c', 1 => 'a', 2 => 'b'],
+	function ($value, $key) { return $key <= 1; }
+);
+// === [3 => 'c', 2 => 'b']
 
 ```
 
-**Example:** With matchesProperty() shorthand
+**Example:** The default predicate checks truthiness
 ```php
-reject([
+Dash\reject([1, 2, null, 3, false, true]);
+// === [null, false]
+
+```
+
+**Example:** With a field/value
+```php
+$data = [
 	['name' => 'abc', 'active' => false],
 	['name' => 'def', 'active' => true],
 	['name' => 'ghi', 'active' => true],
-], 'active');
+];
+
+Dash\reject($data, 'active');
 // === [
-	['name' => 'abc', 'active' => true],
+	['name' => 'abc', 'active' => false],
+]
+
+Dash\reject($data, ['active', false]);
+// === [
+	['name' => 'def', 'active' => true],
+	['name' => 'ghi', 'active' => true]
 ]
 ```
 result
