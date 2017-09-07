@@ -60,8 +60,11 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/mpet
 Iterable
 ===
 
+
 all / every
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 all($iterable, $predicate = 'Dash\identity'): boolean
 ```
@@ -74,7 +77,7 @@ Note: Returns true if `$iterable` is empty, because everything is true of empty 
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
+`$iterable` | `iterable\|stdClass\|null` | 
 `$predicate` | `callable` | (optional) Invoked with `($value, $key, $iterable)` for each element in `$iterable`
 **Returns** | `boolean` | true if `$predicate` returns truthy for every item in `$iterable`
 
@@ -102,8 +105,13 @@ Dash\all([true, true, true]);
 Dash\all([true, false, true]);
 // === false
 ```
+
+[↑ Top](#operations)
+
 any / some
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 any($iterable, $predicate = 'Dash\identity'): boolean
 ```
@@ -115,7 +123,7 @@ Iteration will stop at the first truthy return value.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
+`$iterable` | `iterable\|stdClass\|null` | 
 `$predicate` | `callable` | (optional) Invoked with `($value, $key, $iterable)` for each element in `$iterable`
 **Returns** | `boolean` | true if `$predicate` returns truthy for any item in `$iterable`
 
@@ -143,8 +151,13 @@ Dash\any([false, true, true]);
 Dash\any([false, false, false]);
 // === false
 ```
+
+[↑ Top](#operations)
+
 at
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 at($iterable, $index, $default = null): mixed
 ```
@@ -154,7 +167,7 @@ Iterates over `$iterable` and returns the value of the `$index`th element, ignor
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
+`$iterable` | `iterable\|stdClass\|null` | 
 `$index` | `numeric` | 0-based index
 `$default` | `mixed` | (optional) Value to return if `$index` is out of bounds
 **Returns** | `mixed` | Value of the `$index`th item of `$iterable, ignoring keys
@@ -177,8 +190,13 @@ Dash\at(['a' => 'first', 'b' => 'second', 'c' => 'third'], 2);
 Dash\at(['a', 'b', 'c'], 5, 'none');
 // === 'none'
 ```
+
+[↑ Top](#operations)
+
 average / mean
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 average($iterable): double|null
 ```
@@ -188,7 +206,7 @@ Gets the average value of all elements in `$iterable`.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
+`$iterable` | `iterable\|stdClass\|null` | 
 **Returns** | `double\|null` | Null if `$iterable` is empty
 
 **Example:** 
@@ -196,8 +214,13 @@ Parameter | Type | Description
 Dash\average([2, 3, 5, 8]);
 // === 4.5
 ```
+
+[↑ Top](#operations)
+
 contains
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 contains($iterable, $target, $comparator = 'Dash\equal'): boolean
 ```
@@ -222,8 +245,13 @@ contains([1, '2', 3], 2);  // === true
 ```php
 contains([1, '2', 3], 2, 'Dash\identical');  // === false
 ```
+
+[↑ Top](#operations)
+
 deltas
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 deltas($iterable): array
 ```
@@ -240,8 +268,13 @@ Parameter | Type | Description
 ```php
 deltas([3, 8, 9, 9, 5, 13]);  // === [0, 5, 1, 0, -4, 8]
 ```
+
+[↑ Top](#operations)
+
 difference / diff
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 difference($iterable /* , ...iterables */): array
 ```
@@ -263,8 +296,13 @@ diff(
 	[2, 8]
 );  // === [4, 6]
 ```
+
+[↑ Top](#operations)
+
 dropWhile
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 dropWhile($iterable, $predicate = 'Dash\identity'): array
 ```
@@ -280,8 +318,13 @@ Parameter | Type | Description
 **Returns** | `array` | 
 
 
+
+[↑ Top](#operations)
+
 each
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 each($iterable, $iteratee): mixed
 ```
@@ -301,8 +344,13 @@ Parameter | Type | Description
 ```php
 each([1, 2, 3], function ($value, $index, $array) { // $array[$index] === $value });
 ```
+
+[↑ Top](#operations)
+
 filter
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 filter($iterable, $predicate = 'Dash\identity'): array
 ```
@@ -358,8 +406,13 @@ Dash\filter($data, ['active', false]);
 	['name' => 'abc', 'active' => false],
 ]
 ```
+
+[↑ Top](#operations)
+
 find
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 find($iterable, $predicate): array|null
 ```
@@ -379,8 +432,13 @@ $array = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
 find($array, 3);  // === ['c', 3]
 find($array, 'Dash\isEven');  // === ['b', 2]
 ```
+
+[↑ Top](#operations)
+
 findKey
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 findKey($iterable, $predicate): string|integer|null
 ```
@@ -400,8 +458,13 @@ $array = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
 find($array, 3);  // === 'c'
 find($array, 'Dash\isEven');  // === 'b'
 ```
+
+[↑ Top](#operations)
+
 findLast
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 findLast($iterable, $predicate): array|null
 ```
@@ -421,8 +484,13 @@ $array = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
 find($array, 3);  // === ['c', 3]
 find($array, 'Dash\isEven');  // === ['d', 4]
 ```
+
+[↑ Top](#operations)
+
 findValue
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 findValue($iterable, $predicate): string|integer|null
 ```
@@ -442,8 +510,13 @@ $array = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
 find($array, 3);  // === 3
 find($array, 'Dash\isEven');  // === 2
 ```
+
+[↑ Top](#operations)
+
 first / head
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 first($iterable): mixed|null
 ```
@@ -453,7 +526,7 @@ Gets the value of the first element in `$iterable`.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
+`$iterable` | `iterable\|stdClass\|null` | 
 **Returns** | `mixed\|null` | Null if `$iterable` is empty
 
 **Example:** 
@@ -464,8 +537,13 @@ Dash\first(['a' => 'one', 'b' => 'two', 'c' => 'three']);
 Dash\first([]);
 // === null
 ```
+
+[↑ Top](#operations)
+
 get
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 get($iterable, $path, $default = null): mixed
 ```
@@ -509,8 +587,13 @@ Dash\get($iterable, 'people.1.name') == 'John';
 $iterable = ['a.b.c' => 'value'];
 Dash\get($iterable, 'a.b.c') == 'value';
 ```
+
+[↑ Top](#operations)
+
 getDirect
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 getDirect($iterable, $key, $default = null): mixed
 ```
@@ -535,8 +618,13 @@ getDirect(['a' => 'one', 'b' => 'two'], 'b');  // === 'two'
 ```php
 getDirect((object) ['a' => 'one', 'b' => 'two'], 'b');  // === 'two'
 ```
+
+[↑ Top](#operations)
+
 getDirectRef
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 : mixed
 ```
@@ -557,8 +645,13 @@ $ref = Dash\getDirectRef($obj, 'key');
 $ref = 'changed';
 // $obj->key === 'changed'
 ```
+
+[↑ Top](#operations)
+
 groupBy
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 groupBy($iterable, $iteratee = 'Dash\identity', $defaultGroup = null): array
 ```
@@ -585,8 +678,13 @@ groupBy([1, 2, 3, 4, 5], 'Dash\isOdd');
 groupBy([2.1, 2.5, 3.5, 3.9, 4], 'Dash\isOdd');
 // === [2 => [2.1, 2.5], 3 => [3.5, 3.9], 4 => [4]]
 ```
+
+[↑ Top](#operations)
+
 hasDirect
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 hasDirect($iterable, $key): boolean
 ```
@@ -611,8 +709,13 @@ hasDirect(['a' => ['b' => 1, 'c' => 2], 'b');  // === false
 ```php
 hasDirect((object) ['a' => 1, 'b' => 2], 'b');  // === true
 ```
+
+[↑ Top](#operations)
+
 intersection / intersect
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 intersection($iterable /* , ...iterables */): array
 ```
@@ -635,8 +738,13 @@ intersection(
 	[1, 2, 3, 4]
 );  // === [0 => 1, 1 => 3]
 ```
+
+[↑ Top](#operations)
+
 isIndexedArray
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 isIndexedArray($value): boolean
 ```
@@ -660,8 +768,13 @@ Dash\isIndexedArray([1 => 'a', 'b', 'c']);
 Dash\isIndexedArray(['a' => 1, 'b' => 2]);
 // === false
 ```
+
+[↑ Top](#operations)
+
 join / implode
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 join($iterable, $separator): string
 ```
@@ -672,7 +785,7 @@ with each value separated by `$separator`.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
+`$iterable` | `iterable\|stdClass\|null` | 
 `$separator` | `string` | 
 **Returns** | `string` | 
 
@@ -684,8 +797,13 @@ Dash\join([123, 456, 789], '-');
 Dash\join(['a' => 1, 'b' => 2, 'c' => 3], ', ');
 // === '1, 2, 3'
 ```
+
+[↑ Top](#operations)
+
 keyBy / indexBy
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 keyBy($iterable, $iteratee = 'Dash\identity'): array
 ```
@@ -716,8 +834,13 @@ keyBy([
 	'Fred'  => ['name' => 'Fred', 'gender' => 'male'],
 ]
 ```
+
+[↑ Top](#operations)
+
 keys
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 keys($iterable): array
 ```
@@ -727,7 +850,7 @@ Gets the keys of `$iterable` as an array.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
+`$iterable` | `iterable\|stdClass\|null` | 
 **Returns** | `array` | 
 
 **Example:** 
@@ -735,8 +858,13 @@ Parameter | Type | Description
 Dash\keys(['c' => 3, 'a' => 1, 'b' => 2]);
 // === ['c', 'a', 'b']
 ```
+
+[↑ Top](#operations)
+
 last
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 last($iterable): mixed|null
 ```
@@ -746,7 +874,7 @@ Gets the value of the last element in `$iterable`.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
+`$iterable` | `iterable\|stdClass\|null` | 
 **Returns** | `mixed\|null` | Null if `$iterable` is empty
 
 **Example:** 
@@ -757,8 +885,13 @@ Dash\last(['a' => 'one', 'b' => 'two', 'c' => 'three']);
 Dash\last([]);
 // === null
 ```
+
+[↑ Top](#operations)
+
 map
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 map($iterable, $iteratee = 'Dash\identity'): array
 ```
@@ -805,8 +938,13 @@ Dash\map(
 	'color'
 ) == ['red', 'blue'];
 ```
+
+[↑ Top](#operations)
+
 mapValues
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 mapValues($iterable, $iteratee = 'Dash\identity'): array
 ```
@@ -839,8 +977,13 @@ Dash\map(
 	function($color, $flower) { return $flower . ' are ' . $color; }
 ) == ['roses' => 'roses are red', 'violets' => 'violets are blue'];
 ```
+
+[↑ Top](#operations)
+
 matches
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 matches($properties): callable
 ```
@@ -860,8 +1003,13 @@ $matcher = matches(['b' => 2, 'd' => 4]);
 $matcher(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]);  // === true
 $matcher(['a' => 1, 'b' => 2, 'c' => 3, 'e' => 5]);  // === false
 ```
+
+[↑ Top](#operations)
+
 matchesProperty
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 matchesProperty($path, $value = true): callable
 ```
@@ -882,8 +1030,13 @@ $matcher = matchesProperty('c', 3);
 $matcher(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]);  // === true
 $matcher(['a' => 1, 'b' => 2, 'd' => 4, 'e' => 5]);  // === false
 ```
+
+[↑ Top](#operations)
+
 max
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 max($iterable): mixed|null
 ```
@@ -893,7 +1046,7 @@ Gets the maximum value of all elements in `$iterable`.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
+`$iterable` | `iterable\|stdClass\|null` | 
 **Returns** | `mixed\|null` | Null if `$iterable` is empty
 
 **Example:** 
@@ -904,8 +1057,13 @@ Dash\max([3, 8, 2, 5]);
 Dash\max([]);
 // === null
 ```
+
+[↑ Top](#operations)
+
 median
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 median($iterable): mixed|null
 ```
@@ -915,7 +1073,7 @@ Returns the median value of an iterable.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
+`$iterable` | `iterable\|stdClass\|null` | 
 **Returns** | `mixed\|null` | Null if `$iterable` is empty
 
 **Example:** 
@@ -926,8 +1084,13 @@ Dash\median([3, 2, 1, 5, 4]);
 Dash\median([3, 2, 1, 4]);
 // === 2.5
 ```
+
+[↑ Top](#operations)
+
 min
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 min($iterable): mixed|null
 ```
@@ -937,7 +1100,7 @@ Gets the minimum value of all elements in `$iterable`.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
+`$iterable` | `iterable\|stdClass\|null` | 
 **Returns** | `mixed\|null` | Null if `$iterable` is empty
 
 **Example:** 
@@ -948,8 +1111,13 @@ Dash\min([3, 8, 2, 5]);
 Dash\min([]);
 // === null
 ```
+
+[↑ Top](#operations)
+
 pick
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 pick($iterable, $keys): array|object
 ```
@@ -968,8 +1136,13 @@ Parameter | Type | Description
 pick(['a' => 'one', 'b' => 'two', 'c' => 'three'], ['b', 'c']);
 // === ['b' => 'two', 'c' => 'three']
 ```
+
+[↑ Top](#operations)
+
 pluck
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 pluck($iterable, $path, $default = null): array
 ```
@@ -998,8 +1171,13 @@ pluck(
 );
 // == [1, 'default', 3, 4];
 ```
+
+[↑ Top](#operations)
+
 property
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 property($path, $default = null): function
 ```
@@ -1045,8 +1223,13 @@ $getter = property('a.b.c');
 $iterable = ['a.b.c' => 'value'];
 $getter($iterable);  // === 'value';
 ```
+
+[↑ Top](#operations)
+
 reduce
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 reduce($iterable, $iteratee, $initial = []): mixed
 ```
@@ -1056,7 +1239,7 @@ Iteratively reduces $iterable to a single value by way of $iteratee.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
+`$iterable` | `iterable\|stdClass\|null` | 
 `$iteratee` | `callable` | Invoked with ($result, $value, $key) for each ($key, $value) in $iterable and the current $result. $iteratee should return the updated $result
 `$initial` | `mixed` | (optional) Initial value
 **Returns** | `mixed` | 
@@ -1068,8 +1251,13 @@ reduce([1, 2, 3, 4], function ($result, $value) {
 }, 0);
 // === 10
 ```
+
+[↑ Top](#operations)
+
 reject
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 reject($iterable, $predicate = 'Dash\identity'): array
 ```
@@ -1125,8 +1313,13 @@ Dash\reject($data, ['active', false]);
 	['name' => 'ghi', 'active' => true]
 ]
 ```
+
+[↑ Top](#operations)
+
 result
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 result($iterable, $path, $default = null): mixed
 ```
@@ -1186,8 +1379,13 @@ $iterable = [
 result($iterable, 'dates.start.getTimestamp');
 // === 1483246800
 ```
+
+[↑ Top](#operations)
+
 reverse
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 reverse($iterable): array
 ```
@@ -1212,8 +1410,13 @@ reverse(['a', 'b', 'c', 'd', 'e']);
 reverse(['a' => 'one', 'b' => 'two', 'c' => 'three']);
 // === ['c' => 'three', 'b' => 'two', 'a' => 'one']
 ```
+
+[↑ Top](#operations)
+
 rotate
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 rotate($iterable, $count = 1): array|object
 ```
@@ -1227,8 +1430,13 @@ Parameter | Type | Description
 **Returns** | `array\|object` | 
 
 
+
+[↑ Top](#operations)
+
 set
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 set(&$iterable, $path, $value): array|object
 ```
@@ -1286,8 +1494,13 @@ set($iterable, 'a.b.c', 'value');
 	]
 ]
 ```
+
+[↑ Top](#operations)
+
 sort
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 sort($iterable, $comparator = 'Dash\compare'): array
 ```
@@ -1306,8 +1519,13 @@ Parameter | Type | Description
 sort([4, 1, 3, 2]);
 // === [1, 2, 3, 4]
 ```
+
+[↑ Top](#operations)
+
 sum
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 sum($iterable): numeric
 ```
@@ -1317,7 +1535,7 @@ Gets the sum of all element values in `$iterable`.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
+`$iterable` | `iterable\|stdClass\|null` | 
 **Returns** | `numeric` | Zero if `$iterable` is empty
 
 **Example:** 
@@ -1328,8 +1546,13 @@ Dash\sum([2, 3, 5, 8]);
 Dash\sum([]);
 // === 0
 ```
+
+[↑ Top](#operations)
+
 take
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 take($iterable, $count = 1): array
 ```
@@ -1362,8 +1585,13 @@ take(['a' => 'one', 'b' => 'two', 'c' => 'three', 'd' => 'four'], 2);
 take(['a', 'b', 'c', 'd', 'e'], -2);
 // === ['a', 'b', 'c']
 ```
+
+[↑ Top](#operations)
+
 takeRight
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 takeRight($iterable, $count = 1): array
 ```
@@ -1396,8 +1624,13 @@ takeRight(['a' => 'one', 'b' => 'two', 'c' => 'three', 'd' => 'four'], 2);
 takeRight(['a', 'b', 'c', 'd', 'e'], -2);
 // === ['c', 'd', 'e']
 ```
+
+[↑ Top](#operations)
+
 takeWhile
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 takeWhile($iterable, $predicate = 'Dash\identity'): array|object
 ```
@@ -1423,8 +1656,13 @@ takeWhile([2, 4, 6, 7, 8, 10], 'Dash\isEven');
 takeWhile((object) ['a' => 2, 'b' => 4, 'c' => 5, 'd' => 6], 'Dash\isEven');
 // === (object) ['a' => 2, 'b' => 4]
 ```
+
+[↑ Top](#operations)
+
 toArray
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 toArray($iterable): array
 ```
@@ -1442,8 +1680,13 @@ Parameter | Type | Description
 toArray((object) ['a' => 'one', 'b' => 'two']);
 // === ['a' => 'one', 'b' => 'two']
 ```
+
+[↑ Top](#operations)
+
 union
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 union(/* ...iterables */): array
 ```
@@ -1465,8 +1708,13 @@ intersection(
 	[1, 2, 3, 4]
 );  // === [1, 3, 5, 8, 2, 4]
 ```
+
+[↑ Top](#operations)
+
 values
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 values($iterable): array
 ```
@@ -1484,8 +1732,13 @@ Parameter | Type | Description
 values(['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5]);
 // === [3, 8, 2, 5]
 ```
+
+[↑ Top](#operations)
+
 where
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 where($iterable, $properties): array
 ```
@@ -1514,8 +1767,13 @@ where($input, ['gender' => 'f', 'age' => 30]);
 	['name' => 'Kate', 'age' => 30, 'gender' => 'f'],
 ]
 ```
+
+[↑ Top](#operations)
+
 without
 ---
+[Operations](#operations) › [Iterable](#iterable)
+
 ```php
 without($iterable, $exclude): array
 ```
@@ -1535,11 +1793,16 @@ without(['a', 'b', 'c', 'd'], ['b', 'c']);
 // === ['a', 'd']
 ```
 
+[↑ Top](#operations)
+
 Utility
 ===
 
+
 assertType
 ---
+[Operations](#operations) › [Utility](#utility)
+
 ```php
 assertType($value, $type, $funcName = __FUNCTION__): void
 ```
@@ -1565,8 +1828,13 @@ $value = [1, 2, 3];
 Dash\assertType($value, 'object');
 // Throws an exception
 ```
+
+[↑ Top](#operations)
+
 chain
 ---
+[Operations](#operations) › [Utility](#utility)
+
 ```php
 chain($input = null): Dash\_
 ```
@@ -1587,8 +1855,13 @@ Dash\chain([1, 2, 3])
 	->value();
 // === [2, 4]
 ```
+
+[↑ Top](#operations)
+
 compare
 ---
+[Operations](#operations) › [Utility](#utility)
+
 ```php
 compare($a, $b): integer
 ```
@@ -1617,8 +1890,13 @@ Dash\compare(2, 1);
 Dash\compare(2, 2);
 // === 0
 ```
+
+[↑ Top](#operations)
+
 custom
 ---
+[Operations](#operations) › [Utility](#utility)
+
 ```php
 custom($name): function
 ```
@@ -1636,8 +1914,13 @@ Parameter | Type | Description
 _::setCustom('double', function ($n) { return $n * 2; });
 _::chain([1, 2, 3])->map(Dash\custom('double'))->value();  // === [2, 4, 6]
 ```
+
+[↑ Top](#operations)
+
 debug
 ---
+[Operations](#operations) › [Utility](#utility)
+
 ```php
 debug($value /* , ...value */): mixed
 ```
@@ -1667,8 +1950,13 @@ array(3) {
 string(5) "hello"
 double(3.14)
 ```
+
+[↑ Top](#operations)
+
 equal
 ---
+[Operations](#operations) › [Utility](#utility)
+
 ```php
 equal($a, $b): boolean
 ```
@@ -1696,8 +1984,13 @@ Dash\equal([1, 2, 3], [1, '2', 3]);
 Dash\equal([1, 2, 3], [3, 2, 1]);
 // === false
 ```
+
+[↑ Top](#operations)
+
 identical
 ---
+[Operations](#operations) › [Utility](#utility)
+
 ```php
 identical($a, $b): boolean
 ```
@@ -1725,8 +2018,13 @@ Dash\identical([1, 2, 3], [1, '2', 3]);
 Dash\identical([1, 2, 3], [1, 2, 3]);
 // === true
 ```
+
+[↑ Top](#operations)
+
 identity
 ---
+[Operations](#operations) › [Utility](#utility)
+
 ```php
 identity($value): mixed
 ```
@@ -1745,8 +2043,13 @@ $a = new ArrayObject();
 $b = Dash\identity($a);
 // $b === $a
 ```
+
+[↑ Top](#operations)
+
 isEmpty
 ---
+[Operations](#operations) › [Utility](#utility)
+
 ```php
 isEmpty($value): boolean
 ```
@@ -1780,8 +2083,13 @@ Dash\isEmpty(0);
 Dash\isEmpty([0]);
 // === false
 ```
+
+[↑ Top](#operations)
+
 isType
 ---
+[Operations](#operations) › [Utility](#utility)
+
 ```php
 isType($value, $type): boolean
 ```
@@ -1827,10 +2135,15 @@ Dash\isType(new ArrayObject([1, 2, 3]), 'ArrayObject');
 Dash\isType((object) [1, 2, 3], ['array', 'object']);
 // === true
 ```
+
+[↑ Top](#operations)
+
 size / count
 ---
+[Operations](#operations) › [Utility](#utility)
+
 ```php
-size($input, $encoding = 'UTF-8'): integer|null
+size($input, $encoding = 'UTF-8'): integer
 ```
 Returns the number of elements (for iterables) or characters (for strings) in $input.
 
@@ -1840,15 +2153,20 @@ Parameter | Type | Description
 --- | --- | :---
 `$input` | `iterable\|string` | 
 `$encoding` | `string` | (optional) The character encoding of $input if it is a string; see mb_list_encodings() for the list of supported encodings
-**Returns** | `integer\|null` | Null for non-iterable/string input
+**Returns** | `integer` | Zero for non-iterable input
 
 **Example:** 
 ```php
 size([1, 2, 3]);  // === 3
 size('Hello!');  // === 6
 ```
+
+[↑ Top](#operations)
+
 tap
 ---
+[Operations](#operations) › [Utility](#utility)
+
 ```php
 tap($value, callable $interceptor): mixed
 ```
@@ -1876,8 +2194,13 @@ $result = _::chain([1, 3, 4])
 
 // $result === [1, 3]
 ```
+
+[↑ Top](#operations)
+
 thru
 ---
+[Operations](#operations) › [Utility](#utility)
+
 ```php
 thru($value, callable $interceptor): mixed
 ```
@@ -1905,11 +2228,16 @@ $result = _::chain([1, 3, 4])
 // $result === [1, 3, 1]
 ```
 
+[↑ Top](#operations)
+
 Callable
 ===
 
+
 apply
 ---
+[Operations](#operations) › [Callable](#callable)
+
 ```php
 apply(callable $callable, $args): mixed
 ```
@@ -1948,8 +2276,13 @@ $apply = Dash\_apply($func);
 $apply(['morning', 'John']);
 // === 'Good morning, John'
 ```
+
+[↑ Top](#operations)
+
 ary
 ---
+[Operations](#operations) › [Callable](#callable)
+
 ```php
 ary(callable $callable, $arity): callable
 ```
@@ -1970,8 +2303,13 @@ $isNumeric = Dash\ary('is_numeric', 1);
 Dash\filter([1, 2.0, '3', 'a'], $isNumeric);
 // === [1, 2.0, '3']
 ```
+
+[↑ Top](#operations)
+
 call
 ---
+[Operations](#operations) › [Callable](#callable)
+
 ```php
 call(callable $callable /* , ...args */): mixed
 ```
@@ -1996,8 +2334,13 @@ $func = function ($time, $name) {
 Dash\call($func, 'morning', 'John');
 // === 'Good morning, John'
 ```
+
+[↑ Top](#operations)
+
 currify
 ---
+[Operations](#operations) › [Callable](#callable)
+
 ```php
 currify($callable, array $args = [], $rotate = -1): mixed
 ```
@@ -2012,8 +2355,13 @@ Parameter | Type | Description
 **Returns** | `mixed` | 
 
 
+
+[↑ Top](#operations)
+
 curry
 ---
+[Operations](#operations) › [Callable](#callable)
+
 ```php
 curry(callable $callable /*, ...args */): mixed
 ```
@@ -2026,8 +2374,13 @@ Parameter | Type | Description
 **Returns** | `mixed` | 
 
 
+
+[↑ Top](#operations)
+
 curryN
 ---
+[Operations](#operations) › [Callable](#callable)
+
 ```php
 curryN($callable, $totalArgs /*, ...args */): mixed
 ```
@@ -2041,8 +2394,13 @@ Parameter | Type | Description
 **Returns** | `mixed` | 
 
 
+
+[↑ Top](#operations)
+
 negate
 ---
+[Operations](#operations) › [Callable](#callable)
+
 ```php
 negate(callable $predicate): callable
 ```
@@ -2063,8 +2421,13 @@ $isOdd = Dash\negate($isEven);
 $isEven(3);  // === false
 $isOdd(3);   // === true
 ```
+
+[↑ Top](#operations)
+
 partial
 ---
+[Operations](#operations) › [Callable](#callable)
+
 ```php
 partial($callable /* , ...args */): callable
 ```
@@ -2103,8 +2466,13 @@ $greetJane = Dash\partial($greet, Dash\_, 'Jane');
 $greetMark('Hello');  // === 'Hello, Mark!'
 $greetJane('Howdy');  // === 'Howdy, Jane!'
 ```
+
+[↑ Top](#operations)
+
 partialRight
 ---
+[Operations](#operations) › [Callable](#callable)
+
 ```php
 partialRight($callable /* , ...args */): callable
 ```
@@ -2143,8 +2511,13 @@ $sayHowdy = Dash\partialRight($greet, 'Howdy', Dash\_);
 $this->assertSame('Hello, Mark!', $sayHello('Mark'));
 $this->assertSame('Howdy, Jane!', $sayHowdy('Jane'));
 ```
+
+[↑ Top](#operations)
+
 unary
 ---
+[Operations](#operations) › [Callable](#callable)
+
 ```php
 unary(callable $callable): callable
 ```
@@ -2165,11 +2538,16 @@ Dash\filter([1, 2.0, '3', 'a'], $isNumeric);
 // === [1, 2.0, '3']
 ```
 
+[↑ Top](#operations)
+
 Number
 ===
 
+
 isEven
 ---
+[Operations](#operations) › [Number](#number)
+
 ```php
 isEven($value): boolean
 ```
@@ -2198,8 +2576,13 @@ Dash\isEven(4.9);
 Dash\isEven('a');
 // === false
 ```
+
+[↑ Top](#operations)
+
 isOdd
 ---
+[Operations](#operations) › [Number](#number)
+
 ```php
 isOdd($value): boolean
 ```
@@ -2228,3 +2611,5 @@ Dash\isOdd(5.9);
 Dash\isOdd('a');
 // === false
 ```
+
+[↑ Top](#operations)

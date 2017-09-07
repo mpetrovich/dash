@@ -197,6 +197,8 @@ function renderDoc($op)
 {
 	$aliases = $op->aliases ? sprintf(' / %s', implode(' / ', $op->aliases)) : '';
 
+	$categorySlug = strtolower($op->category);
+
 	$related = _::chain((array) $op->related)
 		->map(function ($op) {
 			$slug = strtolower(str_replace('()', '', $op));
@@ -243,8 +245,11 @@ END;
 	$returnType = $op->return->type ? ": {$op->return->type}" : '';
 
 	return <<<END
+
 {$op->name}$aliases
 ---
+[Operations](#operations) › [$op->category](#$categorySlug)
+
 ```php
 {$op->signature}$returnType
 ```
@@ -254,6 +259,8 @@ $related
 $paramsTable$returnTable
 
 $examples
+
+[↑ Top](#operations)
 END;
 }
 
