@@ -300,7 +300,8 @@ filter($iterable, $predicate = 'Dash\identity'): array
 Gets a list of elements in `$iterable` for which `$predicate` returns truthy.
 Keys are preserved unless `$iterable` is an indexed array.
 
-An indexed array is one with sequential integer keys starting at zero.
+An indexed array is one with sequential integer keys starting at zero. See Dash\isIndexedArray
+
 
 Parameter | Type | Description
 --- | --- | :---
@@ -328,7 +329,7 @@ Dash\filter([1, 2, null, 3, false, true]);
 
 ```
 
-**Example:** With matchesProperty() shorthand
+**Example:** With a field/value
 ```php
 $data = [
 	['name' => 'abc', 'active' => false],

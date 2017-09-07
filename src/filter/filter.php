@@ -6,8 +6,7 @@ namespace Dash;
  * Gets a list of elements in `$iterable` for which `$predicate` returns truthy.
  * Keys are preserved unless `$iterable` is an indexed array.
  *
- * An indexed array is one with sequential integer keys starting at zero.
- * @link Dash\isIndexedArray
+ * An indexed array is one with sequential integer keys starting at zero. See Dash\isIndexedArray
  *
  * @category Iterable
  * @param iterable|stdClass $iterable
@@ -32,7 +31,7 @@ namespace Dash;
 	Dash\filter([1, 2, null, 3, false, true]);
 	// === [1, 2, 3, true]
  *
- * @example With matchesProperty() shorthand
+ * @example With a field/value
 	$data = [
 		['name' => 'abc', 'active' => false],
 		['name' => 'def', 'active' => true],
