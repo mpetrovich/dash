@@ -3,11 +3,11 @@
 namespace Dash;
 
 /**
- * Gets an array representation of `$iterable`.
+ * Gets an array representation of `$value`.
  *
  * @category Iterable
- * @param iterable|stdClass $iterable
- * @return array Empty array if `$iterable` is not iterable
+ * @param mixed $value
+ * @return array Empty array if `$value` is not iterable
  *
  * @example
 	Dash\toArray((object) ['a' => 1, 'b' => 2]);
@@ -16,16 +16,16 @@ namespace Dash;
 	Dash\toArray(new FilesystemIterator(__DIR__));
 	// === [ SplFileInfo, SplFileInfo, ... ]
  */
-function toArray($iterable)
+function toArray($value)
 {
-	if (isType($iterable, ['Traversable', 'stdClass'])) {
+	if (isType($value, ['Traversable', 'stdClass'])) {
 		$array = [];
-		foreach ($iterable as $key => $val) {
+		foreach ($value as $key => $val) {
 			$array[$key] = is_object($val) ? clone $val : $val;
 		}
 	}
 	else {
-		$array = (array) $iterable;
+		$array = (array) $value;
 	}
 
 	return $array;

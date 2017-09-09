@@ -9,37 +9,37 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($iterable, $expected)
+	public function test($value, $expected)
 	{
-		$this->assertSame($expected, Dash\toArray($iterable));
+		$this->assertSame($expected, Dash\toArray($value));
 	}
 
 	/**
 	 * @dataProvider cases
 	 */
-	public function testCurried($iterable, $expected)
+	public function testCurried($value, $expected)
 	{
 		$toArray = Dash\_toArray();
-		$this->assertSame($expected, $toArray($iterable));
+		$this->assertSame($expected, $toArray($value));
 	}
 
 	public function cases()
 	{
 		return [
 			'With null' => [
-				'iterable' => null,
+				'value' => null,
 				'expected' => [],
 			],
 			'With a string' => [
-				'iterable' => 'hello',
+				'value' => 'hello',
 				'expected' => ['hello'],
 			],
 			'With a number' => [
-				'iterable' => 3.14,
+				'value' => 3.14,
 				'expected' => [3.14],
 			],
 			'With a DateTime' => [
-				'iterable' => new DateTime('@0'),
+				'value' => new DateTime('@0'),
 				'expected' => [
 					'date' => '1970-01-01 00:00:00.000000',
 					'timezone_type' => 1,
@@ -52,15 +52,15 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'With an empty array' => [
-				'iterable' => [],
+				'value' => [],
 				'expected' => [],
 			],
 			'With an indexed array' => [
-				'iterable' => [3, 8, 2, 5],
+				'value' => [3, 8, 2, 5],
 				'expected' => [3, 8, 2, 5],
 			],
 			'With an associative array' => [
-				'iterable' => ['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
+				'value' => ['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
 				'expected' => ['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
 			],
 
@@ -69,15 +69,15 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'With an empty stdClass' => [
-				'iterable' => (object) [],
+				'value' => (object) [],
 				'expected' => [],
 			],
 			'With an stdClass of an indexed array' => [
-				'iterable' => (object) [3, 8, 2, 5],
+				'value' => (object) [3, 8, 2, 5],
 				'expected' => [3, 8, 2, 5],
 			],
 			'With an stdClass of an associative array' => [
-				'iterable' => (object) ['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
+				'value' => (object) ['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
 				'expected' => ['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
 			],
 
@@ -86,15 +86,15 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'With an empty ArrayObject' => [
-				'iterable' => new ArrayObject([]),
+				'value' => new ArrayObject([]),
 				'expected' => [],
 			],
 			'With an ArrayObject of an indexed array' => [
-				'iterable' => new ArrayObject([3, 8, 2, 5]),
+				'value' => new ArrayObject([3, 8, 2, 5]),
 				'expected' => [3, 8, 2, 5],
 			],
 			'With an ArrayObject of an associative array' => [
-				'iterable' => new ArrayObject(['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5]),
+				'value' => new ArrayObject(['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5]),
 				'expected' => ['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
 			],
 		];
