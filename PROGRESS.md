@@ -99,7 +99,7 @@ To review
 - [ ] reduce
 - [x] reject
 - [ ] result
-- [ ] reverse
+- [x] reverse
 - [ ] rotate
 - [ ] set
 - [x] size

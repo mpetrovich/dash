@@ -1387,28 +1387,35 @@ reverse
 [Operations](#operations) › [Iterable](#iterable)
 
 ```php
-reverse($iterable): array
+reverse($iterable, $preserveIntegerKeys = false): array
 ```
-Returns a new array with elements in reverse order. Non-integer keys are preserved.
+Gets a new array of `$iterable` elements in reverse order.
 
 
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
-**Returns** | `array` | 
+`$iterable` | `iterable\|stdClass\|null` | 
+`$preserveIntegerKeys` | `boolean` | (optional) If true, integer keys will be preserved; non-integer keys are always preserved regardless of this setting
+**Returns** | `array` | Elements of `$iterable` in reverse order
 
 **Example:** 
 ```php
-reverse(['a', 'b', 'c', 'd', 'e']);
-// === ['e', 'd', 'c', 'b', 'a']
+Dash\reverse(['a', 'b', 'c']);
+// === ['c', 'b', 'a']
+
+Dash\reverse(['a' => 1, 'b' => 2, 'c' => 3]);
+// === ['c' => 3, 'b' => 2, 'a' => 1]
 
 ```
 
-**Example:** 
+**Example:** Preserving integer keys
 ```php
-reverse(['a' => 'one', 'b' => 'two', 'c' => 'three']);
-// === ['c' => 'three', 'b' => 'two', 'a' => 'one']
+Dash\reverse(['a', 'b', 'c'], true);
+// === [2 => 'c', 1 => 'b', 0 => 'a']
+
+Dash\reverse(['a', 'b', 'c'], false);
+// === [0 => 'c', 1 => 'b', 2 => 'a']
 ```
 
 [↑ Top](#operations)
@@ -1664,16 +1671,16 @@ toArray
 [Operations](#operations) › [Iterable](#iterable)
 
 ```php
-toArray($iterable): array
+toArray($value): array
 ```
-Gets an array representation of `$iterable`.
+Gets an array representation of `$value`.
 
 
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
-**Returns** | `array` | Empty array if `$iterable` is not iterable
+`$value` | `mixed` | 
+**Returns** | `array` | Empty array if `$value` is not iterable
 
 **Example:** 
 ```php

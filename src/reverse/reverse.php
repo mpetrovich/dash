@@ -3,21 +3,43 @@
 namespace Dash;
 
 /**
- * Returns a new array with elements in reverse order. Non-integer keys are preserved.
+ * Gets a new array of `$iterable` elements in reverse order.
  *
  * @category Iterable
- * @param iterable|stdClass $iterable
- * @return array
+ * @param iterable|stdClass|null $iterable
+ * @param boolean $preserveIntegerKeys (optional) If true, integer keys will be preserved;
+ *                                     non-integer keys are always preserved regardless of this setting
+ * @return array Elements of `$iterable` in reverse order
  *
  * @example
-	reverse(['a', 'b', 'c', 'd', 'e']);
-	// === ['e', 'd', 'c', 'b', 'a']
+	Dash\reverse(['a', 'b', 'c']);
+	// === ['c', 'b', 'a']
+
+	Dash\reverse(['a' => 1, 'b' => 2, 'c' => 3]);
+	// === ['c' => 3, 'b' => 2, 'a' => 1]
  *
- * @example
-	reverse(['a' => 'one', 'b' => 'two', 'c' => 'three']);
-	// === ['c' => 'three', 'b' => 'two', 'a' => 'one']
+ * @example Preserving integer keys
+	Dash\reverse(['a', 'b', 'c'], true);
+	// === [2 => 'c', 1 => 'b', 0 => 'a']
+
+	Dash\reverse(['a', 'b', 'c'], false);
+	// === [0 => 'c', 1 => 'b', 2 => 'a']
  */
-function reverse($iterable)
+function reverse($iterable, $preserveIntegerKeys = false)
 {
-	return array_reverse(toArray($iterable));
+	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
+
+	if (is_null($iterable)) {
+		return [];
+	}
+
+	return array_reverse(toArray($iterable), $preserveIntegerKeys);
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _reverse(/* preserveIntegerKeys, iterable */)
+{
+	return currify('Dash\reverse', func_get_args());
 }
