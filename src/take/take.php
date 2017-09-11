@@ -8,6 +8,8 @@ namespace Dash;
  * Keys are preserved unless `$iterable` is an indexed array.
  * An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
  *
+ * @see takeRight()
+ *
  * @category Iterable
  * @param iterable|stdClass|null $iterable
  * @param integer $count If negative, gets all but the last `$count` elements of `$iterable`

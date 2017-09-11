@@ -1589,7 +1589,7 @@ Gets a new array of the first `$count` elements of `$iterable`.
 Keys are preserved unless `$iterable` is an indexed array.
 An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
 
-
+Related: [takeRight()](#takeright)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1618,34 +1618,29 @@ takeRight
 ```php
 takeRight($iterable, $count = 1): array
 ```
-Returns a new array of the last $count elements of $iterable. Non-integer keys are preserved.
+Gets a new array of the last `$count` elements of `$iterable`.
 
+Keys are preserved unless `$iterable` is an indexed array.
+An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
 
+Related: [take()](#take)
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
-`$count` | `integer` | If negative, all except the first $count elements will be returned
-**Returns** | `array` | 
+`$iterable` | `iterable\|stdClass\|null` | 
+`$count` | `integer` | If negative, gets all but the first `$count` elements of `$iterable`
+**Returns** | `array` | New array of `$count` elements
 
 **Example:** 
 ```php
-takeRight(['a', 'b', 'c', 'd', 'e'], 3);
-// === ['c', 'd', 'e']
+Dash\take([2, 3, 5, 8, 13], 3);
+// === [5, 8, 13]
 
-```
+Dash\take(['b' => 2, 'c' => 3, 'a' => 1], 2);
+// === ['c' => 3, 'a' => 1]
 
-**Example:** 
-```php
-takeRight(['a' => 'one', 'b' => 'two', 'c' => 'three', 'd' => 'four'], 2);
-// === ['c' => 'three', 'd' => 'four']
-
-```
-
-**Example:** With a negative $count
-```php
-takeRight(['a', 'b', 'c', 'd', 'e'], -2);
-// === ['c', 'd', 'e']
+Dash\take([1, 2, 3, 4, 5, 6], -2);
+// === [3, 4, 5, 6]
 ```
 
 [↑ Top](#operations)

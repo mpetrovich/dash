@@ -3,26 +3,44 @@
 namespace Dash;
 
 /**
- * Returns a new array of the last $count elements of $iterable. Non-integer keys are preserved.
+ * Gets a new array of the last `$count` elements of `$iterable`.
+ *
+ * Keys are preserved unless `$iterable` is an indexed array.
+ * An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
+ *
+ * @see take()
  *
  * @category Iterable
- * @param iterable|stdClass $iterable
- * @param integer $count If negative, all except the first $count elements will be returned
- * @return array
+ * @param iterable|stdClass|null $iterable
+ * @param integer $count If negative, gets all but the first `$count` elements of `$iterable`
+ * @return array New array of `$count` elements
  *
  * @example
-	takeRight(['a', 'b', 'c', 'd', 'e'], 3);
-	// === ['c', 'd', 'e']
- *
- * @example
-	takeRight(['a' => 'one', 'b' => 'two', 'c' => 'three', 'd' => 'four'], 2);
-	// === ['c' => 'three', 'd' => 'four']
- *
- * @example With a negative $count
-	takeRight(['a', 'b', 'c', 'd', 'e'], -2);
-	// === ['c', 'd', 'e']
+	Dash\take([2, 3, 5, 8, 13], 3);
+	// === [5, 8, 13]
+
+	Dash\take(['b' => 2, 'c' => 3, 'a' => 1], 2);
+	// === ['c' => 3, 'a' => 1]
+
+	Dash\take([1, 2, 3, 4, 5, 6], -2);
+	// === [3, 4, 5, 6]
  */
 function takeRight($iterable, $count = 1)
 {
-	return reverse(take(reverse($iterable), $count));
+	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
+
+	$array = toArray($iterable);
+	$preserveKeys = !isIndexedArray($array);
+	$reversed = array_reverse($array, $preserveKeys);
+	$taken = array_slice($reversed, 0, $count, $preserveKeys);
+
+	return array_reverse($taken, $preserveKeys);
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _takeRight(/* count, iterable */)
+{
+	return currify('Dash\takeRight', func_get_args());
 }
