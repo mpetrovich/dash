@@ -3,27 +3,41 @@
 namespace Dash;
 
 /**
- * Returns a new array of the first $count elements of $iterable. Non-integer keys are preserved.
+ * Gets a new array of the first `$count` elements of `$iterable`.
+ *
+ * Keys are preserved unless `$iterable` is an indexed array.
+ * An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
  *
  * @category Iterable
- * @param iterable|stdClass $iterable
- * @param integer $count If negative, all except the last $count elements will be returned
- * @return array
+ * @param iterable|stdClass|null $iterable
+ * @param integer $count If negative, gets all but the last `$count` elements of `$iterable`
+ * @return array New array of `$count` elements
  *
  * @example
-	take(['a', 'b', 'c', 'd', 'e'], 3);
-	// === ['a', 'b', 'c']
- *
- * @example
-	take(['a' => 'one', 'b' => 'two', 'c' => 'three', 'd' => 'four'], 2);
-	// === ['a' => 'one', 'b' => 'two']
- *
- * @example With a negative $count
-	take(['a', 'b', 'c', 'd', 'e'], -2);
-	// === ['a', 'b', 'c']
+	Dash\take([2, 3, 5, 8, 13], 3);
+	// === [2, 3, 5]
+
+	Dash\take(['b' => 2, 'c' => 3, 'a' => 1], 2);
+	// === ['b' => 2, 'c' => 3]
+
+	Dash\take([1, 2, 3, 4, 5, 6], -2);
+	// === [1, 2, 3, 4]
  */
 function take($iterable, $count = 1)
 {
-	// @todo Reimplement with slice()
-	return array_slice(toArray($iterable), 0, $count);
+	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
+
+	$array = toArray($iterable);
+	$preserveKeys = !isIndexedArray($array);
+	$taken = array_slice($array, 0, $count, $preserveKeys);
+
+	return $taken;
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _take(/* count, iterable */)
+{
+	return currify('Dash\take', func_get_args());
 }

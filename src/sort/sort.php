@@ -4,7 +4,9 @@ namespace Dash;
 
 /**
  * Gets a new array containing the sorted elements of `$iterable`.
- * Keys are preserved.
+ *
+ * Keys are preserved unless `$iterable` is an indexed array.
+ * An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
  *
  * @category Iterable
  * @param iterable|stdClass|null $iterable
@@ -16,6 +18,9 @@ namespace Dash;
  * @example
 	Dash\sort([4, 2, 3, 1]);
 	// === [1, 2, 3, 4]
+
+	Dash\sort(['a' => 3, 'b' => 1, 'c' => 2]);
+	// === ['b' => 1, 'c' => 2, 'a' => 3]
  */
 function sort($iterable, $comparator = 'Dash\compare')
 {

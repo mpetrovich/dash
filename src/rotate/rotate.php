@@ -6,6 +6,9 @@ namespace Dash;
  * Gets a new array of `$iterable` elements where `$count` elements are moved
  * from the beginning of `$iterable` to the end.
  *
+ * Keys are preserved unless `$iterable` is an indexed array.
+ * An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
+ *
  * @category Iterable
  * @param iterable|stdClass|null $iterable
  * @param integer $count If negative, moves `$count` elements from the end to the beginning
@@ -14,6 +17,9 @@ namespace Dash;
  * @example
 	Dash\rotate(['a', 'b', 'c', 'd', 'e'], 2);
 	// === ['c', 'd', 'e', 'a', 'b']
+
+	Dash\rotate(['a' => 1, 'b' => 2, 'c' => 3], 1);
+	// === ['b' => 2, 'c' => 3, 'a' => 1]
 
 	Dash\rotate(['a', 'b', 'c', 'd', 'e'], -1);
 	// === ['e', 'a', 'b', 'c', 'd']

@@ -355,8 +355,8 @@ filter
 filter($iterable, $predicate = 'Dash\identity'): array
 ```
 Gets a list of elements in `$iterable` for which `$predicate` returns truthy.
-Keys are preserved unless `$iterable` is an indexed array.
 
+Keys are preserved unless `$iterable` is an indexed array.
 An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
 
 Related: [reject()](#reject)
@@ -1262,8 +1262,8 @@ reject
 reject($iterable, $predicate = 'Dash\identity'): array
 ```
 Gets a list of elements in `$iterable` for which `$predicate` returns falsey.
-Keys are preserved unless `$iterable` is an indexed array.
 
+Keys are preserved unless `$iterable` is an indexed array.
 An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
 
 Related: [filter()](#filter)
@@ -1430,6 +1430,9 @@ rotate($iterable, $count = 1): array
 Gets a new array of `$iterable` elements where `$count` elements are moved
 from the beginning of `$iterable` to the end.
 
+Keys are preserved unless `$iterable` is an indexed array.
+An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
+
 
 
 Parameter | Type | Description
@@ -1442,6 +1445,9 @@ Parameter | Type | Description
 ```php
 Dash\rotate(['a', 'b', 'c', 'd', 'e'], 2);
 // === ['c', 'd', 'e', 'a', 'b']
+
+Dash\rotate(['a' => 1, 'b' => 2, 'c' => 3], 1);
+// === ['b' => 2, 'c' => 3, 'a' => 1]
 
 Dash\rotate(['a', 'b', 'c', 'd', 'e'], -1);
 // === ['e', 'a', 'b', 'c', 'd']
@@ -1521,7 +1527,9 @@ sort
 sort($iterable, $comparator = 'Dash\compare'): array
 ```
 Gets a new array containing the sorted elements of `$iterable`.
-Keys are preserved.
+
+Keys are preserved unless `$iterable` is an indexed array.
+An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
 
 
 
@@ -1535,6 +1543,9 @@ Parameter | Type | Description
 ```php
 Dash\sort([4, 2, 3, 1]);
 // === [1, 2, 3, 4]
+
+Dash\sort(['a' => 3, 'b' => 1, 'c' => 2]);
+// === ['b' => 1, 'c' => 2, 'a' => 3]
 ```
 
 [↑ Top](#operations)
@@ -1573,34 +1584,29 @@ take
 ```php
 take($iterable, $count = 1): array
 ```
-Returns a new array of the first $count elements of $iterable. Non-integer keys are preserved.
+Gets a new array of the first `$count` elements of `$iterable`.
+
+Keys are preserved unless `$iterable` is an indexed array.
+An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
 
 
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
-`$count` | `integer` | If negative, all except the last $count elements will be returned
-**Returns** | `array` | 
+`$iterable` | `iterable\|stdClass\|null` | 
+`$count` | `integer` | If negative, gets all but the last `$count` elements of `$iterable`
+**Returns** | `array` | New array of `$count` elements
 
 **Example:** 
 ```php
-take(['a', 'b', 'c', 'd', 'e'], 3);
-// === ['a', 'b', 'c']
+Dash\take([2, 3, 5, 8, 13], 3);
+// === [2, 3, 5]
 
-```
+Dash\take(['b' => 2, 'c' => 3, 'a' => 1], 2);
+// === ['b' => 2, 'c' => 3]
 
-**Example:** 
-```php
-take(['a' => 'one', 'b' => 'two', 'c' => 'three', 'd' => 'four'], 2);
-// === ['a' => 'one', 'b' => 'two']
-
-```
-
-**Example:** With a negative $count
-```php
-take(['a', 'b', 'c', 'd', 'e'], -2);
-// === ['a', 'b', 'c']
+Dash\take([1, 2, 3, 4, 5, 6], -2);
+// === [1, 2, 3, 4]
 ```
 
 [↑ Top](#operations)

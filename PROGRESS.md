@@ -102,7 +102,7 @@ To review
 - [x] size
 - [x] sort
 - [x] sum
-- [ ] take
+- [x] take
 - [ ] takeRight
 - [ ] takeWhile
 - [x] tap

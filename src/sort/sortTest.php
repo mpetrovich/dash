@@ -152,5 +152,6 @@ class sortTest extends PHPUnit_Framework_TestCase
 	public function testExamples()
 	{
 		$this->assertSame([1, 2, 3, 4], Dash\sort([4, 2, 3, 1]));
+		$this->assertSame(['b' => 1, 'c' => 2, 'a' => 3], Dash\sort(['a' => 3, 'b' => 1, 'c' => 2]));
 	}
 }
