@@ -1397,7 +1397,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable\|stdClass\|null` | 
 `$preserveIntegerKeys` | `boolean` | (optional) If true, integer keys will be preserved; non-integer keys are always preserved regardless of this setting
-**Returns** | `array` | New array of elements of `$iterable` in reverse order
+**Returns** | `array` | New array of `$iterable` elements in reverse order
 
 **Example:** 
 ```php
@@ -1520,19 +1520,20 @@ sort
 ```php
 sort($iterable, $comparator = 'Dash\compare'): array
 ```
-Returns a new array containing the sorted values of $iterable. Keys are preserved.
+Gets a new array containing the sorted elements of `$iterable`.
+Keys are preserved.
 
 
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
-`$comparator` | `callable` | 
-**Returns** | `array` | 
+`$iterable` | `iterable\|stdClass\|null` | 
+`$comparator` | `callable` | (optional) Invoked with `($a, $b)` where `$a` and `$b` are values in `$iterable`; `$comparator` should returns a number less than, equal to, or greater than zero if `$a` is less than, equal to, or greater than `$b`, respectively
+**Returns** | `array` | New array of `$iterable` elements ordered by `$comparator`
 
 **Example:** 
 ```php
-sort([4, 1, 3, 2]);
+Dash\sort([4, 2, 3, 1]);
 // === [1, 2, 3, 4]
 ```
 
@@ -1885,7 +1886,7 @@ compare
 compare($a, $b): integer
 ```
 Returns a number less than, equal to, or greater than zero
-if `$a` is less than, equal to, or greater than `$b`.
+if `$a` is less than, equal to, or greater than `$b`, respectively.
 
 Uses loose equality for comparison. For comparison tables across data types,
 see: http://php.net/manual/en/types.comparisons.php

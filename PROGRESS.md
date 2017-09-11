@@ -25,13 +25,10 @@ Requirements
 - zero number
 - number
 - DateTime
-- empty array
-- indexed array
-- associative array
-- empty stdClass
-- stdClass
-- empty ArrayObject
-- ArrayObject
+- indexed array with 0, 1, many
+- associative array with 0, 1, many
+- stdClass with 0, 1, many
+- ArrayObject with 0, 1, many
 - DirectoryIterator
 
 
@@ -103,7 +100,7 @@ To review
 - [x] rotate
 - [ ] set
 - [x] size
-- [ ] sort
+- [x] sort
 - [x] sum
 - [ ] take
 - [ ] takeRight

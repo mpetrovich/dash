@@ -4,7 +4,7 @@ namespace Dash;
 
 /**
  * Returns a number less than, equal to, or greater than zero
- * if `$a` is less than, equal to, or greater than `$b`.
+ * if `$a` is less than, equal to, or greater than `$b`, respectively.
  *
  * Uses loose equality for comparison. For comparison tables across data types,
  * see: http://php.net/manual/en/types.comparisons.php

@@ -9,7 +9,7 @@ namespace Dash;
  * @param iterable|stdClass|null $iterable
  * @param boolean $preserveIntegerKeys (optional) If true, integer keys will be preserved;
  *                                     non-integer keys are always preserved regardless of this setting
- * @return array New array of elements of `$iterable` in reverse order
+ * @return array New array of `$iterable` elements in reverse order
  *
  * @example
 	Dash\reverse(['a', 'b', 'c']);

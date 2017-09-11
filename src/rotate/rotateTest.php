@@ -46,10 +46,20 @@ class rotateTest extends PHPUnit_Framework_TestCase
 				'count' => 1,
 				'expected' => ['b', 'c', 'd', 'a'],
 			],
+			'With an indexed array with one element' => [
+				'iterable' => ['a'],
+				'count' => 1,
+				'expected' => ['a'],
+			],
 			'With an associative array' => [
 				'iterable' => ['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
 				'count' => 1,
 				'expected' => ['b' => 8, 'c' => 2, 'd' => 5, 'a' => 3],
+			],
+			'With an associative array with one element' => [
+				'iterable' => ['a' => 3],
+				'count' => 1,
+				'expected' => ['a' => 3],
 			],
 			[
 				'iterable' => [1, 2, 3, 4],
@@ -131,10 +141,20 @@ class rotateTest extends PHPUnit_Framework_TestCase
 				'count' => 1,
 				'expected' => ['b', 'c', 'd', 'a'],
 			],
+			'With an stdClass of an indexed array with one element' => [
+				'iterable' => (object) ['a'],
+				'count' => 1,
+				'expected' => ['a'],
+			],
 			'With an stdClass of an associative array' => [
 				'iterable' => (object) ['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
 				'count' => 1,
 				'expected' => ['b' => 8, 'c' => 2, 'd' => 5, 'a' => 3],
+			],
+			'With an stdClass of an associative array with one element' => [
+				'iterable' => (object) ['a' => 3],
+				'count' => 1,
+				'expected' => ['a' => 3],
 			],
 			[
 				'iterable' => (object) [1, 2, 3, 4],
@@ -216,10 +236,20 @@ class rotateTest extends PHPUnit_Framework_TestCase
 				'count' => 1,
 				'expected' => ['b', 'c', 'd', 'a'],
 			],
+			'With an ArrayObject of an indexed array with one element' => [
+				'iterable' => new ArrayObject(['a']),
+				'count' => 1,
+				'expected' => ['a'],
+			],
 			'With an ArrayObject of an associative array' => [
 				'iterable' => new ArrayObject(['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5]),
 				'count' => 1,
 				'expected' => ['b' => 8, 'c' => 2, 'd' => 5, 'a' => 3],
+			],
+			'With an ArrayObject of an associative array with one element' => [
+				'iterable' => new ArrayObject(['a' => 3]),
+				'count' => 1,
+				'expected' => ['a' => 3],
 			],
 			[
 				'iterable' => new ArrayObject([1, 2, 3, 4]),

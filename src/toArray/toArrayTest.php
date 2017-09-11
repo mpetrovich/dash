@@ -55,6 +55,10 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 				'value' => [],
 				'expected' => [],
 			],
+			'With an array with one element' => [
+				'value' => ['a' => 3],
+				'expected' => ['a' => 3],
+			],
 			'With an indexed array' => [
 				'value' => [3, 8, 2, 5],
 				'expected' => [3, 8, 2, 5],
@@ -72,6 +76,10 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 				'value' => (object) [],
 				'expected' => [],
 			],
+			'With an stdClass of an array with one element' => [
+				'value' => (object) ['a' => 3],
+				'expected' => ['a' => 3],
+			],
 			'With an stdClass of an indexed array' => [
 				'value' => (object) [3, 8, 2, 5],
 				'expected' => [3, 8, 2, 5],
@@ -88,6 +96,10 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 			'With an empty ArrayObject' => [
 				'value' => new ArrayObject([]),
 				'expected' => [],
+			],
+			'With an ArrayObject with one element' => [
+				'value' => new ArrayObject(['a' => 3]),
+				'expected' => ['a' => 3],
 			],
 			'With an ArrayObject of an indexed array' => [
 				'value' => new ArrayObject([3, 8, 2, 5]),

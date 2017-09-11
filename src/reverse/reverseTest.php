@@ -61,6 +61,16 @@ class reverseTest extends PHPUnit_Framework_TestCase
 				'preserveIntegerKeys' => true,
 				'expected' => [3 => 'd', 2 => 'c', 1 => 'b', 0 => 'a'],
 			],
+			'With an indexed array with one element' => [
+				'iterable' => ['a'],
+				'preserveIntegerKeys' => false,
+				'expected' => ['a'],
+			],
+			'With an indexed array with one element (integer keys preserved)' => [
+				'iterable' => ['a'],
+				'preserveIntegerKeys' => true,
+				'expected' => [0 => 'a'],
+			],
 			'With an associative array' => [
 				'iterable' => ['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
 				'preserveIntegerKeys' => false,
@@ -70,6 +80,16 @@ class reverseTest extends PHPUnit_Framework_TestCase
 				'iterable' => ['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
 				'preserveIntegerKeys' => true,
 				'expected' => ['d' => 5, 'c' => 2, 'b' => 8, 'a' => 3],
+			],
+			'With an associative array with one element' => [
+				'iterable' => ['a' => 3],
+				'preserveIntegerKeys' => false,
+				'expected' => ['a' => 3],
+			],
+			'With an associative array with one element (integer keys preserved)' => [
+				'iterable' => ['a' => 3],
+				'preserveIntegerKeys' => true,
+				'expected' => ['a' => 3],
 			],
 
 			/*
@@ -96,6 +116,16 @@ class reverseTest extends PHPUnit_Framework_TestCase
 				'preserveIntegerKeys' => true,
 				'expected' => [3 => 'd', 2 => 'c', 1 => 'b', 0 => 'a'],
 			],
+			'With an stdClass of an indexed array with one element' => [
+				'iterable' => (object) ['a'],
+				'preserveIntegerKeys' => false,
+				'expected' => ['a'],
+			],
+			'With an stdClass of an indexed array with one element (integer keys preserved)' => [
+				'iterable' => (object) ['a'],
+				'preserveIntegerKeys' => true,
+				'expected' => [0 => 'a'],
+			],
 			'With an stdClass of an associative array' => [
 				'iterable' => (object) ['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
 				'preserveIntegerKeys' => false,
@@ -105,6 +135,16 @@ class reverseTest extends PHPUnit_Framework_TestCase
 				'iterable' => (object) ['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
 				'preserveIntegerKeys' => true,
 				'expected' => ['d' => 5, 'c' => 2, 'b' => 8, 'a' => 3],
+			],
+			'With an stdClass of an associative array with one element' => [
+				'iterable' => (object) ['a' => 3],
+				'preserveIntegerKeys' => false,
+				'expected' => ['a' => 3],
+			],
+			'With an stdClass of an associative array with one element (integer keys preserved)' => [
+				'iterable' => (object) ['a' => 3],
+				'preserveIntegerKeys' => true,
+				'expected' => ['a' => 3],
 			],
 
 			/*
@@ -131,6 +171,16 @@ class reverseTest extends PHPUnit_Framework_TestCase
 				'preserveIntegerKeys' => true,
 				'expected' => [3 => 'd', 2 => 'c', 1 => 'b', 0 => 'a'],
 			],
+			'With an ArrayObject of an indexed array with one element' => [
+				'iterable' => new ArrayObject(['a']),
+				'preserveIntegerKeys' => false,
+				'expected' => ['a'],
+			],
+			'With an ArrayObject of an indexed array with one element (integer keys preserved)' => [
+				'iterable' => new ArrayObject(['a']),
+				'preserveIntegerKeys' => true,
+				'expected' => [0 => 'a'],
+			],
 			'With an ArrayObject of an associative array' => [
 				'iterable' => new ArrayObject(['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5]),
 				'preserveIntegerKeys' => false,
@@ -140,6 +190,16 @@ class reverseTest extends PHPUnit_Framework_TestCase
 				'iterable' => new ArrayObject(['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5]),
 				'preserveIntegerKeys' => true,
 				'expected' => ['d' => 5, 'c' => 2, 'b' => 8, 'a' => 3],
+			],
+			'With an ArrayObject of an associative array with one element' => [
+				'iterable' => new ArrayObject(['a' => 3]),
+				'preserveIntegerKeys' => false,
+				'expected' => ['a' => 3],
+			],
+			'With an ArrayObject of an associative array with one element (integer keys preserved)' => [
+				'iterable' => new ArrayObject(['a' => 3]),
+				'preserveIntegerKeys' => true,
+				'expected' => ['a' => 3],
 			],
 		];
 	}
