@@ -100,7 +100,7 @@ To review
 - [x] reject
 - [ ] result
 - [x] reverse
-- [ ] rotate
+- [x] rotate
 - [ ] set
 - [x] size
 - [ ] sort

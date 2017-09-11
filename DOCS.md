@@ -1397,7 +1397,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable\|stdClass\|null` | 
 `$preserveIntegerKeys` | `boolean` | (optional) If true, integer keys will be preserved; non-integer keys are always preserved regardless of this setting
-**Returns** | `array` | Elements of `$iterable` in reverse order
+**Returns** | `array` | New array of elements of `$iterable` in reverse order
 
 **Example:** 
 ```php
@@ -1425,18 +1425,27 @@ rotate
 [Operations](#operations) › [Iterable](#iterable)
 
 ```php
-rotate($iterable, $count = 1): array|object
+rotate($iterable, $count = 1): array
 ```
+Gets a new array of `$iterable` elements where `$count` elements are moved
+from the beginning of `$iterable` to the end.
 
 
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
-`$count` | `integer` | 
-**Returns** | `array\|object` | 
+`$iterable` | `iterable\|stdClass\|null` | 
+`$count` | `integer` | If negative, moves `$count` elements from the end to the beginning
+**Returns** | `array` | New array of rotated elements
 
+**Example:** 
+```php
+Dash\rotate(['a', 'b', 'c', 'd', 'e'], 2);
+// === ['c', 'd', 'e', 'a', 'b']
 
+Dash\rotate(['a', 'b', 'c', 'd', 'e'], -1);
+// === ['e', 'a', 'b', 'c', 'd']
+```
 
 [↑ Top](#operations)
 
