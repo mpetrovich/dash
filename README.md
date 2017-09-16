@@ -33,7 +33,7 @@ Features
 
 Installation
 ---
-Requires PHP 5.4+ and the [mbstring](http://php.net/manual/en/mbstring.installation.php) extension.
+Requires PHP 5.4+
 ```sh
 composer require mpetrovich/dash
 ```

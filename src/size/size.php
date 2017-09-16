@@ -35,7 +35,7 @@ function size($value, $encoding = 'UTF-8')
 		}
 	}
 	elseif (is_string($value)) {
-		$size = mb_strlen($value, $encoding);
+		$size = function_exists('mb_strlen') ? mb_strlen($value, $encoding) : strlen($value);
 	}
 	else {
 		$size = 0;
