@@ -5,7 +5,7 @@ namespace Dash;
 /**
  * Gets the elements of `$iterable` with keys that match any in `$keys`.
  *
- * @see omit()
+ * @see pick()
  *
  * @category Iterable
  * @param iterable|stdClass|null $iterable
@@ -13,25 +13,25 @@ namespace Dash;
  * @return array
  *
  * @example
-	Dash\pick(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], ['b', 'c']);
-	// === ['b' => 2, 'c' => 3]
+	Dash\omit(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], ['b', 'c']);
+	// === ['a' => 1, 'd' => 4]
  */
-function pick($iterable, $keys)
+function omit($iterable, $keys)
 {
 	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
 
 	$keys = (array) $keys;
-	$picked = filter($iterable, function ($value, $key) use ($keys) {
+	$omitted = reject($iterable, function ($value, $key) use ($keys) {
 		return in_array($key, $keys);
 	});
 
-	return $picked;
+	return $omitted;
 }
 
 /**
  * @codingStandardsIgnoreStart
  */
-function _pick(/* keys, iterable */)
+function _omit(/* keys, iterable */)
 {
-	return currify('Dash\pick', func_get_args());
+	return currify('Dash\omit', func_get_args());
 }

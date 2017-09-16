@@ -29,12 +29,12 @@ class dropWhileTest extends PHPUnit_Framework_TestCase
 			'With an stdClass' => [
 				'input' => (object) ['a' => 2, 'b' => 4, 'c' => 6, 'd' => 7, 'e' => 8, 'f' => 10],
 				'predicate' => 'Dash\isEven',
-				'expected' => (object) ['d' => 7, 'e' => 8, 'f' => 10],
+				'expected' => ['d' => 7, 'e' => 8, 'f' => 10],
 			],
 			'With an ArrayObject' => [
 				'input' => new ArrayObject(['a' => 2, 'b' => 4, 'c' => 6, 'd' => 7, 'e' => 8, 'f' => 10]),
 				'predicate' => 'Dash\isEven',
-				'expected' => (object) ['d' => 7, 'e' => 8, 'f' => 10],
+				'expected' => ['d' => 7, 'e' => 8, 'f' => 10],
 			],
 		];
 	}

@@ -37,6 +37,7 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/mpet
 [max](#max) |  |  | 
 [median](#median) |  |  | 
 [min](#min) |  |  | 
+[omit](#omit) |  |  | 
 [pick](#pick) |  |  | 
 [pluck](#pluck) |  |  | 
 [property](#property) |  |  | 
@@ -52,6 +53,7 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/mpet
 [takeRight](#takeright) |  |  | 
 [takeWhile](#takewhile) |  |  | 
 [toArray](#toarray) |  |  | 
+[toObject](#toobject) |  |  | 
 [union](#union) |  |  | 
 [values](#values) |  |  | 
 [where](#where) |  |  | 
@@ -1114,12 +1116,37 @@ Dash\min([]);
 
 [↑ Top](#operations)
 
+omit
+---
+[Operations](#operations) › [Iterable](#iterable)
+
+```php
+omit($iterable, $keys): array
+```
+Gets the elements of `$iterable` with keys that match any in `$keys`.
+
+Related: [pick()](#pick)
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` | 
+`$keys` | `string\|array` | Single key or list of keys
+**Returns** | `array` | 
+
+**Example:** 
+```php
+Dash\omit(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], ['b', 'c']);
+// === ['a' => 1, 'd' => 4]
+```
+
+[↑ Top](#operations)
+
 pick
 ---
 [Operations](#operations) › [Iterable](#iterable)
 
 ```php
-pick($iterable, $keys): array|object
+pick($iterable, $keys): array
 ```
 Gets the elements of `$iterable` with keys that match any in `$keys`.
 
@@ -1129,15 +1156,12 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable\|stdClass\|null` | 
 `$keys` | `string\|array` | Single key or list of keys
-**Returns** | `array\|object` | object if `$iterable` is an object, array otherwise
+**Returns** | `array` | 
 
 **Example:** 
 ```php
-Dash\pick(['a' => 1, 'b' => 2, 'c' => 3], ['b', 'c']);
+Dash\pick(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], ['b', 'c']);
 // === ['b' => 2, 'c' => 3]
-
-Dash\pick((object) ['a' => 1, 'b' => 2, 'c' => 3], ['b', 'c']);
-// === (object) ['b' => 2, 'c' => 3]
 ```
 
 [↑ Top](#operations)
@@ -1669,13 +1693,6 @@ Parameter | Type | Description
 ```php
 takeWhile([2, 4, 6, 7, 8, 10], 'Dash\isEven');
 // === [2, 4, 6]
-
-```
-
-**Example:** 
-```php
-takeWhile((object) ['a' => 2, 'b' => 4, 'c' => 5, 'd' => 6], 'Dash\isEven');
-// === (object) ['a' => 2, 'b' => 4]
 ```
 
 [↑ Top](#operations)
@@ -1703,6 +1720,33 @@ Dash\toArray((object) ['a' => 1, 'b' => 2]);
 
 Dash\toArray(new FilesystemIterator(__DIR__));
 // === [ SplFileInfo, SplFileInfo, ... ]
+```
+
+[↑ Top](#operations)
+
+toObject
+---
+[Operations](#operations) › [Iterable](#iterable)
+
+```php
+toObject($value): object
+```
+Gets a plain object representation of `$value`.
+
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `mixed` | 
+**Returns** | `object` | Empty object if `$value` is not iterable
+
+**Example:** 
+```php
+Dash\toObject(['a' => 1, 'b' => 2]);
+// === (object) ['a' => 1, 'b' => 2]
+
+Dash\toObject(new ArrayObject(['a' => 1, 'b' => 2]));
+// === (object) ['a' => 1, 'b' => 2]
 ```
 
 [↑ Top](#operations)

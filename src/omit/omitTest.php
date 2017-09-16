@@ -1,17 +1,17 @@
 <?php
 
 /**
- * @covers Dash\pick
- * @covers Dash\_pick
+ * @covers Dash\omit
+ * @covers Dash\_omit
  */
-class pickTest extends PHPUnit_Framework_TestCase
+class omitTest extends PHPUnit_Framework_TestCase
 {
 	/**
 	 * @dataProvider cases
 	 */
 	public function test($iterable, $keys, $expected)
 	{
-		$this->assertEquals($expected, Dash\pick($iterable, $keys));
+		$this->assertEquals($expected, Dash\omit($iterable, $keys));
 	}
 
 	/**
@@ -19,21 +19,21 @@ class pickTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $keys, $expected)
 	{
-		$pick = Dash\_pick($keys);
-		$this->assertEquals($expected, $pick($iterable));
+		$omit = Dash\_omit($keys);
+		$this->assertEquals($expected, $omit($iterable));
 	}
 
 	public function cases()
 	{
 		return [
-			'Pick null from an empty array' => [
+			'Omit null from an empty array' => [
 				'iterable' => [],
-				'pick' => null,
+				'omit' => null,
 				'expected' => [],
 			],
-			'Pick none from an empty array' => [
+			'Omit none from an empty array' => [
 				'iterable' => [],
-				'pick' => [],
+				'omit' => [],
 				'expected' => [],
 			],
 
@@ -41,130 +41,130 @@ class pickTest extends PHPUnit_Framework_TestCase
 				With indexed array
 			 */
 
-			'Pick none from an indexed array' => [
+			'Omit none from an indexed array' => [
 				'iterable' => [1, 2, 3, 4],
-				'pick' => [],
-				'expected' => [],
-			],
-			'Pick one from an indexed array' => [
-				'iterable' => [1, 2, 3, 4],
-				'pick' => 2,
-				'expected' => [3],
-			],
-			'Pick several from an indexed array' => [
-				'iterable' => [1, 2, 3, 4],
-				'pick' => [0, 2],
-				'expected' => [1, 3],
-			],
-			'Pick all from an indexed array' => [
-				'iterable' => [1, 2, 3, 4],
-				'pick' => [0, 1, 2, 3],
+				'omit' => [],
 				'expected' => [1, 2, 3, 4],
+			],
+			'Omit one from an indexed array' => [
+				'iterable' => [1, 2, 3, 4],
+				'omit' => 2,
+				'expected' => [1, 2, 4],
+			],
+			'Omit several from an indexed array' => [
+				'iterable' => [1, 2, 3, 4],
+				'omit' => [0, 2],
+				'expected' => [2, 4],
+			],
+			'Omit all from an indexed array' => [
+				'iterable' => [1, 2, 3, 4],
+				'omit' => [0, 1, 2, 3],
+				'expected' => [],
 			],
 
 			/*
 				With associative array
 			 */
 
-			'Pick none from an associative array' => [
+			'Omit none from an associative array' => [
 				'iterable' => ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
-				'pick' => [],
-				'expected' => [],
-			],
-			'Pick one from an associative array' => [
-				'iterable' => ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
-				'pick' => 'b',
-				'expected' => ['b' => 2],
-			],
-			'Pick several from an associative array' => [
-				'iterable' => ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
-				'pick' => ['a', 'c'],
-				'expected' => ['a' => 1, 'c' => 3],
-			],
-			'Pick all from an associative array' => [
-				'iterable' => ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
-				'pick' => ['a', 'b', 'c', 'd'],
+				'omit' => [],
 				'expected' => ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
+			],
+			'Omit one from an associative array' => [
+				'iterable' => ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
+				'omit' => 'b',
+				'expected' => ['a' => 1, 'c' => 3, 'd' => 4],
+			],
+			'Omit several from an associative array' => [
+				'iterable' => ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
+				'omit' => ['a', 'c'],
+				'expected' => ['b' => 2, 'd' => 4],
+			],
+			'Omit all from an associative array' => [
+				'iterable' => ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
+				'omit' => ['a', 'b', 'c', 'd'],
+				'expected' => [],
 			],
 
 			/*
 				With stdClass
 			 */
 
-			'Pick none from an empty stdClass' => [
+			'Omit none from an empty stdClass' => [
 				'iterable' => (object) [],
-				'pick' => [],
+				'omit' => [],
 				'expected' => [],
 			],
-			'Pick one from an empty stdClass' => [
+			'Omit one from an empty stdClass' => [
 				'iterable' => (object) [],
-				'pick' => 'b',
+				'omit' => 'b',
 				'expected' => [],
 			],
-			'Pick several from an empty stdClass' => [
+			'Omit several from an empty stdClass' => [
 				'iterable' => (object) [],
-				'pick' => ['a', 'c'],
+				'omit' => ['a', 'c'],
 				'expected' => [],
 			],
-			'Pick none from an stdClass' => [
+			'Omit none from an stdClass' => [
 				'iterable' => (object) ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
-				'pick' => [],
-				'expected' => [],
-			],
-			'Pick one from an stdClass' => [
-				'iterable' => (object) ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
-				'pick' => 'b',
-				'expected' => ['b' => 2],
-			],
-			'Pick several from an stdClass' => [
-				'iterable' => (object) ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
-				'pick' => ['a', 'c'],
-				'expected' => ['a' => 1, 'c' => 3],
-			],
-			'Pick all from an stdClass' => [
-				'iterable' => (object) ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
-				'pick' => ['a', 'b', 'c', 'd'],
+				'omit' => [],
 				'expected' => ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
+			],
+			'Omit one from an stdClass' => [
+				'iterable' => (object) ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
+				'omit' => 'b',
+				'expected' => ['a' => 1, 'c' => 3, 'd' => 4],
+			],
+			'Omit several from an stdClass' => [
+				'iterable' => (object) ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
+				'omit' => ['a', 'c'],
+				'expected' => ['b' => 2, 'd' => 4],
+			],
+			'Omit all from an stdClass' => [
+				'iterable' => (object) ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
+				'omit' => ['a', 'b', 'c', 'd'],
+				'expected' => [],
 			],
 
 			/*
 				With ArrayObject
 			 */
 
-			'Pick none from an empty ArrayObject' => [
+			'Omit none from an empty ArrayObject' => [
 				'iterable' => new ArrayObject([]),
-				'pick' => [],
+				'omit' => [],
 				'expected' => [],
 			],
-			'Pick one from an empty ArrayObject' => [
+			'Omit one from an empty ArrayObject' => [
 				'iterable' => new ArrayObject([]),
-				'pick' => 'b',
+				'omit' => 'b',
 				'expected' => [],
 			],
-			'Pick several from an empty ArrayObject' => [
+			'Omit several from an empty ArrayObject' => [
 				'iterable' => new ArrayObject([]),
-				'pick' => ['a', 'c'],
+				'omit' => ['a', 'c'],
 				'expected' => [],
 			],
-			'Pick none from an ArrayObject' => [
+			'Omit none from an ArrayObject' => [
 				'iterable' => new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]),
-				'pick' => [],
-				'expected' => [],
-			],
-			'Pick one from an ArrayObject' => [
-				'iterable' => new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]),
-				'pick' => 'b',
-				'expected' => ['b' => 2],
-			],
-			'Pick several from an ArrayObject' => [
-				'iterable' => new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]),
-				'pick' => ['a', 'c'],
-				'expected' => ['a' => 1, 'c' => 3],
-			],
-			'Pick all from an ArrayObject' => [
-				'iterable' => new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]),
-				'pick' => ['a', 'b', 'c', 'd'],
+				'omit' => [],
 				'expected' => ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
+			],
+			'Omit one from an ArrayObject' => [
+				'iterable' => new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]),
+				'omit' => 'b',
+				'expected' => ['a' => 1, 'c' => 3, 'd' => 4],
+			],
+			'Omit several from an ArrayObject' => [
+				'iterable' => new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]),
+				'omit' => ['a', 'c'],
+				'expected' => ['b' => 2, 'd' => 4],
+			],
+			'Omit all from an ArrayObject' => [
+				'iterable' => new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]),
+				'omit' => ['a', 'b', 'c', 'd'],
+				'expected' => [],
 			],
 		];
 	}
@@ -176,11 +176,11 @@ class pickTest extends PHPUnit_Framework_TestCase
 	public function testTypeAssertions($iterable, $type)
 	{
 		try {
-			Dash\pick($iterable, 'key');
+			Dash\omit($iterable, 'key');
 		}
 		catch (Exception $e) {
 			$this->assertSame(
-				"Dash\\pick expects iterable or stdClass or null but was given $type",
+				"Dash\\omit expects iterable or stdClass or null but was given $type",
 				$e->getMessage()
 			);
 			throw $e;
@@ -215,6 +215,6 @@ class pickTest extends PHPUnit_Framework_TestCase
 
 	public function testExamples()
 	{
-		$this->assertSame(['b' => 2, 'c' => 3], Dash\pick(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], ['b', 'c']));
+		$this->assertSame(['a' => 1, 'd' => 4], Dash\omit(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], ['b', 'c']));
 	}
 }

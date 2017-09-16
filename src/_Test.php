@@ -82,7 +82,8 @@ class _Test extends PHPUnit_Framework_TestCase
 	public function testChainWithObject()
 	{
 		$chain = _::chain((object) ['a' => 1, 'b' => 2, 'c' => 3])
-			->pick(['b', 'c']);
+			->pick(['b', 'c'])
+			->toObject();
 
 		$this->assertEquals((object) ['b' => 2, 'c' => 3], $chain->value());
 	}

@@ -88,6 +88,7 @@ To review
 - [x] median
 - [x] min
 - [x] negate
+- [x] omit
 - [ ] partial
 - [ ] partialRight
 - [x] pick
@@ -108,6 +109,7 @@ To review
 - [x] tap
 - [x] thru
 - [x] toArray
+- [x] toObject
 - [ ] union
 - [ ] values
 - [ ] where

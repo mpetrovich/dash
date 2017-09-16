@@ -34,7 +34,7 @@ function toArray($value)
 /**
  * @codingStandardsIgnoreStart
  */
-function _toArray(/* iterable */)
+function _toArray(/* value */)
 {
 	return currify('Dash\toArray', func_get_args());
 }

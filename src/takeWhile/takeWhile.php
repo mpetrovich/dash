@@ -13,10 +13,6 @@ namespace Dash;
  * @example
 	takeWhile([2, 4, 6, 7, 8, 10], 'Dash\isEven');
 	// === [2, 4, 6]
- *
- * @example
-	takeWhile((object) ['a' => 2, 'b' => 4, 'c' => 5, 'd' => 6], 'Dash\isEven');
-	// === (object) ['a' => 2, 'b' => 4]
  */
 function takeWhile($iterable, $predicate = 'Dash\identity')
 {
