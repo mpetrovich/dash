@@ -215,6 +215,30 @@ class _
 	}
 
 	/**
+	 * Calls value() and returns the result as an array using toArray().
+	 *
+	 * @see toArray()
+	 *
+	 * @return array
+	 */
+	public function arrayValue()
+	{
+		return toArray($this->value());
+	}
+
+	/**
+	 * Calls value() and returns the result as an object using toObject().
+	 *
+	 * @see toObject()
+	 *
+	 * @return stdClass
+	 */
+	public function objectValue()
+	{
+		return toObject($this->value());
+	}
+
+	/**
 	 * Alias for value(). Useful for chains whose output is not needed.
 	 *
 	 * @see value()

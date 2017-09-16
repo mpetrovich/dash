@@ -61,7 +61,7 @@ Dash\map([1, 2, 3], function ($n) { return $n * 2; });  // === [2, 4, 6]
 
 
 ### Chaining
-Multiple operations can be chained in sequence using `chain()`. Call `value()` to return the final value:
+Multiple operations can be chained in sequence using `chain()`. Call `value()` to return the final value. To explicitly convert the value to an array or `stdClass`, use `arrayValue()` or `objectValue()`.
 
 ```php
 $result = _::chain([1, 2, 3, 4, 5])

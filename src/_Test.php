@@ -345,7 +345,7 @@ class _Test extends PHPUnit_Framework_TestCase
 	}
 
 	/*
-		value(), run(), copy()
+		value(), arrayValue(), objectValue(), run(), copy()
 		------------------------------------------------------------
 	 */
 
@@ -376,6 +376,26 @@ class _Test extends PHPUnit_Framework_TestCase
 		$this->assertSame(9, $mapCallCount);
 		$this->assertSame([9, 11, 13], $chain->value());
 		$this->assertSame(9, $mapCallCount);
+	}
+
+	public function testArrayValue()
+	{
+		$value = _::chain([1, 2, 3])
+			->map(function ($n) { return $n * 2; })
+			->arrayValue();
+
+		$this->assertSame([2, 4, 6], $value);
+		$this->assertInternalType('array', $value);
+	}
+
+	public function testObjectValue()
+	{
+		$value = _::chain([1, 2, 3])
+			->map(function ($n) { return $n * 2; })
+			->objectValue();
+
+		$this->assertEquals((object) [2, 4, 6], $value);
+		$this->assertInstanceOf('stdClass', $value);
 	}
 
 	public function testRun()
