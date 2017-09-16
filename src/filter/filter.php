@@ -35,20 +35,20 @@ namespace Dash;
  *
  * @example With a field/value
 	$data = [
-		['name' => 'abc', 'active' => false],
-		['name' => 'def', 'active' => true],
-		['name' => 'ghi', 'active' => true],
+		['name' => 'John', 'active' => false],
+		['name' => 'Mary', 'active' => true],
+		['name' => 'Pete', 'active' => true],
 	];
 
 	Dash\filter($data, 'active');
 	// === [
-		['name' => 'def', 'active' => true],
-		['name' => 'ghi', 'active' => true]
+		['name' => 'Mary', 'active' => true],
+		['name' => 'Pete', 'active' => true]
 	]
 
 	Dash\filter($data, ['active', false]);
 	// === [
-		['name' => 'abc', 'active' => false],
+		['name' => 'John', 'active' => false],
 	]
  */
 function filter($iterable, $predicate = 'Dash\identity')

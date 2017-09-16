@@ -355,20 +355,20 @@ class filterTest extends PHPUnit_Framework_TestCase
 		$this->assertSame([1, 2, 3, true], Dash\filter([1, 2, null, 3, false, true]));
 
 		$data = [
-			['name' => 'abc', 'active' => false],
-			['name' => 'def', 'active' => true],
-			['name' => 'ghi', 'active' => true],
+			['name' => 'John', 'active' => false],
+			['name' => 'Mary', 'active' => true],
+			['name' => 'Pete', 'active' => true],
 		];
 		$this->assertSame(
 			[
-				['name' => 'def', 'active' => true],
-				['name' => 'ghi', 'active' => true]
+				['name' => 'Mary', 'active' => true],
+				['name' => 'Pete', 'active' => true]
 			],
 			Dash\filter($data, 'active')
 		);
 		$this->assertSame(
 			[
-				['name' => 'abc', 'active' => false],
+				['name' => 'John', 'active' => false],
 			],
 			Dash\filter($data, ['active', false])
 		);

@@ -91,7 +91,7 @@ To review
 - [ ] partial
 - [ ] partialRight
 - [ ] pick
-- [ ] pluck
+- [x] pluck
 - [ ] property
 - [ ] reduce
 - [x] reject

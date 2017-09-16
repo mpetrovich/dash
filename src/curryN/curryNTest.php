@@ -29,5 +29,8 @@ class curryNTest extends PHPUnit_Framework_TestCase
 
 		$first = Dash\curryN($callable, 2, 1, 2);
 		$this->assertSame('1, 2, 3', $first);
+
+		$first = Dash\curryN($callable, 2, 1, 2, 4);
+		$this->assertSame('1, 2, 3', $first);
 	}
 }

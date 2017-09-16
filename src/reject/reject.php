@@ -35,20 +35,20 @@ namespace Dash;
  *
  * @example With a field/value
 	$data = [
-		['name' => 'abc', 'active' => false],
-		['name' => 'def', 'active' => true],
-		['name' => 'ghi', 'active' => true],
+		['name' => 'John', 'active' => false],
+		['name' => 'Mary', 'active' => true],
+		['name' => 'Pete', 'active' => true],
 	];
 
 	Dash\reject($data, 'active');
 	// === [
-		['name' => 'abc', 'active' => false],
+		['name' => 'John', 'active' => false],
 	]
 
 	Dash\reject($data, ['active', false]);
 	// === [
-		['name' => 'def', 'active' => true],
-		['name' => 'ghi', 'active' => true]
+		['name' => 'Mary', 'active' => true],
+		['name' => 'Pete', 'active' => true]
 	]
  */
 function reject($iterable, $predicate = 'Dash\identity')

@@ -16,6 +16,18 @@ class getDirectTest extends PHPUnit_Framework_TestCase
 	public function cases()
 	{
 		return [
+			'With non-matching null key' => [
+				'input' => [1, 2, 3],
+				'key' => null,
+				'default' => 'default',
+				'expected' => 'default',
+			],
+			'With matching null key' => [
+				'input' => [null => 'foo'],
+				'key' => null,
+				'default' => 'default',
+				'expected' => 'foo',
+			],
 			'With null' => [
 				'input' => null,
 				'key' => 'b',

@@ -15,7 +15,7 @@ function curryN(callable $callable, $totalArgs /*, ...args */)
 	array_shift($args);
 
 	if (count($args) >= $totalArgs) {
-		return call_user_func_array($callable, $args);
+		return call_user_func_array($callable, array_slice($args, 0, $totalArgs));
 	}
 	else {
 		return function () use ($callable, $totalArgs, $args) {

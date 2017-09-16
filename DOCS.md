@@ -390,20 +390,20 @@ Dash\filter([1, 2, null, 3, false, true]);
 **Example:** With a field/value
 ```php
 $data = [
-	['name' => 'abc', 'active' => false],
-	['name' => 'def', 'active' => true],
-	['name' => 'ghi', 'active' => true],
+	['name' => 'John', 'active' => false],
+	['name' => 'Mary', 'active' => true],
+	['name' => 'Pete', 'active' => true],
 ];
 
 Dash\filter($data, 'active');
 // === [
-	['name' => 'def', 'active' => true],
-	['name' => 'ghi', 'active' => true]
+	['name' => 'Mary', 'active' => true],
+	['name' => 'Pete', 'active' => true]
 ]
 
 Dash\filter($data, ['active', false]);
 // === [
-	['name' => 'abc', 'active' => false],
+	['name' => 'John', 'active' => false],
 ]
 ```
 
@@ -695,7 +695,7 @@ Checks whether an iterable has a value or callable at a given key.
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `array\|object\|ArrayAccess` | 
-`$key` | `string` | 
+`$key` | `string\|null` | 
 **Returns** | `boolean` | 
 
 **Example:** 
@@ -1146,30 +1146,30 @@ pluck
 ```php
 pluck($iterable, $path, $default = null): array
 ```
-Gets the value at a path for all elements in a collection.
+Gets an array of values at `$path` for all elements in `$iterable`.
 
-
+Related: [map()](#map)
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `array\|object` | 
-`$path` | `string` | Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period
-`$default` | `mixed` | 
-**Returns** | `array` | 
+`$iterable` | `iterable\|stdClass\|null` | 
+`$path` | `string\|function` | Any valid path accepted by `Dash\property()`
+`$default` | `mixed` | (optional) Default value for each element without a value at `$path`
+**Returns** | `array` | New array of plucked values from `$iterable`
 
 **Example:** 
 ```php
-pluck(
-	[
-		['a' => ['b' => 1]],
-		['a' => 'missing'],
-		['a' => ['b' => 3]],
-		['a' => ['b' => 4]],
-	],
-	'a.b',
-	'default'
-);
-// == [1, 'default', 3, 4];
+$data = [
+	['name' => 'John'],
+	['name' => 'Mary', 'age' => 35],
+	['name' => 'Pete', 'age' => 20],
+];
+
+Dash\pluck($data, 'name');
+// === ['John', 'Mary', 'Pete']
+
+Dash\pluck($data, 'age');
+// === [null, 35, 20]
 ```
 
 [↑ Top](#operations)
@@ -1297,20 +1297,20 @@ Dash\reject([1, 2, null, 3, false, true]);
 **Example:** With a field/value
 ```php
 $data = [
-	['name' => 'abc', 'active' => false],
-	['name' => 'def', 'active' => true],
-	['name' => 'ghi', 'active' => true],
+	['name' => 'John', 'active' => false],
+	['name' => 'Mary', 'active' => true],
+	['name' => 'Pete', 'active' => true],
 ];
 
 Dash\reject($data, 'active');
 // === [
-	['name' => 'abc', 'active' => false],
+	['name' => 'John', 'active' => false],
 ]
 
 Dash\reject($data, ['active', false]);
 // === [
-	['name' => 'def', 'active' => true],
-	['name' => 'ghi', 'active' => true]
+	['name' => 'Mary', 'active' => true],
+	['name' => 'Pete', 'active' => true]
 ]
 ```
 

@@ -25,3 +25,11 @@ function pick($iterable, $keys)
 
 	return is_object($iterable) ? (object) $picked : $picked;
 }
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _pick(/* keys, iterable */)
+{
+	return currify('Dash\pick', func_get_args());
+}

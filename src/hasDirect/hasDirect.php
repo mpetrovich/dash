@@ -7,7 +7,7 @@ namespace Dash;
  *
  * @category Iterable
  * @param array|object|ArrayAccess $iterable
- * @param string $key
+ * @param string|null $key
  * @return boolean
  *
  * @example
@@ -19,7 +19,7 @@ namespace Dash;
  */
 function hasDirect($iterable, $key)
 {
-	assertType($key, ['numeric', 'string'], __FUNCTION__);
+	assertType($key, ['numeric', 'string', 'null'], __FUNCTION__);
 
 	return is_array($iterable) && array_key_exists($key, $iterable)
 		|| is_object($iterable) && property_exists($iterable, $key)

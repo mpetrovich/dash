@@ -16,6 +16,16 @@ class hasDirectTest extends PHPUnit_Framework_TestCase
 	public function cases()
 	{
 		return [
+			'With non-matching null key' => [
+				'input' => [1, 2, 3],
+				'key' => null,
+				'expected' => false,
+			],
+			'With matching null key' => [
+				'input' => [null => 'foo'],
+				'key' => null,
+				'expected' => true,
+			],
 			'With null' => [
 				'input' => null,
 				'key' => 'foo',

@@ -15,6 +15,11 @@ class propertyTest extends PHPUnit_Framework_TestCase
 	public function casesForProperty()
 	{
 		return [
+			'With a direct array index' => [
+				'iterable' => ['a' => 1, 'b' => 2, 'c' => 3],
+				'path' => 'b',
+				'expected' => 2,
+			],
 			'With a valid path for an object' => [
 				'iterable' => (object) [
 					'a' => (object) [
