@@ -3,24 +3,29 @@
 namespace Dash;
 
 /**
- * Returns a subset of $iterable with the specified keys.
+ * Gets the elements of `$iterable` with keys that match any in `$keys`.
+ *
+ * @see omit()
  *
  * @category Iterable
- * @param iterable|stdClass $iterable
- * @param string|array $keys
- * @return array|object array if $iterable is array-like, object if $iterable is object-like
+ * @param iterable|stdClass|null $iterable
+ * @param string|array $keys Single key or list of keys
+ * @return array|object object if `$iterable` is an object, array otherwise
  *
  * @example
-	pick(['a' => 'one', 'b' => 'two', 'c' => 'three'], ['b', 'c']);
-	// === ['b' => 'two', 'c' => 'three']
+	Dash\pick(['a' => 1, 'b' => 2, 'c' => 3], ['b', 'c']);
+	// === ['b' => 2, 'c' => 3]
+
+	Dash\pick((object) ['a' => 1, 'b' => 2, 'c' => 3], ['b', 'c']);
+	// === (object) ['b' => 2, 'c' => 3]
  */
 function pick($iterable, $keys)
 {
-	assertType($iterable, ['iterable', 'stdClass'], __FUNCTION__);
+	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
 
 	$keys = (array) $keys;
 	$picked = filter($iterable, function ($value, $key) use ($keys) {
-		return \in_array($key, $keys);
+		return in_array($key, $keys);
 	});
 
 	return is_object($iterable) ? (object) $picked : $picked;

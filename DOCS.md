@@ -1121,20 +1121,23 @@ pick
 ```php
 pick($iterable, $keys): array|object
 ```
-Returns a subset of $iterable with the specified keys.
+Gets the elements of `$iterable` with keys that match any in `$keys`.
 
-
+Related: [omit()](#omit)
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
-`$keys` | `string\|array` | 
-**Returns** | `array\|object` | array if $iterable is array-like, object if $iterable is object-like
+`$iterable` | `iterable\|stdClass\|null` | 
+`$keys` | `string\|array` | Single key or list of keys
+**Returns** | `array\|object` | object if `$iterable` is an object, array otherwise
 
 **Example:** 
 ```php
-pick(['a' => 'one', 'b' => 'two', 'c' => 'three'], ['b', 'c']);
-// === ['b' => 'two', 'c' => 'three']
+Dash\pick(['a' => 1, 'b' => 2, 'c' => 3], ['b', 'c']);
+// === ['b' => 2, 'c' => 3]
+
+Dash\pick((object) ['a' => 1, 'b' => 2, 'c' => 3], ['b', 'c']);
+// === (object) ['b' => 2, 'c' => 3]
 ```
 
 [↑ Top](#operations)

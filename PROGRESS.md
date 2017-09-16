@@ -90,7 +90,7 @@ To review
 - [x] negate
 - [ ] partial
 - [ ] partialRight
-- [ ] pick
+- [x] pick
 - [x] pluck
 - [ ] property
 - [ ] reduce
