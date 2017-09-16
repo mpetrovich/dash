@@ -4,6 +4,7 @@ namespace Dash;
 
 /**
  * Gets a list of elements in `$iterable` for which `$predicate` returns falsey.
+ * The opposite of `filter()`.
  *
  * Keys are preserved unless `$iterable` is an indexed array.
  * An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)

@@ -1124,6 +1124,7 @@ omit
 omit($iterable, $keys): array
 ```
 Gets the elements of `$iterable` with keys that match any in `$keys`.
+The opposite of `pick()`.
 
 Related: [pick()](#pick)
 
@@ -1289,6 +1290,7 @@ reject
 reject($iterable, $predicate = 'Dash\identity'): array
 ```
 Gets a list of elements in `$iterable` for which `$predicate` returns falsey.
+The opposite of `filter()`.
 
 Keys are preserved unless `$iterable` is an indexed array.
 An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
