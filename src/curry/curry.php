@@ -6,6 +6,8 @@ namespace Dash;
  * Creates a new function that returns the result of `$callable` if its required number of parameters are supplied;
  * otherwise, it returns a function that accepts the remaining number of required parameters.
  *
+ * @see partial()
+ *
  * @category Callable
  * @param callable $callable
  * @codingStandardsIgnoreLine

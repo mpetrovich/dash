@@ -15,8 +15,8 @@ class curryTest extends PHPUnit_Framework_TestCase
 		$curried = Dash\curry($callable);
 		$curried = $curried(1);
 		$curried = $curried(2);
-		$curried = $curried(3);
-		$this->assertSame('1, 2, 3', $curried);
+		$result = $curried(3);
+		$this->assertSame('1, 2, 3', $result);
 
 		// With no-op calls
 		$curried = Dash\curry($callable);
@@ -24,45 +24,45 @@ class curryTest extends PHPUnit_Framework_TestCase
 		$curried = $curried();  // No-op
 		$curried = $curried(2);
 		$curried = $curried();  // No-op
-		$curried = $curried(3);
-		$this->assertSame('1, 2, 3', $curried);
+		$result = $curried(3);
+		$this->assertSame('1, 2, 3', $result);
 
 		// With a mix of single & multiple arguments
 		$curried = Dash\curry($callable);
 		$curried = $curried(1, 2);
-		$curried = $curried(3);
-		$this->assertSame('1, 2, 3', $curried);
+		$result = $curried(3);
+		$this->assertSame('1, 2, 3', $result);
 
 		// With a mix of single & multiple arguments
 		$curried = Dash\curry($callable);
 		$curried = $curried(1);
-		$curried = $curried(2, 3);
-		$this->assertSame('1, 2, 3', $curried);
+		$result = $curried(2, 3);
+		$this->assertSame('1, 2, 3', $result);
 
 		// With multiple arguments
 		$curried = Dash\curry($callable);
-		$curried = $curried(1, 2, 3);
-		$this->assertSame('1, 2, 3', $curried);
+		$result = $curried(1, 2, 3);
+		$this->assertSame('1, 2, 3', $result);
 
 		// With one initial argument
 		$curried = Dash\curry($callable, 1);
-		$curried = $curried(2, 3);
-		$this->assertSame('1, 2, 3', $curried);
+		$result = $curried(2, 3);
+		$this->assertSame('1, 2, 3', $result);
 
 		// With one initial argument
 		$curried = Dash\curry($callable, 1);
 		$curried = $curried(2);
-		$curried = $curried(3);
-		$this->assertSame('1, 2, 3', $curried);
+		$result = $curried(3);
+		$this->assertSame('1, 2, 3', $result);
 
 		// With several initial arguments
 		$curried = Dash\curry($callable, 1, 2);
-		$curried = $curried(3);
-		$this->assertSame('1, 2, 3', $curried);
+		$result = $curried(3);
+		$this->assertSame('1, 2, 3', $result);
 
 		// With all initial arguments
-		$curried = Dash\curry($callable, 1, 2, 3);
-		$this->assertSame('1, 2, 3', $curried);
+		$result = Dash\curry($callable, 1, 2, 3);
+		$this->assertSame('1, 2, 3', $result);
 	}
 
 	public function testExamples()

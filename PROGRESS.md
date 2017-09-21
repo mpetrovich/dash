@@ -46,8 +46,7 @@ To review
 - [x] chain
 - [x] compare
 - [ ] contains
-- [ ] currify
-- [ ] currifyN
+- [x] currify
 - [x] curry
 - [x] curryN
 - [ ] custom

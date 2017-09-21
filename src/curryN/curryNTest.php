@@ -14,29 +14,29 @@ class curryNTest extends PHPUnit_Framework_TestCase
 		// With single arguments
 		$curried = Dash\curryN($callable, 2);
 		$curried = $curried(1);
-		$curried = $curried(2);
-		$this->assertSame('1, 2, 3', $curried);
+		$result = $curried(2);
+		$this->assertSame('1, 2, 3', $result);
 
 		// With no-op calls
 		$curried = Dash\curryN($callable, 2);
 		$curried = $curried();  // No-op
 		$curried = $curried(1);
 		$curried = $curried();  // No-op
-		$curried = $curried(2);
-		$this->assertSame('1, 2, 3', $curried);
+		$result = $curried(2);
+		$this->assertSame('1, 2, 3', $result);
 
 		// With one initial argument
 		$curried = Dash\curryN($callable, 2);
-		$curried = $curried(1, 2);
-		$this->assertSame('1, 2, 3', $curried);
+		$result = $curried(1, 2);
+		$this->assertSame('1, 2, 3', $result);
 
 		// With all initial arguments
-		$curried = Dash\curryN($callable, 2, 1, 2);
-		$this->assertSame('1, 2, 3', $curried);
+		$result = Dash\curryN($callable, 2, 1, 2);
+		$this->assertSame('1, 2, 3', $result);
 
 		// With more than all initial arguments
-		$curried = Dash\curryN($callable, 2, 1, 2, 4);
-		$this->assertSame('1, 2, 3', $curried);
+		$result = Dash\curryN($callable, 2, 1, 2, 4);
+		$this->assertSame('1, 2, 3', $result);
 	}
 
 	public function testExamples()

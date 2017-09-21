@@ -1456,7 +1456,7 @@ rotate
 ```php
 rotate($iterable, $count = 1): array
 ```
-Gets a new array of `$iterable` elements where `$count` elements are moved
+Gets a new array of `$iterable` elements where `$count` elements are moved counter-clockwise
 from the beginning of `$iterable` to the end.
 
 Keys are preserved unless `$iterable` is an indexed array.
@@ -2418,19 +2418,44 @@ currify
 [Operations](#operations) › [Callable](#callable)
 
 ```php
-currify(callable $callable, array $args = [], $rotate = -1): mixed
+currify(callable $callable, array $args = [], $rotate = 1): function|mixed
 ```
+Creates a new, curried version of `$callable` where the first `$rotate` arguments
+are moved to the end of the arguments list.
 
+In essence, this takes a data-first function and returns a curryable data-last function.
 
+Related: [curry()](#curry), [partial()](#partial)
 
 Parameter | Type | Description
 --- | --- | :---
 `$callable` | `callable` | 
-`$args` | `array` | 
-`$rotate` | `numeric` | 
-**Returns** | `mixed` | 
+`$args` | `array` | (optional) Initial arguments to pass to the final curried function
+`$rotate` | `integer` | (optional) The number of arguments to move from start to end; see Dash\rotate()
+**Returns** | `function\|mixed` | 
 
+**Example:** 
+```php
+$greet = function ($name, $greeting, $punctuation) {
+	return "$greeting, $name$punctuation";
+};
 
+$goodMorning = Dash\currify($greet, ['Good morning', '!']);
+$goodMorning('John')
+// === 'Good morning, John!'
+
+```
+
+**Example:** With a custom `$rotate`
+```php
+$greet = function ($salutation, $name, $greeting, $punctuation) {
+	return "$greeting, $salutation $name$punctuation";
+};
+
+$goodMorning = Dash\currify($greet, ['Good morning', '!'], 2);
+$goodMorning('Sir', 'John')
+// === 'Good morning, Sir John!'
+```
 
 [↑ Top](#operations)
 
@@ -2466,7 +2491,7 @@ curry(callable $callable /*, ...args */): function|mixed
 Creates a new function that returns the result of `$callable` if its required number of parameters are supplied;
 otherwise, it returns a function that accepts the remaining number of required parameters.
 
-
+Related: [partial()](#partial)
 
 Parameter | Type | Description
 --- | --- | :---

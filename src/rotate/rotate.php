@@ -3,7 +3,7 @@
 namespace Dash;
 
 /**
- * Gets a new array of `$iterable` elements where `$count` elements are moved
+ * Gets a new array of `$iterable` elements where `$count` elements are moved counter-clockwise
  * from the beginning of `$iterable` to the end.
  *
  * Keys are preserved unless `$iterable` is an indexed array.
