@@ -49,7 +49,7 @@ To review
 - [ ] currify
 - [ ] currifyN
 - [x] curry
-- [ ] curryN
+- [x] curryN
 - [ ] custom
 - [x] debug
 - [ ] deltas

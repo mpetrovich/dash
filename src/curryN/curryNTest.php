@@ -11,26 +11,41 @@ class curryNTest extends PHPUnit_Framework_TestCase
 			return implode(', ', [$a, $b, $c]);
 		};
 
-		$first = Dash\curryN($callable, 2);
-		$second = $first();  // No-op
-		$third = $second(1);
-		$fourth = $third();  // No-op
-		$fifth = $fourth(2);
-		$this->assertSame('1, 2, 3', $fifth);
+		// With single arguments
+		$curried = Dash\curryN($callable, 2);
+		$curried = $curried(1);
+		$curried = $curried(2);
+		$this->assertSame('1, 2, 3', $curried);
 
-		$first = Dash\curryN($callable, 2);
-		$second = $first(1);
-		$third = $second(2);
-		$this->assertSame('1, 2, 3', $third);
+		// With no-op calls
+		$curried = Dash\curryN($callable, 2);
+		$curried = $curried();  // No-op
+		$curried = $curried(1);
+		$curried = $curried();  // No-op
+		$curried = $curried(2);
+		$this->assertSame('1, 2, 3', $curried);
 
-		$first = Dash\curryN($callable, 2);
-		$second = $first(1, 2);
-		$this->assertSame('1, 2, 3', $second);
+		// With one initial argument
+		$curried = Dash\curryN($callable, 2);
+		$curried = $curried(1, 2);
+		$this->assertSame('1, 2, 3', $curried);
 
-		$first = Dash\curryN($callable, 2, 1, 2);
-		$this->assertSame('1, 2, 3', $first);
+		// With all initial arguments
+		$curried = Dash\curryN($callable, 2, 1, 2);
+		$this->assertSame('1, 2, 3', $curried);
 
-		$first = Dash\curryN($callable, 2, 1, 2, 4);
-		$this->assertSame('1, 2, 3', $first);
+		// With more than all initial arguments
+		$curried = Dash\curryN($callable, 2, 1, 2, 4);
+		$this->assertSame('1, 2, 3', $curried);
+	}
+
+	public function testExamples()
+	{
+		$greet = function ($greeting, $name, $salutation = 'Mr.') {
+			return "$greeting, $salutation $name";
+		};
+
+		$goodMorningMr = Dash\curryN($greet, 2, 'Good morning');
+		$this->assertSame('Good morning, Mr. Smith', $goodMorningMr('Smith'));
 	}
 }

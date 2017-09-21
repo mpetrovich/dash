@@ -2463,7 +2463,7 @@ curry
 ```php
 curry(callable $callable /*, ...args */): function|mixed
 ```
-Creates a new function that returns the result of `$callable` if the required number of parameters are supplied;
+Creates a new function that returns the result of `$callable` if its required number of parameters are supplied;
 otherwise, it returns a function that accepts the remaining number of required parameters.
 
 
@@ -2497,18 +2497,30 @@ curryN
 [Operations](#operations) › [Callable](#callable)
 
 ```php
-curryN(callable $callable, $totalArgs /*, ...args */): mixed
+curryN(callable $callable, $numTotalArgs /*, ...args */): function|mixed
 ```
+Creates a new function that returns the result of `$callable` if the required number of parameters are supplied;
+otherwise, it returns a function that accepts the remaining number of required parameters.
 
 
 
 Parameter | Type | Description
 --- | --- | :---
 `$callable` | `callable` | 
-`$totalArgs` | `integer` | 
-**Returns** | `mixed` | 
+`$numTotalArgs` | `integer` | The number of parameters to require before calling `$callable`
+`...$args` | `mixed` | (optional, variadic) arguments to pass to `$callable`
+**Returns** | `function\|mixed` | 
 
+**Example:** 
+```php
+$greet = function ($greeting, $name, $salutation = 'Mr.') {
+	return "$greeting, $salutation $name";
+};
 
+$goodMorningMr = Dash\curryN($greet, 2, 'Good morning');
+$goodMorningMr('Smith');
+// === 'Good morning, Mr. Smith'
+```
 
 [↑ Top](#operations)
 
