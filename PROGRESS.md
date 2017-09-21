@@ -49,6 +49,8 @@ To review
 - [x] currify
 - [x] curry
 - [x] curryN
+- [ ] curryRight
+- [ ] curryRightN
 - [ ] custom
 - [x] debug
 - [ ] deltas
