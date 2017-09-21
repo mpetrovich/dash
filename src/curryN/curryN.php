@@ -8,7 +8,7 @@ namespace Dash;
  *
  * @category Callable
  * @param callable $callable
- * @param integer $numTotalArgs The number of parameters to require before calling `$callable`
+ * @param integer $numRequiredArgs The number of parameters to require before calling `$callable`
  * @codingStandardsIgnoreLine
  * @param mixed ...$args (optional, variadic) arguments to pass to `$callable`
  * @return function|mixed
@@ -22,18 +22,18 @@ namespace Dash;
 	$goodMorningMr('Smith');
 	// === 'Good morning, Mr. Smith'
  */
-function curryN(callable $callable, $numTotalArgs /*, ...args */)
+function curryN(callable $callable, $numRequiredArgs /*, ...args */)
 {
 	$args = func_get_args();
 	array_shift($args);
 	array_shift($args);
 
-	if (count($args) >= $numTotalArgs) {
-		return call_user_func_array($callable, array_slice($args, 0, $numTotalArgs));
+	if (count($args) >= $numRequiredArgs) {
+		return call_user_func_array($callable, array_slice($args, 0, $numRequiredArgs));
 	}
 	else {
-		return function () use ($callable, $numTotalArgs, $args) {
-			$curryArgs = array_merge([$callable, $numTotalArgs], $args, func_get_args());
+		return function () use ($callable, $numRequiredArgs, $args) {
+			$curryArgs = array_merge([$callable, $numRequiredArgs], $args, func_get_args());
 			return call_user_func_array('Dash\curryN', $curryArgs);
 		};
 	}

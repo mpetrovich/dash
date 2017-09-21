@@ -6,7 +6,9 @@ namespace Dash;
  * Creates a new function that returns the result of `$callable` if its required number of parameters are supplied;
  * otherwise, it returns a function that accepts the remaining number of required parameters.
  *
- * @see partial()
+ * Use `Dash\_` as a placeholder argument to replace with arguments from subsequent calls.
+ *
+ * @see curryN(), partial(), currify()
  *
  * @category Callable
  * @param callable $callable
@@ -27,21 +29,61 @@ namespace Dash;
 	$goodMorningSir = $goodMorning('Sir');
 	$goodMorningSir('Peter');
 	// === 'Good morning, Sir Peter'
+ *
+ * @example With placeholders
+	$greet = function ($greeting, $salutation, $name) {
+		return "$greeting, $salutation $name";
+	};
+
+	$greetMary = Dash\curry($greet, Dash\_, 'Ms.', 'Mary');
+	$greetMary('Good morning');
+	// === 'Good morning, Ms. Mary'
+
+	$greetSir = Dash\curry($greet, Dash\_, 'Sir');
+	$goodMorningSir = $greetSir('Good morning');
+	$goodMorningSir('Peter');
+	// === 'Good morning, Sir Peter'
  */
 function curry(callable $callable /*, ...args */)
 {
 	$args = func_get_args();
 	array_shift($args);
 
-	$numTotalArgs = (new \ReflectionFunction($callable))->getNumberOfParameters();
+	$numRequiredArgs = (new \ReflectionFunction($callable))->getNumberOfParameters();
 
-	if (count($args) >= $numTotalArgs) {
-		return call_user_func_array($callable, $args);
+	$numNonPlaceholderArgs = chain($args)
+		->reject(_identical(_))
+		->count()
+		->value();
+
+	if ($numNonPlaceholderArgs >= $numRequiredArgs) {
+		$deferredArgs = array_slice($args, $numRequiredArgs);
+		$callableArgs = [];
+
+		// Replaces placeholders with arguments from the end, in order
+		while ($args) {
+			$arg = array_shift($args);
+			$callableArgs[] = ($arg === _) ? array_shift($deferredArgs) : $arg;
+		}
+
+		return call_user_func_array($callable, $callableArgs);
 	}
-	else {
-		return function () use ($callable, $args) {
-			$curryArgs = array_merge([$callable], $args, func_get_args());
-			return call_user_func_array('Dash\curry', $curryArgs);
-		};
-	}
+
+	return function () use ($callable, $args) {
+		$nextArgs = func_get_args();
+		$curryArgs = [$callable];
+
+		// Replaces placeholders from previous argument list with any available arguments
+		while ($args || $nextArgs) {
+			if ($args) {
+				$arg = array_shift($args);
+				$curryArgs[] = ($arg === _ && $nextArgs) ? array_shift($nextArgs) : $arg;
+			}
+			elseif ($nextArgs) {
+				$curryArgs[] = array_shift($nextArgs);
+			}
+		}
+
+		return call_user_func_array('Dash\curry', $curryArgs);
+	};
 }

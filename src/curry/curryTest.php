@@ -65,6 +65,72 @@ class curryTest extends PHPUnit_Framework_TestCase
 		$this->assertSame('1, 2, 3', $result);
 	}
 
+	public function testPlaceholders()
+	{
+		$callable = function ($a, $b, $c, $d) {
+			return implode(', ', [$a, $b, $c, $d]);
+		};
+
+		/*
+			One placeholder
+		 */
+
+		$curried = Dash\curry($callable, Dash\_, 2);
+		$curried = $curried(1);
+		$result = $curried(3, 4);
+		$this->assertSame('1, 2, 3, 4', $result);
+
+		$curried = Dash\curry($callable);
+		$curried = $curried(Dash\_, 2);
+		$curried = $curried(1);
+		$result = $curried(3, 4);
+		$this->assertSame('1, 2, 3, 4', $result);
+
+		$curried = Dash\curry($callable);
+		$curried = $curried(Dash\_, 2);
+		$curried = $curried(1, 3);
+		$result = $curried(4);
+		$this->assertSame('1, 2, 3, 4', $result);
+
+		$curried = Dash\curry($callable);
+		$curried = $curried(1);
+		$curried = $curried(Dash\_, 3, 4);
+		$result = $curried(2);
+		$this->assertSame('1, 2, 3, 4', $result);
+
+		/*
+			Two placeholders
+		 */
+
+		$curried = Dash\curry($callable, Dash\_, Dash\_, 3);
+		$curried = $curried(1);
+		$result = $curried(2, 4);
+		$this->assertSame('1, 2, 3, 4', $result);
+
+		$curried = Dash\curry($callable);
+		$curried = $curried(Dash\_, Dash\_, 3);
+		$curried = $curried(1);
+		$result = $curried(2, 4);
+		$this->assertSame('1, 2, 3, 4', $result);
+
+		$curried = Dash\curry($callable);
+		$curried = $curried(Dash\_, Dash\_, 3);
+		$result = $curried(1, 2, 4);
+		$this->assertSame('1, 2, 3, 4', $result);
+
+		$curried = Dash\curry($callable);
+		$curried = $curried(1);
+		$curried = $curried(Dash\_, Dash\_, 4);
+		$result = $curried(2, 3);
+		$this->assertSame('1, 2, 3, 4', $result);
+
+		$curried = Dash\curry($callable);
+		$curried = $curried(Dash\_, 2);
+		$curried = $curried(Dash\_, 3);
+		$result = $curried(1, 4);
+		$this->assertSame('1, 2, 3, 4', $result);
+	}
+
 	public function testExamples()
 	{
 		$greet = function ($greeting, $salutation, $name) {
@@ -76,6 +142,13 @@ class curryTest extends PHPUnit_Framework_TestCase
 
 		$goodMorning = Dash\curry($greet, 'Good morning');
 		$goodMorningSir = $goodMorning('Sir');
+		$this->assertSame('Good morning, Sir Peter', $goodMorningSir('Peter'));
+
+		$greetMary = Dash\curry($greet, Dash\_, 'Ms.', 'Mary');
+		$this->assertSame('Good morning, Ms. Mary', $greetMary('Good morning'));
+
+		$greetSir = Dash\curry($greet, Dash\_, 'Sir');
+		$goodMorningSir = $greetSir('Good morning');
 		$this->assertSame('Good morning, Sir Peter', $goodMorningSir('Peter'));
 	}
 }

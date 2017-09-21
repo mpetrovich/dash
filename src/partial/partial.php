@@ -21,7 +21,7 @@ namespace Dash;
 	$sayHello('Mark');  // === 'Hello, Mark!'
 	$sayHowdy('Jane');  // === 'Howdy, Jane!'
  *
- * @example With a placeholder
+ * @example With placeholders
 	$greet = function ($greeting, $name) {
 		return "$greeting, $name!";
 	};
@@ -43,7 +43,7 @@ function partial($callable /*, ...args */)
 		while ($fixedArgs || $runtimeArgs) {
 			if ($fixedArgs) {
 				$fixedArg = array_shift($fixedArgs);
-				$args[] = ($fixedArg === \Dash\_) ? array_shift($runtimeArgs) : $fixedArg;
+				$args[] = ($fixedArg === _) ? array_shift($runtimeArgs) : $fixedArg;
 			}
 			elseif ($runtimeArgs) {
 				$args[] = array_shift($runtimeArgs);

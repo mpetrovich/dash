@@ -2513,6 +2513,23 @@ $goodMorning = Dash\curry($greet, 'Good morning');
 $goodMorningSir = $goodMorning('Sir');
 $goodMorningSir('Peter');
 // === 'Good morning, Sir Peter'
+
+```
+
+**Example:** With placeholders
+```php
+$greet = function ($greeting, $salutation, $name) {
+	return "$greeting, $salutation $name";
+};
+
+$greetMary = Dash\curry($greet, Dash\_, 'Ms.', 'Mary');
+$greetMary('Good morning');
+// === 'Good morning, Ms. Mary'
+
+$greetSir = Dash\curry($greet, Dash\_, 'Sir');
+$goodMorningSir = $greetSir('Good morning');
+$goodMorningSir('Peter');
+// === 'Good morning, Sir Peter'
 ```
 
 [↑ Top](#operations)
@@ -2522,7 +2539,7 @@ curryN
 [Operations](#operations) › [Callable](#callable)
 
 ```php
-curryN(callable $callable, $numTotalArgs /*, ...args */): function|mixed
+curryN(callable $callable, $numRequiredArgs /*, ...args */): function|mixed
 ```
 Creates a new function that returns the result of `$callable` if the required number of parameters are supplied;
 otherwise, it returns a function that accepts the remaining number of required parameters.
@@ -2532,7 +2549,7 @@ otherwise, it returns a function that accepts the remaining number of required p
 Parameter | Type | Description
 --- | --- | :---
 `$callable` | `callable` | 
-`$numTotalArgs` | `integer` | The number of parameters to require before calling `$callable`
+`$numRequiredArgs` | `integer` | The number of parameters to require before calling `$callable`
 `...$args` | `mixed` | (optional, variadic) arguments to pass to `$callable`
 **Returns** | `function\|mixed` | 
 
@@ -2607,7 +2624,7 @@ $sayHowdy('Jane');  // === 'Howdy, Jane!'
 
 ```
 
-**Example:** With a placeholder
+**Example:** With placeholders
 ```php
 $greet = function ($greeting, $name) {
 	return "$greeting, $name!";
