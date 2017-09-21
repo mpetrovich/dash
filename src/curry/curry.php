@@ -51,39 +51,6 @@ function curry(callable $callable /*, ...args */)
 
 	$numRequiredArgs = (new \ReflectionFunction($callable))->getNumberOfParameters();
 
-	$numNonPlaceholderArgs = chain($args)
-		->reject(_identical(_))
-		->count()
-		->value();
-
-	if ($numNonPlaceholderArgs >= $numRequiredArgs) {
-		$deferredArgs = array_slice($args, $numRequiredArgs);
-		$callableArgs = [];
-
-		// Replaces placeholders with arguments from the end, in order
-		while ($args) {
-			$arg = array_shift($args);
-			$callableArgs[] = ($arg === _) ? array_shift($deferredArgs) : $arg;
-		}
-
-		return call_user_func_array($callable, $callableArgs);
-	}
-
-	return function () use ($callable, $args) {
-		$nextArgs = func_get_args();
-		$curryArgs = [$callable];
-
-		// Replaces placeholders from previous argument list with any available arguments
-		while ($args || $nextArgs) {
-			if ($args) {
-				$arg = array_shift($args);
-				$curryArgs[] = ($arg === _ && $nextArgs) ? array_shift($nextArgs) : $arg;
-			}
-			elseif ($nextArgs) {
-				$curryArgs[] = array_shift($nextArgs);
-			}
-		}
-
-		return call_user_func_array('Dash\curry', $curryArgs);
-	};
+	$curryArgs = array_merge([$callable, $numRequiredArgs], $args);
+	return call_user_func_array('Dash\curryN', $curryArgs);
 }

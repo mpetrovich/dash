@@ -2491,7 +2491,9 @@ curry(callable $callable /*, ...args */): function|mixed
 Creates a new function that returns the result of `$callable` if its required number of parameters are supplied;
 otherwise, it returns a function that accepts the remaining number of required parameters.
 
-Related: [partial()](#partial)
+Use `Dash\_` as a placeholder argument to replace with arguments from subsequent calls.
+
+Related: [curryN()](#curryn), [partial()](#partial), [currify()](#currify)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2544,7 +2546,7 @@ curryN(callable $callable, $numRequiredArgs /*, ...args */): function|mixed
 Creates a new function that returns the result of `$callable` if the required number of parameters are supplied;
 otherwise, it returns a function that accepts the remaining number of required parameters.
 
-
+Related: [curry()](#curry)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2555,13 +2557,31 @@ Parameter | Type | Description
 
 **Example:** 
 ```php
-$greet = function ($greeting, $name, $salutation = 'Mr.') {
-	return "$greeting, $salutation $name";
+$greet = function ($greeting, $salutation, $name, $punctuation = '!') {
+	return "$greeting, $salutation $name$punctuation";
 };
 
-$goodMorningMr = Dash\curryN($greet, 2, 'Good morning');
-$goodMorningMr('Smith');
-// === 'Good morning, Mr. Smith'
+$goodMorning = Dash\curryN($greet, 3, 'Good morning');
+$goodMorning('Ms.', 'Mary');
+// === 'Good morning, Ms. Mary!'
+
+$goodMorning = Dash\curryN($greet, 3, 'Good morning');
+$goodMorningSir = $goodMorning('Sir');
+$goodMorningSir('Peter');
+// === 'Good morning, Sir Peter!'
+
+```
+
+**Example:** With placeholders
+```php
+$greetMary = Dash\curryN($greet, 3, Dash\_, 'Ms.', 'Mary');
+$greetMary('Good morning');
+// === 'Good morning, Ms. Mary!'
+
+$greetSir = Dash\curryN($greet, 3, Dash\_, 'Sir');
+$goodMorningSir = $greetSir('Good morning');
+$goodMorningSir('Peter');
+// === 'Good morning, Sir Peter!'
 ```
 
 [↑ Top](#operations)
