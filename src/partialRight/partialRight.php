@@ -31,7 +31,7 @@ namespace Dash;
 	$this->assertSame('Hello, Mark!', $sayHello('Mark'));
 	$this->assertSame('Howdy, Jane!', $sayHowdy('Jane'));
  */
-function partialRight($callable /* , ...args */)
+function partialRight($callable /*, ...args */)
 {
 	$fixedArgs = func_get_args();
 	array_shift($fixedArgs);  // Removes $callable

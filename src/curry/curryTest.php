@@ -11,48 +11,71 @@ class curryTest extends PHPUnit_Framework_TestCase
 			return implode(', ', [$a, $b, $c]);
 		};
 
-		$first = Dash\curry($callable);
-		$second = $first(1);
-		$third = $second(2);
-		$fourth = $third(3);
-		$this->assertSame('1, 2, 3', $fourth);
+		// With single arguments
+		$curried = Dash\curry($callable);
+		$curried = $curried(1);
+		$curried = $curried(2);
+		$curried = $curried(3);
+		$this->assertSame('1, 2, 3', $curried);
 
-		$first = Dash\curry($callable);
-		$second = $first(1);
-		$third = $second();  // No-op
-		$fourth = $third(2);
-		$fifth = $fourth();  // No-op
-		$sixth = $fifth(3);
-		$this->assertSame('1, 2, 3', $sixth);
+		// With no-op calls
+		$curried = Dash\curry($callable);
+		$curried = $curried(1);
+		$curried = $curried();  // No-op
+		$curried = $curried(2);
+		$curried = $curried();  // No-op
+		$curried = $curried(3);
+		$this->assertSame('1, 2, 3', $curried);
 
-		$first = Dash\curry($callable);
-		$second = $first(1, 2);
-		$third = $second(3);
-		$this->assertSame('1, 2, 3', $third);
+		// With a mix of single & multiple arguments
+		$curried = Dash\curry($callable);
+		$curried = $curried(1, 2);
+		$curried = $curried(3);
+		$this->assertSame('1, 2, 3', $curried);
 
-		$first = Dash\curry($callable);
-		$second = $first(1);
-		$third = $second(2, 3);
-		$this->assertSame('1, 2, 3', $third);
+		// With a mix of single & multiple arguments
+		$curried = Dash\curry($callable);
+		$curried = $curried(1);
+		$curried = $curried(2, 3);
+		$this->assertSame('1, 2, 3', $curried);
 
-		$first = Dash\curry($callable);
-		$second = $first(1, 2, 3);
-		$this->assertSame('1, 2, 3', $second);
+		// With multiple arguments
+		$curried = Dash\curry($callable);
+		$curried = $curried(1, 2, 3);
+		$this->assertSame('1, 2, 3', $curried);
 
-		$first = Dash\curry($callable, 1);
-		$second = $first(2, 3);
-		$this->assertSame('1, 2, 3', $second);
+		// With one initial argument
+		$curried = Dash\curry($callable, 1);
+		$curried = $curried(2, 3);
+		$this->assertSame('1, 2, 3', $curried);
 
-		$first = Dash\curry($callable, 1);
-		$second = $first(2);
-		$third = $second(3);
-		$this->assertSame('1, 2, 3', $third);
+		// With one initial argument
+		$curried = Dash\curry($callable, 1);
+		$curried = $curried(2);
+		$curried = $curried(3);
+		$this->assertSame('1, 2, 3', $curried);
 
-		$first = Dash\curry($callable, 1, 2);
-		$second = $first(3);
-		$this->assertSame('1, 2, 3', $second);
+		// With several initial arguments
+		$curried = Dash\curry($callable, 1, 2);
+		$curried = $curried(3);
+		$this->assertSame('1, 2, 3', $curried);
 
-		$first = Dash\curry($callable, 1, 2, 3);
-		$this->assertSame('1, 2, 3', $first);
+		// With all initial arguments
+		$curried = Dash\curry($callable, 1, 2, 3);
+		$this->assertSame('1, 2, 3', $curried);
+	}
+
+	public function testExamples()
+	{
+		$greet = function ($greeting, $salutation, $name) {
+			return "$greeting, $salutation $name";
+		};
+
+		$goodMorning = Dash\curry($greet, 'Good morning');
+		$this->assertSame('Good morning, Ms. Mary', $goodMorning('Ms.', 'Mary'));
+
+		$goodMorning = Dash\curry($greet, 'Good morning');
+		$goodMorningSir = $goodMorning('Sir');
+		$this->assertSame('Good morning, Sir Peter', $goodMorningSir('Peter'));
 	}
 }

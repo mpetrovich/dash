@@ -19,7 +19,7 @@ namespace Dash;
 		[2, 8]
 	);  // === [4, 6]
  */
-function difference($iterable /* , ...iterables */)
+function difference($iterable /*, ...iterables */)
 {
 	$iterables = func_get_args();
 	$first = array_shift($iterables);

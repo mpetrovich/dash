@@ -278,7 +278,7 @@ difference / diff
 [Operations](#operations) › [Iterable](#iterable)
 
 ```php
-difference($iterable /* , ...iterables */): array
+difference($iterable /*, ...iterables */): array
 ```
 Returns a subset of items from the first iterable that are not present in any of the other iterables.
 
@@ -719,7 +719,7 @@ intersection / intersect
 [Operations](#operations) › [Iterable](#iterable)
 
 ```php
-intersection($iterable /* , ...iterables */): array
+intersection($iterable /*, ...iterables */): array
 ```
 Returns a new array containing values of $iterable that are present in all other arguments.
 
@@ -1992,7 +1992,7 @@ debug
 [Operations](#operations) › [Utility](#utility)
 
 ```php
-debug($value /* , ...value */): mixed
+debug($value /*, ...value */): mixed
 ```
 Prints debugging information for one or more values.
 
@@ -2387,7 +2387,7 @@ call
 [Operations](#operations) › [Callable](#callable)
 
 ```php
-call(callable $callable /* , ...args */): mixed
+call(callable $callable /*, ...args */): mixed
 ```
 Invokes `$callable` with an inline list of arguments.
 
@@ -2461,17 +2461,34 @@ curry
 [Operations](#operations) › [Callable](#callable)
 
 ```php
-curry(callable $callable /*, ...args */): mixed
+curry(callable $callable /*, ...args */): function|mixed
 ```
+Creates a new function that returns the result of `$callable` if the required number of parameters are supplied;
+otherwise, it returns a function that accepts the remaining number of required parameters.
 
 
 
 Parameter | Type | Description
 --- | --- | :---
 `$callable` | `callable` | 
-**Returns** | `mixed` | 
+`...$args` | `mixed` | (optional, variadic) arguments to pass to `$callable`
+**Returns** | `function\|mixed` | 
 
+**Example:** 
+```php
+$greet = function ($greeting, $salutation, $name) {
+	return "$greeting, $salutation $name";
+};
 
+$goodMorning = Dash\curry($greet, 'Good morning');
+$goodMorning('Ms.', 'Mary');
+// === 'Good morning, Ms. Mary'
+
+$goodMorning = Dash\curry($greet, 'Good morning');
+$goodMorningSir = $goodMorning('Sir');
+$goodMorningSir('Peter');
+// === 'Good morning, Sir Peter'
+```
 
 [↑ Top](#operations)
 
@@ -2527,7 +2544,7 @@ partial
 [Operations](#operations) › [Callable](#callable)
 
 ```php
-partial($callable /* , ...args */): callable
+partial($callable /*, ...args */): callable
 ```
 Creates a function that invokes $callable with the given set of arguments prepended to any others passed in.
 
@@ -2572,7 +2589,7 @@ partialRight
 [Operations](#operations) › [Callable](#callable)
 
 ```php
-partialRight($callable /* , ...args */): callable
+partialRight($callable /*, ...args */): callable
 ```
 Creates a function that invokes $callable with the given set of arguments appended to any others passed in.
 

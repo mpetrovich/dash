@@ -31,7 +31,7 @@ namespace Dash;
 	$greetMark('Hello');  // === 'Hello, Mark!'
 	$greetJane('Howdy');  // === 'Howdy, Jane!'
  */
-function partial($callable /* , ...args */)
+function partial($callable /*, ...args */)
 {
 	$fixedArgs = func_get_args();
 	array_shift($fixedArgs);  // Removes $callable

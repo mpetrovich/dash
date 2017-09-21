@@ -21,7 +21,7 @@ namespace Dash;
 	Dash\call($func, 'morning', 'John');
 	// === 'Good morning, John'
  */
-function call(callable $callable /* , ...args */)
+function call(callable $callable /*, ...args */)
 {
 	$args = array_slice(func_get_args(), 1);
 	return call_user_func_array($callable, $args);

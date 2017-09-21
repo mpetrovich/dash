@@ -25,7 +25,7 @@ namespace Dash;
 	string(5) "hello"
 	double(3.14)
  */
-function debug($value /* , ...value */)
+function debug($value /*, ...value */)
 {
 	ob_start();
 	call_user_func_array('var_dump', func_get_args());

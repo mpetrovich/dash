@@ -48,7 +48,7 @@ To review
 - [ ] contains
 - [ ] currify
 - [ ] currifyN
-- [ ] curry
+- [x] curry
 - [ ] curryN
 - [ ] custom
 - [x] debug

@@ -3,18 +3,37 @@
 namespace Dash;
 
 /**
+ * Creates a new function that returns the result of `$callable` if the required number of parameters are supplied;
+ * otherwise, it returns a function that accepts the remaining number of required parameters.
+ *
  * @category Callable
  * @param callable $callable
- * @return mixed
+ * @codingStandardsIgnoreLine
+ * @param mixed ...$args (optional, variadic) arguments to pass to `$callable`
+ * @return function|mixed
+ *
+ * @example
+	$greet = function ($greeting, $salutation, $name) {
+		return "$greeting, $salutation $name";
+	};
+
+	$goodMorning = Dash\curry($greet, 'Good morning');
+	$goodMorning('Ms.', 'Mary');
+	// === 'Good morning, Ms. Mary'
+
+	$goodMorning = Dash\curry($greet, 'Good morning');
+	$goodMorningSir = $goodMorning('Sir');
+	$goodMorningSir('Peter');
+	// === 'Good morning, Sir Peter'
  */
 function curry(callable $callable /*, ...args */)
 {
 	$args = func_get_args();
 	array_shift($args);
 
-	$totalArgs = (new \ReflectionFunction($callable))->getNumberOfParameters();
+	$numTotalArgs = (new \ReflectionFunction($callable))->getNumberOfParameters();
 
-	if (count($args) >= $totalArgs) {
+	if (count($args) >= $numTotalArgs) {
 		return call_user_func_array($callable, $args);
 	}
 	else {
