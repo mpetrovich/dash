@@ -31,7 +31,6 @@
 			"src/compare/compare.php",
 			"src/contains/contains.php",
 			"src/currify/currify.php",
-			"src/currifyN/currifyN.php",
 			"src/curry/curry.php",
 			"src/curryN/curryN.php",
 			"src/curryRight/curryRight.php",
