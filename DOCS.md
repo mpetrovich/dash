@@ -2752,7 +2752,7 @@ BEFORE those passed to the returned function.
 
 Use `Dash\_` as a placeholder to replace with arguments passed to the returned function.
 
-
+Related: [partialRight()](#partialright), [curry()](#curry)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2796,15 +2796,20 @@ partialRight
 ```php
 partialRight($callable /*, ...args */): callable
 ```
-Creates a function that invokes $callable with the given set of arguments appended to any others passed in.
+Creates a new function that will invoke `$callable` with the given arguments
+and any others passed to the returned function.
 
-Pass Dash\_ as a placeholder to replace with call-time arguments.
+When calling `$callable`, arguments provided to `partial()` will be listed
+AFTER those passed to the returned function.
 
+Use `Dash\_` as a placeholder to replace with arguments passed to the returned function.
 
+Related: [partial()](#partial), [curryRight()](#curryright)
 
 Parameter | Type | Description
 --- | --- | :---
 `$callable` | `callable` | 
+`...$args` | `mixed` | (optional, variadic) arguments to pass to `$callable`
 **Returns** | `callable` | 
 
 **Example:** 
@@ -2812,11 +2817,12 @@ Parameter | Type | Description
 $greet = function ($greeting, $name) {
 	return "$greeting, $name!";
 };
+
 $greetMark = Dash\partialRight($greet, 'Mark');
 $greetJane = Dash\partialRight($greet, 'Jane');
 
-$this->assertSame('Hello, Mark!', $greetMark('Hello'));
-$this->assertSame('Howdy, Jane!', $greetJane('Howdy'));
+$greetMark('Hello');  // === 'Hello, Mark!'
+$greetJane('Howdy');  // === 'Howdy, Jane!'
 
 ```
 
@@ -2825,11 +2831,12 @@ $this->assertSame('Howdy, Jane!', $greetJane('Howdy'));
 $greet = function ($greeting, $name) {
 	return "$greeting, $name!";
 };
+
 $sayHello = Dash\partialRight($greet, 'Hello', Dash\_);
 $sayHowdy = Dash\partialRight($greet, 'Howdy', Dash\_);
 
-$this->assertSame('Hello, Mark!', $sayHello('Mark'));
-$this->assertSame('Howdy, Jane!', $sayHowdy('Jane'));
+$sayHello('Mark');  // === 'Hello, Mark!'
+$sayHowdy('Jane');  // === 'Howdy, Jane!'
 ```
 
 [↑ Top](#operations)

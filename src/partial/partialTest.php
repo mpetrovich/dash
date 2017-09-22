@@ -13,7 +13,7 @@ class partialTest extends PHPUnit_Framework_TestCase
 
 		// With no fixed args
 		$partial = Dash\partial($callable);
-		$this->assertSame('1, 2, 3', $partial(1, 2, 3));
+		$this->assertSame('1, 2, 3, 4', $partial(1, 2, 3, 4));
 
 		// With one fixed arg
 		$partial = Dash\partial($callable, 1);
@@ -24,8 +24,8 @@ class partialTest extends PHPUnit_Framework_TestCase
 		$this->assertSame('1, 2, 3, 4', $partial(3, 4));
 
 		// With only fixed args
-		$partial = Dash\partial($callable, 3, 4, 5);
-		$this->assertSame('3, 4, 5', $partial());
+		$partial = Dash\partial($callable, 1, 2, 3, 4);
+		$this->assertSame('1, 2, 3, 4', $partial());
 	}
 
 	public function testPlaceholders()
@@ -41,6 +41,10 @@ class partialTest extends PHPUnit_Framework_TestCase
 		// With several placeholders
 		$partial = Dash\partial($callable, 1, Dash\_, 3, Dash\_);
 		$this->assertSame('1, 2, 3, 4', $partial(2, 4));
+
+		// With several placeholders
+		$partial = Dash\partial($callable, 1, Dash\_, 3, Dash\_);
+		$this->assertSame('1, 2, 3, 4, 5, 6', $partial(2, 4, 5, 6));
 
 		// With only placeholders
 		$partial = Dash\partial($callable, Dash\_, Dash\_, Dash\_, Dash\_);

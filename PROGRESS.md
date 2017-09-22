@@ -7,12 +7,13 @@ Requirements
 - Add curried variant
 
 ### Documentation
-- Category
-- Parameters
-- Return value
-- Exceptions
-- Aliases
-- Examples
+- @see
+- @category
+- @param
+- @return
+- @throws
+- @alias
+- @example
 
 ### Testing
 - @covers (for aliases, curried too)
@@ -91,7 +92,7 @@ To review
 - [x] negate
 - [x] omit
 - [x] partial
-- [ ] partialRight
+- [x] partialRight
 - [x] pick
 - [x] pluck
 - [ ] property
