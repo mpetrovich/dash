@@ -6,7 +6,11 @@ namespace Dash;
  * Creates a new function that returns the result of `$callable` if the required number of parameters are supplied;
  * otherwise, it returns a function that accepts the remaining number of required parameters.
  *
- * @see curry()
+ * Like `partialRight()`, arguments are applied in reverse order.
+ *
+ * Use `Dash\_` as a placeholder argument to replace with arguments from subsequent calls.
+ *
+ * @see curryN(), partialRight()
  *
  * @category Callable
  * @param callable $callable
@@ -20,31 +24,32 @@ namespace Dash;
 		return "$greeting, $salutation $name$punctuation";
 	};
 
-	$goodMorning = Dash\curryN($greet, 3, 'Good morning');
-	$goodMorning('Ms.', 'Mary');
-	// === 'Good morning, Ms. Mary!'
+	$greetMary = Dash\curryRightN($greet, 3, 'Mary');
+	$greetMsMary = $greetMary('Ms.');
+	$greetMsMary('Good morning');
+	// === 'Good morning, Ms. Mary!
 
-	$goodMorning = Dash\curryN($greet, 3, 'Good morning');
-	$goodMorningSir = $goodMorning('Sir');
-	$goodMorningSir('Peter');
-	// === 'Good morning, Sir Peter!'
+	$greetPeter = Dash\curryRightN($greet, 3, 'Peter');
+	$greetSirPeter = $greetPeter('Sir');
+	$greetSirPeter('Good morning');
+	// === 'Good morning, Sir Peter!
 
  * @example With placeholders
 	$greet = function ($greeting, $salutation, $name, $punctuation = '!') {
 		return "$greeting, $salutation $name$punctuation";
 	};
 
-	$greetSir = Dash\curryN($greet, 3, Dash\_, 'Sir');
-	$goodMorningSir = $greetSir('Good morning');
+	$goodMorning = Dash\curryRightN($greet, 3, 'Good morning', Dash\_, Dash\_);
+	$goodMorningSir = $goodMorning('Sir', Dash\_);
 	$goodMorningSir('Peter');
-	// === 'Good morning, Sir Peter!'
+	// === 'Good morning, Sir Peter!
 
-	$greetMary = Dash\curryN($greet, 3, Dash\_, Dash\_, 'Mary');
-	$greetMsMary = $greetMary(Dash\_, 'Ms.');
-	$greetMsMary('Good morning');
-	// === 'Good morning, Ms. Mary!'
+	$greetMs = Dash\curryRightN($greet, 3, 'Ms.', Dash\_);
+	$goodMorningMs = $greetMs('Good morning', Dash\_);
+	$goodMorningMs('Mary');
+	// === 'Good morning, Ms. Mary!
  */
-function curryN(callable $callable, $numRequiredArgs /*, ...args */)
+function curryRightN(callable $callable, $numRequiredArgs /*, ...args */)
 {
 	$args = func_get_args();
 	array_shift($args);
@@ -56,34 +61,29 @@ function curryN(callable $callable, $numRequiredArgs /*, ...args */)
 		->value();
 
 	if ($numNonPlaceholderArgs >= $numRequiredArgs) {
-		$callableArgs = [];
-
-		// Replaces placeholders with arguments from the end, in order
-		$deferredArgs = array_slice($args, $numRequiredArgs);
-		while ($args) {
-			$arg = array_shift($args);
-			$callableArgs[] = ($arg === _) ? array_shift($deferredArgs) : $arg;
-		}
-
-		$callableArgs = array_slice($callableArgs, 0, $numRequiredArgs);
+		$callableArgs = reject($args, function ($arg) { return $arg === _; });
 		return call_user_func_array($callable, $callableArgs);
 	}
 
 	return function () use ($callable, $numRequiredArgs, $args) {
 		$nextArgs = func_get_args();
-		$curryArgs = [$callable, $numRequiredArgs];
+		$curryArgs = [];
 
 		// Replaces placeholders from previous argument list with any available arguments
 		while ($args || $nextArgs) {
 			if ($args) {
-				$arg = array_shift($args);
-				$curryArgs[] = ($arg === _ && $nextArgs) ? array_shift($nextArgs) : $arg;
+				$arg = array_pop($args);
+				$curryArg = ($arg === _ && $nextArgs) ? array_pop($nextArgs) : $arg;
 			}
 			elseif ($nextArgs) {
-				$curryArgs[] = array_shift($nextArgs);
+				$curryArg = array_pop($nextArgs);
 			}
+			array_unshift($curryArgs, $curryArg);
 		}
 
-		return call_user_func_array('Dash\curryN', $curryArgs);
+		array_unshift($curryArgs, $numRequiredArgs);
+		array_unshift($curryArgs, $callable);
+
+		return call_user_func_array('Dash\curryRightN', $curryArgs);
 	};
 }

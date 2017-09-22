@@ -11,12 +11,12 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/mpet
 [contains](#contains) | [debug](#debug) | [currifyN](#currifyn) | 
 [deltas](#deltas) | [equal](#equal) | [curry](#curry) | 
 [difference](#difference--diff) / diff | [identical](#identical) | [curryN](#curryn) | 
-[dropWhile](#dropwhile) | [identity](#identity) | [negate](#negate) | 
-[each](#each) | [isEmpty](#isempty) | [partial](#partial) | 
-[filter](#filter) | [isType](#istype) | [partialRight](#partialright) | 
-[find](#find) | [size](#size--count) / count | [unary](#unary) | 
-[findKey](#findkey) | [tap](#tap) |  | 
-[findLast](#findlast) | [thru](#thru) |  | 
+[dropWhile](#dropwhile) | [identity](#identity) | [curryRight](#curryright) | 
+[each](#each) | [isEmpty](#isempty) | [curryRightN](#curryrightn) | 
+[filter](#filter) | [isType](#istype) | [negate](#negate) | 
+[find](#find) | [size](#size--count) / count | [partial](#partial) | 
+[findKey](#findkey) | [tap](#tap) | [partialRight](#partialright) | 
+[findLast](#findlast) | [thru](#thru) | [unary](#unary) | 
 [findValue](#findvalue) |  |  | 
 [first](#first--head) / head |  |  | 
 [get](#get) |  |  | 
@@ -2493,7 +2493,7 @@ otherwise, it returns a function that accepts the remaining number of required p
 
 Use `Dash\_` as a placeholder argument to replace with arguments from subsequent calls.
 
-Related: [curryN()](#curryn), [partial()](#partial), [currify()](#currify)
+Related: [curryN()](#curryn), [curryRight()](#curryright), [partial()](#partial), [currify()](#currify)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2574,14 +2574,136 @@ $goodMorningSir('Peter');
 
 **Example:** With placeholders
 ```php
-$greetMary = Dash\curryN($greet, 3, Dash\_, 'Ms.', 'Mary');
-$greetMary('Good morning');
-// === 'Good morning, Ms. Mary!'
+$greet = function ($greeting, $salutation, $name, $punctuation = '!') {
+	return "$greeting, $salutation $name$punctuation";
+};
 
 $greetSir = Dash\curryN($greet, 3, Dash\_, 'Sir');
 $goodMorningSir = $greetSir('Good morning');
 $goodMorningSir('Peter');
 // === 'Good morning, Sir Peter!'
+
+$greetMary = Dash\curryN($greet, 3, Dash\_, Dash\_, 'Mary');
+$greetMsMary = $greetMary(Dash\_, 'Ms.');
+$greetMsMary('Good morning');
+// === 'Good morning, Ms. Mary!'
+```
+
+[↑ Top](#operations)
+
+curryRight
+---
+[Operations](#operations) › [Callable](#callable)
+
+```php
+curryRight(callable $callable /*, ...args */): function|mixed
+```
+Creates a new function that returns the result of `$callable` if its required number of parameters are supplied;
+otherwise, it returns a function that accepts the remaining number of required parameters.
+
+Like `partialRight()`, arguments are applied in reverse order.
+
+Use `Dash\_` as a placeholder argument to replace with arguments from subsequent calls.
+
+Related: [curry()](#curry), [partial()](#partial)
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+`...$args` | `mixed` | (optional, variadic) arguments to pass to `$callable`
+**Returns** | `function\|mixed` | 
+
+**Example:** 
+```php
+$greet = function ($greeting, $salutation, $name) {
+	return "$greeting, $salutation $name";
+};
+
+$goodMorning = Dash\curryRight($greet, 'Good morning');
+$goodMorning('Ms.', 'Mary');
+// === 'Good morning, Ms. Mary'
+
+$goodMorning = Dash\curryRight($greet, 'Good morning');
+$goodMorningSir = $goodMorning('Sir');
+$goodMorningSir('Peter');
+// === 'Good morning, Sir Peter'
+
+```
+
+**Example:** With placeholders
+```php
+$greet = function ($greeting, $salutation, $name) {
+	return "$greeting, $salutation $name";
+};
+
+$greetMary = Dash\curryRight($greet, Dash\_, 'Ms.', 'Mary');
+$greetMary('Good morning');
+// === 'Good morning, Ms. Mary'
+
+$greetSir = Dash\curryRight($greet, Dash\_, 'Sir');
+$goodMorningSir = $greetSir('Good morning');
+$goodMorningSir('Peter');
+// === 'Good morning, Sir Peter'
+```
+
+[↑ Top](#operations)
+
+curryRightN
+---
+[Operations](#operations) › [Callable](#callable)
+
+```php
+curryRightN(callable $callable, $numRequiredArgs /*, ...args */): function|mixed
+```
+Creates a new function that returns the result of `$callable` if the required number of parameters are supplied;
+otherwise, it returns a function that accepts the remaining number of required parameters.
+
+Like `partialRight()`, arguments are applied in reverse order.
+
+Use `Dash\_` as a placeholder argument to replace with arguments from subsequent calls.
+
+Related: [curryN()](#curryn), [partialRight()](#partialright)
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+`$numRequiredArgs` | `integer` | The number of parameters to require before calling `$callable`
+`...$args` | `mixed` | (optional, variadic) arguments to pass to `$callable`
+**Returns** | `function\|mixed` | 
+
+**Example:** 
+```php
+$greet = function ($greeting, $salutation, $name, $punctuation = '!') {
+	return "$greeting, $salutation $name$punctuation";
+};
+
+$greetMary = Dash\curryRightN($greet, 3, 'Mary');
+$greetMsMary = $greetMary('Ms.');
+$greetMsMary('Good morning');
+// === 'Good morning, Ms. Mary!
+
+$greetPeter = Dash\curryRightN($greet, 3, 'Peter');
+$greetSirPeter = $greetPeter('Sir');
+$greetSirPeter('Good morning');
+// === 'Good morning, Sir Peter!
+
+```
+
+**Example:** With placeholders
+```php
+$greet = function ($greeting, $salutation, $name, $punctuation = '!') {
+	return "$greeting, $salutation $name$punctuation";
+};
+
+$goodMorning = Dash\curryRightN($greet, 3, 'Good morning', Dash\_, Dash\_);
+$goodMorningSir = $goodMorning('Sir', Dash\_);
+$goodMorningSir('Peter');
+// === 'Good morning, Sir Peter!
+
+$greetMs = Dash\curryRightN($greet, 3, 'Ms.', Dash\_);
+$goodMorningMs = $greetMs('Good morning', Dash\_);
+$goodMorningMs('Mary');
+// === 'Good morning, Ms. Mary!
 ```
 
 [↑ Top](#operations)

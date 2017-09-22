@@ -148,11 +148,12 @@ class curryNTest extends PHPUnit_Framework_TestCase
 		$goodMorningSir = $goodMorning('Sir');
 		$this->assertSame('Good morning, Sir Peter!', $goodMorningSir('Peter'));
 
-		$greetMary = Dash\curryN($greet, 3, Dash\_, 'Ms.', 'Mary');
-		$this->assertSame('Good morning, Ms. Mary!', $greetMary('Good morning'));
-
 		$greetSir = Dash\curryN($greet, 3, Dash\_, 'Sir');
 		$goodMorningSir = $greetSir('Good morning');
 		$this->assertSame('Good morning, Sir Peter!', $goodMorningSir('Peter'));
+
+		$greetMary = Dash\curryN($greet, 3, Dash\_, Dash\_, 'Mary');
+		$greetMsMary = $greetMary(Dash\_, 'Ms.');
+		$this->assertSame('Good morning, Ms. Mary!', $greetMsMary('Good morning'));
 	}
 }

@@ -34,6 +34,8 @@
 			"src/currifyN/currifyN.php",
 			"src/curry/curry.php",
 			"src/curryN/curryN.php",
+			"src/curryRight/curryRight.php",
+			"src/curryRightN/curryRightN.php",
 			"src/custom/custom.php",
 			"src/debug/debug.php",
 			"src/deltas/deltas.php",
