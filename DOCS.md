@@ -8,15 +8,15 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/mpet
 [any](#any--some) / some | [chain](#chain) | [ary](#ary) | [isOdd](#isodd)
 [at](#at) | [compare](#compare) | [call](#call) | 
 [average](#average--mean) / mean | [custom](#custom) | [currify](#currify) | 
-[contains](#contains) | [debug](#debug) | [currifyN](#currifyn) | 
-[deltas](#deltas) | [equal](#equal) | [curry](#curry) | 
-[difference](#difference--diff) / diff | [identical](#identical) | [curryN](#curryn) | 
-[dropWhile](#dropwhile) | [identity](#identity) | [curryRight](#curryright) | 
-[each](#each) | [isEmpty](#isempty) | [curryRightN](#curryrightn) | 
-[filter](#filter) | [isType](#istype) | [negate](#negate) | 
-[find](#find) | [size](#size--count) / count | [partial](#partial) | 
-[findKey](#findkey) | [tap](#tap) | [partialRight](#partialright) | 
-[findLast](#findlast) | [thru](#thru) | [unary](#unary) | 
+[contains](#contains) | [debug](#debug) | [curry](#curry) | 
+[deltas](#deltas) | [equal](#equal) | [curryN](#curryn) | 
+[difference](#difference--diff) / diff | [identical](#identical) | [curryRight](#curryright) | 
+[dropWhile](#dropwhile) | [identity](#identity) | [curryRightN](#curryrightn) | 
+[each](#each) | [isEmpty](#isempty) | [negate](#negate) | 
+[filter](#filter) | [isType](#istype) | [partial](#partial) | 
+[find](#find) | [size](#size--count) / count | [partialRight](#partialright) | 
+[findKey](#findkey) | [tap](#tap) | [unary](#unary) | 
+[findLast](#findlast) | [thru](#thru) |  | 
 [findValue](#findvalue) |  |  | 
 [first](#first--head) / head |  |  | 
 [get](#get) |  |  | 
@@ -2456,28 +2456,6 @@ $goodMorning = Dash\currify($greet, ['Good morning', '!'], 2);
 $goodMorning('Sir', 'John')
 // === 'Good morning, Sir John!'
 ```
-
-[↑ Top](#operations)
-
-currifyN
----
-[Operations](#operations) › [Callable](#callable)
-
-```php
-currifyN(callable $callable, $totalArgs, array $args = [], $rotate = -1): mixed
-```
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` | 
-`$totalArgs` | `integer` | 
-`$args` | `array` | 
-`$rotate` | `numeric` | 
-**Returns** | `mixed` | 
-
-
 
 [↑ Top](#operations)
 
