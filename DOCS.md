@@ -2491,7 +2491,7 @@ curry(callable $callable /*, ...args */): function|mixed
 Creates a new function that returns the result of `$callable` if its required number of parameters are supplied;
 otherwise, it returns a function that accepts the remaining number of required parameters.
 
-Use `Dash\_` as a placeholder argument to replace with arguments from subsequent calls.
+Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
 
 Related: [curryN()](#curryn), [curryRight()](#curryright), [partial()](#partial), [currify()](#currify)
 
@@ -2545,6 +2545,8 @@ curryN(callable $callable, $numRequiredArgs /*, ...args */): function|mixed
 ```
 Creates a new function that returns the result of `$callable` if the required number of parameters are supplied;
 otherwise, it returns a function that accepts the remaining number of required parameters.
+
+Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
 
 Related: [curry()](#curry)
 
@@ -2603,7 +2605,7 @@ otherwise, it returns a function that accepts the remaining number of required p
 
 Like `partialRight()`, arguments are applied in reverse order.
 
-Use `Dash\_` as a placeholder argument to replace with arguments from subsequent calls.
+Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
 
 Related: [curry()](#curry), [partial()](#partial)
 
@@ -2660,7 +2662,7 @@ otherwise, it returns a function that accepts the remaining number of required p
 
 Like `partialRight()`, arguments are applied in reverse order.
 
-Use `Dash\_` as a placeholder argument to replace with arguments from subsequent calls.
+Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
 
 Related: [curryN()](#curryn), [partialRight()](#partialright)
 
@@ -2742,15 +2744,20 @@ partial
 ```php
 partial($callable /*, ...args */): callable
 ```
-Creates a function that invokes $callable with the given set of arguments prepended to any others passed in.
+Creates a new function that will invoke `$callable` with the given arguments
+and any others passed to the returned function.
 
-Use Dash\_ as a placeholder to replace with call-time arguments.
+When calling `$callable`, arguments provided to `partial()` will be listed
+BEFORE those passed to the returned function.
+
+Use `Dash\_` as a placeholder to replace with arguments passed to the returned function.
 
 
 
 Parameter | Type | Description
 --- | --- | :---
 `$callable` | `callable` | 
+`...$args` | `mixed` | (optional, variadic) arguments to pass to `$callable`
 **Returns** | `callable` | 
 
 **Example:** 
@@ -2758,6 +2765,7 @@ Parameter | Type | Description
 $greet = function ($greeting, $name) {
 	return "$greeting, $name!";
 };
+
 $sayHello = Dash\partial($greet, 'Hello');
 $sayHowdy = Dash\partial($greet, 'Howdy');
 
@@ -2771,6 +2779,7 @@ $sayHowdy('Jane');  // === 'Howdy, Jane!'
 $greet = function ($greeting, $name) {
 	return "$greeting, $name!";
 };
+
 $greetMark = Dash\partial($greet, Dash\_, 'Mark');
 $greetJane = Dash\partial($greet, Dash\_, 'Jane');
 

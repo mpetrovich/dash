@@ -3,18 +3,25 @@
 namespace Dash;
 
 /**
- * Creates a function that invokes $callable with the given set of arguments prepended to any others passed in.
+ * Creates a new function that will invoke `$callable` with the given arguments
+ * and any others passed to the returned function.
  *
- * Use Dash\_ as a placeholder to replace with call-time arguments.
+ * When calling `$callable`, arguments provided to `partial()` will be listed
+ * BEFORE those passed to the returned function.
+ *
+ * Use `Dash\_` as a placeholder to replace with arguments passed to the returned function.
  *
  * @category Callable
  * @param callable $callable
+ * @codingStandardsIgnoreLine
+ * @param mixed ...$args (optional, variadic) arguments to pass to `$callable`
  * @return callable
  *
  * @example
 	$greet = function ($greeting, $name) {
 		return "$greeting, $name!";
 	};
+
 	$sayHello = Dash\partial($greet, 'Hello');
 	$sayHowdy = Dash\partial($greet, 'Howdy');
 
@@ -25,6 +32,7 @@ namespace Dash;
 	$greet = function ($greeting, $name) {
 		return "$greeting, $name!";
 	};
+
 	$greetMark = Dash\partial($greet, Dash\_, 'Mark');
 	$greetJane = Dash\partial($greet, Dash\_, 'Jane');
 

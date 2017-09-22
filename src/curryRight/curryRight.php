@@ -8,7 +8,7 @@ namespace Dash;
  *
  * Like `partialRight()`, arguments are applied in reverse order.
  *
- * Use `Dash\_` as a placeholder argument to replace with arguments from subsequent calls.
+ * Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
  *
  * @see curry(), partial()
  *
@@ -49,7 +49,7 @@ namespace Dash;
 function curryRight(callable $callable /*, ...args */)
 {
 	$args = func_get_args();
-	array_shift($args);
+	array_shift($args);  // Removes $callable
 
 	$numRequiredArgs = (new \ReflectionFunction($callable))->getNumberOfParameters();
 

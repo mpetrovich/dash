@@ -6,7 +6,7 @@ namespace Dash;
  * Creates a new function that returns the result of `$callable` if its required number of parameters are supplied;
  * otherwise, it returns a function that accepts the remaining number of required parameters.
  *
- * Use `Dash\_` as a placeholder argument to replace with arguments from subsequent calls.
+ * Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
  *
  * @see curryN(), curryRight(), partial(), currify()
  *
@@ -47,7 +47,7 @@ namespace Dash;
 function curry(callable $callable /*, ...args */)
 {
 	$args = func_get_args();
-	array_shift($args);
+	array_shift($args);  // Removes $callable
 
 	$numRequiredArgs = (new \ReflectionFunction($callable))->getNumberOfParameters();
 

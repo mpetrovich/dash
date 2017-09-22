@@ -6,6 +6,8 @@ namespace Dash;
  * Creates a new function that returns the result of `$callable` if the required number of parameters are supplied;
  * otherwise, it returns a function that accepts the remaining number of required parameters.
  *
+ * Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
+ *
  * @see curry()
  *
  * @category Callable
@@ -47,8 +49,8 @@ namespace Dash;
 function curryN(callable $callable, $numRequiredArgs /*, ...args */)
 {
 	$args = func_get_args();
-	array_shift($args);
-	array_shift($args);
+	array_shift($args);  // Removes $callable
+	array_shift($args);  // Removes $numRequiredArgs
 
 	$numNonPlaceholderArgs = chain($args)
 		->reject(function ($arg) { return $arg === _; })
@@ -69,7 +71,7 @@ function curryN(callable $callable, $numRequiredArgs /*, ...args */)
 		return call_user_func_array($callable, $callableArgs);
 	}
 
-	return function () use ($callable, $numRequiredArgs, $args) {
+	$curried = function () use ($callable, $numRequiredArgs, $args) {
 		$nextArgs = func_get_args();
 		$curryArgs = [$callable, $numRequiredArgs];
 
@@ -86,4 +88,6 @@ function curryN(callable $callable, $numRequiredArgs /*, ...args */)
 
 		return call_user_func_array('Dash\curryN', $curryArgs);
 	};
+
+	return $curried;
 }
