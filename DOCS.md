@@ -897,48 +897,36 @@ map
 ```php
 map($iterable, $iteratee = 'Dash\identity'): array
 ```
-Creates a new indexed array of values by running each element in a
-collection through an iteratee function.
+Gets a new array of the return values of `$iteratee` when called with successive elements in `$iterable`.
 
-Keys in the original collection are _not_ preserved; a freshly indexed array
-is returned.
+Keys in `$iterable` are not preserved. To preserve keys, use `mapValues()` instead.
 
-
+Related: [mapValues()](#mapvalues)
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `array\|object` | 
-`$iteratee` | `Callable\|string` | Function called with (element, key, collection) for each element in $iterable. The return value of $iteratee will be used as the corresponding element in the returned array. If $iteratee is a string, property($iteratee) will be used as the iteratee function. 
-**Returns** | `array` | 
+`$iterable` | `iterable\|stdClass\|null` | 
+`$iteratee` | `callable\|string` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable`; if a string, will use `Dash\property($iteratee)` as the iteratee
+**Returns** | `array` | A new 0-indexed array
 
 **Example:** 
 ```php
-Dash\map(
-	[1, 2, 3],
-	function($n) {
-		return $n * 2;
-	}
-) == [2, 4, 6];
+Dash\map(['a' => 1, 'b' => 2, 'c' => 3], function ($value) {
+	return $value * 2;
+});
+// === [2, 4, 6]
 
 ```
 
-**Example:** 
+**Example:** With a path `$iteratee`
 ```php
-Dash\map(
-	['roses' => 'red', 'violets' => 'blue'],
-	function($color, $flower) {
-		return $flower . ' are ' . $color;
-	}
-) == ['roses are red', 'violets are blue'];
-
-```
-
-**Example:** With $iteratee as a path
-```php
-Dash\map(
-	['color' => 'red', 'color' => 'blue'],
-	'color'
-) == ['red', 'blue'];
+$data = [
+	['name' => ['first' => 'John', 'last' => 'Doe'], 'active' => false],
+	['name' => ['first' => 'Mary', 'last' => 'Jane'], 'active' => true],
+	['name' => ['first' => 'Pete', 'last' => 'Smith'], 'active' => true],
+];
+Dash\map($data, 'name.last');
+// === ['Doe', 'Jane', 'Smith']
 ```
 
 [↑ Top](#operations)
@@ -1181,7 +1169,7 @@ Related: [map()](#map)
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable\|stdClass\|null` | 
-`$path` | `string\|function` | Any valid path accepted by `Dash\property()`
+`$path` | `callable` | Any valid path accepted by `Dash\property()`
 `$default` | `mixed` | (optional) Default value for each element without a value at `$path`
 **Returns** | `array` | New array of plucked values from `$iterable`
 
@@ -1215,7 +1203,7 @@ Creates a function that returns the value at a path on a collection.
 
 Parameter | Type | Description
 --- | --- | :---
-`$path` | `string\|function` | Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period. If it is already a function, the same function is returned.
+`$path` | `callable` | Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period. If it is already a function, the same function is returned.
 `$default` | `mixed` | Default value to return if nothing exists at $path
 **Returns** | `function` | Function that accepts a collection and returns the value at $path on the collection
 

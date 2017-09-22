@@ -52,7 +52,7 @@ Existing
 - [ ] hasDirect
 - [ ] intersection
 - [ ] keyBy
-- [ ] map
+- [x] map
 - [ ] mapValues
 - [ ] matches
 - [ ] matchesProperty

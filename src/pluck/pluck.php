@@ -9,7 +9,7 @@ namespace Dash;
  *
  * @category Iterable
  * @param iterable|stdClass|null $iterable
- * @param string|function $path Any valid path accepted by `Dash\property()`
+ * @param callable $path Any valid path accepted by `Dash\property()`
  * @param mixed $default (optional) Default value for each element without a value at `$path`
  * @return array New array of plucked values from `$iterable`
  *

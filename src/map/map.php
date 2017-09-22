@@ -3,47 +3,39 @@
 namespace Dash;
 
 /**
- * Creates a new indexed array of values by running each element in a
- * collection through an iteratee function.
+ * Gets a new array of the return values of `$iteratee` when called with successive elements in `$iterable`.
  *
- * Keys in the original collection are _not_ preserved; a freshly indexed array
- * is returned.
+ * Keys in `$iterable` are not preserved. To preserve keys, use `mapValues()` instead.
+ *
+ * @see mapValues()
  *
  * @category Iterable
- * @param array|object $iterable
- * @param Callable|string $iteratee Function called with (element, key, collection)
- *                                  for each element in $iterable. The return value of $iteratee will
- *                                  be used as the corresponding element in the returned array.
- *                                  If $iteratee is a string, property($iteratee) will be used as the
- *                                  iteratee function.
- *
- * @return array
+ * @param iterable|stdClass|null $iterable
+ * @param callable|string $iteratee (optional) If a callable, invoked with `($value, $key, $iterable)`
+ *                                  for each element in `$iterable`;
+ *                                  if a string, will use `Dash\property($iteratee)` as the iteratee
+ * @return array A new 0-indexed array
  *
  * @example
-	Dash\map(
-		[1, 2, 3],
-		function($n) {
-			return $n * 2;
-		}
-	) == [2, 4, 6];
+	Dash\map(['a' => 1, 'b' => 2, 'c' => 3], function ($value) {
+		return $value * 2;
+	});
+	// === [2, 4, 6]
  *
- * @example
-	Dash\map(
-		['roses' => 'red', 'violets' => 'blue'],
-		function($color, $flower) {
-			return $flower . ' are ' . $color;
-		}
-	) == ['roses are red', 'violets are blue'];
- *
- * @example With $iteratee as a path
-	Dash\map(
-		['color' => 'red', 'color' => 'blue'],
-		'color'
-	) == ['red', 'blue'];
+ * @example With a path `$iteratee`
+	$data = [
+		['name' => ['first' => 'John', 'last' => 'Doe'], 'active' => false],
+		['name' => ['first' => 'Mary', 'last' => 'Jane'], 'active' => true],
+		['name' => ['first' => 'Pete', 'last' => 'Smith'], 'active' => true],
+	];
+	Dash\map($data, 'name.last');
+	// === ['Doe', 'Jane', 'Smith']
  */
 function map($iterable, $iteratee = 'Dash\identity')
 {
-	if (empty($iterable)) {
+	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
+
+	if (is_null($iterable)) {
 		return [];
 	}
 
@@ -55,4 +47,12 @@ function map($iterable, $iteratee = 'Dash\identity')
 	}
 
 	return $mapped;
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _map(/* iteratee, iterable */)
+{
+	return currify('Dash\map', func_get_args());
 }
