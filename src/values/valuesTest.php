@@ -2,48 +2,147 @@
 
 /**
  * @covers Dash\values
+ * @covers Dash\_values
  */
 class valuesTest extends PHPUnit_Framework_TestCase
 {
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($input, $expected)
+	public function test($iterable, $expected)
 	{
-		$this->assertSame($expected, Dash\values($input));
+		$this->assertSame($expected, Dash\values($iterable));
+	}
+
+	/**
+	 * @dataProvider cases
+	 */
+	public function testCurried($iterable, $expected)
+	{
+		$values = Dash\_values();
+		$this->assertSame($expected, $values($iterable));
 	}
 
 	public function cases()
 	{
 		return [
 			'With null' => [
-				'input' => null,
+				'iterable' => null,
 				'expected' => [],
 			],
 			'With an empty array' => [
-				'input' => [],
+				'iterable' => [],
 				'expected' => [],
 			],
-			'With an array' => [
-				'input' => [],
-				'expected' => [],
+
+			/*
+				With indexed array
+			 */
+
+			'With an indexed array with one element' => [
+				'iterable' => [3],
+				'expected' => [3],
 			],
+			'With an indexed array' => [
+				'iterable' => [3, 8, 2, 5],
+				'expected' => [3, 8, 2, 5],
+			],
+
+			/*
+				With associative array
+			 */
+
+			'With an associative array with one element' => [
+				'iterable' => ['a' => 3],
+				'expected' => [3],
+			],
+			'With an associative array' => [
+				'iterable' => ['c' => 3, 'a' => 1, 'b' => 2],
+				'expected' => [3, 1, 2],
+			],
+
+			/*
+				With stdClass
+			 */
+
 			'With an empty stdClass' => [
-				'input' => (object) [],
+				'iterable' => (object) [],
 				'expected' => [],
 			],
-			'With a stdClass' => [
-				'input' => (object) ['a' => 1, 'b' => 2, 'c' => 3],
-				'expected' => [1, 2, 3],
+			'With an stdClass with one element' => [
+				'iterable' => (object) ['a' => 3],
+				'expected' => [3],
 			],
+			'With an stdClass' => [
+				'iterable' => (object) ['c' => 3, 'a' => 1, 'b' => 2],
+				'expected' => [3, 1, 2],
+			],
+
+			/*
+				With ArrayObject
+			 */
+
 			'With an empty ArrayObject' => [
-				'input' => new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3]),
-				'expected' => [1, 2, 3],
+				'iterable' => new ArrayObject([]),
+				'expected' => [],
+			],
+			'With an ArrayObject with one element' => [
+				'iterable' => new ArrayObject(['a' => 3]),
+				'expected' => [3],
 			],
 			'With an ArrayObject' => [
-				'input' => new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3]),
-				'expected' => [1, 2, 3],
+				'iterable' => new ArrayObject(['c' => 3, 'a' => 1, 'b' => 2]),
+				'expected' => [3, 1, 2],
 			],
 		];
+	}
+
+	/**
+	 * @dataProvider casesTypeAssertions
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testTypeAssertions($iterable, $type)
+	{
+		try {
+			Dash\values($iterable);
+		}
+		catch (Exception $e) {
+			$this->assertSame(
+				"Dash\\values expects iterable or stdClass or null but was given $type",
+				$e->getMessage()
+			);
+			throw $e;
+		}
+	}
+
+	public function casesTypeAssertions()
+	{
+		return [
+			'With an empty string' => [
+				'iterable' => '',
+				'type' => 'string',
+			],
+			'With a string' => [
+				'iterable' => 'hello',
+				'type' => 'string',
+			],
+			'With a zero number' => [
+				'iterable' => 0,
+				'type' => 'integer',
+			],
+			'With a number' => [
+				'iterable' => 3.14,
+				'type' => 'double',
+			],
+			'With a DateTime' => [
+				'iterable' => new DateTime(),
+				'type' => 'DateTime',
+			],
+		];
+	}
+
+	public function testExamples()
+	{
+		$this->assertSame([3, 1, 2], Dash\values(['c' => 3, 'a' => 1, 'b' => 2]));
 	}
 }

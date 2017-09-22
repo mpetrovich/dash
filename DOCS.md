@@ -848,7 +848,7 @@ keys($iterable): array
 ```
 Gets the keys of `$iterable` as an array.
 
-
+Related: [values()](#values)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1778,19 +1778,19 @@ values
 ```php
 values($iterable): array
 ```
-Gets the values of an iterable as an array.
+Gets the values of `$iterable` as an array.
 
-
+Related: [keys()](#keys)
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
+`$iterable` | `iterable\|stdClass\|null` | 
 **Returns** | `array` | 
 
 **Example:** 
 ```php
-values(['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5]);
-// === [3, 8, 2, 5]
+Dash\values(['c' => 3, 'a' => 1, 'b' => 2]);
+// === [3, 1, 2]
 ```
 
 [↑ Top](#operations)

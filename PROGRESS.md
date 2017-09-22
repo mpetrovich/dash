@@ -60,7 +60,6 @@ Existing
 - [ ] set
 - [ ] takeWhile
 - [ ] union
-- [ ] values
 - [ ] where
 - [ ] without
 - [x] _
@@ -116,6 +115,7 @@ Existing
 - [x] thru
 - [x] toArray
 - [x] toObject
+- [x] values
 
 
 New
