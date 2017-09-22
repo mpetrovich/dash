@@ -103,7 +103,7 @@ class mapTest extends PHPUnit_Framework_TestCase
 		];
 	}
 
-	public function testPredicateArgs()
+	public function testIterateeArgs()
 	{
 		$iterable = ['a' => 1, 'b' => 2, 'c' => 3];
 		$iterated = [];
@@ -122,14 +122,14 @@ class mapTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @dataProvider casesDefaultPredicate
+	 * @dataProvider casesDefaultIteratee
 	 */
-	public function testDefaultPredicate($iterable, $expected)
+	public function testDefaultIteratee($iterable, $expected)
 	{
 		$this->assertSame($expected, Dash\map($iterable));
 	}
 
-	public function casesDefaultPredicate()
+	public function casesDefaultIteratee()
 	{
 		$a = (object) ['name' => 'a'];
 		$b = (object) ['name' => 'b'];
@@ -154,17 +154,16 @@ class mapTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider casesWithPath
 	 */
-	public function testWithPath($iterable, $path, $expected)
+	public function testWithPath($iterable, $iteratee, $expected)
 	{
-		$actual = Dash\map($iterable, $path);
-		$this->assertSame($expected, $actual);
+		$this->assertSame($expected, Dash\map($iterable, $iteratee));
 	}
 
 	public function casesWithPath()
 	{
 		return [
 			'With an array' => [
-				[
+				'iterable' => [
 					'w' => [
 						'a' => [
 							'b' => 'first'
@@ -184,8 +183,8 @@ class mapTest extends PHPUnit_Framework_TestCase
 						]
 					]
 				],
-				'a.b',
-				['first', null, 'third', 'fourth']
+				'iteratee' => 'a.b',
+				'expected' => ['first', null, 'third', 'fourth'],
 			],
 		];
 	}
@@ -244,9 +243,9 @@ class mapTest extends PHPUnit_Framework_TestCase
 		);
 
 		$data = [
-			['name' => ['first' => 'John', 'last' => 'Doe'], 'active' => false],
-			['name' => ['first' => 'Mary', 'last' => 'Jane'], 'active' => true],
-			['name' => ['first' => 'Pete', 'last' => 'Smith'], 'active' => true],
+			'jdoe' => ['name' => ['first' => 'John', 'last' => 'Doe']],
+			'mjane' => ['name' => ['first' => 'Mary', 'last' => 'Jane']],
+			'psmith' => ['name' => ['first' => 'Pete', 'last' => 'Smith']],
 		];
 		$this->assertSame(['Doe', 'Jane', 'Smith'], Dash\map($data, 'name.last'));
 	}

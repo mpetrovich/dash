@@ -921,9 +921,9 @@ Dash\map(['a' => 1, 'b' => 2, 'c' => 3], function ($value) {
 **Example:** With a path `$iteratee`
 ```php
 $data = [
-	['name' => ['first' => 'John', 'last' => 'Doe'], 'active' => false],
-	['name' => ['first' => 'Mary', 'last' => 'Jane'], 'active' => true],
-	['name' => ['first' => 'Pete', 'last' => 'Smith'], 'active' => true],
+	'jdoe' => ['name' => ['first' => 'John', 'last' => 'Doe']],
+	'mjane' => ['name' => ['first' => 'Mary', 'last' => 'Jane']],
+	'psmith' => ['name' => ['first' => 'Pete', 'last' => 'Smith']],
 ];
 Dash\map($data, 'name.last');
 // === ['Doe', 'Jane', 'Smith']
@@ -938,34 +938,36 @@ mapValues
 ```php
 mapValues($iterable, $iteratee = 'Dash\identity'): array
 ```
-Creates a new array of values by running each element in a collection
-through an iteratee function.
+Gets a new array of the return values of `$iteratee` when called with successive elements in `$iterable`.
 
-Keys in the original collection _are_ preserved.
+Unlike `map()`, keys in `$iterable` are preserved.
 
-
+Related: [map()](#map)
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `array\|object` | 
-`$iteratee` | `Callable` | Function called with (element, key, collection) for each element in $iterable. The return value of $iteratee will be used as the corresponding element in the returned array. 
-**Returns** | `array` | 
+`$iterable` | `iterable\|stdClass\|null` | 
+`$iteratee` | `callable\|string` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable`; if a string, will use `Dash\property($iteratee)` as the iteratee
+**Returns** | `array` | A new 0-indexed array
 
 **Example:** 
 ```php
-Dash\map(
-	[1, 2, 3],
-	function($n) { return $n * 2; }
-) == [2, 4, 6];
+Dash\mapValues(['a' => 1, 'b' => 2, 'c' => 3], function ($value) {
+	return $value * 2;
+});
+// === ['a' => 2, 'b' => 4, 'c' => 6]
 
 ```
 
-**Example:** 
+**Example:** With a path `$iteratee`
 ```php
-Dash\map(
-	['roses' => 'red', 'violets' => 'blue'],
-	function($color, $flower) { return $flower . ' are ' . $color; }
-) == ['roses' => 'roses are red', 'violets' => 'violets are blue'];
+$data = [
+	'jdoe' => ['name' => ['first' => 'John', 'last' => 'Doe']],
+	'mjane' => ['name' => ['first' => 'Mary', 'last' => 'Jane']],
+	'psmith' => ['name' => ['first' => 'Pete', 'last' => 'Smith']],
+];
+Dash\mapValues($data, 'name.last');
+// === ['jdoe' => 'Doe', 'mjane' => 'Jane', 'psmith' => 'Smith']
 ```
 
 [↑ Top](#operations)

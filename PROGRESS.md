@@ -52,8 +52,6 @@ Existing
 - [ ] hasDirect
 - [ ] intersection
 - [ ] keyBy
-- [x] map
-- [ ] mapValues
 - [ ] matches
 - [ ] matchesProperty
 - [ ] property
@@ -95,6 +93,8 @@ Existing
 - [x] join
 - [x] keys
 - [x] last
+- [x] map
+- [x] mapValues
 - [x] max
 - [x] median
 - [x] min

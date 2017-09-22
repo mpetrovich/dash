@@ -24,9 +24,9 @@ namespace Dash;
  *
  * @example With a path `$iteratee`
 	$data = [
-		['name' => ['first' => 'John', 'last' => 'Doe'], 'active' => false],
-		['name' => ['first' => 'Mary', 'last' => 'Jane'], 'active' => true],
-		['name' => ['first' => 'Pete', 'last' => 'Smith'], 'active' => true],
+		'jdoe' => ['name' => ['first' => 'John', 'last' => 'Doe']],
+		'mjane' => ['name' => ['first' => 'Mary', 'last' => 'Jane']],
+		'psmith' => ['name' => ['first' => 'Pete', 'last' => 'Smith']],
 	];
 	Dash\map($data, 'name.last');
 	// === ['Doe', 'Jane', 'Smith']

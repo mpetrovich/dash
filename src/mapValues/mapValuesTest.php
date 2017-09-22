@@ -2,6 +2,7 @@
 
 /**
  * @covers Dash\mapValues
+ * @covers Dash\_mapValues
  */
 class mapValuesTest extends PHPUnit_Framework_TestCase
 {
@@ -10,78 +11,142 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 	 */
 	public function test($iterable, $expected)
 	{
-		$self = $this;
-		$iteratee = function ($value, $key, $iterable2) use ($self, $iterable) {
-			$self->assertSame($iterable, $iterable2);
-			return $key . ' is ' . $value;
+		$iteratee = function ($value) {
+			return $value * 2;
 		};
+		$this->assertSame($expected, Dash\mapValues($iterable, $iteratee));
+	}
 
-		$actual = Dash\mapValues($iterable, $iteratee);
-		$this->assertSame($expected, $actual);
+	/**
+	 * @dataProvider cases
+	 */
+	public function testCurried($iterable, $expected)
+	{
+		$iteratee = function ($value) {
+			return $value * 2;
+		};
+		$mapValues = Dash\_mapValues($iteratee);
+		$this->assertEquals($expected, $mapValues($iterable));
 	}
 
 	public function cases()
 	{
 		return [
+			'With null' => [
+				'iterable' => null,
+				'expected' => [],
+			],
 			'With an empty array' => [
-				[],
-				[]
+				'iterable' => [],
+				'expected' => [],
 			],
-			'With an indexed array' => [
-				[
-					'first',
-					'second',
-					'third',
-				],
-				[
-					'0 is first',
-					'1 is second',
-					'2 is third',
-				],
+
+			/*
+				With indexed array
+			 */
+
+			'With an indexed array with one element' => [
+				'iterable' => [3, 1, 2, 4],
+				'expected' => [6, 2, 4, 8],
 			],
-			'With an associative array' => [
-				[
-					'a' => 'first',
-					'b' => 'second',
-					'c' => 'third',
-				],
-				[
-					'a' => 'a is first',
-					'b' => 'b is second',
-					'c' => 'c is third',
-				],
+			'With an indexed array with several elements' => [
+				'iterable' => [3],
+				'expected' => [6],
 			],
-			'With an empty object' => [
-				(object) [],
-				[]
+
+			/*
+				With associative array
+			 */
+
+			'With an associative array with one element' => [
+				'iterable' => ['c' => 3],
+				'expected' => ['c' => 6],
 			],
-			'With an object' => [
-				(object) [
-					'a' => 'first',
-					'b' => 'second',
-					'c' => 'third',
-				],
-				[
-					'a' => 'a is first',
-					'b' => 'b is second',
-					'c' => 'c is third',
-				],
+			'With an associative array with several elements' => [
+				'iterable' => ['c' => 3, 'a' => 1, 'b' => 2, 'd' => 4],
+				'expected' => ['c' => 6, 'a' => 2, 'b' => 4, 'd' => 8],
 			],
+
+			/*
+				With stdClass
+			 */
+
+			'With an empty stdClass' => [
+				'iterable' => (object) [],
+				'expected' => [],
+			],
+			'With an stdClass with one element' => [
+				'iterable' => (object) ['c' => 3],
+				'expected' => ['c' => 6],
+			],
+			'With an stdClass with several elements' => [
+				'iterable' => (object) ['c' => 3, 'a' => 1, 'b' => 2, 'd' => 4],
+				'expected' => ['c' => 6, 'a' => 2, 'b' => 4, 'd' => 8],
+			],
+
+			/*
+				With ArrayObject
+			 */
+
 			'With an empty ArrayObject' => [
-				new ArrayObject([]),
-				[]
+				'iterable' => new ArrayObject([]),
+				'expected' => [],
 			],
-			'With an ArrayObject' => [
-				new ArrayObject([
-					'a' => 'first',
-					'b' => 'second',
-					'c' => 'third',
-				]),
-				[
-					'a' => 'a is first',
-					'b' => 'b is second',
-					'c' => 'c is third',
-				],
+			'With an ArrayObject with one element' => [
+				'iterable' => new ArrayObject(['c' => 3]),
+				'expected' => ['c' => 6],
+			],
+			'With an ArrayObject with several elements' => [
+				'iterable' => new ArrayObject(['c' => 3, 'a' => 1, 'b' => 2, 'd' => 4]),
+				'expected' => ['c' => 6, 'a' => 2, 'b' => 4, 'd' => 8],
+			],
+		];
+	}
+
+	public function testIterateeArgs()
+	{
+		$iterable = ['a' => 1, 'b' => 2, 'c' => 3];
+		$iterated = [];
+
+		$iteratee = function ($value, $key, $passedIterable) use (&$iterated, $iterable) {
+			$iterated[$key] = $value;
+			$this->assertSame($iterable, $passedIterable);
+			return $value * 2;
+		};
+
+		$result = Dash\mapValues($iterable, $iteratee);
+
+		$this->assertSame(['a' => 2, 'b' => 4, 'c' => 6], $result);
+		$this->assertSame($iterable, $iterated);
+		$this->assertNotSame($result, $iterable);
+	}
+
+	/**
+	 * @dataProvider casesDefaultIteratee
+	 */
+	public function testDefaultIteratee($iterable, $expected)
+	{
+		$this->assertSame($expected, Dash\mapValues($iterable));
+	}
+
+	public function casesDefaultIteratee()
+	{
+		$a = (object) ['name' => 'a'];
+		$b = (object) ['name' => 'b'];
+		$c = (object) ['name' => 'c'];
+
+		return [
+			'With an empty array' => [
+				'iterable' => [],
+				'expected' => [],
+			],
+			'With an array' => [
+				'iterable' => ['c' => 3, 'a' => 1, 'b' => 2, 'd' => 4],
+				'expected' => ['c' => 3, 'a' => 1, 'b' => 2, 'd' => 4],
+			],
+			'With an array of objects' => [
+				'iterable' => ['a' => $a, 'b' => $b, 'c' => $c],
+				'expected' => ['a' => $a, 'b' => $b, 'c' => $c]
 			],
 		];
 	}
@@ -89,17 +154,16 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider casesWithPath
 	 */
-	public function testWithPath($iterable, $path, $expected)
+	public function testWithPath($iterable, $iteratee, $expected)
 	{
-		$actual = Dash\mapValues($iterable, $path);
-		$this->assertSame($expected, $actual);
+		$this->assertSame($expected, Dash\mapValues($iterable, $iteratee));
 	}
 
 	public function casesWithPath()
 	{
 		return [
 			'With an array' => [
-				[
+				'iterable' => [
 					'w' => [
 						'a' => [
 							'b' => 'first'
@@ -119,22 +183,73 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 						]
 					]
 				],
-				'a.b',
-				[
-					'w' => 'first',
-					'x' => null,
-					'y' => 'third',
-					'z' => 'fourth'
-				]
+				'iteratee' => 'a.b',
+				'expected' => ['w' => 'first', 'x' => null, 'y' => 'third', 'z' => 'fourth'],
 			],
 		];
 	}
 
-	public function testWithoutIteratee()
+	/**
+	 * @dataProvider casesTypeAssertions
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testTypeAssertions($iterable, $type)
 	{
-		$iterable = [0 => 'a', 1 => 'b', 2 => 'c'];
-		$actual = Dash\mapValues($iterable);
-		$expected = $iterable;
-		$this->assertSame($expected, $actual);
+		try {
+			Dash\mapValues($iterable);
+		}
+		catch (Exception $e) {
+			$this->assertSame(
+				"Dash\\mapValues expects iterable or stdClass or null but was given $type",
+				$e->getMessage()
+			);
+			throw $e;
+		}
+	}
+
+	public function casesTypeAssertions()
+	{
+		return [
+			'With an empty string' => [
+				'iterable' => '',
+				'type' => 'string',
+			],
+			'With a string' => [
+				'iterable' => 'hello',
+				'type' => 'string',
+			],
+			'With a zero number' => [
+				'iterable' => 0,
+				'type' => 'integer',
+			],
+			'With a number' => [
+				'iterable' => 3.14,
+				'type' => 'double',
+			],
+			'With a DateTime' => [
+				'iterable' => new DateTime(),
+				'type' => 'DateTime',
+			],
+		];
+	}
+
+	public function testExamples()
+	{
+		$this->assertSame(
+			['a' => 2, 'b' => 4, 'c' => 6],
+			Dash\mapValues(['a' => 1, 'b' => 2, 'c' => 3], function ($value) {
+				return $value * 2;
+			})
+		);
+
+		$data = [
+			'jdoe' => ['name' => ['first' => 'John', 'last' => 'Doe']],
+			'mjane' => ['name' => ['first' => 'Mary', 'last' => 'Jane']],
+			'psmith' => ['name' => ['first' => 'Pete', 'last' => 'Smith']],
+		];
+		$this->assertSame(
+			['jdoe' => 'Doe', 'mjane' => 'Jane', 'psmith' => 'Smith'],
+			Dash\mapValues($data, 'name.last')
+		);
 	}
 }
