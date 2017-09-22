@@ -36,7 +36,6 @@ Requirements
 Existing
 ---
 - [ ] contains
-- [ ] custom
 - [ ] deltas
 - [ ] difference
 - [ ] dropWhile
@@ -78,6 +77,7 @@ Existing
 - [x] curryN
 - [x] curryRight
 - [x] curryRightN
+- [x] custom
 - [x] debug
 - [x] equal
 - [x] filter
