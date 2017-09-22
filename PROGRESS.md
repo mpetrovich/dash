@@ -33,8 +33,38 @@ Requirements
 - DirectoryIterator
 
 
-To review
+Existing
 ---
+- [ ] contains
+- [ ] custom
+- [ ] deltas
+- [ ] difference
+- [ ] dropWhile
+- [ ] each
+- [ ] find
+- [ ] findKey
+- [ ] findLast
+- [ ] findValue
+- [ ] get
+- [ ] getDirect
+- [ ] getDirectRef
+- [ ] groupBy
+- [ ] hasDirect
+- [ ] intersection
+- [ ] keyBy
+- [ ] map
+- [ ] mapValues
+- [ ] matches
+- [ ] matchesProperty
+- [ ] property
+- [ ] reduce
+- [ ] result
+- [ ] set
+- [ ] takeWhile
+- [ ] union
+- [ ] values
+- [ ] where
+- [ ] without
 - [x] _
 - [x] all
 - [x] any
@@ -46,46 +76,25 @@ To review
 - [x] call
 - [x] chain
 - [x] compare
-- [ ] contains
 - [x] currify
 - [x] curry
 - [x] curryN
 - [x] curryRight
 - [x] curryRightN
-- [ ] custom
 - [x] debug
-- [ ] deltas
-- [ ] difference
-- [ ] dropWhile
-- [ ] each
 - [x] equal
 - [x] filter
-- [ ] find
-- [ ] findKey
-- [ ] findLast
-- [ ] findValue
 - [x] first
-- [ ] get
-- [ ] getDirect
-- [ ] getDirectRef
-- [ ] groupBy
-- [ ] hasDirect
 - [x] identical
 - [x] identity
-- [ ] intersection
 - [x] isEmpty
 - [x] isEven
 - [x] isIndexedArray
 - [x] isOdd
 - [x] isType
 - [x] join
-- [ ] keyBy
 - [x] keys
 - [x] last
-- [ ] map
-- [ ] mapValues
-- [ ] matches
-- [ ] matchesProperty
 - [x] max
 - [x] median
 - [x] min
@@ -95,34 +104,116 @@ To review
 - [x] partialRight
 - [x] pick
 - [x] pluck
-- [ ] property
-- [ ] reduce
 - [x] reject
-- [ ] result
 - [x] reverse
 - [x] rotate
-- [ ] set
 - [x] size
 - [x] sort
 - [x] sum
 - [x] take
 - [x] takeRight
-- [ ] takeWhile
 - [x] tap
 - [x] thru
 - [x] toArray
 - [x] toObject
-- [ ] union
-- [ ] values
-- [ ] where
-- [ ] without
 
 
-To add
+New
 ---
-- [ ] http://anahkiasen.github.io/underscore-php
-- [ ] https://github.com/bdelespierre/underscore.php
-- [ ] http://brianhaveri.github.io/Underscore.php
-- [ ] https://github.com/maciejczyzewski/bottomline
-- [ ] https://lodash.com/docs/4.17.4
-- [ ] http://ramdajs.com/docs
+#### [anahkiasen/underscore-php](http://anahkiasen.github.io/underscore-php)
+- [ ] append
+- [ ] flatten
+- [ ] has
+- [ ] invoke
+- [ ] matchesAny
+- [ ] merge
+- [ ] prepend
+- [ ] random
+- [ ] range
+- [ ] remove
+- [ ] removeFirst
+- [ ] removeLast
+- [ ] repeat
+- [ ] replaceKeys
+- [ ] replaceValue
+- [ ] sortKeys
+
+#### [bdelespierre/underscore.php](https://github.com/bdelespierre/underscore.php)
+- [ ] after
+- [ ] before
+- [ ] bind
+- [ ] bindAll
+- [ ] bindClass
+- [ ] compact
+- [ ] compose
+- [ ] constant
+- [ ] countBy
+- [ ] defaults
+- [ ] duplicate
+- [ ] eachReference / eachRef
+- [ ] escape
+- [ ] extend
+- [ ] findWhere
+- [ ] functions
+- [ ] indexOf
+- [ ] invert
+- [ ] is
+- [ ] isArray
+- [ ] isBoolean
+- [ ] isDate
+- [ ] isEmpty
+- [ ] isEqual
+- [ ] isFinite
+- [ ] isFloat
+- [ ] isFunction
+- [ ] isInteger
+- [ ] isNaN
+- [ ] isNull
+- [ ] isNumber
+- [ ] isObject
+- [ ] isRegExp
+- [ ] isResource
+- [ ] isScalar
+- [ ] isString
+- [ ] isTraversable
+- [ ] lastIndexOf
+- [ ] lastly
+- [ ] memoize
+- [ ] mixin
+- [ ] noop
+- [ ] now
+- [ ] obj
+- [ ] once
+- [ ] pairs
+- [ ] partition
+- [ ] provide
+- [ ] reduceRight
+- [ ] result
+- [ ] sample
+- [ ] shuffle / randomize
+- [ ] sortedIndex
+- [ ] template
+- [ ] throttle
+- [ ] times
+- [ ] typeOf
+- [ ] unescape
+- [ ] uniq
+- [ ] uniqueId
+- [ ] wrap
+- [ ] zip
+
+#### [Bottomline](https://github.com/maciejczyzewski/bottomline)
+- [ ] chunk
+- [ ] patch
+- [ ] ease
+- [ ] hasKeys
+- [ ] unease
+- [ ] slug
+- [ ] truncate
+- [ ] urlify
+
+#### [brianhaveri/Underscore.php](http://brianhaveri.github.io/Underscore.php)
+None
+
+#### [Lodash](https://lodash.com/docs/4.17.4)
+#### [Ramda](http://ramdajs.com/docs)
