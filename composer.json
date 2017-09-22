@@ -1,7 +1,7 @@
 {
 	"name": "mpetrovich/dash",
-	"description": "A functional utility library for PHP, like Underscore and Lodash",
-	"keywords": ["php", "functional", "underscore", "lodash", "underbar", "bottomline", "ramda"],
+	"description": "A functional programming library for PHP. Inspired by Underscore, Lodash, and Ramda.",
+	"keywords": ["php", "functional", "functional programming", "underscore", "lodash", "underbar", "bottomline", "ramda"],
 	"homepage": "https://github.com/mpetrovich/Dash",
 	"license": "MIT",
 	"authors": [
