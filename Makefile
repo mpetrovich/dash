@@ -72,7 +72,7 @@ release:
 	make test
 	make docs
 	git add DOCS.md
-	git commit -m "Auto-update docs" --allow-empty
+	git commit -m "Release v$v" --allow-empty
 	git tag -a v$(v) -m v$(v)
 	git push
 	git push --tags
