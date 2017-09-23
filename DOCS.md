@@ -601,6 +601,9 @@ getDirect($iterable, $key, $default = null): mixed
 ```
 Gets the value or callable at the given key of an iterable.
 
+If array offset and object properties exist for the same key,
+the value at the array offset takes precedence and will be returned.
+
 
 
 Parameter | Type | Description

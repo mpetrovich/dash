@@ -157,7 +157,7 @@ New
 - [ ] functions
 - [ ] indexOf
 - [ ] invert
-- [ ] is
+- [ ] is / isType
 - [ ] isArray
 - [ ] isBoolean
 - [ ] isDate
@@ -179,14 +179,13 @@ New
 - [ ] lastIndexOf
 - [ ] lastly
 - [ ] memoize
-- [ ] mixin
+- [ ] mixin / setCustom
 - [ ] noop
 - [ ] now
-- [ ] obj
 - [ ] once
 - [ ] pairs
 - [ ] partition
-- [ ] provide
+- [ ] provide / dash
 - [ ] reduceRight
 - [ ] result
 - [ ] sample

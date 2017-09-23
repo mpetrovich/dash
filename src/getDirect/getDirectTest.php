@@ -15,6 +15,10 @@ class getDirectTest extends PHPUnit_Framework_TestCase
 
 	public function cases()
 	{
+		$iterable = new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3]);
+		$iterable->d = 4;
+		$iterable->b = 5;
+
 		return [
 			'With non-matching null key' => [
 				'input' => [1, 2, 3],
@@ -93,6 +97,18 @@ class getDirectTest extends PHPUnit_Framework_TestCase
 				'key' => 'b',
 				'default' => 'default',
 				'expected' => 2,
+			],
+			[
+				'input' => $iterable,
+				'key' => 'b',
+				'default' => 'default',
+				'expected' => 2,
+			],
+			[
+				'input' => $iterable,
+				'key' => 'd',
+				'default' => 'default',
+				'expected' => 4,
 			],
 		];
 	}
