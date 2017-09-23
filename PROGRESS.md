@@ -47,10 +47,8 @@ Existing
 - [ ] get
 - [ ] getDirect
 - [ ] getDirectRef
-- [ ] groupBy
 - [ ] hasDirect
 - [ ] intersection
-- [x] keyBy
 - [ ] matches
 - [ ] matchesProperty
 - [ ] property
@@ -82,6 +80,7 @@ Existing
 - [x] equal
 - [x] filter
 - [x] first
+- [x] groupBy
 - [x] identical
 - [x] identity
 - [x] isEmpty
@@ -90,6 +89,7 @@ Existing
 - [x] isOdd
 - [x] isType
 - [x] join
+- [x] keyBy
 - [x] keys
 - [x] last
 - [x] map

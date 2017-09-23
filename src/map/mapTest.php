@@ -164,24 +164,10 @@ class mapTest extends PHPUnit_Framework_TestCase
 		return [
 			'With an array' => [
 				'iterable' => [
-					'w' => [
-						'a' => [
-							'b' => 'first'
-						]
-					],
-					'x' => [
-						// missing
-					],
-					'y' => [
-						'a' => [
-							'b' => 'third'
-						]
-					],
-					'z' => [
-						'a' => [
-							'b' => 'fourth'
-						]
-					]
+					'w' => ['a' => ['b' => 'first']],
+					'x' => ['z' => 'missing'],
+					'y' => ['a' => ['b' => 'third']],
+					'z' => ['a' => ['b' => 'fourth']],
 				],
 				'iteratee' => 'a.b',
 				'expected' => ['first', null, 'third', 'fourth'],

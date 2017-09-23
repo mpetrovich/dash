@@ -38,7 +38,7 @@ namespace Dash;
 		'Fred Durst' => ['first' => 'Fred', 'last' => 'Durst'],
 	]
 
- * @example With a string `$iteratee`
+ * @example With a path `$iteratee`
 	$data = [
 		['first' => 'John', 'last' => 'Doe'],
 		['first' => 'Alice', 'last' => 'Hart'],
@@ -51,9 +51,9 @@ namespace Dash;
 	// === [
 		'Doe' => ['first' => 'John', 'last' => 'Doe'],
 		'Hart' => ['first' => 'Alice', 'last' => 'Hart'],
-		'Smith'  => ['first' => 'Jane', 'last' => 'Smith'],
+		'Smith' => ['first' => 'Jane', 'last' => 'Smith'],
 		'Gibbons' => ['first' => 'Peter', 'last' => 'Gibbons'],
-		'Durst'  => ['first' => 'Fred', 'last' => 'Durst'],
+		'Durst' => ['first' => 'Fred', 'last' => 'Durst'],
 	]
  */
 function keyBy($iterable, $iteratee = 'Dash\identity')

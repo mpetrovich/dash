@@ -175,45 +175,17 @@ class keyByTest extends PHPUnit_Framework_TestCase
 		return [
 			'With an array' => [
 				'iterable' => [
-					'w' => [
-						'a' => [
-							'b' => 'first'
-						]
-					],
-					'x' => [
-						// missing
-					],
-					'y' => [
-						'a' => [
-							'b' => 'third'
-						]
-					],
-					'z' => [
-						'a' => [
-							'b' => 'fourth'
-						]
-					]
+					'w' => ['a' => ['b' => 'first']],
+					'x' => ['x' => 'missing'],
+					'y' => ['a' => ['b' => 'third']],
+					'z' => ['a' => ['b' => 'fourth']],
 				],
 				'iteratee' => 'a.b',
 				'expected' => [
-					'first' => [
-						'a' => [
-							'b' => 'first'
-						]
-					],
-					null => [
-						// missing
-					],
-					'third' => [
-						'a' => [
-							'b' => 'third'
-						]
-					],
-					'fourth' => [
-						'a' => [
-							'b' => 'fourth'
-						]
-					]
+					'first' => ['a' => ['b' => 'first']],
+					null => ['x' => 'missing'],
+					'third' => ['a' => ['b' => 'third']],
+					'fourth' => ['a' => ['b' => 'fourth']],
 				],
 			],
 		];
@@ -301,9 +273,9 @@ class keyByTest extends PHPUnit_Framework_TestCase
 			[
 				'Doe' => ['first' => 'John', 'last' => 'Doe'],
 				'Hart' => ['first' => 'Alice', 'last' => 'Hart'],
-				'Smith'  => ['first' => 'Jane', 'last' => 'Smith'],
+				'Smith' => ['first' => 'Jane', 'last' => 'Smith'],
 				'Gibbons' => ['first' => 'Peter', 'last' => 'Gibbons'],
-				'Durst'  => ['first' => 'Fred', 'last' => 'Durst'],
+				'Durst' => ['first' => 'Fred', 'last' => 'Durst'],
 			],
 			Dash\keyBy($data, 'last')
 		);
