@@ -45,6 +45,7 @@ function createDoc($filepath)
 
 	$name = pathinfo($filepath)['filename'];
 	$op->name = $name;
+	$op->slug = strtolower($name);;
 
 	$op->signature = extractFunctionSignature($filepath);
 
@@ -266,6 +267,13 @@ END;
 
 function renderCategory($docs, $category)
 {
+	$list = _::chain($docs)
+		->map(function ($doc) {
+			return "- [$doc->name](#$doc->slug)";
+		})
+		->join("\n")
+		->value();
+
 	$renderedDocs = _::chain($docs)
 		->map('renderDoc')
 		->join("\n")
@@ -274,6 +282,7 @@ function renderCategory($docs, $category)
 	return <<<END
 $category
 ===
+$list
 
 $renderedDocs
 

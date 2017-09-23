@@ -61,6 +61,60 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/mpet
 
 Iterable
 ===
+- [all](#all)
+- [any](#any)
+- [at](#at)
+- [average](#average)
+- [contains](#contains)
+- [deltas](#deltas)
+- [difference](#difference)
+- [dropWhile](#dropwhile)
+- [each](#each)
+- [filter](#filter)
+- [find](#find)
+- [findKey](#findkey)
+- [findLast](#findlast)
+- [findValue](#findvalue)
+- [first](#first)
+- [get](#get)
+- [getDirect](#getdirect)
+- [getDirectRef](#getdirectref)
+- [groupBy](#groupby)
+- [hasDirect](#hasdirect)
+- [intersection](#intersection)
+- [isIndexedArray](#isindexedarray)
+- [join](#join)
+- [keyBy](#keyby)
+- [keys](#keys)
+- [last](#last)
+- [map](#map)
+- [mapValues](#mapvalues)
+- [matches](#matches)
+- [matchesProperty](#matchesproperty)
+- [max](#max)
+- [median](#median)
+- [min](#min)
+- [omit](#omit)
+- [pick](#pick)
+- [pluck](#pluck)
+- [property](#property)
+- [reduce](#reduce)
+- [reject](#reject)
+- [result](#result)
+- [reverse](#reverse)
+- [rotate](#rotate)
+- [set](#set)
+- [sort](#sort)
+- [sum](#sum)
+- [take](#take)
+- [takeRight](#takeright)
+- [takeWhile](#takewhile)
+- [toArray](#toarray)
+- [toObject](#toobject)
+- [union](#union)
+- [values](#values)
+- [where](#where)
+- [without](#without)
 
 
 all / every
@@ -1932,6 +1986,19 @@ without(['a', 'b', 'c', 'd'], ['b', 'c']);
 
 Utility
 ===
+- [assertType](#asserttype)
+- [chain](#chain)
+- [compare](#compare)
+- [custom](#custom)
+- [debug](#debug)
+- [equal](#equal)
+- [identical](#identical)
+- [identity](#identity)
+- [isEmpty](#isempty)
+- [isType](#istype)
+- [size](#size)
+- [tap](#tap)
+- [thru](#thru)
 
 
 assertType
@@ -2379,6 +2446,18 @@ $result = _::chain([1, 3, 4])
 
 Callable
 ===
+- [apply](#apply)
+- [ary](#ary)
+- [call](#call)
+- [currify](#currify)
+- [curry](#curry)
+- [curryN](#curryn)
+- [curryRight](#curryright)
+- [curryRightN](#curryrightn)
+- [negate](#negate)
+- [partial](#partial)
+- [partialRight](#partialright)
+- [unary](#unary)
 
 
 apply
@@ -2930,6 +3009,8 @@ Dash\filter([1, 2.0, '3', 'a'], $isNumeric);
 
 Number
 ===
+- [isEven](#iseven)
+- [isOdd](#isodd)
 
 
 isEven
