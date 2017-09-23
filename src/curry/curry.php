@@ -8,6 +8,8 @@ namespace Dash;
  *
  * Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
  *
+ * This operation does not have a curried variant.
+ *
  * @see curryN(), curryRight(), partial(), currify()
  *
  * @category Callable

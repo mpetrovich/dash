@@ -11,6 +11,8 @@ namespace Dash;
  *
  * Use `Dash\_` as a placeholder to replace with arguments passed to the returned function.
  *
+ * This operation does not have a curried variant.
+ *
  * @see partial(), curryRight()
  *
  * @category Callable

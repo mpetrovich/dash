@@ -2542,6 +2542,8 @@ otherwise, it returns a function that accepts the remaining number of required p
 
 Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
 
+This operation does not have a curried variant.
+
 Related: [curryN()](#curryn), [curryRight()](#curryright), [partial()](#partial), [currify()](#currify)
 
 Parameter | Type | Description
@@ -2596,6 +2598,8 @@ Creates a new function that returns the result of `$callable` if the required nu
 otherwise, it returns a function that accepts the remaining number of required parameters.
 
 Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
+
+This operation does not have a curried variant.
 
 Related: [curry()](#curry)
 
@@ -2656,6 +2660,8 @@ Like `partialRight()`, arguments are applied in reverse order.
 
 Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
 
+This operation does not have a curried variant.
+
 Related: [curry()](#curry), [partial()](#partial)
 
 Parameter | Type | Description
@@ -2712,6 +2718,8 @@ otherwise, it returns a function that accepts the remaining number of required p
 Like `partialRight()`, arguments are applied in reverse order.
 
 Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
+
+This operation does not have a curried variant.
 
 Related: [curryN()](#curryn), [partialRight()](#partialright)
 
@@ -2801,6 +2809,8 @@ BEFORE those passed to the returned function.
 
 Use `Dash\_` as a placeholder to replace with arguments passed to the returned function.
 
+This operation does not have a curried variant.
+
 Related: [partialRight()](#partialright), [curry()](#curry)
 
 Parameter | Type | Description
@@ -2852,6 +2862,8 @@ When calling `$callable`, arguments provided to `partial()` will be listed
 AFTER those passed to the returned function.
 
 Use `Dash\_` as a placeholder to replace with arguments passed to the returned function.
+
+This operation does not have a curried variant.
 
 Related: [partial()](#partial), [curryRight()](#curryright)
 
