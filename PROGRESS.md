@@ -50,7 +50,7 @@ Existing
 - [ ] groupBy
 - [ ] hasDirect
 - [ ] intersection
-- [ ] keyBy
+- [x] keyBy
 - [ ] matches
 - [ ] matchesProperty
 - [ ] property

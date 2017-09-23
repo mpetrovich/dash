@@ -22,7 +22,7 @@ namespace Dash;
 	});
 	// === [2, 4, 6]
  *
- * @example With a path `$iteratee`
+ * @example With a string `$iteratee`
 	$data = [
 		'jdoe' => ['name' => ['first' => 'John', 'last' => 'Doe']],
 		'mjane' => ['name' => ['first' => 'Mary', 'last' => 'Jane']],

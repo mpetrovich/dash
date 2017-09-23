@@ -170,7 +170,7 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 						]
 					],
 					'x' => [
-						'X' => 'missing'
+						// missing
 					],
 					'y' => [
 						'a' => [
