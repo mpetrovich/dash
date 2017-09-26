@@ -2,16 +2,25 @@
 
 /**
  * @covers Dash\get
+ * @covers Dash\_get
  */
 class getTest extends PHPUnit_Framework_TestCase
 {
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($input, $path, $expected)
+	public function test($iterable, $path, $expected)
 	{
-		$actual = Dash\get($input, $path, 'default');
-		$this->assertSame($expected, $actual);
+		$this->assertSame($expected, Dash\get($iterable, $path, 'default'));
+	}
+
+	/**
+	 * @dataProvider cases
+	 */
+	public function testCurried($iterable, $path, $expected)
+	{
+		$get = Dash\_get($path, 'default');
+		$this->assertSame($expected, $get($iterable));
 	}
 
 	public function cases()

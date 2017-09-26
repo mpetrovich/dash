@@ -3,40 +3,46 @@
 namespace Dash;
 
 /**
- * Gets the value at a path on a collection.
+ * @incomplete
+ * Gets the value at `$path` within `$iterable`. Nested properties can be accessing using dot notation.
+ *
+ * @see getDirect(), has()
  *
  * @category Iterable
- * @param array|object $iterable
- * @param callable|string $path Callable used to retrieve the value or path of the property to retrieve;
- *                              Paths can be nested by delimiting each sub-property or array index with a period,
- *                              eg. 'a.b.0.c'
- * @param mixed $default Default value to return if nothing exists at $path
- * @return mixed Value at $path on the collection
+ * @param iterable|stdClass|null $iterable
+ * @param callable|string $path (optional) If a callable, invoked with `($iterable)` to get the value at `$path`;
+ *                              if a string, will use `Dash\property($path)` to get the value at `$path`
+ * @param mixed $default (optional) Value to return if `$path` does not exist within `$iterable`
+ * @return mixed Value at `$path`
  *
  * @example
-	$iterable = [
-		'a' => [
-			'b' => 'value'
-		]
-	];
-	Dash\get($iterable, 'a.b') == 'value';
- *
- * @example Array elements can be referenced by index
 	$iterable = [
 		'people' => [
 			['name' => 'Pete'],
 			['name' => 'John'],
-			['name' => 'Paul'],
+			['name' => 'Mark'],
 		]
 	];
-	Dash\get($iterable, 'people.1.name') == 'John';
+	Dash\get($iterable, 'people.2.name') == 'Mark';
  *
- * @example Keys with the same name as the full path can be used
-	$iterable = ['a.b.c' => 'value'];
-	Dash\get($iterable, 'a.b.c') == 'value';
+ * @example Direct properties take precedence over nested values
+	$iterable = [
+		'a.b.c' => 'direct',
+		'a' => ['b' => ['c' => 'nested']]
+	];
+	Dash\get($iterable, 'a.b.c');
+	// === 'direct'
  */
 function get($iterable, $path, $default = null)
 {
 	$getter = property($path, $default);
 	return call_user_func($getter, $iterable);
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _get(/* path, default, iterable */)
+{
+	return currify('Dash\get', func_get_args());
 }
