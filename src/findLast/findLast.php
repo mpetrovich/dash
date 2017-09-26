@@ -3,6 +3,7 @@
 namespace Dash;
 
 /**
+ * @incomplete
  * Returns the key & value of the last element for which $predicate returns truthy.
  *
  * @category Iterable

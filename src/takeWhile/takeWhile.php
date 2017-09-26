@@ -3,6 +3,7 @@
 namespace Dash;
 
 /**
+ * @incomplete
  * Returns a subset of $iterable taken from the beginning until $predicate returns falsey.
  *
  * @category Iterable

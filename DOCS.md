@@ -9,18 +9,14 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/mpet
 [at](#at) | [compare](#compare) | [call](#call) | 
 [average](#average--mean) / mean | [custom](#custom) | [currify](#currify) | 
 [contains](#contains) | [debug](#debug) | [curry](#curry) | 
-[deltas](#deltas) | [equal](#equal) | [curryN](#curryn) | 
-[difference](#difference--diff) / diff | [identical](#identical) | [curryRight](#curryright) | 
-[dropWhile](#dropwhile) | [identity](#identity) | [curryRightN](#curryrightn) | 
-[each](#each) | [isEmpty](#isempty) | [negate](#negate) | 
-[filter](#filter) | [isType](#istype) | [partial](#partial) | 
-[find](#find) | [size](#size--count) / count | [partialRight](#partialright) | 
-[findKey](#findkey) | [tap](#tap) | [unary](#unary) | 
-[findLast](#findlast) | [thru](#thru) |  | 
-[findValue](#findvalue) |  |  | 
-[first](#first--head) / head |  |  | 
-[get](#get) |  |  | 
-[getDirect](#getdirect) |  |  | 
+[difference](#difference--diff) / diff | [equal](#equal) | [curryN](#curryn) | 
+[dropWhile](#dropwhile) | [identical](#identical) | [curryRight](#curryright) | 
+[each](#each) | [identity](#identity) | [curryRightN](#curryrightn) | 
+[filter](#filter) | [isEmpty](#isempty) | [negate](#negate) | 
+[find](#find) | [isType](#istype) | [partial](#partial) | 
+[first](#first--head) / head | [size](#size--count) / count | [partialRight](#partialright) | 
+[get](#get) | [tap](#tap) | [unary](#unary) | 
+[getDirect](#getdirect) | [thru](#thru) |  | 
 [getDirectRef](#getdirectref) |  |  | 
 [groupBy](#groupby) |  |  | 
 [hasDirect](#hasdirect) |  |  | 
@@ -51,7 +47,6 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/mpet
 [sum](#sum) |  |  | 
 [take](#take) |  |  | 
 [takeRight](#takeright) |  |  | 
-[takeWhile](#takewhile) |  |  | 
 [toArray](#toarray) |  |  | 
 [toObject](#toobject) |  |  | 
 [union](#union) |  |  | 
@@ -66,15 +61,11 @@ Iterable
 - [at](#at)
 - [average](#average)
 - [contains](#contains)
-- [deltas](#deltas)
 - [difference](#difference)
 - [dropWhile](#dropwhile)
 - [each](#each)
 - [filter](#filter)
 - [find](#find)
-- [findKey](#findkey)
-- [findLast](#findlast)
-- [findValue](#findvalue)
 - [first](#first)
 - [get](#get)
 - [getDirect](#getdirect)
@@ -108,7 +99,6 @@ Iterable
 - [sum](#sum)
 - [take](#take)
 - [takeRight](#takeright)
-- [takeWhile](#takewhile)
 - [toArray](#toarray)
 - [toObject](#toobject)
 - [union](#union)
@@ -304,29 +294,6 @@ contains([1, '2', 3], 2, 'Dash\identical');  // === false
 
 [↑ Top](#operations)
 
-deltas
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-deltas($iterable): array
-```
-Returns a new array whose values are the differences between subsequent elements of a iterable.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
-**Returns** | `array` | 
-
-**Example:** 
-```php
-deltas([3, 8, 9, 9, 5, 13]);  // === [0, 5, 1, 0, -4, 8]
-```
-
-[↑ Top](#operations)
-
 difference / diff
 ---
 [Operations](#operations) › [Iterable](#iterable)
@@ -491,84 +458,6 @@ find($array, 'Dash\isEven');  // === ['b', 2]
 
 [↑ Top](#operations)
 
-findKey
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-findKey($iterable, $predicate): string|integer|null
-```
-Returns the key of the first element for which $predicate returns truthy.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
-`$predicate` | `callable\|mixed` | Value to compare against, or callable invoked with ($value, $key, $iterable)
-**Returns** | `string\|integer\|null` | Key of the matching element, or null if not found
-
-**Example:** With comparison value
-```php
-$array = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
-find($array, 3);  // === 'c'
-find($array, 'Dash\isEven');  // === 'b'
-```
-
-[↑ Top](#operations)
-
-findLast
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-findLast($iterable, $predicate): array|null
-```
-Returns the key & value of the last element for which $predicate returns truthy.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
-`$predicate` | `callable\|mixed` | Value to compare against, or callable invoked with ($value, $key, $iterable)
-**Returns** | `array\|null` | [$key, $value] of the matching key/index and value, or null if not found
-
-**Example:** With comparison value
-```php
-$array = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
-find($array, 3);  // === ['c', 3]
-find($array, 'Dash\isEven');  // === ['d', 4]
-```
-
-[↑ Top](#operations)
-
-findValue
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-findValue($iterable, $predicate): string|integer|null
-```
-Returns the value of the first element for which $predicate returns truthy.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
-`$predicate` | `callable\|mixed` | Value to compare against, or callable invoked with ($value, $key, $iterable)
-**Returns** | `string\|integer\|null` | Value of the matching element, or null if not found
-
-**Example:** With comparison value
-```php
-$array = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
-find($array, 3);  // === 3
-find($array, 'Dash\isEven');  // === 2
-```
-
-[↑ Top](#operations)
-
 first / head
 ---
 [Operations](#operations) › [Iterable](#iterable)
@@ -603,45 +492,38 @@ get
 ```php
 get($iterable, $path, $default = null): mixed
 ```
-Gets the value at a path on a collection.
+Gets the value at `$path` within `$iterable`. Nested properties can be accessing using dot notation.
 
-
+Related: [getDirect()](#getdirect), [has()](#has)
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `array\|object` | 
-`$path` | `callable\|string` | Callable used to retrieve the value or path of the property to retrieve; Paths can be nested by delimiting each sub-property or array index with a period, eg. 'a.b.0.c'
-`$default` | `mixed` | Default value to return if nothing exists at $path
-**Returns** | `mixed` | Value at $path on the collection
+`$iterable` | `iterable\|stdClass\|null` | 
+`$path` | `callable\|string` | (optional) If a callable, invoked with `($iterable)` to get the value at `$path`; if a string, will use `Dash\property($path)` to get the value at `$path`
+`$default` | `mixed` | (optional) Value to return if `$path` does not exist within `$iterable`
+**Returns** | `mixed` | Value at `$path`
 
 **Example:** 
-```php
-$iterable = [
-	'a' => [
-		'b' => 'value'
-	]
-];
-Dash\get($iterable, 'a.b') == 'value';
-
-```
-
-**Example:** Array elements can be referenced by index
 ```php
 $iterable = [
 	'people' => [
 		['name' => 'Pete'],
 		['name' => 'John'],
-		['name' => 'Paul'],
+		['name' => 'Mark'],
 	]
 ];
-Dash\get($iterable, 'people.1.name') == 'John';
+Dash\get($iterable, 'people.2.name') == 'Mark';
 
 ```
 
-**Example:** Keys with the same name as the full path can be used
+**Example:** Direct properties take precedence over nested values
 ```php
-$iterable = ['a.b.c' => 'value'];
-Dash\get($iterable, 'a.b.c') == 'value';
+$iterable = [
+	'a.b.c' => 'direct',
+	'a' => ['b' => ['c' => 'nested']]
+];
+Dash\get($iterable, 'a.b.c');
+// === 'direct'
 ```
 
 [↑ Top](#operations)
@@ -1789,31 +1671,6 @@ Dash\take(['b' => 2, 'c' => 3, 'a' => 1], 2);
 
 Dash\take([1, 2, 3, 4, 5, 6], -2);
 // === [3, 4, 5, 6]
-```
-
-[↑ Top](#operations)
-
-takeWhile
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-takeWhile($iterable, $predicate = 'Dash\identity'): array|object
-```
-Returns a subset of $iterable taken from the beginning until $predicate returns falsey.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
-`$predicate` | `callable` | Invoked with ($value, $key)
-**Returns** | `array\|object` | Array for array-like $iterable, object for object-like $iterable
-
-**Example:** 
-```php
-takeWhile([2, 4, 6, 7, 8, 10], 'Dash\isEven');
-// === [2, 4, 6]
 ```
 
 [↑ Top](#operations)

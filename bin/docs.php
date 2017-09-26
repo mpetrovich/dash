@@ -17,6 +17,7 @@ function buildDocs($sourceDir, $destFilepath)
 		->map(function ($name) { return "src/$name/$name.php"; })
 		->filter(function ($filepath) { return file_exists($filepath); })
 		->map('createDoc')
+		->reject('isIncomplete')
 		->groupBy('category', 'Other')
 		->thru(function ($categories) {
 			uasort($categories, function ($categoryA, $categoryB) {
@@ -80,6 +81,11 @@ function parseDocblock($docblock)
 {
 	$op = (object) [];
 	$lines = explode("\n", $docblock);
+
+	// Incomplete
+	$op->isIncomplete = _::chain($lines)
+		->any(function ($line) { return strpos($line, '@incomplete') === 0; })
+		->value();
 
 	// Description
 	$op->description = _::chain($lines)

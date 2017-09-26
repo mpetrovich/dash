@@ -35,30 +35,16 @@ Requirements
 
 Existing
 ---
-- [ ] contains
-- [ ] deltas
-- [ ] difference
 - [ ] dropWhile
 - [ ] each
-- [ ] find
-- [ ] findKey
-- [ ] findLast
-- [ ] findValue
 - [ ] get
 - [ ] getDirect
 - [ ] getDirectRef
 - [ ] hasDirect
-- [ ] intersection
 - [ ] matches
 - [ ] matchesProperty
 - [ ] property
 - [ ] reduce
-- [ ] result
-- [ ] set
-- [ ] takeWhile
-- [ ] union
-- [ ] where
-- [ ] without
 - [x] _
 - [x] all
 - [x] any
@@ -120,8 +106,17 @@ Existing
 
 New
 ---
+- [ ] deltas
+- [ ] findKey
+- [ ] findLast
+- [ ] findValue
+- [ ] takeWhile
+
 #### [anahkiasen/underscore-php](http://anahkiasen.github.io/underscore-php)
 - [ ] append
+- [ ] contains
+- [ ] difference
+- [ ] find
 - [ ] flatten
 - [ ] has
 - [ ] invoke
@@ -136,7 +131,9 @@ New
 - [ ] repeat
 - [ ] replaceKeys
 - [ ] replaceValue
+- [ ] set
 - [ ] sortKeys
+- [ ] without
 
 #### [bdelespierre/underscore.php](https://github.com/bdelespierre/underscore.php)
 - [ ] after
@@ -156,6 +153,7 @@ New
 - [ ] findWhere
 - [ ] functions
 - [ ] indexOf
+- [ ] intersection
 - [ ] invert
 - [ ] is / isType
 - [ ] isArray
@@ -188,6 +186,7 @@ New
 - [ ] provide / dash
 - [ ] reduceRight
 - [ ] result
+- [ ] result
 - [ ] sample
 - [ ] shuffle / randomize
 - [ ] sortedIndex
@@ -196,8 +195,10 @@ New
 - [ ] times
 - [ ] typeOf
 - [ ] unescape
+- [ ] union
 - [ ] uniq
 - [ ] uniqueId
+- [ ] where
 - [ ] wrap
 - [ ] zip
 

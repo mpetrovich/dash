@@ -3,6 +3,7 @@
 namespace Dash;
 
 /**
+ * @incomplete
  * Returns a new array whose values are the differences between subsequent elements of a iterable.
  *
  * @category Iterable
