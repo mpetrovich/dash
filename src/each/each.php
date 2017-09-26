@@ -3,6 +3,7 @@
 namespace Dash;
 
 /**
+ * @incomplete
  * Iterates over a collection and calls an iteratee function for each element.
  *
  * Any changes to the value, key, or collection from within the iteratee function are not persisted.

@@ -3,6 +3,7 @@
 namespace Dash;
 
 /**
+ * @incomplete
  * Gets the value or callable at the given key of an iterable.
  *
  * If array offset and object properties exist for the same key,

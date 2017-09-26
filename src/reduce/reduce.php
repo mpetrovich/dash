@@ -3,6 +3,7 @@
 namespace Dash;
 
 /**
+ * @incomplete
  * Iteratively reduces $iterable to a single value by way of $iteratee.
  *
  * @category Iterable

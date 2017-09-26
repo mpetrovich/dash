@@ -3,6 +3,7 @@
 namespace Dash;
 
 /**
+ * @incomplete
  * Creates a function with signature (iterable $iterable) that returns true
  * if it has a value at $path that is loosely equal to $value.
  *

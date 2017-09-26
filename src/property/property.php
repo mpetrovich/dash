@@ -3,6 +3,7 @@
 namespace Dash;
 
 /**
+ * @incomplete
  * Creates a function that returns the value at a path on a collection.
  *
  * @category Iterable

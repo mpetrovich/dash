@@ -3,6 +3,7 @@
 namespace Dash;
 
 /**
+ * @incomplete
  * Creates a function with signature (iterable $iterable) that returns true if $iterable contains
  * all key-value pairs in $properties, using loose equality for value comparison.
  *
