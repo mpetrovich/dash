@@ -10,34 +10,24 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/mpet
 [average](#average--mean) / mean | [custom](#custom) | [currify](#currify) | 
 [contains](#contains) | [debug](#debug) | [curry](#curry) | 
 [difference](#difference--diff) / diff | [equal](#equal) | [curryN](#curryn) | 
-[dropWhile](#dropwhile) | [identical](#identical) | [curryRight](#curryright) | 
-[each](#each) | [identity](#identity) | [curryRightN](#curryrightn) | 
-[filter](#filter) | [isEmpty](#isempty) | [negate](#negate) | 
-[find](#find) | [isType](#istype) | [partial](#partial) | 
-[first](#first--head) / head | [size](#size--count) / count | [partialRight](#partialright) | 
-[get](#get) | [tap](#tap) | [unary](#unary) | 
-[getDirect](#getdirect) | [thru](#thru) |  | 
-[getDirectRef](#getdirectref) |  |  | 
-[groupBy](#groupby) |  |  | 
-[hasDirect](#hasdirect) |  |  | 
-[intersection](#intersection--intersect) / intersect |  |  | 
-[isIndexedArray](#isindexedarray) |  |  | 
-[join](#join--implode) / implode |  |  | 
+[filter](#filter) | [identical](#identical) | [curryRight](#curryright) | 
+[find](#find) | [identity](#identity) | [curryRightN](#curryrightn) | 
+[first](#first--head) / head | [isEmpty](#isempty) | [negate](#negate) | 
+[groupBy](#groupby) | [isType](#istype) | [partial](#partial) | 
+[intersection](#intersection--intersect) / intersect | [size](#size--count) / count | [partialRight](#partialright) | 
+[isIndexedArray](#isindexedarray) | [tap](#tap) | [unary](#unary) | 
+[join](#join--implode) / implode | [thru](#thru) |  | 
 [keyBy](#keyby--indexby) / indexBy |  |  | 
 [keys](#keys) |  |  | 
 [last](#last) |  |  | 
 [map](#map) |  |  | 
 [mapValues](#mapvalues) |  |  | 
-[matches](#matches) |  |  | 
-[matchesProperty](#matchesproperty) |  |  | 
 [max](#max) |  |  | 
 [median](#median) |  |  | 
 [min](#min) |  |  | 
 [omit](#omit) |  |  | 
 [pick](#pick) |  |  | 
 [pluck](#pluck) |  |  | 
-[property](#property) |  |  | 
-[reduce](#reduce) |  |  | 
 [reject](#reject) |  |  | 
 [result](#result) |  |  | 
 [reverse](#reverse) |  |  | 
@@ -62,16 +52,10 @@ Iterable
 - [average](#average)
 - [contains](#contains)
 - [difference](#difference)
-- [dropWhile](#dropwhile)
-- [each](#each)
 - [filter](#filter)
 - [find](#find)
 - [first](#first)
-- [get](#get)
-- [getDirect](#getdirect)
-- [getDirectRef](#getdirectref)
 - [groupBy](#groupby)
-- [hasDirect](#hasdirect)
 - [intersection](#intersection)
 - [isIndexedArray](#isindexedarray)
 - [join](#join)
@@ -80,16 +64,12 @@ Iterable
 - [last](#last)
 - [map](#map)
 - [mapValues](#mapvalues)
-- [matches](#matches)
-- [matchesProperty](#matchesproperty)
 - [max](#max)
 - [median](#median)
 - [min](#min)
 - [omit](#omit)
 - [pick](#pick)
 - [pluck](#pluck)
-- [property](#property)
-- [reduce](#reduce)
 - [reject](#reject)
 - [result](#result)
 - [reverse](#reverse)
@@ -322,54 +302,6 @@ diff(
 
 [↑ Top](#operations)
 
-dropWhile
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-dropWhile($iterable, $predicate = 'Dash\identity'): array
-```
-Returns a subset of $iterable that excludes elements from the beginning.
-Elements are dropped until $predicate returns falsey.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
-`$predicate` | `callable` | Invoked with ($value, $key, $iterable)
-**Returns** | `array` | 
-
-
-
-[↑ Top](#operations)
-
-each
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-each($iterable, $iteratee): mixed
-```
-Iterates over a collection and calls an iteratee function for each element.
-
-Any changes to the value, key, or collection from within the iteratee function are not persisted.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
-`$iteratee` | `callable` | Invoked with ($value, $key, $iterable) for each element in $iterable. If $iteratee returns false, iteration will end and subsequent elements will be skipped.
-**Returns** | `mixed` | $iterable
-
-**Example:** 
-```php
-each([1, 2, 3], function ($value, $index, $array) { // $array[$index] === $value });
-```
-
-[↑ Top](#operations)
-
 filter
 ---
 [Operations](#operations) › [Iterable](#iterable)
@@ -485,110 +417,6 @@ Dash\first([]);
 
 [↑ Top](#operations)
 
-get
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-get($iterable, $path, $default = null): mixed
-```
-Gets the value at `$path` within `$iterable`. Nested properties can be accessing using dot notation.
-
-Related: [getDirect()](#getdirect), [has()](#has)
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
-`$path` | `callable\|string` | (optional) If a callable, invoked with `($iterable)` to get the value at `$path`; if a string, will use `Dash\property($path)` to get the value at `$path`
-`$default` | `mixed` | (optional) Value to return if `$path` does not exist within `$iterable`
-**Returns** | `mixed` | Value at `$path`
-
-**Example:** 
-```php
-$iterable = [
-	'people' => [
-		['name' => 'Pete'],
-		['name' => 'John'],
-		['name' => 'Mark'],
-	]
-];
-Dash\get($iterable, 'people.2.name') == 'Mark';
-
-```
-
-**Example:** Direct properties take precedence over nested values
-```php
-$iterable = [
-	'a.b.c' => 'direct',
-	'a' => ['b' => ['c' => 'nested']]
-];
-Dash\get($iterable, 'a.b.c');
-// === 'direct'
-```
-
-[↑ Top](#operations)
-
-getDirect
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-getDirect($iterable, $key, $default = null): mixed
-```
-Gets the value or callable at the given key of an iterable.
-
-If array offset and object properties exist for the same key,
-the value at the array offset takes precedence and will be returned.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
-`$key` | `string` | 
-`$default` | `mixed` | Value to return if no value at $key exists
-**Returns** | `mixed` | 
-
-**Example:** With an array
-```php
-getDirect(['a' => 'one', 'b' => 'two'], 'b');  // === 'two'
-
-```
-
-**Example:** With an object
-```php
-getDirect((object) ['a' => 'one', 'b' => 'two'], 'b');  // === 'two'
-```
-
-[↑ Top](#operations)
-
-getDirectRef
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-: mixed
-```
-Like getDirect(), but returns a reference to the value at the given key of an iterable.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
-`$key` | `string` | 
-**Returns** | `mixed` | 
-
-**Example:** 
-```php
-$obj = (object) ['key' => 'value'];
-$ref = Dash\getDirectRef($obj, 'key');
-$ref = 'changed';
-// $obj->key === 'changed'
-```
-
-[↑ Top](#operations)
-
 groupBy
 ---
 [Operations](#operations) › [Iterable](#iterable)
@@ -663,37 +491,6 @@ Dash\groupBy($data, 'last', 'Unknown');
 		['first' => 'Anonymous'],
 	],
 ]
-```
-
-[↑ Top](#operations)
-
-hasDirect
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-hasDirect($iterable, $key): boolean
-```
-Checks whether an iterable has a value or callable at a given key.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `array\|object\|ArrayAccess` | 
-`$key` | `string\|null` | 
-**Returns** | `boolean` | 
-
-**Example:** 
-```php
-hasDirect(['a' => ['b' => 1, 'c' => 2], 'a');  // === true
-hasDirect(['a' => ['b' => 1, 'c' => 2], 'b');  // === false
-
-```
-
-**Example:** 
-```php
-hasDirect((object) ['a' => 1, 'b' => 2], 'b');  // === true
 ```
 
 [↑ Top](#operations)
@@ -983,59 +780,6 @@ Dash\mapValues($data, 'name.last');
 
 [↑ Top](#operations)
 
-matches
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-matches($properties): callable
-```
-Creates a function with signature (iterable $iterable) that returns true if $iterable contains
-all key-value pairs in $properties, using loose equality for value comparison.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$properties` | `iterable\|stdClass` | Key-value pairs that the returned function will match its input against
-**Returns** | `callable` | with signature (iterable $iterable)
-
-**Example:** 
-```php
-$matcher = matches(['b' => 2, 'd' => 4]);
-$matcher(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]);  // === true
-$matcher(['a' => 1, 'b' => 2, 'c' => 3, 'e' => 5]);  // === false
-```
-
-[↑ Top](#operations)
-
-matchesProperty
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-matchesProperty($path, $value = true): callable
-```
-Creates a function with signature (iterable $iterable) that returns true
-if it has a value at $path that is loosely equal to $value.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$path` | `string` | Any valid path supported by Dash\get()
-`$value` | `mixed` | Value to compare against
-**Returns** | `callable` | with signature (iterable $iterable)
-
-**Example:** 
-```php
-$matcher = matchesProperty('c', 3);
-$matcher(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]);  // === true
-$matcher(['a' => 1, 'b' => 2, 'd' => 4, 'e' => 5]);  // === false
-```
-
-[↑ Top](#operations)
-
 max
 ---
 [Operations](#operations) › [Iterable](#iterable)
@@ -1199,86 +943,6 @@ Dash\pluck($data, 'name');
 
 Dash\pluck($data, 'age');
 // === [null, 35, 20]
-```
-
-[↑ Top](#operations)
-
-property
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-property($path, $default = null): function
-```
-Creates a function that returns the value at a path on a collection.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$path` | `callable` | Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period. If it is already a function, the same function is returned.
-`$default` | `mixed` | Default value to return if nothing exists at $path
-**Returns** | `function` | Function that accepts a collection and returns the value at $path on the collection
-
-**Example:** 
-```php
-$getter = property('a.b');
-$iterable = [
-	'a' => [
-		'b' => 'value'
-	]
-];
-$getter($iterable);  // === 'value';
-
-```
-
-**Example:** Array elements can be referenced by index
-```php
-$getter = property('people.1.name');
-$iterable = [
-	'people' => [
-		['name' => 'Pete'],
-		['name' => 'John'],
-		['name' => 'Paul'],
-	]
-];
-$getter($iterable) === 'John';
-
-```
-
-**Example:** Keys with the same name as the full path can be used
-```php
-$getter = property('a.b.c');
-$iterable = ['a.b.c' => 'value'];
-$getter($iterable);  // === 'value';
-```
-
-[↑ Top](#operations)
-
-reduce
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-reduce($iterable, $iteratee, $initial = []): mixed
-```
-Iteratively reduces $iterable to a single value by way of $iteratee.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
-`$iteratee` | `callable` | Invoked with ($result, $value, $key) for each ($key, $value) in $iterable and the current $result. $iteratee should return the updated $result
-`$initial` | `mixed` | (optional) Initial value
-**Returns** | `mixed` | 
-
-**Example:** Computes the sum
-```php
-reduce([1, 2, 3, 4], function ($result, $value) {
-	return $result + $value;
-}, 0);
-// === 10
 ```
 
 [↑ Top](#operations)
