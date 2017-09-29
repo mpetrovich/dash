@@ -3,6 +3,7 @@
 namespace Dash;
 
 /**
+ * @incomplete
  * Returns a new array of $iterable that excludes all values in $exclude, using loose equality for comparison.
  *
  * @category Iterable

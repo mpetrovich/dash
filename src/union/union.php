@@ -3,6 +3,7 @@
 namespace Dash;
 
 /**
+ * @incomplete
  * Returns a new array containing the unique values, in order, of all arguments.
  *
  * Iterable keys are preseved.

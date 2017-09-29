@@ -3,6 +3,7 @@
 namespace Dash;
 
 /**
+ * @incomplete
  * Like get(), but if the resolved value is callable, it will invoke the callable and return its result.
  *
  * @category Iterable

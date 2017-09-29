@@ -3,6 +3,7 @@
 namespace Dash;
 
 /**
+ * @incomplete
  * Checks whether $iterable has any elements for which $comparator returns truthy.
  *
  * @category Iterable

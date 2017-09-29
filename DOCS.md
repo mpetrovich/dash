@@ -8,19 +8,15 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/mpet
 [any](#any--some) / some | [chain](#chain) | [ary](#ary) | [isOdd](#isodd)
 [at](#at) | [compare](#compare) | [call](#call) | 
 [average](#average--mean) / mean | [custom](#custom) | [currify](#currify) | 
-[contains](#contains) | [debug](#debug) | [curry](#curry) | 
-[difference](#difference--diff) / diff | [equal](#equal) | [curryN](#curryn) | 
-[filter](#filter) | [identical](#identical) | [curryRight](#curryright) | 
-[find](#find) | [identity](#identity) | [curryRightN](#curryrightn) | 
-[first](#first--head) / head | [isEmpty](#isempty) | [negate](#negate) | 
-[groupBy](#groupby) | [isType](#istype) | [partial](#partial) | 
-[intersection](#intersection--intersect) / intersect | [size](#size--count) / count | [partialRight](#partialright) | 
-[isIndexedArray](#isindexedarray) | [tap](#tap) | [unary](#unary) | 
-[join](#join--implode) / implode | [thru](#thru) |  | 
-[keyBy](#keyby--indexby) / indexBy |  |  | 
-[keys](#keys) |  |  | 
-[last](#last) |  |  | 
-[map](#map) |  |  | 
+[filter](#filter) | [debug](#debug) | [curry](#curry) | 
+[first](#first--head) / head | [equal](#equal) | [curryN](#curryn) | 
+[groupBy](#groupby) | [identical](#identical) | [curryRight](#curryright) | 
+[isIndexedArray](#isindexedarray) | [identity](#identity) | [curryRightN](#curryrightn) | 
+[join](#join--implode) / implode | [isEmpty](#isempty) | [negate](#negate) | 
+[keyBy](#keyby--indexby) / indexBy | [isType](#istype) | [partial](#partial) | 
+[keys](#keys) | [size](#size--count) / count | [partialRight](#partialright) | 
+[last](#last) | [tap](#tap) | [unary](#unary) | 
+[map](#map) | [thru](#thru) |  | 
 [mapValues](#mapvalues) |  |  | 
 [max](#max) |  |  | 
 [median](#median) |  |  | 
@@ -29,20 +25,15 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/mpet
 [pick](#pick) |  |  | 
 [pluck](#pluck) |  |  | 
 [reject](#reject) |  |  | 
-[result](#result) |  |  | 
 [reverse](#reverse) |  |  | 
 [rotate](#rotate) |  |  | 
-[set](#set) |  |  | 
 [sort](#sort) |  |  | 
 [sum](#sum) |  |  | 
 [take](#take) |  |  | 
 [takeRight](#takeright) |  |  | 
 [toArray](#toarray) |  |  | 
 [toObject](#toobject) |  |  | 
-[union](#union) |  |  | 
 [values](#values) |  |  | 
-[where](#where) |  |  | 
-[without](#without) |  |  | 
 
 Iterable
 ===
@@ -50,13 +41,9 @@ Iterable
 - [any](#any)
 - [at](#at)
 - [average](#average)
-- [contains](#contains)
-- [difference](#difference)
 - [filter](#filter)
-- [find](#find)
 - [first](#first)
 - [groupBy](#groupby)
-- [intersection](#intersection)
 - [isIndexedArray](#isindexedarray)
 - [join](#join)
 - [keyBy](#keyby)
@@ -71,20 +58,15 @@ Iterable
 - [pick](#pick)
 - [pluck](#pluck)
 - [reject](#reject)
-- [result](#result)
 - [reverse](#reverse)
 - [rotate](#rotate)
-- [set](#set)
 - [sort](#sort)
 - [sum](#sum)
 - [take](#take)
 - [takeRight](#takeright)
 - [toArray](#toarray)
 - [toObject](#toobject)
-- [union](#union)
 - [values](#values)
-- [where](#where)
-- [without](#without)
 
 
 all / every
@@ -243,65 +225,6 @@ Dash\average([2, 3, 5, 8]);
 
 [↑ Top](#operations)
 
-contains
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-contains($iterable, $target, $comparator = 'Dash\equal'): boolean
-```
-Checks whether $iterable has any elements for which $comparator returns truthy.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
-`$target` | `mixed` | Value to compare $iterable elements against
-`$comparator` | `callable` | Invoked with ($target, $value) for each value in $iterable
-**Returns** | `boolean` | true if $comparator returns truthy for any elements in $iterable
-
-**Example:** With loose equality comparison (the default)
-```php
-contains([1, '2', 3], 2);  // === true
-
-```
-
-**Example:** With strict equality comparison
-```php
-contains([1, '2', 3], 2, 'Dash\identical');  // === false
-```
-
-[↑ Top](#operations)
-
-difference / diff
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-difference($iterable /*, ...iterables */): array
-```
-Returns a subset of items from the first iterable that are not present in any of the other iterables.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable\|stdClass` | Iterable to compare against
-`$iterables,...` | `iterable\|stdClass` | 
-**Returns** | `array` | 
-
-**Example:** 
-```php
-diff(
-	[1, 2, 3, 4, 5, 6],
-	[1, 3, 5],
-	[2, 8]
-);  // === [4, 6]
-```
-
-[↑ Top](#operations)
-
 filter
 ---
 [Operations](#operations) › [Iterable](#iterable)
@@ -360,32 +283,6 @@ Dash\filter($data, ['active', false]);
 // === [
 	['name' => 'John', 'active' => false],
 ]
-```
-
-[↑ Top](#operations)
-
-find
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-find($iterable, $predicate): array|null
-```
-Returns the key & value of the first element for which $predicate returns truthy.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
-`$predicate` | `callable\|mixed` | Value to compare against, or callable invoked with ($value, $key, $iterable)
-**Returns** | `array\|null` | [$key, $value] of the matching key/index and value, or null if not found
-
-**Example:** With comparison value
-```php
-$array = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
-find($array, 3);  // === ['c', 3]
-find($array, 'Dash\isEven');  // === ['b', 2]
 ```
 
 [↑ Top](#operations)
@@ -491,35 +388,6 @@ Dash\groupBy($data, 'last', 'Unknown');
 		['first' => 'Anonymous'],
 	],
 ]
-```
-
-[↑ Top](#operations)
-
-intersection / intersect
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-intersection($iterable /*, ...iterables */): array
-```
-Returns a new array containing values of $iterable that are present in all other arguments.
-
-Iterable keys are preseved.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable\|stdClass` | Iterable to compare against
-`$iterables,...` | `iterable\|stdClass` | 
-**Returns** | `array` | 
-
-**Example:** 
-```php
-intersection(
-	[1, 3, 5, 8],
-	[1, 2, 3, 4]
-);  // === [0 => 1, 1 => 3]
 ```
 
 [↑ Top](#operations)
@@ -1010,72 +878,6 @@ Dash\reject($data, ['active', false]);
 
 [↑ Top](#operations)
 
-result
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-result($iterable, $path, $default = null): mixed
-```
-Like get(), but if the resolved value is callable, it will invoke the callable and return its result.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `array\|object` | 
-`$path` | `callable\|string` | Callable used to retrieve the value or path of the property to retrieve; Paths can be nested by delimiting each sub-property or array index with a period, eg. 'a.b.0.c'
-`$default` | `mixed` | Default value to return if nothing exists at $path 
-**Returns** | `mixed` | Value at $path on the collection
-
-**Example:** 
-```php
-$iterable = [
-	'a' => [
-		'b' => 'value'
-	]
-];
-result($iterable, 'a.b');
-// === 'value'
-
-```
-
-**Example:** Array elements can be referenced by index
-```php
-$iterable = [
-	'people' => [
-		['name' => 'Pete'],
-		['name' => 'John'],
-		['name' => 'Paul'],
-	]
-];
-result($iterable, 'people.1.name');
-// === 'John'
-
-```
-
-**Example:** Keys with the same name as the full path can be used
-```php
-$iterable = ['a.b.c' => 'value'];
-result($iterable, 'a.b.c');
-// === 'value'
-
-```
-
-**Example:** With a callable value
-```php
-$iterable = [
-	'dates' => [
-		'start' => new DateTime('2017-01-01'),
-		'end' => new DateTime('2017-01-03'),
-	]
-]
-result($iterable, 'dates.start.getTimestamp');
-// === 1483246800
-```
-
-[↑ Top](#operations)
-
 reverse
 ---
 [Operations](#operations) › [Iterable](#iterable)
@@ -1145,70 +947,6 @@ Dash\rotate(['a' => 1, 'b' => 2, 'c' => 3], 1);
 
 Dash\rotate(['a', 'b', 'c', 'd', 'e'], -1);
 // === ['e', 'a', 'b', 'c', 'd']
-```
-
-[↑ Top](#operations)
-
-set
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-set(&$iterable, $path, $value): array|object
-```
-Sets the value at a path on $iterable, which will be modified.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `array\|object` | 
-`$path` | `string` | Path at which to set $value; can be a nested path (eg. 'a.b.0.c'), and non-existent intermediate array/objects will be created
-`$value` | `mixed` | Value to set at $path
-**Returns** | `array\|object` | the modified $iterable
-
-**Example:** 
-```php
-$iterable = [
-	'a' => [1, 2],
-	'b' => [3, 4],
-	'c' => [5, 6],
-];
-set($iterable, 'a', [7, 8, 9]);  // Setting a direct field
-set($iterable, 'b.0', 10);  // Setting a nested field using an array index
-// $iterable === [
-	'a' => [7, 8, 9],
-	'b' => [10, 4],
-	'c' => [5, 6],
-]
-
-```
-
-**Example:** Matching intermediate array wrappers are created when the deepest path is an array
-```php
-$iterable = [];
-set($iterable, 'a.b.c', 'value');
-// $iterable === [
-	'a' => [
-		'b' => [
-			'c' => 'value'
-		]
-	]
-]
-
-```
-
-**Example:** Matching intermediate object wrappers are created when the deepest path is an object
-```php
-$iterable = (object) [];
-set($iterable, 'a.b.c', 'value');
-// $iterable === (object) [
-	'a' => (object) [
-		'b' => (object) [
-			'c' => 'value'
-		]
-	]
-]
 ```
 
 [↑ Top](#operations)
@@ -1393,34 +1131,6 @@ Dash\toObject(new ArrayObject(['a' => 1, 'b' => 2]));
 
 [↑ Top](#operations)
 
-union
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-union(/* ...iterables */): array
-```
-Returns a new array containing the unique values, in order, of all arguments.
-
-Iterable keys are preseved.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterables,...` | `iterable\|stdClass` | 
-**Returns** | `array` | 
-
-**Example:** 
-```php
-intersection(
-	[1, 3, 5, 8],
-	[1, 2, 3, 4]
-);  // === [1, 3, 5, 8, 2, 4]
-```
-
-[↑ Top](#operations)
-
 values
 ---
 [Operations](#operations) › [Iterable](#iterable)
@@ -1441,66 +1151,6 @@ Parameter | Type | Description
 ```php
 Dash\values(['c' => 3, 'a' => 1, 'b' => 2]);
 // === [3, 1, 2]
-```
-
-[↑ Top](#operations)
-
-where
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-where($iterable, $properties): array
-```
-Returns all elements of $iterable containing key-value pairs that loosely equal $properties.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
-`$properties` | `iterable\|stdClass` | 
-**Returns** | `array` | 
-
-**Example:** 
-```php
-$input = [
-	['name' => 'Jane', 'age' => 25, 'gender' => 'f'],
-	['name' => 'Mike', 'age' => 30, 'gender' => 'm'],
-	['name' => 'Abby', 'age' => 30, 'gender' => 'f'],
-	['name' => 'Pete', 'age' => 45, 'gender' => 'm'],
-	['name' => 'Kate', 'age' => 30, 'gender' => 'f'],
-];
-where($input, ['gender' => 'f', 'age' => 30]);
-// === [
-	['name' => 'Abby', 'age' => 30, 'gender' => 'f'],
-	['name' => 'Kate', 'age' => 30, 'gender' => 'f'],
-]
-```
-
-[↑ Top](#operations)
-
-without
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-without($iterable, $exclude): array
-```
-Returns a new array of $iterable that excludes all values in $exclude, using loose equality for comparison.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable\|stdClass` | 
-`$exclude` | `array` | Values to exclude
-**Returns** | `array` | Subset of $iterable
-
-**Example:** 
-```php
-without(['a', 'b', 'c', 'd'], ['b', 'c']);
-// === ['a', 'd']
 ```
 
 [↑ Top](#operations)
