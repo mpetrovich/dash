@@ -22,3 +22,11 @@ function contains($iterable, $target, $comparator = 'Dash\equal')
 {
 	return any($iterable, partial($comparator, $target));
 }
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _contains(/* target, comparator */)
+{
+	return currify('Dash\contains', func_get_args());
+}

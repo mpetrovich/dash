@@ -27,6 +27,7 @@ Features
 - Works with arrays, objects, [`Traversable`](http://php.net/manual/en/class.traversable.php), [`DirectoryIterator`](http://php.net/manual/en/class.directoryiterator.php), and more
 - [Standalone operations](#standalone)
 - [Chaining](#chaining)
+- [Currying](#currying)
 - [Lazy evaluation](#lazy-evaluation)
 - [Custom operations](#custom-operations)
 
@@ -102,6 +103,43 @@ $chain->value();
 $chain->run();
 
 // Now it starts...
+```
+
+
+### Currying
+
+[`curry()`](DOCS.md#curry) and related operations can be used to create curried functions from any callable:
+
+```php
+function listThree($a, $b, $c) {
+	return "$a, $b, and $c";
+}
+
+$listThree = Dash\curry('listThree');
+$listTwo = $listThree('first');
+$listTwo('second', 'third');
+// === 'first, second, and third'
+```
+
+All Dash functions have a curried variant that accepts input data as the last parameter instead of as the first. The name of the curried function is the same as the uncurried function name but prefixed with an underscore, `_`:
+
+```php
+_::chain(['a' => 3, 'b' => '3', 'c' => 3, 'd' => 3.0])
+	->filter(Dash\_identical(3))
+	->value();
+// === ['a' => 3, 'c' => 3]
+```
+
+Similarly, [`partial()`](DOCS.md#partial) and related operations can be used to create partially-applied functions:
+
+```php
+$containsTruthy = Dash\_contains(true, 'Dash\equal');
+$containsTruthy([0, 1, 0]);
+// === true
+
+$containsTrue = Dash\_contains(true, 'Dash\identical');
+$containsTrue([0, 1, 0]);
+// === false
 ```
 
 
