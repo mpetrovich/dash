@@ -2,8 +2,8 @@ Contributing
 ===
 
 ##### You can contribute by:
-- [Reporting issues](https://github.com/mpetrovich/Dash/issues/new)
-- [Submitting feature requests](https://github.com/mpetrovich/Dash/issues/new?labels=enhancement)
+- [Reporting issues](https://github.com/nextbigsoundinc/dash/issues/new)
+- [Submitting feature requests](https://github.com/nextbigsoundinc/dash/issues/new?labels=enhancement)
 - [Adding new operations](#adding-new-operations)
 - [Aliasing existing operations](#aliasing-existing-operations)
 - [Running tests](#running-tests)
@@ -11,7 +11,7 @@ Contributing
 
 Adding new operations
 ---
-**If you want to add custom Dash operations for your own application, see [`_::setCustom()`](https://github.com/mpetrovich/Dash#custom-operations).**
+**If you want to add custom Dash operations for your own application, see [`_::setCustom()`](https://github.com/nextbigsoundinc/dash#custom-operations).**
 To contribute new operations to the main Dash repository, read on.
 
 Dash's modular design makes it easy to add new operations.
@@ -127,8 +127,7 @@ In alphabetical order, too.
 
 ```json
 {
-	"name": "mpetrovich/dash",
-	"description": "A functional utility library for PHP, like Underscore and Lodash",
+	"name": "nextbigsoundinc/dash",
 	"autoload": {
 		"files": [
 			"src/all/all.php",

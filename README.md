@@ -1,4 +1,4 @@
-Dash &nbsp; [![Latest Stable Version](https://poser.pugx.org/mpetrovich/dash/version)](https://packagist.org/packages/mpetrovich/dash) [![Build Status](https://travis-ci.org/mpetrovich/Dash.svg?branch=master)](https://travis-ci.org/mpetrovich/Dash) [![codecov](https://codecov.io/gh/mpetrovich/Dash/branch/master/graph/badge.svg)](https://codecov.io/gh/mpetrovich/Dash)
+Dash &nbsp; [![Latest Stable Version](https://poser.pugx.org/nextbigsoundinc/dash/version)](https://packagist.org/packages/nextbigsoundinc/dash) [![Build Status](https://travis-ci.org/nextbigsoundinc/dash.svg?branch=master)](https://travis-ci.org/nextbigsoundinc/dash) [![codecov](https://codecov.io/gh/nextbigsoundinc/dash/branch/master/graph/badge.svg)](https://codecov.io/gh/nextbigsoundinc/dash)
 ===
 A functional programming library for PHP. Inspired by Underscore, Lodash, and Ramda.
 
@@ -36,7 +36,7 @@ Installation
 ---
 Requires PHP 5.4+
 ```sh
-composer require mpetrovich/dash
+composer require nextbigsoundinc/dash
 ```
 
 

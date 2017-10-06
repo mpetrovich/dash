@@ -355,7 +355,7 @@ function renderTableOfContents($categories)
 	return <<<END
 Operations
 ===
-Is there an operation you'd like to see? [Open an issue](https://github.com/mpetrovich/Dash/issues/new?labels=enhancement) or vote on an existing one.
+Is there an operation you'd like to see? [Open an issue](https://github.com/nextbigsoundinc/dash/issues/new?labels=enhancement) or vote on an existing one.
 
 $table
 END;
