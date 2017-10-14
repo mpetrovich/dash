@@ -143,6 +143,9 @@ class valuesTest extends PHPUnit_Framework_TestCase
 
 	public function testExamples()
 	{
-		$this->assertSame([3, 1, 2], Dash\values(['c' => 3, 'a' => 1, 'b' => 2]));
+		$this->assertSame(
+			[3, 1, 2],
+			Dash\values(['c' => 3, 'a' => 1, 'b' => 2])
+		);
 	}
 }

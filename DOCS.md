@@ -8,15 +8,16 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/next
 [any](#any--some) / some | [chain](#chain) | [ary](#ary) | [isOdd](#isodd)
 [at](#at) | [compare](#compare) | [call](#call) | 
 [average](#average--mean) / mean | [custom](#custom) | [currify](#currify) | 
-[filter](#filter) | [debug](#debug) | [curry](#curry) | 
-[first](#first--head) / head | [equal](#equal) | [curryN](#curryn) | 
-[groupBy](#groupby) | [identical](#identical) | [curryRight](#curryright) | 
-[isIndexedArray](#isindexedarray) | [identity](#identity) | [curryRightN](#curryrightn) | 
-[join](#join--implode) / implode | [isEmpty](#isempty) | [negate](#negate) | 
-[keyBy](#keyby--indexby) / indexBy | [isType](#istype) | [partial](#partial) | 
-[keys](#keys) | [size](#size--count) / count | [partialRight](#partialright) | 
-[last](#last) | [tap](#tap) | [unary](#unary) | 
-[map](#map) | [thru](#thru) |  | 
+[deltas](#deltas) | [debug](#debug) | [curry](#curry) | 
+[filter](#filter) | [equal](#equal) | [curryN](#curryn) | 
+[first](#first--head) / head | [identical](#identical) | [curryRight](#curryright) | 
+[groupBy](#groupby) | [identity](#identity) | [curryRightN](#curryrightn) | 
+[isIndexedArray](#isindexedarray) | [isEmpty](#isempty) | [negate](#negate) | 
+[join](#join--implode) / implode | [isType](#istype) | [partial](#partial) | 
+[keyBy](#keyby--indexby) / indexBy | [size](#size--count) / count | [partialRight](#partialright) | 
+[keys](#keys) | [tap](#tap) | [unary](#unary) | 
+[last](#last) | [thru](#thru) |  | 
+[map](#map) |  |  | 
 [mapValues](#mapvalues) |  |  | 
 [max](#max) |  |  | 
 [median](#median) |  |  | 
@@ -41,6 +42,7 @@ Iterable
 - [any](#any)
 - [at](#at)
 - [average](#average)
+- [deltas](#deltas)
 - [filter](#filter)
 - [first](#first)
 - [groupBy](#groupby)
@@ -221,6 +223,30 @@ Parameter | Type | Description
 ```php
 Dash\average([2, 3, 5, 8]);
 // === 4.5
+```
+
+[↑ Top](#operations)
+
+deltas
+---
+[Operations](#operations) › [Iterable](#iterable)
+
+```php
+deltas($iterable): array
+```
+Returns a new array whose values are the differences between successive values of `$iterable`.
+
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` | 
+**Returns** | `array` | 
+
+**Example:** 
+```php
+Dash\deltas([3, 8, 9, 9, 5, 13]);
+// === [0, 5, 1, 0, -4, 8]
 ```
 
 [↑ Top](#operations)
