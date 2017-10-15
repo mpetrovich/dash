@@ -8,15 +8,16 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/next
 [any](#any--some) / some | [chain](#chain) | [ary](#ary) | [isOdd](#isodd)
 [at](#at) | [compare](#compare) | [call](#call) | 
 [average](#average--mean) / mean | [custom](#custom) | [currify](#currify) | 
-[deltas](#deltas) | [debug](#debug) | [curry](#curry) | 
-[filter](#filter) | [equal](#equal) | [curryN](#curryn) | 
-[first](#first--head) / head | [identical](#identical) | [curryRight](#curryright) | 
-[groupBy](#groupby) | [identity](#identity) | [curryRightN](#curryrightn) | 
-[isIndexedArray](#isindexedarray) | [isEmpty](#isempty) | [negate](#negate) | 
-[join](#join--implode) / implode | [isType](#istype) | [partial](#partial) | 
-[keyBy](#keyby--indexby) / indexBy | [size](#size--count) / count | [partialRight](#partialright) | 
-[keys](#keys) | [tap](#tap) | [unary](#unary) | 
-[last](#last) | [thru](#thru) |  | 
+[contains](#contains--includes) / includes | [debug](#debug) | [curry](#curry) | 
+[deltas](#deltas) | [equal](#equal) | [curryN](#curryn) | 
+[filter](#filter) | [identical](#identical) | [curryRight](#curryright) | 
+[first](#first--head) / head | [identity](#identity) | [curryRightN](#curryrightn) | 
+[groupBy](#groupby) | [isEmpty](#isempty) | [negate](#negate) | 
+[isIndexedArray](#isindexedarray) | [isType](#istype) | [partial](#partial) | 
+[join](#join--implode) / implode | [size](#size--count) / count | [partialRight](#partialright) | 
+[keyBy](#keyby--indexby) / indexBy | [tap](#tap) | [unary](#unary) | 
+[keys](#keys) | [thru](#thru) |  | 
+[last](#last) |  |  | 
 [map](#map) |  |  | 
 [mapValues](#mapvalues) |  |  | 
 [max](#max) |  |  | 
@@ -42,6 +43,7 @@ Iterable
 - [any](#any)
 - [at](#at)
 - [average](#average)
+- [contains](#contains)
 - [deltas](#deltas)
 - [filter](#filter)
 - [first](#first)
@@ -135,7 +137,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable\|stdClass\|null` | 
 `$predicate` | `callable` | (optional) Invoked with `($value, $key, $iterable)` for each element in `$iterable`
-**Returns** | `boolean` | true if `$predicate` returns truthy for any item in `$iterable`
+**Returns** | `boolean` | true if `$predicate` returns truthy for any element in `$iterable`
 
 **Example:** 
 ```php
@@ -223,6 +225,39 @@ Parameter | Type | Description
 ```php
 Dash\average([2, 3, 5, 8]);
 // === 4.5
+```
+
+[↑ Top](#operations)
+
+contains / includes
+---
+[Operations](#operations) › [Iterable](#iterable)
+
+```php
+contains($iterable, $target, $comparator = 'Dash\equal'): boolean
+```
+Checks whether `$iterable` has any elements for which `$comparator` returns truthy.
+
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` | 
+`$target` | `mixed` | Value to compare
+`$comparator` | `callable` | Invoked with `($target, $value)` for each element in `$iterable`
+**Returns** | `boolean` | true if `$comparator` returns truthy for any element in `$iterable`
+
+**Example:** With loose equality comparison (the default)
+```php
+Dash\contains([1, '2', 3], 2);
+// === true
+
+```
+
+**Example:** With strict equality comparison
+```php
+Dash\contains([1, '2', 3], 2, 'Dash\identical');
+// === false
 ```
 
 [↑ Top](#operations)

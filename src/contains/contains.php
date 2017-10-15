@@ -3,30 +3,51 @@
 namespace Dash;
 
 /**
- * @incomplete
- * Checks whether $iterable has any elements for which $comparator returns truthy.
+ * Checks whether `$iterable` has any elements for which `$comparator` returns truthy.
  *
  * @category Iterable
- * @param iterable|stdClass $iterable
- * @param mixed $target Value to compare $iterable elements against
- * @param callable $comparator Invoked with ($target, $value) for each value in $iterable
- * @return boolean true if $comparator returns truthy for any elements in $iterable
+ * @param iterable|stdClass|null $iterable
+ * @param mixed $target Value to compare
+ * @param callable $comparator Invoked with `($target, $value)` for each element in `$iterable`
+ * @return boolean true if `$comparator` returns truthy for any element in `$iterable`
+ *
+ * @alias includes
  *
  * @example With loose equality comparison (the default)
-	contains([1, '2', 3], 2);  // === true
+	Dash\contains([1, '2', 3], 2);
+	// === true
  *
  * @example With strict equality comparison
-	contains([1, '2', 3], 2, 'Dash\identical');  // === false
+	Dash\contains([1, '2', 3], 2, 'Dash\identical');
+	// === false
  */
 function contains($iterable, $target, $comparator = 'Dash\equal')
 {
+	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
+
 	return any($iterable, partial($comparator, $target));
 }
 
 /**
  * @codingStandardsIgnoreStart
  */
-function _contains(/* target, comparator */)
+function _contains(/* target, comparator, iterable */)
+{
+	return currify('Dash\contains', func_get_args());
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function includes()
+{
+	return call_user_func_array('Dash\contains', func_get_args());
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _includes(/* target, comparator, iterable */)
 {
 	return currify('Dash\contains', func_get_args());
 }

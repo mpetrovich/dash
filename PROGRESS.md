@@ -35,7 +35,6 @@ Requirements
 
 Existing
 ---
-- [ ] contains
 - [ ] difference
 - [ ] dropWhile
 - [ ] each
@@ -69,6 +68,7 @@ Existing
 - [x] call
 - [x] chain
 - [x] compare
+- [x] contains
 - [x] currify
 - [x] curry
 - [x] curryN
@@ -213,4 +213,6 @@ Existing
 None
 
 #### [Lodash](https://lodash.com/docs/4.17.4)
+- [ ] drop
+
 #### [Ramda](http://ramdajs.com/docs)
