@@ -13,10 +13,11 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/next
 [filter](#filter) | [identical](#identical) | [curryRight](#curryright) | 
 [first](#first--head) / head | [identity](#identity) | [curryRightN](#curryrightn) | 
 [get](#get) | [isEmpty](#isempty) | [negate](#negate) | 
-[groupBy](#groupby) | [isType](#istype) | [partial](#partial) | 
-[isIndexedArray](#isindexedarray) | [size](#size--count) / count | [partialRight](#partialright) | 
-[join](#join--implode) / implode | [tap](#tap) | [unary](#unary) | 
-[keyBy](#keyby--indexby) / indexBy | [thru](#thru) |  | 
+[getDirect](#getdirect) | [isType](#istype) | [partial](#partial) | 
+[groupBy](#groupby) | [size](#size--count) / count | [partialRight](#partialright) | 
+[isIndexedArray](#isindexedarray) | [tap](#tap) | [unary](#unary) | 
+[join](#join--implode) / implode | [thru](#thru) |  | 
+[keyBy](#keyby--indexby) / indexBy |  |  | 
 [keys](#keys) |  |  | 
 [last](#last) |  |  | 
 [map](#map) |  |  | 
@@ -49,6 +50,7 @@ Iterable
 - [filter](#filter)
 - [first](#first)
 - [get](#get)
+- [getDirect](#getdirect)
 - [groupBy](#groupby)
 - [isIndexedArray](#isindexedarray)
 - [join](#join)
@@ -417,6 +419,48 @@ $iterable = [
 ];
 Dash\get($iterable, 'a.b.c');
 // === 'direct'
+```
+
+[↑ Top](#operations)
+
+getDirect
+---
+[Operations](#operations) › [Iterable](#iterable)
+
+```php
+getDirect($iterable, $key, $default = null): mixed
+```
+Gets the array value or object property at `$key` within `$iterable`.
+
+If array offset and object properties exist for the same key,
+the value at the array offset takes precedence and will be returned.
+
+Related: [getDirectRef()](#getdirectref), [get()](#get), [has()](#has)
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` | 
+`$key` | `string` | Array offset or object property name
+`$default` | `mixed` | (optional) Value to return if `$iterable` has no array offset or object property at `$key`
+**Returns** | `mixed` | 
+
+**Example:** 
+```php
+Dash\getDirect(['a' => 'one', 'b' => 'two'], 'b');
+// === 'two'
+
+Dash\getDirect((object) ['a' => 'one', 'b' => 'two'], 'b');
+// === 'two'
+
+```
+
+**Example:** Array offsets take precedence over object properties
+```php
+$iterable = new ArrayObject(['a' => 'array value']);
+$iterable->a = 'object value';
+
+Dash\getDirect($iterable, 'a');
+// === 'array value'
 ```
 
 [↑ Top](#operations)

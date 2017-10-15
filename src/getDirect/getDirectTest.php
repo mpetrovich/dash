@@ -2,113 +2,106 @@
 
 /**
  * @covers Dash\getDirect
+ * @covers Dash\_getDirect
  */
 class getDirectTest extends PHPUnit_Framework_TestCase
 {
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($input, $key, $default, $expected)
+	public function test($iterable, $key, $default, $expected)
 	{
-		$this->assertSame($expected, Dash\getDirect($input, $key, $default));
+		$this->assertSame($expected, Dash\getDirect($iterable, $key, $default));
+	}
+
+	/**
+	 * @dataProvider cases
+	 */
+	public function testCurried($iterable, $key, $default, $expected)
+	{
+		$getDirect = Dash\_getDirect($key, $default);
+		$this->assertSame($expected, $getDirect($iterable));
 	}
 
 	public function cases()
 	{
-		$iterable = new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3]);
-		$iterable->d = 4;
-		$iterable->b = 5;
+		$func = function () { return 'result'; };
 
 		return [
-			'With non-matching null key' => [
-				'input' => [1, 2, 3],
-				'key' => null,
+			'With null' => [
+				'iterable' => null,
+				'key' => 'a',
 				'default' => 'default',
 				'expected' => 'default',
 			],
 			'With matching null key' => [
-				'input' => [null => 'foo'],
+				'iterable' => [null => 'value'],
 				'key' => null,
 				'default' => 'default',
-				'expected' => 'foo',
+				'expected' => 'value',
 			],
-			'With null' => [
-				'input' => null,
-				'key' => 'b',
+			'With matching null value' => [
+				'iterable' => ['a' => null],
+				'key' => 'a',
 				'default' => 'default',
-				'expected' => 'default',
+				'expected' => null,
 			],
-			'With a string' => [
-				'input' => 'hello',
-				'key' => 'b',
+			'With a callable value' => [
+				'iterable' => ['a' => $func],
+				'key' => 'a',
 				'default' => 'default',
-				'expected' => 'default',
+				'expected' => $func,
 			],
+
+			/*
+				With array
+			 */
+
 			'With an empty array' => [
-				'input' => [],
-				'key' => 'b',
+				'iterable' => [],
+				'key' => 'a',
 				'default' => 'default',
 				'expected' => 'default',
 			],
-			'With an array' => [
-				'input' => ['a' => 1, 'b' => 2, 'c' => 3],
-				'key' => 'b',
+			'With a matching direct array key' => [
+				'iterable' => ['a' => 'value'],
+				'key' => 'a',
 				'default' => 'default',
-				'expected' => 2,
+				'expected' => 'value',
 			],
-			'With an array' => [
-				'input' => ['a' => 1, 'b' => 2, 'c' => 3],
-				'key' => 'b',
-				'default' => 'default',
-				'expected' => 2,
-			],
+
+			/*
+				With stdClass
+			 */
+
 			'With an empty stdClass' => [
-				'input' => (object) [],
-				'key' => 'b',
+				'iterable' => (object) [],
+				'key' => 'a',
 				'default' => 'default',
 				'expected' => 'default',
 			],
-			'With a non-empty stdClass' => [
-				'input' => (object) ['a' => 1, 'b' => 2, 'c' => 3],
-				'key' => 'b',
+			'With a matching direct stdClass property' => [
+				'iterable' => (object) ['a' => 'value'],
+				'key' => 'a',
 				'default' => 'default',
-				'expected' => 2,
+				'expected' => 'value',
 			],
-			'With a non-empty stdClass' => [
-				'input' => (object) ['a' => 1, 'b' => 2, 'c' => 3],
-				'key' => 'b',
-				'default' => 'default',
-				'expected' => 2,
-			],
+
+			/*
+				With ArrayObject
+			 */
+
 			'With an empty ArrayObject' => [
-				'input' => new ArrayObject([]),
-				'key' => 'b',
+				'iterable' => new ArrayObject([]),
+				'key' => 'a',
 				'default' => 'default',
 				'expected' => 'default',
 			],
-			'With an ArrayObject' => [
-				'input' => new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3]),
-				'key' => 'b',
+			'With a matching direct ArrayObject property' => [
+				'iterable' => new ArrayObject(['a' => 'value']),
+				'key' => 'a',
 				'default' => 'default',
-				'expected' => 2,
-			],
-			'With an ArrayObject' => [
-				'input' => new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3]),
-				'key' => 'b',
-				'default' => 'default',
-				'expected' => 2,
-			],
-			[
-				'input' => $iterable,
-				'key' => 'b',
-				'default' => 'default',
-				'expected' => 2,
-			],
-			[
-				'input' => $iterable,
-				'key' => 'd',
-				'default' => 'default',
-				'expected' => 4,
+				'expected' => 'value',
 			],
 		];
 	}
@@ -118,5 +111,89 @@ class getDirectTest extends PHPUnit_Framework_TestCase
 		$callable = Dash\getDirect(new ArrayObject([1, 2, 3]), 'count');
 		$this->assertInternalType('callable', $callable);
 		$this->assertSame(3, call_user_func($callable));
+	}
+
+	/**
+	 * @dataProvider casesDefault
+	 */
+	public function testDefault($iterable, $key, $expected)
+	{
+		$this->assertSame($expected, Dash\getDirect($iterable, $key));
+	}
+
+	public function casesDefault()
+	{
+		return [
+			'With a matching key' => [
+				'iterable' => ['a' => 'value'],
+				'key' => 'a',
+				'expected' => 'value',
+			],
+			'With a non-matching key' => [
+				'iterable' => ['a' => 'value'],
+				'key' => 'x',
+				'expected' => null,
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider casesTypeAssertions
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testTypeAssertions($iterable, $type)
+	{
+		try {
+			Dash\getDirect($iterable, 'foo');
+		}
+		catch (Exception $e) {
+			$this->assertSame(
+				"Dash\\getDirect expects iterable or stdClass or null but was given $type",
+				$e->getMessage()
+			);
+			throw $e;
+		}
+	}
+
+	public function casesTypeAssertions()
+	{
+		return [
+			'With an empty string' => [
+				'iterable' => '',
+				'type' => 'string',
+			],
+			'With a string' => [
+				'iterable' => 'hello',
+				'type' => 'string',
+			],
+			'With a zero number' => [
+				'iterable' => 0,
+				'type' => 'integer',
+			],
+			'With a number' => [
+				'iterable' => 3.14,
+				'type' => 'double',
+			],
+			'With a DateTime' => [
+				'iterable' => new DateTime(),
+				'type' => 'DateTime',
+			],
+		];
+	}
+
+	public function testExamples()
+	{
+		$this->assertSame(
+			Dash\getDirect(['a' => 'one', 'b' => 'two'], 'b'),
+			'two'
+		);
+		$this->assertSame(
+			Dash\getDirect((object) ['a' => 'one', 'b' => 'two'], 'b'),
+			'two'
+		);
+
+		$iterable = new ArrayObject(['a' => 'array value']);
+		$iterable->a = 'object value';
+		$this->assertSame('array value', Dash\getDirect($iterable, 'a'));
 	}
 }
