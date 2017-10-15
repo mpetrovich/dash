@@ -2,6 +2,7 @@
 
 /**
  * @covers Dash\custom
+ * @covers Dash\_custom
  */
 class customTest extends PHPUnit_Framework_TestCase
 {
