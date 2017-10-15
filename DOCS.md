@@ -12,11 +12,12 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/next
 [deltas](#deltas) | [equal](#equal) | [curryN](#curryn) | 
 [filter](#filter) | [identical](#identical) | [curryRight](#curryright) | 
 [first](#first--head) / head | [identity](#identity) | [curryRightN](#curryrightn) | 
-[groupBy](#groupby) | [isEmpty](#isempty) | [negate](#negate) | 
-[isIndexedArray](#isindexedarray) | [isType](#istype) | [partial](#partial) | 
-[join](#join--implode) / implode | [size](#size--count) / count | [partialRight](#partialright) | 
-[keyBy](#keyby--indexby) / indexBy | [tap](#tap) | [unary](#unary) | 
-[keys](#keys) | [thru](#thru) |  | 
+[get](#get) | [isEmpty](#isempty) | [negate](#negate) | 
+[groupBy](#groupby) | [isType](#istype) | [partial](#partial) | 
+[isIndexedArray](#isindexedarray) | [size](#size--count) / count | [partialRight](#partialright) | 
+[join](#join--implode) / implode | [tap](#tap) | [unary](#unary) | 
+[keyBy](#keyby--indexby) / indexBy | [thru](#thru) |  | 
+[keys](#keys) |  |  | 
 [last](#last) |  |  | 
 [map](#map) |  |  | 
 [mapValues](#mapvalues) |  |  | 
@@ -47,6 +48,7 @@ Iterable
 - [deltas](#deltas)
 - [filter](#filter)
 - [first](#first)
+- [get](#get)
 - [groupBy](#groupby)
 - [isIndexedArray](#isindexedarray)
 - [join](#join)
@@ -371,6 +373,50 @@ Dash\first(['a' => 'one', 'b' => 'two', 'c' => 'three']);
 
 Dash\first([]);
 // === null
+```
+
+[↑ Top](#operations)
+
+get
+---
+[Operations](#operations) › [Iterable](#iterable)
+
+```php
+get($iterable, $path, $default = null): mixed
+```
+Gets the value at `$path` within `$iterable`. Nested properties are accessible with dot notation.
+
+Related: [getDirect()](#getdirect), [has()](#has), [property()](#property)
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` | 
+`$path` | `callable\|string` | (optional) If a callable, invoked with `($iterable)` to get the value at `$path`; if a string, will use `Dash\property($path)` to get the value at `$path`
+`$default` | `mixed` | (optional) Value to return if `$path` does not exist within `$iterable`
+**Returns** | `mixed` | Value at `$path` or `$default` if no value exists
+
+**Example:** 
+```php
+$iterable = [
+	'people' => [
+		['name' => 'Pete'],
+		['name' => 'John'],
+		['name' => 'Mark'],
+	]
+];
+Dash\get($iterable, 'people.2.name');
+// === 'Mark';
+
+```
+
+**Example:** Direct properties take precedence over nested ones
+```php
+$iterable = [
+	'a.b.c' => 'direct',
+	'a' => ['b' => ['c' => 'nested']]
+];
+Dash\get($iterable, 'a.b.c');
+// === 'direct'
 ```
 
 [↑ Top](#operations)
