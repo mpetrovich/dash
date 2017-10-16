@@ -192,6 +192,9 @@ class getDirectTest extends PHPUnit_Framework_TestCase
 			'two'
 		);
 
+		$count = Dash\getDirect(new ArrayObject([1, 2, 3]), 'count');
+		$this->assertSame($count(), 3);
+
 		$iterable = new ArrayObject(['a' => 'array value']);
 		$iterable->a = 'object value';
 		$this->assertSame('array value', Dash\getDirect($iterable, 'a'));

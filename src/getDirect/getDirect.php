@@ -3,17 +3,17 @@
 namespace Dash;
 
 /**
- * Gets the array value or object property at `$key` within `$iterable`.
+ * Gets the array value, object property, or method at `$key` within `$iterable`.
  *
- * If array offset and object properties exist for the same key,
+ * If an array offset, object property, and/or method all exist for the same key,
  * the value at the array offset takes precedence and will be returned.
  *
- * @see getDirectRef(), get(), has()
+ * @see getDirectRef(), hasDirect(), get()
  *
  * @category Iterable
  * @param iterable|stdClass|null $iterable
- * @param string $key Array offset or object property name
- * @param mixed $default (optional) Value to return if `$iterable` has no array offset or object property at `$key`
+ * @param string $key Array offset, object property name, or method name
+ * @param mixed $default (optional) Value to return if `$iterable` has nothing at `$key`
  * @return mixed
  *
  * @example
@@ -22,6 +22,10 @@ namespace Dash;
 
 	Dash\getDirect((object) ['a' => 'one', 'b' => 'two'], 'b');
 	// === 'two'
+
+	$count = Dash\getDirect(new ArrayObject([1, 2, 3]), 'count');
+	$count();
+	// === 3
  *
  * @example Array offsets take precedence over object properties
 	$iterable = new ArrayObject(['a' => 'array value']);
