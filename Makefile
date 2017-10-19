@@ -73,7 +73,6 @@ clean:
 # 	make release v=1.2.3
 #
 release:
-	make clean
 	make test
 	make docs
 	git add DOCS.md
