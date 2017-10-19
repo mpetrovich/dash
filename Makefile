@@ -1,4 +1,9 @@
 
+# Installs all dependencies
+default:
+	@composer install
+
+
 # Runs unit tests
 #
 # To run tests for a single operation, add `op=<operation>`.
@@ -59,7 +64,7 @@ docs:
 
 # Removes all generated files
 clean:
-	@rm -rf test-coverage/
+	@rm -rf test-coverage/ vendor/
 
 
 # Tags a new release
