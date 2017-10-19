@@ -1526,9 +1526,11 @@ getDirectRef
 [Operations](#operations) › [Utility](#utility)
 
 ```php
-_getDirectRef(/* key, input */): mixed
+: mixed
 ```
 Similar to `getDirect()`, but returns a reference to the value at `$key` within `$input`.
+
+This operation does not have a curried variant.
 
 Related: [getDirect()](#getdirect), [hasDirect()](#hasdirect)
 
