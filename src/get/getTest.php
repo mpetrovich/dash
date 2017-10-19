@@ -9,18 +9,18 @@ class getTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($iterable, $path, $default, $expected)
+	public function test($input, $path, $default, $expected)
 	{
-		$this->assertSame($expected, Dash\get($iterable, $path, $default));
+		$this->assertSame($expected, Dash\get($input, $path, $default));
 	}
 
 	/**
 	 * @dataProvider cases
 	 */
-	public function testCurried($iterable, $path, $default, $expected)
+	public function testCurried($input, $path, $default, $expected)
 	{
 		$get = Dash\_get($path, $default);
-		$this->assertSame($expected, $get($iterable));
+		$this->assertSame($expected, $get($input));
 	}
 
 	public function cases()
@@ -29,25 +29,25 @@ class getTest extends PHPUnit_Framework_TestCase
 
 		return [
 			'With null' => [
-				'iterable' => null,
+				'input' => null,
 				'path' => 'a.b.c',
 				'default' => 'default',
 				'expected' => 'default',
 			],
 			'With matching null path' => [
-				'iterable' => [null => 'value'],
+				'input' => [null => 'value'],
 				'path' => null,
 				'default' => 'default',
 				'expected' => 'value',
 			],
 			'With a matching direct array key' => [
-				'iterable' => ['a.b.c' => 'value'],
+				'input' => ['a.b.c' => 'value'],
 				'path' => 'a.b.c',
 				'default' => 'default',
 				'expected' => 'value',
 			],
 			'With a matching direct object property' => [
-				'iterable' => (object) [
+				'input' => (object) [
 					'a' => ['b' => ['c' => 'nested']],
 					'a.b.c' => 'value',
 				],
@@ -56,7 +56,7 @@ class getTest extends PHPUnit_Framework_TestCase
 				'expected' => 'value',
 			],
 			'With a matching null value' => [
-				'iterable' => (object) [
+				'input' => (object) [
 					'a' => ['b' => ['c' => null]],
 				],
 				'path' => 'a.b.c',
@@ -64,13 +64,13 @@ class getTest extends PHPUnit_Framework_TestCase
 				'expected' => null,
 			],
 			'With a callable iteratee' => [
-				'iterable' => (object) ['foo' => 'value'],
-				'path' => function ($iterable) { return $iterable->foo; },
+				'input' => (object) ['foo' => 'value'],
+				'path' => function ($input) { return $input->foo; },
 				'default' => 'default',
 				'expected' => 'value',
 			],
 			'With a callable value' => [
-				'iterable' => ['a' => ['b' => ['c' => $func]]],
+				'input' => ['a' => ['b' => ['c' => $func]]],
 				'path' => 'a.b.c',
 				'default' => 'default',
 				'expected' => $func,
@@ -81,13 +81,13 @@ class getTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'With an empty array' => [
-				'iterable' => [],
+				'input' => [],
 				'path' => 'a.b.c',
 				'default' => 'default',
 				'expected' => 'default',
 			],
 			'With nested arrays and a matching path' => [
-				'iterable' => [
+				'input' => [
 					'a' => [
 						['b' => ['c' => 'other']],
 						['b' => ['c' => 'value']],
@@ -98,7 +98,7 @@ class getTest extends PHPUnit_Framework_TestCase
 				'expected' => 'value',
 			],
 			'With nested arrays and a non-matching path' => [
-				'iterable' => [
+				'input' => [
 					'a' => [
 						['b' => ['c' => 'other']],
 						['b' => ['c' => 'value']],
@@ -114,7 +114,7 @@ class getTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'With with nested stdClass objects and a matching path' => [
-				'iterable' => (object) [
+				'input' => (object) [
 					'a' => (object) [
 						'b' => (object) [
 							'c' => 'value'
@@ -126,7 +126,7 @@ class getTest extends PHPUnit_Framework_TestCase
 				'expected' => 'value',
 			],
 			'With with nested stdClass objects and a non-matching path' => [
-				'iterable' => (object) [
+				'input' => (object) [
 					'a' => (object) [
 						'b' => (object) [
 							'c' => 'value'
@@ -143,7 +143,7 @@ class getTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'With with nested ArrayObjects and a matching path' => [
-				'iterable' => new ArrayObject([
+				'input' => new ArrayObject([
 					'a' => new ArrayObject([
 						'b' => new ArrayObject([
 							'c' => 'value'
@@ -155,7 +155,7 @@ class getTest extends PHPUnit_Framework_TestCase
 				'expected' => 'value',
 			],
 			'With with nested ArrayObjects and a non-matching path' => [
-				'iterable' => new ArrayObject([
+				'input' => new ArrayObject([
 					'a' => new ArrayObject([
 						'b' => new ArrayObject([
 							'c' => 'value'
@@ -172,7 +172,7 @@ class getTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'With a mix of nested elements and a matching path' => [
-				'iterable' => (object) [
+				'input' => (object) [
 					'a' => [
 						new ArrayObject([
 							'b' => (object) [
@@ -191,7 +191,7 @@ class getTest extends PHPUnit_Framework_TestCase
 				'expected' => 'value',
 			],
 			'With a mix of nested elements and a non-matching path' => [
-				'iterable' => (object) [
+				'input' => (object) [
 					'a' => [
 						new ArrayObject([
 							'b' => (object) [
@@ -215,86 +215,42 @@ class getTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider casesDefault
 	 */
-	public function testDefault($iterable, $path, $expected)
+	public function testDefault($input, $path, $expected)
 	{
-		$this->assertSame($expected, Dash\get($iterable, $path));
+		$this->assertSame($expected, Dash\get($input, $path));
 	}
 
 	public function casesDefault()
 	{
 		return [
 			'With a matching path' => [
-				'iterable' => ['a' => ['b' => ['c' => 'value']]],
+				'input' => ['a' => ['b' => ['c' => 'value']]],
 				'path' => 'a.b.c',
 				'expected' => 'value',
 			],
 			'With a non-matching path' => [
-				'iterable' => ['a' => ['b' => ['c' => 'value']]],
+				'input' => ['a' => ['b' => ['c' => 'value']]],
 				'path' => 'a.x.c',
 				'expected' => null,
 			],
 		];
 	}
 
-	/**
-	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
-	 */
-	public function testTypeAssertions($iterable, $type)
-	{
-		try {
-			Dash\get($iterable, 'foo');
-		}
-		catch (Exception $e) {
-			$this->assertSame(
-				"Dash\\get expects iterable or stdClass or null but was given $type",
-				$e->getMessage()
-			);
-			throw $e;
-		}
-	}
-
-	public function casesTypeAssertions()
-	{
-		return [
-			'With an empty string' => [
-				'iterable' => '',
-				'type' => 'string',
-			],
-			'With a string' => [
-				'iterable' => 'hello',
-				'type' => 'string',
-			],
-			'With a zero number' => [
-				'iterable' => 0,
-				'type' => 'integer',
-			],
-			'With a number' => [
-				'iterable' => 3.14,
-				'type' => 'double',
-			],
-			'With a DateTime' => [
-				'iterable' => new DateTime(),
-				'type' => 'DateTime',
-			],
-		];
-	}
-
 	public function testExamples()
 	{
-		$iterable = [
+		$input = [
 			'people' => [
 				['name' => 'Pete'],
 				['name' => 'John'],
 				['name' => 'Mark'],
 			]
 		];
-		$this->assertSame('Mark', Dash\get($iterable, 'people.2.name'));
+		$this->assertSame('Mark', Dash\get($input, 'people.2.name'));
 
-		$iterable = [
+		$input = [
 			'a.b.c' => 'direct',
 			'a' => ['b' => ['c' => 'nested']]
 		];
-		$this->assertSame('direct', Dash\get($iterable, 'a.b.c'));
+		$this->assertSame('direct', Dash\get($input, 'a.b.c'));
 	}
 }
