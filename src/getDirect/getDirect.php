@@ -3,17 +3,17 @@
 namespace Dash;
 
 /**
- * Gets the array value, object property, or method at `$key` within `$iterable`.
+ * Gets the array value, object property, or method at `$key` within `$input`.
  *
  * If an array offset, object property, and/or method all exist for the same key,
  * the value at the array offset takes precedence and will be returned.
  *
  * @see getDirectRef(), hasDirect(), get()
  *
- * @category Iterable
- * @param iterable|stdClass|null $iterable
+ * @category Utility
+ * @param mixed $input
  * @param string $key Array offset, object property name, or method name
- * @param mixed $default (optional) Value to return if `$iterable` has nothing at `$key`
+ * @param mixed $default (optional) Value to return if `$input` has nothing at `$key`
  * @return mixed
  *
  * @example
@@ -28,31 +28,30 @@ namespace Dash;
 	// === 3
  *
  * @example Array offsets take precedence over object properties
-	$iterable = new ArrayObject(['a' => 'array value']);
-	$iterable->a = 'object value';
+	$input = new ArrayObject(['a' => 'array value']);
+	$input->a = 'object value';
 
-	Dash\getDirect($iterable, 'a');
+	Dash\getDirect($input, 'a');
 	// === 'array value'
  */
-function getDirect($iterable, $key, $default = null)
+function getDirect($input, $key, $default = null)
 {
-	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
-
-	if (is_array($iterable) && array_key_exists($key, $iterable)
-		|| $iterable instanceof \ArrayAccess && isset($iterable[$key])
-	) {
-		$value = $iterable[$key];
+	if ($input instanceof \ArrayAccess && $input->offsetExists($key)) {
+		$value = $input[$key];
 	}
-	elseif (is_object($iterable) && property_exists($iterable, $key)) {
-		$value = $iterable->$key;
+	elseif (is_array($input) && array_key_exists($key, $input)) {
+		$value = $input[$key];
 	}
-	elseif (method_exists($iterable, $key)) {
-		$value = function () use ($iterable, $key) {
-			return call_user_func_array([$iterable, $key], func_get_args());
+	elseif (is_object($input) && property_exists($input, $key)) {
+		$value = $input->$key;
+	}
+	elseif (method_exists($input, $key)) {
+		$value = function () use ($input, $key) {
+			return call_user_func_array([$input, $key], func_get_args());
 		};
 	}
 	else {
-		$array = toArray($iterable);
+		$array = toArray($input);
 		$value = isset($array[$key]) ? $array[$key] : $default;
 	}
 

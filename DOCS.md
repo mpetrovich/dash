@@ -10,19 +10,17 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/next
 [average](#average--mean) / mean | [custom](#custom) | [currify](#currify) | 
 [contains](#contains--includes) / includes | [debug](#debug) | [curry](#curry) | 
 [deltas](#deltas) | [equal](#equal) | [curryN](#curryn) | 
-[filter](#filter) | [identical](#identical) | [curryRight](#curryright) | 
-[first](#first--head) / head | [identity](#identity) | [curryRightN](#curryrightn) | 
-[get](#get) | [isEmpty](#isempty) | [negate](#negate) | 
-[getDirect](#getdirect) | [isType](#istype) | [partial](#partial) | 
-[groupBy](#groupby) | [size](#size--count) / count | [partialRight](#partialright) | 
-[isIndexedArray](#isindexedarray) | [tap](#tap) | [unary](#unary) | 
-[join](#join--implode) / implode | [thru](#thru) |  | 
-[keyBy](#keyby--indexby) / indexBy |  |  | 
-[keys](#keys) |  |  | 
-[last](#last) |  |  | 
-[map](#map) |  |  | 
-[mapValues](#mapvalues) |  |  | 
-[max](#max) |  |  | 
+[filter](#filter) | [get](#get) | [curryRight](#curryright) | 
+[first](#first--head) / head | [getDirect](#getdirect) | [curryRightN](#curryrightn) | 
+[groupBy](#groupby) | [getDirectRef](#getdirectref) | [negate](#negate) | 
+[isIndexedArray](#isindexedarray) | [hasDirect](#hasdirect) | [partial](#partial) | 
+[join](#join--implode) / implode | [identical](#identical) | [partialRight](#partialright) | 
+[keyBy](#keyby--indexby) / indexBy | [identity](#identity) | [unary](#unary) | 
+[keys](#keys) | [isEmpty](#isempty) |  | 
+[last](#last) | [isType](#istype) |  | 
+[map](#map) | [size](#size--count) / count |  | 
+[mapValues](#mapvalues) | [tap](#tap) |  | 
+[max](#max) | [thru](#thru) |  | 
 [median](#median) |  |  | 
 [min](#min) |  |  | 
 [omit](#omit) |  |  | 
@@ -49,8 +47,6 @@ Iterable
 - [deltas](#deltas)
 - [filter](#filter)
 - [first](#first)
-- [get](#get)
-- [getDirect](#getdirect)
 - [groupBy](#groupby)
 - [isIndexedArray](#isindexedarray)
 - [join](#join)
@@ -375,92 +371,6 @@ Dash\first(['a' => 'one', 'b' => 'two', 'c' => 'three']);
 
 Dash\first([]);
 // === null
-```
-
-[↑ Top](#operations)
-
-get
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-get($iterable, $path, $default = null): mixed
-```
-Gets the value at `$path` within `$iterable`. Nested properties are accessible with dot notation.
-
-Related: [getDirect()](#getdirect), [has()](#has), [property()](#property)
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
-`$path` | `callable\|string` | (optional) If a callable, invoked with `($iterable)` to get the value at `$path`; if a string, will use `Dash\property($path)` to get the value at `$path`
-`$default` | `mixed` | (optional) Value to return if `$path` does not exist within `$iterable`
-**Returns** | `mixed` | Value at `$path` or `$default` if no value exists
-
-**Example:** 
-```php
-$iterable = [
-	'people' => [
-		['name' => 'Pete'],
-		['name' => 'John'],
-		['name' => 'Mark'],
-	]
-];
-Dash\get($iterable, 'people.2.name');
-// === 'Mark';
-
-```
-
-**Example:** Direct properties take precedence over nested ones
-```php
-$iterable = [
-	'a.b.c' => 'direct',
-	'a' => ['b' => ['c' => 'nested']]
-];
-Dash\get($iterable, 'a.b.c');
-// === 'direct'
-```
-
-[↑ Top](#operations)
-
-getDirect
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-getDirect($iterable, $key, $default = null): mixed
-```
-Gets the array value or object property at `$key` within `$iterable`.
-
-If array offset and object properties exist for the same key,
-the value at the array offset takes precedence and will be returned.
-
-Related: [getDirectRef()](#getdirectref), [get()](#get), [has()](#has)
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
-`$key` | `string` | Array offset or object property name
-`$default` | `mixed` | (optional) Value to return if `$iterable` has no array offset or object property at `$key`
-**Returns** | `mixed` | 
-
-**Example:** 
-```php
-Dash\getDirect(['a' => 'one', 'b' => 'two'], 'b');
-// === 'two'
-
-Dash\getDirect((object) ['a' => 'one', 'b' => 'two'], 'b');
-// === 'two'
-
-```
-
-**Example:** Array offsets take precedence over object properties
-```php
-$iterable = new ArrayObject(['a' => 'array value']);
-$iterable->a = 'object value';
-
-Dash\getDirect($iterable, 'a');
-// === 'array value'
 ```
 
 [↑ Top](#operations)
@@ -1314,6 +1224,10 @@ Utility
 - [custom](#custom)
 - [debug](#debug)
 - [equal](#equal)
+- [get](#get)
+- [getDirect](#getdirect)
+- [getDirectRef](#getdirectref)
+- [hasDirect](#hasdirect)
 - [identical](#identical)
 - [identity](#identity)
 - [isEmpty](#isempty)
@@ -1513,6 +1427,162 @@ Dash\equal([1, 2, 3], [1, '2', 3]);
 
 Dash\equal([1, 2, 3], [3, 2, 1]);
 // === false
+```
+
+[↑ Top](#operations)
+
+get
+---
+[Operations](#operations) › [Utility](#utility)
+
+```php
+get($input, $path, $default = null): mixed
+```
+Gets the value at `$path` within `$input`. Nested properties are accessible with dot notation.
+
+Related: [getDirect()](#getdirect), [has()](#has), [property()](#property)
+
+Parameter | Type | Description
+--- | --- | :---
+`$input` | `mixed` | 
+`$path` | `callable\|string` | (optional) If a callable, invoked with `($input)` to get the value at `$path`; if a string, will use `Dash\property($path)` to get the value at `$path`
+`$default` | `mixed` | (optional) Value to return if `$path` does not exist within `$input`
+**Returns** | `mixed` | Value at `$path` or `$default` if no value exists
+
+**Example:** 
+```php
+$input = [
+	'people' => [
+		['name' => 'Pete'],
+		['name' => 'John'],
+		['name' => 'Mark'],
+	]
+];
+Dash\get($input, 'people.2.name');
+// === 'Mark';
+
+```
+
+**Example:** Direct properties take precedence over nested ones
+```php
+$input = [
+	'a.b.c' => 'direct',
+	'a' => ['b' => ['c' => 'nested']]
+];
+Dash\get($input, 'a.b.c');
+// === 'direct'
+```
+
+[↑ Top](#operations)
+
+getDirect
+---
+[Operations](#operations) › [Utility](#utility)
+
+```php
+getDirect($input, $key, $default = null): mixed
+```
+Gets the array value, object property, or method at `$key` within `$input`.
+
+If an array offset, object property, and/or method all exist for the same key,
+the value at the array offset takes precedence and will be returned.
+
+Related: [getDirectRef()](#getdirectref), [hasDirect()](#hasdirect), [get()](#get)
+
+Parameter | Type | Description
+--- | --- | :---
+`$input` | `mixed` | 
+`$key` | `string` | Array offset, object property name, or method name
+`$default` | `mixed` | (optional) Value to return if `$input` has nothing at `$key`
+**Returns** | `mixed` | 
+
+**Example:** 
+```php
+Dash\getDirect(['a' => 'one', 'b' => 'two'], 'b');
+// === 'two'
+
+Dash\getDirect((object) ['a' => 'one', 'b' => 'two'], 'b');
+// === 'two'
+
+$count = Dash\getDirect(new ArrayObject([1, 2, 3]), 'count');
+$count();
+// === 3
+
+```
+
+**Example:** Array offsets take precedence over object properties
+```php
+$input = new ArrayObject(['a' => 'array value']);
+$input->a = 'object value';
+
+Dash\getDirect($input, 'a');
+// === 'array value'
+```
+
+[↑ Top](#operations)
+
+getDirectRef
+---
+[Operations](#operations) › [Utility](#utility)
+
+```php
+_getDirectRef(/* key, input */): mixed
+```
+Similar to `getDirect()`, but returns a reference to the value at `$key` within `$input`.
+
+Related: [getDirect()](#getdirect), [hasDirect()](#hasdirect)
+
+Parameter | Type | Description
+--- | --- | :---
+`$input` | `array\|object\|ArrayAccess` | 
+`$key` | `string` | Array offset or object property name
+**Returns** | `mixed` | Reference to `$key` within `$input`
+
+**Example:** 
+```php
+$array = ['key' => 'value'];
+$ref = &Dash\getDirectRef($array, 'key');
+$ref = 'changed';
+// $array['key'] === 'changed'
+
+$object = (object) ['key' => 'value'];
+$ref = &Dash\getDirectRef($object, 'key');
+$ref = 'changed';
+// $object->key === 'changed'
+```
+
+[↑ Top](#operations)
+
+hasDirect
+---
+[Operations](#operations) › [Utility](#utility)
+
+```php
+hasDirect($input, $key): boolean
+```
+Checks whether an array value, object property, or method exists at `$key` within `$input`.
+
+Related: [getDirect()](#getdirect)
+
+Parameter | Type | Description
+--- | --- | :---
+`$input` | `mixed` | 
+`$key` | `string` | Array offset, object property name, or method name
+**Returns** | `boolean` | 
+
+**Example:** 
+```php
+Dash\hasDirect(['a' => 1, 'b' => 2], 'a');
+// === true
+
+Dash\hasDirect(['a' => 1, 'b' => 2], 'x');
+// === false
+
+Dash\hasDirect((object) ['a' => 1, 'b' => 2], 'a');
+// === true
+
+Dash\hasDirect(new DateTime(), 'getTimestamp');
+// === true
 ```
 
 [↑ Top](#operations)

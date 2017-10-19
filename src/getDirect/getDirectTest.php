@@ -9,18 +9,18 @@ class getDirectTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($iterable, $key, $default, $expected)
+	public function test($input, $key, $default, $expected)
 	{
-		$this->assertSame($expected, Dash\getDirect($iterable, $key, $default));
+		$this->assertSame($expected, Dash\getDirect($input, $key, $default));
 	}
 
 	/**
 	 * @dataProvider cases
 	 */
-	public function testCurried($iterable, $key, $default, $expected)
+	public function testCurried($input, $key, $default, $expected)
 	{
 		$getDirect = Dash\_getDirect($key, $default);
-		$this->assertSame($expected, $getDirect($iterable));
+		$this->assertSame($expected, $getDirect($input));
 	}
 
 	public function cases()
@@ -29,25 +29,25 @@ class getDirectTest extends PHPUnit_Framework_TestCase
 
 		return [
 			'With null' => [
-				'iterable' => null,
+				'input' => null,
 				'key' => 'a',
 				'default' => 'default',
 				'expected' => 'default',
 			],
 			'With matching null key' => [
-				'iterable' => [null => 'value'],
+				'input' => [null => 'value'],
 				'key' => null,
 				'default' => 'default',
 				'expected' => 'value',
 			],
 			'With matching null value' => [
-				'iterable' => ['a' => null],
+				'input' => ['a' => null],
 				'key' => 'a',
 				'default' => 'default',
 				'expected' => null,
 			],
 			'With a callable value' => [
-				'iterable' => ['a' => $func],
+				'input' => ['a' => $func],
 				'key' => 'a',
 				'default' => 'default',
 				'expected' => $func,
@@ -58,13 +58,13 @@ class getDirectTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'With an empty array' => [
-				'iterable' => [],
+				'input' => [],
 				'key' => 'a',
 				'default' => 'default',
 				'expected' => 'default',
 			],
 			'With a matching direct array key' => [
-				'iterable' => ['a' => 'value'],
+				'input' => ['a' => 'value'],
 				'key' => 'a',
 				'default' => 'default',
 				'expected' => 'value',
@@ -75,13 +75,13 @@ class getDirectTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'With an empty stdClass' => [
-				'iterable' => (object) [],
+				'input' => (object) [],
 				'key' => 'a',
 				'default' => 'default',
 				'expected' => 'default',
 			],
 			'With a matching direct stdClass property' => [
-				'iterable' => (object) ['a' => 'value'],
+				'input' => (object) ['a' => 'value'],
 				'key' => 'a',
 				'default' => 'default',
 				'expected' => 'value',
@@ -92,13 +92,13 @@ class getDirectTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'With an empty ArrayObject' => [
-				'iterable' => new ArrayObject([]),
+				'input' => new ArrayObject([]),
 				'key' => 'a',
 				'default' => 'default',
 				'expected' => 'default',
 			],
 			'With a matching direct ArrayObject property' => [
-				'iterable' => new ArrayObject(['a' => 'value']),
+				'input' => new ArrayObject(['a' => 'value']),
 				'key' => 'a',
 				'default' => 'default',
 				'expected' => 'value',
@@ -116,67 +116,23 @@ class getDirectTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider casesDefault
 	 */
-	public function testDefault($iterable, $key, $expected)
+	public function testDefault($input, $key, $expected)
 	{
-		$this->assertSame($expected, Dash\getDirect($iterable, $key));
+		$this->assertSame($expected, Dash\getDirect($input, $key));
 	}
 
 	public function casesDefault()
 	{
 		return [
 			'With a matching key' => [
-				'iterable' => ['a' => 'value'],
+				'input' => ['a' => 'value'],
 				'key' => 'a',
 				'expected' => 'value',
 			],
 			'With a non-matching key' => [
-				'iterable' => ['a' => 'value'],
+				'input' => ['a' => 'value'],
 				'key' => 'x',
 				'expected' => null,
-			],
-		];
-	}
-
-	/**
-	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
-	 */
-	public function testTypeAssertions($iterable, $type)
-	{
-		try {
-			Dash\getDirect($iterable, 'foo');
-		}
-		catch (Exception $e) {
-			$this->assertSame(
-				"Dash\\getDirect expects iterable or stdClass or null but was given $type",
-				$e->getMessage()
-			);
-			throw $e;
-		}
-	}
-
-	public function casesTypeAssertions()
-	{
-		return [
-			'With an empty string' => [
-				'iterable' => '',
-				'type' => 'string',
-			],
-			'With a string' => [
-				'iterable' => 'hello',
-				'type' => 'string',
-			],
-			'With a zero number' => [
-				'iterable' => 0,
-				'type' => 'integer',
-			],
-			'With a number' => [
-				'iterable' => 3.14,
-				'type' => 'double',
-			],
-			'With a DateTime' => [
-				'iterable' => new DateTime(),
-				'type' => 'DateTime',
 			],
 		];
 	}
@@ -195,8 +151,8 @@ class getDirectTest extends PHPUnit_Framework_TestCase
 		$count = Dash\getDirect(new ArrayObject([1, 2, 3]), 'count');
 		$this->assertSame($count(), 3);
 
-		$iterable = new ArrayObject(['a' => 'array value']);
-		$iterable->a = 'object value';
-		$this->assertSame('array value', Dash\getDirect($iterable, 'a'));
+		$input = new ArrayObject(['a' => 'array value']);
+		$input->a = 'object value';
+		$this->assertSame('array value', Dash\getDirect($input, 'a'));
 	}
 }

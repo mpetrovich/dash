@@ -42,8 +42,6 @@ Existing
 - [ ] findKey
 - [ ] findLast
 - [ ] findValue
-- [ ] getDirectRef
-- [ ] hasDirect
 - [ ] intersection
 - [ ] matches
 - [ ] matchesProperty
@@ -80,7 +78,9 @@ Existing
 - [x] first
 - [x] get
 - [x] getDirect
+- [x] getDirectRef
 - [x] groupBy
+- [x] hasDirect
 - [x] identical
 - [x] identity
 - [x] isEmpty

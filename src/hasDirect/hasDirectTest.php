@@ -2,6 +2,7 @@
 
 /**
  * @covers Dash\hasDirect
+ * @covers Dash\_hasDirect
  */
 class hasDirectTest extends PHPUnit_Framework_TestCase
 {
@@ -11,6 +12,15 @@ class hasDirectTest extends PHPUnit_Framework_TestCase
 	public function test($input, $key, $expected)
 	{
 		$this->assertSame($expected, Dash\hasDirect($input, $key));
+	}
+
+	/**
+	 * @dataProvider cases
+	 */
+	public function testCurried($input, $key, $expected)
+	{
+		$hasDirect = Dash\_hasDirect($key);
+		$this->assertSame($expected, $hasDirect($input));
 	}
 
 	public function cases()
@@ -82,5 +92,13 @@ class hasDirectTest extends PHPUnit_Framework_TestCase
 				'expected' => true,
 			],
 		];
+	}
+
+	public function testExamples()
+	{
+		$this->assertSame(true, Dash\hasDirect(['a' => 1, 'b' => 2], 'a'));
+		$this->assertSame(false, Dash\hasDirect(['a' => 1, 'b' => 2], 'x'));
+		$this->assertSame(true, Dash\hasDirect((object) ['a' => 1, 'b' => 2], 'a'));
+		$this->assertSame(true, Dash\hasDirect(new DateTime(), 'getTimestamp'));
 	}
 }
