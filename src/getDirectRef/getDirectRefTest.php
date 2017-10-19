@@ -2,7 +2,6 @@
 
 /**
  * @covers Dash\getDirectRef
- * @covers Dash\_getDirectRef
  */
 class getDirectRefTest extends PHPUnit_Framework_TestCase
 {
@@ -34,39 +33,6 @@ class getDirectRefTest extends PHPUnit_Framework_TestCase
 
 		$ref = 'changed';
 		$this->assertSame('changed', $ref, 'The original value should be changed');
-	}
-
-	public function testArrayCurried()
-	{
-		$subject = ['key' => null];
-		$getDirectRef = Dash\_getDirectRef('key');
-		$ref = $getDirectRef($subject);
-		$this->assertSame($subject['key'], $ref, 'A reference is returned');
-
-		$ref = 'changed';
-		$this->assertSame('changed', $ref, 'The original value should have changed');
-	}
-
-	public function testObjectCurried()
-	{
-		$subject = (object) ['key' => null];
-		$getDirectRef = Dash\_getDirectRef('key');
-		$ref = $getDirectRef($subject);
-		$this->assertSame($subject->key, $ref, 'A reference is returned');
-
-		$ref = 'changed';
-		$this->assertSame('changed', $ref, 'The original value should have changed');
-	}
-
-	public function testArrayObjectCurried()
-	{
-		$subject = new ArrayObject(['key' => null]);
-		$getDirectRef = Dash\_getDirectRef('key');
-		$ref = $getDirectRef($subject);
-		$this->assertSame($subject['key'], $ref, 'A reference is returned');
-
-		$ref = 'changed';
-		$this->assertSame('changed', $ref, 'The original value should have changed');
 	}
 
 	/**

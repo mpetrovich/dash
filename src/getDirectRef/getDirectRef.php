@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Similar to `getDirect()`, but returns a reference to the value at `$key` within `$input`.
  *
+ * This operation does not have a curried variant.
+ *
  * @see getDirect(), hasDirect()
  *
  * @category Utility
@@ -44,12 +46,4 @@ function &getDirectRef(&$input, $key)
 	}
 
 	return $value;
-}
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _getDirectRef(/* key, input */)
-{
-	return currify('Dash\getDirectRef', func_get_args());
 }
