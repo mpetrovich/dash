@@ -11,16 +11,22 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/next
 [contains](#contains--includes) / includes | [debug](#debug) | [curry](#curry) | 
 [deltas](#deltas) | [equal](#equal) | [curryN](#curryn) | 
 [filter](#filter) | [get](#get) | [curryRight](#curryright) | 
-[first](#first--head) / head | [getDirect](#getdirect) | [curryRightN](#curryrightn) | 
-[groupBy](#groupby) | [getDirectRef](#getdirectref) | [negate](#negate) | 
-[isIndexedArray](#isindexedarray) | [hasDirect](#hasdirect) | [partial](#partial) | 
-[join](#join--implode) / implode | [identical](#identical) | [partialRight](#partialright) | 
-[keyBy](#keyby--indexby) / indexBy | [identity](#identity) | [unary](#unary) | 
-[keys](#keys) | [isEmpty](#isempty) |  | 
-[last](#last) | [isType](#istype) |  | 
-[map](#map) | [size](#size--count) / count |  | 
-[mapValues](#mapvalues) | [tap](#tap) |  | 
-[max](#max) | [thru](#thru) |  | 
+[find](#find) | [getDirect](#getdirect) | [curryRightN](#curryrightn) | 
+[findKey](#findkey) | [getDirectRef](#getdirectref) | [negate](#negate) | 
+[findLast](#findlast) | [hasDirect](#hasdirect) | [partial](#partial) | 
+[findLastKey](#findlastkey) | [identical](#identical) | [partialRight](#partialright) | 
+[findLastValue](#findlastvalue) | [identity](#identity) | [unary](#unary) | 
+[findValue](#findvalue) | [isEmpty](#isempty) |  | 
+[first](#first--head) / head | [isType](#istype) |  | 
+[groupBy](#groupby) | [size](#size--count) / count |  | 
+[isIndexedArray](#isindexedarray) | [tap](#tap) |  | 
+[join](#join--implode) / implode | [thru](#thru) |  | 
+[keyBy](#keyby--indexby) / indexBy |  |  | 
+[keys](#keys) |  |  | 
+[last](#last) |  |  | 
+[map](#map) |  |  | 
+[mapValues](#mapvalues) |  |  | 
+[max](#max) |  |  | 
 [median](#median) |  |  | 
 [min](#min) |  |  | 
 [omit](#omit) |  |  | 
@@ -46,6 +52,12 @@ Iterable
 - [contains](#contains)
 - [deltas](#deltas)
 - [filter](#filter)
+- [find](#find)
+- [findKey](#findkey)
+- [findLast](#findlast)
+- [findLastKey](#findlastkey)
+- [findLastValue](#findlastvalue)
+- [findValue](#findvalue)
 - [first](#first)
 - [groupBy](#groupby)
 - [isIndexedArray](#isindexedarray)
@@ -303,7 +315,7 @@ Related: [reject()](#reject)
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable\|stdClass\|null` | 
-`$predicate` | `callable\|string\|array` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable`; if a string, will get elements with a truthy value for that field/index; if an array of form `[$field, $value]`, will get elements where the field/index loosely equals `$value`
+`$predicate` | `callable\|string\|array` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable`; if a string, will get elements with truthy values at `$field`; if an array of form `[$field, $value]`, will get elements whose `$field` loosely equals `$value`
 **Returns** | `array` | List of elements in `$iterable` that satisfy `$predicate`
 
 **Example:** 
@@ -326,7 +338,7 @@ Dash\filter([1, 2, null, 3, false, true]);
 
 ```
 
-**Example:** With a field/value
+**Example:** With a field and value
 ```php
 $data = [
 	['name' => 'John', 'active' => false],
@@ -344,6 +356,348 @@ Dash\filter($data, ['active', false]);
 // === [
 	['name' => 'John', 'active' => false],
 ]
+```
+
+[↑ Top](#operations)
+
+find
+---
+[Operations](#operations) › [Iterable](#iterable)
+
+```php
+find($iterable, $predicate = 'Dash\identity'): array|null
+```
+Gets the key and value of the first element for which `$predicate` returns truthy.
+
+Iteration will stop at the first truthy return value.
+
+Related: [findKey()](#findkey), [findValue()](#findvalue), [findLast()](#findlast)
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` | 
+`$predicate` | `callable\|string\|array` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable` until a truthy value is returned; if a string, will get the first element with a truthy value at `$field`; if an array of form `[$field, $value]`, will get the first element whose `$field` loosely equals `$value`
+**Returns** | `array\|null` | `[$key, $value]` of the matching key and value, or null if not found
+
+**Example:** 
+```php
+Dash\find(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], 'Dash\isEven');
+// === ['b', 2]
+
+Dash\find(
+	['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
+	function ($value, $key) { return $value > 1 && $key !== 'b'; }
+);
+// === ['c', 3]
+
+```
+
+**Example:** The default predicate checks truthiness
+```php
+Dash\find([0, null, false, 'a', true]);
+// === [3, 'a']
+
+```
+
+**Example:** With a field and value
+```php
+$data = [
+	['name' => 'John', 'active' => false],
+	['name' => 'Mary', 'active' => true],
+	['name' => 'Pete', 'active' => true],
+	['name' => 'Jane', 'active' => false],
+];
+
+Dash\find($data, 'active');
+// === [1, ['name' => 'Mary', 'active' => true]]
+
+Dash\find($data, ['active', false]);
+// === [0, ['name' => 'John', 'active' => false]]
+```
+
+[↑ Top](#operations)
+
+findKey
+---
+[Operations](#operations) › [Iterable](#iterable)
+
+```php
+findKey($iterable, $predicate = 'Dash\identity'): string|null
+```
+Gets the key of the first element for which `$predicate` returns truthy.
+
+Iteration will stop at the first truthy return value.
+
+Related: [find()](#find), [findValue()](#findvalue), [findLastKey()](#findlastkey)
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` | 
+`$predicate` | `callable\|string\|array` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable` until a truthy value is returned; if a string, will get the first element with a truthy value at `$field`; if an array of form `[$field, $value]`, will get the first element whose `$field` loosely equals `$value`
+**Returns** | `string\|null` | The key of the first matching element, or null if not found
+
+**Example:** 
+```php
+Dash\findKey(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], 'Dash\isEven');
+// === 'b'
+
+Dash\findKey(
+	['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
+	function ($value, $key) { return $value > 1 && $key !== 'b'; }
+);
+// === 'c'
+
+```
+
+**Example:** The default predicate checks truthiness
+```php
+Dash\findKey([0, null, false, 'a', true]);
+// === 3
+
+```
+
+**Example:** With a field and value
+```php
+$data = [
+	['name' => 'John', 'active' => false],
+	['name' => 'Mary', 'active' => true],
+	['name' => 'Pete', 'active' => true],
+	['name' => 'Jane', 'active' => false],
+];
+
+Dash\findKey($data, 'active');
+// === 1
+
+Dash\findKey($data, ['active', false]);
+// === 0
+```
+
+[↑ Top](#operations)
+
+findLast
+---
+[Operations](#operations) › [Iterable](#iterable)
+
+```php
+findLast($iterable, $predicate = 'Dash\identity'): array|null
+```
+Gets the key and value of the last element for which `$predicate` returns truthy.
+
+Iteration begin at the end and will stop at the last truthy return value.
+
+Related: [findLastKey()](#findlastkey), [findLastValue()](#findlastvalue), [find()](#find)
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` | 
+`$predicate` | `callable\|string\|array` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable` until a truthy value is returned; if a string, will get the last element with a truthy value at `$field`; if an array of form `[$field, $value]`, will get the last element whose `$field` loosely equals `$value`
+**Returns** | `array\|null` | `[$key, $value]` of the last matching element, or null if not found
+
+**Example:** 
+```php
+Dash\findLast(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], 'Dash\isEven');
+// === ['d', 4]
+
+Dash\findLast(
+	['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
+	function ($value, $key) { return $value > 1 && $key !== 'b'; }
+);
+// === ['d', 4]
+
+```
+
+**Example:** The default predicate checks truthiness
+```php
+Dash\findLast([0, null, false, 'a', true]);
+// === [4, true]
+
+```
+
+**Example:** With a field and value
+```php
+$data = [
+	['name' => 'John', 'active' => false],
+	['name' => 'Mary', 'active' => true],
+	['name' => 'Pete', 'active' => true],
+	['name' => 'Jane', 'active' => false],
+];
+
+Dash\findLast($data, 'active');
+// === [2, ['name' => 'Pete', 'active' => true]]
+
+Dash\findLast($data, ['active', false]);
+// === [3, ['name' => 'Jane', 'active' => false]]
+```
+
+[↑ Top](#operations)
+
+findLastKey
+---
+[Operations](#operations) › [Iterable](#iterable)
+
+```php
+findLastKey($iterable, $predicate = 'Dash\identity'): string|null
+```
+Gets the key of the last element for which `$predicate` returns truthy.
+
+Iteration begin at the end and will stop at the last truthy return value.
+
+Related: [findLast()](#findlast), [findLastValue()](#findlastvalue), [findKey()](#findkey)
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` | 
+`$predicate` | `callable\|string\|array` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable` until a truthy value is returned; if a string, will get the last element with a truthy value at `$field`; if an array of form `[$field, $value]`, will get the last element whose `$field` loosely equals `$value`
+**Returns** | `string\|null` | The key of the last matching element, or null if not found
+
+**Example:** 
+```php
+Dash\findLastKey(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], 'Dash\isEven');
+// === 'd'
+
+Dash\findLastKey(
+	['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
+	function ($value, $key) { return $value > 1 && $key !== 'b'; }
+);
+// === 'd'
+
+```
+
+**Example:** The default predicate checks truthiness
+```php
+Dash\findLastKey([0, null, false, 'a', true]);
+// === 4
+
+```
+
+**Example:** With a field and value
+```php
+$data = [
+	['name' => 'John', 'active' => false],
+	['name' => 'Mary', 'active' => true],
+	['name' => 'Pete', 'active' => true],
+	['name' => 'Jane', 'active' => false],
+];
+
+Dash\findLastKey($data, 'active');
+// === 2
+
+Dash\findLastKey($data, ['active', false]);
+// === 3
+```
+
+[↑ Top](#operations)
+
+findLastValue
+---
+[Operations](#operations) › [Iterable](#iterable)
+
+```php
+findLastValue($iterable, $predicate = 'Dash\identity'): mixed|null
+```
+Gets the value of the last element for which `$predicate` returns truthy.
+
+Iteration begin at the end and will stop at the last truthy return value.
+
+Related: [findLast()](#findlast), [findLastKey()](#findlastkey), [findValue()](#findvalue)
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` | 
+`$predicate` | `callable\|string\|array` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable` until a truthy value is returned; if a string, will get the last element with a truthy value at `$field`; if an array of form `[$field, $value]`, will get the last element whose `$field` loosely equals `$value`
+**Returns** | `mixed\|null` | The value of the last matching element, or null if not found
+
+**Example:** 
+```php
+Dash\findLastValue(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], 'Dash\isEven');
+// === 4
+
+Dash\findLastValue(
+	['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
+	function ($value, $key) { return $value > 1 && $key !== 'b'; }
+);
+// === 4
+
+```
+
+**Example:** The default predicate checks truthiness
+```php
+Dash\findLastValue([0, null, false, 'a', true]);
+// === true
+
+```
+
+**Example:** With a field and value
+```php
+$data = [
+	['name' => 'John', 'active' => false],
+	['name' => 'Mary', 'active' => true],
+	['name' => 'Pete', 'active' => true],
+	['name' => 'Jane', 'active' => false],
+];
+
+Dash\findLastValue($data, 'active');
+// === ['name' => 'Pete', 'active' => true]
+
+Dash\findLastValue($data, ['active', false]);
+// === ['name' => 'Jane', 'active' => false]
+```
+
+[↑ Top](#operations)
+
+findValue
+---
+[Operations](#operations) › [Iterable](#iterable)
+
+```php
+findValue($iterable, $predicate = 'Dash\identity'): mixed|null
+```
+Gets the value of the first element for which `$predicate` returns truthy.
+
+Iteration will stop at the first truthy return value.
+
+Related: [find()](#find), [findKey()](#findkey), [findLastValue()](#findlastvalue)
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` | 
+`$predicate` | `callable\|string\|array` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable` until a truthy value is returned; if a string, will get the first element with a truthy value at `$field`; if an array of form `[$field, $value]`, will get the first element whose `$field` loosely equals `$value`
+**Returns** | `mixed\|null` | The value of the first matching element, or null if not found
+
+**Example:** 
+```php
+Dash\findValue(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], 'Dash\isEven');
+// === 2
+
+Dash\findValue(
+	['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
+	function ($value, $key) { return $value > 1 && $key !== 'b'; }
+);
+// === 3
+
+```
+
+**Example:** The default predicate checks truthiness
+```php
+Dash\findValue([0, null, false, 'a', true]);
+// === 'a'
+
+```
+
+**Example:** With a field and value
+```php
+$data = [
+	['name' => 'John', 'active' => false],
+	['name' => 'Mary', 'active' => true],
+	['name' => 'Pete', 'active' => true],
+	['name' => 'Jane', 'active' => false],
+];
+
+Dash\findValue($data, 'active');
+// === ['name' => 'Mary', 'active' => true]
+
+Dash\findValue($data, ['active', false]);
+// === ['name' => 'John', 'active' => false]
 ```
 
 [↑ Top](#operations)

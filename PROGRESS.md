@@ -124,7 +124,6 @@ Existing
 
 #### [anahkiasen/underscore-php](http://anahkiasen.github.io/underscore-php)
 - [ ] append
-- [ ] find
 - [ ] flatten
 - [ ] has
 - [ ] invoke
