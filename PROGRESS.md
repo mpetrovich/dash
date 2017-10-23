@@ -36,6 +36,7 @@ Requirements
 Existing
 ---
 - [ ] difference
+- [ ] drop
 - [ ] dropWhile
 - [ ] each
 - [ ] intersection
@@ -45,6 +46,7 @@ Existing
 - [ ] reduce
 - [ ] result
 - [ ] set
+- [ ] take
 - [ ] takeWhile
 - [ ] union
 - [ ] where
