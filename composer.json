@@ -46,6 +46,8 @@
 			"src/find/find.php",
 			"src/findKey/findKey.php",
 			"src/findLast/findLast.php",
+			"src/findLastKey/findLastKey.php",
+			"src/findLastValue/findLastValue.php",
 			"src/findValue/findValue.php",
 			"src/first/first.php",
 			"src/get/get.php",

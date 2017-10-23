@@ -74,6 +74,8 @@ Existing
 - [x] find
 - [x] findKey
 - [x] findLast
+- [x] findLastKey
+- [x] findLastValue
 - [x] findValue
 - [x] first
 - [x] get
