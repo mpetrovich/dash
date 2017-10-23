@@ -57,16 +57,7 @@ function reject($iterable, $predicate = 'Dash\identity')
 	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
 
 	if (!is_callable($predicate)) {
-		if (is_array($predicate)) {
-			// Invoked as ($iterable, [$field, $matchValue])
-			list($field, $matchValue) = $predicate;
-		}
-		else {
-			// Invoked as ($iterable, $field)
-			$field = $predicate;
-			$matchValue = true;
-		}
-		$predicate = matchesProperty($field, $matchValue);
+		$predicate = call_user_func_array('Dash\matchesProperty', (array) $predicate);
 	}
 
 	return filter($iterable, negate($predicate));

@@ -14,9 +14,9 @@ namespace Dash;
  * @param iterable|stdClass|null $iterable
  * @param callable|string|array $predicate (optional) If a callable, invoked with `($value, $key, $iterable)`
  *                                         for each element in `$iterable`;
- *                                         if a string, will get elements with a truthy value for that field/index;
- *                                         if an array of form `[$field, $value]`, will get elements where the
- *                                         field/index loosely equals `$value`
+ *                                         if a string, will get elements with truthy values at `$field`;
+ *                                         if an array of form `[$field, $value]`, will get elements
+ *                                         whose `$field` loosely equals `$value`
  * @return array List of elements in `$iterable` that satisfy `$predicate`
  *
  * @example
@@ -33,7 +33,7 @@ namespace Dash;
 	Dash\filter([1, 2, null, 3, false, true]);
 	// === [1, 2, 3, true]
  *
- * @example With a field/value
+ * @example With a field and value
 	$data = [
 		['name' => 'John', 'active' => false],
 		['name' => 'Mary', 'active' => true],
@@ -60,16 +60,7 @@ function filter($iterable, $predicate = 'Dash\identity')
 	}
 
 	if (!is_callable($predicate)) {
-		if (is_array($predicate)) {
-			// Invoked as ($iterable, [$field, $matchValue])
-			list($field, $matchValue) = $predicate;
-		}
-		else {
-			// Invoked as ($iterable, $field)
-			$field = $predicate;
-			$matchValue = true;
-		}
-		$predicate = matchesProperty($field, $matchValue);
+		$predicate = call_user_func_array('Dash\matchesProperty', (array) $predicate);
 	}
 
 	$filtered = [];
