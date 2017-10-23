@@ -7,16 +7,16 @@ use Dash\_;
 
 $sourceDir = $argv[1];
 $destFilepath = $argv[2];
-buildDocs($sourceDir, $destFilepath);
+buildOps($sourceDir, $destFilepath);
 
-function buildDocs($sourceDir, $destFilepath)
+function buildOps($sourceDir, $destFilepath)
 {
 	$categories = _::chain(new FilesystemIterator($sourceDir))
 		->map(function ($fileinfo) { return pathinfo($fileinfo)['filename']; })
 		->reject(function ($name) { return $name === '' || $name[0] === '_'; })
 		->map(function ($name) { return "src/$name/$name.php"; })
 		->filter(function ($filepath) { return file_exists($filepath); })
-		->map('createDoc')
+		->map('createOp')
 		->reject('isIncomplete')
 		->groupBy('category', 'Other')
 		->thru(function ($categories) {
@@ -25,7 +25,7 @@ function buildDocs($sourceDir, $destFilepath)
 			});
 			return $categories;
 		})
-		->each(function ($docs) { return _::sort($docs, _::property('name')); })
+		->each(function ($ops) { return _::sort($ops, _::property('name')); })
 		->value();
 
 	_::chain($categories)
@@ -39,7 +39,7 @@ function buildDocs($sourceDir, $destFilepath)
 		->run();
 }
 
-function createDoc($filepath)
+function createOp($filepath)
 {
 	$docblock = extractDocblock($filepath);
 	$op = parseDocblock($docblock);
@@ -59,8 +59,8 @@ function extractDocblock($filepath)
 	$matches = [];
 
 	// Extracts docblock
-	$hasDoc = preg_match('/\/\**\n([\s\S]+?)\*\//', $content, $matches);
-	$docblock = $hasDoc ? $matches[1] : '';
+	$hasOp = preg_match('/\/\**\n([\s\S]+?)\*\//', $content, $matches);
+	$docblock = $hasOp ? $matches[1] : '';
 
 	// Removes leading asterisks and whitespace
 	$docblock = preg_replace('/^[ ]*\*[ ]*(.*)$/m', '$1', $docblock);
@@ -200,7 +200,7 @@ function parseDocblock($docblock)
 	return $op;
 }
 
-function renderDoc($op)
+function renderOp($op)
 {
 	$aliases = $op->aliases ? sprintf(' / %s', implode(' / ', $op->aliases)) : '';
 
@@ -271,19 +271,19 @@ $examples
 END;
 }
 
-function renderCategory($docs, $category)
+function renderCategory($ops, $category)
 {
-	$list = _::chain($docs)
-		->map(function ($doc) {
-			$returnType = $doc->return->type ? ": {$doc->return->type}" : '';
+	$list = _::chain($ops)
+		->map(function ($op) {
+			$returnType = $op->return->type ? ": {$op->return->type}" : '';
 			$returnType = str_replace('|', '\\|', $returnType);
-			return "[$doc->name](#$doc->slug) | `{$doc->signature}{$returnType}`";
+			return "[$op->name](#$op->slug) | `{$op->signature}{$returnType}`";
 		})
 		->join("\n")
 		->value();
 
-	$renderedDocs = _::chain($docs)
-		->map('renderDoc')
+	$renderedOps = _::chain($ops)
+		->map('renderOp')
 		->join("\n")
 		->value();
 
@@ -294,7 +294,7 @@ Operation | Signature
 :--- | :---
 $list
 
-$renderedDocs
+$renderedOps
 
 END;
 }
