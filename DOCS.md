@@ -45,44 +45,46 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/next
 
 Iterable
 ===
-- [all](#all)
-- [any](#any)
-- [at](#at)
-- [average](#average)
-- [contains](#contains)
-- [deltas](#deltas)
-- [filter](#filter)
-- [find](#find)
-- [findKey](#findkey)
-- [findLast](#findlast)
-- [findLastKey](#findlastkey)
-- [findLastValue](#findlastvalue)
-- [findValue](#findvalue)
-- [first](#first)
-- [groupBy](#groupby)
-- [isIndexedArray](#isindexedarray)
-- [join](#join)
-- [keyBy](#keyby)
-- [keys](#keys)
-- [last](#last)
-- [map](#map)
-- [mapValues](#mapvalues)
-- [max](#max)
-- [median](#median)
-- [min](#min)
-- [omit](#omit)
-- [pick](#pick)
-- [pluck](#pluck)
-- [reject](#reject)
-- [reverse](#reverse)
-- [rotate](#rotate)
-- [sort](#sort)
-- [sum](#sum)
-- [take](#take)
-- [takeRight](#takeright)
-- [toArray](#toarray)
-- [toObject](#toobject)
-- [values](#values)
+Operation | Signature
+:--- | :---
+[all](#all) | `all($iterable, $predicate = 'Dash\identity'): boolean`
+[any](#any) | `any($iterable, $predicate = 'Dash\identity'): boolean`
+[at](#at) | `at($iterable, $index, $default = null): mixed`
+[average](#average) | `average($iterable): double\|null`
+[contains](#contains) | `contains($iterable, $target, $comparator = 'Dash\equal'): boolean`
+[deltas](#deltas) | `deltas($iterable): array`
+[filter](#filter) | `filter($iterable, $predicate = 'Dash\identity'): array`
+[find](#find) | `find($iterable, $predicate = 'Dash\identity'): array\|null`
+[findKey](#findkey) | `findKey($iterable, $predicate = 'Dash\identity'): string\|null`
+[findLast](#findlast) | `findLast($iterable, $predicate = 'Dash\identity'): array\|null`
+[findLastKey](#findlastkey) | `findLastKey($iterable, $predicate = 'Dash\identity'): string\|null`
+[findLastValue](#findlastvalue) | `findLastValue($iterable, $predicate = 'Dash\identity'): mixed\|null`
+[findValue](#findvalue) | `findValue($iterable, $predicate = 'Dash\identity'): mixed\|null`
+[first](#first) | `first($iterable): mixed\|null`
+[groupBy](#groupby) | `groupBy($iterable, $iteratee = 'Dash\identity', $defaultGroup = null): array`
+[isIndexedArray](#isindexedarray) | `isIndexedArray($value): boolean`
+[join](#join) | `join($iterable, $separator): string`
+[keyBy](#keyby) | `keyBy($iterable, $iteratee = 'Dash\identity'): array`
+[keys](#keys) | `keys($iterable): array`
+[last](#last) | `last($iterable): mixed\|null`
+[map](#map) | `map($iterable, $iteratee = 'Dash\identity'): array`
+[mapValues](#mapvalues) | `mapValues($iterable, $iteratee = 'Dash\identity'): array`
+[max](#max) | `max($iterable): mixed\|null`
+[median](#median) | `median($iterable): mixed\|null`
+[min](#min) | `min($iterable): mixed\|null`
+[omit](#omit) | `omit($iterable, $keys): array`
+[pick](#pick) | `pick($iterable, $keys): array`
+[pluck](#pluck) | `pluck($iterable, $path, $default = null): array`
+[reject](#reject) | `reject($iterable, $predicate = 'Dash\identity'): array`
+[reverse](#reverse) | `reverse($iterable, $preserveIntegerKeys = false): array`
+[rotate](#rotate) | `rotate($iterable, $count = 1): array`
+[sort](#sort) | `sort($iterable, $comparator = 'Dash\compare'): array`
+[sum](#sum) | `sum($iterable): numeric`
+[take](#take) | `take($iterable, $count = 1): array`
+[takeRight](#takeright) | `takeRight($iterable, $count = 1): array`
+[toArray](#toarray) | `toArray($value): array`
+[toObject](#toobject) | `toObject($value): object`
+[values](#values) | `values($iterable): array`
 
 
 all / every
@@ -1572,23 +1574,25 @@ Dash\values(['c' => 3, 'a' => 1, 'b' => 2]);
 
 Utility
 ===
-- [assertType](#asserttype)
-- [chain](#chain)
-- [compare](#compare)
-- [custom](#custom)
-- [debug](#debug)
-- [equal](#equal)
-- [get](#get)
-- [getDirect](#getdirect)
-- [getDirectRef](#getdirectref)
-- [hasDirect](#hasdirect)
-- [identical](#identical)
-- [identity](#identity)
-- [isEmpty](#isempty)
-- [isType](#istype)
-- [size](#size)
-- [tap](#tap)
-- [thru](#thru)
+Operation | Signature
+:--- | :---
+[assertType](#asserttype) | `assertType($value, $type, $funcName = __FUNCTION__): void`
+[chain](#chain) | `chain($input = null): Dash\_`
+[compare](#compare) | `compare($a, $b): integer`
+[custom](#custom) | `custom($name): function`
+[debug](#debug) | `debug($value /*, ...value */): mixed`
+[equal](#equal) | `equal($a, $b): boolean`
+[get](#get) | `get($input, $path, $default = null): mixed`
+[getDirect](#getdirect) | `getDirect($input, $key, $default = null): mixed`
+[getDirectRef](#getdirectref) | `: mixed`
+[hasDirect](#hasdirect) | `hasDirect($input, $key): boolean`
+[identical](#identical) | `identical($a, $b): boolean`
+[identity](#identity) | `identity($value): mixed`
+[isEmpty](#isempty) | `isEmpty($value): boolean`
+[isType](#istype) | `isType($value, $type): boolean`
+[size](#size) | `size($value, $encoding = 'UTF-8'): integer`
+[tap](#tap) | `tap($value, callable $interceptor): mixed`
+[thru](#thru) | `thru($value, callable $interceptor): mixed`
 
 
 assertType
@@ -2194,18 +2198,20 @@ $result = _::chain([1, 3, 4])
 
 Callable
 ===
-- [apply](#apply)
-- [ary](#ary)
-- [call](#call)
-- [currify](#currify)
-- [curry](#curry)
-- [curryN](#curryn)
-- [curryRight](#curryright)
-- [curryRightN](#curryrightn)
-- [negate](#negate)
-- [partial](#partial)
-- [partialRight](#partialright)
-- [unary](#unary)
+Operation | Signature
+:--- | :---
+[apply](#apply) | `apply(callable $callable, $args): mixed`
+[ary](#ary) | `ary(callable $callable, $arity): callable`
+[call](#call) | `call(callable $callable /*, ...args */): mixed`
+[currify](#currify) | `currify(callable $callable, array $args = [], $rotate = 1): function\|mixed`
+[curry](#curry) | `curry(callable $callable /*, ...args */): function\|mixed`
+[curryN](#curryn) | `curryN(callable $callable, $numRequiredArgs /*, ...args */): function\|mixed`
+[curryRight](#curryright) | `curryRight(callable $callable /*, ...args */): function\|mixed`
+[curryRightN](#curryrightn) | `curryRightN(callable $callable, $numRequiredArgs /*, ...args */): function\|mixed`
+[negate](#negate) | `negate(callable $predicate): callable`
+[partial](#partial) | `partial($callable /*, ...args */): callable`
+[partialRight](#partialright) | `partialRight($callable /*, ...args */): callable`
+[unary](#unary) | `unary(callable $callable): callable`
 
 
 apply
@@ -2757,8 +2763,10 @@ Dash\filter([1, 2.0, '3', 'a'], $isNumeric);
 
 Number
 ===
-- [isEven](#iseven)
-- [isOdd](#isodd)
+Operation | Signature
+:--- | :---
+[isEven](#iseven) | `isEven($value): boolean`
+[isOdd](#isodd) | `isOdd($value): boolean`
 
 
 isEven

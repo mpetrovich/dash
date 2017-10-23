@@ -275,7 +275,9 @@ function renderCategory($docs, $category)
 {
 	$list = _::chain($docs)
 		->map(function ($doc) {
-			return "- [$doc->name](#$doc->slug)";
+			$returnType = $doc->return->type ? ": {$doc->return->type}" : '';
+			$returnType = str_replace('|', '\\|', $returnType);
+			return "[$doc->name](#$doc->slug) | `{$doc->signature}{$returnType}`";
 		})
 		->join("\n")
 		->value();
@@ -288,6 +290,8 @@ function renderCategory($docs, $category)
 	return <<<END
 $category
 ===
+Operation | Signature
+:--- | :---
 $list
 
 $renderedDocs
