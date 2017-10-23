@@ -38,10 +38,6 @@ Existing
 - [ ] difference
 - [ ] dropWhile
 - [ ] each
-- [ ] find
-- [ ] findKey
-- [ ] findLast
-- [ ] findValue
 - [ ] intersection
 - [ ] matches
 - [ ] matchesProperty
@@ -75,6 +71,10 @@ Existing
 - [x] deltas
 - [x] equal
 - [x] filter
+- [x] find
+- [x] findKey
+- [x] findLast
+- [x] findValue
 - [x] first
 - [x] get
 - [x] getDirect
