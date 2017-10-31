@@ -122,22 +122,38 @@ Existing
 - [x] unary
 - [x] values
 
+#### [Array methods](http://php.net/manual/en/ref.array.php)
+- [ ] chunk
+- [ ] multisort
+- [ ] pad
+- [ ] product
+- [ ] random
+- [ ] invert / flip
+- [ ] replaceKeys
+- [ ] replaceValue
+- [ ] shift
+- [ ] pop
+- [ ] slice
+- [ ] splice
+- [ ] unique / uniq
+- [ ] unshift / prepend
+- [ ] unpop / append
+- [ ] natsort
+- [ ] natcasesort
+- [ ] shuffle / randomize
+
 #### [anahkiasen/underscore-php](http://anahkiasen.github.io/underscore-php)
-- [ ] append
 - [ ] flatten
 - [ ] has
 - [ ] invoke
 - [ ] matchesAny
 - [ ] merge
 - [ ] prepend
-- [ ] random
 - [ ] range
 - [ ] remove
 - [ ] removeFirst
 - [ ] removeLast
 - [ ] repeat
-- [ ] replaceKeys
-- [ ] replaceValue
 - [ ] sortKeys
 
 #### [bdelespierre/underscore.php](https://github.com/bdelespierre/underscore.php)
@@ -158,7 +174,6 @@ Existing
 - [ ] findWhere
 - [ ] functions
 - [ ] indexOf
-- [ ] invert
 - [ ] is / isType
 - [ ] isArray
 - [ ] isBoolean
@@ -190,20 +205,17 @@ Existing
 - [ ] provide / dash
 - [ ] reduceRight
 - [ ] sample
-- [ ] shuffle / randomize
 - [ ] sortedIndex
 - [ ] template
 - [ ] throttle
 - [ ] times
 - [ ] typeOf
 - [ ] unescape
-- [ ] uniq
 - [ ] uniqueId
 - [ ] wrap
 - [ ] zip
 
 #### [Bottomline](https://github.com/maciejczyzewski/bottomline)
-- [ ] chunk
 - [ ] patch
 - [ ] ease
 - [ ] hasKeys
