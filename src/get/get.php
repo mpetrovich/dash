@@ -9,7 +9,7 @@ namespace Dash;
  *
  * @category Utility
  * @param mixed $input
- * @param callable|string $path (optional) If a callable, invoked with `($input)` to get the value at `$path`;
+ * @param callable|string $path If a callable, invoked with `($input)` to get the value at `$path`;
  *                              if a string, will use `Dash\property($path)` to get the value at `$path`
  * @param mixed $default (optional) Value to return if `$path` does not exist within `$input`
  * @return mixed Value at `$path` or `$default` if no value exists
@@ -23,7 +23,7 @@ namespace Dash;
 		]
 	];
 	Dash\get($input, 'people.2.name');
-	// === 'Mark';
+	// === 'Mark'
  *
  * @example Direct properties take precedence over nested ones
 	$input = [

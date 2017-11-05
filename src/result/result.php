@@ -3,60 +3,51 @@
 namespace Dash;
 
 /**
- * @incomplete
- * Like get(), but if the resolved value is callable, it will invoke the callable and return its result.
+ * Gets the value at `$path` within `$input`. Nested properties are accessible with dot notation.
+ * Like `get()` but if the value is callable, it is invoked and its return value is returned.
  *
- * @category Iterable
- * @param array|object $iterable
- * @param callable|string $path Callable used to retrieve the value or path of the property to retrieve;
- *                              Paths can be nested by delimiting each sub-property or array index with a period,
- *                              eg. 'a.b.0.c'
- * @param mixed $default Default value to return if nothing exists at $path
+ * @see get()
  *
- * @return mixed Value at $path on the collection
+ * @category Utility
+ * @param mixed $input
+ * @param callable|string $path If a callable, invoked with `($input)` to get the value at `$path`;
+ *                              if a string, will use `Dash\property($path)` to get the value at `$path`
+ * @param mixed $default (optional) Value to return if `$path` does not exist within `$input`
+ * @return mixed Value at `$path` or `$default` if no value exists
  *
  * @example
-	$iterable = [
-		'a' => [
-			'b' => 'value'
-		]
+	$input = [
+		'people' => new ArrayObject([
+			['name' => 'Pete', 'joined' => new DateTime('2017-01-01')],
+			['name' => 'John', 'joined' => new DateTime('2017-02-02')],
+			['name' => 'Paul', 'joined' => new DateTime('2017-04-04')],
+		])
 	];
-	result($iterable, 'a.b');
-	// === 'value'
- *
- * @example Array elements can be referenced by index
-	$iterable = [
-		'people' => [
-			['name' => 'Pete'],
-			['name' => 'John'],
-			['name' => 'Paul'],
-		]
-	];
-	result($iterable, 'people.1.name');
+
+	Dash\result($input, 'people.1.name');
 	// === 'John'
- *
- * @example Keys with the same name as the full path can be used
-	$iterable = ['a.b.c' => 'value'];
-	result($iterable, 'a.b.c');
-	// === 'value'
- *
- * @example With a callable value
-	$iterable = [
-		'dates' => [
-			'start' => new DateTime('2017-01-01'),
-			'end' => new DateTime('2017-01-03'),
-		]
-	]
-	result($iterable, 'dates.start.getTimestamp');
-	// === 1483246800
+
+	Dash\result($input, 'people.count');
+	// === 3
+
+	Dash\result($input, 'people.1.joined.getTimestamp');
+	// === 1485993600
  */
-function result($iterable, $path, $default = null)
+function result($input, $path, $default = null)
 {
-	$value = get($iterable, $path, $default);
+	$value = get($input, $path, $default);
 
 	if (is_callable($value)) {
 		$value = call_user_func($value);
 	}
 
 	return $value;
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _result(/* path, default, input */)
+{
+	return currify('Dash\result', func_get_args());
 }

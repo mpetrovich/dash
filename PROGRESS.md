@@ -44,7 +44,6 @@ Existing
 - [ ] matchesProperty
 - [ ] property
 - [ ] reduce
-- [ ] result
 - [ ] set
 - [ ] take
 - [ ] takeWhile
@@ -108,6 +107,7 @@ Existing
 - [x] pick
 - [x] pluck
 - [x] reject
+- [x] result
 - [x] reverse
 - [x] rotate
 - [x] size
