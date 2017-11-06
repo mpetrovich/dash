@@ -44,7 +44,6 @@ Existing
 - [ ] matchesProperty
 - [ ] property
 - [ ] reduce
-- [ ] set
 - [ ] take
 - [ ] takeWhile
 - [ ] union
@@ -110,6 +109,7 @@ Existing
 - [x] result
 - [x] reverse
 - [x] rotate
+- [x] set
 - [x] size
 - [x] sort
 - [x] sum

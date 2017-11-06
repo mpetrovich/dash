@@ -3,58 +3,58 @@
 namespace Dash;
 
 /**
- * @incomplete
- * Sets the value at a path on $iterable, which will be modified.
+ * Sets the value at `$path` within `$input`. Nested properties are accessible with dot notation.
+ * Note: This *will* modify `$input`.
  *
- * @category Iterable
- * @param array|object $iterable
- * @param string $path Path at which to set $value; can be a nested path (eg. 'a.b.0.c'),
- *                     and non-existent intermediate array/objects will be created
+ * This operation does not have a curried variant.
+ *
+ * @see get(), getDirect(), property()
+ *
+ * @category Utility
+ * @param mixed $input
+ * @param string $path Path at which to set `$value`; can be a nested path (eg. `a.b.0.c`).
+ *                     Intermediate arrays or objects will be created where missing (see examples)
  * @param mixed $value Value to set at $path
- * @return array|object the modified $iterable
- * @throws UnexpectedValueException if $value cannot be set at $path (eg. trying to set a property on a number)
+ * @return mixed `$input`, modified
+ * @throws UnexpectedValueException if `$value` cannot be set at `$path`, eg. trying to set a property on a number
  *
  * @example
-	$iterable = [
+	$input = (object) [
 		'a' => [1, 2],
 		'b' => [3, 4],
 		'c' => [5, 6],
 	];
-	set($iterable, 'a', [7, 8, 9]);  // Setting a direct field
-	set($iterable, 'b.0', 10);  // Setting a nested field using an array index
-	// $iterable === [
+	Dash\set($input, 'a', [7, 8, 9]);
+	Dash\set($input, 'b.0', 10);
+
+	// $input === (object) [
 		'a' => [7, 8, 9],
 		'b' => [10, 4],
 		'c' => [5, 6],
 	]
  *
- * @example Matching intermediate array wrappers are created when the deepest path is an array
-	$iterable = [];
-	set($iterable, 'a.b.c', 'value');
-	// $iterable === [
-		'a' => [
-			'b' => [
-				'c' => 'value'
-			]
-		]
-	]
- *
- * @example Matching intermediate object wrappers are created when the deepest path is an object
-	$iterable = (object) [];
-	set($iterable, 'a.b.c', 'value');
-	// $iterable === (object) [
-		'a' => (object) [
-			'b' => (object) [
-				'c' => 'value'
-			]
-		]
+ * @example Intermediate array/objects are created if missing
+	$input = (object) [
+		'a' => [1, 2],
+		'b' => [3, 4],
+		'c' => [5, 6],
+	];
+
+	Dash\set($input, 'a.x', 'foo');
+	Dash\set($input, 'd.y', 'bar');
+
+	// $input === (object) [
+		'a' => [1, 2, 'x' => 'foo'],
+		'b' => [3, 4],
+		'c' => [5, 6],
+		'd' => (object) ['y' => 'bar'],
 	]
  */
-function set(&$iterable, $path, $value)
+function set(&$input, $path, $value)
 {
 	$steps = explode('.', $path);
 
-	for ($target = &$iterable; $steps;) {
+	for ($target = &$input; $steps;) {
 		$step = array_shift($steps);
 
 		if (!isset($target)) {
@@ -75,5 +75,5 @@ function set(&$iterable, $path, $value)
 
 	$target = $value;
 
-	return $iterable;
+	return $input;
 }

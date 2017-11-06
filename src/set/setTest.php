@@ -13,7 +13,7 @@ class setTest extends PHPUnit_Framework_TestCase
 		$output = Dash\set($input, $path, $value);
 
 		$this->assertEquals($expected, $input);
-		$this->assertEquals($input, $output);
+		$this->assertSame($input, $output);
 
 		$parentPath = implode('.', array_slice(explode('.', $path), 0, -1));
 		$this->assertSame(Dash\get($input, $parentPath), Dash\get($output, $parentPath));
@@ -135,7 +135,7 @@ class setTest extends PHPUnit_Framework_TestCase
 					],
 				],
 			],
-			'Non-empty array/object input' => [
+			[
 				'input' => [
 					'a' => (object) [
 						2 => [],
@@ -143,16 +143,16 @@ class setTest extends PHPUnit_Framework_TestCase
 				],
 				'path' => 'a.1.c',
 				'value' => 789,
-				'expected' => (object) [
+				'expected' => [
 					'a' => (object) [
-						1 => [
+						1 => (object) [
 							'c' => 789
 						],
 						2 => [],
 					],
 				],
 			],
-			'Non-empty array/object input' => [
+			[
 				'input' => (object) [
 					'a' => [
 						2 => (object) [],
@@ -187,5 +187,44 @@ class setTest extends PHPUnit_Framework_TestCase
 		$value = 123;
 
 		Dash\set($input, $path, $value);
+	}
+
+	public function testExamples()
+	{
+		$input = (object) [
+			'a' => [1, 2],
+			'b' => [3, 4],
+			'c' => [5, 6],
+		];
+		Dash\set($input, 'a', [7, 8, 9]);
+		Dash\set($input, 'b.0', 10);
+
+		$this->assertEquals(
+			(object) [
+				'a' => [7, 8, 9],
+				'b' => [10, 4],
+				'c' => [5, 6],
+			],
+			$input
+		);
+
+		$input = (object) [
+			'a' => [1, 2],
+			'b' => [3, 4],
+			'c' => [5, 6],
+		];
+
+		Dash\set($input, 'a.x', 'foo');
+		Dash\set($input, 'd.y', 'bar');
+
+		$this->assertEquals(
+			(object) [
+				'a' => [1, 2, 'x' => 'foo'],
+				'b' => [3, 4],
+				'c' => [5, 6],
+				'd' => (object) ['y' => 'bar'],
+			],
+			$input
+		);
 	}
 }
