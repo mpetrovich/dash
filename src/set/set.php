@@ -34,20 +34,26 @@ namespace Dash;
 	]
  *
  * @example Intermediate array/objects are created if missing
-	$input = (object) [
-		'a' => [1, 2],
-		'b' => [3, 4],
-		'c' => [5, 6],
-	];
+	$input = ['a' => []];
+	Dash\set($input, 'a.b.c', 'value');
 
-	Dash\set($input, 'a.x', 'foo');
-	Dash\set($input, 'd.y', 'bar');
+	// $input === [
+		'a' => [
+			'b' => [
+				'c' => 'value'
+			]
+		]
+	]
 
-	// $input === (object) [
-		'a' => [1, 2, 'x' => 'foo'],
-		'b' => [3, 4],
-		'c' => [5, 6],
-		'd' => (object) ['y' => 'bar'],
+	$input = ['a' => (object) []];
+	Dash\set($input, 'a.b.c', 'value');
+
+	// $input === [
+		'a' => (object) [
+			'b' => (object) [
+				'c' => 'value'
+			]
+		]
 	]
  */
 function set(&$input, $path, $value)

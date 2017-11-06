@@ -208,21 +208,28 @@ class setTest extends PHPUnit_Framework_TestCase
 			$input
 		);
 
-		$input = (object) [
-			'a' => [1, 2],
-			'b' => [3, 4],
-			'c' => [5, 6],
-		];
-
-		Dash\set($input, 'a.x', 'foo');
-		Dash\set($input, 'd.y', 'bar');
-
+		$input = ['a' => []];
+		Dash\set($input, 'a.b.c', 'value');
 		$this->assertEquals(
-			(object) [
-				'a' => [1, 2, 'x' => 'foo'],
-				'b' => [3, 4],
-				'c' => [5, 6],
-				'd' => (object) ['y' => 'bar'],
+			[
+				'a' => [
+					'b' => [
+						'c' => 'value'
+					]
+				]
+			],
+			$input
+		);
+
+		$input = ['a' => (object) []];
+		Dash\set($input, 'a.b.c', 'value');
+		$this->assertEquals(
+			[
+				'a' => (object) [
+					'b' => (object) [
+						'c' => 'value'
+					]
+				]
 			],
 			$input
 		);
