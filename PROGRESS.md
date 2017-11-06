@@ -228,6 +228,4 @@ Existing
 None
 
 #### [Lodash](https://lodash.com/docs/4.17.4)
-- [ ] drop
-
 #### [Ramda](http://ramdajs.com/docs)
