@@ -18,11 +18,11 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/next
 [findLastValue](#findlastvalue) | [identity](#identity) | [unary](#unary) | 
 [findValue](#findvalue) | [isEmpty](#isempty) |  | 
 [first](#first--head) / head | [isType](#istype) |  | 
-[groupBy](#groupby) | [size](#size--count) / count |  | 
-[isIndexedArray](#isindexedarray) | [tap](#tap) |  | 
-[join](#join--implode) / implode | [thru](#thru) |  | 
-[keyBy](#keyby--indexby) / indexBy |  |  | 
-[keys](#keys) |  |  | 
+[groupBy](#groupby) | [result](#result) |  | 
+[isIndexedArray](#isindexedarray) | [set](#set) |  | 
+[join](#join--implode) / implode | [size](#size--count) / count |  | 
+[keyBy](#keyby--indexby) / indexBy | [tap](#tap) |  | 
+[keys](#keys) | [thru](#thru) |  | 
 [last](#last) |  |  | 
 [map](#map) |  |  | 
 [mapValues](#mapvalues) |  |  | 
@@ -1590,6 +1590,8 @@ Operation | Signature
 [identity](#identity) | `identity($value): mixed`
 [isEmpty](#isempty) | `isEmpty($value): boolean`
 [isType](#istype) | `isType($value, $type): boolean`
+[result](#result) | `result($input, $path, $default = null): mixed`
+[set](#set) | `set(&$input, $path, $value): mixed`
 [size](#size) | `size($value, $encoding = 'UTF-8'): integer`
 [tap](#tap) | `tap($value, callable $interceptor): mixed`
 [thru](#thru) | `thru($value, callable $interceptor): mixed`
@@ -1803,7 +1805,7 @@ Related: [getDirect()](#getdirect), [has()](#has), [property()](#property)
 Parameter | Type | Description
 --- | --- | :---
 `$input` | `mixed` | 
-`$path` | `callable\|string` | (optional) If a callable, invoked with `($input)` to get the value at `$path`; if a string, will use `Dash\property($path)` to get the value at `$path`
+`$path` | `callable\|string` | If a callable, invoked with `($input)` to get the value at `$path`; if a string, will use `Dash\property($path)` to get the value at `$path`
 `$default` | `mixed` | (optional) Value to return if `$path` does not exist within `$input`
 **Returns** | `mixed` | Value at `$path` or `$default` if no value exists
 
@@ -1817,7 +1819,7 @@ $input = [
 	]
 ];
 Dash\get($input, 'people.2.name');
-// === 'Mark';
+// === 'Mark'
 
 ```
 
@@ -2094,6 +2096,107 @@ Dash\isType(new ArrayObject([1, 2, 3]), 'ArrayObject');
 ```php
 Dash\isType((object) [1, 2, 3], ['array', 'object']);
 // === true
+```
+
+[↑ Top](#operations)
+
+result
+---
+[Operations](#operations) › [Utility](#utility)
+
+```php
+result($input, $path, $default = null): mixed
+```
+Gets the value at `$path` within `$input`. Nested properties are accessible with dot notation.
+Like `get()` but if the value is callable, it is invoked and its return value is returned.
+
+Related: [get()](#get), [property()](#property)
+
+Parameter | Type | Description
+--- | --- | :---
+`$input` | `mixed` | 
+`$path` | `callable\|string` | If a callable, invoked with `($input)` to get the value at `$path`; if a string, will use `Dash\property($path)` to get the value at `$path`
+`$default` | `mixed` | (optional) Value to return if `$path` does not exist within `$input`
+**Returns** | `mixed` | Value at `$path` or `$default` if no value exists
+
+**Example:** 
+```php
+$input = [
+	'people' => new ArrayObject([
+		['name' => 'Pete', 'joined' => new DateTime('2017-01-01')],
+		['name' => 'John', 'joined' => new DateTime('2017-02-02')],
+		['name' => 'Paul', 'joined' => new DateTime('2017-04-04')],
+	])
+];
+
+Dash\result($input, 'people.1.name');
+// === 'John'
+
+Dash\result($input, 'people.count');
+// === 3
+
+Dash\result($input, 'people.1.joined.getTimestamp');
+// === 1485993600
+```
+
+[↑ Top](#operations)
+
+set
+---
+[Operations](#operations) › [Utility](#utility)
+
+```php
+set(&$input, $path, $value): mixed
+```
+Sets the value at `$path` within `$input`. Nested properties are accessible with dot notation.
+Note: This *will* modify `$input`.
+
+This operation does not have a curried variant.
+
+Related: [get()](#get), [getDirect()](#getdirect), [property()](#property)
+
+Parameter | Type | Description
+--- | --- | :---
+`$input` | `mixed` | 
+`$path` | `string` | Path at which to set `$value`; can be a nested path (eg. `a.b.0.c`). Intermediate arrays or objects will be created where missing (see examples)
+`$value` | `mixed` | Value to set at $path
+**Returns** | `mixed` | `$input`, modified
+
+**Example:** 
+```php
+$input = (object) [
+	'a' => [1, 2],
+	'b' => [3, 4],
+	'c' => [5, 6],
+];
+Dash\set($input, 'a', [7, 8, 9]);
+Dash\set($input, 'b.0', 10);
+
+// $input === (object) [
+	'a' => [7, 8, 9],
+	'b' => [10, 4],
+	'c' => [5, 6],
+]
+
+```
+
+**Example:** Intermediate array/objects are created if missing
+```php
+$input = (object) [
+	'a' => [1, 2],
+	'b' => [3, 4],
+	'c' => [5, 6],
+];
+
+Dash\set($input, 'a.x', 'foo');
+Dash\set($input, 'd.y', 'bar');
+
+// $input === (object) [
+	'a' => [1, 2, 'x' => 'foo'],
+	'b' => [3, 4],
+	'c' => [5, 6],
+	'd' => (object) ['y' => 'bar'],
+]
 ```
 
 [↑ Top](#operations)
