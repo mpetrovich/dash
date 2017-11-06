@@ -16,6 +16,12 @@ class reduceTest extends PHPUnit_Framework_TestCase
 	public function cases()
 	{
 		return [
+			'With null' => [
+				'input' => null,
+				'iteratee' => function ($result, $value) { return $result + $value; },
+				'initial' => 0,
+				'expected' => 0,
+			],
 			'With an empty array' => [
 				'input' => [],
 				'iteratee' => function ($result, $value) { return $result + $value; },
