@@ -49,6 +49,10 @@ class sortTest extends PHPUnit_Framework_TestCase
 				'iterable' => [3, 8, 2, 5],
 				'expected' => [2, 3, 5, 8],
 			],
+			'With an indexed array containing floats' => [
+				'iterable' => [3.2, 3.1, 2.9, 3.0],
+				'expected' => [2.9, 3.0, 3.1, 3.2],
+			],
 
 			/*
 				With associative array
@@ -61,6 +65,10 @@ class sortTest extends PHPUnit_Framework_TestCase
 			'With an associative array' => [
 				'iterable' => ['a' => 3, 'b' => 1, 'c' => 2],
 				'expected' => ['b' => 1, 'c' => 2, 'a' => 3],
+			],
+			'With an associative array containing floats' => [
+				'iterable' => ['a' => 3.2, 'b' => 3.1, 'c' => 2.9, 'd' => 3.0],
+				'expected' => ['c' => 2.9, 'd' => 3.0, 'b' => 3.1, 'a' => 3.2],
 			],
 
 			/*
@@ -79,6 +87,10 @@ class sortTest extends PHPUnit_Framework_TestCase
 				'iterable' => (object) ['a' => 3, 'b' => 1, 'c' => 2],
 				'expected' => ['b' => 1, 'c' => 2, 'a' => 3],
 			],
+			'With an stdClass containing floats' => [
+				'iterable' => (object) ['a' => 3.2, 'b' => 3.1, 'c' => 2.9, 'd' => 3.0],
+				'expected' => ['c' => 2.9, 'd' => 3.0, 'b' => 3.1, 'a' => 3.2],
+			],
 
 			/*
 				With ArrayObject
@@ -95,6 +107,10 @@ class sortTest extends PHPUnit_Framework_TestCase
 			'With an ArrayObject' => [
 				'iterable' => new ArrayObject(['a' => 3, 'b' => 1, 'c' => 2]),
 				'expected' => ['b' => 1, 'c' => 2, 'a' => 3],
+			],
+			'With an ArrayObject containing floats' => [
+				'iterable' => new ArrayObject(['a' => 3.2, 'b' => 3.1, 'c' => 2.9, 'd' => 3.0]),
+				'expected' => ['c' => 2.9, 'd' => 3.0, 'b' => 3.1, 'a' => 3.2],
 			],
 		];
 	}
