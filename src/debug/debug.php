@@ -24,6 +24,8 @@ namespace Dash;
 	}
 	string(5) "hello"
 	double(3.14)
+ *
+ * @codeCoverageIgnore Due to output buffering
  */
 function debug($value /*, ...value */)
 {
@@ -38,6 +40,7 @@ function debug($value /*, ...value */)
 
 /**
  * @codingStandardsIgnoreStart
+ * @codeCoverageIgnore Due to output buffering
  */
 function _debug(/* ...value */)
 {
