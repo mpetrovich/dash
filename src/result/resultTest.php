@@ -260,9 +260,9 @@ class resultTest extends PHPUnit_Framework_TestCase
 	{
 		$input = [
 			'people' => new ArrayObject([
-				['name' => 'Pete', 'joined' => new DateTime('2017-01-01')],
-				['name' => 'John', 'joined' => new DateTime('2017-02-02')],
-				['name' => 'Paul', 'joined' => new DateTime('2017-04-04')],
+				['name' => 'Pete', 'getHash' => function () { return '4d17a4'; }],
+				['name' => 'John', 'getHash' => function () { return 'fd2a48'; }],
+				['name' => 'Paul', 'getHash' => function () { return 'd8575d'; }],
 			])
 		];
 
@@ -277,8 +277,8 @@ class resultTest extends PHPUnit_Framework_TestCase
 		);
 
 		$this->assertSame(
-			Dash\result($input, 'people.1.joined.getTimestamp'),
-			1485993600
+			Dash\result($input, 'people.1.getHash'),
+			'fd2a48'
 		);
 	}
 }
