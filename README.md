@@ -11,13 +11,11 @@ $result = __([1, 2, 3, 4, 5])
 // $result === [2, 6, 10]
 ```
 
-[**See all available operations**](DOCS.md)
-
 ##### Jump to:
 - [Features](#features)
-- [Supported operations](DOCS.md)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Operations](DOCS.md)
 - [Changelog](CHANGELOG.md)
 - [Contributing](CONTRIBUTING.md)
 
@@ -25,7 +23,6 @@ $result = __([1, 2, 3, 4, 5])
 Features
 ---
 - Works with arrays, objects, [`Traversable`](http://php.net/manual/en/class.traversable.php), [`DirectoryIterator`](http://php.net/manual/en/class.directoryiterator.php), and more
-- [Standalone operations](#standalone)
 - [Chaining](#chaining)
 - [Currying](#currying)
 - [Lazy evaluation](#lazy-evaluation)
@@ -42,11 +39,11 @@ composer require nextbigsoundinc/dash
 
 Usage
 ---
-Dash operations can be used alone or chained together.
+Dash operations can be used alone or chained together. [**See the full list of operations**](DOCS.md)
 
 
 ### Standalone
-As static methods:
+Operations can be called as static methods:
 
 ```php
 use Dash\_;
@@ -54,7 +51,7 @@ use Dash\_;
 _::map([1, 2, 3], function ($n) { return $n * 2; });  // === [2, 4, 6]
 ```
 
-or a namespaced functions:
+or as namespaced functions:
 
 ```php
 Dash\map([1, 2, 3], function ($n) { return $n * 2; });  // === [2, 4, 6]
@@ -62,7 +59,7 @@ Dash\map([1, 2, 3], function ($n) { return $n * 2; });  // === [2, 4, 6]
 
 
 ### Chaining
-Multiple operations can be chained in sequence using `chain()`. Call `value()` to return the final value. To explicitly convert the value to an array or `stdClass`, use `arrayValue()` or `objectValue()`.
+Multiple operations can be chained in sequence using `chain()`. Call `value()` to return the final value.
 
 ```php
 $result = _::chain([1, 2, 3, 4, 5])
@@ -73,7 +70,18 @@ $result = _::chain([1, 2, 3, 4, 5])
 // $result === [2, 6, 10]
 ```
 
-For convenience, `_::chain()` can be aliased to a global function via `addGlobalAlias()`. It only needs to be called once during your application bootstrap:
+To explicitly convert the value to an array or `stdClass`, use `arrayValue()` or `objectValue()` respectively:
+
+```php
+$result = _::chain(['a' => 1, 'b' => 2, 'c' => 3])
+	->filter('Dash\isOdd')
+	->mapValues(function ($n) { return $n * 2; })
+	->objectValue();
+
+// $result === (object) ['a' => 2, 'c' => 6]
+```
+
+For convenience, `_::chain()` can be aliased to a global function using `addGlobalAlias()`. It only needs to be called once during your application bootstrap:
 
 ```php
 // In your application bootstrap:
@@ -144,7 +152,7 @@ $containsTrue([0, 1, 0]);
 
 
 ### Lazy evaluation
-Chained operations are not evaluated until `value()` or `run()` is called. Furthermore, the input data can be changed and evaluated multiple times via `with()`. This makes it simple to create reusable chains:
+Chained operations are not evaluated until `value()` or `run()` is called. Furthermore, the input data can be changed and evaluated multiple times using `with()`. This makes it simple to create reusable chains:
 
 ```php
 $chain = _::chain()
@@ -167,11 +175,11 @@ $clone->value();  // === [11, 15]
 $chain->value();  // === [10, 14]
 ```
 
-When `value()` is called, the result is cached until the chain is modified or the input is changed via `with()`.
+When `value()` is called, the result is cached until the chain is modified or the input is changed using `with()`.
 
 
 ### Custom operations
-Custom operations can be added and removed via `setCustom()` and `unsetCustom()`, respectively:
+Custom operations can be added and removed using `setCustom()` and `unsetCustom()`, respectively:
 
 ```php
 _::setCustom('triple', function ($n) { return $n * 3; });
