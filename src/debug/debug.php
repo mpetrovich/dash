@@ -13,7 +13,7 @@ namespace Dash;
 	$returned = Dash\debug([1, 2, 3], 'hello', 3.14);
 	// $returned === [1, 2, 3]
 
-	// Prints:
+	// Prints something like:
 	array(3) {
 	  [0] =>
 	  int(1)

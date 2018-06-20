@@ -12,10 +12,10 @@ class debugTest extends PHPUnit_Framework_TestCase
 	public function test($value, $expected)
 	{
 		ob_start();
-		Dash\debug($value);
-		$output = ob_get_clean();
+		$result = Dash\debug($value);
+		ob_clean();
 
-		$this->assertMatch($expected, $output);
+		$this->assertSame($expected, $result);
 	}
 
 	/**
@@ -25,10 +25,10 @@ class debugTest extends PHPUnit_Framework_TestCase
 	{
 		ob_start();
 		$debug = Dash\_debug();
-		$debug($value);
-		$output = ob_get_clean();
+		$result = $debug($value);
+		ob_clean();
 
-		$this->assertMatch($expected, $output);
+		$this->assertSame($expected, $result);
 	}
 
 	public function cases()
@@ -36,24 +36,11 @@ class debugTest extends PHPUnit_Framework_TestCase
 		return [
 			[
 				'value' => [1, 2, 3],
-				'expected' => <<<'END'
-# IGNORED LINE
-array(3) {
-  [0] =>
-  int(1)
-  [1] =>
-  int(2)
-  [2] =>
-  int(3)
-}
-END
+				'expected' => [1, 2, 3],
 			],
 			[
 				'value' => 3.14,
-				'expected' => <<<'END'
-# IGNORED LINE
-double(3.14)
-END
+				'expected' => 3.14,
 			],
 		];
 	}
@@ -61,55 +48,11 @@ END
 	public function testMultipleValues()
 	{
 		ob_start();
-		Dash\debug([1, 2, 3], 'hello', 3.14);
-		$output = ob_get_clean();
+		$result = Dash\debug([1, 2, 3], 'hello', 3.14);
+		ob_clean();
 
-		$expected = <<<'END'
-# IGNORED LINE
-array(3) {
-  [0] =>
-  int(1)
-  [1] =>
-  int(2)
-  [2] =>
-  int(3)
-}
-# IGNORED LINE
-string(5) "hello"
-# IGNORED LINE
-double(3.14)
-END;
+		$expected = [1, 2, 3];
 
-		$this->assertMatch($expected, $output);
-	}
-
-	private function assertMatch($expected, $actual)
-	{
-		$this->assertTrue($this->isMatch($expected, $actual));
-	}
-
-	private function isMatch($expected, $actual)
-	{
-		$expectedLines = explode("\n", trim($expected));
-		$actualLines = explode("\n", trim($actual));
-		$numLines = count($actualLines);
-
-		if (count($expectedLines) !== $numLines) {
-			return false;
-		}
-
-		for ($i = 0; $i < $numLines; $i++) {
-			$actualLine = $actualLines[$i];
-			$expectedLine = $expectedLines[$i];
-
-			if ($expectedLine === '# IGNORED LINE') {
-				continue;
-			}
-			if ($actualLine !== $expectedLine) {
-				return false;
-			}
-		}
-
-		return true;
+		$this->assertSame($expected, $result);
 	}
 }
