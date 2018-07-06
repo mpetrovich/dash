@@ -72,7 +72,7 @@ function extractDocblock($filepath)
 function extractFunctionSignature($filepath)
 {
 	$content = file_get_contents($filepath);
-	$hasFunction = preg_match('/^function (\w+\([^\)]*\))$/m', $content, $matches);
+	$hasFunction = preg_match('/^function &?(\w+\([^\)]*\))$/m', $content, $matches);
 	$signature = $hasFunction ? $matches[1] : '';
 	return $signature;
 }

@@ -318,6 +318,8 @@ where values are compared using loose equality.
 
 The order, keys, and values of elements in the returned array are determined by `$iterable`.
 
+This operation does not have a curried variant.
+
 Related: [intersection()](#intersection), [union()](#union)
 
 Parameter | Type | Description
@@ -868,6 +870,8 @@ Returns the set of elements from `$iterable` whose values are present in each of
 where values are compared using loose equality.
 
 The order, keys, and values of elements in the returned array are determined by `$iterable`.
+
+This operation does not have a curried variant.
 
 Related: [difference()](#difference), [union()](#union)
 
@@ -1649,6 +1653,8 @@ Returns a new array containing the combined set of unique values, in order, of a
 
 Non-indexed keys are preseved, but duplicate keys will overwrite previous ones.
 
+This operation does not have a curried variant.
+
 Related: [intersection()](#intersection), [difference()](#difference)
 
 Parameter | Type | Description
@@ -1715,7 +1721,7 @@ Operation | Signature
 [equal](#equal) | `equal($a, $b): boolean`
 [get](#get) | `get($input, $path, $default = null): mixed`
 [getDirect](#getdirect) | `getDirect($input, $key, $default = null): mixed`
-[getDirectRef](#getdirectref) | `: mixed`
+[getDirectRef](#getdirectref) | `getDirectRef(&$input, $key): mixed`
 [hasDirect](#hasdirect) | `hasDirect($input, $key): boolean`
 [identical](#identical) | `identical($a, $b): boolean`
 [identity](#identity) | `identity($value): mixed`
@@ -2019,7 +2025,7 @@ getDirectRef
 [Operations](#operations) › [Utility](#utility)
 
 ```php
-: mixed
+getDirectRef(&$input, $key): mixed
 ```
 Similar to `getDirect()`, but returns a reference to the value at `$key` within `$input`.
 
