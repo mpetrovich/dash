@@ -8,7 +8,7 @@ namespace Dash;
  *
  * In essence, this takes a data-first function and returns a curryable data-last function.
  *
- * @see curry(), partial()
+ * @see currifyN(), curry(), partial()
  *
  * @category Callable
  * @param callable $callable
@@ -36,12 +36,7 @@ namespace Dash;
  */
 function currify(callable $callable, array $args = [], $rotate = 1)
 {
-	$curryable = function () use ($callable, $rotate) {
-		return call_user_func_array($callable, rotate(func_get_args(), -$rotate));
-	};
-
 	$totalArgs = (new \ReflectionFunction($callable))->getNumberOfParameters();
-	$curried = call_user_func_array('Dash\curryN', [$curryable, $totalArgs]);
 
-	return call_user_func_array($curried, $args);
+	return currifyN($callable, $totalArgs, $args, $rotate);
 }

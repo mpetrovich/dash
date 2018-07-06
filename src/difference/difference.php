@@ -3,46 +3,40 @@
 namespace Dash;
 
 /**
- * @incomplete
- * Returns a subset of items from the first iterable that are not present in any of the other iterables.
+ * Returns the set of elements from `$iterable` whose values are not present in any of the other iterables,
+ * where values are compared using loose equality.
+ *
+ * The order, keys, and values of elements in the returned array are determined by `$iterable`.
+ *
+ * @see intersection(), union()
  *
  * @category Iterable
- * @param iterable|stdClass $iterable Iterable to compare against
- * @param iterable|stdClass $iterables,...
+ * @param iterable|stdClass|null $iterable (variadic) Iterable against which all other passed iterables are compared
  * @return array
  *
- * @alias diff
+ * @example With indexed arrays
+	Dash\difference(
+		[1, 2, 3, 4, 5],
+		['2', 4],
+		[3.0, 4]
+	);
+	// === [1, 5]
  *
- * @example
-	diff(
-		[1, 2, 3, 4, 5, 6],
-		[1, 3, 5],
-		[2, 8]
-	);  // === [4, 6]
+ * @example With associative arrays
+	Dash\difference(
+		['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5],
+		['a' => '2', 'b' => 4],
+		['a' => 3.0, 'b' => 4]
+	);
+	// === ['a' => 1, 'e' => 5]
  */
 function difference($iterable /*, ...iterables */)
 {
-	$iterables = func_get_args();
-	$first = array_shift($iterables);
-	$diff = [];
+	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
 
-	foreach ($first as $key => $value) {
-		$found = any($iterables, function ($iterable) use ($value) {
-			return contains($iterable, $value);
-		});
+	$args = map(func_get_args(), 'Dash\toArray');
+	$args[] = 'Dash\compare';
+	$difference = call_user_func_array('array_udiff', $args);
 
-		if (!$found) {
-			$diff[$key] = $value;
-		}
-	}
-
-	return $diff;
-}
-
-/**
- * @codingStandardsIgnoreStart
- */
-function diff()
-{
-	return call_user_func_array('Dash\difference', func_get_args());
+	return isIndexedArray($iterable) ? array_values($difference) : $difference;
 }

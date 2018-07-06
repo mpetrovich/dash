@@ -3,25 +3,38 @@
 namespace Dash;
 
 /**
- * @incomplete
- * Returns a new array containing the unique values, in order, of all arguments.
+ * Returns a new array containing the combined set of unique values, in order, of all provided iterables.
  *
- * Iterable keys are preseved.
+ * Non-indexed keys are preseved, but duplicate keys will overwrite previous ones.
+ *
+ * @see intersection(), difference()
  *
  * @category Iterable
- * @param iterable|stdClass $iterables,...
+ * @param iterable|stdClass|null $iterable (variadic) One or more iterables to merge
  * @return array
  *
- * @example
-	intersection(
-		[1, 3, 5, 8],
-		[1, 2, 3, 4]
-	);  // === [1, 3, 5, 8, 2, 4]
+ * @example With indexed arrays
+	Dash\union(
+		[1, 3, 5],
+		[2, 4, 6],
+		[7, 8]
+	);
+	// === [1, 3, 5, 2, 4, 6, 7, 8]
+ *
+ * @example With associative arrays
+	Dash\union(
+		['a' => 1, 'c' => 3],
+		['b' => 2, 'd' => 4],
+		['e' => 5, 'f' => 6]
+	);
+	// === ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5, 'f' => 6]
  */
-function union(/* ...iterables */)
+function union($iterable /*, ...iterables */)
 {
-	$values = map(func_get_args(), 'Dash\values');
-	$merged = call_user_func_array('array_merge', $values);
-	$union = values(array_unique($merged));
-	return $union;
+	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
+
+	$values = map(func_get_args(), 'Dash\toArray');
+	$union = array_unique(call_user_func_array('array_merge', $values));
+
+	return isIndexedArray($iterable) ? array_values($union) : $union;
 }

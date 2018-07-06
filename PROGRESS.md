@@ -35,18 +35,14 @@ Requirements
 
 Existing
 ---
-- [ ] difference
-- [ ] drop
 - [ ] dropWhile
 - [ ] each
-- [ ] intersection
 - [ ] matches
 - [ ] matchesProperty
 - [ ] property
 - [ ] reduce
 - [ ] take
 - [ ] takeWhile
-- [ ] union
 - [ ] where
 - [ ] without
 - [x] _
@@ -62,6 +58,7 @@ Existing
 - [x] compare
 - [x] contains
 - [x] currify
+- [x] currifyN
 - [x] curry
 - [x] curryN
 - [x] curryRight
@@ -69,6 +66,7 @@ Existing
 - [x] custom
 - [x] debug
 - [x] deltas
+- [x] difference
 - [x] equal
 - [x] filter
 - [x] find
@@ -85,6 +83,7 @@ Existing
 - [x] hasDirect
 - [x] identical
 - [x] identity
+- [x] intersection
 - [x] isEmpty
 - [x] isEven
 - [x] isIndexedArray
@@ -120,6 +119,7 @@ Existing
 - [x] toArray
 - [x] toObject
 - [x] unary
+- [x] union
 - [x] values
 
 #### [Array methods](http://php.net/manual/en/ref.array.php)
@@ -216,6 +216,7 @@ Existing
 - [ ] zip
 
 #### [Bottomline](https://github.com/maciejczyzewski/bottomline)
+- [ ] drop
 - [ ] patch
 - [ ] ease
 - [ ] hasKeys

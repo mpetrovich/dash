@@ -8,21 +8,23 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/next
 [any](#any--some) / some | [chain](#chain) | [ary](#ary) | [isOdd](#isodd)
 [at](#at) | [compare](#compare) | [call](#call) | 
 [average](#average--mean) / mean | [custom](#custom) | [currify](#currify) | 
-[contains](#contains--includes) / includes | [debug](#debug) | [curry](#curry) | 
-[deltas](#deltas) | [equal](#equal) | [curryN](#curryn) | 
-[filter](#filter) | [get](#get) | [curryRight](#curryright) | 
-[find](#find) | [getDirect](#getdirect) | [curryRightN](#curryrightn) | 
-[findKey](#findkey) | [getDirectRef](#getdirectref) | [negate](#negate) | 
-[findLast](#findlast) | [hasDirect](#hasdirect) | [partial](#partial) | 
-[findLastKey](#findlastkey) | [identical](#identical) | [partialRight](#partialright) | 
-[findLastValue](#findlastvalue) | [identity](#identity) | [unary](#unary) | 
-[findValue](#findvalue) | [isEmpty](#isempty) |  | 
-[first](#first--head) / head | [isType](#istype) |  | 
-[groupBy](#groupby) | [result](#result) |  | 
-[isIndexedArray](#isindexedarray) | [set](#set) |  | 
-[join](#join--implode) / implode | [size](#size--count) / count |  | 
-[keyBy](#keyby--indexby) / indexBy | [tap](#tap) |  | 
-[keys](#keys) | [thru](#thru) |  | 
+[contains](#contains--includes) / includes | [debug](#debug) | [currifyN](#currifyn) | 
+[deltas](#deltas) | [equal](#equal) | [curry](#curry) | 
+[difference](#difference) | [get](#get) | [curryN](#curryn) | 
+[filter](#filter) | [getDirect](#getdirect) | [curryRight](#curryright) | 
+[find](#find) | [getDirectRef](#getdirectref) | [curryRightN](#curryrightn) | 
+[findKey](#findkey) | [hasDirect](#hasdirect) | [negate](#negate) | 
+[findLast](#findlast) | [identical](#identical) | [partial](#partial) | 
+[findLastKey](#findlastkey) | [identity](#identity) | [partialRight](#partialright) | 
+[findLastValue](#findlastvalue) | [isEmpty](#isempty) | [unary](#unary) | 
+[findValue](#findvalue) | [isType](#istype) |  | 
+[first](#first--head) / head | [result](#result) |  | 
+[groupBy](#groupby) | [set](#set) |  | 
+[intersection](#intersection) | [size](#size--count) / count |  | 
+[isIndexedArray](#isindexedarray) | [tap](#tap) |  | 
+[join](#join--implode) / implode | [thru](#thru) |  | 
+[keyBy](#keyby--indexby) / indexBy |  |  | 
+[keys](#keys) |  |  | 
 [last](#last) |  |  | 
 [map](#map) |  |  | 
 [mapValues](#mapvalues) |  |  | 
@@ -41,6 +43,7 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/next
 [takeRight](#takeright) |  |  | 
 [toArray](#toarray) |  |  | 
 [toObject](#toobject) |  |  | 
+[union](#union) |  |  | 
 [values](#values) |  |  | 
 
 Iterable
@@ -53,6 +56,7 @@ Operation | Signature
 [average](#average) | `average($iterable): double\|null`
 [contains](#contains) | `contains($iterable, $target, $comparator = 'Dash\equal'): boolean`
 [deltas](#deltas) | `deltas($iterable): array`
+[difference](#difference) | `difference($iterable /*, ...iterables */): array`
 [filter](#filter) | `filter($iterable, $predicate = 'Dash\identity'): array`
 [find](#find) | `find($iterable, $predicate = 'Dash\identity'): array\|null`
 [findKey](#findkey) | `findKey($iterable, $predicate = 'Dash\identity'): string\|null`
@@ -62,6 +66,7 @@ Operation | Signature
 [findValue](#findvalue) | `findValue($iterable, $predicate = 'Dash\identity'): mixed\|null`
 [first](#first) | `first($iterable): mixed\|null`
 [groupBy](#groupby) | `groupBy($iterable, $iteratee = 'Dash\identity', $defaultGroup = null): array`
+[intersection](#intersection) | `intersection($iterable /*, ...iterables */): array`
 [isIndexedArray](#isindexedarray) | `isIndexedArray($value): boolean`
 [join](#join) | `join($iterable, $separator): string`
 [keyBy](#keyby) | `keyBy($iterable, $iteratee = 'Dash\identity'): array`
@@ -84,6 +89,7 @@ Operation | Signature
 [takeRight](#takeright) | `takeRight($iterable, $count = 1): array`
 [toArray](#toarray) | `toArray($value): array`
 [toObject](#toobject) | `toObject($value): object`
+[union](#union) | `union($iterable /*, ...iterables */): array`
 [values](#values) | `values($iterable): array`
 
 
@@ -296,6 +302,48 @@ Parameter | Type | Description
 ```php
 Dash\deltas([3, 8, 9, 9, 5, 13]);
 // === [0, 5, 1, 0, -4, 8]
+```
+
+[↑ Top](#operations)
+
+difference
+---
+[Operations](#operations) › [Iterable](#iterable)
+
+```php
+difference($iterable /*, ...iterables */): array
+```
+Returns the set of elements from `$iterable` whose values are not present in any of the other iterables,
+where values are compared using loose equality.
+
+The order, keys, and values of elements in the returned array are determined by `$iterable`.
+
+Related: [intersection()](#intersection), [union()](#union)
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` | (variadic) Iterable against which all other passed iterables are compared
+**Returns** | `array` | 
+
+**Example:** With indexed arrays
+```php
+Dash\difference(
+	[1, 2, 3, 4, 5],
+	['2', 4],
+	[3.0, 4]
+);
+// === [1, 5]
+
+```
+
+**Example:** With associative arrays
+```php
+Dash\difference(
+	['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5],
+	['a' => '2', 'b' => 4],
+	['a' => 3.0, 'b' => 4]
+);
+// === ['a' => 1, 'e' => 5]
 ```
 
 [↑ Top](#operations)
@@ -805,6 +853,48 @@ Dash\groupBy($data, 'last', 'Unknown');
 		['first' => 'Anonymous'],
 	],
 ]
+```
+
+[↑ Top](#operations)
+
+intersection
+---
+[Operations](#operations) › [Iterable](#iterable)
+
+```php
+intersection($iterable /*, ...iterables */): array
+```
+Returns the set of elements from `$iterable` whose values are present in each of the other iterables,
+where values are compared using loose equality.
+
+The order, keys, and values of elements in the returned array are determined by `$iterable`.
+
+Related: [difference()](#difference), [union()](#union)
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` | (variadic) Iterable against which all other passed iterables are compared
+**Returns** | `array` | 
+
+**Example:** With indexed arrays
+```php
+Dash\intersection(
+	[1, 2, 3, 4, 5],
+	['2', '4'],
+	[4.0, 2.0]
+);
+// === [2, 4]
+
+```
+
+**Example:** With associative arrays
+```php
+Dash\intersection(
+	['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5],
+	['a' => 2, 'b' => 4],
+	['a' => 4, 'b' => 2]
+);
+// === ['b' => 2, 'd' => 4]
 ```
 
 [↑ Top](#operations)
@@ -1548,6 +1638,47 @@ Dash\toObject(new ArrayObject(['a' => 1, 'b' => 2]));
 
 [↑ Top](#operations)
 
+union
+---
+[Operations](#operations) › [Iterable](#iterable)
+
+```php
+union($iterable /*, ...iterables */): array
+```
+Returns a new array containing the combined set of unique values, in order, of all provided iterables.
+
+Non-indexed keys are preseved, but duplicate keys will overwrite previous ones.
+
+Related: [intersection()](#intersection), [difference()](#difference)
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` | (variadic) One or more iterables to merge
+**Returns** | `array` | 
+
+**Example:** With indexed arrays
+```php
+Dash\union(
+	[1, 3, 5],
+	[2, 4, 6],
+	[7, 8]
+);
+// === [1, 3, 5, 2, 4, 6, 7, 8]
+
+```
+
+**Example:** With associative arrays
+```php
+Dash\union(
+	['a' => 1, 'c' => 3],
+	['b' => 2, 'd' => 4],
+	['e' => 5, 'f' => 6]
+);
+// === ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5, 'f' => 6]
+```
+
+[↑ Top](#operations)
+
 values
 ---
 [Operations](#operations) › [Iterable](#iterable)
@@ -1742,7 +1873,7 @@ Parameter | Type | Description
 $returned = Dash\debug([1, 2, 3], 'hello', 3.14);
 // $returned === [1, 2, 3]
 
-// Prints:
+// Prints something like:
 array(3) {
   [0] =>
   int(1)
@@ -1753,6 +1884,8 @@ array(3) {
 }
 string(5) "hello"
 double(3.14)
+
+@codeCoverageIgnore Due to output buffering
 ```
 
 [↑ Top](#operations)
@@ -2225,7 +2358,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$value` | `iterable\|string` | 
 `$encoding` | `string` | (optional) The character encoding of `$value` if it is a string; see `mb_list_encodings()` for the list of supported encodings
-**Returns** | `integer` | Zero if `$value` is neither iterable nor a string
+**Returns** | `integer` | Size of `$value` or zero if `$value` is neither iterable nor a string
 
 **Example:** 
 ```php
@@ -2313,6 +2446,7 @@ Operation | Signature
 [ary](#ary) | `ary(callable $callable, $arity): callable`
 [call](#call) | `call(callable $callable /*, ...args */): mixed`
 [currify](#currify) | `currify(callable $callable, array $args = [], $rotate = 1): function\|mixed`
+[currifyN](#currifyn) | `currifyN(callable $callable, $totalArgs, array $args = [], $rotate = 1): function\|mixed`
 [curry](#curry) | `curry(callable $callable /*, ...args */): function\|mixed`
 [curryN](#curryn) | `curryN(callable $callable, $numRequiredArgs /*, ...args */): function\|mixed`
 [curryRight](#curryright) | `curryRight(callable $callable /*, ...args */): function\|mixed`
@@ -2438,7 +2572,7 @@ are moved to the end of the arguments list.
 
 In essence, this takes a data-first function and returns a curryable data-last function.
 
-Related: [curry()](#curry), [partial()](#partial)
+Related: [currifyN()](#currifyn), [curry()](#curry), [partial()](#partial)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2469,6 +2603,32 @@ $goodMorning = Dash\currify($greet, ['Good morning', '!'], 2);
 $goodMorning('Sir', 'John')
 // === 'Good morning, Sir John!'
 ```
+
+[↑ Top](#operations)
+
+currifyN
+---
+[Operations](#operations) › [Callable](#callable)
+
+```php
+currifyN(callable $callable, $totalArgs, array $args = [], $rotate = 1): function|mixed
+```
+Creates a new, curried version of `$callable` where the first `$rotate` of `$totalArgs` arguments
+are moved to the end of the arguments list.
+
+In essence, this takes a data-first function and returns a curryable data-last function.
+
+Related: [currify()](#currify), [curry()](#curry), [partial()](#partial)
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | 
+`$totalArgs` | `integer` | Total number of arguments accepted by `$callable`
+`$args` | `array` | (optional) Initial arguments to pass to the final curried function
+`$rotate` | `integer` | (optional) The number of arguments to move from start to end; see Dash\rotate()
+**Returns** | `function\|mixed` | 
+
+
 
 [↑ Top](#operations)
 

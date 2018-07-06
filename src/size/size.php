@@ -12,7 +12,7 @@ namespace Dash;
  * @param iterable|string $value
  * @param string $encoding (optional) The character encoding of `$value` if it is a string;
  *                         see `mb_list_encodings()` for the list of supported encodings
- * @return integer Zero if `$value` is neither iterable nor a string
+ * @return integer Size of `$value` or zero if `$value` is neither iterable nor a string
  *
  * @alias count
  *
