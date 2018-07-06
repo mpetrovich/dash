@@ -7,6 +7,8 @@ namespace Dash;
  *
  * Non-indexed keys are preseved, but duplicate keys will overwrite previous ones.
  *
+ * This operation does not have a curried variant.
+ *
  * @see intersection(), difference()
  *
  * @category Iterable

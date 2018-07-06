@@ -8,6 +8,8 @@ namespace Dash;
  *
  * The order, keys, and values of elements in the returned array are determined by `$iterable`.
  *
+ * This operation does not have a curried variant.
+ *
  * @see intersection(), union()
  *
  * @category Iterable
