@@ -36,7 +36,6 @@ Requirements
 Existing
 ---
 - [ ] dropWhile
-- [ ] each
 - [ ] matches
 - [ ] matchesProperty
 - [ ] property
@@ -67,6 +66,7 @@ Existing
 - [x] debug
 - [x] deltas
 - [x] difference
+- [x] each
 - [x] equal
 - [x] filter
 - [x] find
