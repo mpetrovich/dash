@@ -11,18 +11,19 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/next
 [contains](#contains--includes) / includes | [debug](#debug) | [currifyN](#currifyn) | 
 [deltas](#deltas) | [equal](#equal) | [curry](#curry) | 
 [difference](#difference) | [get](#get) | [curryN](#curryn) | 
-[filter](#filter) | [getDirect](#getdirect) | [curryRight](#curryright) | 
-[find](#find) | [getDirectRef](#getdirectref) | [curryRightN](#curryrightn) | 
-[findKey](#findkey) | [hasDirect](#hasdirect) | [negate](#negate) | 
-[findLast](#findlast) | [identical](#identical) | [partial](#partial) | 
-[findLastKey](#findlastkey) | [identity](#identity) | [partialRight](#partialright) | 
-[findLastValue](#findlastvalue) | [isEmpty](#isempty) | [unary](#unary) | 
-[findValue](#findvalue) | [isType](#istype) |  | 
-[first](#first--head) / head | [result](#result) |  | 
-[groupBy](#groupby) | [set](#set) |  | 
-[intersection](#intersection) | [size](#size--count) / count |  | 
-[isIndexedArray](#isindexedarray) | [tap](#tap) |  | 
-[join](#join--implode) / implode | [thru](#thru) |  | 
+[each](#each) | [getDirect](#getdirect) | [curryRight](#curryright) | 
+[filter](#filter) | [getDirectRef](#getdirectref) | [curryRightN](#curryrightn) | 
+[find](#find) | [hasDirect](#hasdirect) | [negate](#negate) | 
+[findKey](#findkey) | [identical](#identical) | [partial](#partial) | 
+[findLast](#findlast) | [identity](#identity) | [partialRight](#partialright) | 
+[findLastKey](#findlastkey) | [isEmpty](#isempty) | [unary](#unary) | 
+[findLastValue](#findlastvalue) | [isType](#istype) |  | 
+[findValue](#findvalue) | [result](#result) |  | 
+[first](#first--head) / head | [set](#set) |  | 
+[groupBy](#groupby) | [size](#size--count) / count |  | 
+[intersection](#intersection) | [tap](#tap) |  | 
+[isIndexedArray](#isindexedarray) | [thru](#thru) |  | 
+[join](#join--implode) / implode |  |  | 
 [keyBy](#keyby--indexby) / indexBy |  |  | 
 [keys](#keys) |  |  | 
 [last](#last) |  |  | 
@@ -57,6 +58,7 @@ Operation | Signature
 [contains](#contains) | `contains($iterable, $target, $comparator = 'Dash\equal'): boolean`
 [deltas](#deltas) | `deltas($iterable): array`
 [difference](#difference) | `difference($iterable /*, ...iterables */): array`
+[each](#each) | `each($iterable, $iteratee): mixed`
 [filter](#filter) | `filter($iterable, $predicate = 'Dash\identity'): array`
 [find](#find) | `find($iterable, $predicate = 'Dash\identity'): array\|null`
 [findKey](#findkey) | `findKey($iterable, $predicate = 'Dash\identity'): string\|null`
@@ -346,6 +348,54 @@ Dash\difference(
 	['a' => 3.0, 'b' => 4]
 );
 // === ['a' => 1, 'e' => 5]
+```
+
+[↑ Top](#operations)
+
+each
+---
+[Operations](#operations) › [Iterable](#iterable)
+
+```php
+each($iterable, $iteratee): mixed
+```
+Iterates over elements of `$iterable` and invokes `$iteratee` for each element.
+
+`$iteratee` is invoked with `($value, $key, $iterable)` for each element.
+Iteratees can exit iteration early by returning `false`.
+Any changes to `$value`, `$key`, or `$iterable` from within the iteratee will not persisted.
+
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` | 
+`$iteratee` | `callable` | 
+**Returns** | `mixed` | $iterable The original `$iterable`
+
+**Example:** 
+```php
+Dash\each(['a', 'b', 'c'], function ($value, $index, $array) {
+	echo "[$index]: $value\n";
+});
+// Prints:
+// [0]: 'a'
+// [1]: 'b'
+// [2]: 'c'
+
+```
+
+**Example:** Early exit
+```php
+Dash\each(['a', 'b', 'c'], function ($value, $index, $array) {
+	echo "[$index]: $value\n";
+	if ($value === 'b') {
+		return false;
+	}
+});
+// Prints:
+// [0]: 'a'
+// [1]: 'b'
 ```
 
 [↑ Top](#operations)

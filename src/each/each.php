@@ -3,22 +3,45 @@
 namespace Dash;
 
 /**
- * @incomplete
- * Iterates over a collection and calls an iteratee function for each element.
+ * Iterates over elements of `$iterable` and invokes `$iteratee` for each element.
  *
- * Any changes to the value, key, or collection from within the iteratee function are not persisted.
+ * `$iteratee` is invoked with `($value, $key, $iterable)` for each element.
+ * Iteratees can exit iteration early by returning `false`.
+ * Any changes to `$value`, `$key`, or `$iterable` from within the iteratee will not persisted.
  *
  * @category Iterable
- * @param iterable|stdClass $iterable
- * @param callable $iteratee Invoked with ($value, $key, $iterable) for each element in $iterable.
- *                           If $iteratee returns false, iteration will end and subsequent elements will be skipped.
- * @return mixed $iterable
+ * @param iterable|stdClass|null $iterable
+ * @param callable $iteratee
+ * @return mixed $iterable The original `$iterable`
  *
  * @example
-	each([1, 2, 3], function ($value, $index, $array) { // $array[$index] === $value });
+	Dash\each(['a', 'b', 'c'], function ($value, $index, $array) {
+		echo "[$index]: $value\n";
+	});
+	// Prints:
+	// [0]: 'a'
+	// [1]: 'b'
+	// [2]: 'c'
+ *
+ * @example Early exit
+	Dash\each(['a', 'b', 'c'], function ($value, $index, $array) {
+		echo "[$index]: $value\n";
+		if ($value === 'b') {
+			return false;
+		}
+	});
+	// Prints:
+	// [0]: 'a'
+	// [1]: 'b'
  */
 function each($iterable, $iteratee)
 {
+	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
+
+	if (is_null($iterable)) {
+		return $iterable;
+	}
+
 	foreach ($iterable as $key => $value) {
 		if (call_user_func($iteratee, $value, $key, $iterable) === false) {
 			break;
@@ -26,4 +49,12 @@ function each($iterable, $iteratee)
 	}
 
 	return $iterable;
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _each(/* iteratee, iterable */)
+{
+	return currify('Dash\each', func_get_args());
 }
