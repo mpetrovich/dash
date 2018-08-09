@@ -2,60 +2,15 @@ Operations
 ===
 Is there an operation you'd like to see? [Open an issue](https://github.com/nextbigsoundinc/dash/issues/new?labels=enhancement) or vote on an existing one.
 
-[Iterable](#iterable) | [Utility](#utility) | [Callable](#callable) | [Number](#number)
-:--- | :--- | :--- | :---
-[all](#all--every) / every | [assertType](#asserttype) | [apply](#apply) | [isEven](#iseven)
-[any](#any--some) / some | [chain](#chain) | [ary](#ary) | [isOdd](#isodd)
-[at](#at) | [compare](#compare) | [call](#call) | 
-[average](#average--mean) / mean | [custom](#custom) | [currify](#currify) | 
-[contains](#contains--includes) / includes | [debug](#debug) | [currifyN](#currifyn) | 
-[deltas](#deltas) | [equal](#equal) | [curry](#curry) | 
-[difference](#difference) | [get](#get) | [curryN](#curryn) | 
-[each](#each) | [getDirect](#getdirect) | [curryRight](#curryright) | 
-[filter](#filter) | [getDirectRef](#getdirectref) | [curryRightN](#curryrightn) | 
-[find](#find) | [hasDirect](#hasdirect) | [negate](#negate) | 
-[findKey](#findkey) | [identical](#identical) | [partial](#partial) | 
-[findLast](#findlast) | [identity](#identity) | [partialRight](#partialright) | 
-[findLastKey](#findlastkey) | [isEmpty](#isempty) | [unary](#unary) | 
-[findLastValue](#findlastvalue) | [isType](#istype) |  | 
-[findValue](#findvalue) | [result](#result) |  | 
-[first](#first--head) / head | [set](#set) |  | 
-[groupBy](#groupby) | [size](#size--count) / count |  | 
-[intersection](#intersection) | [tap](#tap) |  | 
-[isIndexedArray](#isindexedarray) | [thru](#thru) |  | 
-[join](#join--implode) / implode |  |  | 
-[keyBy](#keyby--indexby) / indexBy |  |  | 
-[keys](#keys) |  |  | 
-[last](#last) |  |  | 
-[map](#map) |  |  | 
-[mapValues](#mapvalues) |  |  | 
-[max](#max) |  |  | 
-[median](#median) |  |  | 
-[min](#min) |  |  | 
-[omit](#omit) |  |  | 
-[pick](#pick) |  |  | 
-[pluck](#pluck) |  |  | 
-[reject](#reject) |  |  | 
-[reverse](#reverse) |  |  | 
-[rotate](#rotate) |  |  | 
-[sort](#sort) |  |  | 
-[sum](#sum) |  |  | 
-[take](#take) |  |  | 
-[takeRight](#takeright) |  |  | 
-[toArray](#toarray) |  |  | 
-[toObject](#toobject) |  |  | 
-[union](#union) |  |  | 
-[values](#values) |  |  | 
-
 Iterable
-===
+---
 Operation | Signature
 :--- | :---
-[all](#all) | `all($iterable, $predicate = 'Dash\identity'): boolean`
-[any](#any) | `any($iterable, $predicate = 'Dash\identity'): boolean`
+[all](#all--every) / every | `all($iterable, $predicate = 'Dash\identity'): boolean`
+[any](#any--some) / some | `any($iterable, $predicate = 'Dash\identity'): boolean`
 [at](#at) | `at($iterable, $index, $default = null): mixed`
-[average](#average) | `average($iterable): double\|null`
-[contains](#contains) | `contains($iterable, $target, $comparator = 'Dash\equal'): boolean`
+[average](#average--mean) / mean | `average($iterable): double\|null`
+[contains](#contains--includes) / includes | `contains($iterable, $target, $comparator = 'Dash\equal'): boolean`
 [deltas](#deltas) | `deltas($iterable): array`
 [difference](#difference) | `difference($iterable /*, ...iterables */): array`
 [each](#each) | `each($iterable, $iteratee): mixed`
@@ -66,12 +21,12 @@ Operation | Signature
 [findLastKey](#findlastkey) | `findLastKey($iterable, $predicate = 'Dash\identity'): string\|null`
 [findLastValue](#findlastvalue) | `findLastValue($iterable, $predicate = 'Dash\identity'): mixed\|null`
 [findValue](#findvalue) | `findValue($iterable, $predicate = 'Dash\identity'): mixed\|null`
-[first](#first) | `first($iterable): mixed\|null`
+[first](#first--head) / head | `first($iterable): mixed\|null`
 [groupBy](#groupby) | `groupBy($iterable, $iteratee = 'Dash\identity', $defaultGroup = null): array`
 [intersection](#intersection) | `intersection($iterable /*, ...iterables */): array`
 [isIndexedArray](#isindexedarray) | `isIndexedArray($value): boolean`
-[join](#join) | `join($iterable, $separator): string`
-[keyBy](#keyby) | `keyBy($iterable, $iteratee = 'Dash\identity'): array`
+[join](#join--implode) / implode | `join($iterable, $separator): string`
+[keyBy](#keyby--indexby) / indexBy | `keyBy($iterable, $iteratee = 'Dash\identity'): array`
 [keys](#keys) | `keys($iterable): array`
 [last](#last) | `last($iterable): mixed\|null`
 [map](#map) | `map($iterable, $iteratee = 'Dash\identity'): array`
@@ -94,6 +49,58 @@ Operation | Signature
 [union](#union) | `union($iterable /*, ...iterables */): array`
 [values](#values) | `values($iterable): array`
 
+Utility
+---
+Operation | Signature
+:--- | :---
+[assertType](#asserttype) | `assertType($value, $type, $funcName = __FUNCTION__): void`
+[chain](#chain) | `chain($input = null): Dash\_`
+[compare](#compare) | `compare($a, $b): integer`
+[custom](#custom) | `custom($name): function`
+[debug](#debug) | `debug($value /*, ...value */): mixed`
+[equal](#equal) | `equal($a, $b): boolean`
+[get](#get) | `get($input, $path, $default = null): mixed`
+[getDirect](#getdirect) | `getDirect($input, $key, $default = null): mixed`
+[getDirectRef](#getdirectref) | `getDirectRef(&$input, $key): mixed`
+[hasDirect](#hasdirect) | `hasDirect($input, $key): boolean`
+[identical](#identical) | `identical($a, $b): boolean`
+[identity](#identity) | `identity($value): mixed`
+[isEmpty](#isempty) | `isEmpty($value): boolean`
+[isType](#istype) | `isType($value, $type): boolean`
+[result](#result) | `result($input, $path, $default = null): mixed`
+[set](#set) | `set(&$input, $path, $value): mixed`
+[size](#size--count) / count | `size($value, $encoding = 'UTF-8'): integer`
+[tap](#tap) | `tap($value, callable $interceptor): mixed`
+[thru](#thru) | `thru($value, callable $interceptor): mixed`
+
+Callable
+---
+Operation | Signature
+:--- | :---
+[apply](#apply) | `apply(callable $callable, $args): mixed`
+[ary](#ary) | `ary(callable $callable, $arity): callable`
+[call](#call) | `call(callable $callable /*, ...args */): mixed`
+[currify](#currify) | `currify(callable $callable, array $args = [], $rotate = 1): function\|mixed`
+[currifyN](#currifyn) | `currifyN(callable $callable, $totalArgs, array $args = [], $rotate = 1): function\|mixed`
+[curry](#curry) | `curry(callable $callable /*, ...args */): function\|mixed`
+[curryN](#curryn) | `curryN(callable $callable, $numRequiredArgs /*, ...args */): function\|mixed`
+[curryRight](#curryright) | `curryRight(callable $callable /*, ...args */): function\|mixed`
+[curryRightN](#curryrightn) | `curryRightN(callable $callable, $numRequiredArgs /*, ...args */): function\|mixed`
+[negate](#negate) | `negate(callable $predicate): callable`
+[partial](#partial) | `partial($callable /*, ...args */): callable`
+[partialRight](#partialright) | `partialRight($callable /*, ...args */): callable`
+[unary](#unary) | `unary(callable $callable): callable`
+
+Number
+---
+Operation | Signature
+:--- | :---
+[isEven](#iseven) | `isEven($value): boolean`
+[isOdd](#isodd) | `isOdd($value): boolean`
+
+
+Iterable
+===
 
 all / every
 ---
@@ -322,7 +329,7 @@ The order, keys, and values of elements in the returned array are determined by 
 
 This operation does not have a curried variant.
 
-Related: [intersection()](#intersection), [union()](#union)
+Related: [intersection()](#), [union()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -412,7 +419,7 @@ Gets a list of elements in `$iterable` for which `$predicate` returns truthy.
 Keys are preserved unless `$iterable` is an indexed array.
 An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
 
-Related: [reject()](#reject)
+Related: [reject()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -473,7 +480,7 @@ Gets the key and value of the first element for which `$predicate` returns truth
 
 Iteration will stop at the first truthy return value.
 
-Related: [findKey()](#findkey), [findValue()](#findvalue), [findLast()](#findlast)
+Related: [findKey()](#), [findValue()](#), [findLast()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -530,7 +537,7 @@ Gets the key of the first element for which `$predicate` returns truthy.
 
 Iteration will stop at the first truthy return value.
 
-Related: [find()](#find), [findValue()](#findvalue), [findLastKey()](#findlastkey)
+Related: [find()](#), [findValue()](#), [findLastKey()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -587,7 +594,7 @@ Gets the key and value of the last element for which `$predicate` returns truthy
 
 Iteration begin at the end and will stop at the last truthy return value.
 
-Related: [findLastKey()](#findlastkey), [findLastValue()](#findlastvalue), [find()](#find)
+Related: [findLastKey()](#), [findLastValue()](#), [find()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -644,7 +651,7 @@ Gets the key of the last element for which `$predicate` returns truthy.
 
 Iteration begin at the end and will stop at the last truthy return value.
 
-Related: [findLast()](#findlast), [findLastValue()](#findlastvalue), [findKey()](#findkey)
+Related: [findLast()](#), [findLastValue()](#), [findKey()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -701,7 +708,7 @@ Gets the value of the last element for which `$predicate` returns truthy.
 
 Iteration begin at the end and will stop at the last truthy return value.
 
-Related: [findLast()](#findlast), [findLastKey()](#findlastkey), [findValue()](#findvalue)
+Related: [findLast()](#), [findLastKey()](#), [findValue()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -758,7 +765,7 @@ Gets the value of the first element for which `$predicate` returns truthy.
 
 Iteration will stop at the first truthy return value.
 
-Related: [find()](#find), [findKey()](#findkey), [findLastValue()](#findlastvalue)
+Related: [find()](#), [findKey()](#), [findLastValue()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -840,7 +847,7 @@ groupBy($iterable, $iteratee = 'Dash\identity', $defaultGroup = null): array
 ```
 Groups the element values of `$iterable` by the common return values of `$iteratee`.
 
-Related: [keyBy()](#keyby)
+Related: [keyBy()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -923,7 +930,7 @@ The order, keys, and values of elements in the returned array are determined by 
 
 This operation does not have a curried variant.
 
-Related: [difference()](#difference), [union()](#union)
+Related: [difference()](#), [union()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1023,7 +1030,7 @@ Gets the element values of `$iterable` as an associative array indexed by `$iter
 
 A later value will overwrite an earlier value that has the same key.
 
-Related: [groupBy()](#groupby)
+Related: [groupBy()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1085,7 +1092,7 @@ keys($iterable): array
 ```
 Gets the keys of `$iterable` as an array.
 
-Related: [values()](#values)
+Related: [values()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1138,7 +1145,7 @@ Gets a new array of the return values of `$iteratee` when called with successive
 
 Keys in `$iterable` are not preserved. To preserve keys, use `mapValues()` instead.
 
-Related: [mapValues()](#mapvalues)
+Related: [mapValues()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1179,7 +1186,7 @@ Gets a new array of the return values of `$iteratee` when called with successive
 
 Unlike `map()`, keys in `$iterable` are preserved.
 
-Related: [map()](#map)
+Related: [map()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1300,7 +1307,7 @@ omit($iterable, $keys): array
 Gets the elements of `$iterable` with keys that match any in `$keys`.
 The opposite of `pick()`.
 
-Related: [pick()](#pick)
+Related: [pick()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1325,7 +1332,7 @@ pick($iterable, $keys): array
 ```
 Gets the elements of `$iterable` with keys that match any in `$keys`.
 
-Related: [omit()](#omit)
+Related: [omit()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1350,7 +1357,7 @@ pluck($iterable, $path, $default = null): array
 ```
 Gets an array of values at `$path` for all elements in `$iterable`.
 
-Related: [map()](#map)
+Related: [map()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1389,7 +1396,7 @@ The opposite of `filter()`.
 Keys are preserved unless `$iterable` is an indexed array.
 An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
 
-Related: [filter()](#filter)
+Related: [filter()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1582,7 +1589,7 @@ Gets a new array of the first `$count` elements of `$iterable`.
 Keys are preserved unless `$iterable` is an indexed array.
 An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
 
-Related: [takeRight()](#takeright)
+Related: [takeRight()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1616,7 +1623,7 @@ Gets a new array of the last `$count` elements of `$iterable`.
 Keys are preserved unless `$iterable` is an indexed array.
 An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
 
-Related: [take()](#take)
+Related: [take()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1705,7 +1712,7 @@ Non-indexed keys are preseved, but duplicate keys will overwrite previous ones.
 
 This operation does not have a curried variant.
 
-Related: [intersection()](#intersection), [difference()](#difference)
+Related: [intersection()](#), [difference()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1744,7 +1751,7 @@ values($iterable): array
 ```
 Gets the values of `$iterable` as an array.
 
-Related: [keys()](#keys)
+Related: [keys()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1761,28 +1768,6 @@ Dash\values(['c' => 3, 'a' => 1, 'b' => 2]);
 
 Utility
 ===
-Operation | Signature
-:--- | :---
-[assertType](#asserttype) | `assertType($value, $type, $funcName = __FUNCTION__): void`
-[chain](#chain) | `chain($input = null): Dash\_`
-[compare](#compare) | `compare($a, $b): integer`
-[custom](#custom) | `custom($name): function`
-[debug](#debug) | `debug($value /*, ...value */): mixed`
-[equal](#equal) | `equal($a, $b): boolean`
-[get](#get) | `get($input, $path, $default = null): mixed`
-[getDirect](#getdirect) | `getDirect($input, $key, $default = null): mixed`
-[getDirectRef](#getdirectref) | `getDirectRef(&$input, $key): mixed`
-[hasDirect](#hasdirect) | `hasDirect($input, $key): boolean`
-[identical](#identical) | `identical($a, $b): boolean`
-[identity](#identity) | `identity($value): mixed`
-[isEmpty](#isempty) | `isEmpty($value): boolean`
-[isType](#istype) | `isType($value, $type): boolean`
-[result](#result) | `result($input, $path, $default = null): mixed`
-[set](#set) | `set(&$input, $path, $value): mixed`
-[size](#size) | `size($value, $encoding = 'UTF-8'): integer`
-[tap](#tap) | `tap($value, callable $interceptor): mixed`
-[thru](#thru) | `thru($value, callable $interceptor): mixed`
-
 
 assertType
 ---
@@ -1794,7 +1779,7 @@ assertType($value, $type, $funcName = __FUNCTION__): void
 Throws an `InvalidArgumentException` exception if `$value` is not of type `$type`.
 If `$value` is an accepted type, this function is a no-op.
 
-Related: [isType()](#istype)
+Related: [isType()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1989,7 +1974,7 @@ get($input, $path, $default = null): mixed
 ```
 Gets the value at `$path` within `$input`. Nested properties are accessible with dot notation.
 
-Related: [getDirect()](#getdirect), [has()](#has), [property()](#property)
+Related: [getDirect()](#), [has()](#), [property()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2036,7 +2021,7 @@ Gets the array value, object property, or method at `$key` within `$input`.
 If an array offset, object property, and/or method all exist for the same key,
 the value at the array offset takes precedence and will be returned.
 
-Related: [getDirectRef()](#getdirectref), [hasDirect()](#hasdirect), [get()](#get)
+Related: [getDirectRef()](#), [hasDirect()](#), [get()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2081,7 +2066,7 @@ Similar to `getDirect()`, but returns a reference to the value at `$key` within 
 
 This operation does not have a curried variant.
 
-Related: [getDirect()](#getdirect), [hasDirect()](#hasdirect)
+Related: [getDirect()](#), [hasDirect()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2113,7 +2098,7 @@ hasDirect($input, $key): boolean
 ```
 Checks whether an array value, object property, or method exists at `$key` within `$input`.
 
-Related: [getDirect()](#getdirect)
+Related: [getDirect()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2299,7 +2284,7 @@ result($input, $path, $default = null): mixed
 Gets the value at `$path` within `$input`. Nested properties are accessible with dot notation.
 Like `get()` but if the value is callable, it is invoked and its return value is returned.
 
-Related: [get()](#get), [property()](#property)
+Related: [get()](#), [property()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2342,7 +2327,7 @@ Note: This *will* modify `$input`.
 
 This operation does not have a curried variant.
 
-Related: [get()](#get), [getDirect()](#getdirect), [property()](#property)
+Related: [get()](#), [getDirect()](#), [property()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2496,22 +2481,6 @@ $result = _::chain([1, 3, 4])
 
 Callable
 ===
-Operation | Signature
-:--- | :---
-[apply](#apply) | `apply(callable $callable, $args): mixed`
-[ary](#ary) | `ary(callable $callable, $arity): callable`
-[call](#call) | `call(callable $callable /*, ...args */): mixed`
-[currify](#currify) | `currify(callable $callable, array $args = [], $rotate = 1): function\|mixed`
-[currifyN](#currifyn) | `currifyN(callable $callable, $totalArgs, array $args = [], $rotate = 1): function\|mixed`
-[curry](#curry) | `curry(callable $callable /*, ...args */): function\|mixed`
-[curryN](#curryn) | `curryN(callable $callable, $numRequiredArgs /*, ...args */): function\|mixed`
-[curryRight](#curryright) | `curryRight(callable $callable /*, ...args */): function\|mixed`
-[curryRightN](#curryrightn) | `curryRightN(callable $callable, $numRequiredArgs /*, ...args */): function\|mixed`
-[negate](#negate) | `negate(callable $predicate): callable`
-[partial](#partial) | `partial($callable /*, ...args */): callable`
-[partialRight](#partialright) | `partialRight($callable /*, ...args */): callable`
-[unary](#unary) | `unary(callable $callable): callable`
-
 
 apply
 ---
@@ -2628,7 +2597,7 @@ are moved to the end of the arguments list.
 
 In essence, this takes a data-first function and returns a curryable data-last function.
 
-Related: [currifyN()](#currifyn), [curry()](#curry), [partial()](#partial)
+Related: [currifyN()](#), [curry()](#), [partial()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2674,7 +2643,7 @@ are moved to the end of the arguments list.
 
 In essence, this takes a data-first function and returns a curryable data-last function.
 
-Related: [currify()](#currify), [curry()](#curry), [partial()](#partial)
+Related: [currify()](#), [curry()](#), [partial()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2702,7 +2671,7 @@ Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
 
 This operation does not have a curried variant.
 
-Related: [curryN()](#curryn), [curryRight()](#curryright), [partial()](#partial), [currify()](#currify)
+Related: [curryN()](#), [curryRight()](#), [partial()](#), [currify()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2759,7 +2728,7 @@ Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
 
 This operation does not have a curried variant.
 
-Related: [curry()](#curry)
+Related: [curry()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2820,7 +2789,7 @@ Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
 
 This operation does not have a curried variant.
 
-Related: [curry()](#curry), [partial()](#partial)
+Related: [curry()](#), [partial()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2879,7 +2848,7 @@ Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
 
 This operation does not have a curried variant.
 
-Related: [curryN()](#curryn), [partialRight()](#partialright)
+Related: [curryN()](#), [partialRight()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2969,7 +2938,7 @@ Use `Dash\_` as a placeholder to replace with arguments passed to the returned f
 
 This operation does not have a curried variant.
 
-Related: [partialRight()](#partialright), [curry()](#curry)
+Related: [partialRight()](#), [curry()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -3023,7 +2992,7 @@ Use `Dash\_` as a placeholder to replace with arguments passed to the returned f
 
 This operation does not have a curried variant.
 
-Related: [partial()](#partial), [curryRight()](#curryright)
+Related: [partial()](#), [curryRight()](#)
 
 Parameter | Type | Description
 --- | --- | :---
@@ -3088,11 +3057,6 @@ Dash\filter([1, 2.0, '3', 'a'], $isNumeric);
 
 Number
 ===
-Operation | Signature
-:--- | :---
-[isEven](#iseven) | `isEven($value): boolean`
-[isOdd](#isodd) | `isOdd($value): boolean`
-
 
 isEven
 ---

@@ -46,7 +46,11 @@ function createOp($filepath)
 
 	$name = pathinfo($filepath)['filename'];
 	$op->name = $name;
-	$op->slug = strtolower($name);;
+
+	$op->slug = _::chain(array_merge([$op->name], $op->aliases))
+		->map(Dash\ary('strtolower', 1))
+		->join('--')
+		->value();
 
 	$op->signature = extractFunctionSignature($filepath);
 
@@ -208,8 +212,7 @@ function renderOp($op)
 
 	$related = _::chain((array) $op->related)
 		->map(function ($op) {
-			$slug = strtolower(str_replace('()', '', $op));
-			return "[$op](#$slug)";
+			return "[$op](#$op->slug)";
 		})
 		->join(', ')
 		->value();
@@ -273,15 +276,6 @@ END;
 
 function renderCategory($ops, $category)
 {
-	$list = _::chain($ops)
-		->map(function ($op) {
-			$returnType = $op->return->type ? ": {$op->return->type}" : '';
-			$returnType = str_replace('|', '\\|', $returnType);
-			return "[$op->name](#$op->slug) | `{$op->signature}{$returnType}`";
-		})
-		->join("\n")
-		->value();
-
 	$renderedOps = _::chain($ops)
 		->map('renderOp')
 		->join("\n")
@@ -290,10 +284,6 @@ function renderCategory($ops, $category)
 	return <<<END
 $category
 ===
-Operation | Signature
-:--- | :---
-$list
-
 $renderedOps
 
 END;
@@ -301,57 +291,26 @@ END;
 
 function renderTableOfContents($categories)
 {
-	$table = _::chain($categories)
-		->thru(function ($categories) {
-			$lines = [];
-
-			// Table header
-			$lines[] = _::chain($categories)
-				->keys()
-				->map(function ($name) {
-					$slug = strtolower($name);
-					return "[$name](#$slug)";
+	$renderedCategories = _::chain($categories)
+		->map(function ($ops, $category) {
+			$rows = _::chain($ops)
+				->map(function ($op) {
+					$returnType = $op->return->type ? ": {$op->return->type}" : '';
+					$returnType = str_replace('|', '\\|', $returnType);
+					$aliases = $op->aliases ? ' / ' . implode(' / ', $op->aliases) : '';
+					return "[$op->name](#$op->slug)$aliases | `{$op->signature}{$returnType}`";
 				})
-				->join(' | ')
+				->join("\n")
 				->value();
 
-			$lines[] = _::chain($categories)
-				->map(function () {
-					return ':---';
-				})
-				->join(' | ')
-				->value();
+			return <<<END
+$category
+---
+Operation | Signature
+:--- | :---
+$rows
 
-			while (true) {
-				$isAllEmpty = true;
-				$columns = [];
-
-				foreach ($categories as $category => &$ops) {
-					if ($ops) {
-						$op = array_shift($ops);
-						$aliases = implode(' / ', $op->aliases);
-						$aliases = $op->aliases ? " / $aliases" : '';
-						$slug = _::chain(array_merge([$op->name], $op->aliases))
-							->map(Dash\ary('strtolower', 1))
-							->join('--')
-							->value();
-
-						$columns[] = "[{$op->name}](#{$slug})$aliases";
-						$isAllEmpty = false;
-					}
-					else {
-						$columns[] = '';
-					}
-				}
-
-				if ($isAllEmpty || !$columns) {
-					break;
-				}
-
-				$lines[] = implode(' | ', $columns);
-			}
-
-			return $lines;
+END;
 		})
 		->join("\n")
 		->value();
@@ -361,6 +320,6 @@ Operations
 ===
 Is there an operation you'd like to see? [Open an issue](https://github.com/nextbigsoundinc/dash/issues/new?labels=enhancement) or vote on an existing one.
 
-$table
+$renderedCategories
 END;
 }
