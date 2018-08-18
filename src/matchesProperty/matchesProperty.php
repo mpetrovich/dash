@@ -14,22 +14,22 @@ namespace Dash;
  *                  for which `$comparator($valueAtPath, $value)` returns truthy
  *
  * @example Matches truthy field value
-	$matcher = matchesProperty('foo');
+	$matcher = Dash\matchesProperty('foo');
 	$matcher(['foo' => 'bar']);  // === true
 	$matcher(['foo' => null]);   // === false
  *
  * @example Matches falsey field value
-	$matcher = matchesProperty('foo', false);
+	$matcher = Dash\matchesProperty('foo', false);
 	$matcher(['foo' => false]);  // === true
 	$matcher(['foo' => 'bar']);  // === false
  *
  * @example Matches field value that loosely equals a given value
-	$matcher = matchesProperty('foo', 3);
+	$matcher = Dash\matchesProperty('foo', 3);
 	$matcher(['foo' => 3.0]);  // === true
 	$matcher(['foo' => 4]);   // === false
  *
  * @example Matches field value for which a given comparator returns true
-	$matcher = matchesProperty('foo', 3, 'Dash\identical');
+	$matcher = Dash\matchesProperty('foo', 3, 'Dash\identical');
 	$matcher(['foo' => 3]);    // === true
 	$matcher(['foo' => 3.0]);  // === false
  */

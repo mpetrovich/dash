@@ -2,6 +2,7 @@
 
 /**
  * @covers Dash\reduce
+ * @covers Dash\_reduce
  */
 class reduceTest extends PHPUnit_Framework_TestCase
 {
@@ -11,6 +12,15 @@ class reduceTest extends PHPUnit_Framework_TestCase
 	public function test($input, $iteratee, $initial, $expected)
 	{
 		$this->assertSame($expected, Dash\reduce($input, $iteratee, $initial));
+	}
+
+	/**
+	 * @dataProvider cases
+	 */
+	public function testCurried($input, $iteratee, $initial, $expected)
+	{
+		$reduce = Dash\_reduce($iteratee, $initial);
+		$this->assertSame($expected, $reduce($input));
 	}
 
 	public function cases()
@@ -59,5 +69,76 @@ class reduceTest extends PHPUnit_Framework_TestCase
 				'expected' => 10,
 			],
 		];
+	}
+
+	public function testIterateeArgs()
+	{
+		$iterable = ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4];
+		$iterated = [];
+
+		$iteratee = function ($result, $value, $key) use (&$iterated, $iterable) {
+			$iterated[$key] = $value;
+			return $result + $value;
+		};
+
+		$initial = 0;
+		$result = Dash\reduce($iterable, $iteratee, $initial);
+
+		$this->assertSame(10, $result);
+		$this->assertSame($iterable, $iterated);
+	}
+
+	/**
+	 * @dataProvider casesTypeAssertions
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testTypeAssertions($iterable, $type)
+	{
+		try {
+			Dash\reduce($iterable, function () {});
+		}
+		catch (Exception $e) {
+			$this->assertSame(
+				"Dash\\reduce expects iterable or stdClass or null but was given $type",
+				$e->getMessage()
+			);
+			throw $e;
+		}
+	}
+
+	public function casesTypeAssertions()
+	{
+		return [
+			'With an empty string' => [
+				'iterable' => '',
+				'type' => 'string',
+			],
+			'With a string' => [
+				'iterable' => 'hello',
+				'type' => 'string',
+			],
+			'With a zero number' => [
+				'iterable' => 0,
+				'type' => 'integer',
+			],
+			'With a number' => [
+				'iterable' => 3.14,
+				'type' => 'double',
+			],
+			'With a DateTime' => [
+				'iterable' => new DateTime(),
+				'type' => 'DateTime',
+			],
+		];
+	}
+
+	public function testExamples()
+	{
+		$this->assertSame(
+			10,
+			Dash\reduce([1, 2, 3, 4], function ($sum, $value) {
+				return $sum + $value;
+			}, 0)
+		);
 	}
 }

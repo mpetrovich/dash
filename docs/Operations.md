@@ -39,6 +39,7 @@ Operation | Signature
 [pick](#pick) | `pick($iterable, $keys): array`
 [pluck](#pluck) | `pluck($iterable, $path, $default = null): array`
 [property](#property) | `property($path, $default = null): function`
+[reduce](#reduce) | `reduce($iterable, $iteratee, $initial = []): mixed`
 [reject](#reject) | `reject($iterable, $predicate = 'Dash\identity'): array`
 [reverse](#reverse) | `reverse($iterable, $preserveIntegerKeys = false): array`
 [rotate](#rotate) | `rotate($iterable, $count = 1): array`
@@ -1238,7 +1239,7 @@ Parameter | Type | Description
 
 **Example:** Matches truthy field value
 ```php
-$matcher = matchesProperty('foo');
+$matcher = Dash\matchesProperty('foo');
 $matcher(['foo' => 'bar']);  // === true
 $matcher(['foo' => null]);   // === false
 
@@ -1246,7 +1247,7 @@ $matcher(['foo' => null]);   // === false
 
 **Example:** Matches falsey field value
 ```php
-$matcher = matchesProperty('foo', false);
+$matcher = Dash\matchesProperty('foo', false);
 $matcher(['foo' => false]);  // === true
 $matcher(['foo' => 'bar']);  // === false
 
@@ -1254,7 +1255,7 @@ $matcher(['foo' => 'bar']);  // === false
 
 **Example:** Matches field value that loosely equals a given value
 ```php
-$matcher = matchesProperty('foo', 3);
+$matcher = Dash\matchesProperty('foo', 3);
 $matcher(['foo' => 3.0]);  // === true
 $matcher(['foo' => 4]);   // === false
 
@@ -1262,7 +1263,7 @@ $matcher(['foo' => 4]);   // === false
 
 **Example:** Matches field value for which a given comparator returns true
 ```php
-$matcher = matchesProperty('foo', 3, 'Dash\identical');
+$matcher = Dash\matchesProperty('foo', 3, 'Dash\identical');
 $matcher(['foo' => 3]);    // === true
 $matcher(['foo' => 3.0]);  // === false
 ```
@@ -1501,6 +1502,34 @@ $getter([
 ```php
 $getter = Dash\property('a.b.c');
 $getter(['a.b.c' => 'value']);  // === 'value'
+```
+
+[↑ Top](#operations)
+
+reduce
+---
+[Operations](#operations) › [Iterable](#iterable)
+
+```php
+reduce($iterable, $iteratee, $initial = []): mixed
+```
+Iteratively reduces `$iterable` to a single value by way of `$iteratee`.
+
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` | 
+`$iteratee` | `callable` | Called with `($result, $value, $key)` for each `($key, $value)` in `$iterable` and the current accumulated `$result`. `$iteratee` should return the updated `$result`
+`$initial` | `mixed` | (optional) Initial value
+**Returns** | `mixed` | 
+
+**Example:** Computes the sum of an array's values
+```php
+Dash\reduce([1, 2, 3, 4], function ($sum, $value) {
+	return $sum + $value;
+}, 0);
+// === 10
 ```
 
 [↑ Top](#operations)
