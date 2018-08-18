@@ -35,15 +35,9 @@ Requirements
 
 Existing
 ---
-- [ ] dropWhile
-- [ ] matches
 - [ ] matchesProperty
 - [ ] property
 - [ ] reduce
-- [ ] take
-- [ ] takeWhile
-- [ ] where
-- [ ] without
 - [x] _
 - [x] all
 - [x] any
@@ -121,6 +115,13 @@ Existing
 - [x] unary
 - [x] union
 - [x] values
+
+#### Implemented but not finalized
+- [ ] dropWhile
+- [ ] matches
+- [ ] takeWhile
+- [ ] where
+- [ ] without
 
 #### [Array methods](http://php.net/manual/en/ref.array.php)
 - [ ] chunk

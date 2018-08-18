@@ -59,7 +59,7 @@ fix-style:
 
 # Builds documentation for all operations
 docs:
-	@bin/docs.php src DOCS.md
+	@bin/docs.php src docs/Operations.md
 
 
 # Removes all generated files
@@ -75,7 +75,7 @@ clean:
 release:
 	make test
 	make docs
-	git add DOCS.md
+	git add docs/Operations.md
 	git commit -m "Release v$v" --allow-empty
 	git tag -a v$(v) -m v$(v)
 	git push

@@ -15,7 +15,7 @@ $result = __([1, 2, 3, 4, 5])
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Operations](DOCS.md)
+- [Operations](docs/Operations.md)
 - [Changelog](CHANGELOG.md)
 - [Contributing](CONTRIBUTING.md)
 
@@ -39,7 +39,7 @@ composer require nextbigsoundinc/dash
 
 Usage
 ---
-Dash operations can be used alone or chained together. [**See the full list of operations**](DOCS.md)
+Dash operations can be used alone or chained together. [**See the full list of operations**](docs/Operations.md)
 
 
 ### Standalone
@@ -116,7 +116,7 @@ $chain->run();
 
 ### Currying
 
-[`curry()`](DOCS.md#curry) and related operations can be used to create curried functions from any callable:
+[`curry()`](docs/Operations.md#curry) and related operations can be used to create curried functions from any callable:
 
 ```php
 function listThree($a, $b, $c) {
@@ -138,7 +138,7 @@ _::chain(['a' => 3, 'b' => '3', 'c' => 3, 'd' => 3.0])
 // === ['a' => 3, 'c' => 3]
 ```
 
-Similarly, [`partial()`](DOCS.md#partial) and related operations can be used to create partially-applied functions:
+Similarly, [`partial()`](docs/Operations.md#partial) and related operations can be used to create partially-applied functions:
 
 ```php
 $containsTruthy = Dash\_contains(true, 'Dash\equal');
