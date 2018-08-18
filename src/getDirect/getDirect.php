@@ -36,6 +36,10 @@ namespace Dash;
  */
 function getDirect($input, $key, $default = null)
 {
+	if (!is_string($key) && !is_numeric($key) && !is_null($key)) {
+		return $default;
+	}
+
 	if ($input instanceof \ArrayAccess && $input->offsetExists($key)) {
 		$value = $input[$key];
 	}

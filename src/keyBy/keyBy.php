@@ -64,11 +64,16 @@ function keyBy($iterable, $iteratee = 'Dash\identity')
 		return [];
 	}
 
-	$iteratee = property($iteratee);
 	$keyed = [];
 
 	foreach ($iterable as $key => $value) {
-		$newKey = call_user_func($iteratee, $value, $key, $iterable);
+		if (hasDirect($value, $iteratee)) {
+			$newKey = getDirect($value, $iteratee);
+		}
+		else {
+			$mapper = is_callable($iteratee) ? $iteratee : property($iteratee, null);
+			$newKey = call_user_func($mapper, $value, $key, $iterable);
+		}
 		$keyed[$newKey] = $value;
 	}
 

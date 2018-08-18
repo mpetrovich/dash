@@ -11,9 +11,9 @@ namespace Dash;
  *
  * @category Iterable
  * @param iterable|stdClass|null $iterable
- * @param callable|string $iteratee (optional) If a callable, invoked with `($value, $key, $iterable)`
- *                                  for each element in `$iterable`;
- *                                  if a string, will use `Dash\property($iteratee)` as the iteratee
+ * @param callable|string|numeric $iteratee (optional) If a callable, invoked with `($value, $key, $iterable)`
+ *                                          for each element in `$iterable`;
+ *                                          if a string, will use `Dash\property($iteratee)` as the iteratee
  * @return array A new 0-indexed array
  *
  * @example
@@ -34,19 +34,7 @@ namespace Dash;
 function map($iterable, $iteratee = 'Dash\identity')
 {
 	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
-
-	if (is_null($iterable)) {
-		return [];
-	}
-
-	$iteratee = property($iteratee);
-	$mapped = [];
-
-	foreach ($iterable as $key => $value) {
-		$mapped[] = call_user_func($iteratee, $value, $key, $iterable);
-	}
-
-	return $mapped;
+	return array_values(mapValues($iterable, $iteratee));
 }
 
 /**

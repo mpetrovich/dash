@@ -40,6 +40,18 @@ class getDirectTest extends PHPUnit_Framework_TestCase
 				'default' => 'default',
 				'expected' => 'value',
 			],
+			'With an array key' => [
+				'input' => ['foo' => 'value'],
+				'key' => ['A', 'bar'],
+				'default' => 'default',
+				'expected' => 'default',
+			],
+			'With a closure key' => [
+				'input' => ['foo' => 'value'],
+				'key' => function () {},
+				'default' => 'default',
+				'expected' => 'default',
+			],
 			'With matching null value' => [
 				'input' => ['a' => null],
 				'key' => 'a',

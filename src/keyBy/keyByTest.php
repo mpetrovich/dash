@@ -173,19 +173,32 @@ class keyByTest extends PHPUnit_Framework_TestCase
 	public function casesWithPath()
 	{
 		return [
-			'With an array' => [
+			'With a string iteratee' => [
 				'iterable' => [
-					'w' => ['a' => ['b' => 'first']],
-					'x' => ['x' => 'missing'],
-					'y' => ['a' => ['b' => 'third']],
-					'z' => ['a' => ['b' => 'fourth']],
+					'w' => ['a' => ['b' => 'first'], 'id' => 1],
+					'x' => ['x' => 'missing', 'id' => 2],
+					'y' => ['a' => ['b' => 'third'], 'id' => 3],
+					'z' => ['a' => ['b' => 'first'], 'id' => 4],
 				],
 				'iteratee' => 'a.b',
 				'expected' => [
-					'first' => ['a' => ['b' => 'first']],
-					null => ['x' => 'missing'],
-					'third' => ['a' => ['b' => 'third']],
-					'fourth' => ['a' => ['b' => 'fourth']],
+					'first' => ['a' => ['b' => 'first'], 'id' => 4],
+					null => ['x' => 'missing', 'id' => 2],
+					'third' => ['a' => ['b' => 'third'], 'id' => 3],
+				],
+			],
+			'With a numeric iteratee' => [
+				'iterable' => [
+					'w' => ['one', 'two', 'three', 'four'],
+					'x' => ['uno', 'dos', 'tres', 'cuatro'],
+					'y' => ['un', 'deux', 'trois', 'quatre'],
+					'z' => ['uno', 'due', 'tre', 'quattro'],
+				],
+				'iteratee' => 0,
+				'expected' => [
+					'one' => ['one', 'two', 'three', 'four'],
+					'uno' => ['uno', 'due', 'tre', 'quattro'],
+					'un' => ['un', 'deux', 'trois', 'quatre'],
 				],
 			],
 		];

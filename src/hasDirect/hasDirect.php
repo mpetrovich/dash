@@ -27,6 +27,10 @@ namespace Dash;
  */
 function hasDirect($input, $key)
 {
+	if (!is_string($key) && !is_numeric($key) && !is_null($key)) {
+		return false;
+	}
+
 	return is_array($input) && array_key_exists($key, $input)
 		|| is_object($input) && property_exists($input, $key)
 		|| $input instanceof \ArrayAccess && $input->offsetExists($key)

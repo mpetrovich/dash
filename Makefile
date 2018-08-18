@@ -67,7 +67,7 @@ clean:
 	@rm -rf test-coverage/ vendor/
 
 
-# Tags a new release
+# Creates, tags, and pushes a new release
 #
 # Example:
 # 	make release v=1.2.3

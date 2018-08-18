@@ -36,6 +36,16 @@ class hasDirectTest extends PHPUnit_Framework_TestCase
 				'key' => null,
 				'expected' => true,
 			],
+			'With an array key' => [
+				'input' => ['foo' => 'value'],
+				'key' => ['A', 'bar'],
+				'expected' => false,
+			],
+			'With a closure key' => [
+				'input' => ['foo' => 'value'],
+				'key' => function () {},
+				'expected' => false,
+			],
 			'With null' => [
 				'input' => null,
 				'key' => 'foo',

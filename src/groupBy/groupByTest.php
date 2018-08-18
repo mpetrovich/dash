@@ -162,7 +162,7 @@ class groupByTest extends PHPUnit_Framework_TestCase
 	public function casesWithPath()
 	{
 		return [
-			'With an array' => [
+			'With a string iteratee' => [
 				'iterable' => [
 					'w' => ['a' => ['b' => 'first'], 'id' => 1],
 					'x' => ['x' => 'missing', 'id' => 2],
@@ -180,6 +180,27 @@ class groupByTest extends PHPUnit_Framework_TestCase
 					],
 					'third' => [
 						['a' => ['b' => 'third'], 'id' => 3]
+					],
+				],
+			],
+			'With a numeric iteratee' => [
+				'iterable' => [
+					'w' => ['one', 'two', 'three', 'four'],
+					'x' => ['uno', 'dos', 'tres', 'cuatro'],
+					'y' => ['un', 'deux', 'trois', 'quatre'],
+					'z' => ['uno', 'due', 'tre', 'quattro'],
+				],
+				'iteratee' => 0,
+				'expected' => [
+					'one' => [
+						['one', 'two', 'three', 'four'],
+					],
+					'uno' => [
+						['uno', 'dos', 'tres', 'cuatro'],
+						['uno', 'due', 'tre', 'quattro'],
+					],
+					'un' => [
+						['un', 'deux', 'trois', 'quatre'],
 					],
 				],
 			],

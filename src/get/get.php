@@ -9,8 +9,8 @@ namespace Dash;
  *
  * @category Utility
  * @param mixed $input
- * @param callable|string $path If a callable, invoked with `($input)` to get the value at `$path`;
- *                              if a string, will use `Dash\property($path)` to get the value at `$path`
+ * @param callable|string|number $path If a callable, invoked with `($input)` to get the value at `$path`;
+ *                                     if a string or number, `Dash\property($path)` used to get the value at `$path`
  * @param mixed $default (optional) Value to return if `$path` does not exist within `$input`
  * @return mixed Value at `$path` or `$default` if no value exists
  *
@@ -39,8 +39,13 @@ function get($input, $path, $default = null)
 		return $default;
 	}
 
-	$getter = property($path, $default);
-	return call_user_func($getter, $input);
+	if (hasDirect($input, $path)) {
+		return getDirect($input, $path);
+	}
+
+	$getter = is_callable($path) ? $path : property($path, $default);
+	$value = $getter ? call_user_func($getter, $input, $default) : $default;
+	return $value;
 }
 
 /**

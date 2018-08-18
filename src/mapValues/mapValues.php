@@ -39,11 +39,16 @@ function mapValues($iterable, $iteratee = 'Dash\identity')
 		return [];
 	}
 
-	$iteratee = property($iteratee);
 	$mapped = [];
 
 	foreach ($iterable as $key => $value) {
-		$mapped[$key] = call_user_func($iteratee, $value, $key, $iterable);
+		if (hasDirect($value, $iteratee)) {
+			$mapped[$key] = getDirect($value, $iteratee);
+		}
+		else {
+			$mapper = is_callable($iteratee) ? $iteratee : property($iteratee, null);
+			$mapped[$key] = call_user_func($mapper, $value, $key, $iterable);
+		}
 	}
 
 	return $mapped;

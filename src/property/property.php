@@ -7,9 +7,8 @@ namespace Dash;
  * Creates a function that returns the value at a path on a collection.
  *
  * @category Iterable
- * @param callable $path Path of the property to retrieve;
- *                       can be nested by delimiting each sub-property or array index with a period.
- *                       If it is already a function, the same function is returned.
+ * @param string|number|null $path Path of the property to retrieve;
+ *                                 can be nested by delimiting each sub-property or array index with a period.
  * @param mixed $default Default value to return if nothing exists at $path
  * @return function Function that accepts a collection and returns the value at $path on the collection
  *
@@ -40,10 +39,7 @@ namespace Dash;
  */
 function property($path, $default = null)
 {
-	if (is_callable($path)) {
-		// $path is already a getter function
-		return $path;
-	}
+	assertType($path, ['string', 'numeric', 'null'], __FUNCTION__);
 
 	$getter = function ($value) use ($path, $default) {
 		// Short-circuit for direct properties

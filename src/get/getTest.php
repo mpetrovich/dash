@@ -46,6 +46,12 @@ class getTest extends PHPUnit_Framework_TestCase
 				'default' => 'default',
 				'expected' => 'value',
 			],
+			'With a matching direct numeric key' => [
+				'input' => [3 => 'value'],
+				'path' => 3,
+				'default' => 'default',
+				'expected' => 'value',
+			],
 			'With a matching direct object property' => [
 				'input' => (object) [
 					'a' => ['b' => ['c' => 'nested']],
@@ -63,9 +69,27 @@ class getTest extends PHPUnit_Framework_TestCase
 				'default' => 'default',
 				'expected' => null,
 			],
-			'With a callable iteratee' => [
-				'input' => (object) ['foo' => 'value'],
-				'path' => function ($input) { return $input->foo; },
+			'With a callable iteratee as an anonymous closure' => [
+				'input' => ['foo' => 'value'],
+				'path' => function ($input) { return $input['foo']; },
+				'default' => 'default',
+				'expected' => 'value',
+			],
+			'With a callable iteratee as a static method string' => [
+				'input' => ['foo' => 'value'],
+				'path' => 'getTest::staticMethod',
+				'default' => 'default',
+				'expected' => 'value',
+			],
+			'With a callable iteratee as a static method array' => [
+				'input' => ['foo' => 'value'],
+				'path' => ['getTest', 'staticMethod'],
+				'default' => 'default',
+				'expected' => 'value',
+			],
+			'With a callable iteratee as an instance method' => [
+				'input' => ['foo' => 'value'],
+				'path' => [$this, 'instanceMethod'],
 				'default' => 'default',
 				'expected' => 'value',
 			],
@@ -74,6 +98,18 @@ class getTest extends PHPUnit_Framework_TestCase
 				'path' => 'a.b.c',
 				'default' => 'default',
 				'expected' => $func,
+			],
+			'With a path with the same name as a global function' => [
+				'input' => ['abs' => 'value'],
+				'path' => 'abs',
+				'default' => 'default',
+				'expected' => 'value',
+			],
+			'With a nested path with the same name as a global function' => [
+				'input' => ['a' => ['b' => ['abs' => 'value']]],
+				'path' => 'a.b.abs',
+				'default' => 'default',
+				'expected' => 'value',
 			],
 
 			/*
@@ -210,6 +246,16 @@ class getTest extends PHPUnit_Framework_TestCase
 				'expected' => 'default',
 			],
 		];
+	}
+
+	public static function staticMethod($input)
+	{
+		return $input['foo'];
+	}
+
+	public function instanceMethod($input)
+	{
+		return $input['foo'];
 	}
 
 	/**

@@ -162,7 +162,7 @@ class mapTest extends PHPUnit_Framework_TestCase
 	public function casesWithPath()
 	{
 		return [
-			'With an array' => [
+			'With a string iteratee' => [
 				'iterable' => [
 					'w' => ['a' => ['b' => 'first']],
 					'x' => ['z' => 'missing'],
@@ -172,7 +172,36 @@ class mapTest extends PHPUnit_Framework_TestCase
 				'iteratee' => 'a.b',
 				'expected' => ['first', null, 'third', 'fourth'],
 			],
+			'With a numeric iteratee' => [
+				'iterable' => [
+					'w' => ['one', 'two', 'three', 'four'],
+					'x' => ['uno', 'dos', 'tres', 'cuatro'],
+					'y' => ['un', 'deux', 'trois', 'quatre'],
+				],
+				'iteratee' => 2,
+				'expected' => ['three', 'tres', 'trois'],
+			],
+			'With a non-matching string iteratee' => [
+				'iterable' => [1, 2, 3],
+				'iteratee' => 'foo',
+				'expected' => [null, null, null],
+			],
 		];
+	}
+
+	/**
+	 * Verifies that when the iteratee is a property name with the same name as a global function,
+	 * the property name takes precedence.
+	 */
+	public function testPropertyNamePrecendence()
+	{
+		$actual = Dash\map([
+			'w' => ['abs' => 'a'],
+			'x' => ['abs' => 'b'],
+			'y' => ['abs' => 'c'],
+		], 'abs');
+		$expected = ['a', 'b', 'c'];
+		$this->assertSame($expected, $actual);
 	}
 
 	/**
