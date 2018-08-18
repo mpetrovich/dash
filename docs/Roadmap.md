@@ -36,7 +36,6 @@ Requirements
 Existing
 ---
 - [ ] matchesProperty
-- [ ] property
 - [ ] reduce
 - [x] _
 - [x] all
@@ -98,6 +97,7 @@ Existing
 - [x] partialRight
 - [x] pick
 - [x] pluck
+- [x] property
 - [x] reject
 - [x] result
 - [x] reverse

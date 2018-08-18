@@ -1,18 +1,31 @@
 <?php
 
-
+/**
+ * @covers Dash\property
+ * @covers Dash\_property
+ */
 class propertyTest extends PHPUnit_Framework_TestCase
 {
 	/**
-	 * @dataProvider casesForProperty
+	 * @dataProvider cases
 	 */
-	public function testProperty($iterable, $path, $default, $expected)
+	public function test($iterable, $path, $default, $expected)
 	{
 		$getter = Dash\property($path, $default);
 		$this->assertSame($expected, $getter($iterable));
 	}
 
-	public function casesForProperty()
+	/**
+	 * @dataProvider cases
+	 */
+	public function testCurried($iterable, $path, $default, $expected)
+	{
+		$property = Dash\_property($default);
+		$getter = $property($path);
+		$this->assertEquals($expected, $getter($iterable));
+	}
+
+	public function cases()
 	{
 		return [
 			'With a null path' => [
@@ -116,5 +129,73 @@ class propertyTest extends PHPUnit_Framework_TestCase
 				'expected' => 'value',
 			],
 		];
+	}
+
+	/**
+	 * @dataProvider casesTypeAssertions
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testTypeAssertions($path, $type)
+	{
+		try {
+			Dash\property($path);
+		}
+		catch (Exception $e) {
+			$this->assertSame(
+				"Dash\\property expects string or numeric or null but was given $type",
+				$e->getMessage()
+			);
+			throw $e;
+		}
+	}
+
+	public function casesTypeAssertions()
+	{
+		return [
+			'With an array' => [
+				'path' => [1, 2, 3],
+				'type' => 'array',
+			],
+			'With an stdClass' => [
+				'path' => (object) [1, 2, 3],
+				'type' => 'stdClass',
+			],
+			'With a DateTime' => [
+				'path' => new DateTime(),
+				'type' => 'DateTime',
+			],
+		];
+	}
+
+	public function testExamples()
+	{
+		$getter = Dash\property('foo');
+		$this->assertSame('value', $getter(['foo' => 'value']));
+		$this->assertSame('value', $getter((object) ['foo' => 'value']));
+
+		$getter = Dash\property('items.count');
+		$countFn = $getter(['items' => new ArrayObject([1, 2, 3])]);
+		$this->assertSame(3, $countFn());
+
+		$getter = Dash\property('a.b.c');
+		$this->assertSame('value', $getter([
+			'a' => [
+				'b' => [
+					'c' => 'value'
+				]
+			]
+		]));
+
+		$getter = Dash\property('items.1.name');
+		$this->assertSame('two', $getter([
+			'items' => [
+				['name' => 'one'],
+				['name' => 'two'],
+				['name' => 'three'],
+			]
+		]));
+
+		$getter = Dash\property('a.b.c');
+		$this->assertSame('value', $getter(['a.b.c' => 'value']));
 	}
 }

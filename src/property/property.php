@@ -3,51 +3,61 @@
 namespace Dash;
 
 /**
- * @incomplete
- * Creates a function that returns the value at a path on a collection.
+ * Creates a function that returns the value at a `$path` for a given input.
  *
  * @category Iterable
  * @param string|number|null $path Path of the property to retrieve;
  *                                 can be nested by delimiting each sub-property or array index with a period.
- * @param mixed $default Default value to return if nothing exists at $path
- * @return function Function that accepts a collection and returns the value at $path on the collection
+ * @param mixed $default (optional) Default value to return if nothing exists at `$path`
+ * @return function Function with signature `($input)` that returns the value at `$path` within `$input`
  *
- * @example
-	$getter = property('a.b');
-	$iterable = [
+ * @example Accepts arrays and objects
+	$getter = Dash\property('foo');
+	$getter(['foo' => 'value']);  // === 'value'
+	$getter((object) ['foo' => 'value']);  // === 'value'
+ *
+ * @example Methods can be accessed too
+	$getter = Dash\property('items.count');
+	$countFn = $getter(['items' => new ArrayObject([1, 2, 3])]);
+	$countFn();  // === 3
+ *
+ * @example Nested properties can be referenced with dot notation
+	$getter = Dash\property('a.b.c');
+	$getter([
 		'a' => [
-			'b' => 'value'
+			'b' => [
+				'c' => 'value'
+			]
 		]
-	];
-	$getter($iterable);  // === 'value';
+	]);
+	// === 'value'
  *
  * @example Array elements can be referenced by index
-	$getter = property('people.1.name');
-	$iterable = [
-		'people' => [
-			['name' => 'Pete'],
-			['name' => 'John'],
-			['name' => 'Paul'],
+	$getter = Dash\property('items.1.name');
+	$getter([
+		'items' => [
+			['name' => 'one'],
+			['name' => 'two'],
+			['name' => 'three'],
 		]
-	];
-	$getter($iterable) === 'John';
+	]);
+	// === 'two'
  *
  * @example Keys with the same name as the full path can be used
-	$getter = property('a.b.c');
-	$iterable = ['a.b.c' => 'value'];
-	$getter($iterable);  // === 'value';
+	$getter = Dash\property('a.b.c');
+	$getter(['a.b.c' => 'value']);  // === 'value'
  */
 function property($path, $default = null)
 {
 	assertType($path, ['string', 'numeric', 'null'], __FUNCTION__);
 
-	$getter = function ($value) use ($path, $default) {
+	$getter = function ($input) use ($path, $default) {
 		// Short-circuit for direct properties
-		if (hasDirect($value, $path)) {
-			return getDirect($value, $path);
+		if (hasDirect($input, $path)) {
+			return getDirect($input, $path);
 		}
 
-		$result = $value;
+		$result = $input;
 		$steps = explode('.', $path);
 
 		foreach ($steps as $step) {
@@ -64,4 +74,12 @@ function property($path, $default = null)
 	};
 
 	return $getter;
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function _property(/* default, $path */)
+{
+	return currify('Dash\property', func_get_args());
 }
