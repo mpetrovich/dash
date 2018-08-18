@@ -9,45 +9,45 @@ class propertyTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function test($iterable, $path, $default, $expected)
+	public function test($input, $path, $default, $expected)
 	{
 		$getter = Dash\property($path, $default);
-		$this->assertSame($expected, $getter($iterable));
+		$this->assertSame($expected, $getter($input));
 	}
 
 	/**
 	 * @dataProvider cases
 	 */
-	public function testCurried($iterable, $path, $default, $expected)
+	public function testCurried($input, $path, $default, $expected)
 	{
 		$property = Dash\_property($default);
 		$getter = $property($path);
-		$this->assertEquals($expected, $getter($iterable));
+		$this->assertSame($expected, $getter($input));
 	}
 
 	public function cases()
 	{
 		return [
 			'With a null path' => [
-				'iterable' => ['a' => 1, 'b' => 2, 'c' => 3],
+				'input' => ['a' => 1, 'b' => 2, 'c' => 3],
 				'path' => null,
 				'default' => 'default',
 				'expected' => 'default',
 			],
 			'With a direct array string index' => [
-				'iterable' => ['a' => 1, 'b' => 2, 'c' => 3],
+				'input' => ['a' => 1, 'b' => 2, 'c' => 3],
 				'path' => 'b',
 				'default' => 'default',
 				'expected' => 2,
 			],
 			'With a direct array numeric index' => [
-				'iterable' => ['a', 'b', 'c'],
+				'input' => ['a', 'b', 'c'],
 				'path' => 1,
 				'default' => 'default',
 				'expected' => 'b',
 			],
 			'With a valid path for an object' => [
-				'iterable' => (object) [
+				'input' => (object) [
 					'a' => (object) [
 						'b' => (object) [
 							'c' => 'value'
@@ -59,7 +59,7 @@ class propertyTest extends PHPUnit_Framework_TestCase
 				'expected' => 'value',
 			],
 			'With an invalid path for an object' => [
-				'iterable' => (object) [
+				'input' => (object) [
 					'a' => (object) [
 						'b' => (object) [
 							'c' => 'value'
@@ -71,7 +71,7 @@ class propertyTest extends PHPUnit_Framework_TestCase
 				'expected' => 'default',
 			],
 			'With a valid array index' => [
-				'iterable' => (object) [
+				'input' => (object) [
 					'a' => [
 						(object) [
 							'x' => (object) [
@@ -88,7 +88,7 @@ class propertyTest extends PHPUnit_Framework_TestCase
 				'expected' => 'value',
 			],
 			'With an invalid array index' => [
-				'iterable' => (object) [
+				'input' => (object) [
 					'a' => [
 						(object) [
 							'x' => (object) [
@@ -105,28 +105,56 @@ class propertyTest extends PHPUnit_Framework_TestCase
 				'expected' => 'default',
 			],
 			'With a matching direct array key' => [
-				'iterable' => ['a.b.c' => 'value'],
+				'input' => ['a.b.c' => 'value'],
 				'path' => 'a.b.c',
 				'default' => 'default',
 				'expected' => 'value',
 			],
 			'With a matching direct object property' => [
-				'iterable' => (object) ['a.b.c' => 'value'],
+				'input' => (object) ['a.b.c' => 'value'],
 				'path' => 'a.b.c',
 				'default' => 'default',
 				'expected' => 'value',
 			],
 			'With a property with the same name as a global function' => [
-				'iterable' => ['abs' => 'value'],
+				'input' => ['abs' => 'value'],
 				'path' => 'abs',
 				'default' => 'default',
 				'expected' => 'value',
 			],
 			'With a nested property with the same name as a global function' => [
-				'iterable' => ['a' => ['b' => ['abs' => 'value']]],
+				'input' => ['a' => ['b' => ['abs' => 'value']]],
 				'path' => 'a.b.abs',
 				'default' => 'default',
 				'expected' => 'value',
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider casesClassInstance
+	 */
+	public function testClassInstance($path, $default, $input, $expected)
+	{
+		$getter = Dash\property($path, $default);
+		$countFn = $getter($input);
+		$this->assertSame($expected, $countFn());
+	}
+
+	public function casesClassInstance()
+	{
+		return [
+			'With class instance' => [
+				'path' => 'count',
+				'default' => 'default',
+				'input' => new ArrayObject([1, 2, 3]),
+				'expected' => 3,
+			],
+			'With nested class instance' => [
+				'path' => 'items.count',
+				'default' => 'default',
+				'input' => ['items' => new ArrayObject([1, 2, 3])],
+				'expected' => 3,
 			],
 		];
 	}

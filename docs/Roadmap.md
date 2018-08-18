@@ -35,7 +35,6 @@ Requirements
 
 Existing
 ---
-- [ ] matchesProperty
 - [ ] reduce
 - [x] _
 - [x] all
@@ -88,6 +87,7 @@ Existing
 - [x] last
 - [x] map
 - [x] mapValues
+- [x] matchesProperty
 - [x] max
 - [x] median
 - [x] min

@@ -31,12 +31,14 @@ Operation | Signature
 [last](#last) | `last($iterable): mixed\|null`
 [map](#map) | `map($iterable, $iteratee = 'Dash\identity'): array`
 [mapValues](#mapvalues) | `mapValues($iterable, $iteratee = 'Dash\identity'): array`
+[matchesProperty](#matchesproperty) | `matchesProperty($path, $value = true, $comparator = 'Dash\equal'): function`
 [max](#max) | `max($iterable): mixed\|null`
 [median](#median) | `median($iterable): mixed\|null`
 [min](#min) | `min($iterable): mixed\|null`
 [omit](#omit) | `omit($iterable, $keys): array`
 [pick](#pick) | `pick($iterable, $keys): array`
 [pluck](#pluck) | `pluck($iterable, $path, $default = null): array`
+[property](#property) | `property($path, $default = null): function`
 [reject](#reject) | `reject($iterable, $predicate = 'Dash\identity'): array`
 [reverse](#reverse) | `reverse($iterable, $preserveIntegerKeys = false): array`
 [rotate](#rotate) | `rotate($iterable, $count = 1): array`
@@ -1216,6 +1218,57 @@ Dash\mapValues($data, 'name.last');
 
 [↑ Top](#operations)
 
+matchesProperty
+---
+[Operations](#operations) › [Iterable](#iterable)
+
+```php
+matchesProperty($path, $value = true, $comparator = 'Dash\equal'): function
+```
+Creates a function that returns whether `$comparator` returns truthy for the value at `$path` for a given input.
+
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$path` | `callable\|string\|number\|null` | Any valid path supported by `Dash\get()`
+`$value` | `mixed` | Value passed to `$comparator` for comparison
+`$comparator` | `callable` | (optional) Function with signature `($valueAtPath, $value)` that compares `$value` to the value at `$path` for the given input
+**Returns** | `function` | Function with signature `($input)` that returns whether the value at `$path` within `$input`
+
+**Example:** Matches truthy field value
+```php
+$matcher = matchesProperty('foo');
+$matcher(['foo' => 'bar']);  // === true
+$matcher(['foo' => null]);   // === false
+
+```
+
+**Example:** Matches falsey field value
+```php
+$matcher = matchesProperty('foo', false);
+$matcher(['foo' => false]);  // === true
+$matcher(['foo' => 'bar']);  // === false
+
+```
+
+**Example:** Matches field value that loosely equals a given value
+```php
+$matcher = matchesProperty('foo', 3);
+$matcher(['foo' => 3.0]);  // === true
+$matcher(['foo' => 4]);   // === false
+
+```
+
+**Example:** Matches field value for which a given comparator returns true
+```php
+$matcher = matchesProperty('foo', 3, 'Dash\identical');
+$matcher(['foo' => 3]);    // === true
+$matcher(['foo' => 3.0]);  // === false
+```
+
+[↑ Top](#operations)
+
 max
 ---
 [Operations](#operations) › [Iterable](#iterable)
@@ -1379,6 +1432,75 @@ Dash\pluck($data, 'name');
 
 Dash\pluck($data, 'age');
 // === [null, 35, 20]
+```
+
+[↑ Top](#operations)
+
+property
+---
+[Operations](#operations) › [Iterable](#iterable)
+
+```php
+property($path, $default = null): function
+```
+Creates a function that returns the value at a `$path` for a given input.
+
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$path` | `string\|number\|null` | Path of the property to retrieve; can be nested by delimiting each sub-property or array index with a period.
+`$default` | `mixed` | (optional) Default value to return if nothing exists at `$path`
+**Returns** | `function` | Function with signature `($input)` that returns the value at `$path` within `$input`
+
+**Example:** Accepts arrays and objects
+```php
+$getter = Dash\property('foo');
+$getter(['foo' => 'value']);  // === 'value'
+$getter((object) ['foo' => 'value']);  // === 'value'
+
+```
+
+**Example:** Methods can be accessed too
+```php
+$getter = Dash\property('items.count');
+$countFn = $getter(['items' => new ArrayObject([1, 2, 3])]);
+$countFn();  // === 3
+
+```
+
+**Example:** Nested properties can be referenced with dot notation
+```php
+$getter = Dash\property('a.b.c');
+$getter([
+	'a' => [
+		'b' => [
+			'c' => 'value'
+		]
+	]
+]);
+// === 'value'
+
+```
+
+**Example:** Array elements can be referenced by index
+```php
+$getter = Dash\property('items.1.name');
+$getter([
+	'items' => [
+		['name' => 'one'],
+		['name' => 'two'],
+		['name' => 'three'],
+	]
+]);
+// === 'two'
+
+```
+
+**Example:** Keys with the same name as the full path can be used
+```php
+$getter = Dash\property('a.b.c');
+$getter(['a.b.c' => 'value']);  // === 'value'
 ```
 
 [↑ Top](#operations)
@@ -2297,9 +2419,9 @@ Parameter | Type | Description
 ```php
 $input = [
 	'people' => new ArrayObject([
-		['name' => 'Pete', 'joined' => new DateTime('2017-01-01')],
-		['name' => 'John', 'joined' => new DateTime('2017-02-02')],
-		['name' => 'Paul', 'joined' => new DateTime('2017-04-04')],
+		['name' => 'Pete', 'getHash' => function () { return '4d17a4'; }],
+		['name' => 'John', 'getHash' => function () { return 'fd2a48'; }],
+		['name' => 'Paul', 'getHash' => function () { return 'd8575d'; }],
 	])
 ];
 
@@ -2310,7 +2432,7 @@ Dash\result($input, 'people.count');
 // === 3
 
 Dash\result($input, 'people.1.joined.getTimestamp');
-// === 1485993600
+// === 'fd2a48'
 ```
 
 [↑ Top](#operations)
