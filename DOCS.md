@@ -1150,7 +1150,7 @@ Related: [mapValues()](#)
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable\|stdClass\|null` | 
-`$iteratee` | `callable\|string` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable`; if a string, will use `Dash\property($iteratee)` as the iteratee
+`$iteratee` | `callable\|string\|numeric` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable`; if a string, will use `Dash\property($iteratee)` as the iteratee
 **Returns** | `array` | A new 0-indexed array
 
 **Example:** 
@@ -1979,7 +1979,7 @@ Related: [getDirect()](#), [has()](#), [property()](#)
 Parameter | Type | Description
 --- | --- | :---
 `$input` | `mixed` | 
-`$path` | `callable\|string` | If a callable, invoked with `($input)` to get the value at `$path`; if a string, will use `Dash\property($path)` to get the value at `$path`
+`$path` | `callable\|string\|number` | If a callable, invoked with `($input)` to get the value at `$path`; if a string or number, `Dash\property($path)` used to get the value at `$path`
 `$default` | `mixed` | (optional) Value to return if `$path` does not exist within `$input`
 **Returns** | `mixed` | Value at `$path` or `$default` if no value exists
 
@@ -2675,7 +2675,7 @@ Related: [curryN()](#), [curryRight()](#), [partial()](#), [currify()](#)
 
 Parameter | Type | Description
 --- | --- | :---
-`$callable` | `callable` | 
+`$callable` | `callable` | Any valid callable except for relative static methods, eg. ['A', 'parent::foo']
 `...$args` | `mixed` | (optional, variadic) arguments to pass to `$callable`
 **Returns** | `function\|mixed` | 
 
