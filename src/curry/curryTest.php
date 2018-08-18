@@ -65,6 +65,54 @@ class curryTest extends PHPUnit_Framework_TestCase
 		$this->assertSame('1, 2, 3', $result);
 	}
 
+	/**
+	 * @dataProvider casesCallableTypes
+	 */
+	public function testCallableTypes($callable)
+	{
+		$curried = Dash\curry($callable);
+		$curried = $curried(1);
+		$this->assertSame(3, $curried(2));
+	}
+
+	public function instanceMethod($a, $b)
+	{
+		return $a + $b;
+	}
+
+	public static function staticMethod($a, $b)
+	{
+		return $a + $b;
+	}
+
+	public function casesCallableTypes()
+	{
+		// All valid callables listed here: http://php.net/manual/en/language.types.callable.php
+		// except for relative static methods
+		return [
+			'With anonymous closure' => [
+				'callable' => function ($a, $b) {
+					return $a + $b;
+				},
+			],
+			'With global function' => [
+				'callable' => 'curryTest_globalFunction',
+			],
+			'With static class method' => [
+				'callable' => 'curryTest::staticMethod',
+			],
+			'With static class method as array' => [
+				'callable' => ['curryTest', 'staticMethod'],
+			],
+			'With instance class method' => [
+				'callable' => [$this, 'instanceMethod'],
+			],
+			'With a class that implements __invoke()' => [
+				'callable' => new curryTest_classC(),
+			],
+		];
+	}
+
 	public function testPlaceholders()
 	{
 		$callable = function ($a, $b, $c, $d) {
@@ -150,5 +198,37 @@ class curryTest extends PHPUnit_Framework_TestCase
 		$greetSir = Dash\curry($greet, Dash\_, 'Sir');
 		$goodMorningSir = $greetSir('Good morning');
 		$this->assertSame('Good morning, Sir Peter', $goodMorningSir('Peter'));
+	}
+}
+
+/**
+ * @codingStandardsIgnoreStart
+ */
+function curryTest_globalFunction($a, $b)
+{
+	return $a + $b;
+}
+
+class curryTest_classA
+{
+	public static function sum($a, $b)
+	{
+		return $a + $b;
+	}
+}
+
+class curryTest_classB extends curryTest_classA
+{
+	public static function sum($a, $b)
+	{
+		return 0;
+	}
+}
+
+class curryTest_classC
+{
+	public function __invoke($a, $b)
+	{
+		return $a + $b;
 	}
 }

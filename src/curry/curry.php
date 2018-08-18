@@ -13,7 +13,7 @@ namespace Dash;
  * @see curryN(), curryRight(), partial(), currify()
  *
  * @category Callable
- * @param callable $callable
+ * @param callable $callable Any valid callable except for relative static methods, eg. ['A', 'parent::foo']
  * @codingStandardsIgnoreLine
  * @param mixed ...$args (optional, variadic) arguments to pass to `$callable`
  * @return function|mixed
@@ -51,8 +51,22 @@ function curry(callable $callable /*, ...args */)
 	$args = func_get_args();
 	array_shift($args);  // Removes $callable
 
-	$numRequiredArgs = (new \ReflectionFunction($callable))->getNumberOfParameters();
+	if ($callable instanceof \Closure) {
+		$reflectionFn = new \ReflectionFunction($callable);
+	}
+	else {
+		$callableName = '';
+		is_callable($callable, false, /* by reference */ $callableName);
 
+		if (strpos($callableName, '::') !== false) {
+			$reflectionFn = new \ReflectionMethod($callableName);
+		}
+		else {
+			$reflectionFn = new \ReflectionFunction($callableName);
+		}
+	}
+
+	$numRequiredArgs = $reflectionFn->getNumberOfParameters();
 	$curryArgs = array_merge([$callable, $numRequiredArgs], $args);
 	return call_user_func_array('Dash\curryN', $curryArgs);
 }
