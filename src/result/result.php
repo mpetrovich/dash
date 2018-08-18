@@ -18,9 +18,9 @@ namespace Dash;
  * @example
 	$input = [
 		'people' => new ArrayObject([
-			['name' => 'Pete', 'joined' => new DateTime('2017-01-01')],
-			['name' => 'John', 'joined' => new DateTime('2017-02-02')],
-			['name' => 'Paul', 'joined' => new DateTime('2017-04-04')],
+			['name' => 'Pete', 'getHash' => function () { return '4d17a4'; }],
+			['name' => 'John', 'getHash' => function () { return 'fd2a48'; }],
+			['name' => 'Paul', 'getHash' => function () { return 'd8575d'; }],
 		])
 	];
 
@@ -31,7 +31,7 @@ namespace Dash;
 	// === 3
 
 	Dash\result($input, 'people.1.joined.getTimestamp');
-	// === 1485993600
+	// === 'fd2a48'
  */
 function result($input, $path, $default = null)
 {
