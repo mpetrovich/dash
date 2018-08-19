@@ -18,14 +18,103 @@ $avgMaleAge = Dash\chain([
 echo "Average male age is $avgMaleAge.";
 ```
 
-##### Jump to:
+At a glance
+---
+#### Jump to:
 - [Why use Dash?](#why-use-dash)
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Operations](docs/Operations.md)
-- [Changelog](CHANGELOG.md)
+- [Changelog](https://github.com/nextbigsoundinc/dash/releases)
 - [Contributing](CONTRIBUTING.md)
+
+#### Iterable
+[all / every](#all--every),
+[any / some](#any--some),
+[at](#at),
+[average / mean](#average--mean),
+[contains / includes](#contains--includes),
+[deltas](#deltas),
+[difference](#difference),
+[each](#each),
+[filter](#filter),
+[find](#find),
+[findKey](#findkey),
+[findLast](#findlast),
+[findLastKey](#findlastkey),
+[findLastValue](#findlastvalue),
+[findValue](#findvalue),
+[first / head](#first--head),
+[groupBy](#groupby),
+[intersection](#intersection),
+[isIndexedArray](#isindexedarray),
+[join / implode](#join--implode),
+[keyBy / indexBy](#keyby--indexby),
+[keys](#keys),
+[last](#last),
+[map](#map),
+[mapValues](#mapvalues),
+[matchesProperty](#matchesproperty),
+[max](#max),
+[median](#median),
+[min](#min),
+[omit](#omit),
+[pick](#pick),
+[pluck](#pluck),
+[property](#property),
+[reduce](#reduce),
+[reject](#reject),
+[reverse](#reverse),
+[rotate](#rotate),
+[sort](#sort),
+[sum](#sum),
+[take](#take),
+[takeRight](#takeright),
+[toArray](#toarray),
+[toObject](#toobject),
+[union](#union),
+[values](#values)
+
+#### Utility
+[assertType](#asserttype),
+[chain](#chain),
+[compare](#compare),
+[custom](#custom),
+[debug](#debug),
+[equal](#equal),
+[get](#get),
+[getDirect](#getdirect),
+[getDirectRef](#getdirectref),
+[hasDirect](#hasdirect),
+[identical](#identical),
+[identity](#identity),
+[isEmpty](#isempty),
+[isType](#istype),
+[result](#result),
+[set](#set),
+[size / count](#size--count),
+[tap](#tap),
+[thru](#thru)
+
+#### Callable
+[apply](#apply),
+[ary](#ary),
+[call](#call),
+[currify](#currify),
+[currifyN](#currifyn),
+[curry](#curry),
+[curryN](#curryn),
+[curryRight](#curryright),
+[curryRightN](#curryrightn),
+[negate](#negate),
+[partial](#partial),
+[partialRight](#partialright),
+[unary](#unary)
+
+#### Number
+[isEven](#iseven),
+[isOdd](#isodd)
 
 
 Why use Dash?
@@ -73,6 +162,7 @@ Features
 - [Currying](#currying)
 - [Lazy evaluation](#lazy-evaluation)
 - [Custom operations](#custom-operations)
+- Comprehensive tests with over 2000 test cases
 
 
 Installation
