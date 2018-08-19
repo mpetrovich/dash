@@ -1,23 +1,69 @@
 Dash &nbsp; [![Latest Stable Version](https://poser.pugx.org/nextbigsoundinc/dash/version)](https://packagist.org/packages/nextbigsoundinc/dash) [![Build Status](https://travis-ci.org/nextbigsoundinc/dash.svg?branch=master)](https://travis-ci.org/nextbigsoundinc/dash) [![codecov](https://codecov.io/gh/nextbigsoundinc/dash/branch/master/graph/badge.svg)](https://codecov.io/gh/nextbigsoundinc/dash)
 ===
-A functional programming library for PHP. Inspired by Underscore, Lodash, and Ramda.
+**A functional programming library for PHP.** Inspired by Underscore, Lodash, and Ramda.
 
 ```php
-$result = __([1, 2, 3, 4, 5])
-	->filter('Dash\isOdd')
-	->map(function ($n) { return $n * 2; })
-	->value();
+$avgMaleAge = Dash\chain([
+	['name' => 'John', 'age' => 12, 'gender' => 'male'],
+	['name' => 'Jane', 'age' => 34, 'gender' => 'female'],
+	['name' => 'Pete', 'age' => 23, 'gender' => 'male'],
+	['name' => 'Mark', 'age' => 11, 'gender' => 'male'],
+	['name' => 'Mary', 'age' => 42, 'gender' => 'female'],
+])
+->filter(['gender', 'male'])
+->map('age')
+->average()
+->value();
 
-// $result === [2, 6, 10]
+echo "Average male age is $avgMaleAge.";
 ```
 
 ##### Jump to:
+- [Why use Dash?](#why-use-dash)
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Operations](docs/Operations.md)
 - [Changelog](CHANGELOG.md)
 - [Contributing](CONTRIBUTING.md)
+
+
+Why use Dash?
+---
+PHP's built-in `array_*` functions are limited, difficult to compose, inconsistent, and don't work across many data types.
+
+For instance, let's say we want to find the average age of males in this list:
+
+```php
+$people = [
+	['name' => 'John', 'age' => 12, 'gender' => 'male'],
+	['name' => 'Jane', 'age' => 34, 'gender' => 'female'],
+	['name' => 'Pete', 'age' => 23, 'gender' => 'male'],
+	['name' => 'Mark', 'age' => 11, 'gender' => 'male'],
+	['name' => 'Mary', 'age' => 42, 'gender' => 'female'],
+];
+```
+
+Using PHP's built-in in methods, we might write something like this:
+
+```php
+$males = array_filter($people, function ($person) {
+	return $person['gender'] === 'male';
+});
+$avgMaleAge = array_sum(array_column($males, 'age')) / count($males);
+```
+
+Dash makes common data transformation operations like these clearer and more fluid:
+
+```php
+$avgMaleAge = Dash\chain($people)
+	->filter(['gender', 'male'])
+	->map('age')
+	->average()
+	->value();
+```
+
+This is just a tiny subset of what Dash can do. [**See the full list of operations here.**](docs/Operations.md)
 
 
 Features
@@ -39,11 +85,17 @@ composer require nextbigsoundinc/dash
 
 Usage
 ---
-Dash operations can be used alone or chained together. [**See the full list of operations**](docs/Operations.md)
+Dash operations are pure functions that can be used alone or chained together.
 
 
 ### Standalone
-Operations can be called as static methods:
+Operations can be called as namespaced functions:
+
+```php
+Dash\map([1, 2, 3], function ($n) { return $n * 2; });  // === [2, 4, 6]
+```
+
+or as static methods:
 
 ```php
 use Dash\_;
@@ -51,18 +103,12 @@ use Dash\_;
 _::map([1, 2, 3], function ($n) { return $n * 2; });  // === [2, 4, 6]
 ```
 
-or as namespaced functions:
-
-```php
-Dash\map([1, 2, 3], function ($n) { return $n * 2; });  // === [2, 4, 6]
-```
-
 
 ### Chaining
 Multiple operations can be chained in sequence using `chain()`. Call `value()` to return the final value.
 
 ```php
-$result = _::chain([1, 2, 3, 4, 5])
+$result = Dash\chain([1, 2, 3, 4, 5])
 	->filter('Dash\isOdd')
 	->map(function ($n) { return $n * 2; })
 	->value();
@@ -97,7 +143,7 @@ $result = __([1, 2, 3, 4, 5])
 Sometimes you don't need the return value of the chain. However, the chain isn't processed until `value()` is called. For semantic convenience, `run()` is also an alias for `value()`:
 
 ```php
-$chain = _::chain([1, 2, 3, 4, 5])
+$chain = Dash\chain([1, 2, 3, 4, 5])
 	->reverse()
 	->each(function ($n) {
 		echo "T-minus $n...\n";
@@ -204,3 +250,7 @@ _::chain([1, 2, 3])
 
 _::unsetCustom('triple');
 ```
+
+
+### Feedback
+Found a bug or have a suggestion? Please [create a new GitHub issue](https://github.com/nextbigsoundinc/dash/issues/new). We want your feedback!

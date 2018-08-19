@@ -9,8 +9,26 @@ class _Test extends PHPUnit_Framework_TestCase
 {
 	public function testExamples()
 	{
-		$result = _::map([1, 2, 3], function ($n) { return $n * 2; });
-		$this->assertSame([2, 4, 6], $result);
+		$people = [
+			['name' => 'John', 'gender' => 'male',   'age' => 12],
+			['name' => 'Jane', 'gender' => 'female', 'age' => 34],
+			['name' => 'Pete', 'gender' => 'male',   'age' => 23],
+			['name' => 'Mary', 'gender' => 'female', 'age' => 42],
+			['name' => 'Mark', 'gender' => 'male',   'age' => 19],
+		];
+
+		$avgMaleAge = Dash\chain($people)
+			->filter(['gender', 'male'])
+			->map('age')
+			->average()
+			->value();
+		$this->assertSame(18, $avgMaleAge);
+
+		$males = array_filter($people, function ($person) {
+			return $person['gender'] === 'male';
+		});
+		$avgMaleAge = array_sum(array_column($males, 'age')) / count($males);
+		$this->assertSame(18, $avgMaleAge);
 
 		$result = _::chain([1, 2, 3])
 			->filter(function ($n) { return $n < 3; })
