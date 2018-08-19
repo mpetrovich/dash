@@ -332,15 +332,59 @@ _::triple(4);  // === 12
 
 // Chained
 Dash\chain([1, 2, 3])
+	->sum()
+	->triple()
+	->value();  // === 18
+
+// As an argument
+Dash\chain([1, 2, 3])
 	->map('Dash\_::triple')
 	->value();  // === [3, 6, 9]
 
-// Chained using the Dash\custom() operation
+// As an argument using the Dash\custom() operation
 Dash\chain([1, 2, 3])
 	->map(Dash\custom('triple'))
 	->value();  // === [3, 6, 9]
 
 _::unsetCustom('triple');
+```
+
+
+### Tips
+If you find that Dash doesn't have an operation that you need, fear not. Custom logic can be added without giving up Dash chaining or other features. The simplest way to integrate missing operations are via the [`Dash\thru()`](docs/Operations.md#thru) operation, which allows custom logic to modify and seamlessly pass through its results to the next step in the chain.
+
+For example, suppose we want to use `array_change_key_case()` and keep the usual Dash chaining semantics. With `thru()`, it's simple:
+
+```php
+$result = Dash\chain(['one' => 1, 'two' => 2, 'three' => 3])
+	->filter('Dash\isOdd')
+	->thru(function($input) {
+		return array_change_key_case($input, CASE_UPPER);
+	})
+	->keys()
+	->value();
+
+// $result === ['ONE', 'THREE']
+```
+
+Alternatively, if you find yourself needing to use `array_change_key_case()` often, it may be better to add a new custom operation:
+
+```php
+_::setCustom('keyCase', function ($input, $case = CASE_LOWER) {
+	return array_change_key_case($input, $case);
+});
+```
+
+which you can then use like any other chainable Dash method:
+
+```php
+$result = Dash\chain(['one' => 1, 'two' => 2, 'three' => 3])
+	->filter('Dash\isOdd')
+	->keyCase(CASE_LOWER)
+	->keys()
+	->value();
+
+// $result === ['ONE', 'THREE']
 ```
 
 

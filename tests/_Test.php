@@ -7,8 +7,12 @@ use Dash\_;
  */
 class _Test extends PHPUnit_Framework_TestCase
 {
-	public function testExamples()
+	public function testReadmeExamples()
 	{
+		/*
+			Dash vs. array_*()
+		 */
+
 		$people = [
 			['name' => 'John', 'gender' => 'male',   'age' => 12],
 			['name' => 'Jane', 'gender' => 'female', 'age' => 34],
@@ -31,6 +35,44 @@ class _Test extends PHPUnit_Framework_TestCase
 			$avgMaleAge = array_sum(array_column($males, 'age')) / count($males);
 			$this->assertSame(18, $avgMaleAge);
 		}
+
+		/*
+			Ad-hoc operation
+		 */
+
+		$result = Dash\chain(['one' => 1, 'two' => 2, 'three' => 3])
+			->filter('Dash\isOdd')
+			->thru(function($input) {
+				return array_change_key_case($input, CASE_UPPER);
+			})
+			->keys()
+			->value();
+		$this->assertSame(['ONE', 'THREE'], $result);
+
+		/*
+			Custom operation
+		 */
+
+		_::setCustom('keyCase', function ($input, $case = CASE_LOWER) {
+			return array_change_key_case($input, $case);
+		});
+
+		$result = Dash\chain(['one' => 1, 'two' => 2, 'three' => 3])
+			->filter('Dash\isOdd')
+			->keyCase(CASE_UPPER)
+			->keys()
+			->value();
+
+		_::unsetCustom('keyCase');
+		$this->assertSame(['ONE', 'THREE'], $result);
+	}
+
+	public function testExamples()
+	{
+		$this->assertSame(
+			[2, 4, 6],
+			_::map([1, 2, 3], function ($n) { return $n * 2; })
+		);
 
 		$result = _::chain([1, 2, 3])
 			->filter(function ($n) { return $n < 3; })
