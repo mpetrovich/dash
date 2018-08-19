@@ -24,11 +24,13 @@ class _Test extends PHPUnit_Framework_TestCase
 			->value();
 		$this->assertSame(18, $avgMaleAge);
 
-		$males = array_filter($people, function ($person) {
-			return $person['gender'] === 'male';
-		});
-		$avgMaleAge = array_sum(array_column($males, 'age')) / count($males);
-		$this->assertSame(18, $avgMaleAge);
+		if (function_exists('array_column')) {  // array_column() requires PHP 5.5+
+			$males = array_filter($people, function ($person) {
+				return $person['gender'] === 'male';
+			});
+			$avgMaleAge = array_sum(array_column($males, 'age')) / count($males);
+			$this->assertSame(18, $avgMaleAge);
+		}
 
 		$result = _::chain([1, 2, 3])
 			->filter(function ($n) { return $n < 3; })
