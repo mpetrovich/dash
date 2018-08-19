@@ -282,13 +282,15 @@ Dash\chain([
 Similarly, [`partial()`](docs/Operations.md#partial) and related operations can be used to create partially-applied functions:
 
 ```php
-$containsTruthy = Dash\Curry\contains(true, 'Dash\equal');
-$containsTruthy([0, 1, 0]);
-// === true
+$greet = function ($greeting, $name) {
+	return "$greeting, $name!";
+};
 
-$containsTrue = Dash\Curry\contains(true, 'Dash\identical');
-$containsTrue([0, 1, 0]);
-// === false
+$sayHello = Dash\partial($greet, 'Hello');
+$sayHowdy = Dash\partial($greet, 'Howdy');
+
+$sayHello('Mark');  // === 'Hello, Mark!'
+$sayHowdy('Jane');  // === 'Howdy, Jane!'
 ```
 
 
@@ -333,7 +335,7 @@ Dash\chain([1, 2, 3])
 	->map('Dash\_::triple')
 	->value();  // === [3, 6, 9]
 
-// Chained (alternative syntax)
+// Chained using the Dash\custom() operation
 Dash\chain([1, 2, 3])
 	->map(Dash\custom('triple'))
 	->value();  // === [3, 6, 9]
