@@ -2062,20 +2062,17 @@ Parameter | Type | Description
 
 **Example:** 
 ```php
-$returned = Dash\debug([1, 2, 3], 'hello', 3.14);
-// $returned === [1, 2, 3]
+Dash\debug([1, 2, 3], 'hello', null);
+// === [1, 2, 3]
 
-// Prints something like:
-array(3) {
-  [0] =>
-  int(1)
-  [1] =>
-  int(2)
-  [2] =>
-  int(3)
-}
-string(5) "hello"
-double(3.14)
+// Prints:
+array (
+  0 => 1,
+  1 => 2,
+  2 => 3,
+)
+'hello'
+NULL
 
 @codeCoverageIgnore Due to output buffering
 ```

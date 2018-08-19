@@ -10,31 +10,28 @@ namespace Dash;
  * @return mixed The first argument
  *
  * @example
-	$returned = Dash\debug([1, 2, 3], 'hello', 3.14);
-	// $returned === [1, 2, 3]
+	Dash\debug([1, 2, 3], 'hello', null);
+	// === [1, 2, 3]
 
-	// Prints something like:
-	array(3) {
-	  [0] =>
-	  int(1)
-	  [1] =>
-	  int(2)
-	  [2] =>
-	  int(3)
-	}
-	string(5) "hello"
-	double(3.14)
+	// Prints:
+	array (
+	  0 => 1,
+	  1 => 2,
+	  2 => 3,
+	)
+	'hello'
+	NULL
  *
  * @codeCoverageIgnore Due to output buffering
  */
 function debug($value /*, ...value */)
 {
 	ob_start();
-	call_user_func_array('var_dump', func_get_args());
-	$output = ob_get_clean();
-
-	echo "$output\n";
-
+	each(func_get_args(), function ($arg) {
+		var_export($arg);
+		echo "\n";
+	});
+	echo ob_get_clean();
 	return $value;
 }
 

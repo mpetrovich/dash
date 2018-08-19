@@ -48,11 +48,21 @@ class debugTest extends PHPUnit_Framework_TestCase
 	public function testMultipleValues()
 	{
 		ob_start();
-		$result = Dash\debug([1, 2, 3], 'hello', 3.14);
-		ob_clean();
+		$result = Dash\debug([1, 2, 3], 'hello', null);
+		$output = ob_get_clean();
 
-		$expected = [1, 2, 3];
+		$expectedOutput = <<<'END'
+array (
+  0 => 1,
+  1 => 2,
+  2 => 3,
+)
+'hello'
+NULL
 
-		$this->assertSame($expected, $result);
+END;
+
+		$this->assertSame([1, 2, 3], $result);
+		$this->assertSame($expectedOutput, $output);
 	}
 }
