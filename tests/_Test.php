@@ -50,6 +50,38 @@ class _Test extends PHPUnit_Framework_TestCase
 		$this->assertSame(['ONE', 'THREE'], $result);
 
 		/*
+			Data types
+		 */
+
+		$this->assertSame(
+			[4, 8],
+			Dash\chain([1, 2, 3, 4])
+				->filter('Dash\isEven')
+				->map(function ($value) {
+					return $value * 2;
+				})
+				->value()
+		);
+
+		$this->assertSame(
+			'a, c',
+			Dash\chain((object) ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4])
+				->filter('Dash\isOdd')
+				->keys()
+				->join(', ')
+				->value()
+		);
+
+		$this->assertSame(
+			5,
+			Dash\chain(new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]))
+				->pick(['b', 'c'])
+				->values()
+				->sum()
+				->value()
+		);
+
+		/*
 			Custom operation
 		 */
 

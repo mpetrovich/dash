@@ -21,8 +21,8 @@ echo "Average male age is $avgMaleAge.";
 At a glance
 ---
 #### Jump to:
+- [Highlights](#highlights)
 - [Why use Dash?](#why-use-dash)
-- [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Operations](docs/Operations.md)
@@ -117,6 +117,16 @@ At a glance
 [isOdd](docs/Operations.md#isodd)
 
 
+Highlights
+---
+- [Many data types supported](#supported-data-types): arrays, objects, [`Traversable`](http://php.net/manual/en/class.traversable.php), [`DirectoryIterator`](http://php.net/manual/en/class.directoryiterator.php), and more
+- [Chaining](#chaining)
+- [Currying](#currying)
+- [Lazy evaluation](#lazy-evaluation)
+- [Custom operations](#custom-operations)
+- Well-tested: Comprehensive tests with nearly 3,000 test cases and [100% code coverage](https://codecov.io/gh/nextbigsoundinc/dash)
+
+
 Why use Dash?
 ---
 PHP's built-in `array_*` functions are limited, difficult to compose, inconsistent, and don't work across many data types.
@@ -155,19 +165,9 @@ $avgMaleAge = Dash\chain($people)
 This is just a tiny subset of what Dash can do. [**See the full list of operations here.**](docs/Operations.md)
 
 
-Features
----
-- Works with arrays, objects, [`Traversable`](http://php.net/manual/en/class.traversable.php), [`DirectoryIterator`](http://php.net/manual/en/class.directoryiterator.php), and more
-- [Chaining](#chaining)
-- [Currying](#currying)
-- [Lazy evaluation](#lazy-evaluation)
-- [Custom operations](#custom-operations)
-- Comprehensive tests with over 2000 test cases
-
-
 Installation
 ---
-Requires PHP 5.4+
+Requires PHP 5.5+
 ```sh
 composer require nextbigsoundinc/dash
 ```
@@ -250,8 +250,50 @@ $chain->run();
 ```
 
 
-### Currying
+### Supported data types
+Dash can work with a wide variety of data types, including:
+- arrays
+- objects (eg. `stdClass`)
+- anything that implements the [`Traversable`](http://php.net/manual/en/class.traversable.php) interface
+- [`DirectoryIterator`](http://php.net/manual/en/class.directoryiterator.php), which is also a `Traversable` but cannot normally be used with `iterator_to_array()` [due to a PHP bug](https://bugs.php.net/bug.php?id=49755). Dash works around this transparently.
 
+#### Examples
+With an array:
+
+```php
+Dash\chain([1, 2, 3, 4])
+	->filter('Dash\isEven')
+	->map(function ($value) {
+		return $value * 2;
+	})
+	->value();
+// === [4, 8]
+```
+
+With an object:
+
+```php
+Dash\chain((object) ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4])
+	->filter('Dash\isOdd')
+	->keys()
+	->join(', ')
+	->value();
+// === 'a, c'
+```
+
+With a `Traversable`:
+
+```php
+Dash\chain(new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]))
+	->pick(['b', 'c'])
+	->values()
+	->sum()
+	->value();
+// === 5
+```
+
+
+### Currying
 [`curry()`](docs/Operations.md#curry) and related operations can be used to create curried functions from any callable:
 
 ```php
