@@ -292,7 +292,6 @@ class _
 	 * @param string $method Method name
 	 * @param array $args Method args
 	 * @return _ The chain
-	 * @throws BadMethodCallException if `$method` is curried, because only uncurried methods can be chained
 	 *
 	 * @example
 		_::chain([1, 2, 3])
@@ -303,15 +302,6 @@ class _
 	 */
 	public function __call($method, $args)
 	{
-		$isCurried = (strpos($method, '_') === 0);
-
-		if ($isCurried) {
-			$original = substr($method, 1);
-			throw new \BadMethodCallException(
-				"Curried method $method() cannot be called in a chain; use the uncurried $original() method instead"
-			);
-		}
-
 		$this->operations[] = $this->toOperation($method, $args);
 		$this->output = null;
 		return $this;
