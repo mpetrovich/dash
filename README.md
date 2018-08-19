@@ -209,7 +209,7 @@ $result = Dash\chain([1, 2, 3, 4, 5])
 To explicitly convert the value to an array or `stdClass`, use `arrayValue()` or `objectValue()` respectively:
 
 ```php
-$result = _::chain(['a' => 1, 'b' => 2, 'c' => 3])
+$result = Dash\chain(['a' => 1, 'b' => 2, 'c' => 3])
 	->filter('Dash\isOdd')
 	->mapValues(function ($n) { return $n * 2; })
 	->objectValue();
@@ -268,7 +268,7 @@ $listTwo('second', 'third');
 Most Dash functions have a curried version that accepts input data as the last parameter instead of as the first. Curried versions are located in the `Dash\Curry` namespace:
 
 ```php
-_::chain([
+Dash\chain([
 	'a' => 3,
 	'b' => '3',
 	'c' => 3,
@@ -296,7 +296,7 @@ $containsTrue([0, 1, 0]);
 Chained operations are not evaluated until `value()` or `run()` is called. Furthermore, the input data can be changed and evaluated multiple times using `with()`. This makes it simple to create reusable chains:
 
 ```php
-$chain = _::chain()
+$chain = Dash\chain()
 	->filter('Dash\isOdd')
 	->map(function ($n) { return $n * 2; });
 
@@ -329,12 +329,12 @@ _::setCustom('triple', function ($n) { return $n * 3; });
 _::triple(4);  // === 12
 
 // Chained
-_::chain([1, 2, 3])
+Dash\chain([1, 2, 3])
 	->map('Dash\_::triple')
 	->value();  // === [3, 6, 9]
 
 // Chained (alternative syntax)
-_::chain([1, 2, 3])
+Dash\chain([1, 2, 3])
 	->map(Dash\custom('triple'))
 	->value();  // === [3, 6, 9]
 
