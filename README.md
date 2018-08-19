@@ -133,7 +133,7 @@ $people = [
 ];
 ```
 
-Using PHP's built-in in methods, we might write something like this:
+Using PHP's built-in in functions, we might write something like this:
 
 ```php
 $males = array_filter($people, function ($person) {
@@ -351,7 +351,7 @@ _::unsetCustom('triple');
 
 
 ### Tips
-If you find that Dash doesn't have an operation that you need, fear not. Custom logic can be added without giving up Dash chaining or other features. The simplest way to integrate missing operations are via the [`Dash\thru()`](docs/Operations.md#thru) operation, which allows custom logic to modify and seamlessly pass through its results to the next step in the chain.
+If you find that Dash doesn't have an operation that you need, fear not. Custom logic can be added without giving up Dash chaining or other features. The simplest way to integrate missing operations is via the [`Dash\thru()`](docs/Operations.md#thru) operation, which allows custom logic to modify and seamlessly pass through its results to the next step in the chain.
 
 For example, suppose we want to use `array_change_key_case()` and keep the usual Dash chaining semantics. With `thru()`, it's simple:
 
