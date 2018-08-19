@@ -13,9 +13,9 @@ default:
 #
 test:
 ifdef op
-	@vendor/bin/phpunit src/$(op)/$(op)Test --no-coverage
+	@vendor/bin/phpunit tests/$(op)Test --no-coverage
 else
-	@vendor/bin/phpunit --no-coverage
+	@vendor/bin/phpunit tests/ --no-coverage
 endif
 
 
@@ -28,9 +28,9 @@ endif
 #
 test-coverage:
 ifdef op
-	@vendor/bin/phpunit src/$(op)/$(op)Test
+	@vendor/bin/phpunit tests/$(op)Test
 else
-	@vendor/bin/phpunit
+	@vendor/bin/phpunit tests/
 endif
 @echo "Test coverage visible at:" $(shell pwd)/test-coverage/index.html
 
@@ -43,7 +43,11 @@ endif
 #   make check-style op=map
 #
 check-style:
-	@vendor/bin/phpcs --standard=phpcs.xml -s src/$(op)
+ifdef op
+	@vendor/bin/phpcs --standard=phpcs.xml -s src/$(op).php
+else
+	@vendor/bin/phpcs --standard=phpcs.xml -s src/
+endif
 
 
 # Fixes code to match style rules
@@ -54,7 +58,11 @@ check-style:
 #   make fix-style op=map
 #
 fix-style:
-	@vendor/bin/phpcbf --standard=phpcs.xml -s src/$(op)
+ifdef op
+	@vendor/bin/phpcbf --standard=phpcs.xml -s src/$(op).php
+else
+	@vendor/bin/phpcbf --standard=phpcs.xml -s src/
+endif
 
 
 # Builds documentation for all operations

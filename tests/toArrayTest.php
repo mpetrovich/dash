@@ -120,30 +120,22 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 		);
 		$output = Dash\toArray($input);
 
-		$this->assertCount(2, $output);
+		$expectedCount = iterator_count(new \FilesystemIterator(__DIR__, \FilesystemIterator::SKIP_DOTS));
+		$actualCount = count($output);
+		$this->assertSame($expectedCount, $actualCount);
 
-		$i = 0;
 		$prevValue = null;
-
 		foreach ($output as $key => $value) {
-			if ($i === 0) {
-				$this->assertStringEndsWith('toArray.php', $key);
-			}
-			elseif ($i === 1) {
-				$this->assertStringEndsWith('toArrayTest.php', $key);
-			}
-
+			$this->assertStringEndsWith('.php', $key);
 			$this->assertInstanceOf('SplFileInfo', $value);
 			$this->assertNotSame($prevValue, $value);
-
 			$prevValue = $value;
-			$i++;
 		}
 	}
 
 	public function testExamples()
 	{
 		$this->assertSame(['a' => 1, 'b' => 2], Dash\toArray((object) ['a' => 1, 'b' => 2]));
-		$this->assertCount(2, Dash\toArray(new FilesystemIterator(__DIR__)));
+		// 2nd example tested by testDirectoryIterator()
 	}
 }
