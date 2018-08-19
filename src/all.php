@@ -44,26 +44,7 @@ function all($iterable, $predicate = 'Dash\identity')
 	return !any($iterable, negate($predicate));
 }
 
-/**
- * @codingStandardsIgnoreStart
- */
-function _all(/* predicate, iterable */)
-{
-	return currify('Dash\all', func_get_args());
-}
-
-/**
- * @codingStandardsIgnoreStart
- */
 function every()
 {
 	return call_user_func_array('Dash\all', func_get_args());
-}
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _every(/* predicate, iterable */)
-{
-	return currify('Dash\all', func_get_args());
 }

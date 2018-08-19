@@ -2,9 +2,9 @@
 
 /**
  * @covers Dash\size
- * @covers Dash\_size
+ * @covers Dash\Curry\size
  * @covers Dash\count
- * @covers Dash\_count
+ * @covers Dash\Curry\count
  */
 class sizeTest extends PHPUnit_Framework_TestCase
 {
@@ -22,10 +22,10 @@ class sizeTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($value, $expected)
 	{
-		$size = Dash\_size('UTF-8');
+		$size = Dash\Curry\size('UTF-8');
 		$this->assertEquals($expected, $size($value));
 
-		$count = Dash\_count('UTF-8');
+		$count = Dash\Curry\count('UTF-8');
 		$this->assertEquals($expected, $count($value));
 	}
 

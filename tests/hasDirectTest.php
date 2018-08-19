@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\hasDirect
- * @covers Dash\_hasDirect
+ * @covers Dash\Curry\hasDirect
  */
 class hasDirectTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class hasDirectTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($input, $key, $expected)
 	{
-		$hasDirect = Dash\_hasDirect($key);
+		$hasDirect = Dash\Curry\hasDirect($key);
 		$this->assertSame($expected, $hasDirect($input));
 	}
 

@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\findLastValue
- * @covers Dash\_findLastValue
+ * @covers Dash\Curry\findLastValue
  */
 class findLastValueTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class findLastValueTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $predicate, $expected)
 	{
-		$findLastValue = Dash\_findLastValue($predicate);
+		$findLastValue = Dash\Curry\findLastValue($predicate);
 		$this->assertEquals($expected, $findLastValue($iterable));
 	}
 

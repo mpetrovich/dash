@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\unary
- * @covers Dash\_unary
+ * @covers Dash\Curry\unary
  */
 class unaryTest extends PHPUnit_Framework_TestCase
 {
@@ -28,7 +28,7 @@ class unaryTest extends PHPUnit_Framework_TestCase
 			return func_get_args();
 		};
 
-		$unary = Dash\_unary();
+		$unary = Dash\Curry\unary();
 		$this->assertSame($expected, call_user_func_array($unary($func), $args));
 	}
 

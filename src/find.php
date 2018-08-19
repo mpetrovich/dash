@@ -66,11 +66,3 @@ function find($iterable, $predicate = 'Dash\identity')
 
 	return null;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _find(/* predicate, iterable */)
-{
-	return currify('Dash\find', func_get_args());
-}

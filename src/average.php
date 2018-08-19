@@ -28,26 +28,7 @@ function average($iterable)
 	return sum($iterable) / $size;
 }
 
-/**
- * @codingStandardsIgnoreStart
- */
-function _average(/* iterable */)
-{
-	return currify('Dash\average', func_get_args());
-}
-
-/**
- * @codingStandardsIgnoreStart
- */
 function mean()
 {
 	return call_user_func_array('Dash\average', func_get_args());
-}
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _mean(/* iterable */)
-{
-	return call_user_func_array('Dash\_average', func_get_args());
 }

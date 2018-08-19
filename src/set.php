@@ -6,8 +6,6 @@ namespace Dash;
  * Sets the value at `$path` within `$input`. Nested properties are accessible with dot notation.
  * Note: This *will* modify `$input`.
  *
- * This operation does not have a curried variant.
- *
  * @see get(), getDirect(), property()
  *
  * @category Utility

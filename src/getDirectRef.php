@@ -5,8 +5,6 @@ namespace Dash;
 /**
  * Similar to `getDirect()`, but returns a reference to the value at `$key` within `$input`.
  *
- * This operation does not have a curried variant.
- *
  * @see getDirect(), hasDirect()
  *
  * @category Utility

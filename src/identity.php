@@ -18,11 +18,3 @@ function identity($value)
 {
 	return $value;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _identity(/* value */)
-{
-	return currify('Dash\identity', func_get_args());
-}

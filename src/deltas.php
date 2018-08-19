@@ -27,11 +27,3 @@ function deltas($iterable)
 
 	return $deltas;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _deltas(/* iterable */)
-{
-	return currify('Dash\deltas', func_get_args());
-}

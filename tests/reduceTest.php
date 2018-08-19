@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\reduce
- * @covers Dash\_reduce
+ * @covers Dash\Curry\reduce
  */
 class reduceTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class reduceTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($input, $iteratee, $initial, $expected)
 	{
-		$reduce = Dash\_reduce($iteratee, $initial);
+		$reduce = Dash\Curry\reduce($iteratee, $initial);
 		$this->assertSame($expected, $reduce($input));
 	}
 

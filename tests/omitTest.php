@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\omit
- * @covers Dash\_omit
+ * @covers Dash\Curry\omit
  */
 class omitTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class omitTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $keys, $expected)
 	{
-		$omit = Dash\_omit($keys);
+		$omit = Dash\Curry\omit($keys);
 		$this->assertEquals($expected, $omit($iterable));
 	}
 

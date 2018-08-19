@@ -35,11 +35,3 @@ function take($iterable, $count = 1)
 
 	return $taken;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _take(/* count, iterable */)
-{
-	return currify('Dash\take', func_get_args());
-}

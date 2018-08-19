@@ -34,12 +34,3 @@ function debug($value /*, ...value */)
 	echo ob_get_clean();
 	return $value;
 }
-
-/**
- * @codingStandardsIgnoreStart
- * @codeCoverageIgnore Due to output buffering
- */
-function _debug(/* ...value */)
-{
-	return currify('Dash\debug', func_get_args());
-}

@@ -2,9 +2,9 @@
 
 /**
  * @covers Dash\join
- * @covers Dash\_join
+ * @covers Dash\Curry\join
  * @covers Dash\implode
- * @covers Dash\_implode
+ * @covers Dash\Curry\implode
  */
 class joinTest extends PHPUnit_Framework_TestCase
 {
@@ -22,10 +22,10 @@ class joinTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $separator, $expected)
 	{
-		$join = Dash\_join($separator);
+		$join = Dash\Curry\join($separator);
 		$this->assertSame($expected, $join($iterable));
 
-		$implode = Dash\_implode($separator);
+		$implode = Dash\Curry\implode($separator);
 		$this->assertSame($expected, $implode($iterable));
 	}
 

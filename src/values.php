@@ -21,11 +21,3 @@ function values($iterable)
 
 	return map($iterable);
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _values(/* iterable */)
-{
-	return currify('Dash\values', func_get_args());
-}

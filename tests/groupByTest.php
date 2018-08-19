@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\groupBy
- * @covers Dash\_groupBy
+ * @covers Dash\Curry\groupBy
  */
 class groupByTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class groupByTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $iteratee, $expected)
 	{
-		$groupBy = Dash\_groupBy($iteratee, null);
+		$groupBy = Dash\Curry\groupBy($iteratee, null);
 		$this->assertSame($expected, $groupBy($iterable));
 	}
 

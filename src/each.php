@@ -50,11 +50,3 @@ function each($iterable, $iteratee)
 
 	return $iterable;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _each(/* iteratee, iterable */)
-{
-	return currify('Dash\each', func_get_args());
-}

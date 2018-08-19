@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\identical
- * @covers Dash\_identical
+ * @covers Dash\Curry\identical
  */
 class identicalTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class identicalTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($a, $b, $expected)
 	{
-		$identical = Dash\_identical($b);
+		$identical = Dash\Curry\identical($b);
 		$this->assertSame($expected, $identical($a));
 	}
 

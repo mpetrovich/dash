@@ -78,11 +78,3 @@ function findLast($iterable, $predicate = 'Dash\identity')
 
 	return $result;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _findLast(/* predicate, iterable */)
-{
-	return currify('Dash\findLast', func_get_args());
-}

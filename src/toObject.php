@@ -20,11 +20,3 @@ function toObject($value)
 {
 	return (object) toArray($value);
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _toObject(/* value */)
-{
-	return currify('Dash\toObject', func_get_args());
-}

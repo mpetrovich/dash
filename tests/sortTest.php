@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\sort
- * @covers Dash\_sort
+ * @covers Dash\Curry\sort
  */
 class sortTest extends PHPUnit_Framework_TestCase
 {
@@ -21,7 +21,7 @@ class sortTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $expected)
 	{
-		$sort = Dash\_sort('Dash\compare');
+		$sort = Dash\Curry\sort('Dash\compare');
 		$this->assertSame($expected, $sort($iterable));
 	}
 

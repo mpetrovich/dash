@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\findValue
- * @covers Dash\_findValue
+ * @covers Dash\Curry\findValue
  */
 class findValueTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class findValueTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $predicate, $expected)
 	{
-		$findValue = Dash\_findValue($predicate);
+		$findValue = Dash\Curry\findValue($predicate);
 		$this->assertEquals($expected, $findValue($iterable));
 	}
 

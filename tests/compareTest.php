@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\compare
- * @covers Dash\_compare
+ * @covers Dash\Curry\compare
  */
 class compareTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class compareTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($a, $b, $expected)
 	{
-		$compare = Dash\_compare($b);
+		$compare = Dash\Curry\compare($b);
 		$this->assertSame($expected, $compare($a));
 	}
 

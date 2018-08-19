@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\min
- * @covers Dash\_min
+ * @covers Dash\Curry\min
  */
 class minTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class minTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $expected)
 	{
-		$min = Dash\_min();
+		$min = Dash\Curry\min();
 		$this->assertSame($expected, $min($iterable));
 	}
 

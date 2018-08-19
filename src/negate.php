@@ -22,11 +22,3 @@ function negate(callable $predicate)
 		return !call_user_func_array($predicate, func_get_args());
 	};
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _negate(/* predicate */)
-{
-	return currify('Dash\negate', func_get_args());
-}

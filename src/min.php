@@ -30,11 +30,3 @@ function min($iterable)
 
 	return $min;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _min(/* iterable */)
-{
-	return currify('Dash\min', func_get_args());
-}

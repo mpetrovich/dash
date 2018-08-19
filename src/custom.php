@@ -25,11 +25,3 @@ function custom($name)
 		return call_user_func_array("Dash\\_::$name", func_get_args());
 	};
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _custom(/* name */)
-{
-	return currify('Dash\custom', func_get_args());
-}

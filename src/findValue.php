@@ -57,11 +57,3 @@ function findValue($iterable, $predicate = 'Dash\identity')
 	list($key, $value) = find($iterable, $predicate);
 	return $value;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _findValue(/* predicate, iterable */)
-{
-	return currify('Dash\findValue', func_get_args());
-}

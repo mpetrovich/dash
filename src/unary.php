@@ -19,11 +19,3 @@ function unary(callable $callable)
 {
 	return ary($callable, 1);
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _unary(/* callable */)
-{
-	return currify('Dash\unary', func_get_args());
-}

@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\deltas
- * @covers Dash\_deltas
+ * @covers Dash\Curry\deltas
  */
 class deltasTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class deltasTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $expected)
 	{
-		$deltas = Dash\_deltas();
+		$deltas = Dash\Curry\deltas();
 		$this->assertSame($expected, $deltas($iterable));
 	}
 

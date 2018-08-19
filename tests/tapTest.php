@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\tap
- * @covers Dash\_tap
+ * @covers Dash\Curry\tap
  */
 class tapTest extends PHPUnit_Framework_TestCase
 {
@@ -29,7 +29,7 @@ class tapTest extends PHPUnit_Framework_TestCase
 	{
 		$passed = null;
 
-		$tap = Dash\_tap(function ($passed) use ($value) {
+		$tap = Dash\Curry\tap(function ($passed) use ($value) {
 			$this->assertSame($value, $passed);
 			$passed = 'changed';
 			return $passed;

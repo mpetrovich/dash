@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\thru
- * @covers Dash\_thru
+ * @covers Dash\Curry\thru
  */
 class thruTest extends PHPUnit_Framework_TestCase
 {
@@ -29,7 +29,7 @@ class thruTest extends PHPUnit_Framework_TestCase
 	{
 		$passed = null;
 
-		$thru = Dash\_thru(function ($passed) use ($value) {
+		$thru = Dash\Curry\thru(function ($passed) use ($value) {
 			$this->assertSame($value, $passed);
 			$passed = 'changed';
 			return $passed;

@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\debug
- * @covers Dash\_debug
+ * @covers Dash\Curry\debug
  */
 class debugTest extends PHPUnit_Framework_TestCase
 {
@@ -24,7 +24,7 @@ class debugTest extends PHPUnit_Framework_TestCase
 	public function testCurried($value, $expected)
 	{
 		ob_start();
-		$debug = Dash\_debug();
+		$debug = Dash\Curry\debug();
 		$result = $debug($value);
 		ob_clean();
 

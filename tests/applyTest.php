@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\apply
- * @covers Dash\_apply
+ * @covers Dash\Curry\apply
  */
 class applyTest extends PHPUnit_Framework_TestCase
 {
@@ -29,7 +29,7 @@ class applyTest extends PHPUnit_Framework_TestCase
 			return Dash\sum(func_get_args());
 		};
 
-		$apply = Dash\_apply($func);
+		$apply = Dash\Curry\apply($func);
 		$this->assertSame($expected, $apply($args));
 	}
 
@@ -158,7 +158,7 @@ class applyTest extends PHPUnit_Framework_TestCase
 		$func = function ($time, $name) {
 			return "Good $time, $name";
 		};
-		$apply = Dash\_apply($func);
+		$apply = Dash\Curry\apply($func);
 		$this->assertSame('Good morning, John', $apply(['morning', 'John']));
 	}
 }

@@ -28,11 +28,3 @@ function isEven($value)
 {
 	return is_numeric($value) && ($value % 2 === 0);
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _isEven(/* value */)
-{
-	return currify('Dash\isEven', func_get_args());
-}

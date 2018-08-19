@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\identity
- * @covers Dash\_identity
+ * @covers Dash\Curry\identity
  */
 class identityTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class identityTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($value, $expected)
 	{
-		$identity = Dash\_identity();
+		$identity = Dash\Curry\identity();
 		$this->assertSame($expected, $identity($value));
 	}
 

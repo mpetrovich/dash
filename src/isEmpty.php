@@ -35,11 +35,3 @@ function isEmpty($value)
 {
 	return isType($value, ['iterable', 'stdClass']) ? size($value) === 0 : empty($value);
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _isEmpty(/* value */)
-{
-	return currify('Dash\isEmpty', func_get_args());
-}

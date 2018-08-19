@@ -53,11 +53,3 @@ function mapValues($iterable, $iteratee = 'Dash\identity')
 
 	return $mapped;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _mapValues(/* iteratee, iterable */)
-{
-	return currify('Dash\mapValues', func_get_args());
-}

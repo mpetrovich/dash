@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\toObject
- * @covers Dash\_toObject
+ * @covers Dash\Curry\toObject
  */
 class toObjectTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class toObjectTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($value, $expected)
 	{
-		$toObject = Dash\_toObject();
+		$toObject = Dash\Curry\toObject();
 		$this->assertEquals($expected, $toObject($value));
 	}
 

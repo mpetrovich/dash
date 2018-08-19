@@ -2,9 +2,9 @@
 
 /**
  * @covers Dash\keyBy
- * @covers Dash\_keyBy
+ * @covers Dash\Curry\keyBy
  * @covers Dash\indexBy
- * @covers Dash\_indexBy
+ * @covers Dash\Curry\indexBy
  */
 class keyByTest extends PHPUnit_Framework_TestCase
 {
@@ -22,10 +22,10 @@ class keyByTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $iteratee, $expected)
 	{
-		$keyBy = Dash\_keyBy($iteratee);
+		$keyBy = Dash\Curry\keyBy($iteratee);
 		$this->assertSame($expected, $keyBy($iterable));
 
-		$indexBy = Dash\_indexBy($iteratee);
+		$indexBy = Dash\Curry\indexBy($iteratee);
 		$this->assertSame($expected, $indexBy($iterable));
 	}
 

@@ -11,9 +11,10 @@ buildOps($sourceDir, $destFilepath);
 
 function buildOps($sourceDir, $destFilepath)
 {
-	$categories = _::chain(new FilesystemIterator($sourceDir))
+	$categories = _::chain(new FilesystemIterator($sourceDir, FilesystemIterator::SKIP_DOTS))
+		->reject(function ($fileinfo) { return $fileinfo->isDir(); })
 		->map(function ($fileinfo) { return pathinfo($fileinfo)['filename']; })
-		->reject(function ($name) { return $name === '' || $name[0] === '_'; })
+		->reject(function ($name) { return $name[0] === '_'; })
 		->map(function ($name) { return "src/$name.php"; })
 		->filter(function ($filepath) { return file_exists($filepath); })
 		->map('createOp')
@@ -44,15 +45,16 @@ function createOp($filepath)
 	$docblock = extractDocblock($filepath);
 	$op = parseDocblock($docblock);
 
-	$name = pathinfo($filepath)['filename'];
-	$op->name = $name;
+	$op->name = pathinfo($filepath)['filename'];
+	$op->signature = extractFunctionSignature($filepath);
+
+	$curriedFilepath = dirname($filepath) . '/Curry/' . basename($filepath);
+	$op->curriedFilepath = file_exists($curriedFilepath) ? $curriedFilepath : null;
 
 	$op->slug = _::chain(array_merge([$op->name], $op->aliases))
 		->map(Dash\ary('strtolower', 1))
 		->join('--')
 		->value();
-
-	$op->signature = extractFunctionSignature($filepath);
 
 	return $op;
 }
@@ -254,6 +256,15 @@ END;
 
 	$returnType = $op->return->type ? ": {$op->return->type}" : '';
 
+	if ($op->curriedFilepath) {
+		$signature = extractFunctionSignature($op->curriedFilepath);
+		$signature = preg_replace('#/\* (.+) \*/#', '$1', $signature);  // Removes wrapping /* comment */
+		$curriedSignature = "\n\n" . "# Curried: (all parameters required)\n" . "Curry\\" . $signature;
+	}
+	else {
+		$curriedSignature = '';
+	}
+
 	return <<<END
 
 {$op->name}$aliases
@@ -261,7 +272,7 @@ END;
 [Operations](#operations) › [$op->category](#$categorySlug)
 
 ```php
-{$op->signature}$returnType
+{$op->signature}$returnType{$curriedSignature}
 ```
 {$op->description}
 $related

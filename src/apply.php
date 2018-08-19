@@ -26,7 +26,7 @@ namespace Dash;
 		return "Good $time, $name";
 	};
 
-	$apply = Dash\_apply($func);
+	$apply = Dash\Curry\apply($func);
 
 	$apply(['morning', 'John']);
 	// === 'Good morning, John'
@@ -35,12 +35,4 @@ function apply(callable $callable, $args)
 {
 	assertType($args, ['iterable', 'stdClass'], __FUNCTION__);
 	return call_user_func_array($callable, values($args));
-}
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _apply(/* callable, args */)
-{
-	return currify('Dash\apply', func_get_args(), 0);
 }

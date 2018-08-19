@@ -33,11 +33,3 @@ function at($iterable, $index, $default = null)
 	$values = values($iterable);
 	return isset($values[$index]) ? $values[$index] : $default;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _at(/* index, default, iterable */)
-{
-	return currify('Dash\at', func_get_args());
-}

@@ -27,11 +27,3 @@ function equal($a, $b)
 {
 	return $a == $b;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _equal(/* b, a */)
-{
-	return currify('Dash\equal', func_get_args());
-}

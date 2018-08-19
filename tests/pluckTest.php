@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\pluck
- * @covers Dash\_pluck
+ * @covers Dash\Curry\pluck
  */
 class pluckTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class pluckTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $path, $expected)
 	{
-		$pluck = Dash\_pluck($path, null);
+		$pluck = Dash\Curry\pluck($path, null);
 		$this->assertSame($expected, $pluck($iterable));
 	}
 

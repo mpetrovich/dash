@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\toArray
- * @covers Dash\_toArray
+ * @covers Dash\Curry\toArray
  */
 class toArrayTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($value, $expected)
 	{
-		$toArray = Dash\_toArray();
+		$toArray = Dash\Curry\toArray();
 		$this->assertSame($expected, $toArray($value));
 	}
 

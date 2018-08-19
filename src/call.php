@@ -5,8 +5,6 @@ namespace Dash;
 /**
  * Invokes `$callable` with an inline list of arguments.
  *
- * Note: No curried function exists for this operation.
- *
  * @category Callable
  * @param callable $callable
  * @codingStandardsIgnoreLine

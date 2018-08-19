@@ -36,11 +36,3 @@ function map($iterable, $iteratee = 'Dash\identity')
 	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
 	return array_values(mapValues($iterable, $iteratee));
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _map(/* iteratee, iterable */)
-{
-	return currify('Dash\map', func_get_args());
-}

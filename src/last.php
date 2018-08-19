@@ -31,11 +31,3 @@ function last($iterable)
 
 	return $value;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _last(/* iterable */)
-{
-	return currify('Dash\last', func_get_args());
-}

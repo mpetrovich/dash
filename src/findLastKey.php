@@ -57,11 +57,3 @@ function findLastKey($iterable, $predicate = 'Dash\identity')
 	list($key, $value) = findLast($iterable, $predicate);
 	return $key;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _findLastKey(/* predicate, iterable */)
-{
-	return currify('Dash\findLastKey', func_get_args());
-}

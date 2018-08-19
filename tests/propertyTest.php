@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\property
- * @covers Dash\_property
+ * @covers Dash\Curry\property
  */
 class propertyTest extends PHPUnit_Framework_TestCase
 {
@@ -20,7 +20,7 @@ class propertyTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($input, $path, $default, $expected)
 	{
-		$property = Dash\_property($default);
+		$property = Dash\Curry\property($default);
 		$getter = $property($path);
 		$this->assertSame($expected, $getter($input));
 	}

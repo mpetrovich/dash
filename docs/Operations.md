@@ -111,6 +111,9 @@ all / every
 
 ```php
 all($iterable, $predicate = 'Dash\identity'): boolean
+
+# Curried: (all parameters required)
+Curry\all($predicate, $iterable)
 ```
 Checks whether `$predicate` returns truthy for every item in `$iterable`.
 
@@ -158,6 +161,9 @@ any / some
 
 ```php
 any($iterable, $predicate = 'Dash\identity'): boolean
+
+# Curried: (all parameters required)
+Curry\any($predicate, $iterable)
 ```
 Checks whether `$predicate` returns truthy for any item in `$iterable`.
 
@@ -204,6 +210,9 @@ at
 
 ```php
 at($iterable, $index, $default = null): mixed
+
+# Curried: (all parameters required)
+Curry\at($index, $default, $iterable)
 ```
 Iterates over `$iterable` and returns the value of the `$index`th element, ignoring keys.
 
@@ -243,6 +252,9 @@ average / mean
 
 ```php
 average($iterable): double|null
+
+# Curried: (all parameters required)
+Curry\average($iterable)
 ```
 Gets the average value of all elements in `$iterable`.
 
@@ -267,6 +279,9 @@ contains / includes
 
 ```php
 contains($iterable, $target, $comparator = 'Dash\equal'): boolean
+
+# Curried: (all parameters required)
+Curry\contains($target, $comparator, $iterable)
 ```
 Checks whether `$iterable` has any elements for which `$comparator` returns truthy.
 
@@ -300,6 +315,9 @@ deltas
 
 ```php
 deltas($iterable): array
+
+# Curried: (all parameters required)
+Curry\deltas($iterable)
 ```
 Returns a new array whose values are the differences between successive values of `$iterable`.
 
@@ -329,8 +347,6 @@ Returns the set of elements from `$iterable` whose values are not present in any
 where values are compared using loose equality.
 
 The order, keys, and values of elements in the returned array are determined by `$iterable`.
-
-This operation does not have a curried variant.
 
 Related: [intersection()](#), [union()](#)
 
@@ -368,6 +384,9 @@ each
 
 ```php
 each($iterable, $iteratee): mixed
+
+# Curried: (all parameters required)
+Curry\each($iteratee, $iterable)
 ```
 Iterates over elements of `$iterable` and invokes `$iteratee` for each element.
 
@@ -416,6 +435,9 @@ filter
 
 ```php
 filter($iterable, $predicate = 'Dash\identity'): array
+
+# Curried: (all parameters required)
+Curry\filter($predicate, $iterable)
 ```
 Gets a list of elements in `$iterable` for which `$predicate` returns truthy.
 
@@ -478,6 +500,9 @@ find
 
 ```php
 find($iterable, $predicate = 'Dash\identity'): array|null
+
+# Curried: (all parameters required)
+Curry\find($predicate, $iterable)
 ```
 Gets the key and value of the first element for which `$predicate` returns truthy.
 
@@ -535,6 +560,9 @@ findKey
 
 ```php
 findKey($iterable, $predicate = 'Dash\identity'): string|null
+
+# Curried: (all parameters required)
+Curry\findKey($predicate, $iterable)
 ```
 Gets the key of the first element for which `$predicate` returns truthy.
 
@@ -592,6 +620,9 @@ findLast
 
 ```php
 findLast($iterable, $predicate = 'Dash\identity'): array|null
+
+# Curried: (all parameters required)
+Curry\findLast($predicate, $iterable)
 ```
 Gets the key and value of the last element for which `$predicate` returns truthy.
 
@@ -649,6 +680,9 @@ findLastKey
 
 ```php
 findLastKey($iterable, $predicate = 'Dash\identity'): string|null
+
+# Curried: (all parameters required)
+Curry\findLastKey($predicate, $iterable)
 ```
 Gets the key of the last element for which `$predicate` returns truthy.
 
@@ -706,6 +740,9 @@ findLastValue
 
 ```php
 findLastValue($iterable, $predicate = 'Dash\identity'): mixed|null
+
+# Curried: (all parameters required)
+Curry\findLastValue($predicate, $iterable)
 ```
 Gets the value of the last element for which `$predicate` returns truthy.
 
@@ -763,6 +800,9 @@ findValue
 
 ```php
 findValue($iterable, $predicate = 'Dash\identity'): mixed|null
+
+# Curried: (all parameters required)
+Curry\findValue($predicate, $iterable)
 ```
 Gets the value of the first element for which `$predicate` returns truthy.
 
@@ -820,6 +860,9 @@ first / head
 
 ```php
 first($iterable): mixed|null
+
+# Curried: (all parameters required)
+Curry\first($iterable)
 ```
 Gets the value of the first element in `$iterable`.
 
@@ -847,6 +890,9 @@ groupBy
 
 ```php
 groupBy($iterable, $iteratee = 'Dash\identity', $defaultGroup = null): array
+
+# Curried: (all parameters required)
+Curry\groupBy($iteratee, $defaultGroup, iterable)
 ```
 Groups the element values of `$iterable` by the common return values of `$iteratee`.
 
@@ -931,8 +977,6 @@ where values are compared using loose equality.
 
 The order, keys, and values of elements in the returned array are determined by `$iterable`.
 
-This operation does not have a curried variant.
-
 Related: [difference()](#), [union()](#)
 
 Parameter | Type | Description
@@ -969,6 +1013,9 @@ isIndexedArray
 
 ```php
 isIndexedArray($value): boolean
+
+# Curried: (all parameters required)
+Curry\isIndexedArray($value)
 ```
 Checks whether `$value` is an array with sequential integer keys starting at 0.
 
@@ -999,6 +1046,9 @@ join / implode
 
 ```php
 join($iterable, $separator): string
+
+# Curried: (all parameters required)
+Curry\join($separator, $iterable)
 ```
 Concatenates the string value of all elements in `$iterable`,
 with each value separated by `$separator`.
@@ -1028,6 +1078,9 @@ keyBy / indexBy
 
 ```php
 keyBy($iterable, $iteratee = 'Dash\identity'): array
+
+# Curried: (all parameters required)
+Curry\keyBy($iteratee, $iterable)
 ```
 Gets the element values of `$iterable` as an associative array indexed by `$iteratee`.
 
@@ -1092,6 +1145,9 @@ keys
 
 ```php
 keys($iterable): array
+
+# Curried: (all parameters required)
+Curry\keys($iterable)
 ```
 Gets the keys of `$iterable` as an array.
 
@@ -1116,6 +1172,9 @@ last
 
 ```php
 last($iterable): mixed|null
+
+# Curried: (all parameters required)
+Curry\last($iterable)
 ```
 Gets the value of the last element in `$iterable`.
 
@@ -1143,6 +1202,9 @@ map
 
 ```php
 map($iterable, $iteratee = 'Dash\identity'): array
+
+# Curried: (all parameters required)
+Curry\map($iteratee, $iterable)
 ```
 Gets a new array of the return values of `$iteratee` when called with successive elements in `$iterable`.
 
@@ -1184,6 +1246,9 @@ mapValues
 
 ```php
 mapValues($iterable, $iteratee = 'Dash\identity'): array
+
+# Curried: (all parameters required)
+Curry\mapValues($iteratee, $iterable)
 ```
 Gets a new array of the return values of `$iteratee` when called with successive elements in `$iterable`.
 
@@ -1225,6 +1290,9 @@ matchesProperty
 
 ```php
 matchesProperty($path, $value = true, $comparator = 'Dash\equal'): function
+
+# Curried: (all parameters required)
+Curry\matchesProperty($value, $comparator, $path)
 ```
 Creates a function that returns whether `$comparator` returns truthy for the value at `$path` for a given input.
 
@@ -1276,6 +1344,9 @@ max
 
 ```php
 max($iterable): mixed|null
+
+# Curried: (all parameters required)
+Curry\max($iterable)
 ```
 Gets the maximum value of all elements in `$iterable`.
 
@@ -1303,6 +1374,9 @@ median
 
 ```php
 median($iterable): mixed|null
+
+# Curried: (all parameters required)
+Curry\median($iterable)
 ```
 Returns the median value of an iterable.
 
@@ -1330,6 +1404,9 @@ min
 
 ```php
 min($iterable): mixed|null
+
+# Curried: (all parameters required)
+Curry\min($iterable)
 ```
 Gets the minimum value of all elements in `$iterable`.
 
@@ -1357,6 +1434,9 @@ omit
 
 ```php
 omit($iterable, $keys): array
+
+# Curried: (all parameters required)
+Curry\omit($keys, $iterable)
 ```
 Gets the elements of `$iterable` with keys that match any in `$keys`.
 The opposite of `pick()`.
@@ -1383,6 +1463,9 @@ pick
 
 ```php
 pick($iterable, $keys): array
+
+# Curried: (all parameters required)
+Curry\pick($keys, $iterable)
 ```
 Gets the elements of `$iterable` with keys that match any in `$keys`.
 
@@ -1408,6 +1491,9 @@ pluck
 
 ```php
 pluck($iterable, $path, $default = null): array
+
+# Curried: (all parameters required)
+Curry\pluck($path, $default, $iterable)
 ```
 Gets an array of values at `$path` for all elements in `$iterable`.
 
@@ -1443,6 +1529,9 @@ property
 
 ```php
 property($path, $default = null): function
+
+# Curried: (all parameters required)
+Curry\property($default, $path)
 ```
 Creates a function that returns the value at a `$path` for a given input.
 
@@ -1512,6 +1601,9 @@ reduce
 
 ```php
 reduce($iterable, $iteratee, $initial = []): mixed
+
+# Curried: (all parameters required)
+Curry\reduce($iteratee, $initial, $iterable)
 ```
 Iteratively reduces `$iterable` to a single value by way of `$iteratee`.
 
@@ -1540,6 +1632,9 @@ reject
 
 ```php
 reject($iterable, $predicate = 'Dash\identity'): array
+
+# Curried: (all parameters required)
+Curry\reject($predicate, $iterable)
 ```
 Gets a list of elements in `$iterable` for which `$predicate` returns falsey.
 The opposite of `filter()`.
@@ -1603,6 +1698,9 @@ reverse
 
 ```php
 reverse($iterable, $preserveIntegerKeys = false): array
+
+# Curried: (all parameters required)
+Curry\reverse($preserveIntegerKeys, iterable)
 ```
 Gets a new array of `$iterable` elements in reverse order.
 
@@ -1641,6 +1739,9 @@ rotate
 
 ```php
 rotate($iterable, $count = 1): array
+
+# Curried: (all parameters required)
+Curry\rotate($count, $iterable)
 ```
 Gets a new array of `$iterable` elements where `$count` elements are moved counter-clockwise
 from the beginning of `$iterable` to the end.
@@ -1676,6 +1777,9 @@ sort
 
 ```php
 sort($iterable, $comparator = 'Dash\compare'): array
+
+# Curried: (all parameters required)
+Curry\sort($comparator, $iterable)
 ```
 Gets a new array containing the sorted elements of `$iterable`.
 
@@ -1707,6 +1811,9 @@ sum
 
 ```php
 sum($iterable): numeric
+
+# Curried: (all parameters required)
+Curry\sum($iterable)
 ```
 Gets the sum of all element values in `$iterable`.
 
@@ -1734,6 +1841,9 @@ take
 
 ```php
 take($iterable, $count = 1): array
+
+# Curried: (all parameters required)
+Curry\take($count, $iterable)
 ```
 Gets a new array of the first `$count` elements of `$iterable`.
 
@@ -1768,6 +1878,9 @@ takeRight
 
 ```php
 takeRight($iterable, $count = 1): array
+
+# Curried: (all parameters required)
+Curry\takeRight($count, $iterable)
 ```
 Gets a new array of the last `$count` elements of `$iterable`.
 
@@ -1802,6 +1915,9 @@ toArray
 
 ```php
 toArray($value): array
+
+# Curried: (all parameters required)
+Curry\toArray($value)
 ```
 Gets an array representation of `$value`.
 
@@ -1829,6 +1945,9 @@ toObject
 
 ```php
 toObject($value): object
+
+# Curried: (all parameters required)
+Curry\toObject($value)
 ```
 Gets a plain object representation of `$value`.
 
@@ -1860,8 +1979,6 @@ union($iterable /*, ...iterables */): array
 Returns a new array containing the combined set of unique values, in order, of all provided iterables.
 
 Non-indexed keys are preseved, but duplicate keys will overwrite previous ones.
-
-This operation does not have a curried variant.
 
 Related: [intersection()](#), [difference()](#)
 
@@ -1899,6 +2016,9 @@ values
 
 ```php
 values($iterable): array
+
+# Curried: (all parameters required)
+Curry\values($iterable)
 ```
 Gets the values of `$iterable` as an array.
 
@@ -1926,6 +2046,9 @@ assertType
 
 ```php
 assertType($value, $type, $funcName = __FUNCTION__): void
+
+# Curried: (all parameters required)
+Curry\assertType($type, $funcName, input)
 ```
 Throws an `InvalidArgumentException` exception if `$value` is not of type `$type`.
 If `$value` is an accepted type, this function is a no-op.
@@ -1958,6 +2081,9 @@ chain
 
 ```php
 chain($input = null): Dash\_
+
+# Curried: (all parameters required)
+Curry\chain($input)
 ```
 Creates a new chain. Alias for `_::chain()`.
 
@@ -1985,6 +2111,9 @@ compare
 
 ```php
 compare($a, $b): integer
+
+# Curried: (all parameters required)
+Curry\compare($b, $a)
 ```
 Returns a number less than, equal to, or greater than zero
 if `$a` is less than, equal to, or greater than `$b`, respectively.
@@ -2020,6 +2149,9 @@ custom
 
 ```php
 custom($name): function
+
+# Curried: (all parameters required)
+Curry\custom($name)
 ```
 Gets a custom operation by name.
 
@@ -2050,6 +2182,9 @@ debug
 
 ```php
 debug($value /*, ...value */): mixed
+
+# Curried: (all parameters required)
+Curry\debug(...value)
 ```
 Prints debugging information for one or more values.
 
@@ -2085,6 +2220,9 @@ equal
 
 ```php
 equal($a, $b): boolean
+
+# Curried: (all parameters required)
+Curry\equal($b, $a)
 ```
 Checks whether `$a` and `$b` are loosely equal (same value, possibly different types).
 
@@ -2119,6 +2257,9 @@ get
 
 ```php
 get($input, $path, $default = null): mixed
+
+# Curried: (all parameters required)
+Curry\get($path, $default, $input)
 ```
 Gets the value at `$path` within `$input`. Nested properties are accessible with dot notation.
 
@@ -2163,6 +2304,9 @@ getDirect
 
 ```php
 getDirect($input, $key, $default = null): mixed
+
+# Curried: (all parameters required)
+Curry\getDirect($key, $default, $iterable)
 ```
 Gets the array value, object property, or method at `$key` within `$input`.
 
@@ -2212,8 +2356,6 @@ getDirectRef(&$input, $key): mixed
 ```
 Similar to `getDirect()`, but returns a reference to the value at `$key` within `$input`.
 
-This operation does not have a curried variant.
-
 Related: [getDirect()](#), [hasDirect()](#)
 
 Parameter | Type | Description
@@ -2243,6 +2385,9 @@ hasDirect
 
 ```php
 hasDirect($input, $key): boolean
+
+# Curried: (all parameters required)
+Curry\hasDirect($key, $input)
 ```
 Checks whether an array value, object property, or method exists at `$key` within `$input`.
 
@@ -2277,6 +2422,9 @@ identical
 
 ```php
 identical($a, $b): boolean
+
+# Curried: (all parameters required)
+Curry\identical($b, $a)
 ```
 Checks whether `$a` and `$b` are strictly equal (same value and type).
 
@@ -2311,6 +2459,9 @@ identity
 
 ```php
 identity($value): mixed
+
+# Curried: (all parameters required)
+Curry\identity($value)
 ```
 Returns the first argument it receives.
 
@@ -2336,6 +2487,9 @@ isEmpty
 
 ```php
 isEmpty($value): boolean
+
+# Curried: (all parameters required)
+Curry\isEmpty($value)
 ```
 Checks whether `$value` is empty.
 
@@ -2376,6 +2530,9 @@ isType
 
 ```php
 isType($value, $type): boolean
+
+# Curried: (all parameters required)
+Curry\isType($type, $value)
 ```
 Checks whether `$value` is of a particular data type.
 
@@ -2428,6 +2585,9 @@ result
 
 ```php
 result($input, $path, $default = null): mixed
+
+# Curried: (all parameters required)
+Curry\result($path, $default, $input)
 ```
 Gets the value at `$path` within `$input`. Nested properties are accessible with dot notation.
 Like `get()` but if the value is callable, it is invoked and its return value is returned.
@@ -2472,8 +2632,6 @@ set(&$input, $path, $value): mixed
 ```
 Sets the value at `$path` within `$input`. Nested properties are accessible with dot notation.
 Note: This *will* modify `$input`.
-
-This operation does not have a curried variant.
 
 Related: [get()](#), [getDirect()](#), [property()](#)
 
@@ -2535,6 +2693,9 @@ size / count
 
 ```php
 size($value, $encoding = 'UTF-8'): integer
+
+# Curried: (all parameters required)
+Curry\size($value)
 ```
 Gets the number of items in `$value`.
 
@@ -2566,6 +2727,9 @@ tap
 
 ```php
 tap($value, callable $interceptor): mixed
+
+# Curried: (all parameters required)
+Curry\tap($interceptor, $value)
 ```
 Invokes `$interceptor` with `($value)` and returns `$value` unchanged.
 
@@ -2600,6 +2764,9 @@ thru
 
 ```php
 thru($value, callable $interceptor): mixed
+
+# Curried: (all parameters required)
+Curry\thru($interceptor, $value)
 ```
 Invokes `$interceptor` with `($value)` and returns its result.
 
@@ -2636,6 +2803,9 @@ apply
 
 ```php
 apply(callable $callable, $args): mixed
+
+# Curried: (all parameters required)
+Curry\apply($callable, $args)
 ```
 Invokes `$callable` with a list of arguments.
 
@@ -2667,7 +2837,7 @@ $func = function ($time, $name) {
 	return "Good $time, $name";
 };
 
-$apply = Dash\_apply($func);
+$apply = Dash\Curry\apply($func);
 
 $apply(['morning', 'John']);
 // === 'Good morning, John'
@@ -2681,6 +2851,9 @@ ary
 
 ```php
 ary(callable $callable, $arity): callable
+
+# Curried: (all parameters required)
+Curry\ary($arity, $callable)
 ```
 Creates a new function that invokes `$callable` with up to `$arity` arguments and ignores the rest.
 
@@ -2710,8 +2883,6 @@ call
 call(callable $callable /*, ...args */): mixed
 ```
 Invokes `$callable` with an inline list of arguments.
-
-Note: No curried function exists for this operation.
 
 
 
@@ -2817,8 +2988,6 @@ otherwise, it returns a function that accepts the remaining number of required p
 
 Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
 
-This operation does not have a curried variant.
-
 Related: [curryN()](#), [curryRight()](#), [partial()](#), [currify()](#)
 
 Parameter | Type | Description
@@ -2873,8 +3042,6 @@ Creates a new function that returns the result of `$callable` if the required nu
 otherwise, it returns a function that accepts the remaining number of required parameters.
 
 Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
-
-This operation does not have a curried variant.
 
 Related: [curry()](#)
 
@@ -2935,8 +3102,6 @@ Like `partialRight()`, arguments are applied in reverse order.
 
 Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
 
-This operation does not have a curried variant.
-
 Related: [curry()](#), [partial()](#)
 
 Parameter | Type | Description
@@ -2994,8 +3159,6 @@ Like `partialRight()`, arguments are applied in reverse order.
 
 Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
 
-This operation does not have a curried variant.
-
 Related: [curryN()](#), [partialRight()](#)
 
 Parameter | Type | Description
@@ -3048,6 +3211,9 @@ negate
 
 ```php
 negate(callable $predicate): callable
+
+# Curried: (all parameters required)
+Curry\negate($predicate)
 ```
 Creates a new function that negates the return value of `$predicate`.
 
@@ -3083,8 +3249,6 @@ When calling `$callable`, arguments provided to `partial()` will be listed
 BEFORE those passed to the returned function.
 
 Use `Dash\_` as a placeholder to replace with arguments passed to the returned function.
-
-This operation does not have a curried variant.
 
 Related: [partialRight()](#), [curry()](#)
 
@@ -3138,8 +3302,6 @@ AFTER those passed to the returned function.
 
 Use `Dash\_` as a placeholder to replace with arguments passed to the returned function.
 
-This operation does not have a curried variant.
-
 Related: [partial()](#), [curryRight()](#)
 
 Parameter | Type | Description
@@ -3183,6 +3345,9 @@ unary
 
 ```php
 unary(callable $callable): callable
+
+# Curried: (all parameters required)
+Curry\unary($callable)
 ```
 Creates a new function that invokes `$callable` with a single argument and ignores the rest.
 
@@ -3212,6 +3377,9 @@ isEven
 
 ```php
 isEven($value): boolean
+
+# Curried: (all parameters required)
+Curry\isEven($value)
 ```
 Checks whether `$value` is an even number.
 
@@ -3247,6 +3415,9 @@ isOdd
 
 ```php
 isOdd($value): boolean
+
+# Curried: (all parameters required)
+Curry\isOdd($value)
 ```
 Checks whether `$value` is an odd number.
 

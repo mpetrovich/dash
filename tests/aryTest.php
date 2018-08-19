@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\ary
- * @covers Dash\_ary
+ * @covers Dash\Curry\ary
  */
 class aryTest extends PHPUnit_Framework_TestCase
 {
@@ -28,7 +28,7 @@ class aryTest extends PHPUnit_Framework_TestCase
 			return func_get_args();
 		};
 
-		$ary = Dash\_ary($arity);
+		$ary = Dash\Curry\ary($arity);
 		$this->assertSame($expected, call_user_func_array($ary($func), $args));
 	}
 

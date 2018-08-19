@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\pick
- * @covers Dash\_pick
+ * @covers Dash\Curry\pick
  */
 class pickTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class pickTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $keys, $expected)
 	{
-		$pick = Dash\_pick($keys);
+		$pick = Dash\Curry\pick($keys);
 		$this->assertEquals($expected, $pick($iterable));
 	}
 

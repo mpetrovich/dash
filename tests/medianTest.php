@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\median
- * @covers Dash\_median
+ * @covers Dash\Curry\median
  */
 class medianTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class medianTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $expected)
 	{
-		$median = Dash\_median();
+		$median = Dash\Curry\median();
 		$this->assertSame($expected, $median($iterable));
 	}
 

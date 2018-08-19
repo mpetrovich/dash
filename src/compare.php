@@ -36,11 +36,3 @@ function compare($a, $b)
 		return -1;
 	}
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _compare(/* b, a */)
-{
-	return currify('Dash\compare', func_get_args());
-}

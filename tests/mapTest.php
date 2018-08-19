@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\map
- * @covers Dash\_map
+ * @covers Dash\Curry\map
  */
 class mapTest extends PHPUnit_Framework_TestCase
 {
@@ -25,7 +25,7 @@ class mapTest extends PHPUnit_Framework_TestCase
 		$iteratee = function ($value) {
 			return $value * 2;
 		};
-		$map = Dash\_map($iteratee);
+		$map = Dash\Curry\map($iteratee);
 		$this->assertEquals($expected, $map($iterable));
 	}
 

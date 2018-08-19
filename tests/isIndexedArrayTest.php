@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\isIndexedArray
- * @covers Dash\_isIndexedArray
+ * @covers Dash\Curry\isIndexedArray
  */
 class isIndexedArrayTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class isIndexedArrayTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($value, $expected)
 	{
-		$isIndexedArray = Dash\_isIndexedArray();
+		$isIndexedArray = Dash\Curry\isIndexedArray();
 		$this->assertSame($expected, $isIndexedArray($value));
 	}
 

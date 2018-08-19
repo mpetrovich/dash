@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\assertType
- * @covers Dash\_assertType
+ * @covers Dash\Curry\assertType
  */
 class assertTypeTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class assertTypeTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($value, $type)
 	{
-		$assertType = Dash\_assertType($type, __FUNCTION__);
+		$assertType = Dash\Curry\assertType($type, __FUNCTION__);
 		$assertType($value);
 	}
 
@@ -59,7 +59,7 @@ class assertTypeTest extends PHPUnit_Framework_TestCase
 		}
 
 		try {
-			$assertType = Dash\_assertType($type, 'Dash\assertType');
+			$assertType = Dash\Curry\assertType($type, 'Dash\assertType');
 			$assertType($value);
 			$this->assertTrue(false, 'This should never be called');
 		}

@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\mapValues
- * @covers Dash\_mapValues
+ * @covers Dash\Curry\mapValues
  */
 class mapValuesTest extends PHPUnit_Framework_TestCase
 {
@@ -25,7 +25,7 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 		$iteratee = function ($value) {
 			return $value * 2;
 		};
-		$mapValues = Dash\_mapValues($iteratee);
+		$mapValues = Dash\Curry\mapValues($iteratee);
 		$this->assertEquals($expected, $mapValues($iterable));
 	}
 

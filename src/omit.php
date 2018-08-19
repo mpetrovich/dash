@@ -28,11 +28,3 @@ function omit($iterable, $keys)
 
 	return $omitted;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _omit(/* keys, iterable */)
-{
-	return currify('Dash\omit', func_get_args());
-}

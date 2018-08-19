@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\get
- * @covers Dash\_get
+ * @covers Dash\Curry\get
  */
 class getTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class getTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($input, $path, $default, $expected)
 	{
-		$get = Dash\_get($path, $default);
+		$get = Dash\Curry\get($path, $default);
 		$this->assertSame($expected, $get($input));
 	}
 

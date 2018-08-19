@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\reverse
- * @covers Dash\_reverse
+ * @covers Dash\Curry\reverse
  */
 class reverseTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class reverseTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $preserveIntegerKeys, $expected)
 	{
-		$reverse = Dash\_reverse($preserveIntegerKeys);
+		$reverse = Dash\Curry\reverse($preserveIntegerKeys);
 		$this->assertSame($expected, $reverse($iterable));
 	}
 

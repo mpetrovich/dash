@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\findKey
- * @covers Dash\_findKey
+ * @covers Dash\Curry\findKey
  */
 class findKeyTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class findKeyTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $predicate, $expected)
 	{
-		$findKey = Dash\_findKey($predicate);
+		$findKey = Dash\Curry\findKey($predicate);
 		$this->assertEquals($expected, $findKey($iterable));
 	}
 

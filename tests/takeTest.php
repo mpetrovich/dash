@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\take
- * @covers Dash\_take
+ * @covers Dash\Curry\take
  */
 class takeTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class takeTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $count, $expected)
 	{
-		$take = Dash\_take($count);
+		$take = Dash\Curry\take($count);
 		$this->assertEquals($expected, $take($iterable));
 	}
 

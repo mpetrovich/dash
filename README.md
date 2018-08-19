@@ -129,23 +129,28 @@ $listTwo('second', 'third');
 // === 'first, second, and third'
 ```
 
-All Dash functions have a curried variant that accepts input data as the last parameter instead of as the first. The name of the curried function is the same as the uncurried function name but prefixed with an underscore, `_`:
+Most Dash functions have a curried version that accepts input data as the last parameter instead of as the first. Curried versions are located in the `Dash\Curry` namespace:
 
 ```php
-_::chain(['a' => 3, 'b' => '3', 'c' => 3, 'd' => 3.0])
-	->filter(Dash\_identical(3))
-	->value();
+_::chain([
+	'a' => 3,
+	'b' => '3',
+	'c' => 3,
+	'd' => 3.0
+])
+->filter(Dash\Curry\identical(3))
+->value();
 // === ['a' => 3, 'c' => 3]
 ```
 
 Similarly, [`partial()`](docs/Operations.md#partial) and related operations can be used to create partially-applied functions:
 
 ```php
-$containsTruthy = Dash\_contains(true, 'Dash\equal');
+$containsTruthy = Dash\Curry\contains(true, 'Dash\equal');
 $containsTruthy([0, 1, 0]);
 // === true
 
-$containsTrue = Dash\_contains(true, 'Dash\identical');
+$containsTrue = Dash\Curry\contains(true, 'Dash\identical');
 $containsTrue([0, 1, 0]);
 // === false
 ```

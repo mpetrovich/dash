@@ -34,11 +34,3 @@ function reduce($iterable, $iteratee, $initial = [])
 
 	return $result;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _reduce(/* iteratee, initial, iterable */)
-{
-	return currify('Dash\reduce', func_get_args());
-}

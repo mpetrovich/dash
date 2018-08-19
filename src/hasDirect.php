@@ -36,11 +36,3 @@ function hasDirect($input, $key)
 		|| $input instanceof \ArrayAccess && $input->offsetExists($key)
 		|| method_exists($input, $key);
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _hasDirect(/* key, input */)
-{
-	return currify('Dash\hasDirect', func_get_args());
-}

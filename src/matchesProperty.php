@@ -39,11 +39,3 @@ function matchesProperty($path, $value = true, $comparator = 'Dash\equal')
 		return call_user_func($comparator, get($input, $path), $value);
 	};
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _matchesProperty(/* value, comparator, path */)
-{
-	return currify('Dash\matchesProperty', func_get_args());
-}

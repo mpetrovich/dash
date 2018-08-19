@@ -2,9 +2,9 @@
 
 /**
  * @covers Dash\average
- * @covers Dash\_average
+ * @covers Dash\Curry\average
  * @covers Dash\mean
- * @covers Dash\_mean
+ * @covers Dash\Curry\mean
  */
 class averageTest extends PHPUnit_Framework_TestCase
 {
@@ -22,10 +22,10 @@ class averageTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $expected)
 	{
-		$average = Dash\_average();
+		$average = Dash\Curry\average();
 		$this->assertSame($expected, $average($iterable));
 
-		$mean = Dash\_mean();
+		$mean = Dash\Curry\mean();
 		$this->assertSame($expected, $mean($iterable));
 	}
 

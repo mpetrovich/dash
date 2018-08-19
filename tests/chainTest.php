@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\chain
- * @covers Dash\_chain
+ * @covers Dash\Curry\chain
  */
 class chainTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class chainTest extends PHPUnit_Framework_TestCase
 
 	public function testCurried()
 	{
-		$chain = Dash\_chain();
+		$chain = Dash\Curry\chain();
 		$chain = $chain([1, 2, 3]);
 
 		$this->assertInstanceOf('Dash\_', $chain);

@@ -92,11 +92,3 @@ function groupBy($iterable, $iteratee = 'Dash\identity', $defaultGroup = null)
 
 	return $grouped;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _groupBy(/* iteratee, defaultGroup, iterable */)
-{
-	return currify('Dash\groupBy', func_get_args());
-}

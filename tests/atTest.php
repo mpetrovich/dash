@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\at
- * @covers Dash\_at
+ * @covers Dash\Curry\at
  */
 class atTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class atTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $index, $expected)
 	{
-		$at = Dash\_at($index, null);
+		$at = Dash\Curry\at($index, null);
 		$this->assertSame($expected, $at($iterable));
 	}
 

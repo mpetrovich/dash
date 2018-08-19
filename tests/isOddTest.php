@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\isOdd
- * @covers Dash\_isOdd
+ * @covers Dash\Curry\isOdd
  */
 class isOddTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class isOddTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($value, $expected)
 	{
-		$isOdd = Dash\_isOdd();
+		$isOdd = Dash\Curry\isOdd();
 		$this->assertSame($expected, $isOdd($value));
 	}
 

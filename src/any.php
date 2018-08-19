@@ -51,26 +51,7 @@ function any($iterable, $predicate = 'Dash\identity')
 	return false;
 }
 
-/**
- * @codingStandardsIgnoreStart
- */
-function _any(/* predicate, iterable */)
-{
-	return currify('Dash\any', func_get_args());
-}
-
-/**
- * @codingStandardsIgnoreStart
- */
 function some()
 {
 	return call_user_func_array('Dash\any', func_get_args());
-}
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _some(/* predicate, iterable */)
-{
-	return currify('Dash\any', func_get_args());
 }

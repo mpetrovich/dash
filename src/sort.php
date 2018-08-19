@@ -37,11 +37,3 @@ function sort($iterable, $comparator = 'Dash\compare')
 
 	return $array;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _sort(/* comparator, iterable */)
-{
-	return currify('Dash\sort', func_get_args());
-}

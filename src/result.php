@@ -43,11 +43,3 @@ function result($input, $path, $default = null)
 
 	return $value;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _result(/* path, default, input */)
-{
-	return currify('Dash\result', func_get_args());
-}

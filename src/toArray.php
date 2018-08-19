@@ -30,11 +30,3 @@ function toArray($value)
 
 	return $array;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _toArray(/* value */)
-{
-	return currify('Dash\toArray', func_get_args());
-}

@@ -30,11 +30,3 @@ function max($iterable)
 
 	return $max;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _max(/* iterable */)
-{
-	return currify('Dash\max', func_get_args());
-}

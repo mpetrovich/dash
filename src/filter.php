@@ -73,11 +73,3 @@ function filter($iterable, $predicate = 'Dash\identity')
 
 	return isIndexedArray($iterable) ? array_values($filtered) : $filtered;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _filter(/* predicate, iterable */)
-{
-	return currify('Dash\filter', func_get_args());
-}

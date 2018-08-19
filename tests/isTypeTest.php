@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\isType
- * @covers Dash\_isType
+ * @covers Dash\Curry\isType
  */
 class isTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class isTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($value, $type)
 	{
-		$isType = Dash\_isType($type);
+		$isType = Dash\Curry\isType($type);
 		$isType($value);
 	}
 

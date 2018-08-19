@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\findLastKey
- * @covers Dash\_findLastKey
+ * @covers Dash\Curry\findLastKey
  */
 class findLastKeyTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class findLastKeyTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $predicate, $expected)
 	{
-		$findLastKey = Dash\_findLastKey($predicate);
+		$findLastKey = Dash\Curry\findLastKey($predicate);
 		$this->assertEquals($expected, $findLastKey($iterable));
 	}
 

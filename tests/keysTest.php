@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\keys
- * @covers Dash\_keys
+ * @covers Dash\Curry\keys
  */
 class keysTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class keysTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $expected)
 	{
-		$keys = Dash\_keys();
+		$keys = Dash\Curry\keys();
 		$this->assertSame($expected, $keys($iterable));
 	}
 

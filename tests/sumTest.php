@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\sum
- * @covers Dash\_sum
+ * @covers Dash\Curry\sum
  */
 class sumTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class sumTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $expected)
 	{
-		$sum = Dash\_sum();
+		$sum = Dash\Curry\sum();
 		$this->assertSame($expected, $sum($iterable));
 	}
 

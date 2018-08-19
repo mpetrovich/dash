@@ -2,9 +2,9 @@
 
 /**
  * @covers Dash\first
- * @covers Dash\_first
+ * @covers Dash\Curry\first
  * @covers Dash\head
- * @covers Dash\_head
+ * @covers Dash\Curry\head
  */
 class firstTest extends PHPUnit_Framework_TestCase
 {
@@ -22,10 +22,10 @@ class firstTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $expected)
 	{
-		$first = Dash\_first();
+		$first = Dash\Curry\first();
 		$this->assertSame($expected, $first($iterable));
 
-		$head = Dash\_head();
+		$head = Dash\Curry\head();
 		$this->assertSame($expected, $head($iterable));
 	}
 

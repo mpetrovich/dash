@@ -44,26 +44,7 @@ function size($value, $encoding = 'UTF-8')
 	return $size;
 }
 
-/**
- * @codingStandardsIgnoreStart
- */
-function _size(/* value */)
-{
-	return currify('Dash\size', func_get_args());
-}
-
-/**
- * @codingStandardsIgnoreStart
- */
 function count()
 {
 	return call_user_func_array('Dash\size', func_get_args());
-}
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _count(/* value */)
-{
-	return call_user_func_array('Dash\_size', func_get_args());
 }

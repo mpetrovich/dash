@@ -28,11 +28,3 @@ function isOdd($value)
 {
 	return is_numeric($value) && ($value % 2 !== 0);
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _isOdd(/* value */)
-{
-	return currify('Dash\isOdd', func_get_args());
-}

@@ -8,8 +8,6 @@ namespace Dash;
  *
  * Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
  *
- * This operation does not have a curried variant.
- *
  * @see curryN(), curryRight(), partial(), currify()
  *
  * @category Callable
@@ -56,7 +54,7 @@ function curry(callable $callable /*, ...args */)
 	}
 	else {
 		$callableName = '';
-		is_callable($callable, false, /* by reference */ $callableName);
+		is_callable($callable, false, /* $by reference */ $callableName);
 
 		if (strpos($callableName, '::') !== false) {
 			$reflectionFn = new \ReflectionMethod($callableName);

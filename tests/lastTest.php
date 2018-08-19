@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\last
- * @covers Dash\_last
+ * @covers Dash\Curry\last
  */
 class lastTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class lastTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $expected)
 	{
-		$last = Dash\_last();
+		$last = Dash\Curry\last();
 		$this->assertSame($expected, $last($iterable));
 	}
 

@@ -75,11 +75,3 @@ function property($path, $default = null)
 
 	return $getter;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _property(/* default, $path */)
-{
-	return currify('Dash\property', func_get_args());
-}

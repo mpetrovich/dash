@@ -61,11 +61,3 @@ function getDirect($input, $key, $default = null)
 
 	return $value;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _getDirect(/* key, default, iterable */)
-{
-	return currify('Dash\getDirect', func_get_args());
-}

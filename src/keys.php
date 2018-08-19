@@ -23,11 +23,3 @@ function keys($iterable)
 		return $key;
 	});
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _keys(/* iterable */)
-{
-	return currify('Dash\keys', func_get_args());
-}

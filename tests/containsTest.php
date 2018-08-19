@@ -2,9 +2,9 @@
 
 /**
  * @covers Dash\contains
- * @covers Dash\_contains
+ * @covers Dash\Curry\contains
  * @covers Dash\includes
- * @covers Dash\_includes
+ * @covers Dash\Curry\includes
  */
 class containsTest extends PHPUnit_Framework_TestCase
 {
@@ -22,10 +22,10 @@ class containsTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $target, $comparator, $expected)
 	{
-		$contains = Dash\_contains($target, $comparator);
+		$contains = Dash\Curry\contains($target, $comparator);
 		$this->assertSame($expected, $contains($iterable));
 
-		$includes = Dash\_includes($target, $comparator);
+		$includes = Dash\Curry\includes($target, $comparator);
 		$this->assertSame($expected, $includes($iterable));
 	}
 

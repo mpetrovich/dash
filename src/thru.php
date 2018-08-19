@@ -26,11 +26,3 @@ function thru($value, callable $interceptor)
 {
 	return call_user_func($interceptor, $value);
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _thru(/* interceptor, value */)
-{
-	return currify('Dash\thru', func_get_args());
-}

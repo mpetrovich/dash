@@ -47,11 +47,3 @@ function get($input, $path, $default = null)
 	$value = $getter ? call_user_func($getter, $input, $default) : $default;
 	return $value;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _get(/* path, default, input */)
-{
-	return currify('Dash\get', func_get_args());
-}

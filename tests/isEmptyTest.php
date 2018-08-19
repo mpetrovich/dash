@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\isEmpty
- * @covers Dash\_isEmpty
+ * @covers Dash\Curry\isEmpty
  */
 class isEmptyTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class isEmptyTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($value, $expected)
 	{
-		$isEmpty = Dash\_isEmpty();
+		$isEmpty = Dash\Curry\isEmpty();
 		$this->assertSame($expected, $isEmpty($value));
 	}
 

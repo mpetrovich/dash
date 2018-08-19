@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\rotate
- * @covers Dash\_rotate
+ * @covers Dash\Curry\rotate
  */
 class rotateTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class rotateTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $count, $expected)
 	{
-		$rotate = Dash\_rotate($count);
+		$rotate = Dash\Curry\rotate($count);
 		$this->assertSame($expected, $rotate($iterable));
 	}
 

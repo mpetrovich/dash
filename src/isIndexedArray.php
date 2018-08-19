@@ -28,11 +28,3 @@ function isIndexedArray($value)
 	$keys = array_keys($value);
 	return array_keys($keys) === $keys;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _isIndexedArray(/* value */)
-{
-	return currify('Dash\isIndexedArray', func_get_args());
-}

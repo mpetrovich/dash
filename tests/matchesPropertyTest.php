@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\matchesProperty
- * @covers Dash\_matchesProperty
+ * @covers Dash\Curry\matchesProperty
  */
 class matchesPropertyTest extends PHPUnit_Framework_TestCase
 {
@@ -20,7 +20,7 @@ class matchesPropertyTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($path, $value, $comparator, $input, $expected)
 	{
-		$matchesProperty = Dash\_matchesProperty($value, $comparator);
+		$matchesProperty = Dash\Curry\matchesProperty($value, $comparator);
 		$matcher = $matchesProperty($path);
 		$this->assertSame($expected, $matcher($input));
 	}

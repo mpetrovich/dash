@@ -32,11 +32,3 @@ function pluck($iterable, $path, $default = null)
 
 	return map($iterable, property($path, $default));
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _pluck(/* path, default, iterable */)
-{
-	return currify('Dash\pluck', func_get_args());
-}

@@ -27,11 +27,3 @@ function pick($iterable, $keys)
 
 	return $picked;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _pick(/* keys, iterable */)
-{
-	return currify('Dash\pick', func_get_args());
-}

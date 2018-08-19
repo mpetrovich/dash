@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\max
- * @covers Dash\_max
+ * @covers Dash\Curry\max
  */
 class maxTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class maxTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $expected)
 	{
-		$max = Dash\_max();
+		$max = Dash\Curry\max();
 		$this->assertSame($expected, $max($iterable));
 	}
 

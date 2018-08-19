@@ -33,26 +33,7 @@ function first($iterable)
 	return null;
 }
 
-/**
- * @codingStandardsIgnoreStart
- */
-function _first(/* iterable */)
-{
-	return currify('Dash\first', func_get_args());
-}
-
-/**
- * @codingStandardsIgnoreStart
- */
 function head()
 {
 	return call_user_func_array('Dash\first', func_get_args());
-}
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _head(/* iterable */)
-{
-	return currify('Dash\first', func_get_args());
 }

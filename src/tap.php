@@ -28,11 +28,3 @@ function tap($value, callable $interceptor)
 	call_user_func($interceptor, $value);
 	return $value;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _tap(/* interceptor, value */)
-{
-	return currify('Dash\tap', func_get_args());
-}

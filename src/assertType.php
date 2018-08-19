@@ -36,11 +36,3 @@ function assertType($value, $type, $funcName = __FUNCTION__)
 		));
 	}
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _assertType(/* type, funcName, input */)
-{
-	return currify('Dash\assertType', func_get_args());
-}

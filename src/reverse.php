@@ -35,11 +35,3 @@ function reverse($iterable, $preserveIntegerKeys = false)
 
 	return array_reverse(toArray($iterable), $preserveIntegerKeys);
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _reverse(/* preserveIntegerKeys, iterable */)
-{
-	return currify('Dash\reverse', func_get_args());
-}

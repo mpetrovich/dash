@@ -28,26 +28,7 @@ function contains($iterable, $target, $comparator = 'Dash\equal')
 	return any($iterable, partial($comparator, $target));
 }
 
-/**
- * @codingStandardsIgnoreStart
- */
-function _contains(/* target, comparator, iterable */)
-{
-	return currify('Dash\contains', func_get_args());
-}
-
-/**
- * @codingStandardsIgnoreStart
- */
 function includes()
 {
 	return call_user_func_array('Dash\contains', func_get_args());
-}
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _includes(/* target, comparator, iterable */)
-{
-	return currify('Dash\contains', func_get_args());
 }

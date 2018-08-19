@@ -80,26 +80,7 @@ function keyBy($iterable, $iteratee = 'Dash\identity')
 	return $keyed;
 }
 
-/**
- * @codingStandardsIgnoreStart
- */
-function _keyBy(/* iteratee, iterable */)
-{
-	return currify('Dash\keyBy', func_get_args());
-}
-
-/**
- * @codingStandardsIgnoreStart
- */
 function indexBy()
 {
 	return call_user_func_array('Dash\keyBy', func_get_args());
-}
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _indexBy(/* iteratee, iterable */)
-{
-	return currify('Dash\keyBy', func_get_args());
 }

@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\negate
- * @covers Dash\_negate
+ * @covers Dash\Curry\negate
  */
 class negateTest extends PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class negateTest extends PHPUnit_Framework_TestCase
 	public function testCurried()
 	{
 		$isEven = function ($n) { return $n % 2 === 0; };
-		$isOdd = Dash\_negate();
+		$isOdd = Dash\Curry\negate();
 		$isOdd2 = $isOdd($isEven);
 
 		$this->assertFalse($isEven(3));

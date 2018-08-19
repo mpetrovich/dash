@@ -63,11 +63,3 @@ function isType($value, $type)
 
 	return false;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _isType(/* type, value */)
-{
-	return currify('Dash\isType', func_get_args());
-}

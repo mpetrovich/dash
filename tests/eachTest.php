@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\each
- * @covers Dash\_each
+ * @covers Dash\Curry\each
  */
 class eachTest extends PHPUnit_Framework_TestCase
 {
@@ -36,7 +36,7 @@ class eachTest extends PHPUnit_Framework_TestCase
 			$iterated[] = $key . ' is ' . $value;
 		};
 
-		$each = Dash\_each($iteratee);
+		$each = Dash\Curry\each($iteratee);
 		$returned = $each($iterable);
 
 		$this->assertSame($expected, $iterated);

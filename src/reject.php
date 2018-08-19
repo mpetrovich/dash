@@ -62,11 +62,3 @@ function reject($iterable, $predicate = 'Dash\identity')
 
 	return filter($iterable, negate($predicate));
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _reject(/* predicate, iterable */)
-{
-	return currify('Dash\reject', func_get_args());
-}

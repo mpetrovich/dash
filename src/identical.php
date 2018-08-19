@@ -27,11 +27,3 @@ function identical($a, $b)
 {
 	return $a === $b;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _identical(/* b, a */)
-{
-	return currify('Dash\identical', func_get_args());
-}

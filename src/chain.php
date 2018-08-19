@@ -20,11 +20,3 @@ function chain($input = null)
 {
 	return _::chain($input);
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _chain(/* input */)
-{
-	return currify('Dash\chain', func_get_args());
-}

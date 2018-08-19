@@ -36,11 +36,3 @@ function takeRight($iterable, $count = 1)
 
 	return array_reverse($taken, $preserveKeys);
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _takeRight(/* count, iterable */)
-{
-	return currify('Dash\takeRight', func_get_args());
-}

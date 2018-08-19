@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\takeRight
- * @covers Dash\_takeRight
+ * @covers Dash\Curry\takeRight
  */
 class takeRightTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class takeRightTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $count, $expected)
 	{
-		$takeRight = Dash\_takeRight($count);
+		$takeRight = Dash\Curry\takeRight($count);
 		$this->assertEquals($expected, $takeRight($iterable));
 	}
 

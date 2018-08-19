@@ -28,26 +28,7 @@ function join($iterable, $separator)
 	return \implode($separator, toArray($iterable));
 }
 
-/**
- * @codingStandardsIgnoreStart
- */
-function _join(/* separator, iterable */)
-{
-	return currify('Dash\join', func_get_args());
-}
-
-/**
- * @codingStandardsIgnoreStart
- */
 function implode()
 {
 	return call_user_func_array('Dash\join', func_get_args());
-}
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _implode(/* separator, iterable */)
-{
-	return call_user_func_array('Dash\_join', func_get_args());
 }

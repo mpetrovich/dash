@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\custom
- * @covers Dash\_custom
+ * @covers Dash\Curry\custom
  */
 class customTest extends PHPUnit_Framework_TestCase
 {
@@ -29,7 +29,7 @@ class customTest extends PHPUnit_Framework_TestCase
 			return $value * 2;
 		});
 
-		$custom = Dash\_custom();
+		$custom = Dash\Curry\custom();
 		$double = $custom('double');
 		$this->assertSame(6, $double(3));
 

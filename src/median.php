@@ -44,11 +44,3 @@ function median($iterable)
 
 	return $median;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _median(/* iterable */)
-{
-	return currify('Dash\median', func_get_args());
-}

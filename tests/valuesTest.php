@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\values
- * @covers Dash\_values
+ * @covers Dash\Curry\values
  */
 class valuesTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class valuesTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $expected)
 	{
-		$values = Dash\_values();
+		$values = Dash\Curry\values();
 		$this->assertSame($expected, $values($iterable));
 	}
 

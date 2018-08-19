@@ -49,11 +49,3 @@ function rotate($iterable, $count = 1)
 
 	return $rotated;
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _rotate(/* count, iterable */)
-{
-	return currify('Dash\rotate', func_get_args());
-}

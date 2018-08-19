@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\filter
- * @covers Dash\_filter
+ * @covers Dash\Curry\filter
  */
 class filterTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class filterTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $predicate, $expected)
 	{
-		$filter = Dash\_filter($predicate);
+		$filter = Dash\Curry\filter($predicate);
 		$this->assertEquals($expected, $filter($iterable));
 	}
 

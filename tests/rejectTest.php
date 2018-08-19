@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\reject
- * @covers Dash\_reject
+ * @covers Dash\Curry\reject
  */
 class rejectTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class rejectTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($iterable, $predicate, $expected)
 	{
-		$reject = Dash\_reject($predicate);
+		$reject = Dash\Curry\reject($predicate);
 		$this->assertEquals($expected, $reject($iterable));
 	}
 

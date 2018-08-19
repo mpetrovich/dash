@@ -32,15 +32,15 @@ class _Test extends PHPUnit_Framework_TestCase
 		$this->assertSame('first, second, and third', $listTwo('second', 'third'));
 
 		$filtered = _::chain(['a' => 3, 'b' => '3', 'c' => 3, 'd' => 3.0])
-			->filter(Dash\_identical(3))
+			->filter(Dash\Curry\identical(3))
 			->value();
 
 		$this->assertSame(['a' => 3, 'c' => 3], $filtered);
 
-		$containsTruthy = Dash\_contains(true, 'Dash\equal');
+		$containsTruthy = Dash\Curry\contains(true, 'Dash\equal');
 		$this->assertTrue($containsTruthy([0, 1, 0]));
 
-		$containsTrue = Dash\_contains(true, 'Dash\identical');
+		$containsTrue = Dash\Curry\contains(true, 'Dash\identical');
 		$this->assertFalse($containsTrue([0, 1, 0]));
 	}
 

@@ -2,7 +2,7 @@
 
 /**
  * @covers Dash\isEven
- * @covers Dash\_isEven
+ * @covers Dash\Curry\isEven
  */
 class isEvenTest extends PHPUnit_Framework_TestCase
 {
@@ -19,7 +19,7 @@ class isEvenTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCurried($value, $expected)
 	{
-		$isEven = Dash\_isEven();
+		$isEven = Dash\Curry\isEven();
 		$this->assertSame($expected, $isEven($value));
 	}
 

@@ -26,11 +26,3 @@ function ary(callable $callable, $arity)
 		return call_user_func_array($callable, $args);
 	};
 }
-
-/**
- * @codingStandardsIgnoreStart
- */
-function _ary(/* arity, callable */)
-{
-	return currify('Dash\ary', func_get_args());
-}
