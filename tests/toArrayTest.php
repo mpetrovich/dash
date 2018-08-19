@@ -109,6 +109,19 @@ class toArrayTest extends PHPUnit_Framework_TestCase
 				'value' => new ArrayObject(['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5]),
 				'expected' => ['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5],
 			],
+
+			/*
+				With Generator
+			 */
+
+			'With a generator' => [
+				'value' => call_user_func(function() {
+					foreach (['a' => 1, 'b' => 2, 'c' => 3] as $key => $value) {
+						yield $key => $value;
+					}
+				}),
+				'expected' => ['a' => 1, 'b' => 2, 'c' => 3],
+			],
 		];
 	}
 

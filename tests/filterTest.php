@@ -3,6 +3,7 @@
 /**
  * @covers Dash\filter
  * @covers Dash\Curry\filter
+ * @covers Dash\Generator\filter
  */
 class filterTest extends PHPUnit_Framework_TestCase
 {
@@ -253,6 +254,251 @@ class filterTest extends PHPUnit_Framework_TestCase
 		];
 	}
 
+	/**
+	 * @dataProvider casesGenerator
+	 */
+	public function testGenerator($iterable, $predicate, $expected)
+	{
+		$result = iterator_to_array(Dash\filter($iterable, $predicate));
+		$this->assertEquals($expected, $result);
+	}
+
+	public function casesGenerator()
+	{
+		$generator = function ($iterable) {
+			foreach ((array) $iterable as $key => $value) {
+				yield $key => $value;
+			}
+		};
+
+		return [
+			'With null' => [
+				'iterable' => $generator(null),
+				'predicate' => 'Dash\isOdd',
+				'expected' => [],
+			],
+			'With an empty array' => [
+				'iterable' => $generator([]),
+				'predicate' => 'Dash\isOdd',
+				'expected' => [],
+			],
+
+			/*
+				With indexed array
+			 */
+
+			'With an indexed array with no elements that satisfy the predicate' => [
+				'iterable' => $generator([2, 4, 6, 8]),
+				'predicate' => 'Dash\isOdd',
+				'expected' => [],
+			],
+			'With an indexed array with one element that satisfies the predicate' => [
+				'iterable' => $generator([2, 4, 5, 6]),
+				'predicate' => 'Dash\isOdd',
+				'expected' => [5],
+			],
+			'With an indexed array with several elements that satisfy the predicate' => [
+				'iterable' => $generator([1, 3, 4, 7]),
+				'predicate' => 'Dash\isOdd',
+				'expected' => [1, 3, 7],
+			],
+			'With an indexed array with all elements that satisfy the predicate' => [
+				'iterable' => $generator([1, 3, 5, 7]),
+				'predicate' => 'Dash\isOdd',
+				'expected' => [1, 3, 5, 7],
+			],
+			'With an indexed array and matchesProperty($field) shorthand' => [
+				'iterable' => $generator([
+					['name' => 'John', 'age' => 30, 'gender' => 'male', 'active' => false],
+					['name' => 'Jane', 'age' => 27, 'gender' => 'female', 'active' => true],
+					['name' => 'Kane', 'age' => 33, 'gender' => 'male', 'active' => false],
+					['name' => 'Pete', 'age' => 35, 'gender' => 'male', 'active' => true],
+				]),
+				'predicate' => 'active',
+				'expected' => [
+					['name' => 'Jane', 'age' => 27, 'gender' => 'female', 'active' => true],
+					['name' => 'Pete', 'age' => 35, 'gender' => 'male', 'active' => true],
+				],
+			],
+			'With an indexed array and matchesProperty($field, $value) shorthand' => [
+				'iterable' => $generator([
+					['name' => 'John', 'age' => 30, 'gender' => 'male', 'active' => false],
+					['name' => 'Jane', 'age' => 27, 'gender' => 'female', 'active' => true],
+					['name' => 'Kane', 'age' => 33, 'gender' => 'male', 'active' => false],
+					['name' => 'Pete', 'age' => 35, 'gender' => 'male', 'active' => true],
+				]),
+				'predicate' => ['active', false],
+				'expected' => [
+					['name' => 'John', 'age' => 30, 'gender' => 'male', 'active' => false],
+					['name' => 'Kane', 'age' => 33, 'gender' => 'male', 'active' => false],
+				],
+			],
+
+			/*
+				With associative array
+			 */
+
+			'With an associative array with no elements that satisfy the predicate' => [
+				'iterable' => $generator(['a' => 2, 'b' => 4, 'c' => 6, 'd' => 8]),
+				'predicate' => 'Dash\isOdd',
+				'expected' => [],
+			],
+			'With an associative array with one element that satisfies the predicate' => [
+				'iterable' => $generator(['a' => 2, 'b' => 4, 'c' => 5, 'd' => 6]),
+				'predicate' => 'Dash\isOdd',
+				'expected' => ['c' => 5],
+			],
+			'With an associative array with several elements that satisfy the predicate' => [
+				'iterable' => $generator(['a' => 1, 'b' => 3, 'c' => 4, 'd' => 7]),
+				'predicate' => 'Dash\isOdd',
+				'expected' => ['a' => 1, 'b' => 3, 'd' => 7],
+			],
+			'With an associative array with all elements that satisfy the predicate' => [
+				'iterable' => $generator(['a' => 1, 'b' => 3, 'c' => 5, 'd' => 7]),
+				'predicate' => 'Dash\isOdd',
+				'expected' => ['a' => 1, 'b' => 3, 'c' => 5, 'd' => 7],
+			],
+			'With an associative array and matchesProperty($field) shorthand' => [
+				'iterable' => $generator([
+					'a' => ['name' => 'John', 'age' => 30, 'gender' => 'male', 'active' => false],
+					'b' => ['name' => 'Jane', 'age' => 27, 'gender' => 'female', 'active' => true],
+					'c' => ['name' => 'Kane', 'age' => 33, 'gender' => 'male', 'active' => false],
+					'd' => ['name' => 'Pete', 'age' => 35, 'gender' => 'male', 'active' => true],
+				]),
+				'predicate' => 'active',
+				'expected' => [
+					'b' => ['name' => 'Jane', 'age' => 27, 'gender' => 'female', 'active' => true],
+					'd' => ['name' => 'Pete', 'age' => 35, 'gender' => 'male', 'active' => true],
+				],
+			],
+			'With an associative array and matchesProperty($field, $value) shorthand' => [
+				'iterable' => $generator([
+					'a' => ['name' => 'John', 'age' => 30, 'gender' => 'male', 'active' => false],
+					'b' => ['name' => 'Jane', 'age' => 27, 'gender' => 'female', 'active' => true],
+					'c' => ['name' => 'Kane', 'age' => 33, 'gender' => 'male', 'active' => false],
+					'd' => ['name' => 'Pete', 'age' => 35, 'gender' => 'male', 'active' => true],
+				]),
+				'predicate' => ['active', false],
+				'expected' => [
+					'a' => ['name' => 'John', 'age' => 30, 'gender' => 'male', 'active' => false],
+					'c' => ['name' => 'Kane', 'age' => 33, 'gender' => 'male', 'active' => false],
+				],
+			],
+
+			/*
+				With stdClass
+			 */
+
+			'With an empty stdClass' => [
+				'iterable' => $generator((object) []),
+				'predicate' => 'Dash\isOdd',
+				'expected' => [],
+			],
+			'With an stdClass with no elements that satisfy the predicate' => [
+				'iterable' => $generator((object) ['a' => 2, 'b' => 4, 'c' => 6]),
+				'predicate' => 'Dash\isOdd',
+				'expected' => [],
+			],
+			'With an stdClass with one element that satisfies the predicate' => [
+				'iterable' => $generator((object) ['a' => 2, 'b' => 3, 'c' => 6]),
+				'predicate' => 'Dash\isOdd',
+				'expected' => ['b' => 3]
+			],
+			'With an stdClass with several elements that satisfy the predicate' => [
+				'iterable' => $generator((object) ['a' => 1, 'b' => 4, 'c' => 5]),
+				'predicate' => 'Dash\isOdd',
+				'expected' => ['a' => 1, 'c' => 5],
+			],
+			'With an stdClass with all elements that satisfy the predicate' => [
+				'iterable' => $generator((object) ['a' => 1, 'b' => 3, 'c' => 5]),
+				'predicate' => 'Dash\isOdd',
+				'expected' => ['a' => 1, 'b' => 3, 'c' => 5],
+			],
+			'With an stdClass and matchesProperty($field) shorthand' => [
+				'iterable' => $generator((object) [
+					'a' => (object) ['name' => 'John', 'age' => 30, 'gender' => 'male', 'active' => false],
+					'b' => (object) ['name' => 'Jane', 'age' => 27, 'gender' => 'female', 'active' => true],
+					'c' => (object) ['name' => 'Kane', 'age' => 33, 'gender' => 'male', 'active' => false],
+					'd' => (object) ['name' => 'Pete', 'age' => 35, 'gender' => 'male', 'active' => true],
+				]),
+				'predicate' => 'active',
+				'expected' => [
+					'b' => (object) ['name' => 'Jane', 'age' => 27, 'gender' => 'female', 'active' => true],
+					'd' => (object) ['name' => 'Pete', 'age' => 35, 'gender' => 'male', 'active' => true],
+				],
+			],
+			'With an stdClass and matchesProperty($field, $value) shorthand' => [
+				'iterable' => $generator((object) [
+					'a' => (object) ['name' => 'John', 'age' => 30, 'gender' => 'male', 'active' => false],
+					'b' => (object) ['name' => 'Jane', 'age' => 27, 'gender' => 'female', 'active' => true],
+					'c' => (object) ['name' => 'Kane', 'age' => 33, 'gender' => 'male', 'active' => false],
+					'd' => (object) ['name' => 'Pete', 'age' => 35, 'gender' => 'male', 'active' => true],
+				]),
+				'predicate' => ['active', false],
+				'expected' => [
+					'a' => (object) ['name' => 'John', 'age' => 30, 'gender' => 'male', 'active' => false],
+					'c' => (object) ['name' => 'Kane', 'age' => 33, 'gender' => 'male', 'active' => false],
+				],
+			],
+
+			/*
+				With ArrayObject
+			 */
+
+			'With an empty ArrayObject' => [
+				'iterable' => $generator(new ArrayObject([])),
+				'predicate' => 'Dash\isOdd',
+				'expected' => [],
+			],
+			'With an ArrayObject with no elements that satisfy the predicate' => [
+				'iterable' => $generator(new ArrayObject(['a' => 2, 'b' => 4, 'c' => 6])),
+				'predicate' => 'Dash\isOdd',
+				'expected' => [],
+			],
+			'With an ArrayObject with one element that satisfies the predicate' => [
+				'iterable' => $generator(new ArrayObject(['a' => 2, 'b' => 3, 'c' => 6])),
+				'predicate' => 'Dash\isOdd',
+				'expected' => ['b' => 3]
+			],
+			'With an ArrayObject with several elements that satisfy the predicate' => [
+				'iterable' => $generator(new ArrayObject(['a' => 1, 'b' => 4, 'c' => 5])),
+				'predicate' => 'Dash\isOdd',
+				'expected' => ['a' => 1, 'c' => 5],
+			],
+			'With an ArrayObject with all elements that satisfy the predicate' => [
+				'iterable' => $generator(new ArrayObject(['a' => 1, 'b' => 3, 'c' => 5])),
+				'predicate' => 'Dash\isOdd',
+				'expected' => ['a' => 1, 'b' => 3, 'c' => 5],
+			],
+			'With an ArrayObject and matchesProperty($field) shorthand' => [
+				'iterable' => $generator(new ArrayObject([
+					'a' => new ArrayObject(['name' => 'John', 'age' => 30, 'gender' => 'male', 'active' => false]),
+					'b' => new ArrayObject(['name' => 'Jane', 'age' => 27, 'gender' => 'female', 'active' => true]),
+					'c' => new ArrayObject(['name' => 'Kane', 'age' => 33, 'gender' => 'male', 'active' => false]),
+					'd' => new ArrayObject(['name' => 'Pete', 'age' => 35, 'gender' => 'male', 'active' => true]),
+				])),
+				'predicate' => 'active',
+				'expected' => [
+					'b' => new ArrayObject(['name' => 'Jane', 'age' => 27, 'gender' => 'female', 'active' => true]),
+					'd' => new ArrayObject(['name' => 'Pete', 'age' => 35, 'gender' => 'male', 'active' => true]),
+				],
+			],
+			'With an ArrayObject and matchesProperty($field, $value) shorthand' => [
+				'iterable' => $generator(new ArrayObject([
+					'a' => new ArrayObject(['name' => 'John', 'age' => 30, 'gender' => 'male', 'active' => false]),
+					'b' => new ArrayObject(['name' => 'Jane', 'age' => 27, 'gender' => 'female', 'active' => true]),
+					'c' => new ArrayObject(['name' => 'Kane', 'age' => 33, 'gender' => 'male', 'active' => false]),
+					'd' => new ArrayObject(['name' => 'Pete', 'age' => 35, 'gender' => 'male', 'active' => true]),
+				])),
+				'predicate' => ['active', false],
+				'expected' => [
+					'a' => new ArrayObject(['name' => 'John', 'age' => 30, 'gender' => 'male', 'active' => false]),
+					'c' => new ArrayObject(['name' => 'Kane', 'age' => 33, 'gender' => 'male', 'active' => false]),
+				],
+			],
+		];
+	}
+
 	public function testPredicateArgs()
 	{
 		$iterable = ['a' => 1, 'b' => 2, 'c' => 3];
@@ -312,7 +558,7 @@ class filterTest extends PHPUnit_Framework_TestCase
 		}
 		catch (Exception $e) {
 			$this->assertSame(
-				"Dash\\filter expects iterable or stdClass or null but was given $type",
+				"Dash\\filter expects Generator or iterable or stdClass or null but was given $type",
 				$e->getMessage()
 			);
 			throw $e;

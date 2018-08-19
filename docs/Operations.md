@@ -14,7 +14,7 @@ Operation | Signature
 [deltas](#deltas) | `deltas($iterable): array`
 [difference](#difference) | `difference($iterable /*, ...iterables */): array`
 [each](#each) | `each($iterable, $iteratee): mixed`
-[filter](#filter) | `filter($iterable, $predicate = 'Dash\identity'): array`
+[filter](#filter) | `filter($iterable, $predicate = 'Dash\identity'): array\|iterable`
 [find](#find) | `find($iterable, $predicate = 'Dash\identity'): array\|null`
 [findKey](#findkey) | `findKey($iterable, $predicate = 'Dash\identity'): string\|null`
 [findLast](#findlast) | `findLast($iterable, $predicate = 'Dash\identity'): array\|null`
@@ -45,7 +45,7 @@ Operation | Signature
 [rotate](#rotate) | `rotate($iterable, $count = 1): array`
 [sort](#sort) | `sort($iterable, $comparator = 'Dash\compare'): array`
 [sum](#sum) | `sum($iterable): numeric`
-[take](#take) | `take($iterable, $count = 1): array`
+[take](#take) | `take($iterable, $count = 1): array\|iterable`
 [takeRight](#takeright) | `takeRight($iterable, $count = 1): array`
 [toArray](#toarray) | `toArray($value): array`
 [toObject](#toobject) | `toObject($value): object`
@@ -434,7 +434,7 @@ filter
 [Operations](#operations) › [Iterable](#iterable)
 
 ```php
-filter($iterable, $predicate = 'Dash\identity'): array
+filter($iterable, $predicate = 'Dash\identity'): array|iterable
 
 # Curried: (all parameters required)
 Curry\filter($predicate, $iterable)
@@ -450,7 +450,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable\|stdClass\|null` | 
 `$predicate` | `callable\|string\|array` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable`; if a string, will get elements with truthy values at `$field`; if an array of form `[$field, $value]`, will get elements whose `$field` loosely equals `$value`
-**Returns** | `array` | List of elements in `$iterable` that satisfy `$predicate`
+**Returns** | `array\|iterable` | List of elements in `$iterable` that satisfy `$predicate`
 
 **Example:** 
 ```php
@@ -1840,7 +1840,7 @@ take
 [Operations](#operations) › [Iterable](#iterable)
 
 ```php
-take($iterable, $count = 1): array
+take($iterable, $count = 1): array|iterable
 
 # Curried: (all parameters required)
 Curry\take($count, $iterable)
@@ -1856,7 +1856,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable\|stdClass\|null` | 
 `$count` | `integer` | If negative, gets all but the last `$count` elements of `$iterable`
-**Returns** | `array` | New array of `$count` elements
+**Returns** | `array\|iterable` | New array of `$count` elements
 
 **Example:** 
 ```php

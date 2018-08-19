@@ -3,6 +3,7 @@
 /**
  * @covers Dash\take
  * @covers Dash\Curry\take
+ * @covers Dash\Generator\take
  */
 class takeTest extends PHPUnit_Framework_TestCase
 {
@@ -290,6 +291,238 @@ class takeTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
+	 * @dataProvider casesGenerator
+	 */
+	public function testGenerator($iterable, $count, $expected)
+	{
+		$result = Dash\mapValues(Dash\take($iterable, $count));
+		$this->assertEquals($expected, $result);
+	}
+
+	public function casesGenerator()
+	{
+		$generator = function ($iterable) {
+			foreach ((array) $iterable as $key => $value) {
+				yield $key => $value;
+			}
+		};
+
+		return [
+			'With null' => [
+				'iterable' => $generator(null),
+				'count' => 1,
+				'expected' => [],
+			],
+
+			/*
+				With array
+			 */
+
+			'With an empty array' => [
+				'iterable' => $generator([]),
+				'count' => 1,
+				'expected' => [],
+			],
+			'With an indexed array with one element' => [
+				'iterable' => $generator(['a']),
+				'count' => 2,
+				'expected' => ['a'],
+			],
+			'With an indexed array' => [
+				'iterable' => $generator(['a', 'b', 'c', 'd']),
+				'count' => 2,
+				'expected' => ['a', 'b'],
+			],
+			'With an associative array with one element' => [
+				'iterable' => $generator(['a' => 3]),
+				'count' => 2,
+				'expected' => ['a' => 3],
+			],
+			'With an associative array' => [
+				'iterable' => $generator(['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5]),
+				'count' => 2,
+				'expected' => ['a' => 3, 'b' => 8],
+			],
+			[
+				'iterable' => $generator([1, 2, 3, 4]),
+				'count' => 0,
+				'expected' => [],
+			],
+			[
+				'iterable' => $generator([1, 2, 3, 4]),
+				'count' => 1,
+				'expected' => [1],
+			],
+			[
+				'iterable' => $generator([1, 2, 3, 4]),
+				'count' => 2,
+				'expected' => [1, 2],
+			],
+			[
+				'iterable' => $generator([1, 2, 3, 4]),
+				'count' => 3,
+				'expected' => [1, 2, 3],
+			],
+			[
+				'iterable' => $generator([1, 2, 3, 4]),
+				'count' => 4,
+				'expected' => [1, 2, 3, 4],
+			],
+			[
+				'iterable' => $generator([1, 2, 3, 4]),
+				'count' => 5,
+				'expected' => [1, 2, 3, 4],
+			],
+
+			/*
+				With stdClass
+			 */
+
+			'With an empty stdClass' => [
+				'iterable' => $generator((object) []),
+				'count' => 1,
+				'expected' => [],
+			],
+			'With an stdClass of an indexed array with one element' => [
+				'iterable' => $generator((object) ['a']),
+				'count' => 2,
+				'expected' => ['a'],
+			],
+			'With an stdClass of an indexed array' => [
+				'iterable' => $generator((object) ['a', 'b', 'c', 'd']),
+				'count' => 2,
+				'expected' => ['a', 'b'],
+			],
+			'With an stdClass of an associative array with one element' => [
+				'iterable' => $generator((object) ['a' => 3]),
+				'count' => 2,
+				'expected' => ['a' => 3],
+			],
+			'With an stdClass of an associative array' => [
+				'iterable' => $generator((object) ['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5]),
+				'count' => 2,
+				'expected' => ['a' => 3, 'b' => 8],
+			],
+			[
+				'iterable' => $generator((object) [1, 2, 3, 4]),
+				'count' => 0,
+				'expected' => [],
+			],
+			[
+				'iterable' => $generator((object) [1, 2, 3, 4]),
+				'count' => 1,
+				'expected' => [1],
+			],
+			[
+				'iterable' => $generator((object) [1, 2, 3, 4]),
+				'count' => 2,
+				'expected' => [1, 2],
+			],
+			[
+				'iterable' => $generator((object) [1, 2, 3, 4]),
+				'count' => 3,
+				'expected' => [1, 2, 3],
+			],
+			[
+				'iterable' => $generator((object) [1, 2, 3, 4]),
+				'count' => 4,
+				'expected' => [1, 2, 3, 4],
+			],
+			[
+				'iterable' => $generator((object) [1, 2, 3, 4]),
+				'count' => 5,
+				'expected' => [1, 2, 3, 4],
+			],
+
+			/*
+				With ArrayObject
+			 */
+
+			'With an empty ArrayObject' => [
+				'iterable' => $generator(new ArrayObject([])),
+				'count' => 1,
+				'expected' => [],
+			],
+			'With an ArrayObject of an indexed array with one element' => [
+				'iterable' => $generator(new ArrayObject(['a'])),
+				'count' => 2,
+				'expected' => ['a'],
+			],
+			'With an ArrayObject of an indexed array' => [
+				'iterable' => $generator(new ArrayObject(['a', 'b', 'c', 'd'])),
+				'count' => 2,
+				'expected' => ['a', 'b'],
+			],
+			'With an ArrayObject of an associative array with one element' => [
+				'iterable' => $generator(new ArrayObject(['a' => 3])),
+				'count' => 2,
+				'expected' => ['a' => 3],
+			],
+			'With an ArrayObject of an associative array' => [
+				'iterable' => $generator(new ArrayObject(['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5])),
+				'count' => 2,
+				'expected' => ['a' => 3, 'b' => 8],
+			],
+			[
+				'iterable' => $generator(new ArrayObject([1, 2, 3, 4])),
+				'count' => 0,
+				'expected' => [],
+			],
+			[
+				'iterable' => $generator(new ArrayObject([1, 2, 3, 4])),
+				'count' => 1,
+				'expected' => [1],
+			],
+			[
+				'iterable' => $generator(new ArrayObject([1, 2, 3, 4])),
+				'count' => 2,
+				'expected' => [1, 2],
+			],
+			[
+				'iterable' => $generator(new ArrayObject([1, 2, 3, 4])),
+				'count' => 3,
+				'expected' => [1, 2, 3],
+			],
+			[
+				'iterable' => $generator(new ArrayObject([1, 2, 3, 4])),
+				'count' => 4,
+				'expected' => [1, 2, 3, 4],
+			],
+			[
+				'iterable' => $generator(new ArrayObject([1, 2, 3, 4])),
+				'count' => 5,
+				'expected' => [1, 2, 3, 4],
+			],
+		];
+	}
+
+	public function testInfiniteGenerator()
+	{
+		$generator = function () {
+			$value = 1;
+			while (true) {
+				yield $value;
+				$value++;
+			}
+		};
+		$result = $generator();
+		$this->assertEquals([1, 2, 3], iterator_to_array(Dash\take($result, 3)));
+	}
+
+	/**
+	 * @expectedException InvalidArgumentException
+	 */
+	public function testGeneratorCountRestriction()
+	{
+		$generator = function () {
+			foreach ([1, 2, 3] as $key => $value) {
+				yield $value;
+			}
+		};
+		Dash\take($generator(), -1);
+	}
+
+	/**
 	 * @dataProvider casesTypeAssertions
 	 * @expectedException InvalidArgumentException
 	 */
@@ -300,7 +533,7 @@ class takeTest extends PHPUnit_Framework_TestCase
 		}
 		catch (Exception $e) {
 			$this->assertSame(
-				"Dash\\take expects iterable or stdClass or null but was given $type",
+				"Dash\\take expects Generator or iterable or stdClass or null but was given $type",
 				$e->getMessage()
 			);
 			throw $e;

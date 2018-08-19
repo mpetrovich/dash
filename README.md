@@ -119,7 +119,7 @@ At a glance
 
 Highlights
 ---
-- [Many data types supported](#supported-data-types): arrays, objects, [`Traversable`](http://php.net/manual/en/class.traversable.php), [`DirectoryIterator`](http://php.net/manual/en/class.directoryiterator.php), and more
+- [Many data types supported](#supported-data-types): arrays, objects, [generators](http://php.net/manual/en/language.generators.overview.php), [`Traversable`](http://php.net/manual/en/class.traversable.php), [`DirectoryIterator`](http://php.net/manual/en/class.directoryiterator.php), and more
 - [Chaining](#chaining)
 - [Currying](#currying)
 - [Lazy evaluation](#lazy-evaluation)
@@ -254,6 +254,7 @@ $chain->run();
 Dash can work with a wide variety of data types, including:
 - arrays
 - objects (eg. `stdClass`)
+- [generators](http://php.net/manual/en/language.generators.overview.php)
 - anything that implements the [`Traversable`](http://php.net/manual/en/class.traversable.php) interface
 - [`DirectoryIterator`](http://php.net/manual/en/class.directoryiterator.php), which is also a `Traversable` but cannot normally be used with `iterator_to_array()` [due to a PHP bug](https://bugs.php.net/bug.php?id=49755). Dash works around this transparently.
 
@@ -290,6 +291,23 @@ Dash\chain(new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]))
 	->sum()
 	->value();
 // === 5
+```
+
+With a generator:
+
+```php
+$integers = function () {
+	for ($int = 1; true; $int++) {
+		yield $int;
+	}
+};
+
+Dash\chain($integers())
+	->filter('Dash\isOdd')
+	->take(3)
+	->reverse()
+	->value();
+// === [5, 3, 1]
 ```
 
 With a `DirectoryIterator`:

@@ -28,13 +28,11 @@ class _Test extends PHPUnit_Framework_TestCase
 			->value();
 		$this->assertSame(18, $avgMaleAge);
 
-		if (function_exists('array_column')) {  // array_column() requires PHP 5.5+
-			$males = array_filter($people, function ($person) {
-				return $person['gender'] === 'male';
-			});
-			$avgMaleAge = array_sum(array_column($males, 'age')) / count($males);
-			$this->assertSame(18, $avgMaleAge);
-		}
+		$males = array_filter($people, function ($person) {
+			return $person['gender'] === 'male';
+		});
+		$avgMaleAge = array_sum(array_column($males, 'age')) / count($males);
+		$this->assertSame(18, $avgMaleAge);
 
 		/*
 			Ad-hoc operation
@@ -53,6 +51,7 @@ class _Test extends PHPUnit_Framework_TestCase
 			Data types
 		 */
 
+		// Array
 		$this->assertSame(
 			[4, 8],
 			Dash\chain([1, 2, 3, 4])
@@ -63,6 +62,7 @@ class _Test extends PHPUnit_Framework_TestCase
 				->value()
 		);
 
+		// Object
 		$this->assertSame(
 			'a, c',
 			Dash\chain((object) ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4])
@@ -72,6 +72,7 @@ class _Test extends PHPUnit_Framework_TestCase
 				->value()
 		);
 
+		// Traversable
 		$this->assertSame(
 			5,
 			Dash\chain(new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]))
@@ -81,6 +82,22 @@ class _Test extends PHPUnit_Framework_TestCase
 				->value()
 		);
 
+		// Generator
+		$integers = function () {
+			for ($int = 0; true; $int++) {
+				yield $int;
+			}
+		};
+		$this->assertSame(
+			[5, 3, 1],
+			Dash\chain($integers())
+				->filter('Dash\isOdd')
+				->take(3)
+				->reverse()
+				->value()
+		);
+
+		// DirectoryIterator
 		$iterator = new \FilesystemIterator(__DIR__, \FilesystemIterator::SKIP_DOTS);
 		$filenames = Dash\chain($iterator)
 			->reject(function ($fileinfo) {
@@ -90,7 +107,6 @@ class _Test extends PHPUnit_Framework_TestCase
 				return pathinfo($fileinfo)['filename'];
 			})
 			->value();
-
 		$this->assertGreaterThan(10, count($filenames));
 
 		/*

@@ -17,7 +17,7 @@ namespace Dash;
  *                                         if a string, will get elements with truthy values at `$field`;
  *                                         if an array of form `[$field, $value]`, will get elements
  *                                         whose `$field` loosely equals `$value`
- * @return array List of elements in `$iterable` that satisfy `$predicate`
+ * @return array|iterable List of elements in `$iterable` that satisfy `$predicate`
  *
  * @example
 	Dash\filter([1, 2, 3, 4], 'Dash\isEven');
@@ -53,7 +53,11 @@ namespace Dash;
  */
 function filter($iterable, $predicate = 'Dash\identity')
 {
-	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
+	assertType($iterable, ['Generator', 'iterable', 'stdClass', 'null'], __FUNCTION__);
+
+	if ($iterable instanceof \Generator) {
+		return Generator\filter($iterable, $predicate);
+	}
 
 	if (is_null($iterable)) {
 		return [];

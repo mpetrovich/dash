@@ -13,7 +13,7 @@ namespace Dash;
  * @category Iterable
  * @param iterable|stdClass|null $iterable
  * @param integer $count If negative, gets all but the last `$count` elements of `$iterable`
- * @return array New array of `$count` elements
+ * @return array|iterable New array of `$count` elements
  *
  * @example
 	Dash\take([2, 3, 5, 8, 13], 3);
@@ -27,7 +27,14 @@ namespace Dash;
  */
 function take($iterable, $count = 1)
 {
-	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
+	assertType($iterable, ['Generator', 'iterable', 'stdClass', 'null'], __FUNCTION__);
+
+	if ($iterable instanceof \Generator) {
+		if ($count < 0) {
+			throw new \InvalidArgumentException('Count cannot be negative when using a generator');
+		}
+		return Generator\take($iterable, $count);
+	}
 
 	$array = toArray($iterable);
 	$preserveKeys = !isIndexedArray($array);
