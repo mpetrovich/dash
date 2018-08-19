@@ -292,6 +292,21 @@ Dash\chain(new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]))
 // === 5
 ```
 
+With a `DirectoryIterator`:
+
+```php
+$iterator = new \FilesystemIterator(__DIR__, \FilesystemIterator::SKIP_DOTS);
+
+$filenames = Dash\chain($iterator)
+	->reject(function ($fileinfo) {
+		return $fileinfo->isDir();
+	})
+	->map(function ($fileinfo) {
+		return pathinfo($fileinfo)['filename'];
+	})
+	->value();
+```
+
 
 ### Currying
 [`curry()`](docs/Operations.md#curry) and related operations can be used to create curried functions from any callable:

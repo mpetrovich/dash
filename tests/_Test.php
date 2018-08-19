@@ -81,6 +81,18 @@ class _Test extends PHPUnit_Framework_TestCase
 				->value()
 		);
 
+		$iterator = new \FilesystemIterator(__DIR__, \FilesystemIterator::SKIP_DOTS);
+		$filenames = Dash\chain($iterator)
+			->reject(function ($fileinfo) {
+				return $fileinfo->isDir();
+			})
+			->map(function ($fileinfo) {
+				return pathinfo($fileinfo)['filename'];
+			})
+			->value();
+
+		$this->assertGreaterThan(10, count($filenames));
+
 		/*
 			Custom operation
 		 */
