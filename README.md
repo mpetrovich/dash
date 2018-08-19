@@ -186,12 +186,11 @@ $chain->run();
 ### Supported data types
 
 Dash can work with a wide variety of data types, including:
-
--   arrays
--   objects (eg. `stdClass`)
--   generators ([still in development](https://github.com/mpetrovich/dash/issues/3))
--   anything that implements the [`Traversable`](http://php.net/manual/en/class.traversable.php) interface
--   [`DirectoryIterator`](http://php.net/manual/en/class.directoryiterator.php), which is also a `Traversable` but cannot normally be used with `iterator_to_array()` [due to a PHP bug](https://bugs.php.net/bug.php?id=49755). Dash works around this transparently.
+- arrays
+- objects (eg. `stdClass`)
+- [generators](http://php.net/manual/en/language.generators.overview.php)
+- anything that implements the [`Traversable`](http://php.net/manual/en/class.traversable.php) interface
+- [`DirectoryIterator`](http://php.net/manual/en/class.directoryiterator.php), which is also a `Traversable` but cannot normally be used with `iterator_to_array()` [due to a PHP bug](https://bugs.php.net/bug.php?id=49755). Dash works around this transparently.
 
 #### Examples
 
@@ -227,6 +226,23 @@ Dash\chain(new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]))
 	->sum()
 	->value();
 // === 5
+```
+
+With a generator:
+
+```php
+$integers = function () {
+	for ($int = 1; true; $int++) {
+		yield $int;
+	}
+};
+
+Dash\chain($integers())
+	->filter('Dash\isOdd')
+	->take(3)
+	->reverse()
+	->value();
+// === [5, 3, 1]
 ```
 
 With a `DirectoryIterator`:

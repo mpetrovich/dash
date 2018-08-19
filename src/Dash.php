@@ -166,8 +166,7 @@ class Dash
 	 */
 	public static function __callStatic($method, $args)
 	{
-		$callable = self::toCallable($method);
-		return call_user_func_array($callable, $args);
+		return call_user_func_array(self::toCallable($method), $args);
 	}
 
 	/**
@@ -360,12 +359,10 @@ class Dash
 		if (is_callable("\\Dash\\$method")) {
 			return "\\Dash\\$method";
 		}
-		elseif (isset(self::$customFunctions[$method])) {
+		if (isset(self::$customFunctions[$method])) {
 			return self::$customFunctions[$method];
 		}
-		else {
-			throw new \BadMethodCallException("No operation named '$method' found");
-		}
+		throw new \BadMethodCallException("No operation named '$method' found");
 	}
 
 	/**
@@ -389,7 +386,6 @@ class Dash
 	private function toOperation($method, $args)
 	{
 		$callable = self::toCallable($method);
-
 		$operation = function ($input) use ($callable, $args) {
 			array_unshift($args, $input);
 			return call_user_func_array($callable, $args);
