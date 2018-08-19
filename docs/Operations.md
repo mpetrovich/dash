@@ -348,7 +348,7 @@ where values are compared using loose equality.
 
 The order, keys, and values of elements in the returned array are determined by `$iterable`.
 
-Related: [intersection()](#), [union()](#)
+Related: `intersection()`, `union()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -444,7 +444,7 @@ Gets a list of elements in `$iterable` for which `$predicate` returns truthy.
 Keys are preserved unless `$iterable` is an indexed array.
 An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
 
-Related: [reject()](#)
+Related: `reject()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -508,7 +508,7 @@ Gets the key and value of the first element for which `$predicate` returns truth
 
 Iteration will stop at the first truthy return value.
 
-Related: [findKey()](#), [findValue()](#), [findLast()](#)
+Related: `findKey()`, `findValue()`, `findLast()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -568,7 +568,7 @@ Gets the key of the first element for which `$predicate` returns truthy.
 
 Iteration will stop at the first truthy return value.
 
-Related: [find()](#), [findValue()](#), [findLastKey()](#)
+Related: `find()`, `findValue()`, `findLastKey()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -628,7 +628,7 @@ Gets the key and value of the last element for which `$predicate` returns truthy
 
 Iteration begin at the end and will stop at the last truthy return value.
 
-Related: [findLastKey()](#), [findLastValue()](#), [find()](#)
+Related: `findLastKey()`, `findLastValue()`, `find()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -688,7 +688,7 @@ Gets the key of the last element for which `$predicate` returns truthy.
 
 Iteration begin at the end and will stop at the last truthy return value.
 
-Related: [findLast()](#), [findLastValue()](#), [findKey()](#)
+Related: `findLast()`, `findLastValue()`, `findKey()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -748,7 +748,7 @@ Gets the value of the last element for which `$predicate` returns truthy.
 
 Iteration begin at the end and will stop at the last truthy return value.
 
-Related: [findLast()](#), [findLastKey()](#), [findValue()](#)
+Related: `findLast()`, `findLastKey()`, `findValue()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -808,7 +808,7 @@ Gets the value of the first element for which `$predicate` returns truthy.
 
 Iteration will stop at the first truthy return value.
 
-Related: [find()](#), [findKey()](#), [findLastValue()](#)
+Related: `find()`, `findKey()`, `findLastValue()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -896,7 +896,7 @@ Curry\groupBy($iteratee, $defaultGroup, iterable)
 ```
 Groups the element values of `$iterable` by the common return values of `$iteratee`.
 
-Related: [keyBy()](#)
+Related: `keyBy()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -977,7 +977,7 @@ where values are compared using loose equality.
 
 The order, keys, and values of elements in the returned array are determined by `$iterable`.
 
-Related: [difference()](#), [union()](#)
+Related: `difference()`, `union()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1086,7 +1086,7 @@ Gets the element values of `$iterable` as an associative array indexed by `$iter
 
 A later value will overwrite an earlier value that has the same key.
 
-Related: [groupBy()](#)
+Related: `groupBy()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1151,7 +1151,7 @@ Curry\keys($iterable)
 ```
 Gets the keys of `$iterable` as an array.
 
-Related: [values()](#)
+Related: `values()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1210,7 +1210,7 @@ Gets a new array of the return values of `$iteratee` when called with successive
 
 Keys in `$iterable` are not preserved. To preserve keys, use `mapValues()` instead.
 
-Related: [mapValues()](#)
+Related: `mapValues()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1254,7 +1254,7 @@ Gets a new array of the return values of `$iteratee` when called with successive
 
 Unlike `map()`, keys in `$iterable` are preserved.
 
-Related: [map()](#)
+Related: `map()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1441,7 +1441,7 @@ Curry\omit($keys, $iterable)
 Gets the elements of `$iterable` with keys that match any in `$keys`.
 The opposite of `pick()`.
 
-Related: [pick()](#)
+Related: `pick()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1469,7 +1469,7 @@ Curry\pick($keys, $iterable)
 ```
 Gets the elements of `$iterable` with keys that match any in `$keys`.
 
-Related: [omit()](#)
+Related: `omit()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1497,7 +1497,7 @@ Curry\pluck($path, $default, $iterable)
 ```
 Gets an array of values at `$path` for all elements in `$iterable`.
 
-Related: [map()](#)
+Related: `map()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1642,7 +1642,7 @@ The opposite of `filter()`.
 Keys are preserved unless `$iterable` is an indexed array.
 An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
 
-Related: [filter()](#)
+Related: `filter()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1850,7 +1850,7 @@ Gets a new array of the first `$count` elements of `$iterable`.
 Keys are preserved unless `$iterable` is an indexed array.
 An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
 
-Related: [takeRight()](#)
+Related: `takeRight()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1887,7 +1887,7 @@ Gets a new array of the last `$count` elements of `$iterable`.
 Keys are preserved unless `$iterable` is an indexed array.
 An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
 
-Related: [take()](#)
+Related: `take()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1980,7 +1980,7 @@ Returns a new array containing the combined set of unique values, in order, of a
 
 Non-indexed keys are preseved, but duplicate keys will overwrite previous ones.
 
-Related: [intersection()](#), [difference()](#)
+Related: `intersection()`, `difference()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2022,7 +2022,7 @@ Curry\values($iterable)
 ```
 Gets the values of `$iterable` as an array.
 
-Related: [keys()](#)
+Related: `keys()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2053,7 +2053,7 @@ Curry\assertType($type, $funcName, input)
 Throws an `InvalidArgumentException` exception if `$value` is not of type `$type`.
 If `$value` is an accepted type, this function is a no-op.
 
-Related: [isType()](#)
+Related: `isType()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2263,7 +2263,7 @@ Curry\get($path, $default, $input)
 ```
 Gets the value at `$path` within `$input`. Nested properties are accessible with dot notation.
 
-Related: [getDirect()](#), [has()](#), [property()](#)
+Related: `getDirect()`, `has()`, `property()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2313,7 +2313,7 @@ Gets the array value, object property, or method at `$key` within `$input`.
 If an array offset, object property, and/or method all exist for the same key,
 the value at the array offset takes precedence and will be returned.
 
-Related: [getDirectRef()](#), [hasDirect()](#), [get()](#)
+Related: `getDirectRef()`, `hasDirect()`, `get()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2356,7 +2356,7 @@ getDirectRef(&$input, $key): mixed
 ```
 Similar to `getDirect()`, but returns a reference to the value at `$key` within `$input`.
 
-Related: [getDirect()](#), [hasDirect()](#)
+Related: `getDirect()`, `hasDirect()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2391,7 +2391,7 @@ Curry\hasDirect($key, $input)
 ```
 Checks whether an array value, object property, or method exists at `$key` within `$input`.
 
-Related: [getDirect()](#)
+Related: `getDirect()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2592,7 +2592,7 @@ Curry\result($path, $default, $input)
 Gets the value at `$path` within `$input`. Nested properties are accessible with dot notation.
 Like `get()` but if the value is callable, it is invoked and its return value is returned.
 
-Related: [get()](#), [property()](#)
+Related: `get()`, `property()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2633,7 +2633,7 @@ set(&$input, $path, $value): mixed
 Sets the value at `$path` within `$input`. Nested properties are accessible with dot notation.
 Note: This *will* modify `$input`.
 
-Related: [get()](#), [getDirect()](#), [property()](#)
+Related: `get()`, `getDirect()`, `property()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2916,7 +2916,7 @@ are moved to the end of the arguments list.
 
 In essence, this takes a data-first function and returns a curryable data-last function.
 
-Related: [currifyN()](#), [curry()](#), [partial()](#)
+Related: `currifyN()`, `curry()`, `partial()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2962,7 +2962,7 @@ are moved to the end of the arguments list.
 
 In essence, this takes a data-first function and returns a curryable data-last function.
 
-Related: [currify()](#), [curry()](#), [partial()](#)
+Related: `currify()`, `curry()`, `partial()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2988,7 +2988,7 @@ otherwise, it returns a function that accepts the remaining number of required p
 
 Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
 
-Related: [curryN()](#), [curryRight()](#), [partial()](#), [currify()](#)
+Related: `curryN()`, `curryRight()`, `partial()`, `currify()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -3043,7 +3043,7 @@ otherwise, it returns a function that accepts the remaining number of required p
 
 Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
 
-Related: [curry()](#)
+Related: `curry()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -3102,7 +3102,7 @@ Like `partialRight()`, arguments are applied in reverse order.
 
 Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
 
-Related: [curry()](#), [partial()](#)
+Related: `curry()`, `partial()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -3159,7 +3159,7 @@ Like `partialRight()`, arguments are applied in reverse order.
 
 Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
 
-Related: [curryN()](#), [partialRight()](#)
+Related: `curryN()`, `partialRight()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -3250,7 +3250,7 @@ BEFORE those passed to the returned function.
 
 Use `Dash\_` as a placeholder to replace with arguments passed to the returned function.
 
-Related: [partialRight()](#), [curry()](#)
+Related: `partialRight()`, `curry()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -3302,7 +3302,7 @@ AFTER those passed to the returned function.
 
 Use `Dash\_` as a placeholder to replace with arguments passed to the returned function.
 
-Related: [partial()](#), [curryRight()](#)
+Related: `partial()`, `curryRight()`
 
 Parameter | Type | Description
 --- | --- | :---

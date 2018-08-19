@@ -111,6 +111,9 @@ function parseDocblock($docblock)
 		->reduce(function ($flattened, $related) {
 			return array_merge($flattened, $related);
 		}, [])
+		->map(function ($opName) {
+			return str_replace('()', '', $opName);
+		})
 		->value();
 
 	// Category
@@ -213,8 +216,8 @@ function renderOp($op)
 	$categorySlug = strtolower($op->category);
 
 	$related = _::chain((array) $op->related)
-		->map(function ($op) {
-			return "[$op](#$op->slug)";
+		->map(function ($opName) {
+			return "`$opName()`";
 		})
 		->join(', ')
 		->value();
