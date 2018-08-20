@@ -120,7 +120,7 @@ At a glance
 
 Highlights
 ---
-- [Many data types supported](#supported-data-types): arrays, objects, [`Traversable`](http://php.net/manual/en/class.traversable.php), [`DirectoryIterator`](http://php.net/manual/en/class.directoryiterator.php), and more
+- [Many data types supported](#supported-data-types): arrays, objects, generators ([coming soon](https://github.com/nextbigsoundinc/dash/issues/3)), [`Traversable`](http://php.net/manual/en/class.traversable.php), [`DirectoryIterator`](http://php.net/manual/en/class.directoryiterator.php), and more
 - [Chaining](#chaining)
 - [Currying](#currying)
 - [Lazy evaluation](#lazy-evaluation)
@@ -255,6 +255,7 @@ $chain->run();
 Dash can work with a wide variety of data types, including:
 - arrays
 - objects (eg. `stdClass`)
+- generators ([coming soon](https://github.com/nextbigsoundinc/dash/issues/3))
 - anything that implements the [`Traversable`](http://php.net/manual/en/class.traversable.php) interface
 - [`DirectoryIterator`](http://php.net/manual/en/class.directoryiterator.php), which is also a `Traversable` but cannot normally be used with `iterator_to_array()` [due to a PHP bug](https://bugs.php.net/bug.php?id=49755). Dash works around this transparently.
 
