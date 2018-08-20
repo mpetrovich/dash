@@ -1,6 +1,7 @@
 Roadmap
 ===
 
+
 Implemented but not finalized
 ---
 - [ ] dropWhile
@@ -8,6 +9,7 @@ Implemented but not finalized
 - [ ] takeWhile
 - [ ] where
 - [ ] without
+
 
 [Array methods](http://php.net/manual/en/ref.array.php)
 ---
@@ -30,6 +32,7 @@ Implemented but not finalized
 - [ ] natcasesort
 - [ ] shuffle / randomize
 
+
 [anahkiasen/underscore-php](http://anahkiasen.github.io/underscore-php)
 ---
 - [ ] flatten
@@ -44,6 +47,7 @@ Implemented but not finalized
 - [ ] removeLast
 - [ ] repeat
 - [ ] sortKeys
+
 
 [bdelespierre/underscore.php](https://github.com/bdelespierre/underscore.php)
 ---
@@ -105,6 +109,7 @@ Implemented but not finalized
 - [ ] wrap
 - [ ] zip
 
+
 [Bottomline](https://github.com/maciejczyzewski/bottomline)
 ---
 - [ ] drop
@@ -116,13 +121,16 @@ Implemented but not finalized
 - [ ] truncate
 - [ ] urlify
 
+
 [brianhaveri/Underscore.php](http://brianhaveri.github.io/Underscore.php)
 ---
-No additional operations
+No new operations
+
 
 [Lodash](https://lodash.com/docs/4.17.4)
 ---
 TBD
+
 
 [Ramda](http://ramdajs.com/docs)
 ---

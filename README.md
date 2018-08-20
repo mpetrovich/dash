@@ -27,6 +27,7 @@ At a glance
 - [Usage](#usage)
 - [Operations](docs/Operations.md)
 - [Changelog](https://github.com/nextbigsoundinc/dash/releases)
+- [Roadmap](docs/Roadmap.md)
 - [Contributing](CONTRIBUTING.md)
 
 #### Iterable
