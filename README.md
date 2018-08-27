@@ -171,7 +171,7 @@ This is just a tiny subset of what Dash can do. [**See the full list of operatio
 
 Installation
 ---
-Requires PHP 5.5+
+Requires PHP 5.4+
 ```sh
 composer require nextbigsoundinc/dash
 ```
