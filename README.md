@@ -118,7 +118,7 @@ At a glance
 [isOdd](docs/Operations.md#isodd)
 
 #### Don't see the operation you want?
-Please [create a new GitHub issue](https://github.com/nextbigsoundinc/dash/issues/new) and let us know. We add new operations often!
+Please [create a new GitHub issue](https://github.com/mpetrovich/dash/issues/new) and let us know. We add new operations often!
 
 
 Highlights
