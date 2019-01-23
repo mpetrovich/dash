@@ -117,6 +117,9 @@ At a glance
 [isEven](docs/Operations.md#iseven),
 [isOdd](docs/Operations.md#isodd)
 
+#### Don't see the operation you want?
+Please [create a new GitHub issue](https://github.com/nextbigsoundinc/dash/issues/new) and let us know. We add new operations often!
+
 
 Highlights
 ---
@@ -168,7 +171,7 @@ This is just a tiny subset of what Dash can do. [**See the full list of operatio
 
 Installation
 ---
-Requires PHP 5.5+
+Requires PHP 5.4+
 ```sh
 composer require mpetrovich/dash
 ```
