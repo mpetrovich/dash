@@ -1,3 +1,3 @@
 Changelog
 ===
-See [releases](https://github.com/nextbigsoundinc/dash/releases) for all release notes.
+See [releases](https://github.com/mpetrovich/dash/releases) for all release notes.

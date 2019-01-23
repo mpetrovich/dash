@@ -1,4 +1,4 @@
-Dash &nbsp; [![Latest Stable Version](https://poser.pugx.org/nextbigsoundinc/dash/version)](https://packagist.org/packages/nextbigsoundinc/dash) [![Build Status](https://travis-ci.org/nextbigsoundinc/dash.svg?branch=master)](https://travis-ci.org/nextbigsoundinc/dash) [![codecov](https://codecov.io/gh/nextbigsoundinc/dash/branch/master/graph/badge.svg)](https://codecov.io/gh/nextbigsoundinc/dash)
+Dash &nbsp; [![Latest Stable Version](https://poser.pugx.org/mpetrovich/dash/version)](https://packagist.org/packages/mpetrovich/dash) [![Build Status](https://travis-ci.org/mpetrovich/dash.svg?branch=master)](https://travis-ci.org/mpetrovich/dash) [![codecov](https://codecov.io/gh/mpetrovich/dash/branch/master/graph/badge.svg)](https://codecov.io/gh/mpetrovich/dash)
 ===
 **A functional programming library for PHP.** Inspired by Underscore, Lodash, and Ramda.
 
@@ -26,7 +26,7 @@ At a glance
 - [Installation](#installation)
 - [Usage](#usage)
 - [Operations](docs/Operations.md)
-- [Changelog](https://github.com/nextbigsoundinc/dash/releases)
+- [Changelog](https://github.com/mpetrovich/dash/releases)
 - [Roadmap](docs/Roadmap.md)
 - [Contributing](CONTRIBUTING.md)
 
@@ -120,12 +120,12 @@ At a glance
 
 Highlights
 ---
-- [Many data types supported](#supported-data-types): arrays, objects, generators ([coming soon](https://github.com/nextbigsoundinc/dash/issues/3)), [`Traversable`](http://php.net/manual/en/class.traversable.php), [`DirectoryIterator`](http://php.net/manual/en/class.directoryiterator.php), and more
+- [Many data types supported](#supported-data-types): arrays, objects, generators ([coming soon](https://github.com/mpetrovich/dash/issues/3)), [`Traversable`](http://php.net/manual/en/class.traversable.php), [`DirectoryIterator`](http://php.net/manual/en/class.directoryiterator.php), and more
 - [Chaining](#chaining)
 - [Currying](#currying)
 - [Lazy evaluation](#lazy-evaluation)
 - [Custom operations](#custom-operations)
-- Well-tested: Comprehensive tests with nearly 3,000 test cases and [100% code coverage](https://codecov.io/gh/nextbigsoundinc/dash)
+- Well-tested: Comprehensive tests with nearly 3,000 test cases and [100% code coverage](https://codecov.io/gh/mpetrovich/dash)
 
 
 Why use Dash?
@@ -170,7 +170,7 @@ Installation
 ---
 Requires PHP 5.5+
 ```sh
-composer require nextbigsoundinc/dash
+composer require mpetrovich/dash
 ```
 
 
@@ -255,7 +255,7 @@ $chain->run();
 Dash can work with a wide variety of data types, including:
 - arrays
 - objects (eg. `stdClass`)
-- generators ([coming soon](https://github.com/nextbigsoundinc/dash/issues/3))
+- generators ([coming soon](https://github.com/mpetrovich/dash/issues/3))
 - anything that implements the [`Traversable`](http://php.net/manual/en/class.traversable.php) interface
 - [`DirectoryIterator`](http://php.net/manual/en/class.directoryiterator.php), which is also a `Traversable` but cannot normally be used with `iterator_to_array()` [due to a PHP bug](https://bugs.php.net/bug.php?id=49755). Dash works around this transparently.
 
@@ -448,4 +448,4 @@ $result = Dash\chain(['one' => 1, 'two' => 2, 'three' => 3])
 
 
 ### Feedback
-Found a bug or have a suggestion? Please [create a new GitHub issue](https://github.com/nextbigsoundinc/dash/issues/new). We want your feedback!
+Found a bug or have a suggestion? Please [create a new GitHub issue](https://github.com/mpetrovich/dash/issues/new). We want your feedback!

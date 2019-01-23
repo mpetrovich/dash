@@ -1,6 +1,6 @@
 Operations
 ===
-Is there an operation you'd like to see? [Open an issue](https://github.com/nextbigsoundinc/dash/issues/new?labels=enhancement) or vote on an existing one.
+Is there an operation you'd like to see? [Open an issue](https://github.com/mpetrovich/dash/issues/new?labels=enhancement) or vote on an existing one.
 
 Iterable
 ---
@@ -124,11 +124,11 @@ Note: Returns true if `$iterable` is empty, because everything is true of empty 
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 `$predicate` | `callable` | (optional) Invoked with `($value, $key, $iterable)` for each element in `$iterable`
 **Returns** | `boolean` | true if `$predicate` returns truthy for every item in `$iterable`
 
-**Example:** 
+**Example:**
 ```php
 Dash\all([1, 3, 5], 'Dash\isOdd');
 // === true
@@ -173,11 +173,11 @@ Iteration will stop at the first truthy return value.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 `$predicate` | `callable` | (optional) Invoked with `($value, $key, $iterable)` for each element in `$iterable`
 **Returns** | `boolean` | true if `$predicate` returns truthy for any element in `$iterable`
 
-**Example:** 
+**Example:**
 ```php
 Dash\any([1, 2, 3], 'Dash\isEven');
 // === true
@@ -220,12 +220,12 @@ Iterates over `$iterable` and returns the value of the `$index`th element, ignor
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 `$index` | `integer` | 0-based index
 `$default` | `mixed` | (optional) Value to return if `$index` is out of bounds
 **Returns** | `mixed` | Value of the `$index`th item of `$iterable, ignoring keys
 
-**Example:** 
+**Example:**
 ```php
 Dash\at(['a', 'b', 'c'], 0);
 // === 'a'
@@ -262,10 +262,10 @@ Gets the average value of all elements in `$iterable`.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 **Returns** | `double\|null` | Null if `$iterable` is empty
 
-**Example:** 
+**Example:**
 ```php
 Dash\average([2, 3, 5, 8]);
 // === 4.5
@@ -289,7 +289,7 @@ Checks whether `$iterable` has any elements for which `$comparator` returns trut
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 `$target` | `mixed` | Value to compare
 `$comparator` | `callable` | Invoked with `($target, $value)` for each element in `$iterable`
 **Returns** | `boolean` | true if `$comparator` returns truthy for any element in `$iterable`
@@ -325,10 +325,10 @@ Returns a new array whose values are the differences between successive values o
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
-**Returns** | `array` | 
+`$iterable` | `iterable\|stdClass\|null` |
+**Returns** | `array` |
 
-**Example:** 
+**Example:**
 ```php
 Dash\deltas([3, 8, 9, 9, 5, 13]);
 // === [0, 5, 1, 0, -4, 8]
@@ -353,7 +353,7 @@ Related: `intersection()`, `union()`
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable\|stdClass\|null` | (variadic) Iterable against which all other passed iterables are compared
-**Returns** | `array` | 
+**Returns** | `array` |
 
 **Example:** With indexed arrays
 ```php
@@ -398,11 +398,11 @@ Any changes to `$value`, `$key`, or `$iterable` from within the iteratee will no
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
-`$iteratee` | `callable` | 
+`$iterable` | `iterable\|stdClass\|null` |
+`$iteratee` | `callable` |
 **Returns** | `mixed` | $iterable The original `$iterable`
 
-**Example:** 
+**Example:**
 ```php
 Dash\each(['a', 'b', 'c'], function ($value, $index, $array) {
 	echo "[$index]: $value\n";
@@ -448,11 +448,11 @@ Related: `reject()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 `$predicate` | `callable\|string\|array` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable`; if a string, will get elements with truthy values at `$field`; if an array of form `[$field, $value]`, will get elements whose `$field` loosely equals `$value`
 **Returns** | `array` | List of elements in `$iterable` that satisfy `$predicate`
 
-**Example:** 
+**Example:**
 ```php
 Dash\filter([1, 2, 3, 4], 'Dash\isEven');
 // === [2, 4]
@@ -512,11 +512,11 @@ Related: `findKey()`, `findValue()`, `findLast()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 `$predicate` | `callable\|string\|array` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable` until a truthy value is returned; if a string, will get the first element with a truthy value at `$field`; if an array of form `[$field, $value]`, will get the first element whose `$field` loosely equals `$value`
 **Returns** | `array\|null` | `[$key, $value]` of the matching key and value, or null if not found
 
-**Example:** 
+**Example:**
 ```php
 Dash\find(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], 'Dash\isEven');
 // === ['b', 2]
@@ -572,11 +572,11 @@ Related: `find()`, `findValue()`, `findLastKey()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 `$predicate` | `callable\|string\|array` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable` until a truthy value is returned; if a string, will get the first element with a truthy value at `$field`; if an array of form `[$field, $value]`, will get the first element whose `$field` loosely equals `$value`
 **Returns** | `string\|null` | The key of the first matching element, or null if not found
 
-**Example:** 
+**Example:**
 ```php
 Dash\findKey(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], 'Dash\isEven');
 // === 'b'
@@ -632,11 +632,11 @@ Related: `findLastKey()`, `findLastValue()`, `find()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 `$predicate` | `callable\|string\|array` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable` until a truthy value is returned; if a string, will get the last element with a truthy value at `$field`; if an array of form `[$field, $value]`, will get the last element whose `$field` loosely equals `$value`
 **Returns** | `array\|null` | `[$key, $value]` of the last matching element, or null if not found
 
-**Example:** 
+**Example:**
 ```php
 Dash\findLast(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], 'Dash\isEven');
 // === ['d', 4]
@@ -692,11 +692,11 @@ Related: `findLast()`, `findLastValue()`, `findKey()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 `$predicate` | `callable\|string\|array` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable` until a truthy value is returned; if a string, will get the last element with a truthy value at `$field`; if an array of form `[$field, $value]`, will get the last element whose `$field` loosely equals `$value`
 **Returns** | `string\|null` | The key of the last matching element, or null if not found
 
-**Example:** 
+**Example:**
 ```php
 Dash\findLastKey(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], 'Dash\isEven');
 // === 'd'
@@ -752,11 +752,11 @@ Related: `findLast()`, `findLastKey()`, `findValue()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 `$predicate` | `callable\|string\|array` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable` until a truthy value is returned; if a string, will get the last element with a truthy value at `$field`; if an array of form `[$field, $value]`, will get the last element whose `$field` loosely equals `$value`
 **Returns** | `mixed\|null` | The value of the last matching element, or null if not found
 
-**Example:** 
+**Example:**
 ```php
 Dash\findLastValue(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], 'Dash\isEven');
 // === 4
@@ -812,11 +812,11 @@ Related: `find()`, `findKey()`, `findLastValue()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 `$predicate` | `callable\|string\|array` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable` until a truthy value is returned; if a string, will get the first element with a truthy value at `$field`; if an array of form `[$field, $value]`, will get the first element whose `$field` loosely equals `$value`
 **Returns** | `mixed\|null` | The value of the first matching element, or null if not found
 
-**Example:** 
+**Example:**
 ```php
 Dash\findValue(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], 'Dash\isEven');
 // === 2
@@ -870,10 +870,10 @@ Gets the value of the first element in `$iterable`.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 **Returns** | `mixed\|null` | Null if `$iterable` is empty
 
-**Example:** 
+**Example:**
 ```php
 Dash\first(['a' => 'one', 'b' => 'two', 'c' => 'three']);
 // === 'one'
@@ -900,12 +900,12 @@ Related: `keyBy()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 `$iteratee` | `callable\|string` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable` if a string, will use `Dash\property($iteratee)` as the iteratee
 `$defaultGroup` | `string` | (optional) The key for the set of elements for which `$iteratee` returns `null`
 **Returns** | `array` | A new associative array of `[key => [value, ...]]`
 
-**Example:** 
+**Example:**
 ```php
 Dash\groupBy(['a' => 1, 'b' => 2, 'c' => 3], 'Dash\isOdd');
 // === [true => [1, 3], false => [2]]
@@ -982,7 +982,7 @@ Related: `difference()`, `union()`
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable\|stdClass\|null` | (variadic) Iterable against which all other passed iterables are compared
-**Returns** | `array` | 
+**Returns** | `array` |
 
 **Example:** With indexed arrays
 ```php
@@ -1023,10 +1023,10 @@ Checks whether `$value` is an array with sequential integer keys starting at 0.
 
 Parameter | Type | Description
 --- | --- | :---
-`$value` | `mixed` | 
+`$value` | `mixed` |
 **Returns** | `boolean` | True if `$value` is an indexed array, false otherwise
 
-**Example:** 
+**Example:**
 ```php
 Dash\isIndexedArray(['a', 'b', 'c']);
 // === true
@@ -1057,11 +1057,11 @@ with each value separated by `$separator`.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
-`$separator` | `string` | 
-**Returns** | `string` | 
+`$iterable` | `iterable\|stdClass\|null` |
+`$separator` | `string` |
+**Returns** | `string` |
 
-**Example:** 
+**Example:**
 ```php
 Dash\join([123, 456, 789], '-');
 // === '123-456-789'
@@ -1090,11 +1090,11 @@ Related: `groupBy()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 `$iteratee` | `callable\|string` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable`; if a string, will use `Dash\property($iteratee)` as the iteratee
 **Returns** | `array` | A new associative array
 
-**Example:** 
+**Example:**
 ```php
 $data = [
 	['first' => 'John', 'last' => 'Doe'],
@@ -1155,10 +1155,10 @@ Related: `values()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
-**Returns** | `array` | 
+`$iterable` | `iterable\|stdClass\|null` |
+**Returns** | `array` |
 
-**Example:** 
+**Example:**
 ```php
 Dash\keys(['c' => 3, 'a' => 1, 'b' => 2]);
 // === ['c', 'a', 'b']
@@ -1182,10 +1182,10 @@ Gets the value of the last element in `$iterable`.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 **Returns** | `mixed\|null` | Null if `$iterable` is empty
 
-**Example:** 
+**Example:**
 ```php
 Dash\last(['a' => 'one', 'b' => 'two', 'c' => 'three']);
 // === 'three'
@@ -1214,11 +1214,11 @@ Related: `mapValues()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 `$iteratee` | `callable\|string\|numeric` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable`; if a string, will use `Dash\property($iteratee)` as the iteratee
 **Returns** | `array` | A new 0-indexed array
 
-**Example:** 
+**Example:**
 ```php
 Dash\map(['a' => 1, 'b' => 2, 'c' => 3], function ($value) {
 	return $value * 2;
@@ -1258,11 +1258,11 @@ Related: `map()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 `$iteratee` | `callable\|string` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable`; if a string, will use `Dash\property($iteratee)` as the iteratee
 **Returns** | `array` | A new 0-indexed array
 
-**Example:** 
+**Example:**
 ```php
 Dash\mapValues(['a' => 1, 'b' => 2, 'c' => 3], function ($value) {
 	return $value * 2;
@@ -1354,10 +1354,10 @@ Gets the maximum value of all elements in `$iterable`.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 **Returns** | `mixed\|null` | Null if `$iterable` is empty
 
-**Example:** 
+**Example:**
 ```php
 Dash\max([3, 8, 2, 5]);
 // === 8
@@ -1384,10 +1384,10 @@ Returns the median value of an iterable.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 **Returns** | `mixed\|null` | Null if `$iterable` is empty
 
-**Example:** 
+**Example:**
 ```php
 Dash\median([3, 2, 1, 5, 4]);
 // === 3
@@ -1414,10 +1414,10 @@ Gets the minimum value of all elements in `$iterable`.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 **Returns** | `mixed\|null` | Null if `$iterable` is empty
 
-**Example:** 
+**Example:**
 ```php
 Dash\min([3, 8, 2, 5]);
 // === 2
@@ -1445,11 +1445,11 @@ Related: `pick()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 `$keys` | `string\|array` | Single key or list of keys
-**Returns** | `array` | 
+**Returns** | `array` |
 
-**Example:** 
+**Example:**
 ```php
 Dash\omit(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], ['b', 'c']);
 // === ['a' => 1, 'd' => 4]
@@ -1473,11 +1473,11 @@ Related: `omit()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 `$keys` | `string\|array` | Single key or list of keys
-**Returns** | `array` | 
+**Returns** | `array` |
 
-**Example:** 
+**Example:**
 ```php
 Dash\pick(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], ['b', 'c']);
 // === ['b' => 2, 'c' => 3]
@@ -1501,12 +1501,12 @@ Related: `map()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 `$path` | `callable` | Any valid path accepted by `Dash\property()`
 `$default` | `mixed` | (optional) Default value for each element without a value at `$path`
 **Returns** | `array` | New array of plucked values from `$iterable`
 
-**Example:** 
+**Example:**
 ```php
 $data = [
 	['name' => 'John'],
@@ -1611,10 +1611,10 @@ Iteratively reduces `$iterable` to a single value by way of `$iteratee`.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 `$iteratee` | `callable` | Called with `($result, $value, $key)` for each `($key, $value)` in `$iterable` and the current accumulated `$result`. `$iteratee` should return the updated `$result`
 `$initial` | `mixed` | (optional) Initial value
-**Returns** | `mixed` | 
+**Returns** | `mixed` |
 
 **Example:** Computes the sum of an array's values
 ```php
@@ -1646,11 +1646,11 @@ Related: `filter()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 `$predicate` | `callable\|string\|array` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable`; if a string, will get elements with a falsey value for that field/index; if an array of form `[$field, $value]`, will get elements where the field/index does not loosely equal `$value`
 **Returns** | `array` | List of elements in `$iterable` that do not satisfy `$predicate`
 
-**Example:** 
+**Example:**
 ```php
 Dash\reject([1, 2, 3, 4], 'Dash\isOdd');
 // === [2, 4]
@@ -1708,11 +1708,11 @@ Gets a new array of `$iterable` elements in reverse order.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 `$preserveIntegerKeys` | `boolean` | (optional) If true, integer keys will be preserved; non-integer keys are always preserved regardless of this setting
 **Returns** | `array` | New array of `$iterable` elements in reverse order
 
-**Example:** 
+**Example:**
 ```php
 Dash\reverse(['a', 'b', 'c']);
 // === ['c', 'b', 'a']
@@ -1753,11 +1753,11 @@ An indexed array is one with sequential integer keys starting at zero. See [isIn
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 `$count` | `integer` | If negative, moves `$count` elements from the end to the beginning
 **Returns** | `array` | New array of rotated elements
 
-**Example:** 
+**Example:**
 ```php
 Dash\rotate(['a', 'b', 'c', 'd', 'e'], 2);
 // === ['c', 'd', 'e', 'a', 'b']
@@ -1790,11 +1790,11 @@ An indexed array is one with sequential integer keys starting at zero. See [isIn
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 `$comparator` | `callable` | (optional) Invoked with `($a, $b)` where `$a` and `$b` are values in `$iterable`; `$comparator` should returns a number less than, equal to, or greater than zero if `$a` is less than, equal to, or greater than `$b`, respectively
 **Returns** | `array` | New array of `$iterable` elements ordered by `$comparator`
 
-**Example:** 
+**Example:**
 ```php
 Dash\sort([4, 2, 3, 1]);
 // === [1, 2, 3, 4]
@@ -1821,10 +1821,10 @@ Gets the sum of all element values in `$iterable`.
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 **Returns** | `numeric` | Zero if `$iterable` is empty
 
-**Example:** 
+**Example:**
 ```php
 Dash\sum([2, 3, 5, 8]);
 // === 18
@@ -1854,11 +1854,11 @@ Related: `takeRight()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 `$count` | `integer` | If negative, gets all but the last `$count` elements of `$iterable`
 **Returns** | `array` | New array of `$count` elements
 
-**Example:** 
+**Example:**
 ```php
 Dash\take([2, 3, 5, 8, 13], 3);
 // === [2, 3, 5]
@@ -1891,11 +1891,11 @@ Related: `take()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
+`$iterable` | `iterable\|stdClass\|null` |
 `$count` | `integer` | If negative, gets all but the first `$count` elements of `$iterable`
 **Returns** | `array` | New array of `$count` elements
 
-**Example:** 
+**Example:**
 ```php
 Dash\take([2, 3, 5, 8, 13], 3);
 // === [5, 8, 13]
@@ -1925,10 +1925,10 @@ Gets an array representation of `$value`.
 
 Parameter | Type | Description
 --- | --- | :---
-`$value` | `mixed` | 
+`$value` | `mixed` |
 **Returns** | `array` | Empty array if `$value` is not iterable
 
-**Example:** 
+**Example:**
 ```php
 Dash\toArray((object) ['a' => 1, 'b' => 2]);
 // === ['a' => 1, 'b' => 2]
@@ -1955,10 +1955,10 @@ Gets a plain object representation of `$value`.
 
 Parameter | Type | Description
 --- | --- | :---
-`$value` | `mixed` | 
+`$value` | `mixed` |
 **Returns** | `object` | Empty object if `$value` is not iterable
 
-**Example:** 
+**Example:**
 ```php
 Dash\toObject(['a' => 1, 'b' => 2]);
 // === (object) ['a' => 1, 'b' => 2]
@@ -1985,7 +1985,7 @@ Related: `intersection()`, `difference()`
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable\|stdClass\|null` | (variadic) One or more iterables to merge
-**Returns** | `array` | 
+**Returns** | `array` |
 
 **Example:** With indexed arrays
 ```php
@@ -2026,10 +2026,10 @@ Related: `keys()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | 
-**Returns** | `array` | 
+`$iterable` | `iterable\|stdClass\|null` |
+**Returns** | `array` |
 
-**Example:** 
+**Example:**
 ```php
 Dash\values(['c' => 3, 'a' => 1, 'b' => 2]);
 // === [3, 1, 2]
@@ -2057,12 +2057,12 @@ Related: `isType()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$value` | `mixed` | 
+`$value` | `mixed` |
 `$type` | `string\|array` | Single type to check or a list of accepted types
 `$funcName` | `string` | (optional) Name of the calling function where `assertType()` was called; this is used in the thrown exception message and aids debugging
-**Returns** | `void` | 
+**Returns** | `void` |
 
-**Example:** 
+**Example:**
 ```php
 $value = [1, 2, 3];
 Dash\assertType($value, ['iterable', 'stdClass']);
@@ -2094,7 +2094,7 @@ Parameter | Type | Description
 `$input` | `mixed` | (optional) Initial input value of the chain
 **Returns** | `Dash\_` | A new chain
 
-**Example:** 
+**Example:**
 ```php
 Dash\chain([1, 2, 3])
 	->filter(function ($n) { return $n < 3; })
@@ -2125,11 +2125,11 @@ see: http://php.net/manual/en/types.comparisons.php
 
 Parameter | Type | Description
 --- | --- | :---
-`$a` | `mixed` | 
-`$b` | `mixed` | 
-**Returns** | `integer` | 
+`$a` | `mixed` |
+`$b` | `mixed` |
+**Returns** | `integer` |
 
-**Example:** 
+**Example:**
 ```php
 Dash\compare(2, 3);
 // < 0
@@ -2162,7 +2162,7 @@ Parameter | Type | Description
 `$name` | `string` | Name of the custom operation
 **Returns** | `function` | The custom operation
 
-**Example:** 
+**Example:**
 ```php
 _::setCustom('double', function ($n) { return $n * 2; });
 
@@ -2195,7 +2195,7 @@ Parameter | Type | Description
 `$value` | `mixed` | (variadic) One or more values to debug
 **Returns** | `mixed` | The first argument
 
-**Example:** 
+**Example:**
 ```php
 Dash\debug([1, 2, 3], 'hello', null);
 // === [1, 2, 3]
@@ -2230,11 +2230,11 @@ Checks whether `$a` and `$b` are loosely equal (same value, possibly different t
 
 Parameter | Type | Description
 --- | --- | :---
-`$a` | `mixed` | 
-`$b` | `mixed` | 
-**Returns** | `boolean` | 
+`$a` | `mixed` |
+`$b` | `mixed` |
+**Returns** | `boolean` |
 
-**Example:** 
+**Example:**
 ```php
 Dash\equal(3, '3');
 // === true
@@ -2267,12 +2267,12 @@ Related: `getDirect()`, `has()`, `property()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$input` | `mixed` | 
+`$input` | `mixed` |
 `$path` | `callable\|string\|number` | If a callable, invoked with `($input)` to get the value at `$path`; if a string or number, `Dash\property($path)` used to get the value at `$path`
 `$default` | `mixed` | (optional) Value to return if `$path` does not exist within `$input`
 **Returns** | `mixed` | Value at `$path` or `$default` if no value exists
 
-**Example:** 
+**Example:**
 ```php
 $input = [
 	'people' => [
@@ -2317,12 +2317,12 @@ Related: `getDirectRef()`, `hasDirect()`, `get()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$input` | `mixed` | 
+`$input` | `mixed` |
 `$key` | `string` | Array offset, object property name, or method name
 `$default` | `mixed` | (optional) Value to return if `$input` has nothing at `$key`
-**Returns** | `mixed` | 
+**Returns** | `mixed` |
 
-**Example:** 
+**Example:**
 ```php
 Dash\getDirect(['a' => 'one', 'b' => 'two'], 'b');
 // === 'two'
@@ -2360,11 +2360,11 @@ Related: `getDirect()`, `hasDirect()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$input` | `array\|object\|ArrayAccess` | 
+`$input` | `array\|object\|ArrayAccess` |
 `$key` | `string` | Array offset or object property name
 **Returns** | `mixed` | Reference to `$key` within `$input`
 
-**Example:** 
+**Example:**
 ```php
 $array = ['key' => 'value'];
 $ref = &Dash\getDirectRef($array, 'key');
@@ -2395,11 +2395,11 @@ Related: `getDirect()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$input` | `mixed` | 
+`$input` | `mixed` |
 `$key` | `string` | Array offset, object property name, or method name
-**Returns** | `boolean` | 
+**Returns** | `boolean` |
 
-**Example:** 
+**Example:**
 ```php
 Dash\hasDirect(['a' => 1, 'b' => 2], 'a');
 // === true
@@ -2432,11 +2432,11 @@ Checks whether `$a` and `$b` are strictly equal (same value and type).
 
 Parameter | Type | Description
 --- | --- | :---
-`$a` | `mixed` | 
-`$b` | `mixed` | 
-**Returns** | `boolean` | 
+`$a` | `mixed` |
+`$b` | `mixed` |
+**Returns** | `boolean` |
 
-**Example:** 
+**Example:**
 ```php
 Dash\identical(3, '3');
 // === false
@@ -2469,10 +2469,10 @@ Returns the first argument it receives.
 
 Parameter | Type | Description
 --- | --- | :---
-`$value` | `mixed` | 
+`$value` | `mixed` |
 **Returns** | `mixed` | `$value` unmodified
 
-**Example:** 
+**Example:**
 ```php
 $a = new ArrayObject();
 $b = Dash\identity($a);
@@ -2498,10 +2498,10 @@ A value is empty if it is an iterable of size zero or loosely equals false.
 
 Parameter | Type | Description
 --- | --- | :---
-`$value` | `mixed` | 
+`$value` | `mixed` |
 **Returns** | `boolean` | True if `$value` is empty, false otherwise
 
-**Example:** 
+**Example:**
 ```php
 Dash\isEmpty([]);
 // === true
@@ -2546,9 +2546,9 @@ A types can be:
 
 Parameter | Type | Description
 --- | --- | :---
-`$value` | `mixed` | 
+`$value` | `mixed` |
 `$type` | `string\|array` | Single type to check or a list of accepted types
-**Returns** | `boolean` | 
+**Returns** | `boolean` |
 
 **Example:** With a native data type
 ```php
@@ -2596,12 +2596,12 @@ Related: `get()`, `property()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$input` | `mixed` | 
+`$input` | `mixed` |
 `$path` | `callable\|string` | If a callable, invoked with `($input)` to get the value at `$path`; if a string, will use `Dash\property($path)` to get the value at `$path`
 `$default` | `mixed` | (optional) Value to return if `$path` does not exist within `$input`
 **Returns** | `mixed` | Value at `$path` or `$default` if no value exists
 
-**Example:** 
+**Example:**
 ```php
 $input = [
 	'people' => new ArrayObject([
@@ -2637,12 +2637,12 @@ Related: `get()`, `getDirect()`, `property()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$input` | `mixed` | 
+`$input` | `mixed` |
 `$path` | `string` | Path at which to set `$value`; can be a nested path (eg. `a.b.0.c`). Intermediate arrays or objects will be created where missing (see examples)
 `$value` | `mixed` | Value to set at $path
 **Returns** | `mixed` | `$input`, modified
 
-**Example:** 
+**Example:**
 ```php
 $input = (object) [
 	'a' => [1, 2],
@@ -2706,11 +2706,11 @@ For strings, this is number of characters.
 
 Parameter | Type | Description
 --- | --- | :---
-`$value` | `iterable\|string` | 
+`$value` | `iterable\|string` |
 `$encoding` | `string` | (optional) The character encoding of `$value` if it is a string; see `mb_list_encodings()` for the list of supported encodings
 **Returns** | `integer` | Size of `$value` or zero if `$value` is neither iterable nor a string
 
-**Example:** 
+**Example:**
 ```php
 Dash\size([1, 2, 3]);
 // === 3
@@ -2739,11 +2739,11 @@ Note: Any changes made to `$value` in `$interceptor` will not be returned.
 
 Parameter | Type | Description
 --- | --- | :---
-`$value` | `mixed` | 
+`$value` | `mixed` |
 `$interceptor` | `callable` | Invoked with `($value)`
 **Returns** | `mixed` | Original `$value`
 
-**Example:** 
+**Example:**
 ```php
 $result = _::chain([1, 3, 4])
 	->filter('Dash\isOdd')
@@ -2774,11 +2774,11 @@ Invokes `$interceptor` with `($value)` and returns its result.
 
 Parameter | Type | Description
 --- | --- | :---
-`$value` | `mixed` | 
+`$value` | `mixed` |
 `$interceptor` | `callable` | Invoked with `($value)`
 **Returns** | `mixed` | Return value of `$interceptor($value)`
 
-**Example:** 
+**Example:**
 ```php
 $result = _::chain([1, 3, 4])
 	->filter('Dash\isOdd')
@@ -2816,11 +2816,11 @@ accepts arguments in the same order as the original method.
 
 Parameter | Type | Description
 --- | --- | :---
-`$callable` | `callable` | 
+`$callable` | `callable` |
 `$args` | `iterable\|stdClass` | Arguments to pass to `$callable`
 **Returns** | `mixed` | Return value of `$callable`
 
-**Example:** 
+**Example:**
 ```php
 $func = function ($time, $name) {
 	return "Good $time, $name";
@@ -2861,11 +2861,11 @@ Creates a new function that invokes `$callable` with up to `$arity` arguments an
 
 Parameter | Type | Description
 --- | --- | :---
-`$callable` | `callable` | 
+`$callable` | `callable` |
 `$arity` | `integer` | Maximum number of arguments to accept
 **Returns** | `callable` | New function
 
-**Example:** 
+**Example:**
 ```php
 $isNumeric = Dash\ary('is_numeric', 1);
 
@@ -2888,11 +2888,11 @@ Invokes `$callable` with an inline list of arguments.
 
 Parameter | Type | Description
 --- | --- | :---
-`$callable` | `callable` | 
+`$callable` | `callable` |
 `...$args` | `mixed` | Inline arguments to pass to `$callable`
 **Returns** | `mixed` | Return value of `$callable`
 
-**Example:** 
+**Example:**
 ```php
 $func = function ($time, $name) {
 	return "Good $time, $name";
@@ -2920,12 +2920,12 @@ Related: `currifyN()`, `curry()`, `partial()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$callable` | `callable` | 
+`$callable` | `callable` |
 `$args` | `array` | (optional) Initial arguments to pass to the final curried function
 `$rotate` | `integer` | (optional) The number of arguments to move from start to end; see Dash\rotate()
-**Returns** | `function\|mixed` | 
+**Returns** | `function\|mixed` |
 
-**Example:** 
+**Example:**
 ```php
 $greet = function ($name, $greeting, $punctuation) {
 	return "$greeting, $name$punctuation";
@@ -2966,11 +2966,11 @@ Related: `currify()`, `curry()`, `partial()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$callable` | `callable` | 
+`$callable` | `callable` |
 `$totalArgs` | `integer` | Total number of arguments accepted by `$callable`
 `$args` | `array` | (optional) Initial arguments to pass to the final curried function
 `$rotate` | `integer` | (optional) The number of arguments to move from start to end; see Dash\rotate()
-**Returns** | `function\|mixed` | 
+**Returns** | `function\|mixed` |
 
 
 
@@ -2994,9 +2994,9 @@ Parameter | Type | Description
 --- | --- | :---
 `$callable` | `callable` | Any valid callable except for relative static methods, eg. ['A', 'parent::foo']
 `...$args` | `mixed` | (optional, variadic) arguments to pass to `$callable`
-**Returns** | `function\|mixed` | 
+**Returns** | `function\|mixed` |
 
-**Example:** 
+**Example:**
 ```php
 $greet = function ($greeting, $salutation, $name) {
 	return "$greeting, $salutation $name";
@@ -3047,12 +3047,12 @@ Related: `curry()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$callable` | `callable` | 
+`$callable` | `callable` |
 `$numRequiredArgs` | `integer` | The number of parameters to require before calling `$callable`
 `...$args` | `mixed` | (optional, variadic) arguments to pass to `$callable`
-**Returns** | `function\|mixed` | 
+**Returns** | `function\|mixed` |
 
-**Example:** 
+**Example:**
 ```php
 $greet = function ($greeting, $salutation, $name, $punctuation = '!') {
 	return "$greeting, $salutation $name$punctuation";
@@ -3106,11 +3106,11 @@ Related: `curry()`, `partial()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$callable` | `callable` | 
+`$callable` | `callable` |
 `...$args` | `mixed` | (optional, variadic) arguments to pass to `$callable`
-**Returns** | `function\|mixed` | 
+**Returns** | `function\|mixed` |
 
-**Example:** 
+**Example:**
 ```php
 $greet = function ($greeting, $salutation, $name) {
 	return "$greeting, $salutation $name";
@@ -3163,12 +3163,12 @@ Related: `curryN()`, `partialRight()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$callable` | `callable` | 
+`$callable` | `callable` |
 `$numRequiredArgs` | `integer` | The number of parameters to require before calling `$callable`
 `...$args` | `mixed` | (optional, variadic) arguments to pass to `$callable`
-**Returns** | `function\|mixed` | 
+**Returns** | `function\|mixed` |
 
-**Example:** 
+**Example:**
 ```php
 $greet = function ($greeting, $salutation, $name, $punctuation = '!') {
 	return "$greeting, $salutation $name$punctuation";
@@ -3221,10 +3221,10 @@ Creates a new function that negates the return value of `$predicate`.
 
 Parameter | Type | Description
 --- | --- | :---
-`$predicate` | `callable` | 
+`$predicate` | `callable` |
 **Returns** | `callable` | New function
 
-**Example:** 
+**Example:**
 ```php
 $isEven = function ($n) { return $n % 2 === 0; };
 $isOdd = Dash\negate($isEven);
@@ -3254,11 +3254,11 @@ Related: `partialRight()`, `curry()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$callable` | `callable` | 
+`$callable` | `callable` |
 `...$args` | `mixed` | (optional, variadic) arguments to pass to `$callable`
-**Returns** | `callable` | 
+**Returns** | `callable` |
 
-**Example:** 
+**Example:**
 ```php
 $greet = function ($greeting, $name) {
 	return "$greeting, $name!";
@@ -3306,11 +3306,11 @@ Related: `partial()`, `curryRight()`
 
 Parameter | Type | Description
 --- | --- | :---
-`$callable` | `callable` | 
+`$callable` | `callable` |
 `...$args` | `mixed` | (optional, variadic) arguments to pass to `$callable`
-**Returns** | `callable` | 
+**Returns** | `callable` |
 
-**Example:** 
+**Example:**
 ```php
 $greet = function ($greeting, $name) {
 	return "$greeting, $name!";
@@ -3355,10 +3355,10 @@ Creates a new function that invokes `$callable` with a single argument and ignor
 
 Parameter | Type | Description
 --- | --- | :---
-`$callable` | `callable` | 
+`$callable` | `callable` |
 **Returns** | `callable` | New function
 
-**Example:** 
+**Example:**
 ```php
 $isNumeric = Dash\unary('is_numeric');
 
@@ -3389,10 +3389,10 @@ If a double is provided, only its truncated integer component is evaluated.
 
 Parameter | Type | Description
 --- | --- | :---
-`$value` | `numeric` | 
+`$value` | `numeric` |
 **Returns** | `boolean` | True if `$value` is an even number, false otherwise
 
-**Example:** 
+**Example:**
 ```php
 Dash\isEven(3);
 // === false
@@ -3427,10 +3427,10 @@ If a double is provided, only its truncated integer component is evaluated.
 
 Parameter | Type | Description
 --- | --- | :---
-`$value` | `numeric` | 
+`$value` | `numeric` |
 **Returns** | `boolean` | True if `$value` is an odd number, false otherwise
 
-**Example:** 
+**Example:**
 ```php
 Dash\isOdd(3);
 // === true

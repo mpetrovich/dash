@@ -1,8 +1,8 @@
 {
-	"name": "nextbigsoundinc/dash",
+	"name": "mpetrovich/dash",
 	"description": "A functional programming library for PHP. Inspired by Underscore, Lodash, and Ramda.",
 	"keywords": ["php", "functional", "functional programming", "underscore", "lodash", "underbar", "bottomline", "ramda"],
-	"homepage": "https://github.com/nextbigsoundinc/dash",
+	"homepage": "https://github.com/mpetrovich/dash",
 	"license": "MIT",
 	"authors": [
 		{
