@@ -19,6 +19,7 @@ function makeDocs($sourceDir, $destFilepath)
 		->filter(function ($filepath) { return file_exists($filepath); })
 		->map('createOp')
 		->reject('isIncomplete')
+		->reject(['name', 'Dash'])
 		->sort(function($op1, $op2) {
 			return strnatcmp($op1->name, $op2->name);
 		})

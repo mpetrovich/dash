@@ -10,7 +10,7 @@ class chainTest extends PHPUnit_Framework_TestCase
 	{
 		$chain = Dash\chain([1, 2, 3]);
 
-		$this->assertInstanceOf('Dash\_', $chain);
+		$this->assertInstanceOf('Dash\Dash', $chain);
 		$this->assertSame([1, 2, 3], $chain->value());
 
 		$chain->map(function ($n) { return $n * 2; });
@@ -22,7 +22,7 @@ class chainTest extends PHPUnit_Framework_TestCase
 		$chain = Dash\Curry\chain();
 		$chain = $chain([1, 2, 3]);
 
-		$this->assertInstanceOf('Dash\_', $chain);
+		$this->assertInstanceOf('Dash\Dash', $chain);
 		$this->assertSame([1, 2, 3], $chain->value());
 
 		$chain->map(function ($n) { return $n * 2; });

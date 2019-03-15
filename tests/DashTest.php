@@ -1,11 +1,9 @@
 <?php
 
-use Dash\_;
-
 /**
- * @covers Dash\_
+ * @covers Dash\Dash
  */
-class _Test extends PHPUnit_Framework_TestCase
+class DashTest extends PHPUnit_Framework_TestCase
 {
 	public function testReadmeExamples()
 	{
@@ -97,7 +95,7 @@ class _Test extends PHPUnit_Framework_TestCase
 			Custom operation
 		 */
 
-		_::setCustom('keyCase', function ($input, $case = CASE_LOWER) {
+		Dash\Dash::setCustom('keyCase', function ($input, $case = CASE_LOWER) {
 			return array_change_key_case($input, $case);
 		});
 
@@ -107,7 +105,7 @@ class _Test extends PHPUnit_Framework_TestCase
 			->keys()
 			->value();
 
-		_::unsetCustom('keyCase');
+		Dash\Dash::unsetCustom('keyCase');
 		$this->assertSame(['ONE', 'THREE'], $result);
 	}
 
@@ -115,10 +113,10 @@ class _Test extends PHPUnit_Framework_TestCase
 	{
 		$this->assertSame(
 			[2, 4, 6],
-			_::map([1, 2, 3], function ($n) { return $n * 2; })
+			Dash\Dash::map([1, 2, 3], function ($n) { return $n * 2; })
 		);
 
-		$result = _::chain([1, 2, 3])
+		$result = Dash\Dash::chain([1, 2, 3])
 			->filter(function ($n) { return $n < 3; })
 			->map(function ($n) { return $n * 2; })
 			->value();
@@ -128,16 +126,16 @@ class _Test extends PHPUnit_Framework_TestCase
 	public function testCurryExamples()
 	{
 		// @codingStandardsIgnoreLine
-		function _Test_listThree($a, $b, $c)
+		function DashTest_listThree($a, $b, $c)
 		{
 			return "$a, $b, and $c";
 		}
 
-		$listThree = Dash\curry('_Test_listThree');
+		$listThree = Dash\curry('DashTest_listThree');
 		$listTwo = $listThree('first');
 		$this->assertSame('first, second, and third', $listTwo('second', 'third'));
 
-		$filtered = _::chain(['a' => 3, 'b' => '3', 'c' => 3, 'd' => 3.0])
+		$filtered = Dash\Dash::chain(['a' => 3, 'b' => '3', 'c' => 3, 'd' => 3.0])
 			->filter(Dash\Curry\identical(3))
 			->value();
 
@@ -155,10 +153,22 @@ class _Test extends PHPUnit_Framework_TestCase
 		------------------------------------------------------------
 	 */
 
+	public function testAddGlobalAliasWithDefault()
+	{
+		Dash\Dash::addGlobalAlias();
+		$chain = __([1, 2, 3]);
+
+		$this->assertInstanceOf('Dash\Dash', $chain);
+		$this->assertSame([1, 2, 3], $chain->value());
+
+		$chain->map(function ($n) { return $n * 2; });
+		$this->assertSame([2, 4, 6], $chain->value());
+	}
+
 	public function testAddGlobalAliasWithCustom()
 	{
-		_::addGlobalAlias('_Test_dash');
-		$chain = _Test_dash([1, 2, 3]);
+		Dash\Dash::addGlobalAlias('DashTest_dash');
+		$chain = DashTest_dash([1, 2, 3]);
 
 		$this->assertInstanceOf('Dash\Dash', $chain);
 		$this->assertSame([1, 2, 3], $chain->value());
@@ -172,10 +182,10 @@ class _Test extends PHPUnit_Framework_TestCase
 	 */
 	public function testAddGlobalAliasWithExisting()
 	{
-		$name = '_Test_dash' . intval(microtime(true));
+		$name = 'DashTest_dash' . intval(microtime(true));
 		eval("function $name() {}");
 
-		_::addGlobalAlias($name);
+		Dash\Dash::addGlobalAlias($name);
 	}
 
 	/*
@@ -185,13 +195,13 @@ class _Test extends PHPUnit_Framework_TestCase
 
 	public function testChain()
 	{
-		$chain = _::chain([1, 2, 3]);
+		$chain = Dash\Dash::chain([1, 2, 3]);
 		$this->assertSame([1, 2, 3], $chain->value());
 	}
 
 	public function testChainWithArray()
 	{
-		$chain = _::chain([1, 2, 3])
+		$chain = Dash\Dash::chain([1, 2, 3])
 			->filter(function ($n) { return $n < 3; })
 			->map(function ($n) { return $n * 2; });
 
@@ -200,7 +210,7 @@ class _Test extends PHPUnit_Framework_TestCase
 
 	public function testChainWithObject()
 	{
-		$chain = _::chain((object) ['a' => 1, 'b' => 2, 'c' => 3])
+		$chain = Dash\Dash::chain((object) ['a' => 1, 'b' => 2, 'c' => 3])
 			->pick(['b', 'c'])
 			->toObject();
 
@@ -209,7 +219,7 @@ class _Test extends PHPUnit_Framework_TestCase
 
 	public function testChainWithDefault()
 	{
-		$chain = _::chain()
+		$chain = Dash\Dash::chain()
 			->filter(function ($n) { return $n < 3; })
 			->map(function ($n) { return $n * 2; });
 
@@ -227,7 +237,7 @@ class _Test extends PHPUnit_Framework_TestCase
 
 	public function testChainReuse()
 	{
-		$chain = _::chain([1, 2, 3])->map(function ($n) { return $n * 2; });
+		$chain = Dash\Dash::chain([1, 2, 3])->map(function ($n) { return $n * 2; });
 		$this->assertSame([2, 4, 6], $chain->value());
 
 		$chain->with([4, 5, 6]);
@@ -245,20 +255,20 @@ class _Test extends PHPUnit_Framework_TestCase
 			setCustom()
 		 */
 
-		_::setCustom('triple', function ($value) {
+		Dash\Dash::setCustom('triple', function ($value) {
 			return $value * 3;
 		});
 
-		$this->assertSame(12, _::triple(4));
+		$this->assertSame(12, Dash\Dash::triple(4));
 
 		/*
 			unsetCustom()
 		 */
 
-		_::unsetCustom('triple');
+		Dash\Dash::unsetCustom('triple');
 
 		try {
-			_::triple(2);
+			Dash\Dash::triple(2);
 			$this->assertTrue(false, 'This should never be called');
 		}
 		catch (Exception $e) {
@@ -273,86 +283,86 @@ class _Test extends PHPUnit_Framework_TestCase
 	 */
 	public function testCustomOperationWithExisting()
 	{
-		_::setCustom('map', function ($n) {});
+		Dash\Dash::setCustom('map', function ($n) {});
 	}
 
 	public function testCustomOperationForNumbersStandalone()
 	{
-		_::setCustom('triple', function ($value) {
+		Dash\Dash::setCustom('triple', function ($value) {
 			return $value * 3;
 		});
 
-		$this->assertSame(12, _::triple(4));
+		$this->assertSame(12, Dash\Dash::triple(4));
 
-		_::unsetCustom('triple');
+		Dash\Dash::unsetCustom('triple');
 	}
 
 	public function testCustomOperationForNumbersChained()
 	{
-		_::setCustom('double', function ($value) {
+		Dash\Dash::setCustom('double', function ($value) {
 			return $value * 2;
 		});
 
-		$this->assertSame(8, _::chain(4)->double()->value());
+		$this->assertSame(8, Dash\Dash::chain(4)->double()->value());
 
-		_::unsetCustom('double');
+		Dash\Dash::unsetCustom('double');
 	}
 
 	public function testCustomOperationForIterablesStandalone()
 	{
-		_::setCustom('addEach', function ($iterable, $add) {
-			return _::map($iterable, function ($n) use ($add) { return $n + $add; });
+		Dash\Dash::setCustom('addEach', function ($iterable, $add) {
+			return Dash\Dash::map($iterable, function ($n) use ($add) { return $n + $add; });
 		});
 
 		$this->assertSame(
 			[4, 5, 6],
-			_::addEach([1, 2, 3], 3)
+			Dash\Dash::addEach([1, 2, 3], 3)
 		);
 
-		_::unsetCustom('addEach');
+		Dash\Dash::unsetCustom('addEach');
 	}
 
 	public function testCustomOperationForIterablesChained()
 	{
-		_::setCustom('addEach', function ($iterable, $add) {
-			return _::map($iterable, function ($n) use ($add) { return $n + $add; });
+		Dash\Dash::setCustom('addEach', function ($iterable, $add) {
+			return Dash\Dash::map($iterable, function ($n) use ($add) { return $n + $add; });
 		});
 
 		$this->assertSame(
 			[4, 5, 6],
-			_::chain([1, 2, 3])->addEach(3)->value()
+			Dash\Dash::chain([1, 2, 3])->addEach(3)->value()
 		);
 
-		_::unsetCustom('addEach');
+		Dash\Dash::unsetCustom('addEach');
 	}
 
 	public function testCustomOperationLookup()
 	{
-		_::setCustom('double', function ($value) {
+		Dash\Dash::setCustom('double', function ($value) {
 			return $value * 2;
 		});
 
 		$this->assertSame(
 			[2, 4, 6],
-			_::chain([1, 2, 3])->map('Dash\_::double')->value()
+			Dash\Dash::chain([1, 2, 3])->map('Dash\Dash::double')->value()
 		);
 
-		_::unsetCustom('double');
+		Dash\Dash::unsetCustom('double');
 	}
 
 	public function testCustomOperationWithAutoCurrying()
 	{
-		_::setCustom('addEach', function ($iterable, $add) {
-			return _::map($iterable, function ($n) use ($add) { return $n + $add; });
+		Dash\Dash::setCustom('addEach', function ($iterable, $add) {
+			return Dash\Dash::map($iterable, function ($n) use ($add) { return $n + $add; });
 		});
 
-		$add3 = _::_addEach(3);
+		$add3 = Dash\Dash::_addEach(3);
 		$this->assertSame([4, 5, 6], $add3([1, 2, 3]));
 
-		_::unsetCustom('addEach');
+		Dash\Dash::unsetCustom('addEach');
 
 		try {
-			_::addEach([1, 2, 3], 3);
+			Dash\Dash::addEach([1, 2, 3], 3);
 			$this->assertTrue(false, 'This should never be called');
 		}
 		catch (Exception $e) {
@@ -360,7 +370,7 @@ class _Test extends PHPUnit_Framework_TestCase
 		}
 
 		try {
-			_::_addEach([1, 2, 3], 3);
+			Dash\Dash::_addEach([1, 2, 3], 3);
 			$this->assertTrue(false, 'This should never be called');
 		}
 		catch (Exception $e) {
@@ -370,19 +380,19 @@ class _Test extends PHPUnit_Framework_TestCase
 
 	public function testCustomOperationWithoutAutoCurrying()
 	{
-		_::setCustom('addEach', function ($iterable, $add) {
-			return _::map($iterable, function ($n) use ($add) { return $n + $add; });
+		Dash\Dash::setCustom('addEach', function ($iterable, $add) {
+			return Dash\Dash::map($iterable, function ($n) use ($add) { return $n + $add; });
 		}, false);
 
 		try {
-			$add3 = _::_addEach(3);
+			$add3 = Dash\Dash::_addEach(3);
 			$this->assertTrue(false, 'This should never be called');
 		}
 		catch (BadMethodCallException $e) {
 			$this->assertTrue(true);
 		}
 
-		_::unsetCustom('addEach');
+		Dash\Dash::unsetCustom('addEach');
 	}
 
 	/*
@@ -394,7 +404,7 @@ class _Test extends PHPUnit_Framework_TestCase
 	{
 		$this->assertSame(
 			[2, 4, 6],
-			Dash\_::map([1, 2, 3], function ($n) { return $n * 2; })
+			Dash\Dash::map([1, 2, 3], function ($n) { return $n * 2; })
 		);
 	}
 
@@ -404,7 +414,7 @@ class _Test extends PHPUnit_Framework_TestCase
 	 */
 	public function testStandaloneInvalid()
 	{
-		_::foobar([1, 2, 3]);
+		Dash\Dash::foobar([1, 2, 3]);
 	}
 
 	/*
@@ -417,7 +427,7 @@ class _Test extends PHPUnit_Framework_TestCase
 	 */
 	public function testWith($value)
 	{
-		$chain = _::chain();
+		$chain = Dash\Dash::chain();
 		$return = $chain->with($value);
 
 		$this->assertSame($value, $chain->value());
@@ -470,7 +480,7 @@ class _Test extends PHPUnit_Framework_TestCase
 
 	public function testValue()
 	{
-		$chain = _::chain((object) [1, 2, 3]);
+		$chain = Dash\Dash::chain((object) [1, 2, 3]);
 
 		$mapCallCount = 0;
 		$chain->map(function ($n) use (&$mapCallCount) {
@@ -499,7 +509,7 @@ class _Test extends PHPUnit_Framework_TestCase
 
 	public function testArrayValue()
 	{
-		$value = _::chain([1, 2, 3])
+		$value = Dash\Dash::chain([1, 2, 3])
 			->map(function ($n) { return $n * 2; })
 			->arrayValue();
 
@@ -509,7 +519,7 @@ class _Test extends PHPUnit_Framework_TestCase
 
 	public function testObjectValue()
 	{
-		$value = _::chain([1, 2, 3])
+		$value = Dash\Dash::chain([1, 2, 3])
 			->map(function ($n) { return $n * 2; })
 			->objectValue();
 
@@ -521,7 +531,7 @@ class _Test extends PHPUnit_Framework_TestCase
 	{
 		$obj = (object) ['a' => 1];
 
-		$chain = _::chain($obj)->tap(function ($obj) { $obj->a = 2; });
+		$chain = Dash\Dash::chain($obj)->tap(function ($obj) { $obj->a = 2; });
 		$this->assertEquals((object) ['a' => 1], $obj);
 
 		$chain->run();
@@ -531,7 +541,7 @@ class _Test extends PHPUnit_Framework_TestCase
 	public function testRunExamples()
 	{
 		ob_start();
-		Dash\_::chain([1, 2, 3])
+		Dash\Dash::chain([1, 2, 3])
 			->each(function ($n) { echo $n; })
 			->run();
 		$output = ob_get_clean();
@@ -541,7 +551,7 @@ class _Test extends PHPUnit_Framework_TestCase
 
 	public function testCopy()
 	{
-		$original = _::chain()->map(function ($n) { return $n * 2; });
+		$original = Dash\Dash::chain()->map(function ($n) { return $n * 2; });
 
 		$original->with([1, 2, 3]);
 		$this->assertSame([2, 4, 6], $original->value());
@@ -558,7 +568,7 @@ class _Test extends PHPUnit_Framework_TestCase
 
 	public function testClone()
 	{
-		$original = _::chain()->map(function ($n) { return $n * 2; });
+		$original = Dash\Dash::chain()->map(function ($n) { return $n * 2; });
 
 		$original->with([1, 2, 3]);
 		$this->assertSame([2, 4, 6], $original->value());
@@ -584,7 +594,7 @@ class _Test extends PHPUnit_Framework_TestCase
 	 */
 	public function testChainInvalidMethod()
 	{
-		_::chain([1, 2, 3])
+		Dash\Dash::chain([1, 2, 3])
 			->foo()
 			->value();
 	}
