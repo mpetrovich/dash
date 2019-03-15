@@ -30,6 +30,7 @@ Operation | Signature
 [keys](#keys) | `keys($iterable): array`
 [last](#last) | `last($iterable): mixed\|null`
 [map](#map) | `map($iterable, $iteratee = 'Dash\identity'): array`
+[mapResult](#mapresult) | `mapResult($iterable, $path, $default = null): array`
 [mapValues](#mapvalues) | `mapValues($iterable, $iteratee = 'Dash\identity'): array`
 [matchesProperty](#matchesproperty) | `matchesProperty($path, $value = true, $comparator = 'Dash\equal'): function`
 [max](#max) | `max($iterable): mixed\|null`
@@ -1210,7 +1211,7 @@ Gets a new array of the return values of `$iteratee` when called with successive
 
 Keys in `$iterable` are not preserved. To preserve keys, use `mapValues()` instead.
 
-Related: `mapValues()`
+Related: `mapValues()`, `mapResult()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1240,6 +1241,47 @@ Dash\map($data, 'name.last');
 
 [↑ Top](#operations)
 
+mapResult
+---
+[Operations](#operations) › [Iterable](#iterable)
+
+```php
+mapResult($iterable, $path, $default = null): array
+
+# Curried: (all parameters required)
+Curry\mapResult($iteratee, $path)
+```
+Invokes the callable located at `$path` within each element in `$iterable`,
+and returns a new array of those callable return values.
+
+Unlike `map()`, keys in `$iterable` are preserved.
+
+Related: `map()`, `mapValues()`
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$path` | `string` | Returns the result of `Dash\property($path, $default)` for each element
+`$default` | `mixed` | (optional) Default value to return for an element if nothing exists at `$path`
+**Returns** | `array` | A new array with the same keys as `$iterable`
+
+**Example:**
+```php
+$data = [
+	'john' => ['getHash' => function() { return md5('John Doe'); }],
+	'jane' => ['getHash' => function() { return md5('Jane Doe'); }],
+	'paul' => ['getHash' => function() { return md5('Paul Dyk'); }],
+];
+Dash\mapResult($data, 'getHash');
+// === [
+	'john' => '4c2a904bafba06591225113ad17b5cec',
+	'jane' => '1c272047233576d77a9b9a1acfdf741c',
+	'paul' => '022fbf2743848afb47158d9c80f28d03',
+]
+```
+
+[↑ Top](#operations)
+
 mapValues
 ---
 [Operations](#operations) › [Iterable](#iterable)
@@ -1254,7 +1296,7 @@ Gets a new array of the return values of `$iteratee` when called with successive
 
 Unlike `map()`, keys in `$iterable` are preserved.
 
-Related: `map()`
+Related: `map()`, `mapResult()`
 
 Parameter | Type | Description
 --- | --- | :---
