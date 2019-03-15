@@ -291,6 +291,9 @@ END;
 function renderCategory($ops, $category)
 {
 	$renderedOps = _::chain($ops)
+		->sort(function($op1, $op2) {
+			return strnatcmp($op1->name, $op2->name);
+		})
 		->map('renderOp')
 		->join("\n")
 		->value();
@@ -308,6 +311,9 @@ function renderTableOfContents($categories)
 	$renderedCategories = _::chain($categories)
 		->map(function ($ops, $category) {
 			$rows = _::chain($ops)
+				->sort(function($op1, $op2) {
+					return strnatcmp($op1->name, $op2->name);
+				})
 				->map(function ($op) {
 					$returnType = $op->return->type ? ": {$op->return->type}" : '';
 					$returnType = str_replace('|', '\\|', $returnType);
