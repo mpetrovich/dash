@@ -10,7 +10,6 @@ namespace Dash;
  *
  * @see take()
  *
- * @category Iterable
  * @param iterable|stdClass|null $iterable
  * @param integer $count If negative, gets all but the first `$count` elements of `$iterable`
  * @return array New array of `$count` elements

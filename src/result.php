@@ -8,7 +8,6 @@ namespace Dash;
  *
  * @see get(), property()
  *
- * @category Utility
  * @param mixed $input
  * @param callable|string $path If a callable, invoked with `($input)` to get the value at `$path`;
  *                              if a string, will use `Dash\property($path)` to get the value at `$path`

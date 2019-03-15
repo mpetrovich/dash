@@ -9,7 +9,6 @@ namespace Dash;
  *
  * @see mapValues(), mapResult()
  *
- * @category Iterable
  * @param iterable|stdClass|null $iterable
  * @param callable|string|numeric $iteratee (optional) If a callable, invoked with `($value, $key, $iterable)`
  *                                          for each element in `$iterable`;

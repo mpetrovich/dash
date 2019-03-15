@@ -9,7 +9,6 @@ namespace Dash;
  *
  * @see intersection(), difference()
  *
- * @category Iterable
  * @param iterable|stdClass|null $iterable (variadic) One or more iterables to merge
  * @return array
  *

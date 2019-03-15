@@ -10,7 +10,6 @@ namespace Dash;
  *
  * @see map(), mapValues()
  *
- * @category Iterable
  * @param iterable|stdClass|null $iterable
  * @param string $path Returns the result of `Dash\property($path, $default)` for each element
  * @param mixed $default (optional) Default value to return for an element if nothing exists at `$path`

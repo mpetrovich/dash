@@ -88,8 +88,6 @@ Operation | Signature
 
 all / every
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
 
 
 ```php
@@ -139,8 +137,6 @@ Dash\all([true, false, true]);
 
 any / some
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
 
 
 ```php
@@ -189,8 +185,6 @@ Dash\any([false, false, false]);
 
 apply
 ---
-[Operations](#operations) › [Callable](#callable)
-
 
 
 ```php
@@ -238,8 +232,6 @@ $apply(['morning', 'John']);
 
 ary
 ---
-[Operations](#operations) › [Callable](#callable)
-
 
 
 ```php
@@ -269,9 +261,7 @@ Dash\filter([1, 2.0, '3', 'a'], $isNumeric);
 
 assertType
 ---
-[Operations](#operations) › [Utility](#utility)
-
-Related: `isType()`
+See also: `isType()`
 
 ```php
 assertType($value, $type, $funcName = __FUNCTION__): void
@@ -305,8 +295,6 @@ Dash\assertType($value, 'object');
 
 at
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
 
 
 ```php
@@ -348,8 +336,6 @@ Dash\at(['a', 'b', 'c'], 5, 'none');
 
 average / mean
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
 
 
 ```php
@@ -376,8 +362,6 @@ Dash\average([2, 3, 5, 8]);
 
 call
 ---
-[Operations](#operations) › [Callable](#callable)
-
 
 
 ```php
@@ -406,8 +390,6 @@ Dash\call($func, 'morning', 'John');
 
 chain
 ---
-[Operations](#operations) › [Utility](#utility)
-
 
 
 ```php
@@ -437,8 +419,6 @@ Dash\chain([1, 2, 3])
 
 compare
 ---
-[Operations](#operations) › [Utility](#utility)
-
 
 
 ```php
@@ -476,8 +456,6 @@ Dash\compare(2, 2);
 
 contains / includes
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
 
 
 ```php
@@ -513,9 +491,7 @@ Dash\contains([1, '2', 3], 2, 'Dash\identical');
 
 currify
 ---
-[Operations](#operations) › [Callable](#callable)
-
-Related: `currifyN()`, `curry()`, `partial()`
+See also: `currifyN()`, `curry()`, `partial()`
 
 ```php
 currify(callable $callable, array $args = [], $rotate = 1): function|mixed
@@ -560,9 +536,7 @@ $goodMorning('Sir', 'John')
 
 currifyN
 ---
-[Operations](#operations) › [Callable](#callable)
-
-Related: `currify()`, `curry()`, `partial()`
+See also: `currify()`, `curry()`, `partial()`
 
 ```php
 currifyN(callable $callable, $totalArgs, array $args = [], $rotate = 1): function|mixed
@@ -587,9 +561,7 @@ Parameter | Type | Description
 
 curry
 ---
-[Operations](#operations) › [Callable](#callable)
-
-Related: `curryN()`, `curryRight()`, `partial()`, `currify()`
+See also: `curryN()`, `curryRight()`, `partial()`, `currify()`
 
 ```php
 curry(callable $callable /*, ...args */): function|mixed
@@ -643,9 +615,7 @@ $goodMorningSir('Peter');
 
 curryN
 ---
-[Operations](#operations) › [Callable](#callable)
-
-Related: `curry()`
+See also: `curry()`
 
 ```php
 curryN(callable $callable, $numRequiredArgs /*, ...args */): function|mixed
@@ -701,9 +671,7 @@ $greetMsMary('Good morning');
 
 curryRight
 ---
-[Operations](#operations) › [Callable](#callable)
-
-Related: `curry()`, `partial()`
+See also: `curry()`, `partial()`
 
 ```php
 curryRight(callable $callable /*, ...args */): function|mixed
@@ -759,9 +727,7 @@ $goodMorningSir('Peter');
 
 curryRightN
 ---
-[Operations](#operations) › [Callable](#callable)
-
-Related: `curryN()`, `partialRight()`
+See also: `curryN()`, `partialRight()`
 
 ```php
 curryRightN(callable $callable, $numRequiredArgs /*, ...args */): function|mixed
@@ -820,8 +786,6 @@ $goodMorningMs('Mary');
 
 custom
 ---
-[Operations](#operations) › [Utility](#utility)
-
 
 
 ```php
@@ -854,8 +818,6 @@ _::chain([1, 2, 3])->map(Dash\custom('double'))->value();
 
 debug
 ---
-[Operations](#operations) › [Utility](#utility)
-
 
 
 ```php
@@ -893,8 +855,6 @@ NULL
 
 deltas
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
 
 
 ```php
@@ -921,9 +881,7 @@ Dash\deltas([3, 8, 9, 9, 5, 13]);
 
 difference
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
-Related: `intersection()`, `union()`
+See also: `intersection()`, `union()`
 
 ```php
 difference($iterable /*, ...iterables */): array
@@ -964,8 +922,6 @@ Dash\difference(
 
 each
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
 
 
 ```php
@@ -1016,8 +972,6 @@ Dash\each(['a', 'b', 'c'], function ($value, $index, $array) {
 
 equal
 ---
-[Operations](#operations) › [Utility](#utility)
-
 
 
 ```php
@@ -1054,9 +1008,7 @@ Dash\equal([1, 2, 3], [3, 2, 1]);
 
 filter
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
-Related: `reject()`
+See also: `reject()`
 
 ```php
 filter($iterable, $predicate = 'Dash\identity'): array
@@ -1120,9 +1072,7 @@ Dash\filter($data, ['active', false]);
 
 find
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
-Related: `findKey()`, `findValue()`, `findLast()`
+See also: `findKey()`, `findValue()`, `findLast()`
 
 ```php
 find($iterable, $predicate = 'Dash\identity'): array|null
@@ -1181,9 +1131,7 @@ Dash\find($data, ['active', false]);
 
 findKey
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
-Related: `find()`, `findValue()`, `findLastKey()`
+See also: `find()`, `findValue()`, `findLastKey()`
 
 ```php
 findKey($iterable, $predicate = 'Dash\identity'): string|null
@@ -1242,9 +1190,7 @@ Dash\findKey($data, ['active', false]);
 
 findLast
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
-Related: `findLastKey()`, `findLastValue()`, `find()`
+See also: `findLastKey()`, `findLastValue()`, `find()`
 
 ```php
 findLast($iterable, $predicate = 'Dash\identity'): array|null
@@ -1303,9 +1249,7 @@ Dash\findLast($data, ['active', false]);
 
 findLastKey
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
-Related: `findLast()`, `findLastValue()`, `findKey()`
+See also: `findLast()`, `findLastValue()`, `findKey()`
 
 ```php
 findLastKey($iterable, $predicate = 'Dash\identity'): string|null
@@ -1364,9 +1308,7 @@ Dash\findLastKey($data, ['active', false]);
 
 findLastValue
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
-Related: `findLast()`, `findLastKey()`, `findValue()`
+See also: `findLast()`, `findLastKey()`, `findValue()`
 
 ```php
 findLastValue($iterable, $predicate = 'Dash\identity'): mixed|null
@@ -1425,9 +1367,7 @@ Dash\findLastValue($data, ['active', false]);
 
 findValue
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
-Related: `find()`, `findKey()`, `findLastValue()`
+See also: `find()`, `findKey()`, `findLastValue()`
 
 ```php
 findValue($iterable, $predicate = 'Dash\identity'): mixed|null
@@ -1486,8 +1426,6 @@ Dash\findValue($data, ['active', false]);
 
 first / head
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
 
 
 ```php
@@ -1517,9 +1455,7 @@ Dash\first([]);
 
 get
 ---
-[Operations](#operations) › [Utility](#utility)
-
-Related: `getDirect()`, `has()`, `property()`
+See also: `getDirect()`, `has()`, `property()`
 
 ```php
 get($input, $path, $default = null): mixed
@@ -1565,9 +1501,7 @@ Dash\get($input, 'a.b.c');
 
 getDirect
 ---
-[Operations](#operations) › [Utility](#utility)
-
-Related: `getDirectRef()`, `hasDirect()`, `get()`
+See also: `getDirectRef()`, `hasDirect()`, `get()`
 
 ```php
 getDirect($input, $key, $default = null): mixed
@@ -1615,9 +1549,7 @@ Dash\getDirect($input, 'a');
 
 getDirectRef
 ---
-[Operations](#operations) › [Utility](#utility)
-
-Related: `getDirect()`, `hasDirect()`
+See also: `getDirect()`, `hasDirect()`
 
 ```php
 getDirectRef(&$input, $key): mixed
@@ -1648,9 +1580,7 @@ $ref = 'changed';
 
 groupBy
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
-Related: `keyBy()`
+See also: `keyBy()`
 
 ```php
 groupBy($iterable, $iteratee = 'Dash\identity', $defaultGroup = null): array
@@ -1730,9 +1660,7 @@ Dash\groupBy($data, 'last', 'Unknown');
 
 hasDirect
 ---
-[Operations](#operations) › [Utility](#utility)
-
-Related: `getDirect()`
+See also: `getDirect()`
 
 ```php
 hasDirect($input, $key): boolean
@@ -1768,8 +1696,6 @@ Dash\hasDirect(new DateTime(), 'getTimestamp');
 
 identical
 ---
-[Operations](#operations) › [Utility](#utility)
-
 
 
 ```php
@@ -1806,8 +1732,6 @@ Dash\identical([1, 2, 3], [1, 2, 3]);
 
 identity
 ---
-[Operations](#operations) › [Utility](#utility)
-
 
 
 ```php
@@ -1835,9 +1759,7 @@ $b = Dash\identity($a);
 
 intersection
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
-Related: `difference()`, `union()`
+See also: `difference()`, `union()`
 
 ```php
 intersection($iterable /*, ...iterables */): array
@@ -1878,8 +1800,6 @@ Dash\intersection(
 
 isEmpty
 ---
-[Operations](#operations) › [Utility](#utility)
-
 
 
 ```php
@@ -1922,8 +1842,6 @@ Dash\isEmpty([0]);
 
 isEven
 ---
-[Operations](#operations) › [Number](#number)
-
 
 
 ```php
@@ -1961,8 +1879,6 @@ Dash\isEven('a');
 
 isIndexedArray
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
 
 
 ```php
@@ -1995,8 +1911,6 @@ Dash\isIndexedArray(['a' => 1, 'b' => 2]);
 
 isOdd
 ---
-[Operations](#operations) › [Number](#number)
-
 
 
 ```php
@@ -2034,8 +1948,6 @@ Dash\isOdd('a');
 
 isType
 ---
-[Operations](#operations) › [Utility](#utility)
-
 
 
 ```php
@@ -2090,8 +2002,6 @@ Dash\isType((object) [1, 2, 3], ['array', 'object']);
 
 join / implode
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
 
 
 ```php
@@ -2123,9 +2033,7 @@ Dash\join(['a' => 1, 'b' => 2, 'c' => 3], ', ');
 
 keyBy / indexBy
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
-Related: `groupBy()`
+See also: `groupBy()`
 
 ```php
 keyBy($iterable, $iteratee = 'Dash\identity'): array
@@ -2191,9 +2099,7 @@ Dash\keyBy($data, 'last');
 
 keys
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
-Related: `values()`
+See also: `values()`
 
 ```php
 keys($iterable): array
@@ -2219,8 +2125,6 @@ Dash\keys(['c' => 3, 'a' => 1, 'b' => 2]);
 
 last
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
 
 
 ```php
@@ -2250,9 +2154,7 @@ Dash\last([]);
 
 map
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
-Related: `mapValues()`, `mapResult()`
+See also: `mapValues()`, `mapResult()`
 
 ```php
 map($iterable, $iteratee = 'Dash\identity'): array
@@ -2295,9 +2197,7 @@ Dash\map($data, 'name.last');
 
 mapResult
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
-Related: `map()`, `mapValues()`
+See also: `map()`, `mapValues()`
 
 ```php
 mapResult($iterable, $path, $default = null): array
@@ -2337,9 +2237,7 @@ Dash\mapResult($data, 'getHash');
 
 mapValues
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
-Related: `map()`, `mapResult()`
+See also: `map()`, `mapResult()`
 
 ```php
 mapValues($iterable, $iteratee = 'Dash\identity'): array
@@ -2382,8 +2280,6 @@ Dash\mapValues($data, 'name.last');
 
 matchesProperty
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
 
 
 ```php
@@ -2437,8 +2333,6 @@ $matcher(['foo' => 3.0]);  // === false
 
 max
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
 
 
 ```php
@@ -2468,8 +2362,6 @@ Dash\max([]);
 
 median
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
 
 
 ```php
@@ -2499,8 +2391,6 @@ Dash\median([3, 2, 1, 4]);
 
 min
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
 
 
 ```php
@@ -2530,8 +2420,6 @@ Dash\min([]);
 
 negate
 ---
-[Operations](#operations) › [Callable](#callable)
-
 
 
 ```php
@@ -2561,9 +2449,7 @@ $isOdd(3);   // === true
 
 omit
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
-Related: `pick()`
+See also: `pick()`
 
 ```php
 omit($iterable, $keys): array
@@ -2591,9 +2477,7 @@ Dash\omit(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], ['b', 'c']);
 
 partial
 ---
-[Operations](#operations) › [Callable](#callable)
-
-Related: `partialRight()`, `curry()`
+See also: `partialRight()`, `curry()`
 
 ```php
 partial($callable /*, ...args */): callable
@@ -2644,9 +2528,7 @@ $greetJane('Howdy');  // === 'Howdy, Jane!'
 
 partialRight
 ---
-[Operations](#operations) › [Callable](#callable)
-
-Related: `partial()`, `curryRight()`
+See also: `partial()`, `curryRight()`
 
 ```php
 partialRight($callable /*, ...args */): callable
@@ -2697,9 +2579,7 @@ $sayHowdy('Jane');  // === 'Howdy, Jane!'
 
 pick
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
-Related: `omit()`
+See also: `omit()`
 
 ```php
 pick($iterable, $keys): array
@@ -2726,9 +2606,7 @@ Dash\pick(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], ['b', 'c']);
 
 pluck
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
-Related: `map()`
+See also: `map()`
 
 ```php
 pluck($iterable, $path, $default = null): array
@@ -2765,8 +2643,6 @@ Dash\pluck($data, 'age');
 
 property
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
 
 
 ```php
@@ -2838,8 +2714,6 @@ $getter(['a.b.c' => 'value']);  // === 'value'
 
 reduce
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
 
 
 ```php
@@ -2870,9 +2744,7 @@ Dash\reduce([1, 2, 3, 4], function ($sum, $value) {
 
 reject
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
-Related: `filter()`
+See also: `filter()`
 
 ```php
 reject($iterable, $predicate = 'Dash\identity'): array
@@ -2937,9 +2809,7 @@ Dash\reject($data, ['active', false]);
 
 result
 ---
-[Operations](#operations) › [Utility](#utility)
-
-Related: `get()`, `property()`
+See also: `get()`, `property()`
 
 ```php
 result($input, $path, $default = null): mixed
@@ -2982,8 +2852,6 @@ Dash\result($input, 'people.1.joined.getTimestamp');
 
 reverse
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
 
 
 ```php
@@ -3024,8 +2892,6 @@ Dash\reverse(['a', 'b', 'c'], false);
 
 rotate
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
 
 
 ```php
@@ -3063,9 +2929,7 @@ Dash\rotate(['a', 'b', 'c', 'd', 'e'], -1);
 
 set
 ---
-[Operations](#operations) › [Utility](#utility)
-
-Related: `get()`, `getDirect()`, `property()`
+See also: `get()`, `getDirect()`, `property()`
 
 ```php
 set(&$input, $path, $value): mixed
@@ -3128,8 +2992,6 @@ Dash\set($input, 'a.b.c', 'value');
 
 size / count
 ---
-[Operations](#operations) › [Utility](#utility)
-
 
 
 ```php
@@ -3163,8 +3025,6 @@ Dash\size('Beyoncé');
 
 sort
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
 
 
 ```php
@@ -3198,8 +3058,6 @@ Dash\sort(['a' => 3, 'b' => 1, 'c' => 2]);
 
 sum
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
 
 
 ```php
@@ -3229,9 +3087,7 @@ Dash\sum([]);
 
 take
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
-Related: `takeRight()`
+See also: `takeRight()`
 
 ```php
 take($iterable, $count = 1): array
@@ -3267,9 +3123,7 @@ Dash\take([1, 2, 3, 4, 5, 6], -2);
 
 takeRight
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
-Related: `take()`
+See also: `take()`
 
 ```php
 takeRight($iterable, $count = 1): array
@@ -3305,8 +3159,6 @@ Dash\take([1, 2, 3, 4, 5, 6], -2);
 
 tap
 ---
-[Operations](#operations) › [Utility](#utility)
-
 
 
 ```php
@@ -3343,8 +3195,6 @@ $result = _::chain([1, 3, 4])
 
 thru
 ---
-[Operations](#operations) › [Utility](#utility)
-
 
 
 ```php
@@ -3380,8 +3230,6 @@ $result = _::chain([1, 3, 4])
 
 toArray
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
 
 
 ```php
@@ -3411,8 +3259,6 @@ Dash\toArray(new FilesystemIterator(__DIR__));
 
 toObject
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
 
 
 ```php
@@ -3442,8 +3288,6 @@ Dash\toObject(new ArrayObject(['a' => 1, 'b' => 2]));
 
 unary
 ---
-[Operations](#operations) › [Callable](#callable)
-
 
 
 ```php
@@ -3472,9 +3316,7 @@ Dash\filter([1, 2.0, '3', 'a'], $isNumeric);
 
 union
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
-Related: `intersection()`, `difference()`
+See also: `intersection()`, `difference()`
 
 ```php
 union($iterable /*, ...iterables */): array
@@ -3514,9 +3356,7 @@ Dash\union(
 
 values
 ---
-[Operations](#operations) › [Iterable](#iterable)
-
-Related: `keys()`
+See also: `keys()`
 
 ```php
 values($iterable): array

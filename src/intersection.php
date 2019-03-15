@@ -10,7 +10,6 @@ namespace Dash;
  *
  * @see difference(), union()
  *
- * @category Iterable
  * @param iterable|stdClass|null $iterable (variadic) Iterable against which all other passed iterables are compared
  * @return array
  *

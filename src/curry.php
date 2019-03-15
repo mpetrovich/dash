@@ -10,7 +10,6 @@ namespace Dash;
  *
  * @see curryN(), curryRight(), partial(), currify()
  *
- * @category Callable
  * @param callable $callable Any valid callable except for relative static methods, eg. ['A', 'parent::foo']
  * @codingStandardsIgnoreLine
  * @param mixed ...$args (optional, variadic) arguments to pass to `$callable`

@@ -8,7 +8,6 @@ namespace Dash;
  * Keys are preserved unless `$iterable` is an indexed array.
  * An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
  *
- * @category Iterable
  * @param iterable|stdClass|null $iterable
  * @param callable $comparator (optional) Invoked with `($a, $b)` where `$a` and `$b` are values in `$iterable`;
  *                             `$comparator` should returns a number less than, equal to, or greater than zero

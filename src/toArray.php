@@ -5,7 +5,6 @@ namespace Dash;
 /**
  * Gets an array representation of `$value`.
  *
- * @category Iterable
  * @param mixed $value
  * @return array Empty array if `$value` is not iterable
  *

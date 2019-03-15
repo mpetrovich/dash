@@ -7,7 +7,6 @@ namespace Dash;
  *
  * @see omit()
  *
- * @category Iterable
  * @param iterable|stdClass|null $iterable
  * @param string|array $keys Single key or list of keys
  * @return array

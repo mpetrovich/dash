@@ -7,7 +7,6 @@ namespace Dash;
  *
  * @see map()
  *
- * @category Iterable
  * @param iterable|stdClass|null $iterable
  * @param callable $path Any valid path accepted by `Dash\property()`
  * @param mixed $default (optional) Default value for each element without a value at `$path`

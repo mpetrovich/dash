@@ -7,7 +7,6 @@ namespace Dash;
  *
  * Note: Any changes made to `$value` in `$interceptor` will not be returned.
  *
- * @category Utility
  * @param mixed $value
  * @param callable $interceptor Invoked with `($value)`
  * @return mixed Original `$value`

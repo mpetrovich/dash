@@ -9,7 +9,6 @@ namespace Dash;
  * Iteratees can exit iteration early by returning `false`.
  * Any changes to `$value`, `$key`, or `$iterable` from within the iteratee will not persisted.
  *
- * @category Iterable
  * @param iterable|stdClass|null $iterable
  * @param callable $iteratee
  * @return mixed $iterable The original `$iterable`

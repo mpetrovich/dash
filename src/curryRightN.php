@@ -12,7 +12,6 @@ namespace Dash;
  *
  * @see curryN(), partialRight()
  *
- * @category Callable
  * @param callable $callable
  * @param integer $numRequiredArgs The number of parameters to require before calling `$callable`
  * @codingStandardsIgnoreLine

@@ -5,7 +5,6 @@ namespace Dash;
 /**
  * Creates a new function that invokes `$callable` with up to `$arity` arguments and ignores the rest.
  *
- * @category Callable
  * @param callable $callable
  * @param integer $arity Maximum number of arguments to accept
  * @return callable New function

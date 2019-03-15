@@ -5,7 +5,6 @@ namespace Dash;
 /**
  * Checks whether `$a` and `$b` are strictly equal (same value and type).
  *
- * @category Utility
  * @param mixed $a
  * @param mixed $b
  * @return boolean

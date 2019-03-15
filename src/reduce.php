@@ -5,7 +5,6 @@ namespace Dash;
 /**
  * Iteratively reduces `$iterable` to a single value by way of `$iteratee`.
  *
- * @category Iterable
  * @param iterable|stdClass|null $iterable
  * @param callable $iteratee Called with `($result, $value, $key)` for each `($key, $value)` in `$iterable`
  *                           and the current accumulated `$result`. `$iteratee` should return the updated `$result`

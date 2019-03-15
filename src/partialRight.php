@@ -13,7 +13,6 @@ namespace Dash;
  *
  * @see partial(), curryRight()
  *
- * @category Callable
  * @param callable $callable
  * @codingStandardsIgnoreLine
  * @param mixed ...$args (optional, variadic) arguments to pass to `$callable`

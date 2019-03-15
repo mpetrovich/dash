@@ -5,7 +5,6 @@ namespace Dash;
 /**
  * Invokes `$interceptor` with `($value)` and returns its result.
  *
- * @category Utility
  * @param mixed $value
  * @param callable $interceptor Invoked with `($value)`
  * @return mixed Return value of `$interceptor($value)`

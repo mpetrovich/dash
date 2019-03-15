@@ -8,7 +8,6 @@ namespace Dash;
  *
  * @see isType()
  *
- * @category Utility
  * @param mixed $value
  * @param string|array $type Single type to check or a list of accepted types
  * @param string $funcName (optional) Name of the calling function where `assertType()` was called;

@@ -5,7 +5,6 @@ namespace Dash;
 /**
  * Gets the value of the last element in `$iterable`.
  *
- * @category Iterable
  * @param iterable|stdClass|null $iterable
  * @return mixed|null Null if `$iterable` is empty
  *

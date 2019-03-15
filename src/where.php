@@ -6,7 +6,6 @@ namespace Dash;
  * @incomplete
  * Returns all elements of $iterable containing key-value pairs that loosely equal $properties.
  *
- * @category Iterable
  * @param iterable|stdClass $iterable
  * @param iterable|stdClass $properties
  * @return array

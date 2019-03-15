@@ -7,7 +7,6 @@ namespace Dash;
  *
  * @see getDirect(), hasDirect()
  *
- * @category Utility
  * @param array|object|ArrayAccess $input
  * @param string $key Array offset or object property name
  * @return mixed Reference to `$key` within `$input`

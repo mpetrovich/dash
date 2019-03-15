@@ -10,7 +10,6 @@ namespace Dash;
  *
  * @see reject()
  *
- * @category Iterable
  * @param iterable|stdClass|null $iterable
  * @param callable|string|array $predicate (optional) If a callable, invoked with `($value, $key, $iterable)`
  *                                         for each element in `$iterable`;

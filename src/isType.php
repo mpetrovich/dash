@@ -11,7 +11,6 @@ namespace Dash;
  *   `numeric` (for `is_numeric()`), `callable` (for `is_callable()`), etc.
  * - a class name: `stdClass`, `DateTime`, `Dash\_`, etc.
  *
- * @category Utility
  * @param mixed $value
  * @param string|array $type Single type to check or a list of accepted types
  * @return boolean

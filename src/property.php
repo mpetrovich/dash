@@ -5,7 +5,6 @@ namespace Dash;
 /**
  * Creates a function that returns the value at a `$path` for a given input.
  *
- * @category Iterable
  * @param string|number|null $path Path of the property to retrieve;
  *                                 can be nested by delimiting each sub-property or array index with a period.
  * @param mixed $default (optional) Default value to return if nothing exists at `$path`

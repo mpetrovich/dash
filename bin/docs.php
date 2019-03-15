@@ -110,18 +110,6 @@ function parseDocblock($docblock)
 		})
 		->value();
 
-	// Category
-	$op->category = _::chain($lines)
-		->filter(function ($line) { return strpos($line, '@category') === 0; })
-		->map(function ($line) {
-			$matches = [];
-			preg_match('/^@category\s+(.*)$/', $line, $matches);
-			$category = $matches[1];
-			return $category;
-		})
-		->first()
-		->value();
-
 	// Alias
 	$op->aliases = _::chain($lines)
 		->filter(function ($line) { return strpos($line, '@alias') === 0; })
@@ -207,8 +195,6 @@ function renderOp($op)
 {
 	$aliases = $op->aliases ? sprintf(' / %s', implode(' / ', $op->aliases)) : '';
 
-	$categorySlug = strtolower($op->category);
-
 	$related = _::chain((array) $op->related)
 		->map(function ($opName) {
 			return "`$opName()`";
@@ -267,8 +253,6 @@ END;
 
 {$op->name}$aliases
 ---
-[Operations](#operations) › [$op->category](#$categorySlug)
-
 $related
 
 ```php

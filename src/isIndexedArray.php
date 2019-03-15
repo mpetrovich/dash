@@ -5,7 +5,6 @@ namespace Dash;
 /**
  * Checks whether `$value` is an array with sequential integer keys starting at 0.
  *
- * @category Iterable
  * @param mixed $value
  * @return boolean True if `$value` is an indexed array, false otherwise
  *

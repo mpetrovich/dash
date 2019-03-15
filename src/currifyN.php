@@ -10,7 +10,6 @@ namespace Dash;
  *
  * @see currify(), curry(), partial()
  *
- * @category Callable
  * @param callable $callable
  * @param integer $totalArgs Total number of arguments accepted by `$callable`
  * @param array $args (optional) Initial arguments to pass to the final curried function

@@ -7,7 +7,6 @@ namespace Dash;
  *
  * @see getDirect()
  *
- * @category Utility
  * @param mixed $input
  * @param string $key Array offset, object property name, or method name
  * @return boolean

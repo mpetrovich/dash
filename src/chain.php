@@ -5,7 +5,6 @@ namespace Dash;
 /**
  * Creates a new chain. Alias for `_::chain()`.
  *
- * @category Utility
  * @param mixed $input (optional) Initial input value of the chain
  * @return Dash\_ A new chain
  *

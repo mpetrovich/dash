@@ -5,7 +5,6 @@ namespace Dash;
 /**
  * Gets the maximum value of all elements in `$iterable`.
  *
- * @category Iterable
  * @param iterable|stdClass|null $iterable
  * @return mixed|null Null if `$iterable` is empty
  *

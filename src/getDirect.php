@@ -10,7 +10,6 @@ namespace Dash;
  *
  * @see getDirectRef(), hasDirect(), get()
  *
- * @category Utility
  * @param mixed $input
  * @param string $key Array offset, object property name, or method name
  * @param mixed $default (optional) Value to return if `$input` has nothing at `$key`

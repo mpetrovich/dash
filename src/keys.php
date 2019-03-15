@@ -7,7 +7,6 @@ namespace Dash;
  *
  * @see values()
  *
- * @category Iterable
  * @param iterable|stdClass|null $iterable
  * @return array
  *

@@ -8,7 +8,6 @@ namespace Dash;
  * For iterables, this is the number of elements.
  * For strings, this is number of characters.
  *
- * @category Utility
  * @param iterable|string $value
  * @param string $encoding (optional) The character encoding of `$value` if it is a string;
  *                         see `mb_list_encodings()` for the list of supported encodings

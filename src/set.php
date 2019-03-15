@@ -8,7 +8,6 @@ namespace Dash;
  *
  * @see get(), getDirect(), property()
  *
- * @category Utility
  * @param mixed $input
  * @param string $path Path at which to set `$value`; can be a nested path (eg. `a.b.0.c`).
  *                     Intermediate arrays or objects will be created where missing (see examples)

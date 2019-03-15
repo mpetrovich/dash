@@ -10,7 +10,6 @@ namespace Dash;
  *
  * @see currifyN(), curry(), partial()
  *
- * @category Callable
  * @param callable $callable
  * @param array $args (optional) Initial arguments to pass to the final curried function
  * @param integer $rotate (optional) The number of arguments to move from start to end; see Dash\rotate()
