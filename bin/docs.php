@@ -227,7 +227,7 @@ function renderOp($op)
 	if ($op->params) {
 		$paramsTable = _::reduce($op->params, function ($output, $param) {
 			$type = str_replace('|', '\|', $param->type);
-			return $output . "`$param->name` | `$type` | $param->description\n";
+			return $output . rtrim("`$param->name` | `$type` | $param->description") . "\n";
 		}, "Parameter | Type | Description\n--- | --- | :---\n");
 	}
 	else {
@@ -236,9 +236,9 @@ function renderOp($op)
 
 	if ($op->return) {
 		$type = str_replace('|', '\|', $op->return->type);
-		$description = $op->return->description;
+		$description = $op->return->description ? " {$op->return->description}" : '';
 		$returnTable = <<<END
-**Returns** | `$type` | $description
+**Returns** | `$type` |$description
 END;
 	}
 	else {
@@ -247,8 +247,9 @@ END;
 
 	$examples = _::chain($op->examples)
 		->map(function ($example) {
+			$description = $example->description ? " {$example->description}" : '';
 			return <<<END
-**Example:** {$example->description}
+**Example:**{$description}
 ```php
 {$example->content}
 ```
