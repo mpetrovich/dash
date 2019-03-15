@@ -2203,7 +2203,7 @@ See also: `map()`, `mapValues()`
 mapResult($iterable, $path, $default = null): array
 
 # Curried: (all parameters required)
-Curry\mapResult($iteratee, $path)
+Curry\mapResult($path, $default, $iterable)
 ```
 Invokes the callable located at `$path` within each element in `$iterable`,
 and returns a new array of those callable return values.
