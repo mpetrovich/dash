@@ -7,11 +7,11 @@ use Dash\_;
 
 $sourceDir = $argv[1];
 $destFilepath = $argv[2];
-buildOps($sourceDir, $destFilepath);
+makeDocs($sourceDir, $destFilepath);
 
-function buildOps($sourceDir, $destFilepath)
+function makeDocs($sourceDir, $destFilepath)
 {
-	$categories = _::chain(new FilesystemIterator($sourceDir, FilesystemIterator::SKIP_DOTS))
+	$ops = _::chain(new FilesystemIterator($sourceDir, FilesystemIterator::SKIP_DOTS))
 		->reject(function ($fileinfo) { return $fileinfo->isDir(); })
 		->map(function ($fileinfo) { return pathinfo($fileinfo)['filename']; })
 		->reject(function ($name) { return $name[0] === '_'; })
@@ -19,30 +19,24 @@ function buildOps($sourceDir, $destFilepath)
 		->filter(function ($filepath) { return file_exists($filepath); })
 		->map('createOp')
 		->reject('isIncomplete')
-		->groupBy('category', 'Other')
-		->thru(function ($categories) {
-			uasort($categories, function ($categoryA, $categoryB) {
-				return count($categoryB) - count($categoryA);
-			});
-			return $categories;
+		->sort(function($op1, $op2) {
+			return strnatcmp($op1->name, $op2->name);
 		})
-		->each(function ($ops) { return _::sort($ops, _::property('name')); })
 		->value();
 
-	_::chain($categories)
-		->map('renderCategory')
+	$opDocs = _::chain($ops)
+		->map('renderOp')
 		->join("\n")
-		->thru(function ($renderedCategories) use ($categories) {
-			$tableOfContents = renderTableOfContents($categories);
-			return "$tableOfContents\n\n$renderedCategories";
-		})
-		->tap(function ($content) use ($destFilepath) { file_put_contents($destFilepath, $content); })
-		->run();
+		->value();
+
+	$tableOfContents = renderTableOfContents($ops);
+
+	file_put_contents($destFilepath, "$tableOfContents\n\n$opDocs");
 }
 
 function createOp($filepath)
 {
-	$docblock = extractDocblock($filepath);
+	$docblock = extractDocblockString($filepath);
 	$op = parseDocblock($docblock);
 
 	$op->name = pathinfo($filepath)['filename'];
@@ -59,7 +53,7 @@ function createOp($filepath)
 	return $op;
 }
 
-function extractDocblock($filepath)
+function extractDocblockString($filepath)
 {
 	$content = file_get_contents($filepath);
 	$matches = [];
@@ -222,7 +216,7 @@ function renderOp($op)
 		->join(', ')
 		->value();
 
-	$related = $related ? "Related: $related" : '';
+	$related = $related ? "See also: $related" : '';
 
 	if ($op->params) {
 		$paramsTable = _::reduce($op->params, function ($output, $param) {
@@ -275,11 +269,12 @@ END;
 ---
 [Operations](#operations) › [$op->category](#$categorySlug)
 
+$related
+
 ```php
 {$op->signature}$returnType{$curriedSignature}
 ```
 {$op->description}
-$related
 
 $paramsTable$returnTable
 
@@ -289,49 +284,17 @@ $examples
 END;
 }
 
-function renderCategory($ops, $category)
+function renderTableOfContents($ops)
 {
-	$renderedOps = _::chain($ops)
+	$opSummaries = _::chain($ops)
 		->sort(function($op1, $op2) {
 			return strnatcmp($op1->name, $op2->name);
 		})
-		->map('renderOp')
-		->join("\n")
-		->value();
-
-	return <<<END
-$category
-===
-$renderedOps
-
-END;
-}
-
-function renderTableOfContents($categories)
-{
-	$renderedCategories = _::chain($categories)
-		->map(function ($ops, $category) {
-			$rows = _::chain($ops)
-				->sort(function($op1, $op2) {
-					return strnatcmp($op1->name, $op2->name);
-				})
-				->map(function ($op) {
-					$returnType = $op->return->type ? ": {$op->return->type}" : '';
-					$returnType = str_replace('|', '\\|', $returnType);
-					$aliases = $op->aliases ? ' / ' . implode(' / ', $op->aliases) : '';
-					return "[$op->name](#$op->slug)$aliases | `{$op->signature}{$returnType}`";
-				})
-				->join("\n")
-				->value();
-
-			return <<<END
-$category
----
-Operation | Signature
-:--- | :---
-$rows
-
-END;
+		->map(function ($op) {
+			$returnType = $op->return->type ? ": {$op->return->type}" : '';
+			$returnType = str_replace('|', '\\|', $returnType);
+			$aliases = $op->aliases ? ' / ' . implode(' / ', $op->aliases) : '';
+			return "[$op->name](#$op->slug)$aliases | `{$op->signature}{$returnType}`";
 		})
 		->join("\n")
 		->value();
@@ -341,6 +304,8 @@ Operations
 ===
 Is there an operation you'd like to see? [Open an issue](https://github.com/mpetrovich/dash/issues/new?labels=enhancement) or vote on an existing one.
 
-$renderedCategories
+Operation | Signature
+:--- | :---
+$opSummaries
 END;
 }

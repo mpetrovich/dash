@@ -2,18 +2,31 @@ Operations
 ===
 Is there an operation you'd like to see? [Open an issue](https://github.com/mpetrovich/dash/issues/new?labels=enhancement) or vote on an existing one.
 
-Iterable
----
 Operation | Signature
 :--- | :---
 [all](#all--every) / every | `all($iterable, $predicate = 'Dash\identity'): boolean`
 [any](#any--some) / some | `any($iterable, $predicate = 'Dash\identity'): boolean`
+[apply](#apply) | `apply(callable $callable, $args): mixed`
+[ary](#ary) | `ary(callable $callable, $arity): callable`
+[assertType](#asserttype) | `assertType($value, $type, $funcName = __FUNCTION__): void`
 [at](#at) | `at($iterable, $index, $default = null): mixed`
 [average](#average--mean) / mean | `average($iterable): double\|null`
+[call](#call) | `call(callable $callable /*, ...args */): mixed`
+[chain](#chain) | `chain($input = null): Dash\_`
+[compare](#compare) | `compare($a, $b): integer`
 [contains](#contains--includes) / includes | `contains($iterable, $target, $comparator = 'Dash\equal'): boolean`
+[currify](#currify) | `currify(callable $callable, array $args = [], $rotate = 1): function\|mixed`
+[currifyN](#currifyn) | `currifyN(callable $callable, $totalArgs, array $args = [], $rotate = 1): function\|mixed`
+[curry](#curry) | `curry(callable $callable /*, ...args */): function\|mixed`
+[curryN](#curryn) | `curryN(callable $callable, $numRequiredArgs /*, ...args */): function\|mixed`
+[curryRight](#curryright) | `curryRight(callable $callable /*, ...args */): function\|mixed`
+[curryRightN](#curryrightn) | `curryRightN(callable $callable, $numRequiredArgs /*, ...args */): function\|mixed`
+[custom](#custom) | `custom($name): function`
+[debug](#debug) | `debug($value /*, ...value */): mixed`
 [deltas](#deltas) | `deltas($iterable): array`
 [difference](#difference) | `difference($iterable /*, ...iterables */): array`
 [each](#each) | `each($iterable, $iteratee): mixed`
+[equal](#equal) | `equal($a, $b): boolean`
 [filter](#filter) | `filter($iterable, $predicate = 'Dash\identity'): array`
 [find](#find) | `find($iterable, $predicate = 'Dash\identity'): array\|null`
 [findKey](#findkey) | `findKey($iterable, $predicate = 'Dash\identity'): string\|null`
@@ -22,9 +35,19 @@ Operation | Signature
 [findLastValue](#findlastvalue) | `findLastValue($iterable, $predicate = 'Dash\identity'): mixed\|null`
 [findValue](#findvalue) | `findValue($iterable, $predicate = 'Dash\identity'): mixed\|null`
 [first](#first--head) / head | `first($iterable): mixed\|null`
+[get](#get) | `get($input, $path, $default = null): mixed`
+[getDirect](#getdirect) | `getDirect($input, $key, $default = null): mixed`
+[getDirectRef](#getdirectref) | `getDirectRef(&$input, $key): mixed`
 [groupBy](#groupby) | `groupBy($iterable, $iteratee = 'Dash\identity', $defaultGroup = null): array`
+[hasDirect](#hasdirect) | `hasDirect($input, $key): boolean`
+[identical](#identical) | `identical($a, $b): boolean`
+[identity](#identity) | `identity($value): mixed`
 [intersection](#intersection) | `intersection($iterable /*, ...iterables */): array`
+[isEmpty](#isempty) | `isEmpty($value): boolean`
+[isEven](#iseven) | `isEven($value): boolean`
 [isIndexedArray](#isindexedarray) | `isIndexedArray($value): boolean`
+[isOdd](#isodd) | `isOdd($value): boolean`
+[isType](#istype) | `isType($value, $type): boolean`
 [join](#join--implode) / implode | `join($iterable, $separator): string`
 [keyBy](#keyby--indexby) / indexBy | `keyBy($iterable, $iteratee = 'Dash\identity'): array`
 [keys](#keys) | `keys($iterable): array`
@@ -36,79 +59,38 @@ Operation | Signature
 [max](#max) | `max($iterable): mixed\|null`
 [median](#median) | `median($iterable): mixed\|null`
 [min](#min) | `min($iterable): mixed\|null`
+[negate](#negate) | `negate(callable $predicate): callable`
 [omit](#omit) | `omit($iterable, $keys): array`
+[partial](#partial) | `partial($callable /*, ...args */): callable`
+[partialRight](#partialright) | `partialRight($callable /*, ...args */): callable`
 [pick](#pick) | `pick($iterable, $keys): array`
 [pluck](#pluck) | `pluck($iterable, $path, $default = null): array`
 [property](#property) | `property($path, $default = null): function`
 [reduce](#reduce) | `reduce($iterable, $iteratee, $initial = []): mixed`
 [reject](#reject) | `reject($iterable, $predicate = 'Dash\identity'): array`
+[result](#result) | `result($input, $path, $default = null): mixed`
 [reverse](#reverse) | `reverse($iterable, $preserveIntegerKeys = false): array`
 [rotate](#rotate) | `rotate($iterable, $count = 1): array`
+[set](#set) | `set(&$input, $path, $value): mixed`
+[size](#size--count) / count | `size($value, $encoding = 'UTF-8'): integer`
 [sort](#sort) | `sort($iterable, $comparator = 'Dash\compare'): array`
 [sum](#sum) | `sum($iterable): numeric`
 [take](#take) | `take($iterable, $count = 1): array`
 [takeRight](#takeright) | `takeRight($iterable, $count = 1): array`
+[tap](#tap) | `tap($value, callable $interceptor): mixed`
+[thru](#thru) | `thru($value, callable $interceptor): mixed`
 [toArray](#toarray) | `toArray($value): array`
 [toObject](#toobject) | `toObject($value): object`
+[unary](#unary) | `unary(callable $callable): callable`
 [union](#union) | `union($iterable /*, ...iterables */): array`
 [values](#values) | `values($iterable): array`
 
-Utility
----
-Operation | Signature
-:--- | :---
-[assertType](#asserttype) | `assertType($value, $type, $funcName = __FUNCTION__): void`
-[chain](#chain) | `chain($input = null): Dash\_`
-[compare](#compare) | `compare($a, $b): integer`
-[custom](#custom) | `custom($name): function`
-[debug](#debug) | `debug($value /*, ...value */): mixed`
-[equal](#equal) | `equal($a, $b): boolean`
-[get](#get) | `get($input, $path, $default = null): mixed`
-[getDirect](#getdirect) | `getDirect($input, $key, $default = null): mixed`
-[getDirectRef](#getdirectref) | `getDirectRef(&$input, $key): mixed`
-[hasDirect](#hasdirect) | `hasDirect($input, $key): boolean`
-[identical](#identical) | `identical($a, $b): boolean`
-[identity](#identity) | `identity($value): mixed`
-[isEmpty](#isempty) | `isEmpty($value): boolean`
-[isType](#istype) | `isType($value, $type): boolean`
-[result](#result) | `result($input, $path, $default = null): mixed`
-[set](#set) | `set(&$input, $path, $value): mixed`
-[size](#size--count) / count | `size($value, $encoding = 'UTF-8'): integer`
-[tap](#tap) | `tap($value, callable $interceptor): mixed`
-[thru](#thru) | `thru($value, callable $interceptor): mixed`
-
-Callable
----
-Operation | Signature
-:--- | :---
-[apply](#apply) | `apply(callable $callable, $args): mixed`
-[ary](#ary) | `ary(callable $callable, $arity): callable`
-[call](#call) | `call(callable $callable /*, ...args */): mixed`
-[currify](#currify) | `currify(callable $callable, array $args = [], $rotate = 1): function\|mixed`
-[currifyN](#currifyn) | `currifyN(callable $callable, $totalArgs, array $args = [], $rotate = 1): function\|mixed`
-[curry](#curry) | `curry(callable $callable /*, ...args */): function\|mixed`
-[curryN](#curryn) | `curryN(callable $callable, $numRequiredArgs /*, ...args */): function\|mixed`
-[curryRight](#curryright) | `curryRight(callable $callable /*, ...args */): function\|mixed`
-[curryRightN](#curryrightn) | `curryRightN(callable $callable, $numRequiredArgs /*, ...args */): function\|mixed`
-[negate](#negate) | `negate(callable $predicate): callable`
-[partial](#partial) | `partial($callable /*, ...args */): callable`
-[partialRight](#partialright) | `partialRight($callable /*, ...args */): callable`
-[unary](#unary) | `unary(callable $callable): callable`
-
-Number
----
-Operation | Signature
-:--- | :---
-[isEven](#iseven) | `isEven($value): boolean`
-[isOdd](#isodd) | `isOdd($value): boolean`
-
-
-Iterable
-===
 
 all / every
 ---
 [Operations](#operations) › [Iterable](#iterable)
+
+
 
 ```php
 all($iterable, $predicate = 'Dash\identity'): boolean
@@ -121,7 +103,6 @@ Checks whether `$predicate` returns truthy for every item in `$iterable`.
 Iteration will stop at the first falsey return value.
 
 Note: Returns true if `$iterable` is empty, because everything is true of empty iterables.
-
 
 Parameter | Type | Description
 --- | --- | :---
@@ -160,6 +141,8 @@ any / some
 ---
 [Operations](#operations) › [Iterable](#iterable)
 
+
+
 ```php
 any($iterable, $predicate = 'Dash\identity'): boolean
 
@@ -169,7 +152,6 @@ Curry\any($predicate, $iterable)
 Checks whether `$predicate` returns truthy for any item in `$iterable`.
 
 Iteration will stop at the first truthy return value.
-
 
 
 Parameter | Type | Description
@@ -205,9 +187,127 @@ Dash\any([false, false, false]);
 
 [↑ Top](#operations)
 
+apply
+---
+[Operations](#operations) › [Callable](#callable)
+
+
+
+```php
+apply(callable $callable, $args): mixed
+
+# Curried: (all parameters required)
+Curry\apply($callable, $args)
+```
+Invokes `$callable` with a list of arguments.
+
+Note: Contrary to other curried operations, the curried version of this operation
+accepts arguments in the same order as the original method.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` |
+`$args` | `iterable\|stdClass` | Arguments to pass to `$callable`
+**Returns** | `mixed` | Return value of `$callable`
+
+**Example:**
+```php
+$func = function ($time, $name) {
+	return "Good $time, $name";
+};
+
+Dash\apply($func, ['morning', 'John']);
+// === 'Good morning, John'
+
+```
+
+**Example:** Curried version accepts arguments in the same order
+```php
+$func = function ($time, $name) {
+	return "Good $time, $name";
+};
+
+$apply = Dash\Curry\apply($func);
+
+$apply(['morning', 'John']);
+// === 'Good morning, John'
+```
+
+[↑ Top](#operations)
+
+ary
+---
+[Operations](#operations) › [Callable](#callable)
+
+
+
+```php
+ary(callable $callable, $arity): callable
+
+# Curried: (all parameters required)
+Curry\ary($arity, $callable)
+```
+Creates a new function that invokes `$callable` with up to `$arity` arguments and ignores the rest.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` |
+`$arity` | `integer` | Maximum number of arguments to accept
+**Returns** | `callable` | New function
+
+**Example:**
+```php
+$isNumeric = Dash\ary('is_numeric', 1);
+
+Dash\filter([1, 2.0, '3', 'a'], $isNumeric);
+// === [1, 2.0, '3']
+```
+
+[↑ Top](#operations)
+
+assertType
+---
+[Operations](#operations) › [Utility](#utility)
+
+Related: `isType()`
+
+```php
+assertType($value, $type, $funcName = __FUNCTION__): void
+
+# Curried: (all parameters required)
+Curry\assertType($type, $funcName, input)
+```
+Throws an `InvalidArgumentException` exception if `$value` is not of type `$type`.
+If `$value` is an accepted type, this function is a no-op.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `mixed` |
+`$type` | `string\|array` | Single type to check or a list of accepted types
+`$funcName` | `string` | (optional) Name of the calling function where `assertType()` was called; this is used in the thrown exception message and aids debugging
+**Returns** | `void` |
+
+**Example:**
+```php
+$value = [1, 2, 3];
+Dash\assertType($value, ['iterable', 'stdClass']);
+// Does not throw an exception
+
+$value = [1, 2, 3];
+Dash\assertType($value, 'object');
+// Throws an exception
+```
+
+[↑ Top](#operations)
+
 at
 ---
 [Operations](#operations) › [Iterable](#iterable)
+
+
 
 ```php
 at($iterable, $index, $default = null): mixed
@@ -216,7 +316,6 @@ at($iterable, $index, $default = null): mixed
 Curry\at($index, $default, $iterable)
 ```
 Iterates over `$iterable` and returns the value of the `$index`th element, ignoring keys.
-
 
 
 Parameter | Type | Description
@@ -251,6 +350,8 @@ average / mean
 ---
 [Operations](#operations) › [Iterable](#iterable)
 
+
+
 ```php
 average($iterable): double|null
 
@@ -258,7 +359,6 @@ average($iterable): double|null
 Curry\average($iterable)
 ```
 Gets the average value of all elements in `$iterable`.
-
 
 
 Parameter | Type | Description
@@ -274,9 +374,111 @@ Dash\average([2, 3, 5, 8]);
 
 [↑ Top](#operations)
 
+call
+---
+[Operations](#operations) › [Callable](#callable)
+
+
+
+```php
+call(callable $callable /*, ...args */): mixed
+```
+Invokes `$callable` with an inline list of arguments.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` |
+`...$args` | `mixed` | Inline arguments to pass to `$callable`
+**Returns** | `mixed` | Return value of `$callable`
+
+**Example:**
+```php
+$func = function ($time, $name) {
+	return "Good $time, $name";
+};
+
+Dash\call($func, 'morning', 'John');
+// === 'Good morning, John'
+```
+
+[↑ Top](#operations)
+
+chain
+---
+[Operations](#operations) › [Utility](#utility)
+
+
+
+```php
+chain($input = null): Dash\_
+
+# Curried: (all parameters required)
+Curry\chain($input)
+```
+Creates a new chain. Alias for `_::chain()`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$input` | `mixed` | (optional) Initial input value of the chain
+**Returns** | `Dash\_` | A new chain
+
+**Example:**
+```php
+Dash\chain([1, 2, 3])
+	->filter(function ($n) { return $n < 3; })
+	->map(function ($n) { return $n * 2; })
+	->value();
+// === [2, 4]
+```
+
+[↑ Top](#operations)
+
+compare
+---
+[Operations](#operations) › [Utility](#utility)
+
+
+
+```php
+compare($a, $b): integer
+
+# Curried: (all parameters required)
+Curry\compare($b, $a)
+```
+Returns a number less than, equal to, or greater than zero
+if `$a` is less than, equal to, or greater than `$b`, respectively.
+
+Uses loose equality for comparison. For comparison tables across data types,
+see: http://php.net/manual/en/types.comparisons.php
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$a` | `mixed` |
+`$b` | `mixed` |
+**Returns** | `integer` |
+
+**Example:**
+```php
+Dash\compare(2, 3);
+// < 0
+
+Dash\compare(2, 1);
+// > 0
+
+Dash\compare(2, 2);
+// === 0
+```
+
+[↑ Top](#operations)
+
 contains / includes
 ---
 [Operations](#operations) › [Iterable](#iterable)
+
+
 
 ```php
 contains($iterable, $target, $comparator = 'Dash\equal'): boolean
@@ -285,7 +487,6 @@ contains($iterable, $target, $comparator = 'Dash\equal'): boolean
 Curry\contains($target, $comparator, $iterable)
 ```
 Checks whether `$iterable` has any elements for which `$comparator` returns truthy.
-
 
 
 Parameter | Type | Description
@@ -310,9 +511,391 @@ Dash\contains([1, '2', 3], 2, 'Dash\identical');
 
 [↑ Top](#operations)
 
+currify
+---
+[Operations](#operations) › [Callable](#callable)
+
+Related: `currifyN()`, `curry()`, `partial()`
+
+```php
+currify(callable $callable, array $args = [], $rotate = 1): function|mixed
+```
+Creates a new, curried version of `$callable` where the first `$rotate` arguments
+are moved to the end of the arguments list.
+
+In essence, this takes a data-first function and returns a curryable data-last function.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` |
+`$args` | `array` | (optional) Initial arguments to pass to the final curried function
+`$rotate` | `integer` | (optional) The number of arguments to move from start to end; see Dash\rotate()
+**Returns** | `function\|mixed` |
+
+**Example:**
+```php
+$greet = function ($name, $greeting, $punctuation) {
+	return "$greeting, $name$punctuation";
+};
+
+$goodMorning = Dash\currify($greet, ['Good morning', '!']);
+$goodMorning('John')
+// === 'Good morning, John!'
+
+```
+
+**Example:** With a custom `$rotate`
+```php
+$greet = function ($salutation, $name, $greeting, $punctuation) {
+	return "$greeting, $salutation $name$punctuation";
+};
+
+$goodMorning = Dash\currify($greet, ['Good morning', '!'], 2);
+$goodMorning('Sir', 'John')
+// === 'Good morning, Sir John!'
+```
+
+[↑ Top](#operations)
+
+currifyN
+---
+[Operations](#operations) › [Callable](#callable)
+
+Related: `currify()`, `curry()`, `partial()`
+
+```php
+currifyN(callable $callable, $totalArgs, array $args = [], $rotate = 1): function|mixed
+```
+Creates a new, curried version of `$callable` where the first `$rotate` of `$totalArgs` arguments
+are moved to the end of the arguments list.
+
+In essence, this takes a data-first function and returns a curryable data-last function.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` |
+`$totalArgs` | `integer` | Total number of arguments accepted by `$callable`
+`$args` | `array` | (optional) Initial arguments to pass to the final curried function
+`$rotate` | `integer` | (optional) The number of arguments to move from start to end; see Dash\rotate()
+**Returns** | `function\|mixed` |
+
+
+
+[↑ Top](#operations)
+
+curry
+---
+[Operations](#operations) › [Callable](#callable)
+
+Related: `curryN()`, `curryRight()`, `partial()`, `currify()`
+
+```php
+curry(callable $callable /*, ...args */): function|mixed
+```
+Creates a new function that returns the result of `$callable` if its required number of parameters are supplied;
+otherwise, it returns a function that accepts the remaining number of required parameters.
+
+Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` | Any valid callable except for relative static methods, eg. ['A', 'parent::foo']
+`...$args` | `mixed` | (optional, variadic) arguments to pass to `$callable`
+**Returns** | `function\|mixed` |
+
+**Example:**
+```php
+$greet = function ($greeting, $salutation, $name) {
+	return "$greeting, $salutation $name";
+};
+
+$goodMorning = Dash\curry($greet, 'Good morning');
+$goodMorning('Ms.', 'Mary');
+// === 'Good morning, Ms. Mary'
+
+$goodMorning = Dash\curry($greet, 'Good morning');
+$goodMorningSir = $goodMorning('Sir');
+$goodMorningSir('Peter');
+// === 'Good morning, Sir Peter'
+
+```
+
+**Example:** With placeholders
+```php
+$greet = function ($greeting, $salutation, $name) {
+	return "$greeting, $salutation $name";
+};
+
+$greetMary = Dash\curry($greet, Dash\_, 'Ms.', 'Mary');
+$greetMary('Good morning');
+// === 'Good morning, Ms. Mary'
+
+$greetSir = Dash\curry($greet, Dash\_, 'Sir');
+$goodMorningSir = $greetSir('Good morning');
+$goodMorningSir('Peter');
+// === 'Good morning, Sir Peter'
+```
+
+[↑ Top](#operations)
+
+curryN
+---
+[Operations](#operations) › [Callable](#callable)
+
+Related: `curry()`
+
+```php
+curryN(callable $callable, $numRequiredArgs /*, ...args */): function|mixed
+```
+Creates a new function that returns the result of `$callable` if the required number of parameters are supplied;
+otherwise, it returns a function that accepts the remaining number of required parameters.
+
+Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` |
+`$numRequiredArgs` | `integer` | The number of parameters to require before calling `$callable`
+`...$args` | `mixed` | (optional, variadic) arguments to pass to `$callable`
+**Returns** | `function\|mixed` |
+
+**Example:**
+```php
+$greet = function ($greeting, $salutation, $name, $punctuation = '!') {
+	return "$greeting, $salutation $name$punctuation";
+};
+
+$goodMorning = Dash\curryN($greet, 3, 'Good morning');
+$goodMorning('Ms.', 'Mary');
+// === 'Good morning, Ms. Mary!'
+
+$goodMorning = Dash\curryN($greet, 3, 'Good morning');
+$goodMorningSir = $goodMorning('Sir');
+$goodMorningSir('Peter');
+// === 'Good morning, Sir Peter!'
+
+```
+
+**Example:** With placeholders
+```php
+$greet = function ($greeting, $salutation, $name, $punctuation = '!') {
+	return "$greeting, $salutation $name$punctuation";
+};
+
+$greetSir = Dash\curryN($greet, 3, Dash\_, 'Sir');
+$goodMorningSir = $greetSir('Good morning');
+$goodMorningSir('Peter');
+// === 'Good morning, Sir Peter!'
+
+$greetMary = Dash\curryN($greet, 3, Dash\_, Dash\_, 'Mary');
+$greetMsMary = $greetMary(Dash\_, 'Ms.');
+$greetMsMary('Good morning');
+// === 'Good morning, Ms. Mary!'
+```
+
+[↑ Top](#operations)
+
+curryRight
+---
+[Operations](#operations) › [Callable](#callable)
+
+Related: `curry()`, `partial()`
+
+```php
+curryRight(callable $callable /*, ...args */): function|mixed
+```
+Creates a new function that returns the result of `$callable` if its required number of parameters are supplied;
+otherwise, it returns a function that accepts the remaining number of required parameters.
+
+Like `partialRight()`, arguments are applied in reverse order.
+
+Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` |
+`...$args` | `mixed` | (optional, variadic) arguments to pass to `$callable`
+**Returns** | `function\|mixed` |
+
+**Example:**
+```php
+$greet = function ($greeting, $salutation, $name) {
+	return "$greeting, $salutation $name";
+};
+
+$goodMorning = Dash\curryRight($greet, 'Good morning');
+$goodMorning('Ms.', 'Mary');
+// === 'Good morning, Ms. Mary'
+
+$goodMorning = Dash\curryRight($greet, 'Good morning');
+$goodMorningSir = $goodMorning('Sir');
+$goodMorningSir('Peter');
+// === 'Good morning, Sir Peter'
+
+```
+
+**Example:** With placeholders
+```php
+$greet = function ($greeting, $salutation, $name) {
+	return "$greeting, $salutation $name";
+};
+
+$greetMary = Dash\curryRight($greet, Dash\_, 'Ms.', 'Mary');
+$greetMary('Good morning');
+// === 'Good morning, Ms. Mary'
+
+$greetSir = Dash\curryRight($greet, Dash\_, 'Sir');
+$goodMorningSir = $greetSir('Good morning');
+$goodMorningSir('Peter');
+// === 'Good morning, Sir Peter'
+```
+
+[↑ Top](#operations)
+
+curryRightN
+---
+[Operations](#operations) › [Callable](#callable)
+
+Related: `curryN()`, `partialRight()`
+
+```php
+curryRightN(callable $callable, $numRequiredArgs /*, ...args */): function|mixed
+```
+Creates a new function that returns the result of `$callable` if the required number of parameters are supplied;
+otherwise, it returns a function that accepts the remaining number of required parameters.
+
+Like `partialRight()`, arguments are applied in reverse order.
+
+Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` |
+`$numRequiredArgs` | `integer` | The number of parameters to require before calling `$callable`
+`...$args` | `mixed` | (optional, variadic) arguments to pass to `$callable`
+**Returns** | `function\|mixed` |
+
+**Example:**
+```php
+$greet = function ($greeting, $salutation, $name, $punctuation = '!') {
+	return "$greeting, $salutation $name$punctuation";
+};
+
+$greetMary = Dash\curryRightN($greet, 3, 'Mary');
+$greetMsMary = $greetMary('Ms.');
+$greetMsMary('Good morning');
+// === 'Good morning, Ms. Mary!
+
+$greetPeter = Dash\curryRightN($greet, 3, 'Peter');
+$greetSirPeter = $greetPeter('Sir');
+$greetSirPeter('Good morning');
+// === 'Good morning, Sir Peter!
+
+```
+
+**Example:** With placeholders
+```php
+$greet = function ($greeting, $salutation, $name, $punctuation = '!') {
+	return "$greeting, $salutation $name$punctuation";
+};
+
+$goodMorning = Dash\curryRightN($greet, 3, 'Good morning', Dash\_, Dash\_);
+$goodMorningSir = $goodMorning('Sir', Dash\_);
+$goodMorningSir('Peter');
+// === 'Good morning, Sir Peter!
+
+$greetMs = Dash\curryRightN($greet, 3, 'Ms.', Dash\_);
+$goodMorningMs = $greetMs('Good morning', Dash\_);
+$goodMorningMs('Mary');
+// === 'Good morning, Ms. Mary!
+```
+
+[↑ Top](#operations)
+
+custom
+---
+[Operations](#operations) › [Utility](#utility)
+
+
+
+```php
+custom($name): function
+
+# Curried: (all parameters required)
+Curry\custom($name)
+```
+Gets a custom operation by name.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$name` | `string` | Name of the custom operation
+**Returns** | `function` | The custom operation
+
+**Example:**
+```php
+_::setCustom('double', function ($n) { return $n * 2; });
+
+$double = Dash\custom('double');
+$double(3);
+// === 6
+
+_::chain([1, 2, 3])->map(Dash\custom('double'))->value();
+// === [2, 4, 6]
+```
+
+[↑ Top](#operations)
+
+debug
+---
+[Operations](#operations) › [Utility](#utility)
+
+
+
+```php
+debug($value /*, ...value */): mixed
+
+# Curried: (all parameters required)
+Curry\debug(...value)
+```
+Prints debugging information for one or more values.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `mixed` | (variadic) One or more values to debug
+**Returns** | `mixed` | The first argument
+
+**Example:**
+```php
+Dash\debug([1, 2, 3], 'hello', null);
+// === [1, 2, 3]
+
+// Prints:
+array (
+  0 => 1,
+  1 => 2,
+  2 => 3,
+)
+'hello'
+NULL
+
+@codeCoverageIgnore Due to output buffering
+```
+
+[↑ Top](#operations)
+
 deltas
 ---
 [Operations](#operations) › [Iterable](#iterable)
+
+
 
 ```php
 deltas($iterable): array
@@ -321,7 +904,6 @@ deltas($iterable): array
 Curry\deltas($iterable)
 ```
 Returns a new array whose values are the differences between successive values of `$iterable`.
-
 
 
 Parameter | Type | Description
@@ -341,6 +923,8 @@ difference
 ---
 [Operations](#operations) › [Iterable](#iterable)
 
+Related: `intersection()`, `union()`
+
 ```php
 difference($iterable /*, ...iterables */): array
 ```
@@ -349,7 +933,6 @@ where values are compared using loose equality.
 
 The order, keys, and values of elements in the returned array are determined by `$iterable`.
 
-Related: `intersection()`, `union()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -383,6 +966,8 @@ each
 ---
 [Operations](#operations) › [Iterable](#iterable)
 
+
+
 ```php
 each($iterable, $iteratee): mixed
 
@@ -394,7 +979,6 @@ Iterates over elements of `$iterable` and invokes `$iteratee` for each element.
 `$iteratee` is invoked with `($value, $key, $iterable)` for each element.
 Iteratees can exit iteration early by returning `false`.
 Any changes to `$value`, `$key`, or `$iterable` from within the iteratee will not persisted.
-
 
 
 Parameter | Type | Description
@@ -430,9 +1014,49 @@ Dash\each(['a', 'b', 'c'], function ($value, $index, $array) {
 
 [↑ Top](#operations)
 
+equal
+---
+[Operations](#operations) › [Utility](#utility)
+
+
+
+```php
+equal($a, $b): boolean
+
+# Curried: (all parameters required)
+Curry\equal($b, $a)
+```
+Checks whether `$a` and `$b` are loosely equal (same value, possibly different types).
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$a` | `mixed` |
+`$b` | `mixed` |
+**Returns** | `boolean` |
+
+**Example:**
+```php
+Dash\equal(3, '3');
+// === true
+
+Dash\equal(3, 3);
+// === true
+
+Dash\equal([1, 2, 3], [1, '2', 3]);
+// === true
+
+Dash\equal([1, 2, 3], [3, 2, 1]);
+// === false
+```
+
+[↑ Top](#operations)
+
 filter
 ---
 [Operations](#operations) › [Iterable](#iterable)
+
+Related: `reject()`
 
 ```php
 filter($iterable, $predicate = 'Dash\identity'): array
@@ -445,7 +1069,6 @@ Gets a list of elements in `$iterable` for which `$predicate` returns truthy.
 Keys are preserved unless `$iterable` is an indexed array.
 An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
 
-Related: `reject()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -499,6 +1122,8 @@ find
 ---
 [Operations](#operations) › [Iterable](#iterable)
 
+Related: `findKey()`, `findValue()`, `findLast()`
+
 ```php
 find($iterable, $predicate = 'Dash\identity'): array|null
 
@@ -509,7 +1134,6 @@ Gets the key and value of the first element for which `$predicate` returns truth
 
 Iteration will stop at the first truthy return value.
 
-Related: `findKey()`, `findValue()`, `findLast()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -559,6 +1183,8 @@ findKey
 ---
 [Operations](#operations) › [Iterable](#iterable)
 
+Related: `find()`, `findValue()`, `findLastKey()`
+
 ```php
 findKey($iterable, $predicate = 'Dash\identity'): string|null
 
@@ -569,7 +1195,6 @@ Gets the key of the first element for which `$predicate` returns truthy.
 
 Iteration will stop at the first truthy return value.
 
-Related: `find()`, `findValue()`, `findLastKey()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -619,6 +1244,8 @@ findLast
 ---
 [Operations](#operations) › [Iterable](#iterable)
 
+Related: `findLastKey()`, `findLastValue()`, `find()`
+
 ```php
 findLast($iterable, $predicate = 'Dash\identity'): array|null
 
@@ -629,7 +1256,6 @@ Gets the key and value of the last element for which `$predicate` returns truthy
 
 Iteration begin at the end and will stop at the last truthy return value.
 
-Related: `findLastKey()`, `findLastValue()`, `find()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -679,6 +1305,8 @@ findLastKey
 ---
 [Operations](#operations) › [Iterable](#iterable)
 
+Related: `findLast()`, `findLastValue()`, `findKey()`
+
 ```php
 findLastKey($iterable, $predicate = 'Dash\identity'): string|null
 
@@ -689,7 +1317,6 @@ Gets the key of the last element for which `$predicate` returns truthy.
 
 Iteration begin at the end and will stop at the last truthy return value.
 
-Related: `findLast()`, `findLastValue()`, `findKey()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -739,6 +1366,8 @@ findLastValue
 ---
 [Operations](#operations) › [Iterable](#iterable)
 
+Related: `findLast()`, `findLastKey()`, `findValue()`
+
 ```php
 findLastValue($iterable, $predicate = 'Dash\identity'): mixed|null
 
@@ -749,7 +1378,6 @@ Gets the value of the last element for which `$predicate` returns truthy.
 
 Iteration begin at the end and will stop at the last truthy return value.
 
-Related: `findLast()`, `findLastKey()`, `findValue()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -799,6 +1427,8 @@ findValue
 ---
 [Operations](#operations) › [Iterable](#iterable)
 
+Related: `find()`, `findKey()`, `findLastValue()`
+
 ```php
 findValue($iterable, $predicate = 'Dash\identity'): mixed|null
 
@@ -809,7 +1439,6 @@ Gets the value of the first element for which `$predicate` returns truthy.
 
 Iteration will stop at the first truthy return value.
 
-Related: `find()`, `findKey()`, `findLastValue()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -859,6 +1488,8 @@ first / head
 ---
 [Operations](#operations) › [Iterable](#iterable)
 
+
+
 ```php
 first($iterable): mixed|null
 
@@ -866,7 +1497,6 @@ first($iterable): mixed|null
 Curry\first($iterable)
 ```
 Gets the value of the first element in `$iterable`.
-
 
 
 Parameter | Type | Description
@@ -885,9 +1515,142 @@ Dash\first([]);
 
 [↑ Top](#operations)
 
+get
+---
+[Operations](#operations) › [Utility](#utility)
+
+Related: `getDirect()`, `has()`, `property()`
+
+```php
+get($input, $path, $default = null): mixed
+
+# Curried: (all parameters required)
+Curry\get($path, $default, $input)
+```
+Gets the value at `$path` within `$input`. Nested properties are accessible with dot notation.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$input` | `mixed` |
+`$path` | `callable\|string\|number` | If a callable, invoked with `($input)` to get the value at `$path`; if a string or number, `Dash\property($path)` used to get the value at `$path`
+`$default` | `mixed` | (optional) Value to return if `$path` does not exist within `$input`
+**Returns** | `mixed` | Value at `$path` or `$default` if no value exists
+
+**Example:**
+```php
+$input = [
+	'people' => [
+		['name' => 'Pete'],
+		['name' => 'John'],
+		['name' => 'Mark'],
+	]
+];
+Dash\get($input, 'people.2.name');
+// === 'Mark'
+
+```
+
+**Example:** Direct properties take precedence over nested ones
+```php
+$input = [
+	'a.b.c' => 'direct',
+	'a' => ['b' => ['c' => 'nested']]
+];
+Dash\get($input, 'a.b.c');
+// === 'direct'
+```
+
+[↑ Top](#operations)
+
+getDirect
+---
+[Operations](#operations) › [Utility](#utility)
+
+Related: `getDirectRef()`, `hasDirect()`, `get()`
+
+```php
+getDirect($input, $key, $default = null): mixed
+
+# Curried: (all parameters required)
+Curry\getDirect($key, $default, $iterable)
+```
+Gets the array value, object property, or method at `$key` within `$input`.
+
+If an array offset, object property, and/or method all exist for the same key,
+the value at the array offset takes precedence and will be returned.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$input` | `mixed` |
+`$key` | `string` | Array offset, object property name, or method name
+`$default` | `mixed` | (optional) Value to return if `$input` has nothing at `$key`
+**Returns** | `mixed` |
+
+**Example:**
+```php
+Dash\getDirect(['a' => 'one', 'b' => 'two'], 'b');
+// === 'two'
+
+Dash\getDirect((object) ['a' => 'one', 'b' => 'two'], 'b');
+// === 'two'
+
+$count = Dash\getDirect(new ArrayObject([1, 2, 3]), 'count');
+$count();
+// === 3
+
+```
+
+**Example:** Array offsets take precedence over object properties
+```php
+$input = new ArrayObject(['a' => 'array value']);
+$input->a = 'object value';
+
+Dash\getDirect($input, 'a');
+// === 'array value'
+```
+
+[↑ Top](#operations)
+
+getDirectRef
+---
+[Operations](#operations) › [Utility](#utility)
+
+Related: `getDirect()`, `hasDirect()`
+
+```php
+getDirectRef(&$input, $key): mixed
+```
+Similar to `getDirect()`, but returns a reference to the value at `$key` within `$input`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$input` | `array\|object\|ArrayAccess` |
+`$key` | `string` | Array offset or object property name
+**Returns** | `mixed` | Reference to `$key` within `$input`
+
+**Example:**
+```php
+$array = ['key' => 'value'];
+$ref = &Dash\getDirectRef($array, 'key');
+$ref = 'changed';
+// $array['key'] === 'changed'
+
+$object = (object) ['key' => 'value'];
+$ref = &Dash\getDirectRef($object, 'key');
+$ref = 'changed';
+// $object->key === 'changed'
+```
+
+[↑ Top](#operations)
+
 groupBy
 ---
 [Operations](#operations) › [Iterable](#iterable)
+
+Related: `keyBy()`
 
 ```php
 groupBy($iterable, $iteratee = 'Dash\identity', $defaultGroup = null): array
@@ -897,7 +1660,6 @@ Curry\groupBy($iteratee, $defaultGroup, iterable)
 ```
 Groups the element values of `$iterable` by the common return values of `$iteratee`.
 
-Related: `keyBy()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -966,9 +1728,116 @@ Dash\groupBy($data, 'last', 'Unknown');
 
 [↑ Top](#operations)
 
+hasDirect
+---
+[Operations](#operations) › [Utility](#utility)
+
+Related: `getDirect()`
+
+```php
+hasDirect($input, $key): boolean
+
+# Curried: (all parameters required)
+Curry\hasDirect($key, $input)
+```
+Checks whether an array value, object property, or method exists at `$key` within `$input`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$input` | `mixed` |
+`$key` | `string` | Array offset, object property name, or method name
+**Returns** | `boolean` |
+
+**Example:**
+```php
+Dash\hasDirect(['a' => 1, 'b' => 2], 'a');
+// === true
+
+Dash\hasDirect(['a' => 1, 'b' => 2], 'x');
+// === false
+
+Dash\hasDirect((object) ['a' => 1, 'b' => 2], 'a');
+// === true
+
+Dash\hasDirect(new DateTime(), 'getTimestamp');
+// === true
+```
+
+[↑ Top](#operations)
+
+identical
+---
+[Operations](#operations) › [Utility](#utility)
+
+
+
+```php
+identical($a, $b): boolean
+
+# Curried: (all parameters required)
+Curry\identical($b, $a)
+```
+Checks whether `$a` and `$b` are strictly equal (same value and type).
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$a` | `mixed` |
+`$b` | `mixed` |
+**Returns** | `boolean` |
+
+**Example:**
+```php
+Dash\identical(3, '3');
+// === false
+
+Dash\identical(3, 3);
+// === true
+
+Dash\identical([1, 2, 3], [1, '2', 3]);
+// === false
+
+Dash\identical([1, 2, 3], [1, 2, 3]);
+// === true
+```
+
+[↑ Top](#operations)
+
+identity
+---
+[Operations](#operations) › [Utility](#utility)
+
+
+
+```php
+identity($value): mixed
+
+# Curried: (all parameters required)
+Curry\identity($value)
+```
+Returns the first argument it receives.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `mixed` |
+**Returns** | `mixed` | `$value` unmodified
+
+**Example:**
+```php
+$a = new ArrayObject();
+$b = Dash\identity($a);
+// $b === $a
+```
+
+[↑ Top](#operations)
+
 intersection
 ---
 [Operations](#operations) › [Iterable](#iterable)
+
+Related: `difference()`, `union()`
 
 ```php
 intersection($iterable /*, ...iterables */): array
@@ -978,7 +1847,6 @@ where values are compared using loose equality.
 
 The order, keys, and values of elements in the returned array are determined by `$iterable`.
 
-Related: `difference()`, `union()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1008,9 +1876,94 @@ Dash\intersection(
 
 [↑ Top](#operations)
 
+isEmpty
+---
+[Operations](#operations) › [Utility](#utility)
+
+
+
+```php
+isEmpty($value): boolean
+
+# Curried: (all parameters required)
+Curry\isEmpty($value)
+```
+Checks whether `$value` is empty.
+
+A value is empty if it is an iterable of size zero or loosely equals false.
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `mixed` |
+**Returns** | `boolean` | True if `$value` is empty, false otherwise
+
+**Example:**
+```php
+Dash\isEmpty([]);
+// === true
+
+Dash\isEmpty((object) []);
+// === true
+
+Dash\isEmpty(new ArrayObject());
+// === true
+
+Dash\isEmpty('');
+// === true
+
+Dash\isEmpty(0);
+// === true
+
+Dash\isEmpty([0]);
+// === false
+```
+
+[↑ Top](#operations)
+
+isEven
+---
+[Operations](#operations) › [Number](#number)
+
+
+
+```php
+isEven($value): boolean
+
+# Curried: (all parameters required)
+Curry\isEven($value)
+```
+Checks whether `$value` is an even number.
+
+If a double is provided, only its truncated integer component is evaluated.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `numeric` |
+**Returns** | `boolean` | True if `$value` is an even number, false otherwise
+
+**Example:**
+```php
+Dash\isEven(3);
+// === false
+
+Dash\isEven(4);
+// === true
+
+Dash\isEven(4.9);
+// === true
+
+Dash\isEven('a');
+// === false
+```
+
+[↑ Top](#operations)
+
 isIndexedArray
 ---
 [Operations](#operations) › [Iterable](#iterable)
+
+
 
 ```php
 isIndexedArray($value): boolean
@@ -1019,7 +1972,6 @@ isIndexedArray($value): boolean
 Curry\isIndexedArray($value)
 ```
 Checks whether `$value` is an array with sequential integer keys starting at 0.
-
 
 
 Parameter | Type | Description
@@ -1041,9 +1993,106 @@ Dash\isIndexedArray(['a' => 1, 'b' => 2]);
 
 [↑ Top](#operations)
 
+isOdd
+---
+[Operations](#operations) › [Number](#number)
+
+
+
+```php
+isOdd($value): boolean
+
+# Curried: (all parameters required)
+Curry\isOdd($value)
+```
+Checks whether `$value` is an odd number.
+
+If a double is provided, only its truncated integer component is evaluated.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `numeric` |
+**Returns** | `boolean` | True if `$value` is an odd number, false otherwise
+
+**Example:**
+```php
+Dash\isOdd(3);
+// === true
+
+Dash\isOdd(4);
+// === false
+
+Dash\isOdd(5.9);
+// === true
+
+Dash\isOdd('a');
+// === false
+```
+
+[↑ Top](#operations)
+
+isType
+---
+[Operations](#operations) › [Utility](#utility)
+
+
+
+```php
+isType($value, $type): boolean
+
+# Curried: (all parameters required)
+Curry\isType($type, $value)
+```
+Checks whether `$value` is of a particular data type.
+
+A types can be:
+- a native data type: `string`, `array`, `integer`, etc.
+- a type corresponding to a native `is_*()` function:
+`numeric` (for `is_numeric()`), `callable` (for `is_callable()`), etc.
+- a class name: `stdClass`, `DateTime`, `Dash\_`, etc.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `mixed` |
+`$type` | `string\|array` | Single type to check or a list of accepted types
+**Returns** | `boolean` |
+
+**Example:** With a native data type
+```php
+Dash\isType([1, 2, 3], 'array');
+// === true
+
+```
+
+**Example:** With a type corresponding to a native `is_*()` function
+```php
+Dash\isType(3.14, 'numeric');
+// === true
+
+```
+
+**Example:** With a class name
+```php
+Dash\isType(new ArrayObject([1, 2, 3]), 'ArrayObject');
+// === true
+
+```
+
+**Example:** With multiple types
+```php
+Dash\isType((object) [1, 2, 3], ['array', 'object']);
+// === true
+```
+
+[↑ Top](#operations)
+
 join / implode
 ---
 [Operations](#operations) › [Iterable](#iterable)
+
+
 
 ```php
 join($iterable, $separator): string
@@ -1053,7 +2102,6 @@ Curry\join($separator, $iterable)
 ```
 Concatenates the string value of all elements in `$iterable`,
 with each value separated by `$separator`.
-
 
 
 Parameter | Type | Description
@@ -1077,6 +2125,8 @@ keyBy / indexBy
 ---
 [Operations](#operations) › [Iterable](#iterable)
 
+Related: `groupBy()`
+
 ```php
 keyBy($iterable, $iteratee = 'Dash\identity'): array
 
@@ -1087,7 +2137,6 @@ Gets the element values of `$iterable` as an associative array indexed by `$iter
 
 A later value will overwrite an earlier value that has the same key.
 
-Related: `groupBy()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1144,6 +2193,8 @@ keys
 ---
 [Operations](#operations) › [Iterable](#iterable)
 
+Related: `values()`
+
 ```php
 keys($iterable): array
 
@@ -1152,7 +2203,6 @@ Curry\keys($iterable)
 ```
 Gets the keys of `$iterable` as an array.
 
-Related: `values()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1171,6 +2221,8 @@ last
 ---
 [Operations](#operations) › [Iterable](#iterable)
 
+
+
 ```php
 last($iterable): mixed|null
 
@@ -1178,7 +2230,6 @@ last($iterable): mixed|null
 Curry\last($iterable)
 ```
 Gets the value of the last element in `$iterable`.
-
 
 
 Parameter | Type | Description
@@ -1201,6 +2252,8 @@ map
 ---
 [Operations](#operations) › [Iterable](#iterable)
 
+Related: `mapValues()`, `mapResult()`
+
 ```php
 map($iterable, $iteratee = 'Dash\identity'): array
 
@@ -1211,7 +2264,6 @@ Gets a new array of the return values of `$iteratee` when called with successive
 
 Keys in `$iterable` are not preserved. To preserve keys, use `mapValues()` instead.
 
-Related: `mapValues()`, `mapResult()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1245,6 +2297,8 @@ mapResult
 ---
 [Operations](#operations) › [Iterable](#iterable)
 
+Related: `map()`, `mapValues()`
+
 ```php
 mapResult($iterable, $path, $default = null): array
 
@@ -1256,7 +2310,6 @@ and returns a new array of those callable return values.
 
 Unlike `map()`, keys in `$iterable` are preserved.
 
-Related: `map()`, `mapValues()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1286,6 +2339,8 @@ mapValues
 ---
 [Operations](#operations) › [Iterable](#iterable)
 
+Related: `map()`, `mapResult()`
+
 ```php
 mapValues($iterable, $iteratee = 'Dash\identity'): array
 
@@ -1296,7 +2351,6 @@ Gets a new array of the return values of `$iteratee` when called with successive
 
 Unlike `map()`, keys in `$iterable` are preserved.
 
-Related: `map()`, `mapResult()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1330,6 +2384,8 @@ matchesProperty
 ---
 [Operations](#operations) › [Iterable](#iterable)
 
+
+
 ```php
 matchesProperty($path, $value = true, $comparator = 'Dash\equal'): function
 
@@ -1337,7 +2393,6 @@ matchesProperty($path, $value = true, $comparator = 'Dash\equal'): function
 Curry\matchesProperty($value, $comparator, $path)
 ```
 Creates a function that returns whether `$comparator` returns truthy for the value at `$path` for a given input.
-
 
 
 Parameter | Type | Description
@@ -1384,6 +2439,8 @@ max
 ---
 [Operations](#operations) › [Iterable](#iterable)
 
+
+
 ```php
 max($iterable): mixed|null
 
@@ -1391,7 +2448,6 @@ max($iterable): mixed|null
 Curry\max($iterable)
 ```
 Gets the maximum value of all elements in `$iterable`.
-
 
 
 Parameter | Type | Description
@@ -1414,6 +2470,8 @@ median
 ---
 [Operations](#operations) › [Iterable](#iterable)
 
+
+
 ```php
 median($iterable): mixed|null
 
@@ -1421,7 +2479,6 @@ median($iterable): mixed|null
 Curry\median($iterable)
 ```
 Returns the median value of an iterable.
-
 
 
 Parameter | Type | Description
@@ -1444,6 +2501,8 @@ min
 ---
 [Operations](#operations) › [Iterable](#iterable)
 
+
+
 ```php
 min($iterable): mixed|null
 
@@ -1451,7 +2510,6 @@ min($iterable): mixed|null
 Curry\min($iterable)
 ```
 Gets the minimum value of all elements in `$iterable`.
-
 
 
 Parameter | Type | Description
@@ -1470,9 +2528,42 @@ Dash\min([]);
 
 [↑ Top](#operations)
 
+negate
+---
+[Operations](#operations) › [Callable](#callable)
+
+
+
+```php
+negate(callable $predicate): callable
+
+# Curried: (all parameters required)
+Curry\negate($predicate)
+```
+Creates a new function that negates the return value of `$predicate`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$predicate` | `callable` |
+**Returns** | `callable` | New function
+
+**Example:**
+```php
+$isEven = function ($n) { return $n % 2 === 0; };
+$isOdd = Dash\negate($isEven);
+
+$isEven(3);  // === false
+$isOdd(3);   // === true
+```
+
+[↑ Top](#operations)
+
 omit
 ---
 [Operations](#operations) › [Iterable](#iterable)
+
+Related: `pick()`
 
 ```php
 omit($iterable, $keys): array
@@ -1483,7 +2574,6 @@ Curry\omit($keys, $iterable)
 Gets the elements of `$iterable` with keys that match any in `$keys`.
 The opposite of `pick()`.
 
-Related: `pick()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1499,9 +2589,117 @@ Dash\omit(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], ['b', 'c']);
 
 [↑ Top](#operations)
 
+partial
+---
+[Operations](#operations) › [Callable](#callable)
+
+Related: `partialRight()`, `curry()`
+
+```php
+partial($callable /*, ...args */): callable
+```
+Creates a new function that will invoke `$callable` with the given arguments
+and any others passed to the returned function.
+
+When calling `$callable`, arguments provided to `partial()` will be listed
+BEFORE those passed to the returned function.
+
+Use `Dash\_` as a placeholder to replace with arguments passed to the returned function.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` |
+`...$args` | `mixed` | (optional, variadic) arguments to pass to `$callable`
+**Returns** | `callable` |
+
+**Example:**
+```php
+$greet = function ($greeting, $name) {
+	return "$greeting, $name!";
+};
+
+$sayHello = Dash\partial($greet, 'Hello');
+$sayHowdy = Dash\partial($greet, 'Howdy');
+
+$sayHello('Mark');  // === 'Hello, Mark!'
+$sayHowdy('Jane');  // === 'Howdy, Jane!'
+
+```
+
+**Example:** With placeholders
+```php
+$greet = function ($greeting, $name) {
+	return "$greeting, $name!";
+};
+
+$greetMark = Dash\partial($greet, Dash\_, 'Mark');
+$greetJane = Dash\partial($greet, Dash\_, 'Jane');
+
+$greetMark('Hello');  // === 'Hello, Mark!'
+$greetJane('Howdy');  // === 'Howdy, Jane!'
+```
+
+[↑ Top](#operations)
+
+partialRight
+---
+[Operations](#operations) › [Callable](#callable)
+
+Related: `partial()`, `curryRight()`
+
+```php
+partialRight($callable /*, ...args */): callable
+```
+Creates a new function that will invoke `$callable` with the given arguments
+and any others passed to the returned function.
+
+When calling `$callable`, arguments provided to `partial()` will be listed
+AFTER those passed to the returned function.
+
+Use `Dash\_` as a placeholder to replace with arguments passed to the returned function.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` |
+`...$args` | `mixed` | (optional, variadic) arguments to pass to `$callable`
+**Returns** | `callable` |
+
+**Example:**
+```php
+$greet = function ($greeting, $name) {
+	return "$greeting, $name!";
+};
+
+$greetMark = Dash\partialRight($greet, 'Mark');
+$greetJane = Dash\partialRight($greet, 'Jane');
+
+$greetMark('Hello');  // === 'Hello, Mark!'
+$greetJane('Howdy');  // === 'Howdy, Jane!'
+
+```
+
+**Example:** With a placeholder
+```php
+$greet = function ($greeting, $name) {
+	return "$greeting, $name!";
+};
+
+$sayHello = Dash\partialRight($greet, 'Hello', Dash\_);
+$sayHowdy = Dash\partialRight($greet, 'Howdy', Dash\_);
+
+$sayHello('Mark');  // === 'Hello, Mark!'
+$sayHowdy('Jane');  // === 'Howdy, Jane!'
+```
+
+[↑ Top](#operations)
+
 pick
 ---
 [Operations](#operations) › [Iterable](#iterable)
+
+Related: `omit()`
 
 ```php
 pick($iterable, $keys): array
@@ -1511,7 +2709,6 @@ Curry\pick($keys, $iterable)
 ```
 Gets the elements of `$iterable` with keys that match any in `$keys`.
 
-Related: `omit()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1531,6 +2728,8 @@ pluck
 ---
 [Operations](#operations) › [Iterable](#iterable)
 
+Related: `map()`
+
 ```php
 pluck($iterable, $path, $default = null): array
 
@@ -1539,7 +2738,6 @@ Curry\pluck($path, $default, $iterable)
 ```
 Gets an array of values at `$path` for all elements in `$iterable`.
 
-Related: `map()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1569,6 +2767,8 @@ property
 ---
 [Operations](#operations) › [Iterable](#iterable)
 
+
+
 ```php
 property($path, $default = null): function
 
@@ -1576,7 +2776,6 @@ property($path, $default = null): function
 Curry\property($default, $path)
 ```
 Creates a function that returns the value at a `$path` for a given input.
-
 
 
 Parameter | Type | Description
@@ -1641,6 +2840,8 @@ reduce
 ---
 [Operations](#operations) › [Iterable](#iterable)
 
+
+
 ```php
 reduce($iterable, $iteratee, $initial = []): mixed
 
@@ -1648,7 +2849,6 @@ reduce($iterable, $iteratee, $initial = []): mixed
 Curry\reduce($iteratee, $initial, $iterable)
 ```
 Iteratively reduces `$iterable` to a single value by way of `$iteratee`.
-
 
 
 Parameter | Type | Description
@@ -1672,6 +2872,8 @@ reject
 ---
 [Operations](#operations) › [Iterable](#iterable)
 
+Related: `filter()`
+
 ```php
 reject($iterable, $predicate = 'Dash\identity'): array
 
@@ -1684,7 +2886,6 @@ The opposite of `filter()`.
 Keys are preserved unless `$iterable` is an indexed array.
 An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
 
-Related: `filter()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -1734,9 +2935,56 @@ Dash\reject($data, ['active', false]);
 
 [↑ Top](#operations)
 
+result
+---
+[Operations](#operations) › [Utility](#utility)
+
+Related: `get()`, `property()`
+
+```php
+result($input, $path, $default = null): mixed
+
+# Curried: (all parameters required)
+Curry\result($path, $default, $input)
+```
+Gets the value at `$path` within `$input`. Nested properties are accessible with dot notation.
+Like `get()` but if the value is callable, it is invoked and its return value is returned.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$input` | `mixed` |
+`$path` | `callable\|string` | If a callable, invoked with `($input)` to get the value at `$path`; if a string, will use `Dash\property($path)` to get the value at `$path`
+`$default` | `mixed` | (optional) Value to return if `$path` does not exist within `$input`
+**Returns** | `mixed` | Value at `$path` or `$default` if no value exists
+
+**Example:**
+```php
+$input = [
+	'people' => new ArrayObject([
+		['name' => 'Pete', 'getHash' => function () { return '4d17a4'; }],
+		['name' => 'John', 'getHash' => function () { return 'fd2a48'; }],
+		['name' => 'Paul', 'getHash' => function () { return 'd8575d'; }],
+	])
+];
+
+Dash\result($input, 'people.1.name');
+// === 'John'
+
+Dash\result($input, 'people.count');
+// === 3
+
+Dash\result($input, 'people.1.joined.getTimestamp');
+// === 'fd2a48'
+```
+
+[↑ Top](#operations)
+
 reverse
 ---
 [Operations](#operations) › [Iterable](#iterable)
+
+
 
 ```php
 reverse($iterable, $preserveIntegerKeys = false): array
@@ -1745,7 +2993,6 @@ reverse($iterable, $preserveIntegerKeys = false): array
 Curry\reverse($preserveIntegerKeys, iterable)
 ```
 Gets a new array of `$iterable` elements in reverse order.
-
 
 
 Parameter | Type | Description
@@ -1779,6 +3026,8 @@ rotate
 ---
 [Operations](#operations) › [Iterable](#iterable)
 
+
+
 ```php
 rotate($iterable, $count = 1): array
 
@@ -1790,7 +3039,6 @@ from the beginning of `$iterable` to the end.
 
 Keys are preserved unless `$iterable` is an indexed array.
 An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
-
 
 
 Parameter | Type | Description
@@ -1813,861 +3061,11 @@ Dash\rotate(['a', 'b', 'c', 'd', 'e'], -1);
 
 [↑ Top](#operations)
 
-sort
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-sort($iterable, $comparator = 'Dash\compare'): array
-
-# Curried: (all parameters required)
-Curry\sort($comparator, $iterable)
-```
-Gets a new array containing the sorted elements of `$iterable`.
-
-Keys are preserved unless `$iterable` is an indexed array.
-An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` |
-`$comparator` | `callable` | (optional) Invoked with `($a, $b)` where `$a` and `$b` are values in `$iterable`; `$comparator` should returns a number less than, equal to, or greater than zero if `$a` is less than, equal to, or greater than `$b`, respectively
-**Returns** | `array` | New array of `$iterable` elements ordered by `$comparator`
-
-**Example:**
-```php
-Dash\sort([4, 2, 3, 1]);
-// === [1, 2, 3, 4]
-
-Dash\sort(['a' => 3, 'b' => 1, 'c' => 2]);
-// === ['b' => 1, 'c' => 2, 'a' => 3]
-```
-
-[↑ Top](#operations)
-
-sum
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-sum($iterable): numeric
-
-# Curried: (all parameters required)
-Curry\sum($iterable)
-```
-Gets the sum of all element values in `$iterable`.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` |
-**Returns** | `numeric` | Zero if `$iterable` is empty
-
-**Example:**
-```php
-Dash\sum([2, 3, 5, 8]);
-// === 18
-
-Dash\sum([]);
-// === 0
-```
-
-[↑ Top](#operations)
-
-take
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-take($iterable, $count = 1): array
-
-# Curried: (all parameters required)
-Curry\take($count, $iterable)
-```
-Gets a new array of the first `$count` elements of `$iterable`.
-
-Keys are preserved unless `$iterable` is an indexed array.
-An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
-
-Related: `takeRight()`
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` |
-`$count` | `integer` | If negative, gets all but the last `$count` elements of `$iterable`
-**Returns** | `array` | New array of `$count` elements
-
-**Example:**
-```php
-Dash\take([2, 3, 5, 8, 13], 3);
-// === [2, 3, 5]
-
-Dash\take(['b' => 2, 'c' => 3, 'a' => 1], 2);
-// === ['b' => 2, 'c' => 3]
-
-Dash\take([1, 2, 3, 4, 5, 6], -2);
-// === [1, 2, 3, 4]
-```
-
-[↑ Top](#operations)
-
-takeRight
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-takeRight($iterable, $count = 1): array
-
-# Curried: (all parameters required)
-Curry\takeRight($count, $iterable)
-```
-Gets a new array of the last `$count` elements of `$iterable`.
-
-Keys are preserved unless `$iterable` is an indexed array.
-An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
-
-Related: `take()`
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` |
-`$count` | `integer` | If negative, gets all but the first `$count` elements of `$iterable`
-**Returns** | `array` | New array of `$count` elements
-
-**Example:**
-```php
-Dash\take([2, 3, 5, 8, 13], 3);
-// === [5, 8, 13]
-
-Dash\take(['b' => 2, 'c' => 3, 'a' => 1], 2);
-// === ['c' => 3, 'a' => 1]
-
-Dash\take([1, 2, 3, 4, 5, 6], -2);
-// === [3, 4, 5, 6]
-```
-
-[↑ Top](#operations)
-
-toArray
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-toArray($value): array
-
-# Curried: (all parameters required)
-Curry\toArray($value)
-```
-Gets an array representation of `$value`.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$value` | `mixed` |
-**Returns** | `array` | Empty array if `$value` is not iterable
-
-**Example:**
-```php
-Dash\toArray((object) ['a' => 1, 'b' => 2]);
-// === ['a' => 1, 'b' => 2]
-
-Dash\toArray(new FilesystemIterator(__DIR__));
-// === [ SplFileInfo, SplFileInfo, ... ]
-```
-
-[↑ Top](#operations)
-
-toObject
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-toObject($value): object
-
-# Curried: (all parameters required)
-Curry\toObject($value)
-```
-Gets a plain object representation of `$value`.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$value` | `mixed` |
-**Returns** | `object` | Empty object if `$value` is not iterable
-
-**Example:**
-```php
-Dash\toObject(['a' => 1, 'b' => 2]);
-// === (object) ['a' => 1, 'b' => 2]
-
-Dash\toObject(new ArrayObject(['a' => 1, 'b' => 2]));
-// === (object) ['a' => 1, 'b' => 2]
-```
-
-[↑ Top](#operations)
-
-union
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-union($iterable /*, ...iterables */): array
-```
-Returns a new array containing the combined set of unique values, in order, of all provided iterables.
-
-Non-indexed keys are preseved, but duplicate keys will overwrite previous ones.
-
-Related: `intersection()`, `difference()`
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` | (variadic) One or more iterables to merge
-**Returns** | `array` |
-
-**Example:** With indexed arrays
-```php
-Dash\union(
-	[1, 3, 5],
-	[2, 4, 6],
-	[7, 8]
-);
-// === [1, 3, 5, 2, 4, 6, 7, 8]
-
-```
-
-**Example:** With associative arrays
-```php
-Dash\union(
-	['a' => 1, 'c' => 3],
-	['b' => 2, 'd' => 4],
-	['e' => 5, 'f' => 6]
-);
-// === ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5, 'f' => 6]
-```
-
-[↑ Top](#operations)
-
-values
----
-[Operations](#operations) › [Iterable](#iterable)
-
-```php
-values($iterable): array
-
-# Curried: (all parameters required)
-Curry\values($iterable)
-```
-Gets the values of `$iterable` as an array.
-
-Related: `keys()`
-
-Parameter | Type | Description
---- | --- | :---
-`$iterable` | `iterable\|stdClass\|null` |
-**Returns** | `array` |
-
-**Example:**
-```php
-Dash\values(['c' => 3, 'a' => 1, 'b' => 2]);
-// === [3, 1, 2]
-```
-
-[↑ Top](#operations)
-
-Utility
-===
-
-assertType
----
-[Operations](#operations) › [Utility](#utility)
-
-```php
-assertType($value, $type, $funcName = __FUNCTION__): void
-
-# Curried: (all parameters required)
-Curry\assertType($type, $funcName, input)
-```
-Throws an `InvalidArgumentException` exception if `$value` is not of type `$type`.
-If `$value` is an accepted type, this function is a no-op.
-
-Related: `isType()`
-
-Parameter | Type | Description
---- | --- | :---
-`$value` | `mixed` |
-`$type` | `string\|array` | Single type to check or a list of accepted types
-`$funcName` | `string` | (optional) Name of the calling function where `assertType()` was called; this is used in the thrown exception message and aids debugging
-**Returns** | `void` |
-
-**Example:**
-```php
-$value = [1, 2, 3];
-Dash\assertType($value, ['iterable', 'stdClass']);
-// Does not throw an exception
-
-$value = [1, 2, 3];
-Dash\assertType($value, 'object');
-// Throws an exception
-```
-
-[↑ Top](#operations)
-
-chain
----
-[Operations](#operations) › [Utility](#utility)
-
-```php
-chain($input = null): Dash\_
-
-# Curried: (all parameters required)
-Curry\chain($input)
-```
-Creates a new chain. Alias for `_::chain()`.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$input` | `mixed` | (optional) Initial input value of the chain
-**Returns** | `Dash\_` | A new chain
-
-**Example:**
-```php
-Dash\chain([1, 2, 3])
-	->filter(function ($n) { return $n < 3; })
-	->map(function ($n) { return $n * 2; })
-	->value();
-// === [2, 4]
-```
-
-[↑ Top](#operations)
-
-compare
----
-[Operations](#operations) › [Utility](#utility)
-
-```php
-compare($a, $b): integer
-
-# Curried: (all parameters required)
-Curry\compare($b, $a)
-```
-Returns a number less than, equal to, or greater than zero
-if `$a` is less than, equal to, or greater than `$b`, respectively.
-
-Uses loose equality for comparison. For comparison tables across data types,
-see: http://php.net/manual/en/types.comparisons.php
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$a` | `mixed` |
-`$b` | `mixed` |
-**Returns** | `integer` |
-
-**Example:**
-```php
-Dash\compare(2, 3);
-// < 0
-
-Dash\compare(2, 1);
-// > 0
-
-Dash\compare(2, 2);
-// === 0
-```
-
-[↑ Top](#operations)
-
-custom
----
-[Operations](#operations) › [Utility](#utility)
-
-```php
-custom($name): function
-
-# Curried: (all parameters required)
-Curry\custom($name)
-```
-Gets a custom operation by name.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$name` | `string` | Name of the custom operation
-**Returns** | `function` | The custom operation
-
-**Example:**
-```php
-_::setCustom('double', function ($n) { return $n * 2; });
-
-$double = Dash\custom('double');
-$double(3);
-// === 6
-
-_::chain([1, 2, 3])->map(Dash\custom('double'))->value();
-// === [2, 4, 6]
-```
-
-[↑ Top](#operations)
-
-debug
----
-[Operations](#operations) › [Utility](#utility)
-
-```php
-debug($value /*, ...value */): mixed
-
-# Curried: (all parameters required)
-Curry\debug(...value)
-```
-Prints debugging information for one or more values.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$value` | `mixed` | (variadic) One or more values to debug
-**Returns** | `mixed` | The first argument
-
-**Example:**
-```php
-Dash\debug([1, 2, 3], 'hello', null);
-// === [1, 2, 3]
-
-// Prints:
-array (
-  0 => 1,
-  1 => 2,
-  2 => 3,
-)
-'hello'
-NULL
-
-@codeCoverageIgnore Due to output buffering
-```
-
-[↑ Top](#operations)
-
-equal
----
-[Operations](#operations) › [Utility](#utility)
-
-```php
-equal($a, $b): boolean
-
-# Curried: (all parameters required)
-Curry\equal($b, $a)
-```
-Checks whether `$a` and `$b` are loosely equal (same value, possibly different types).
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$a` | `mixed` |
-`$b` | `mixed` |
-**Returns** | `boolean` |
-
-**Example:**
-```php
-Dash\equal(3, '3');
-// === true
-
-Dash\equal(3, 3);
-// === true
-
-Dash\equal([1, 2, 3], [1, '2', 3]);
-// === true
-
-Dash\equal([1, 2, 3], [3, 2, 1]);
-// === false
-```
-
-[↑ Top](#operations)
-
-get
----
-[Operations](#operations) › [Utility](#utility)
-
-```php
-get($input, $path, $default = null): mixed
-
-# Curried: (all parameters required)
-Curry\get($path, $default, $input)
-```
-Gets the value at `$path` within `$input`. Nested properties are accessible with dot notation.
-
-Related: `getDirect()`, `has()`, `property()`
-
-Parameter | Type | Description
---- | --- | :---
-`$input` | `mixed` |
-`$path` | `callable\|string\|number` | If a callable, invoked with `($input)` to get the value at `$path`; if a string or number, `Dash\property($path)` used to get the value at `$path`
-`$default` | `mixed` | (optional) Value to return if `$path` does not exist within `$input`
-**Returns** | `mixed` | Value at `$path` or `$default` if no value exists
-
-**Example:**
-```php
-$input = [
-	'people' => [
-		['name' => 'Pete'],
-		['name' => 'John'],
-		['name' => 'Mark'],
-	]
-];
-Dash\get($input, 'people.2.name');
-// === 'Mark'
-
-```
-
-**Example:** Direct properties take precedence over nested ones
-```php
-$input = [
-	'a.b.c' => 'direct',
-	'a' => ['b' => ['c' => 'nested']]
-];
-Dash\get($input, 'a.b.c');
-// === 'direct'
-```
-
-[↑ Top](#operations)
-
-getDirect
----
-[Operations](#operations) › [Utility](#utility)
-
-```php
-getDirect($input, $key, $default = null): mixed
-
-# Curried: (all parameters required)
-Curry\getDirect($key, $default, $iterable)
-```
-Gets the array value, object property, or method at `$key` within `$input`.
-
-If an array offset, object property, and/or method all exist for the same key,
-the value at the array offset takes precedence and will be returned.
-
-Related: `getDirectRef()`, `hasDirect()`, `get()`
-
-Parameter | Type | Description
---- | --- | :---
-`$input` | `mixed` |
-`$key` | `string` | Array offset, object property name, or method name
-`$default` | `mixed` | (optional) Value to return if `$input` has nothing at `$key`
-**Returns** | `mixed` |
-
-**Example:**
-```php
-Dash\getDirect(['a' => 'one', 'b' => 'two'], 'b');
-// === 'two'
-
-Dash\getDirect((object) ['a' => 'one', 'b' => 'two'], 'b');
-// === 'two'
-
-$count = Dash\getDirect(new ArrayObject([1, 2, 3]), 'count');
-$count();
-// === 3
-
-```
-
-**Example:** Array offsets take precedence over object properties
-```php
-$input = new ArrayObject(['a' => 'array value']);
-$input->a = 'object value';
-
-Dash\getDirect($input, 'a');
-// === 'array value'
-```
-
-[↑ Top](#operations)
-
-getDirectRef
----
-[Operations](#operations) › [Utility](#utility)
-
-```php
-getDirectRef(&$input, $key): mixed
-```
-Similar to `getDirect()`, but returns a reference to the value at `$key` within `$input`.
-
-Related: `getDirect()`, `hasDirect()`
-
-Parameter | Type | Description
---- | --- | :---
-`$input` | `array\|object\|ArrayAccess` |
-`$key` | `string` | Array offset or object property name
-**Returns** | `mixed` | Reference to `$key` within `$input`
-
-**Example:**
-```php
-$array = ['key' => 'value'];
-$ref = &Dash\getDirectRef($array, 'key');
-$ref = 'changed';
-// $array['key'] === 'changed'
-
-$object = (object) ['key' => 'value'];
-$ref = &Dash\getDirectRef($object, 'key');
-$ref = 'changed';
-// $object->key === 'changed'
-```
-
-[↑ Top](#operations)
-
-hasDirect
----
-[Operations](#operations) › [Utility](#utility)
-
-```php
-hasDirect($input, $key): boolean
-
-# Curried: (all parameters required)
-Curry\hasDirect($key, $input)
-```
-Checks whether an array value, object property, or method exists at `$key` within `$input`.
-
-Related: `getDirect()`
-
-Parameter | Type | Description
---- | --- | :---
-`$input` | `mixed` |
-`$key` | `string` | Array offset, object property name, or method name
-**Returns** | `boolean` |
-
-**Example:**
-```php
-Dash\hasDirect(['a' => 1, 'b' => 2], 'a');
-// === true
-
-Dash\hasDirect(['a' => 1, 'b' => 2], 'x');
-// === false
-
-Dash\hasDirect((object) ['a' => 1, 'b' => 2], 'a');
-// === true
-
-Dash\hasDirect(new DateTime(), 'getTimestamp');
-// === true
-```
-
-[↑ Top](#operations)
-
-identical
----
-[Operations](#operations) › [Utility](#utility)
-
-```php
-identical($a, $b): boolean
-
-# Curried: (all parameters required)
-Curry\identical($b, $a)
-```
-Checks whether `$a` and `$b` are strictly equal (same value and type).
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$a` | `mixed` |
-`$b` | `mixed` |
-**Returns** | `boolean` |
-
-**Example:**
-```php
-Dash\identical(3, '3');
-// === false
-
-Dash\identical(3, 3);
-// === true
-
-Dash\identical([1, 2, 3], [1, '2', 3]);
-// === false
-
-Dash\identical([1, 2, 3], [1, 2, 3]);
-// === true
-```
-
-[↑ Top](#operations)
-
-identity
----
-[Operations](#operations) › [Utility](#utility)
-
-```php
-identity($value): mixed
-
-# Curried: (all parameters required)
-Curry\identity($value)
-```
-Returns the first argument it receives.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$value` | `mixed` |
-**Returns** | `mixed` | `$value` unmodified
-
-**Example:**
-```php
-$a = new ArrayObject();
-$b = Dash\identity($a);
-// $b === $a
-```
-
-[↑ Top](#operations)
-
-isEmpty
----
-[Operations](#operations) › [Utility](#utility)
-
-```php
-isEmpty($value): boolean
-
-# Curried: (all parameters required)
-Curry\isEmpty($value)
-```
-Checks whether `$value` is empty.
-
-A value is empty if it is an iterable of size zero or loosely equals false.
-
-
-Parameter | Type | Description
---- | --- | :---
-`$value` | `mixed` |
-**Returns** | `boolean` | True if `$value` is empty, false otherwise
-
-**Example:**
-```php
-Dash\isEmpty([]);
-// === true
-
-Dash\isEmpty((object) []);
-// === true
-
-Dash\isEmpty(new ArrayObject());
-// === true
-
-Dash\isEmpty('');
-// === true
-
-Dash\isEmpty(0);
-// === true
-
-Dash\isEmpty([0]);
-// === false
-```
-
-[↑ Top](#operations)
-
-isType
----
-[Operations](#operations) › [Utility](#utility)
-
-```php
-isType($value, $type): boolean
-
-# Curried: (all parameters required)
-Curry\isType($type, $value)
-```
-Checks whether `$value` is of a particular data type.
-
-A types can be:
-- a native data type: `string`, `array`, `integer`, etc.
-- a type corresponding to a native `is_*()` function:
-`numeric` (for `is_numeric()`), `callable` (for `is_callable()`), etc.
-- a class name: `stdClass`, `DateTime`, `Dash\_`, etc.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$value` | `mixed` |
-`$type` | `string\|array` | Single type to check or a list of accepted types
-**Returns** | `boolean` |
-
-**Example:** With a native data type
-```php
-Dash\isType([1, 2, 3], 'array');
-// === true
-
-```
-
-**Example:** With a type corresponding to a native `is_*()` function
-```php
-Dash\isType(3.14, 'numeric');
-// === true
-
-```
-
-**Example:** With a class name
-```php
-Dash\isType(new ArrayObject([1, 2, 3]), 'ArrayObject');
-// === true
-
-```
-
-**Example:** With multiple types
-```php
-Dash\isType((object) [1, 2, 3], ['array', 'object']);
-// === true
-```
-
-[↑ Top](#operations)
-
-result
----
-[Operations](#operations) › [Utility](#utility)
-
-```php
-result($input, $path, $default = null): mixed
-
-# Curried: (all parameters required)
-Curry\result($path, $default, $input)
-```
-Gets the value at `$path` within `$input`. Nested properties are accessible with dot notation.
-Like `get()` but if the value is callable, it is invoked and its return value is returned.
-
-Related: `get()`, `property()`
-
-Parameter | Type | Description
---- | --- | :---
-`$input` | `mixed` |
-`$path` | `callable\|string` | If a callable, invoked with `($input)` to get the value at `$path`; if a string, will use `Dash\property($path)` to get the value at `$path`
-`$default` | `mixed` | (optional) Value to return if `$path` does not exist within `$input`
-**Returns** | `mixed` | Value at `$path` or `$default` if no value exists
-
-**Example:**
-```php
-$input = [
-	'people' => new ArrayObject([
-		['name' => 'Pete', 'getHash' => function () { return '4d17a4'; }],
-		['name' => 'John', 'getHash' => function () { return 'fd2a48'; }],
-		['name' => 'Paul', 'getHash' => function () { return 'd8575d'; }],
-	])
-];
-
-Dash\result($input, 'people.1.name');
-// === 'John'
-
-Dash\result($input, 'people.count');
-// === 3
-
-Dash\result($input, 'people.1.joined.getTimestamp');
-// === 'fd2a48'
-```
-
-[↑ Top](#operations)
-
 set
 ---
 [Operations](#operations) › [Utility](#utility)
+
+Related: `get()`, `getDirect()`, `property()`
 
 ```php
 set(&$input, $path, $value): mixed
@@ -2675,7 +3073,6 @@ set(&$input, $path, $value): mixed
 Sets the value at `$path` within `$input`. Nested properties are accessible with dot notation.
 Note: This *will* modify `$input`.
 
-Related: `get()`, `getDirect()`, `property()`
 
 Parameter | Type | Description
 --- | --- | :---
@@ -2733,6 +3130,8 @@ size / count
 ---
 [Operations](#operations) › [Utility](#utility)
 
+
+
 ```php
 size($value, $encoding = 'UTF-8'): integer
 
@@ -2743,7 +3142,6 @@ Gets the number of items in `$value`.
 
 For iterables, this is the number of elements.
 For strings, this is number of characters.
-
 
 
 Parameter | Type | Description
@@ -2763,9 +3161,153 @@ Dash\size('Beyoncé');
 
 [↑ Top](#operations)
 
+sort
+---
+[Operations](#operations) › [Iterable](#iterable)
+
+
+
+```php
+sort($iterable, $comparator = 'Dash\compare'): array
+
+# Curried: (all parameters required)
+Curry\sort($comparator, $iterable)
+```
+Gets a new array containing the sorted elements of `$iterable`.
+
+Keys are preserved unless `$iterable` is an indexed array.
+An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$comparator` | `callable` | (optional) Invoked with `($a, $b)` where `$a` and `$b` are values in `$iterable`; `$comparator` should returns a number less than, equal to, or greater than zero if `$a` is less than, equal to, or greater than `$b`, respectively
+**Returns** | `array` | New array of `$iterable` elements ordered by `$comparator`
+
+**Example:**
+```php
+Dash\sort([4, 2, 3, 1]);
+// === [1, 2, 3, 4]
+
+Dash\sort(['a' => 3, 'b' => 1, 'c' => 2]);
+// === ['b' => 1, 'c' => 2, 'a' => 3]
+```
+
+[↑ Top](#operations)
+
+sum
+---
+[Operations](#operations) › [Iterable](#iterable)
+
+
+
+```php
+sum($iterable): numeric
+
+# Curried: (all parameters required)
+Curry\sum($iterable)
+```
+Gets the sum of all element values in `$iterable`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+**Returns** | `numeric` | Zero if `$iterable` is empty
+
+**Example:**
+```php
+Dash\sum([2, 3, 5, 8]);
+// === 18
+
+Dash\sum([]);
+// === 0
+```
+
+[↑ Top](#operations)
+
+take
+---
+[Operations](#operations) › [Iterable](#iterable)
+
+Related: `takeRight()`
+
+```php
+take($iterable, $count = 1): array
+
+# Curried: (all parameters required)
+Curry\take($count, $iterable)
+```
+Gets a new array of the first `$count` elements of `$iterable`.
+
+Keys are preserved unless `$iterable` is an indexed array.
+An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$count` | `integer` | If negative, gets all but the last `$count` elements of `$iterable`
+**Returns** | `array` | New array of `$count` elements
+
+**Example:**
+```php
+Dash\take([2, 3, 5, 8, 13], 3);
+// === [2, 3, 5]
+
+Dash\take(['b' => 2, 'c' => 3, 'a' => 1], 2);
+// === ['b' => 2, 'c' => 3]
+
+Dash\take([1, 2, 3, 4, 5, 6], -2);
+// === [1, 2, 3, 4]
+```
+
+[↑ Top](#operations)
+
+takeRight
+---
+[Operations](#operations) › [Iterable](#iterable)
+
+Related: `take()`
+
+```php
+takeRight($iterable, $count = 1): array
+
+# Curried: (all parameters required)
+Curry\takeRight($count, $iterable)
+```
+Gets a new array of the last `$count` elements of `$iterable`.
+
+Keys are preserved unless `$iterable` is an indexed array.
+An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$count` | `integer` | If negative, gets all but the first `$count` elements of `$iterable`
+**Returns** | `array` | New array of `$count` elements
+
+**Example:**
+```php
+Dash\take([2, 3, 5, 8, 13], 3);
+// === [5, 8, 13]
+
+Dash\take(['b' => 2, 'c' => 3, 'a' => 1], 2);
+// === ['c' => 3, 'a' => 1]
+
+Dash\take([1, 2, 3, 4, 5, 6], -2);
+// === [3, 4, 5, 6]
+```
+
+[↑ Top](#operations)
+
 tap
 ---
 [Operations](#operations) › [Utility](#utility)
+
+
 
 ```php
 tap($value, callable $interceptor): mixed
@@ -2776,7 +3318,6 @@ Curry\tap($interceptor, $value)
 Invokes `$interceptor` with `($value)` and returns `$value` unchanged.
 
 Note: Any changes made to `$value` in `$interceptor` will not be returned.
-
 
 
 Parameter | Type | Description
@@ -2804,6 +3345,8 @@ thru
 ---
 [Operations](#operations) › [Utility](#utility)
 
+
+
 ```php
 thru($value, callable $interceptor): mixed
 
@@ -2811,7 +3354,6 @@ thru($value, callable $interceptor): mixed
 Curry\thru($interceptor, $value)
 ```
 Invokes `$interceptor` with `($value)` and returns its result.
-
 
 
 Parameter | Type | Description
@@ -2836,547 +3378,64 @@ $result = _::chain([1, 3, 4])
 
 [↑ Top](#operations)
 
-Callable
-===
-
-apply
+toArray
 ---
-[Operations](#operations) › [Callable](#callable)
+[Operations](#operations) › [Iterable](#iterable)
+
+
 
 ```php
-apply(callable $callable, $args): mixed
+toArray($value): array
 
 # Curried: (all parameters required)
-Curry\apply($callable, $args)
+Curry\toArray($value)
 ```
-Invokes `$callable` with a list of arguments.
-
-Note: Contrary to other curried operations, the curried version of this operation
-accepts arguments in the same order as the original method.
-
+Gets an array representation of `$value`.
 
 
 Parameter | Type | Description
 --- | --- | :---
-`$callable` | `callable` |
-`$args` | `iterable\|stdClass` | Arguments to pass to `$callable`
-**Returns** | `mixed` | Return value of `$callable`
+`$value` | `mixed` |
+**Returns** | `array` | Empty array if `$value` is not iterable
 
 **Example:**
 ```php
-$func = function ($time, $name) {
-	return "Good $time, $name";
-};
+Dash\toArray((object) ['a' => 1, 'b' => 2]);
+// === ['a' => 1, 'b' => 2]
 
-Dash\apply($func, ['morning', 'John']);
-// === 'Good morning, John'
-
-```
-
-**Example:** Curried version accepts arguments in the same order
-```php
-$func = function ($time, $name) {
-	return "Good $time, $name";
-};
-
-$apply = Dash\Curry\apply($func);
-
-$apply(['morning', 'John']);
-// === 'Good morning, John'
+Dash\toArray(new FilesystemIterator(__DIR__));
+// === [ SplFileInfo, SplFileInfo, ... ]
 ```
 
 [↑ Top](#operations)
 
-ary
+toObject
 ---
-[Operations](#operations) › [Callable](#callable)
+[Operations](#operations) › [Iterable](#iterable)
+
+
 
 ```php
-ary(callable $callable, $arity): callable
+toObject($value): object
 
 # Curried: (all parameters required)
-Curry\ary($arity, $callable)
+Curry\toObject($value)
 ```
-Creates a new function that invokes `$callable` with up to `$arity` arguments and ignores the rest.
-
+Gets a plain object representation of `$value`.
 
 
 Parameter | Type | Description
 --- | --- | :---
-`$callable` | `callable` |
-`$arity` | `integer` | Maximum number of arguments to accept
-**Returns** | `callable` | New function
+`$value` | `mixed` |
+**Returns** | `object` | Empty object if `$value` is not iterable
 
 **Example:**
 ```php
-$isNumeric = Dash\ary('is_numeric', 1);
-
-Dash\filter([1, 2.0, '3', 'a'], $isNumeric);
-// === [1, 2.0, '3']
-```
-
-[↑ Top](#operations)
-
-call
----
-[Operations](#operations) › [Callable](#callable)
-
-```php
-call(callable $callable /*, ...args */): mixed
-```
-Invokes `$callable` with an inline list of arguments.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` |
-`...$args` | `mixed` | Inline arguments to pass to `$callable`
-**Returns** | `mixed` | Return value of `$callable`
-
-**Example:**
-```php
-$func = function ($time, $name) {
-	return "Good $time, $name";
-};
-
-Dash\call($func, 'morning', 'John');
-// === 'Good morning, John'
-```
-
-[↑ Top](#operations)
-
-currify
----
-[Operations](#operations) › [Callable](#callable)
-
-```php
-currify(callable $callable, array $args = [], $rotate = 1): function|mixed
-```
-Creates a new, curried version of `$callable` where the first `$rotate` arguments
-are moved to the end of the arguments list.
-
-In essence, this takes a data-first function and returns a curryable data-last function.
-
-Related: `currifyN()`, `curry()`, `partial()`
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` |
-`$args` | `array` | (optional) Initial arguments to pass to the final curried function
-`$rotate` | `integer` | (optional) The number of arguments to move from start to end; see Dash\rotate()
-**Returns** | `function\|mixed` |
-
-**Example:**
-```php
-$greet = function ($name, $greeting, $punctuation) {
-	return "$greeting, $name$punctuation";
-};
-
-$goodMorning = Dash\currify($greet, ['Good morning', '!']);
-$goodMorning('John')
-// === 'Good morning, John!'
-
-```
-
-**Example:** With a custom `$rotate`
-```php
-$greet = function ($salutation, $name, $greeting, $punctuation) {
-	return "$greeting, $salutation $name$punctuation";
-};
-
-$goodMorning = Dash\currify($greet, ['Good morning', '!'], 2);
-$goodMorning('Sir', 'John')
-// === 'Good morning, Sir John!'
-```
-
-[↑ Top](#operations)
-
-currifyN
----
-[Operations](#operations) › [Callable](#callable)
-
-```php
-currifyN(callable $callable, $totalArgs, array $args = [], $rotate = 1): function|mixed
-```
-Creates a new, curried version of `$callable` where the first `$rotate` of `$totalArgs` arguments
-are moved to the end of the arguments list.
-
-In essence, this takes a data-first function and returns a curryable data-last function.
-
-Related: `currify()`, `curry()`, `partial()`
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` |
-`$totalArgs` | `integer` | Total number of arguments accepted by `$callable`
-`$args` | `array` | (optional) Initial arguments to pass to the final curried function
-`$rotate` | `integer` | (optional) The number of arguments to move from start to end; see Dash\rotate()
-**Returns** | `function\|mixed` |
-
-
-
-[↑ Top](#operations)
-
-curry
----
-[Operations](#operations) › [Callable](#callable)
-
-```php
-curry(callable $callable /*, ...args */): function|mixed
-```
-Creates a new function that returns the result of `$callable` if its required number of parameters are supplied;
-otherwise, it returns a function that accepts the remaining number of required parameters.
-
-Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
-
-Related: `curryN()`, `curryRight()`, `partial()`, `currify()`
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` | Any valid callable except for relative static methods, eg. ['A', 'parent::foo']
-`...$args` | `mixed` | (optional, variadic) arguments to pass to `$callable`
-**Returns** | `function\|mixed` |
-
-**Example:**
-```php
-$greet = function ($greeting, $salutation, $name) {
-	return "$greeting, $salutation $name";
-};
-
-$goodMorning = Dash\curry($greet, 'Good morning');
-$goodMorning('Ms.', 'Mary');
-// === 'Good morning, Ms. Mary'
-
-$goodMorning = Dash\curry($greet, 'Good morning');
-$goodMorningSir = $goodMorning('Sir');
-$goodMorningSir('Peter');
-// === 'Good morning, Sir Peter'
-
-```
-
-**Example:** With placeholders
-```php
-$greet = function ($greeting, $salutation, $name) {
-	return "$greeting, $salutation $name";
-};
-
-$greetMary = Dash\curry($greet, Dash\_, 'Ms.', 'Mary');
-$greetMary('Good morning');
-// === 'Good morning, Ms. Mary'
-
-$greetSir = Dash\curry($greet, Dash\_, 'Sir');
-$goodMorningSir = $greetSir('Good morning');
-$goodMorningSir('Peter');
-// === 'Good morning, Sir Peter'
-```
-
-[↑ Top](#operations)
-
-curryN
----
-[Operations](#operations) › [Callable](#callable)
-
-```php
-curryN(callable $callable, $numRequiredArgs /*, ...args */): function|mixed
-```
-Creates a new function that returns the result of `$callable` if the required number of parameters are supplied;
-otherwise, it returns a function that accepts the remaining number of required parameters.
-
-Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
-
-Related: `curry()`
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` |
-`$numRequiredArgs` | `integer` | The number of parameters to require before calling `$callable`
-`...$args` | `mixed` | (optional, variadic) arguments to pass to `$callable`
-**Returns** | `function\|mixed` |
-
-**Example:**
-```php
-$greet = function ($greeting, $salutation, $name, $punctuation = '!') {
-	return "$greeting, $salutation $name$punctuation";
-};
-
-$goodMorning = Dash\curryN($greet, 3, 'Good morning');
-$goodMorning('Ms.', 'Mary');
-// === 'Good morning, Ms. Mary!'
-
-$goodMorning = Dash\curryN($greet, 3, 'Good morning');
-$goodMorningSir = $goodMorning('Sir');
-$goodMorningSir('Peter');
-// === 'Good morning, Sir Peter!'
-
-```
-
-**Example:** With placeholders
-```php
-$greet = function ($greeting, $salutation, $name, $punctuation = '!') {
-	return "$greeting, $salutation $name$punctuation";
-};
-
-$greetSir = Dash\curryN($greet, 3, Dash\_, 'Sir');
-$goodMorningSir = $greetSir('Good morning');
-$goodMorningSir('Peter');
-// === 'Good morning, Sir Peter!'
-
-$greetMary = Dash\curryN($greet, 3, Dash\_, Dash\_, 'Mary');
-$greetMsMary = $greetMary(Dash\_, 'Ms.');
-$greetMsMary('Good morning');
-// === 'Good morning, Ms. Mary!'
-```
-
-[↑ Top](#operations)
-
-curryRight
----
-[Operations](#operations) › [Callable](#callable)
-
-```php
-curryRight(callable $callable /*, ...args */): function|mixed
-```
-Creates a new function that returns the result of `$callable` if its required number of parameters are supplied;
-otherwise, it returns a function that accepts the remaining number of required parameters.
-
-Like `partialRight()`, arguments are applied in reverse order.
-
-Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
-
-Related: `curry()`, `partial()`
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` |
-`...$args` | `mixed` | (optional, variadic) arguments to pass to `$callable`
-**Returns** | `function\|mixed` |
-
-**Example:**
-```php
-$greet = function ($greeting, $salutation, $name) {
-	return "$greeting, $salutation $name";
-};
-
-$goodMorning = Dash\curryRight($greet, 'Good morning');
-$goodMorning('Ms.', 'Mary');
-// === 'Good morning, Ms. Mary'
-
-$goodMorning = Dash\curryRight($greet, 'Good morning');
-$goodMorningSir = $goodMorning('Sir');
-$goodMorningSir('Peter');
-// === 'Good morning, Sir Peter'
-
-```
-
-**Example:** With placeholders
-```php
-$greet = function ($greeting, $salutation, $name) {
-	return "$greeting, $salutation $name";
-};
-
-$greetMary = Dash\curryRight($greet, Dash\_, 'Ms.', 'Mary');
-$greetMary('Good morning');
-// === 'Good morning, Ms. Mary'
-
-$greetSir = Dash\curryRight($greet, Dash\_, 'Sir');
-$goodMorningSir = $greetSir('Good morning');
-$goodMorningSir('Peter');
-// === 'Good morning, Sir Peter'
-```
-
-[↑ Top](#operations)
-
-curryRightN
----
-[Operations](#operations) › [Callable](#callable)
-
-```php
-curryRightN(callable $callable, $numRequiredArgs /*, ...args */): function|mixed
-```
-Creates a new function that returns the result of `$callable` if the required number of parameters are supplied;
-otherwise, it returns a function that accepts the remaining number of required parameters.
-
-Like `partialRight()`, arguments are applied in reverse order.
-
-Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
-
-Related: `curryN()`, `partialRight()`
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` |
-`$numRequiredArgs` | `integer` | The number of parameters to require before calling `$callable`
-`...$args` | `mixed` | (optional, variadic) arguments to pass to `$callable`
-**Returns** | `function\|mixed` |
-
-**Example:**
-```php
-$greet = function ($greeting, $salutation, $name, $punctuation = '!') {
-	return "$greeting, $salutation $name$punctuation";
-};
-
-$greetMary = Dash\curryRightN($greet, 3, 'Mary');
-$greetMsMary = $greetMary('Ms.');
-$greetMsMary('Good morning');
-// === 'Good morning, Ms. Mary!
-
-$greetPeter = Dash\curryRightN($greet, 3, 'Peter');
-$greetSirPeter = $greetPeter('Sir');
-$greetSirPeter('Good morning');
-// === 'Good morning, Sir Peter!
-
-```
-
-**Example:** With placeholders
-```php
-$greet = function ($greeting, $salutation, $name, $punctuation = '!') {
-	return "$greeting, $salutation $name$punctuation";
-};
-
-$goodMorning = Dash\curryRightN($greet, 3, 'Good morning', Dash\_, Dash\_);
-$goodMorningSir = $goodMorning('Sir', Dash\_);
-$goodMorningSir('Peter');
-// === 'Good morning, Sir Peter!
-
-$greetMs = Dash\curryRightN($greet, 3, 'Ms.', Dash\_);
-$goodMorningMs = $greetMs('Good morning', Dash\_);
-$goodMorningMs('Mary');
-// === 'Good morning, Ms. Mary!
-```
-
-[↑ Top](#operations)
-
-negate
----
-[Operations](#operations) › [Callable](#callable)
-
-```php
-negate(callable $predicate): callable
-
-# Curried: (all parameters required)
-Curry\negate($predicate)
-```
-Creates a new function that negates the return value of `$predicate`.
-
-
-
-Parameter | Type | Description
---- | --- | :---
-`$predicate` | `callable` |
-**Returns** | `callable` | New function
-
-**Example:**
-```php
-$isEven = function ($n) { return $n % 2 === 0; };
-$isOdd = Dash\negate($isEven);
-
-$isEven(3);  // === false
-$isOdd(3);   // === true
-```
-
-[↑ Top](#operations)
-
-partial
----
-[Operations](#operations) › [Callable](#callable)
-
-```php
-partial($callable /*, ...args */): callable
-```
-Creates a new function that will invoke `$callable` with the given arguments
-and any others passed to the returned function.
-
-When calling `$callable`, arguments provided to `partial()` will be listed
-BEFORE those passed to the returned function.
-
-Use `Dash\_` as a placeholder to replace with arguments passed to the returned function.
-
-Related: `partialRight()`, `curry()`
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` |
-`...$args` | `mixed` | (optional, variadic) arguments to pass to `$callable`
-**Returns** | `callable` |
-
-**Example:**
-```php
-$greet = function ($greeting, $name) {
-	return "$greeting, $name!";
-};
-
-$sayHello = Dash\partial($greet, 'Hello');
-$sayHowdy = Dash\partial($greet, 'Howdy');
-
-$sayHello('Mark');  // === 'Hello, Mark!'
-$sayHowdy('Jane');  // === 'Howdy, Jane!'
-
-```
-
-**Example:** With placeholders
-```php
-$greet = function ($greeting, $name) {
-	return "$greeting, $name!";
-};
-
-$greetMark = Dash\partial($greet, Dash\_, 'Mark');
-$greetJane = Dash\partial($greet, Dash\_, 'Jane');
-
-$greetMark('Hello');  // === 'Hello, Mark!'
-$greetJane('Howdy');  // === 'Howdy, Jane!'
-```
-
-[↑ Top](#operations)
-
-partialRight
----
-[Operations](#operations) › [Callable](#callable)
-
-```php
-partialRight($callable /*, ...args */): callable
-```
-Creates a new function that will invoke `$callable` with the given arguments
-and any others passed to the returned function.
-
-When calling `$callable`, arguments provided to `partial()` will be listed
-AFTER those passed to the returned function.
-
-Use `Dash\_` as a placeholder to replace with arguments passed to the returned function.
-
-Related: `partial()`, `curryRight()`
-
-Parameter | Type | Description
---- | --- | :---
-`$callable` | `callable` |
-`...$args` | `mixed` | (optional, variadic) arguments to pass to `$callable`
-**Returns** | `callable` |
-
-**Example:**
-```php
-$greet = function ($greeting, $name) {
-	return "$greeting, $name!";
-};
-
-$greetMark = Dash\partialRight($greet, 'Mark');
-$greetJane = Dash\partialRight($greet, 'Jane');
-
-$greetMark('Hello');  // === 'Hello, Mark!'
-$greetJane('Howdy');  // === 'Howdy, Jane!'
-
-```
-
-**Example:** With a placeholder
-```php
-$greet = function ($greeting, $name) {
-	return "$greeting, $name!";
-};
-
-$sayHello = Dash\partialRight($greet, 'Hello', Dash\_);
-$sayHowdy = Dash\partialRight($greet, 'Howdy', Dash\_);
-
-$sayHello('Mark');  // === 'Hello, Mark!'
-$sayHowdy('Jane');  // === 'Howdy, Jane!'
+Dash\toObject(['a' => 1, 'b' => 2]);
+// === (object) ['a' => 1, 'b' => 2]
+
+Dash\toObject(new ArrayObject(['a' => 1, 'b' => 2]));
+// === (object) ['a' => 1, 'b' => 2]
 ```
 
 [↑ Top](#operations)
@@ -3385,6 +3444,8 @@ unary
 ---
 [Operations](#operations) › [Callable](#callable)
 
+
+
 ```php
 unary(callable $callable): callable
 
@@ -3392,7 +3453,6 @@ unary(callable $callable): callable
 Curry\unary($callable)
 ```
 Creates a new function that invokes `$callable` with a single argument and ignores the rest.
-
 
 
 Parameter | Type | Description
@@ -3410,81 +3470,72 @@ Dash\filter([1, 2.0, '3', 'a'], $isNumeric);
 
 [↑ Top](#operations)
 
-Number
-===
-
-isEven
+union
 ---
-[Operations](#operations) › [Number](#number)
+[Operations](#operations) › [Iterable](#iterable)
+
+Related: `intersection()`, `difference()`
 
 ```php
-isEven($value): boolean
-
-# Curried: (all parameters required)
-Curry\isEven($value)
+union($iterable /*, ...iterables */): array
 ```
-Checks whether `$value` is an even number.
+Returns a new array containing the combined set of unique values, in order, of all provided iterables.
 
-If a double is provided, only its truncated integer component is evaluated.
-
+Non-indexed keys are preseved, but duplicate keys will overwrite previous ones.
 
 
 Parameter | Type | Description
 --- | --- | :---
-`$value` | `numeric` |
-**Returns** | `boolean` | True if `$value` is an even number, false otherwise
+`$iterable` | `iterable\|stdClass\|null` | (variadic) One or more iterables to merge
+**Returns** | `array` |
 
-**Example:**
+**Example:** With indexed arrays
 ```php
-Dash\isEven(3);
-// === false
+Dash\union(
+	[1, 3, 5],
+	[2, 4, 6],
+	[7, 8]
+);
+// === [1, 3, 5, 2, 4, 6, 7, 8]
 
-Dash\isEven(4);
-// === true
+```
 
-Dash\isEven(4.9);
-// === true
-
-Dash\isEven('a');
-// === false
+**Example:** With associative arrays
+```php
+Dash\union(
+	['a' => 1, 'c' => 3],
+	['b' => 2, 'd' => 4],
+	['e' => 5, 'f' => 6]
+);
+// === ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5, 'f' => 6]
 ```
 
 [↑ Top](#operations)
 
-isOdd
+values
 ---
-[Operations](#operations) › [Number](#number)
+[Operations](#operations) › [Iterable](#iterable)
+
+Related: `keys()`
 
 ```php
-isOdd($value): boolean
+values($iterable): array
 
 # Curried: (all parameters required)
-Curry\isOdd($value)
+Curry\values($iterable)
 ```
-Checks whether `$value` is an odd number.
-
-If a double is provided, only its truncated integer component is evaluated.
-
+Gets the values of `$iterable` as an array.
 
 
 Parameter | Type | Description
 --- | --- | :---
-`$value` | `numeric` |
-**Returns** | `boolean` | True if `$value` is an odd number, false otherwise
+`$iterable` | `iterable\|stdClass\|null` |
+**Returns** | `array` |
 
 **Example:**
 ```php
-Dash\isOdd(3);
-// === true
-
-Dash\isOdd(4);
-// === false
-
-Dash\isOdd(5.9);
-// === true
-
-Dash\isOdd('a');
-// === false
+Dash\values(['c' => 3, 'a' => 1, 'b' => 2]);
+// === [3, 1, 2]
 ```
 
 [↑ Top](#operations)
