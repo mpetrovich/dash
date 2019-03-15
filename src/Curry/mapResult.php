@@ -2,7 +2,7 @@
 
 namespace Dash\Curry;
 
-function mapResult(/* $iteratee, $path */)
+function mapResult(/* $path, $default, $iterable */)
 {
 	return \Dash\currify('Dash\mapResult', func_get_args());
 }
