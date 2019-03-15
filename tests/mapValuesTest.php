@@ -46,12 +46,12 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 			 */
 
 			'With an indexed array with one element' => [
-				'iterable' => [3, 1, 2, 4],
-				'expected' => [6, 2, 4, 8],
-			],
-			'With an indexed array with several elements' => [
 				'iterable' => [3],
 				'expected' => [6],
+			],
+			'With an indexed array with several elements' => [
+				'iterable' => [3, 1, 2, 4],
+				'expected' => [6, 2, 4, 8],
 			],
 
 			/*
