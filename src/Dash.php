@@ -82,9 +82,6 @@ class Dash
 	 *
 	 * @param string $name Operation name
 	 * @param callable $callable Operation function
-	 * @param boolean $makeCurryable (optional) If true, a curried variant of the operation will also be added,
-	 *                               with arguments rotated by 1 so that the first argument is now last,
-	 *                               the second argument is now first, the third is now second, and so on
 	 * @return void
 	 * @throws Exception when attempting to create a custom method with the same name as a built-in Dash operation
 	 *
@@ -109,7 +106,7 @@ class Dash
 		$add3([1, 2, 3]);
 		// === [4, 5, 6]
 	 */
-	public static function setCustom($name, callable $callable, $makeCurryable = true)
+	public static function setCustom($name, callable $callable)
 	{
 		if (is_callable("\\Dash\\$name")) {
 			throw new \Exception(
@@ -118,13 +115,6 @@ class Dash
 		}
 
 		self::$customFunctions[$name] = $callable;
-
-		if ($makeCurryable) {
-			$curried = function () use ($callable) {
-				return currify($callable, func_get_args());
-			};
-			self::$customFunctions["_$name"] = $curried;
-		}
 	}
 
 	/**

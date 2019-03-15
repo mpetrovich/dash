@@ -350,51 +350,6 @@ class DashTest extends PHPUnit_Framework_TestCase
 		Dash\Dash::unsetCustom('double');
 	}
 
-	public function testCustomOperationWithAutoCurrying()
-	{
-		Dash\Dash::setCustom('addEach', function ($iterable, $add) {
-			return Dash\Dash::map($iterable, function ($n) use ($add) { return $n + $add; });
-		});
-
-		$add3 = Dash\Dash::_addEach(3);
-		$this->assertSame([4, 5, 6], $add3([1, 2, 3]));
-
-		Dash\Dash::unsetCustom('addEach');
-
-		try {
-			Dash\Dash::addEach([1, 2, 3], 3);
-			$this->assertTrue(false, 'This should never be called');
-		}
-		catch (Exception $e) {
-			$this->assertTrue(true);
-		}
-
-		try {
-			Dash\Dash::_addEach([1, 2, 3], 3);
-			$this->assertTrue(false, 'This should never be called');
-		}
-		catch (Exception $e) {
-			$this->assertTrue(true);
-		}
-	}
-
-	public function testCustomOperationWithoutAutoCurrying()
-	{
-		Dash\Dash::setCustom('addEach', function ($iterable, $add) {
-			return Dash\Dash::map($iterable, function ($n) use ($add) { return $n + $add; });
-		}, false);
-
-		try {
-			$add3 = Dash\Dash::_addEach(3);
-			$this->assertTrue(false, 'This should never be called');
-		}
-		catch (BadMethodCallException $e) {
-			$this->assertTrue(true);
-		}
-
-		Dash\Dash::unsetCustom('addEach');
-	}
-
 	/*
 		Standalone operations
 		------------------------------------------------------------
