@@ -53,6 +53,10 @@ class sortTest extends PHPUnit_Framework_TestCase
 				'iterable' => [3.2, 3.1, 2.9, 3.0],
 				'expected' => [2.9, 3.0, 3.1, 3.2],
 			],
+			'With an indexed array containing strings' => [
+				'iterable' => ['d', 'a', 'c', 'b'],
+				'expected' => ['a', 'b', 'c', 'd'],
+			],
 
 			/*
 				With associative array
@@ -69,6 +73,10 @@ class sortTest extends PHPUnit_Framework_TestCase
 			'With an associative array containing floats' => [
 				'iterable' => ['a' => 3.2, 'b' => 3.1, 'c' => 2.9, 'd' => 3.0],
 				'expected' => ['c' => 2.9, 'd' => 3.0, 'b' => 3.1, 'a' => 3.2],
+			],
+			'With an associative array containing strings' => [
+				'iterable' => ['three' => 'delta', 'four' => 'gamma', 'two' => 'beta', 'one' => 'alpha'],
+				'expected' => ['one' => 'alpha', 'two' => 'beta', 'three' => 'delta', 'four' => 'gamma'],
 			],
 
 			/*
@@ -91,6 +99,10 @@ class sortTest extends PHPUnit_Framework_TestCase
 				'iterable' => (object) ['a' => 3.2, 'b' => 3.1, 'c' => 2.9, 'd' => 3.0],
 				'expected' => ['c' => 2.9, 'd' => 3.0, 'b' => 3.1, 'a' => 3.2],
 			],
+			'With an stdClass array containing strings' => [
+				'iterable' => (object) ['three' => 'delta', 'four' => 'gamma', 'two' => 'beta', 'one' => 'alpha'],
+				'expected' => ['one' => 'alpha', 'two' => 'beta', 'three' => 'delta', 'four' => 'gamma'],
+			],
 
 			/*
 				With ArrayObject
@@ -111,6 +123,10 @@ class sortTest extends PHPUnit_Framework_TestCase
 			'With an ArrayObject containing floats' => [
 				'iterable' => new ArrayObject(['a' => 3.2, 'b' => 3.1, 'c' => 2.9, 'd' => 3.0]),
 				'expected' => ['c' => 2.9, 'd' => 3.0, 'b' => 3.1, 'a' => 3.2],
+			],
+			'With an ArrayObject array containing strings' => [
+				'iterable' => new ArrayObject(['three' => 'delta', 'four' => 'gamma', 'two' => 'beta', 'one' => 'alpha']),
+				'expected' => ['one' => 'alpha', 'two' => 'beta', 'three' => 'delta', 'four' => 'gamma'],
 			],
 		];
 	}
