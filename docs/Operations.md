@@ -1302,7 +1302,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable\|stdClass\|null` |
 `$iteratee` | `callable\|string` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable`; if a string, will use `Dash\property($iteratee)` as the iteratee
-**Returns** | `array` | A new 0-indexed array
+**Returns** | `array` | A new array with the same keys as `$iterable`
 
 **Example:**
 ```php

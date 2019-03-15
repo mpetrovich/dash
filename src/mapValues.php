@@ -14,7 +14,7 @@ namespace Dash;
  * @param callable|string $iteratee (optional) If a callable, invoked with `($value, $key, $iterable)`
  *                                  for each element in `$iterable`;
  *                                  if a string, will use `Dash\property($iteratee)` as the iteratee
- * @return array A new 0-indexed array
+ * @return array A new array with the same keys as `$iterable`
  *
  * @example
 	Dash\mapValues(['a' => 1, 'b' => 2, 'c' => 3], function ($value) {
