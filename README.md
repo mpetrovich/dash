@@ -18,27 +18,30 @@ $avgMaleAge = Dash\chain([
 echo "Average male age is $avgMaleAge.";
 ```
 
-At a glance
----
-#### Jump to:
-- [Highlights](#highlights)
-- [Why use Dash?](#why-use-dash)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Operations](docs/Operations.md)
-- [Changelog](https://github.com/mpetrovich/dash/releases)
-- [Roadmap](docs/Roadmap.md)
-- [Contributing](CONTRIBUTING.md)
-
-#### Iterable
+#### Operations - [View all](docs/Operations.md)
 [all / every](docs/Operations.md#all--every),
 [any / some](docs/Operations.md#any--some),
+[apply](docs/Operations.md#apply),
+[ary](docs/Operations.md#ary),
+[assertType](docs/Operations.md#asserttype),
 [at](docs/Operations.md#at),
 [average / mean](docs/Operations.md#average--mean),
+[call](docs/Operations.md#call),
+[chain](docs/Operations.md#chain),
+[compare](docs/Operations.md#compare),
 [contains / includes](docs/Operations.md#contains--includes),
+[currify](docs/Operations.md#currify),
+[currifyN](docs/Operations.md#currifyn),
+[curry](docs/Operations.md#curry),
+[curryN](docs/Operations.md#curryn),
+[curryRight](docs/Operations.md#curryright),
+[curryRightN](docs/Operations.md#curryrightn),
+[custom](docs/Operations.md#custom),
+[debug](docs/Operations.md#debug),
 [deltas](docs/Operations.md#deltas),
 [difference](docs/Operations.md#difference),
 [each](docs/Operations.md#each),
+[equal](docs/Operations.md#equal),
 [filter](docs/Operations.md#filter),
 [find](docs/Operations.md#find),
 [findKey](docs/Operations.md#findkey),
@@ -47,78 +50,64 @@ At a glance
 [findLastValue](docs/Operations.md#findlastvalue),
 [findValue](docs/Operations.md#findvalue),
 [first / head](docs/Operations.md#first--head),
+[get](docs/Operations.md#get),
+[getDirect](docs/Operations.md#getdirect),
+[getDirectRef](docs/Operations.md#getdirectref),
 [groupBy](docs/Operations.md#groupby),
+[hasDirect](docs/Operations.md#hasdirect),
+[identical](docs/Operations.md#identical),
+[identity](docs/Operations.md#identity),
 [intersection](docs/Operations.md#intersection),
+[isEmpty](docs/Operations.md#isempty),
+[isEven](docs/Operations.md#iseven),
 [isIndexedArray](docs/Operations.md#isindexedarray),
+[isOdd](docs/Operations.md#isodd)
+[isType](docs/Operations.md#istype),
 [join / implode](docs/Operations.md#join--implode),
 [keyBy / indexBy](docs/Operations.md#keyby--indexby),
 [keys](docs/Operations.md#keys),
 [last](docs/Operations.md#last),
 [map](docs/Operations.md#map),
+[mapResult](docs/Operations.md#mapresult),
 [mapValues](docs/Operations.md#mapvalues),
 [matchesProperty](docs/Operations.md#matchesproperty),
 [max](docs/Operations.md#max),
 [median](docs/Operations.md#median),
 [min](docs/Operations.md#min),
+[negate](docs/Operations.md#negate),
 [omit](docs/Operations.md#omit),
+[partial](docs/Operations.md#partial),
+[partialRight](docs/Operations.md#partialright),
 [pick](docs/Operations.md#pick),
 [pluck](docs/Operations.md#pluck),
 [property](docs/Operations.md#property),
 [reduce](docs/Operations.md#reduce),
 [reject](docs/Operations.md#reject),
+[result](docs/Operations.md#result),
 [reverse](docs/Operations.md#reverse),
 [rotate](docs/Operations.md#rotate),
+[set](docs/Operations.md#set),
+[size / count](docs/Operations.md#size--count),
 [sort](docs/Operations.md#sort),
 [sum](docs/Operations.md#sum),
 [take](docs/Operations.md#take),
 [takeRight](docs/Operations.md#takeright),
+[tap](docs/Operations.md#tap),
+[thru](docs/Operations.md#thru)
 [toArray](docs/Operations.md#toarray),
 [toObject](docs/Operations.md#toobject),
+[unary](docs/Operations.md#unary)
 [union](docs/Operations.md#union),
 [values](docs/Operations.md#values)
 
-#### Utility
-[assertType](docs/Operations.md#asserttype),
-[chain](docs/Operations.md#chain),
-[compare](docs/Operations.md#compare),
-[custom](docs/Operations.md#custom),
-[debug](docs/Operations.md#debug),
-[equal](docs/Operations.md#equal),
-[get](docs/Operations.md#get),
-[getDirect](docs/Operations.md#getdirect),
-[getDirectRef](docs/Operations.md#getdirectref),
-[hasDirect](docs/Operations.md#hasdirect),
-[identical](docs/Operations.md#identical),
-[identity](docs/Operations.md#identity),
-[isEmpty](docs/Operations.md#isempty),
-[isType](docs/Operations.md#istype),
-[result](docs/Operations.md#result),
-[set](docs/Operations.md#set),
-[size / count](docs/Operations.md#size--count),
-[tap](docs/Operations.md#tap),
-[thru](docs/Operations.md#thru)
-
-#### Callable
-[apply](docs/Operations.md#apply),
-[ary](docs/Operations.md#ary),
-[call](docs/Operations.md#call),
-[currify](docs/Operations.md#currify),
-[currifyN](docs/Operations.md#currifyn),
-[curry](docs/Operations.md#curry),
-[curryN](docs/Operations.md#curryn),
-[curryRight](docs/Operations.md#curryright),
-[curryRightN](docs/Operations.md#curryrightn),
-[negate](docs/Operations.md#negate),
-[partial](docs/Operations.md#partial),
-[partialRight](docs/Operations.md#partialright),
-[unary](docs/Operations.md#unary)
-
-#### Number
-[isEven](docs/Operations.md#iseven),
-[isOdd](docs/Operations.md#isodd)
-
-#### Don't see the operation you want?
-Please [create a new GitHub issue](https://github.com/mpetrovich/dash/issues/new) and let us know. We add new operations often!
+#### Jump to:
+- [Highlights](#highlights)
+- [Why use Dash?](#why-use-dash)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Changelog](https://github.com/mpetrovich/dash/releases)
+- [Roadmap](docs/Roadmap.md)
+- [Contributing](CONTRIBUTING.md)
 
 
 Highlights
@@ -192,6 +181,14 @@ Dash\map([1, 2, 3], function ($n) { return $n * 2; });  // === [2, 4, 6]
 or as static methods:
 
 ```php
+use Dash\Dash;
+
+Dash::map([1, 2, 3], function ($n) { return $n * 2; });  // === [2, 4, 6]
+```
+
+`Dash\_` can also be used as an alias for `Dash\Dash`:
+
+```php
 use Dash\_;
 
 _::map([1, 2, 3], function ($n) { return $n * 2; });  // === [2, 4, 6]
@@ -221,11 +218,11 @@ $result = Dash\chain(['a' => 1, 'b' => 2, 'c' => 3])
 // $result === (object) ['a' => 2, 'c' => 6]
 ```
 
-For convenience, `_::chain()` can be aliased to a global function using `addGlobalAlias()`. It only needs to be called once during your application bootstrap:
+For convenience, `Dash::chain()` can be aliased to a global function using `addGlobalAlias()`. It only needs to be called once during your application bootstrap:
 
 ```php
 // In your application bootstrap:
-_::addGlobalAlias('__');
+Dash::addGlobalAlias('__');
 
 // Elsewhere:
 $result = __([1, 2, 3, 4, 5])
@@ -387,10 +384,10 @@ When `value()` is called, the result is cached until the chain is modified or th
 Custom operations can be added and removed using `setCustom()` and `unsetCustom()`, respectively:
 
 ```php
-_::setCustom('triple', function ($n) { return $n * 3; });
+Dash::setCustom('triple', function ($n) { return $n * 3; });
 
 // Standalone
-_::triple(4);  // === 12
+Dash::triple(4);  // === 12
 
 // Chained
 Dash\chain([1, 2, 3])
@@ -400,7 +397,7 @@ Dash\chain([1, 2, 3])
 
 // As an argument
 Dash\chain([1, 2, 3])
-	->map('Dash\_::triple')
+	->map('Dash\Dash::triple')
 	->value();  // === [3, 6, 9]
 
 // As an argument using the Dash\custom() operation
@@ -408,7 +405,7 @@ Dash\chain([1, 2, 3])
 	->map(Dash\custom('triple'))
 	->value();  // === [3, 6, 9]
 
-_::unsetCustom('triple');
+Dash::unsetCustom('triple');
 ```
 
 
@@ -432,7 +429,7 @@ $result = Dash\chain(['one' => 1, 'two' => 2, 'three' => 3])
 Alternatively, if you find yourself needing to use `array_change_key_case()` often, it may be better to add a new custom operation:
 
 ```php
-_::setCustom('keyCase', function ($input, $case = CASE_LOWER) {
+Dash::setCustom('keyCase', function ($input, $case = CASE_LOWER) {
 	return array_change_key_case($input, $case);
 });
 ```
