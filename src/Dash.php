@@ -118,6 +118,24 @@ class Dash
 	}
 
 	/**
+	 * Gets a custom operation.
+	 *
+	 * @param string $name Name of the operation that was added via `setCustom()`
+	 * @return function|null The custom operation, or null if no matching custom function was found
+	 *
+	 * @example
+		$triple = function ($n) { return $n * 3; };
+		Dash::setCustom('triple', $triple);
+
+		$fn = Dash::getCustom('triple');
+		$fn(4);  // === 12
+	 */
+	public static function getCustom($name)
+	{
+		return isset(self::$customFunctions[$name]) ? self::$customFunctions[$name] : null;
+	}
+
+	/**
 	 * Removes a custom operation.
 	 *
 	 * @param string $name Name of the operation that was added via `setCustom()`

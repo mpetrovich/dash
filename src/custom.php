@@ -20,7 +20,5 @@ namespace Dash;
  */
 function custom($name)
 {
-	return function () use ($name) {
-		return call_user_func_array("Dash\\_::$name", func_get_args());
-	};
+	return Dash::getCustom($name);
 }

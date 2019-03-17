@@ -40,4 +40,15 @@ class customTest extends PHPUnit_Framework_TestCase
 
 		Dash\_::unsetCustom('double');
 	}
+
+	public function testNumberOfArgsPreserved()
+	{
+		$fn = function($a, $b, $c) {};
+		Dash\Dash::setCustom('customTest__fn', $fn);
+
+		$custom = Dash\custom('customTest__fn');
+		$numArgs = (new ReflectionFunction($custom))->getNumberOfParameters();
+
+		$this->assertSame(3, $numArgs);
+	}
 }
