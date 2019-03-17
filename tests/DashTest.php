@@ -344,6 +344,11 @@ class DashTest extends PHPUnit_Framework_TestCase
 
 		$this->assertSame(
 			[2, 4, 6],
+			Dash\Dash::chain([1, 2, 3])->map(Dash\Dash::getCustom('double'))->value()
+		);
+
+		$this->assertSame(
+			[2, 4, 6],
 			Dash\Dash::chain([1, 2, 3])->map('Dash\Dash::double')->value()
 		);
 
