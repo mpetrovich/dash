@@ -9,13 +9,13 @@ namespace Dash;
  * @return function The custom operation
  *
  * @example
-	_::setCustom('double', function ($n) { return $n * 2; });
+	Dash::setCustom('double', function ($n) { return $n * 2; });
 
 	$double = Dash\custom('double');
 	$double(3);
 	// === 6
 
-	_::chain([1, 2, 3])->map(Dash\custom('double'))->value();
+	Dash\chain([1, 2, 3])->map(Dash\custom('double'))->value();
 	// === [2, 4, 6]
  */
 function custom($name)

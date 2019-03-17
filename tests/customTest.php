@@ -8,7 +8,7 @@ class customTest extends PHPUnit_Framework_TestCase
 {
 	public function test()
 	{
-		Dash\_::setCustom('double', function ($value) {
+		Dash\Dash::setCustom('double', function ($value) {
 			return $value * 2;
 		});
 
@@ -17,15 +17,15 @@ class customTest extends PHPUnit_Framework_TestCase
 
 		$this->assertSame(
 			[2, 4, 6],
-			Dash\_::chain([1, 2, 3])->map(Dash\custom('double'))->value()
+			Dash\chain([1, 2, 3])->map(Dash\custom('double'))->value()
 		);
 
-		Dash\_::unsetCustom('double');
+		Dash\Dash::unsetCustom('double');
 	}
 
 	public function testCurried()
 	{
-		Dash\_::setCustom('double', function ($value) {
+		Dash\Dash::setCustom('double', function ($value) {
 			return $value * 2;
 		});
 
@@ -35,10 +35,10 @@ class customTest extends PHPUnit_Framework_TestCase
 
 		$this->assertSame(
 			[2, 4, 6],
-			Dash\_::chain([1, 2, 3])->map($custom('double'))->value()
+			Dash\chain([1, 2, 3])->map($custom('double'))->value()
 		);
 
-		Dash\_::unsetCustom('double');
+		Dash\Dash::unsetCustom('double');
 	}
 
 	public function testNumberOfArgsPreserved()

@@ -12,7 +12,7 @@ Operation | Signature
 [at](#at) | `at($iterable, $index, $default = null): mixed`
 [average](#average--mean) / mean | `average($iterable): double\|null`
 [call](#call) | `call(callable $callable /*, ...args */): mixed`
-[chain](#chain) | `chain($input = null): Dash\_`
+[chain](#chain) | `chain($input = null): Dash\Dash`
 [compare](#compare) | `compare($a, $b): integer`
 [contains](#contains--includes) / includes | `contains($iterable, $target, $comparator = 'Dash\equal'): boolean`
 [currify](#currify) | `currify(callable $callable, array $args = [], $rotate = 1): function\|mixed`
@@ -393,18 +393,18 @@ chain
 
 
 ```php
-chain($input = null): Dash\_
+chain($input = null): Dash\Dash
 
 # Curried: (all parameters required)
 Curry\chain($input)
 ```
-Creates a new chain. Alias for `_::chain()`.
+Creates a new chain. Alias for `Dash::chain()`.
 
 
 Parameter | Type | Description
 --- | --- | :---
 `$input` | `mixed` | (optional) Initial input value of the chain
-**Returns** | `Dash\_` | A new chain
+**Returns** | `Dash\Dash` | A new chain
 
 **Example:**
 ```php
@@ -804,13 +804,13 @@ Parameter | Type | Description
 
 **Example:**
 ```php
-_::setCustom('double', function ($n) { return $n * 2; });
+Dash::setCustom('double', function ($n) { return $n * 2; });
 
 $double = Dash\custom('double');
 $double(3);
 // === 6
 
-_::chain([1, 2, 3])->map(Dash\custom('double'))->value();
+Dash\chain([1, 2, 3])->map(Dash\custom('double'))->value();
 // === [2, 4, 6]
 ```
 
@@ -3180,7 +3180,7 @@ Parameter | Type | Description
 
 **Example:**
 ```php
-$result = _::chain([1, 3, 4])
+$result = Dash\chain([1, 3, 4])
 	->filter('Dash\isOdd')
 	->tap(function ($value) {
 		// $value === [1, 3]
@@ -3214,7 +3214,7 @@ Parameter | Type | Description
 
 **Example:**
 ```php
-$result = _::chain([1, 3, 4])
+$result = Dash\chain([1, 3, 4])
 	->filter('Dash\isOdd')
 	->thru(function ($value) {
 		// $value === [1, 3]

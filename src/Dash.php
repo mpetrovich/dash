@@ -60,7 +60,7 @@ class Dash
 	 * Creates a new chain.
 	 *
 	 * @param mixed $input (optional) Initial input value of the chain
-	 * @return Dash\_ A new chain
+	 * @return self A new chain
 	 *
 	 * @example
 		Dash::chain([1, 2, 3])

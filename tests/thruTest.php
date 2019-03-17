@@ -73,7 +73,7 @@ class thruTest extends PHPUnit_Framework_TestCase
 
 	public function testExamples()
 	{
-		$result = Dash\_::chain([1, 3, 4])
+		$result = Dash\chain([1, 3, 4])
 			->filter('Dash\isOdd')
 			->thru(function ($value) {
 				// $value === [1, 3]

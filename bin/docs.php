@@ -3,15 +3,13 @@
 
 require_once 'vendor/autoload.php';
 
-use Dash\_;
-
 $sourceDir = $argv[1];
 $destFilepath = $argv[2];
 makeDocs($sourceDir, $destFilepath);
 
 function makeDocs($sourceDir, $destFilepath)
 {
-	$ops = _::chain(new FilesystemIterator($sourceDir, FilesystemIterator::SKIP_DOTS))
+	$ops = Dash\chain(new FilesystemIterator($sourceDir, FilesystemIterator::SKIP_DOTS))
 		->reject(function ($fileinfo) { return $fileinfo->isDir(); })
 		->map(function ($fileinfo) { return pathinfo($fileinfo)['filename']; })
 		->reject(function ($name) { return $name[0] === '_'; })
@@ -25,7 +23,7 @@ function makeDocs($sourceDir, $destFilepath)
 		})
 		->value();
 
-	$opDocs = _::chain($ops)
+	$opDocs = Dash\chain($ops)
 		->map('renderOp')
 		->join("\n")
 		->value();
@@ -46,7 +44,7 @@ function createOp($filepath)
 	$curriedFilepath = dirname($filepath) . '/Curry/' . basename($filepath);
 	$op->curriedFilepath = file_exists($curriedFilepath) ? $curriedFilepath : null;
 
-	$op->slug = _::chain(array_merge([$op->name], $op->aliases))
+	$op->slug = Dash\chain(array_merge([$op->name], $op->aliases))
 		->map(Dash\ary('strtolower', 1))
 		->join('--')
 		->value();
@@ -84,18 +82,18 @@ function parseDocblock($docblock)
 	$lines = explode("\n", $docblock);
 
 	// Incomplete
-	$op->isIncomplete = _::chain($lines)
+	$op->isIncomplete = Dash\chain($lines)
 		->any(function ($line) { return strpos($line, '@incomplete') === 0; })
 		->value();
 
 	// Description
-	$op->description = _::chain($lines)
+	$op->description = Dash\chain($lines)
 		->takeWhile(function ($line) { return strpos($line, '@') === false; })
 		->join("\n")
 		->value();
 
 	// Related
-	$op->related = _::chain($lines)
+	$op->related = Dash\chain($lines)
 		->filter(function ($line) { return strpos($line, '@see') === 0; })
 		->map(function ($line) {
 			$matches = [];
@@ -112,7 +110,7 @@ function parseDocblock($docblock)
 		->value();
 
 	// Alias
-	$op->aliases = _::chain($lines)
+	$op->aliases = Dash\chain($lines)
 		->filter(function ($line) { return strpos($line, '@alias') === 0; })
 		->first()
 		->thru(function ($line) {
@@ -124,7 +122,7 @@ function parseDocblock($docblock)
 		->value();
 
 	// Return value
-	$op->return = _::chain($lines)
+	$op->return = Dash\chain($lines)
 		->filter(function ($line) { return strpos($line, '@return') === 0; })
 		->map(function ($line) {
 			$matches = [];
@@ -140,7 +138,7 @@ function parseDocblock($docblock)
 		->value();
 
 	// Parameters
-	$allParamLines = _::dropWhile($lines, function ($line) {
+	$allParamLines = Dash\dropWhile($lines, function ($line) {
 		return strpos($line, '@param') !== 0;
 	});
 
@@ -168,7 +166,7 @@ function parseDocblock($docblock)
 	}
 
 	// Examples
-	$allExampleLines = _::dropWhile($lines, function ($line) {
+	$allExampleLines = Dash\dropWhile($lines, function ($line) {
 		return strpos($line, '@example') !== 0;
 	});
 
@@ -196,7 +194,7 @@ function renderOp($op)
 {
 	$aliases = $op->aliases ? sprintf(' / %s', implode(' / ', $op->aliases)) : '';
 
-	$related = _::chain((array) $op->related)
+	$related = Dash\chain((array) $op->related)
 		->map(function ($opName) {
 			return "`$opName()`";
 		})
@@ -206,7 +204,7 @@ function renderOp($op)
 	$related = $related ? "See also: $related" : '';
 
 	if ($op->params) {
-		$paramsTable = _::reduce($op->params, function ($output, $param) {
+		$paramsTable = Dash\reduce($op->params, function ($output, $param) {
 			$type = str_replace('|', '\|', $param->type);
 			return $output . rtrim("`$param->name` | `$type` | $param->description") . "\n";
 		}, "Parameter | Type | Description\n--- | --- | :---\n");
@@ -226,7 +224,7 @@ END;
 		$returnTable = '';
 	}
 
-	$examples = _::chain($op->examples)
+	$examples = Dash\chain($op->examples)
 		->map(function ($example) {
 			$description = $example->description ? " {$example->description}" : '';
 			return <<<END
@@ -271,7 +269,7 @@ END;
 
 function renderTableOfContents($ops)
 {
-	$opSummaries = _::chain($ops)
+	$opSummaries = Dash\chain($ops)
 		->sort(function($op1, $op2) {
 			return strnatcmp($op1->name, $op2->name);
 		})

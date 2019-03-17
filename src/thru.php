@@ -10,7 +10,7 @@ namespace Dash;
  * @return mixed Return value of `$interceptor($value)`
  *
  * @example
-	$result = _::chain([1, 3, 4])
+	$result = Dash\chain([1, 3, 4])
 		->filter('Dash\isOdd')
 		->thru(function ($value) {
 			// $value === [1, 3]

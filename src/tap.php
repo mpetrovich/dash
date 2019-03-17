@@ -12,7 +12,7 @@ namespace Dash;
  * @return mixed Original `$value`
  *
  * @example
-	$result = _::chain([1, 3, 4])
+	$result = Dash\chain([1, 3, 4])
 		->filter('Dash\isOdd')
 		->tap(function ($value) {
 			// $value === [1, 3]
