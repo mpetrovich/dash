@@ -105,6 +105,13 @@ echo "Average male age is $avgMaleAge.";
 - [Why use Dash?](#why-use-dash)
 - [Installation](#installation)
 - [Usage](#usage)
+	- [Standalone](#standalone)
+	- [Chaining](#chaining)
+	- [Supported data types](#supported-data-types)
+	- [Currying](#currying)
+	- [Lazy evaluation](#lazy-evaluation)
+	- [Custom operations](#custom-operations)
+	- [Tips](#tips)
 - [Changelog](https://github.com/mpetrovich/dash/releases)
 - [Roadmap](docs/Roadmap.md)
 - [Contributing](CONTRIBUTING.md)
@@ -218,7 +225,7 @@ $result = Dash\chain(['a' => 1, 'b' => 2, 'c' => 3])
 // $result === (object) ['a' => 2, 'c' => 6]
 ```
 
-For convenience, `Dash::chain()` can be aliased to a global function using `addGlobalAlias()`. It only needs to be called once during your application bootstrap:
+For convenience, `Dash\chain()` can be aliased to a global function using `addGlobalAlias()`. It only needs to be called once during your application bootstrap:
 
 ```php
 // In your application bootstrap:
@@ -234,7 +241,7 @@ $result = __([1, 2, 3, 4, 5])
 Sometimes you don't need the return value of the chain. However, the chain isn't processed until `value()` is called. For semantic convenience, `run()` is also an alias for `value()`:
 
 ```php
-$chain = Dash\chain([1, 2, 3, 4, 5])
+$chain = Dash\chain(range(1, 5))
 	->reverse()
 	->each(function ($n) {
 		echo "T-minus $n...\n";
@@ -247,7 +254,12 @@ $chain->value();
 // or
 $chain->run();
 
-// Now it starts...
+// Echoes each of the following lines 1 second apart:
+// T-minus 5...
+// T-minus 4...
+// T-minus 3...
+// T-minus 2...
+// T-minus 1...
 ```
 
 
@@ -297,7 +309,7 @@ Dash\chain(new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]))
 With a `DirectoryIterator`:
 
 ```php
-$iterator = new \FilesystemIterator(__DIR__, \FilesystemIterator::SKIP_DOTS);
+$iterator = new FilesystemIterator(__DIR__, FilesystemIterator::SKIP_DOTS);
 
 $filenames = Dash\chain($iterator)
 	->reject(function ($fileinfo) {
@@ -320,8 +332,7 @@ function listThree($a, $b, $c) {
 
 $listThree = Dash\curry('listThree');
 $listTwo = $listThree('first');
-$listTwo('second', 'third');
-// === 'first, second, and third'
+$listTwo('second', 'third');  // === 'first, second, and third'
 ```
 
 Most Dash functions have a curried version that accepts input data as the last parameter instead of as the first. Curried versions are located in the `Dash\Curry` namespace:
@@ -381,7 +392,7 @@ When `value()` is called, the result is cached until the chain is modified or th
 
 
 ### Custom operations
-Custom operations can be added and removed using `setCustom()` and `unsetCustom()`, respectively:
+Custom operations can be added, retrieved, and removed using `setCustom()`, `getCustom()`, and `unsetCustom()`, respectively. `Dash\custom()` is also an alias for `Dash::getCustom()`:
 
 ```php
 Dash::setCustom('triple', function ($n) { return $n * 3; });
@@ -400,7 +411,12 @@ Dash\chain([1, 2, 3])
 	->map('Dash\Dash::triple')
 	->value();  // === [3, 6, 9]
 
-// As an argument using the Dash\custom() operation
+// As an argument using the Dash::getCustom() method
+Dash\chain([1, 2, 3])
+	->map(Dash::getCustom('triple'))
+	->value();  // === [3, 6, 9]
+
+// Using the Dash\custom() operation
 Dash\chain([1, 2, 3])
 	->map(Dash\custom('triple'))
 	->value();  // === [3, 6, 9]
