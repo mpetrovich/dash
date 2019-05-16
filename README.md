@@ -445,7 +445,7 @@ $result = Dash\chain(['one' => 1, 'two' => 2, 'three' => 3])
 Alternatively, if you find yourself needing to use `array_change_key_case()` often, it may be better to add a new custom operation:
 
 ```php
-Dash::setCustom('keyCase', function ($input, $case = CASE_LOWER) {
+Dash::setCustom('keyCase', function ($input, $case) {
 	return array_change_key_case($input, $case);
 });
 ```
@@ -455,7 +455,7 @@ which you can then use like any other chainable Dash method:
 ```php
 $result = Dash\chain(['one' => 1, 'two' => 2, 'three' => 3])
 	->filter('Dash\isOdd')
-	->keyCase(CASE_LOWER)
+	->keyCase(CASE_UPPER)
 	->keys()
 	->value();
 
