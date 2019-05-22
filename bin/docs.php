@@ -277,7 +277,8 @@ function renderTableOfContents($ops)
 			$returnType = $op->return->type ? ": {$op->return->type}" : '';
 			$returnType = str_replace('|', '\\|', $returnType);
 			$aliases = $op->aliases ? ' / ' . implode(' / ', $op->aliases) : '';
-			return "[$op->name](#$op->slug)$aliases | `{$op->signature}{$returnType}`";
+			$curried = function_exists("\\Dash\\Curry\\{$op->name}") ? "`Curry\\{$op->name}`" : '';
+			return "[$op->name](#$op->slug)$aliases | `{$op->signature}{$returnType}` | $curried";
 		})
 		->join("\n")
 		->value();
@@ -287,8 +288,8 @@ Operations
 ===
 Is there an operation you'd like to see? [Open an issue](https://github.com/mpetrovich/dash/issues/new?labels=enhancement) or vote on an existing one.
 
-Operation | Signature
-:--- | :---
+Operation | Signature | Curried
+:--- | :--- | :---
 $opSummaries
 END;
 }

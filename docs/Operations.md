@@ -2,88 +2,88 @@ Operations
 ===
 Is there an operation you'd like to see? [Open an issue](https://github.com/mpetrovich/dash/issues/new?labels=enhancement) or vote on an existing one.
 
-Operation | Signature
-:--- | :---
-[all](#all--every) / every | `all($iterable, $predicate = 'Dash\identity'): boolean`
-[any](#any--some) / some | `any($iterable, $predicate = 'Dash\identity'): boolean`
-[apply](#apply) | `apply(callable $callable, $args): mixed`
-[ary](#ary) | `ary(callable $callable, $arity): callable`
-[assertType](#asserttype) | `assertType($value, $type, $funcName = __FUNCTION__): void`
-[at](#at) | `at($iterable, $index, $default = null): mixed`
-[average](#average--mean) / mean | `average($iterable): double\|null`
-[call](#call) | `call(callable $callable /*, ...args */): mixed`
-[chain](#chain) | `chain($input = null): Dash\Dash`
-[compare](#compare) | `compare($a, $b): integer`
-[contains](#contains--includes) / includes | `contains($iterable, $target, $comparator = 'Dash\equal'): boolean`
-[currify](#currify) | `currify(callable $callable, array $args = [], $rotate = 1): function\|mixed`
-[currifyN](#currifyn) | `currifyN(callable $callable, $totalArgs, array $args = [], $rotate = 1): function\|mixed`
-[curry](#curry) | `curry(callable $callable /*, ...args */): function\|mixed`
-[curryN](#curryn) | `curryN(callable $callable, $numRequiredArgs /*, ...args */): function\|mixed`
-[curryRight](#curryright) | `curryRight(callable $callable /*, ...args */): function\|mixed`
-[curryRightN](#curryrightn) | `curryRightN(callable $callable, $numRequiredArgs /*, ...args */): function\|mixed`
-[custom](#custom) | `custom($name): function`
-[debug](#debug) | `debug($value /*, ...value */): mixed`
-[deltas](#deltas) | `deltas($iterable): array`
-[difference](#difference) | `difference($iterable /*, ...iterables */): array`
-[each](#each) | `each($iterable, $iteratee): mixed`
-[equal](#equal) | `equal($a, $b): boolean`
-[filter](#filter) | `filter($iterable, $predicate = 'Dash\identity'): array`
-[find](#find) | `find($iterable, $predicate = 'Dash\identity'): array\|null`
-[findKey](#findkey) | `findKey($iterable, $predicate = 'Dash\identity'): string\|null`
-[findLast](#findlast) | `findLast($iterable, $predicate = 'Dash\identity'): array\|null`
-[findLastKey](#findlastkey) | `findLastKey($iterable, $predicate = 'Dash\identity'): string\|null`
-[findLastValue](#findlastvalue) | `findLastValue($iterable, $predicate = 'Dash\identity'): mixed\|null`
-[findValue](#findvalue) | `findValue($iterable, $predicate = 'Dash\identity'): mixed\|null`
-[first](#first--head) / head | `first($iterable): mixed\|null`
-[get](#get) | `get($input, $path, $default = null): mixed`
-[getDirect](#getdirect) | `getDirect($input, $key, $default = null): mixed`
-[getDirectRef](#getdirectref) | `getDirectRef(&$input, $key): mixed`
-[groupBy](#groupby) | `groupBy($iterable, $iteratee = 'Dash\identity', $defaultGroup = null): array`
-[hasDirect](#hasdirect) | `hasDirect($input, $key): boolean`
-[identical](#identical) | `identical($a, $b): boolean`
-[identity](#identity) | `identity($value): mixed`
-[intersection](#intersection) | `intersection($iterable /*, ...iterables */): array`
-[isEmpty](#isempty) | `isEmpty($value): boolean`
-[isEven](#iseven) | `isEven($value): boolean`
-[isIndexedArray](#isindexedarray) | `isIndexedArray($value): boolean`
-[isOdd](#isodd) | `isOdd($value): boolean`
-[isType](#istype) | `isType($value, $type): boolean`
-[join](#join--implode) / implode | `join($iterable, $separator): string`
-[keyBy](#keyby--indexby) / indexBy | `keyBy($iterable, $iteratee = 'Dash\identity'): array`
-[keys](#keys) | `keys($iterable): array`
-[last](#last) | `last($iterable): mixed\|null`
-[map](#map) | `map($iterable, $iteratee = 'Dash\identity'): array`
-[mapResult](#mapresult) | `mapResult($iterable, $path, $default = null): array`
-[mapValues](#mapvalues) | `mapValues($iterable, $iteratee = 'Dash\identity'): array`
-[matchesProperty](#matchesproperty) | `matchesProperty($path, $value = true, $comparator = 'Dash\equal'): function`
-[max](#max) | `max($iterable): mixed\|null`
-[median](#median) | `median($iterable): mixed\|null`
-[min](#min) | `min($iterable): mixed\|null`
-[negate](#negate) | `negate(callable $predicate): callable`
-[omit](#omit) | `omit($iterable, $keys): array`
-[partial](#partial) | `partial($callable /*, ...args */): callable`
-[partialRight](#partialright) | `partialRight($callable /*, ...args */): callable`
-[pick](#pick) | `pick($iterable, $keys): array`
-[pluck](#pluck) | `pluck($iterable, $path, $default = null): array`
-[property](#property) | `property($path, $default = null): function`
-[reduce](#reduce) | `reduce($iterable, $iteratee, $initial = []): mixed`
-[reject](#reject) | `reject($iterable, $predicate = 'Dash\identity'): array`
-[result](#result) | `result($input, $path, $default = null): mixed`
-[reverse](#reverse) | `reverse($iterable, $preserveIntegerKeys = false): array`
-[rotate](#rotate) | `rotate($iterable, $count = 1): array`
-[set](#set) | `set(&$input, $path, $value): mixed`
-[size](#size--count) / count | `size($value, $encoding = 'UTF-8'): integer`
-[sort](#sort) | `sort($iterable, $comparator = 'Dash\compare'): array`
-[sum](#sum) | `sum($iterable): numeric`
-[take](#take) | `take($iterable, $count = 1): array`
-[takeRight](#takeright) | `takeRight($iterable, $count = 1): array`
-[tap](#tap) | `tap($value, callable $interceptor): mixed`
-[thru](#thru) | `thru($value, callable $interceptor): mixed`
-[toArray](#toarray) | `toArray($value): array`
-[toObject](#toobject) | `toObject($value): object`
-[unary](#unary) | `unary(callable $callable): callable`
-[union](#union) | `union($iterable /*, ...iterables */): array`
-[values](#values) | `values($iterable): array`
+Operation | Signature | Curried
+:--- | :--- | :---
+[all](#all--every) / every | `all($iterable, $predicate = 'Dash\identity'): boolean` | `Curry\all`
+[any](#any--some) / some | `any($iterable, $predicate = 'Dash\identity'): boolean` | `Curry\any`
+[apply](#apply) | `apply(callable $callable, $args): mixed` | `Curry\apply`
+[ary](#ary) | `ary(callable $callable, $arity): callable` | `Curry\ary`
+[assertType](#asserttype) | `assertType($value, $type, $funcName = __FUNCTION__): void` | `Curry\assertType`
+[at](#at) | `at($iterable, $index, $default = null): mixed` | `Curry\at`
+[average](#average--mean) / mean | `average($iterable): double\|null` | `Curry\average`
+[call](#call) | `call(callable $callable /*, ...args */): mixed` | 
+[chain](#chain) | `chain($input = null): Dash\Dash` | `Curry\chain`
+[compare](#compare) | `compare($a, $b): integer` | `Curry\compare`
+[contains](#contains--includes) / includes | `contains($iterable, $target, $comparator = 'Dash\equal'): boolean` | `Curry\contains`
+[currify](#currify) | `currify(callable $callable, array $args = [], $rotate = 1): function\|mixed` | 
+[currifyN](#currifyn) | `currifyN(callable $callable, $totalArgs, array $args = [], $rotate = 1): function\|mixed` | 
+[curry](#curry) | `curry(callable $callable /*, ...args */): function\|mixed` | 
+[curryN](#curryn) | `curryN(callable $callable, $numRequiredArgs /*, ...args */): function\|mixed` | 
+[curryRight](#curryright) | `curryRight(callable $callable /*, ...args */): function\|mixed` | 
+[curryRightN](#curryrightn) | `curryRightN(callable $callable, $numRequiredArgs /*, ...args */): function\|mixed` | 
+[custom](#custom) | `custom($name): function` | `Curry\custom`
+[debug](#debug) | `debug($value /*, ...value */): mixed` | `Curry\debug`
+[deltas](#deltas) | `deltas($iterable): array` | `Curry\deltas`
+[difference](#difference) | `difference($iterable /*, ...iterables */): array` | 
+[each](#each) | `each($iterable, $iteratee): mixed` | `Curry\each`
+[equal](#equal) | `equal($a, $b): boolean` | `Curry\equal`
+[filter](#filter) | `filter($iterable, $predicate = 'Dash\identity'): array` | `Curry\filter`
+[find](#find) | `find($iterable, $predicate = 'Dash\identity'): array\|null` | `Curry\find`
+[findKey](#findkey) | `findKey($iterable, $predicate = 'Dash\identity'): string\|null` | `Curry\findKey`
+[findLast](#findlast) | `findLast($iterable, $predicate = 'Dash\identity'): array\|null` | `Curry\findLast`
+[findLastKey](#findlastkey) | `findLastKey($iterable, $predicate = 'Dash\identity'): string\|null` | `Curry\findLastKey`
+[findLastValue](#findlastvalue) | `findLastValue($iterable, $predicate = 'Dash\identity'): mixed\|null` | `Curry\findLastValue`
+[findValue](#findvalue) | `findValue($iterable, $predicate = 'Dash\identity'): mixed\|null` | `Curry\findValue`
+[first](#first--head) / head | `first($iterable): mixed\|null` | `Curry\first`
+[get](#get) | `get($input, $path, $default = null): mixed` | `Curry\get`
+[getDirect](#getdirect) | `getDirect($input, $key, $default = null): mixed` | `Curry\getDirect`
+[getDirectRef](#getdirectref) | `getDirectRef(&$input, $key): mixed` | 
+[groupBy](#groupby) | `groupBy($iterable, $iteratee = 'Dash\identity', $defaultGroup = null): array` | `Curry\groupBy`
+[hasDirect](#hasdirect) | `hasDirect($input, $key): boolean` | `Curry\hasDirect`
+[identical](#identical) | `identical($a, $b): boolean` | `Curry\identical`
+[identity](#identity) | `identity($value): mixed` | `Curry\identity`
+[intersection](#intersection) | `intersection($iterable /*, ...iterables */): array` | 
+[isEmpty](#isempty) | `isEmpty($value): boolean` | `Curry\isEmpty`
+[isEven](#iseven) | `isEven($value): boolean` | `Curry\isEven`
+[isIndexedArray](#isindexedarray) | `isIndexedArray($value): boolean` | `Curry\isIndexedArray`
+[isOdd](#isodd) | `isOdd($value): boolean` | `Curry\isOdd`
+[isType](#istype) | `isType($value, $type): boolean` | `Curry\isType`
+[join](#join--implode) / implode | `join($iterable, $separator): string` | `Curry\join`
+[keyBy](#keyby--indexby) / indexBy | `keyBy($iterable, $iteratee = 'Dash\identity'): array` | `Curry\keyBy`
+[keys](#keys) | `keys($iterable): array` | `Curry\keys`
+[last](#last) | `last($iterable): mixed\|null` | `Curry\last`
+[map](#map) | `map($iterable, $iteratee = 'Dash\identity'): array` | `Curry\map`
+[mapResult](#mapresult) | `mapResult($iterable, $path, $default = null): array` | `Curry\mapResult`
+[mapValues](#mapvalues) | `mapValues($iterable, $iteratee = 'Dash\identity'): array` | `Curry\mapValues`
+[matchesProperty](#matchesproperty) | `matchesProperty($path, $value = true, $comparator = 'Dash\equal'): function` | `Curry\matchesProperty`
+[max](#max) | `max($iterable): mixed\|null` | `Curry\max`
+[median](#median) | `median($iterable): mixed\|null` | `Curry\median`
+[min](#min) | `min($iterable): mixed\|null` | `Curry\min`
+[negate](#negate) | `negate(callable $predicate): callable` | `Curry\negate`
+[omit](#omit) | `omit($iterable, $keys): array` | `Curry\omit`
+[partial](#partial) | `partial($callable /*, ...args */): callable` | 
+[partialRight](#partialright) | `partialRight($callable /*, ...args */): callable` | 
+[pick](#pick) | `pick($iterable, $keys): array` | `Curry\pick`
+[pluck](#pluck) | `pluck($iterable, $path, $default = null): array` | `Curry\pluck`
+[property](#property) | `property($path, $default = null): function` | `Curry\property`
+[reduce](#reduce) | `reduce($iterable, $iteratee, $initial = []): mixed` | `Curry\reduce`
+[reject](#reject) | `reject($iterable, $predicate = 'Dash\identity'): array` | `Curry\reject`
+[result](#result) | `result($input, $path, $default = null): mixed` | `Curry\result`
+[reverse](#reverse) | `reverse($iterable, $preserveIntegerKeys = false): array` | `Curry\reverse`
+[rotate](#rotate) | `rotate($iterable, $count = 1): array` | `Curry\rotate`
+[set](#set) | `set(&$input, $path, $value): mixed` | 
+[size](#size--count) / count | `size($value, $encoding = 'UTF-8'): integer` | `Curry\size`
+[sort](#sort) | `sort($iterable, $comparator = 'Dash\compare'): array` | `Curry\sort`
+[sum](#sum) | `sum($iterable): numeric` | `Curry\sum`
+[take](#take) | `take($iterable, $count = 1): array` | `Curry\take`
+[takeRight](#takeright) | `takeRight($iterable, $count = 1): array` | `Curry\takeRight`
+[tap](#tap) | `tap($value, callable $interceptor): mixed` | `Curry\tap`
+[thru](#thru) | `thru($value, callable $interceptor): mixed` | `Curry\thru`
+[toArray](#toarray) | `toArray($value): array` | `Curry\toArray`
+[toObject](#toobject) | `toObject($value): object` | `Curry\toObject`
+[unary](#unary) | `unary(callable $callable): callable` | `Curry\unary`
+[union](#union) | `union($iterable /*, ...iterables */): array` | 
+[values](#values) | `values($iterable): array` | `Curry\values`
 
 
 all / every
@@ -1469,7 +1469,7 @@ Gets the value at `$path` within `$input`. Nested properties are accessible with
 Parameter | Type | Description
 --- | --- | :---
 `$input` | `mixed` |
-`$path` | `callable\|string\|number` | If a callable, invoked with `($input)` to get the value at `$path`; if a string or number, `Dash\property($path)` used to get the value at `$path`
+`$path` | `callable\|string\|integer` | If a callable, invoked with `($input)` to get the value at `$path`; if a string or integer, will use `Dash\property($path)` to get the value at `$path`
 `$default` | `mixed` | (optional) Value to return if `$path` does not exist within `$input`
 **Returns** | `mixed` | Value at `$path` or `$default` if no value exists
 
@@ -2049,7 +2049,7 @@ A later value will overwrite an earlier value that has the same key.
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable\|stdClass\|null` |
-`$iteratee` | `callable\|string` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable`; if a string, will use `Dash\property($iteratee)` as the iteratee
+`$iteratee` | `callable\|string\|integer` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable`; if a string or integer, will use `Dash\property($iteratee)` as the iteratee
 **Returns** | `array` | A new associative array
 
 **Example:**
@@ -2170,7 +2170,7 @@ Keys in `$iterable` are not preserved. To preserve keys, use `mapValues()` inste
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable\|stdClass\|null` |
-`$iteratee` | `callable\|string\|numeric` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable`; if a string, will use `Dash\property($iteratee)` as the iteratee
+`$iteratee` | `callable\|string\|number` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable`; if a string, will use `Dash\property($iteratee)` as the iteratee
 **Returns** | `array` | A new 0-indexed array
 
 **Example:**
@@ -2253,7 +2253,7 @@ Unlike `map()`, keys in `$iterable` are preserved.
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable\|stdClass\|null` |
-`$iteratee` | `callable\|string` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable`; if a string, will use `Dash\property($iteratee)` as the iteratee
+`$iteratee` | `callable\|string\|integer` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable`; if a string or integer, will use `Dash\property($iteratee)` as the iteratee
 **Returns** | `array` | A new array with the same keys as `$iterable`
 
 **Example:**
