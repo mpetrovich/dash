@@ -46,7 +46,7 @@ class getTest extends PHPUnit_Framework_TestCase
 				'default' => 'default',
 				'expected' => 'value',
 			],
-			'With a matching direct numeric key' => [
+			'With a matching direct integer key' => [
 				'input' => [3 => 'value'],
 				'path' => 3,
 				'default' => 'default',

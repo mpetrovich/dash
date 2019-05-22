@@ -172,7 +172,7 @@ class mapValuesTest extends PHPUnit_Framework_TestCase
 				'iteratee' => 'a.b',
 				'expected' => ['w' => 'first', 'x' => null, 'y' => 'third', 'z' => 'fourth'],
 			],
-			'With a numeric iteratee' => [
+			'With an integer iteratee' => [
 				'iterable' => [
 					'w' => ['one', 'two', 'three', 'four'],
 					'x' => ['uno', 'dos', 'tres', 'cuatro'],

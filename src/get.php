@@ -8,8 +8,8 @@ namespace Dash;
  * @see getDirect(), has(), property()
  *
  * @param mixed $input
- * @param callable|string|number $path If a callable, invoked with `($input)` to get the value at `$path`;
- *                                     if a string or number, `Dash\property($path)` used to get the value at `$path`
+ * @param callable|string|integer $path If a callable, invoked with `($input)` to get the value at `$path`;
+ *                                      if a string or integer, will use `Dash\property($path)` to get the value at `$path`
  * @param mixed $default (optional) Value to return if `$path` does not exist within `$input`
  * @return mixed Value at `$path` or `$default` if no value exists
  *

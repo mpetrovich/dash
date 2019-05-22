@@ -187,7 +187,7 @@ class keyByTest extends PHPUnit_Framework_TestCase
 					'third' => ['a' => ['b' => 'third'], 'id' => 3],
 				],
 			],
-			'With a numeric iteratee' => [
+			'With an integer iteratee' => [
 				'iterable' => [
 					'w' => ['one', 'two', 'three', 'four'],
 					'x' => ['uno', 'dos', 'tres', 'cuatro'],

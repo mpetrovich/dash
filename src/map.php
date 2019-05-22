@@ -10,7 +10,7 @@ namespace Dash;
  * @see mapValues(), mapResult()
  *
  * @param iterable|stdClass|null $iterable
- * @param callable|string|numeric $iteratee (optional) If a callable, invoked with `($value, $key, $iterable)`
+ * @param callable|string|number $iteratee (optional) If a callable, invoked with `($value, $key, $iterable)`
  *                                          for each element in `$iterable`;
  *                                          if a string, will use `Dash\property($iteratee)` as the iteratee
  * @return array A new 0-indexed array
