@@ -1426,7 +1426,7 @@ Dash\findValue($data, ['active', false]);
 
 first / head
 ---
-
+See also: `take()`
 
 ```php
 first($iterable): mixed|null
@@ -1469,7 +1469,7 @@ Gets the value at `$path` within `$input`. Nested properties are accessible with
 Parameter | Type | Description
 --- | --- | :---
 `$input` | `mixed` |
-`$path` | `callable\|string\|integer` | If a callable, invoked with `($input)` to get the value at `$path`; if a string or integer, will use `Dash\property($path)` to get the value at `$path`
+`$path` | `callable\|string\|integer` | If a callable, invoked with `($input)` to get the value at `$path`; if a string or integer, will use `Dash\property($path)` to get the value
 `$default` | `mixed` | (optional) Value to return if `$path` does not exist within `$input`
 **Returns** | `mixed` | Value at `$path` or `$default` if no value exists
 
@@ -2125,7 +2125,7 @@ Dash\keys(['c' => 3, 'a' => 1, 'b' => 2]);
 
 last
 ---
-
+See also: `takeRight()`
 
 ```php
 last($iterable): mixed|null

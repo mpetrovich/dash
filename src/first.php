@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Gets the value of the first element in `$iterable`.
  *
+ * @see take()
+ *
  * @param iterable|stdClass|null $iterable
  * @return mixed|null Null if `$iterable` is empty
  *
