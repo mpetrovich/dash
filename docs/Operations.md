@@ -83,7 +83,7 @@ Operation | Signature | Curried
 [toObject](#toobject) | `toObject($value): object` | `Curry\toObject`
 [unary](#unary) | `unary(callable $callable): callable` | `Curry\unary`
 [union](#union) | `union($iterable /*, ...iterables */): array` | 
-[unique](#unique) | `unique($iterable): array` | 
+[unique](#unique--distinct) / distinct | `unique($iterable): array` | 
 [values](#values) | `values($iterable): array` | `Curry\values`
 
 
@@ -3355,7 +3355,7 @@ Dash\union(
 
 [↑ Top](#operations)
 
-unique
+unique / distinct
 ---
 
 
