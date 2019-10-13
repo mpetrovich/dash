@@ -83,6 +83,7 @@ Operation | Signature | Curried
 [toObject](#toobject) | `toObject($value): object` | `Curry\toObject`
 [unary](#unary) | `unary(callable $callable): callable` | `Curry\unary`
 [union](#union) | `union($iterable /*, ...iterables */): array` | 
+[unique](#unique--distinct) / distinct | `unique($iterable): array` | 
 [values](#values) | `values($iterable): array` | `Curry\values`
 
 
@@ -3350,6 +3351,38 @@ Dash\union(
 	['e' => 5, 'f' => 6]
 );
 // === ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5, 'f' => 6]
+```
+
+[↑ Top](#operations)
+
+unique / distinct
+---
+
+
+```php
+unique($iterable): array
+```
+Returns a new array containing the unique values, in order, of the provided iterable.
+
+Non-indexed keys are preseved, but duplicate keys will overwrite previous ones.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+**Returns** | `array` |
+
+**Example:** With indexed arrays
+```php
+Dash\unique([1, 2, 2, 3, 1]);
+// === [1, 2, 3]
+
+```
+
+**Example:** With associative arrays
+```php
+Dash\unique(['a' => 1, 'b' => 2, 'c' => 1]);
+// === ['a' => 1, 'b' => 2]
 ```
 
 [↑ Top](#operations)

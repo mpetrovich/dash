@@ -102,6 +102,7 @@
 			"src/toObject.php",
 			"src/unary.php",
 			"src/union.php",
+			"src/unique.php",
 			"src/values.php",
 			"src/where.php",
 			"src/without.php",
