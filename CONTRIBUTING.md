@@ -10,8 +10,7 @@ This repository is organized as follows:
 - `src/Curry/`: Curried versions of most operations.
 - `tests/`: Unit tests for all operations. Curried and non-curried versions of the same operation are tested in the same test class.
 - `docs/`: Documentation.
-- `bin/`: Utility scripts, such as one for generating documentation from
-all operations' docblock comments.
+- `bin/`: Utility scripts, such as one for generating documentation from all operations' docblock comments.
 - `Makefile`: Makefile used to build, run tests, check coding style, and more.
 
 ### Important notes
