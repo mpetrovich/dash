@@ -98,6 +98,7 @@ echo "Average male age is $avgMaleAge.";
 [toObject](docs/Operations.md#toobject),
 [unary](docs/Operations.md#unary)
 [union](docs/Operations.md#union),
+[unique](docs/Operations.md#unique),
 [values](docs/Operations.md#values)
 
 #### Jump to:
