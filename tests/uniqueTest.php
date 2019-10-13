@@ -2,6 +2,7 @@
 
 /**
  * @covers Dash\unique
+ * @covers Dash\distinct
  */
 class uniqueTest extends PHPUnit_Framework_TestCase
 {
