@@ -11,6 +11,7 @@ class uniqueTest extends PHPUnit_Framework_TestCase
 	public function test($iterable, $expected)
 	{
 		$this->assertSame($expected, Dash\unique($iterable));
+		$this->assertSame($expected, Dash\distinct($iterable));
 	}
 
 	public function cases()
@@ -219,6 +220,17 @@ class uniqueTest extends PHPUnit_Framework_TestCase
 	{
 		try {
 			Dash\unique($iterable);
+		}
+		catch (Exception $e) {
+			$this->assertSame(
+				"Dash\\unique expects iterable or stdClass or null but was given $type",
+				$e->getMessage()
+			);
+			throw $e;
+		}
+
+		try {
+			Dash\distinct($iterable);
 		}
 		catch (Exception $e) {
 			$this->assertSame(
