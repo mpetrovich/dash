@@ -42,8 +42,10 @@ function flatten($iterable)
 
 	return reduce($iterable, function ($previous, $next, $key) {
 		if ($key != null && $next != null) {
+			$asArray = (array) $next;
+
 			$associativeArray = [];
-			$associativeArray[$key] = ((array) $next)[0];
+			$associativeArray[$key] = $asArray[0];
 
 			$previous = \array_merge($previous, $associativeArray);
 			$next = takeRight((array) $next, -1);
