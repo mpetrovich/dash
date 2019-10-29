@@ -1464,9 +1464,7 @@ flatten($iterable): array
 ```
 Gets a list of nested elements in `$iterable`.
 
-Keys are preserved unless `$iterable` is an indexed array.
-An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
-When flattening an associative array, keys will point at the first value from a nested iterable.
+Keys in `$iterable` are not preserved.
 
 
 Parameter | Type | Description
@@ -1480,7 +1478,7 @@ Dash\flatten([[1, 2], [3, 4]]);
 // === [1, 2, 3, 4]
 
 Dash\flatten([['a' => 1, 'b' => 2], ['c' => 3]]);
-// === ['a' => 1, 'b' => 2, 'c' => 3]
+// === [1, 2, 3]
 
 ```
 
@@ -1488,20 +1486,6 @@ Dash\flatten([['a' => 1, 'b' => 2], ['c' => 3]]);
 ```php
 Dash\flatten([1, 2, [3, 4]]);
 // === [1, 2, 3, 4]
-
-```
-
-**Example:** Nested associative array, key preserved for first element.
-```php
-Dash\flatten([
-	'a' => [1, 2],
-	'b' => 3
-]);
-// === [
-	'a' => 1,
-	2
-	'b' => 3
-]
 ```
 
 [↑ Top](#operations)

@@ -64,7 +64,7 @@ class flattenTest extends PHPUnit_Framework_TestCase
 					'b' => 1,
 					'c' => 3,
 				],
-				'expected' => ['a' => 6, 'b' => 1, 'c' => 3]
+				'expected' => [ 6, 1, 3]
 			],
 			'With an associative array with a mix of scalar and array values' => [
 				'iterable' => [
@@ -73,14 +73,14 @@ class flattenTest extends PHPUnit_Framework_TestCase
 					'c' => [7,9],
 					'd' => 8,
 				],
-				'expected' => ['a' => 4, 'b' => 2, 3, 'c' => 7, 9, 'd' => 8]
+				'expected' => [4, 2, 3, 7, 9, 8]
 			],
 			'With an associative array with only array values' => [
 				'iterable' => [
 					'b' => [2, 3],
 					'c' => [7,9],
 				],
-				'expected' => ['b' => 2, 3, 'c' => 7, 9]
+				'expected' => [2, 3, 7, 9]
 			],
 
 			/*
@@ -93,7 +93,7 @@ class flattenTest extends PHPUnit_Framework_TestCase
 					'b' => 1,
 					'c' => 3,
 				],
-				'expected' => ['a' => 6, 'b' => 1, 'c' => 3]
+				'expected' => [6, 1, 3]
 			],
 			'With an stdClass with a mix of scalar and array values' => [
 				'iterable' => (object) [
@@ -102,14 +102,14 @@ class flattenTest extends PHPUnit_Framework_TestCase
 					'c' => [7,9],
 					'd' => 8,
 				],
-				'expected' => ['a' => 4, 'b' => 2, 3, 'c' => 7, 9, 'd' => 8]
+				'expected' => [4, 2, 3, 7, 9, 8]
 			],
 			'With an stdClass with only array values' => [
 				'iterable' => (object) [
 					'b' => [2, 3],
 					'c' => [7,9],
 				],
-				'expected' => ['b' => 2, 3, 'c' => 7, 9]
+				'expected' => [2, 3, 7, 9]
 			],
 
 			/*
@@ -122,7 +122,7 @@ class flattenTest extends PHPUnit_Framework_TestCase
 					'b' => 1,
 					'c' => 3,
 				]),
-				'expected' => ['a' => 6, 'b' => 1, 'c' => 3]
+				'expected' => [6, 1, 3]
 			],
 			'With an ArrayObject with a mix of scalar and array values' => [
 				'iterable' => new ArrayObject([
@@ -131,14 +131,14 @@ class flattenTest extends PHPUnit_Framework_TestCase
 					'c' => [7,9],
 					'd' => 8,
 				]),
-				'expected' => ['a' => 4, 'b' => 2, 3, 'c' => 7, 9, 'd' => 8]
+				'expected' => [4, 2, 3, 7, 9, 8]
 			],
 			'With an ArrayObject with only array values' => [
 				'iterable' => new ArrayObject([
 					'b' => [2, 3],
 					'c' => [7,9],
 				]),
-				'expected' => ['b' => 2, 3, 'c' => 7, 9]
+				'expected' => [2, 3, 7, 9]
 			]
 		];
 	}

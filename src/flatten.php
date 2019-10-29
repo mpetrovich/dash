@@ -5,9 +5,7 @@ namespace Dash;
 /**
  * Gets a list of nested elements in `$iterable`.
  *
- * Keys are preserved unless `$iterable` is an indexed array.
- * An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
- * When flattening an associative array, keys will point at the first value from a nested iterable.
+ * Keys in `$iterable` are not preserved.
  *
  * @see groupBy()
  *
@@ -19,38 +17,17 @@ namespace Dash;
 	// === [1, 2, 3, 4]
 
 	Dash\flatten([['a' => 1, 'b' => 2], ['c' => 3]]);
-	// === ['a' => 1, 'b' => 2, 'c' => 3]
+	// === [1, 2, 3]
  *
  * @example With a mix of nested and non-nested iterables
 	Dash\flatten([1, 2, [3, 4]]);
 	// === [1, 2, 3, 4]
- *
- * @example Nested associative array, key preserved for first element.
-	Dash\flatten([
-		'a' => [1, 2],
-		'b' => 3
-	]);
-	// === [
-		'a' => 1,
-		2
-		'b' => 3
-	]
  */
 function flatten($iterable)
 {
 	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
 
-	return reduce($iterable, function ($previous, $next, $key) {
-		if ($key != null && $next != null) {
-			$asArray = (array) $next;
-
-			$associativeArray = [];
-			$associativeArray[$key] = $asArray[0];
-
-			$previous = \array_merge($previous, $associativeArray);
-			$next = takeRight((array) $next, -1);
-		}
-
+	return reduce($iterable, function ($previous, $next) {
 		return \array_merge($previous, $next === null ? [null] : (array) $next);
 	}, []);
 }
