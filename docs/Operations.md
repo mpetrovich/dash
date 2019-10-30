@@ -1486,6 +1486,16 @@ Dash\flatten([['a' => 1, 'b' => 2], ['c' => 3]]);
 ```php
 Dash\flatten([1, 2, [3, 4]]);
 // === [1, 2, 3, 4]
+
+```
+
+**Example:** Deeply nested array
+```php
+Dash\flatten([
+	[1, 2],
+	[[3, 4]]
+]);
+// === [1, 2, [3, 4]]
 ```
 
 [↑ Top](#operations)

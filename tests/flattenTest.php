@@ -139,6 +139,18 @@ class flattenTest extends PHPUnit_Framework_TestCase
 					'c' => [7,9],
 				]),
 				'expected' => [2, 3, 7, 9]
+			],
+
+			/*
+				Edge cases
+			 */
+
+			'With deeply nested arrays' => [
+				'iterable' => [
+					[1, 2],
+					[[3, 4]]
+				],
+				'expected' => [1, 2, [3, 4]]
 			]
 		];
 	}

@@ -22,6 +22,13 @@ namespace Dash;
  * @example With a mix of nested and non-nested iterables
 	Dash\flatten([1, 2, [3, 4]]);
 	// === [1, 2, 3, 4]
+ *
+ * @example Deeply nested array
+	Dash\flatten([
+		[1, 2],
+		[[3, 4]]
+	]);
+	// === [1, 2, [3, 4]]
  */
 function flatten($iterable)
 {
