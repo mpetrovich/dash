@@ -50,6 +50,7 @@ echo "Average male age is $avgMaleAge.";
 [findLastValue](docs/Operations.md#findlastvalue),
 [findValue](docs/Operations.md#findvalue),
 [first / head](docs/Operations.md#first--head),
+[flatten](docs/Operations.md#flatten),
 [get](docs/Operations.md#get),
 [getDirect](docs/Operations.md#getdirect),
 [getDirectRef](docs/Operations.md#getdirectref),
