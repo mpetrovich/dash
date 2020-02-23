@@ -52,6 +52,7 @@
 			"src/findLastValue.php",
 			"src/findValue.php",
 			"src/first.php",
+			"src/flatten.php",
 			"src/get.php",
 			"src/getDirect.php",
 			"src/getDirectRef.php",

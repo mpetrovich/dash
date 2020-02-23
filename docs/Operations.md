@@ -35,6 +35,7 @@ Operation | Signature | Curried
 [findLastValue](#findlastvalue) | `findLastValue($iterable, $predicate = 'Dash\identity'): mixed\|null` | `Curry\findLastValue`
 [findValue](#findvalue) | `findValue($iterable, $predicate = 'Dash\identity'): mixed\|null` | `Curry\findValue`
 [first](#first--head) / head | `first($iterable): mixed\|null` | `Curry\first`
+[flatten](#flatten) | `flatten($iterable): array` | 
 [get](#get) | `get($input, $path, $default = null): mixed` | `Curry\get`
 [getDirect](#getdirect) | `getDirect($input, $key, $default = null): mixed` | `Curry\getDirect`
 [getDirectRef](#getdirectref) | `getDirectRef(&$input, $key): mixed` | 
@@ -1450,6 +1451,51 @@ Dash\first(['a' => 'one', 'b' => 'two', 'c' => 'three']);
 
 Dash\first([]);
 // === null
+```
+
+[↑ Top](#operations)
+
+flatten
+---
+See also: `groupBy()`
+
+```php
+flatten($iterable): array
+```
+Gets a list of nested elements in `$iterable`.
+
+Keys in `$iterable` are not preserved.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+**Returns** | `array` | List of elements in `$iterable`, including elements of directly nested iterables.
+
+**Example:**
+```php
+Dash\flatten([[1, 2], [3, 4]]);
+// === [1, 2, 3, 4]
+
+Dash\flatten([['a' => 1, 'b' => 2], ['c' => 3]]);
+// === [1, 2, 3]
+
+```
+
+**Example:** With a mix of nested and non-nested iterables
+```php
+Dash\flatten([1, 2, [3, 4]]);
+// === [1, 2, 3, 4]
+
+```
+
+**Example:** Deeply nested array
+```php
+Dash\flatten([
+	[1, 2],
+	[[3, 4]]
+]);
+// === [1, 2, [3, 4]]
 ```
 
 [↑ Top](#operations)
