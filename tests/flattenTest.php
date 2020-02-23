@@ -15,6 +15,9 @@ class flattenTest extends PHPUnit_Framework_TestCase
 
 	public function cases()
 	{
+		$stdClass = (object) ['c' => 10, 'd' => 11];
+		$arrayObject = new ArrayObject(['e' => 12, 'f' => 13]);
+
 		return [
 			'With nulls' => [
 				'iterable' => [null, null, null],
@@ -37,14 +40,16 @@ class flattenTest extends PHPUnit_Framework_TestCase
 				],
 				'expected' => [6, 1, 3]
 			],
-			'With an indexed array with a mix of scalar and array values' => [
+			'With an indexed array with a mix of scalar and non-scalar values' => [
 				'iterable' => [
 					4,
 					[2, 3],
-					[7,9],
+					['a' => 7, 'b' => 9],
+					$stdClass,
+					$arrayObject,
 					8,
 				],
-				'expected' => [4, 2, 3, 7, 9, 8]
+				'expected' => [4, 2, 3, 7, 9, $stdClass, $arrayObject, 8]
 			],
 			'With an indexed array with only array values' => [
 				'iterable' => [
@@ -66,14 +71,16 @@ class flattenTest extends PHPUnit_Framework_TestCase
 				],
 				'expected' => [ 6, 1, 3]
 			],
-			'With an associative array with a mix of scalar and array values' => [
+			'With an associative array with a mix of scalar and non-scalar values' => [
 				'iterable' => [
 					'a' => 4,
 					'b' => [2, 3],
-					'c' => [7,9],
-					'd' => 8,
+					'c' => ['a' => 7, 'b' => 9],
+					'd' => $stdClass,
+					'e' => $arrayObject,
+					'f' => 8,
 				],
-				'expected' => [4, 2, 3, 7, 9, 8]
+				'expected' => [4, 2, 3, 7, 9, $stdClass, $arrayObject, 8]
 			],
 			'With an associative array with only array values' => [
 				'iterable' => [
@@ -95,14 +102,16 @@ class flattenTest extends PHPUnit_Framework_TestCase
 				],
 				'expected' => [6, 1, 3]
 			],
-			'With an stdClass with a mix of scalar and array values' => [
+			'With an stdClass with a mix of scalar and non-scalar values' => [
 				'iterable' => (object) [
 					'a' => 4,
 					'b' => [2, 3],
-					'c' => [7,9],
-					'd' => 8,
+					'c' => ['a' => 7, 'b' => 9],
+					'd' => $stdClass,
+					'e' => $arrayObject,
+					'f' => 8,
 				],
-				'expected' => [4, 2, 3, 7, 9, 8]
+				'expected' => [4, 2, 3, 7, 9, $stdClass, $arrayObject, 8]
 			],
 			'With an stdClass with only array values' => [
 				'iterable' => (object) [
@@ -124,14 +133,16 @@ class flattenTest extends PHPUnit_Framework_TestCase
 				]),
 				'expected' => [6, 1, 3]
 			],
-			'With an ArrayObject with a mix of scalar and array values' => [
+			'With an ArrayObject with a mix of scalar and non-scalar values' => [
 				'iterable' => new ArrayObject([
 					'a' => 4,
 					'b' => [2, 3],
-					'c' => [7,9],
-					'd' => 8,
+					'c' => ['a' => 7, 'b' => 9],
+					'd' => $stdClass,
+					'e' => $arrayObject,
+					'f' => 8,
 				]),
-				'expected' => [4, 2, 3, 7, 9, 8]
+				'expected' => [4, 2, 3, 7, 9, $stdClass, $arrayObject, 8]
 			],
 			'With an ArrayObject with only array values' => [
 				'iterable' => new ArrayObject([

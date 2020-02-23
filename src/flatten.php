@@ -35,6 +35,6 @@ function flatten($iterable)
 	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
 
 	return reduce($iterable, function ($flattened, $value) {
-		return \array_merge($flattened, $value === null ? [null] : (array) $value);
+		return array_merge($flattened, is_array($value) ? array_values($value) : [$value]);
 	}, []);
 }
