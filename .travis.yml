@@ -1,22 +1,22 @@
 language: php
 
-dist: precise
+dist: xenial
 
 php:
-  - '5.4'
-  - '5.5'
-  - '5.6'
-  - '7.0'
-  - '7.1'
-  - '7.2'
-  - '7.3'
+    - "5.4"
+    - "5.5"
+    - "5.6"
+    - "7.0"
+    - "7.1"
+    - "7.2"
+    - "7.3"
 
 before_script:
-  - composer install --no-interaction
+    - composer install --no-interaction
 
 script:
-  - make test-coverage
-  - make check-style
+    - make test-coverage
+    - make check-style
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+    - bash <(curl -s https://codecov.io/bash)
