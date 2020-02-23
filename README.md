@@ -1,5 +1,5 @@
-Dash &nbsp; [![Latest Stable Version](https://poser.pugx.org/mpetrovich/dash/version)](https://packagist.org/packages/mpetrovich/dash) [![Build Status](https://travis-ci.org/mpetrovich/dash.svg?branch=master)](https://travis-ci.org/mpetrovich/dash) [![codecov](https://codecov.io/gh/mpetrovich/dash/branch/master/graph/badge.svg)](https://codecov.io/gh/mpetrovich/dash)
-===
+# Dash &nbsp; [![Latest Stable Version](https://poser.pugx.org/mpetrovich/dash/version)](https://packagist.org/packages/mpetrovich/dash) [![Build Status](https://travis-ci.org/mpetrovich/dash.svg?branch=master)](https://travis-ci.org/mpetrovich/dash) [![codecov](https://codecov.io/gh/mpetrovich/dash/branch/master/graph/badge.svg)](https://codecov.io/gh/mpetrovich/dash)
+
 **A functional programming library for PHP.** Inspired by Underscore, Lodash, and Ramda.
 
 ```php
@@ -19,6 +19,7 @@ echo "Average male age is $avgMaleAge.";
 ```
 
 #### Operations - [View all](docs/Operations.md)
+
 [all / every](docs/Operations.md#all--every),
 [any / some](docs/Operations.md#any--some),
 [apply](docs/Operations.md#apply),
@@ -103,34 +104,26 @@ echo "Average male age is $avgMaleAge.";
 [values](docs/Operations.md#values)
 
 #### Jump to:
-- [Highlights](#highlights)
-- [Why use Dash?](#why-use-dash)
-- [Installation](#installation)
-- [Usage](#usage)
-	- [Standalone](#standalone)
-	- [Chaining](#chaining)
-	- [Supported data types](#supported-data-types)
-	- [Currying](#currying)
-	- [Lazy evaluation](#lazy-evaluation)
-	- [Custom operations](#custom-operations)
-	- [Tips](#tips)
-- [Changelog](https://github.com/mpetrovich/dash/releases)
-- [Roadmap](docs/Roadmap.md)
-- [Contributing](CONTRIBUTING.md)
 
+-   [Highlights](#highlights)
+-   [Why use Dash?](#why-use-dash)
+-   [Installation](#installation)
+-   [Usage](#usage) - [Standalone](#standalone) - [Chaining](#chaining) - [Supported data types](#supported-data-types) - [Currying](#currying) - [Lazy evaluation](#lazy-evaluation) - [Custom operations](#custom-operations) - [Tips](#tips)
+-   [Changelog](https://github.com/mpetrovich/dash/releases)
+-   [Roadmap](docs/Roadmap.md)
+-   [Contributing](CONTRIBUTING.md)
 
-Highlights
----
-- [Many data types supported](#supported-data-types): arrays, objects, generators ([coming soon](https://github.com/mpetrovich/dash/issues/3)), [`Traversable`](http://php.net/manual/en/class.traversable.php), [`DirectoryIterator`](http://php.net/manual/en/class.directoryiterator.php), and more
-- [Chaining](#chaining)
-- [Currying](#currying)
-- [Lazy evaluation](#lazy-evaluation)
-- [Custom operations](#custom-operations)
-- Well-tested: Comprehensive tests with nearly 3,000 test cases and [100% code coverage](https://codecov.io/gh/mpetrovich/dash)
+## Highlights
 
+-   [Many data types supported](#supported-data-types): arrays, objects, generators ([coming soon](https://github.com/mpetrovich/dash/issues/3)), [`Traversable`](http://php.net/manual/en/class.traversable.php), [`DirectoryIterator`](http://php.net/manual/en/class.directoryiterator.php), and more
+-   [Chaining](#chaining)
+-   [Currying](#currying)
+-   [Lazy evaluation](#lazy-evaluation)
+-   [Custom operations](#custom-operations)
+-   Well-tested: Comprehensive tests with nearly 3,000 test cases and [100% code coverage](https://codecov.io/gh/mpetrovich/dash)
 
-Why use Dash?
----
+## Why use Dash?
+
 PHP's built-in `array_*` functions are limited, difficult to compose, inconsistent, and don't work across many data types.
 
 For instance, let's say we want to find the average age of males in this list:
@@ -166,21 +159,20 @@ $avgMaleAge = Dash\chain($people)
 
 This is just a tiny subset of what Dash can do. [**See the full list of operations here.**](docs/Operations.md)
 
+## Installation
 
-Installation
----
-Requires PHP 5.4+
+Requires PHP 5.6+
+
 ```sh
 composer require mpetrovich/dash
 ```
 
+## Usage
 
-Usage
----
 Dash operations are pure functions that can be used alone or chained together.
 
-
 ### Standalone
+
 Operations can be called as namespaced functions:
 
 ```php
@@ -203,8 +195,8 @@ use Dash\_;
 _::map([1, 2, 3], function ($n) { return $n * 2; });  // === [2, 4, 6]
 ```
 
-
 ### Chaining
+
 Multiple operations can be chained in sequence using `chain()`. Call `value()` to return the final value.
 
 ```php
@@ -264,16 +256,18 @@ $chain->run();
 // T-minus 1...
 ```
 
-
 ### Supported data types
+
 Dash can work with a wide variety of data types, including:
-- arrays
-- objects (eg. `stdClass`)
-- generators ([coming soon](https://github.com/mpetrovich/dash/issues/3))
-- anything that implements the [`Traversable`](http://php.net/manual/en/class.traversable.php) interface
-- [`DirectoryIterator`](http://php.net/manual/en/class.directoryiterator.php), which is also a `Traversable` but cannot normally be used with `iterator_to_array()` [due to a PHP bug](https://bugs.php.net/bug.php?id=49755). Dash works around this transparently.
+
+-   arrays
+-   objects (eg. `stdClass`)
+-   generators ([coming soon](https://github.com/mpetrovich/dash/issues/3))
+-   anything that implements the [`Traversable`](http://php.net/manual/en/class.traversable.php) interface
+-   [`DirectoryIterator`](http://php.net/manual/en/class.directoryiterator.php), which is also a `Traversable` but cannot normally be used with `iterator_to_array()` [due to a PHP bug](https://bugs.php.net/bug.php?id=49755). Dash works around this transparently.
 
 #### Examples
+
 With an array:
 
 ```php
@@ -323,8 +317,8 @@ $filenames = Dash\chain($iterator)
 	->value();
 ```
 
-
 ### Currying
+
 [`curry()`](docs/Operations.md#curry) and related operations can be used to create curried functions from any callable:
 
 ```php
@@ -365,8 +359,8 @@ $sayHello('Mark');  // === 'Hello, Mark!'
 $sayHowdy('Jane');  // === 'Howdy, Jane!'
 ```
 
-
 ### Lazy evaluation
+
 Chained operations are not evaluated until `value()` or `run()` is called. Furthermore, the input data can be changed and evaluated multiple times using `with()`. This makes it simple to create reusable chains:
 
 ```php
@@ -392,8 +386,8 @@ $chain->value();  // === [10, 14]
 
 When `value()` is called, the result is cached until the chain is modified or the input is changed using `with()`.
 
-
 ### Custom operations
+
 Custom operations can be added, retrieved, and removed using `setCustom()`, `getCustom()`, and `unsetCustom()`, respectively. `Dash\custom()` is also an alias for `Dash::getCustom()`:
 
 ```php
@@ -426,8 +420,8 @@ Dash\chain([1, 2, 3])
 Dash::unsetCustom('triple');
 ```
 
-
 ### Tips
+
 If you find that Dash doesn't have an operation that you need, fear not. Custom logic can be added without giving up Dash chaining or other features. The simplest way to integrate missing operations is via the [`Dash\thru()`](docs/Operations.md#thru) operation, which allows custom logic to modify and seamlessly pass through its results to the next step in the chain.
 
 For example, suppose we want to use `array_change_key_case()` and keep the usual Dash chaining semantics. With `thru()`, it's simple:
@@ -464,6 +458,6 @@ $result = Dash\chain(['one' => 1, 'two' => 2, 'three' => 3])
 // $result === ['ONE', 'THREE']
 ```
 
-
 ### Feedback
+
 Found a bug or have a suggestion? Please [create a new GitHub issue](https://github.com/mpetrovich/dash/issues/new). We want your feedback!
