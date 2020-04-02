@@ -22,13 +22,12 @@ namespace Dash;
 		return "$greeting, $salutation $name";
 	};
 
-	$goodMorning = Dash\curryRight($greet, 'Good morning');
-	$goodMorning('Ms.', 'Mary');
+	$greetMary = Dash\curryRight($greet, 'Mary');
+	$greetMsMary = $greetMary('Ms.');
 	// === 'Good morning, Ms. Mary'
 
-	$goodMorning = Dash\curryRight($greet, 'Good morning');
-	$goodMorningSir = $goodMorning('Sir');
-	$goodMorningSir('Peter');
+	$greetPeter = Dash\curryRight($greet, 'Peter');
+	$greetSirPeter = $greetPeter('Sir');
 	// === 'Good morning, Sir Peter'
  *
  * @example With placeholders
@@ -36,14 +35,13 @@ namespace Dash;
 		return "$greeting, $salutation $name";
 	};
 
-	$greetMary = Dash\curryRight($greet, Dash\_, 'Ms.', 'Mary');
-	$greetMary('Good morning');
-	// === 'Good morning, Ms. Mary'
-
-	$greetSir = Dash\curryRight($greet, Dash\_, 'Sir');
-	$goodMorningSir = $greetSir('Good morning');
-	$goodMorningSir('Peter');
+	$goodMorning = Dash\curryRight($greet, 'Good morning', Dash\_, Dash\_);
+	$goodMorningSir = $goodMorning('Sir', Dash\_);
 	// === 'Good morning, Sir Peter'
+
+	$greetMs = Dash\curryRight($greet, 'Ms.', Dash\_);
+	$goodMorningMs = $greetMs('Good morning', Dash\_);
+	// === 'Good morning, Ms. Mary'
  */
 function curryRight(callable $callable /*, ...args */)
 {
