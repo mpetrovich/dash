@@ -427,6 +427,14 @@ Dash\chain([1, 2, 3])
 Dash::unsetCustom('triple');
 ```
 
+When chained, the current input is passed as the first parameter to the custom operation:
+
+```php
+Dash::setCustom('divide', function($numerator, $denominator) { return $numerator / $denominator; });
+
+Dash\chain(6)->divide(2)->value();  // === 2
+```
+
 ### Tips
 
 If you find that Dash doesn't have an operation that you need, fear not. Custom logic can be added without giving up Dash chaining or other features. The simplest way to integrate missing operations is via the [`Dash\thru()`](docs/Operations.md#thru) operation, which allows custom logic to modify and seamlessly pass through its results to the next step in the chain.
