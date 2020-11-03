@@ -14,6 +14,7 @@ Operation | Signature | Curried
 [call](#call) | `call(callable $callable /*, ...args */): mixed` | 
 [chain](#chain) | `chain($input = null): Dash\Dash` | `Curry\chain`
 [compare](#compare) | `compare($a, $b): integer` | `Curry\compare`
+[compose](#compose) | `compose(callable ...$fns): callable` | 
 [contains](#contains--includes) / includes | `contains($iterable, $target, $comparator = 'Dash\equal'): boolean` | `Curry\contains`
 [currify](#currify) | `currify(callable $callable, array $args = [], $rotate = 1): function\|mixed` | 
 [currifyN](#currifyn) | `currifyN(callable $callable, $totalArgs, array $args = [], $rotate = 1): function\|mixed` | 
@@ -65,6 +66,7 @@ Operation | Signature | Curried
 [partial](#partial) | `partial($callable /*, ...args */): callable` | 
 [partialRight](#partialright) | `partialRight($callable /*, ...args */): callable` | 
 [pick](#pick) | `pick($iterable, $keys): array` | `Curry\pick`
+[pipe](#pipe) | `pipe(callable ...$fns): callable` | 
 [pluck](#pluck) | `pluck($iterable, $path, $default = null): array` | `Curry\pluck`
 [property](#property) | `property($path, $default = null): function` | `Curry\property`
 [reduce](#reduce) | `reduce($iterable, $iteratee, $initial = []): mixed` | `Curry\reduce`
@@ -452,6 +454,58 @@ Dash\compare(2, 1);
 
 Dash\compare(2, 2);
 // === 0
+```
+
+[↑ Top](#operations)
+
+compose
+---
+See also: `pipe()`
+
+```php
+compose(callable ...$fns): callable
+```
+Returns a new function that performs right-to-left function composition.
+
+The last function can have any arity, but the rest must be unary.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`...$fns` | `callable` |
+**Returns** | `callable` | New function that composes `$fns` right-to-left
+
+**Example:**
+```php
+$addOne = function ($v) {
+	return $v + 1;
+};
+$triple = function ($v) {
+	return $v * 3;
+};
+$square = function ($v) {
+	return $v * $v;
+};
+
+$composed = Dash\compose($square, $triple, $addOne);
+$composed(1); // === 36
+
+```
+
+**Example:** Last function can accept multiple arguments
+```php
+$pow = function ($base, $exp) {
+	return pow($base, $exp);
+};
+$addOne = function ($v) {
+	return $v + 1;
+};
+$triple = function ($v) {
+	return $v * 3;
+};
+
+$composed = Dash\compose($triple, $addOne, $pow);
+$composed(2, 3); // === 27
 ```
 
 [↑ Top](#operations)
@@ -2645,6 +2699,58 @@ Parameter | Type | Description
 ```php
 Dash\pick(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], ['b', 'c']);
 // === ['b' => 2, 'c' => 3]
+```
+
+[↑ Top](#operations)
+
+pipe
+---
+See also: `compose()`
+
+```php
+pipe(callable ...$fns): callable
+```
+Returns a new function that performs left-to-right function composition.
+
+The first function can have any arity, but the rest must be unary.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`...$fns` | `callable` |
+**Returns** | `callable` | New function that composes `$fns` left-to-right
+
+**Example:**
+```php
+$addOne = function ($v) {
+	return $v + 1;
+};
+$triple = function ($v) {
+	return $v * 3;
+};
+$square = function ($v) {
+	return $v * $v;
+};
+
+$piped = Dash\pipe($addOne, $triple, $square);
+$piped(1); // === 36
+
+```
+
+**Example:** First function can accept multiple arguments
+```php
+$pow = function ($base, $exp) {
+	return pow($base, $exp);
+};
+$addOne = function ($v) {
+	return $v + 1;
+};
+$triple = function ($v) {
+	return $v * 3;
+};
+
+$piped = Dash\pipe($pow, $addOne, $triple);
+$piped(2, 3); // === 27
 ```
 
 [↑ Top](#operations)
