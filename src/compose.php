@@ -5,6 +5,7 @@ namespace Dash;
 /**
  * Returns a new function that performs right-to-left function composition.
  *
+ * For example, `compose(a, b, c)` will return a new function that performs `a(b(c()))`.
  * The last function can have any arity, but the rest must be unary.
  *
  * @see pipe()
