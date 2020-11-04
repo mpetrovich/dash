@@ -36,7 +36,7 @@ echo "Average male age is $avgMaleAge.";
 -   [Roadmap](docs/Roadmap.md)
 -   [Contributing](CONTRIBUTING.md)
 
-## Functions / Operations
+## Operations
 
 [View full list of operations here](docs/Operations.md)
 
