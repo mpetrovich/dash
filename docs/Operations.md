@@ -466,8 +466,8 @@ See also: `pipe()`
 compose(callable ...$fns): callable
 ```
 Returns a new function that performs right-to-left function composition.
-
 For example, `compose(a, b, c)` will return a new function that performs `a(b(c()))`.
+
 The last function can have any arity, but the rest must be unary.
 
 
@@ -2712,8 +2712,8 @@ See also: `compose()`
 pipe(callable ...$fns): callable
 ```
 Returns a new function that performs left-to-right function composition.
-
 For example, `pipe(a, b, c)` will return a new function that performs `c(b(a()))`.
+
 The first function can have any arity, but the rest must be unary.
 
 
