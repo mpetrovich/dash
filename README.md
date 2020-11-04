@@ -18,93 +18,9 @@ $avgMaleAge = Dash\chain([
 echo "Average male age is $avgMaleAge.";
 ```
 
-#### Operations - [View all](docs/Operations.md)
-
-[all / every](docs/Operations.md#all--every),
-[any / some](docs/Operations.md#any--some),
-[apply](docs/Operations.md#apply),
-[ary](docs/Operations.md#ary),
-[assertType](docs/Operations.md#asserttype),
-[at](docs/Operations.md#at),
-[average / mean](docs/Operations.md#average--mean),
-[call](docs/Operations.md#call),
-[chain](docs/Operations.md#chain),
-[compare](docs/Operations.md#compare),
-[contains / includes](docs/Operations.md#contains--includes),
-[currify](docs/Operations.md#currify),
-[currifyN](docs/Operations.md#currifyn),
-[curry](docs/Operations.md#curry),
-[curryN](docs/Operations.md#curryn),
-[curryRight](docs/Operations.md#curryright),
-[curryRightN](docs/Operations.md#curryrightn),
-[custom](docs/Operations.md#custom),
-[debug](docs/Operations.md#debug),
-[deltas](docs/Operations.md#deltas),
-[difference](docs/Operations.md#difference),
-[each](docs/Operations.md#each),
-[equal](docs/Operations.md#equal),
-[filter](docs/Operations.md#filter),
-[find](docs/Operations.md#find),
-[findKey](docs/Operations.md#findkey),
-[findLast](docs/Operations.md#findlast),
-[findLastKey](docs/Operations.md#findlastkey),
-[findLastValue](docs/Operations.md#findlastvalue),
-[findValue](docs/Operations.md#findvalue),
-[first / head](docs/Operations.md#first--head),
-[flatten](docs/Operations.md#flatten),
-[get](docs/Operations.md#get),
-[getDirect](docs/Operations.md#getdirect),
-[getDirectRef](docs/Operations.md#getdirectref),
-[groupBy](docs/Operations.md#groupby),
-[hasDirect](docs/Operations.md#hasdirect),
-[identical](docs/Operations.md#identical),
-[identity](docs/Operations.md#identity),
-[intersection](docs/Operations.md#intersection),
-[isEmpty](docs/Operations.md#isempty),
-[isEven](docs/Operations.md#iseven),
-[isIndexedArray](docs/Operations.md#isindexedarray),
-[isOdd](docs/Operations.md#isodd)
-[isType](docs/Operations.md#istype),
-[join / implode](docs/Operations.md#join--implode),
-[keyBy / indexBy](docs/Operations.md#keyby--indexby),
-[keys](docs/Operations.md#keys),
-[last](docs/Operations.md#last),
-[map](docs/Operations.md#map),
-[mapResult](docs/Operations.md#mapresult),
-[mapValues](docs/Operations.md#mapvalues),
-[matchesProperty](docs/Operations.md#matchesproperty),
-[max](docs/Operations.md#max),
-[median](docs/Operations.md#median),
-[min](docs/Operations.md#min),
-[negate](docs/Operations.md#negate),
-[omit](docs/Operations.md#omit),
-[partial](docs/Operations.md#partial),
-[partialRight](docs/Operations.md#partialright),
-[pick](docs/Operations.md#pick),
-[pluck](docs/Operations.md#pluck),
-[property](docs/Operations.md#property),
-[reduce](docs/Operations.md#reduce),
-[reject](docs/Operations.md#reject),
-[result](docs/Operations.md#result),
-[reverse](docs/Operations.md#reverse),
-[rotate](docs/Operations.md#rotate),
-[set](docs/Operations.md#set),
-[size / count](docs/Operations.md#size--count),
-[sort](docs/Operations.md#sort),
-[sum](docs/Operations.md#sum),
-[take](docs/Operations.md#take),
-[takeRight](docs/Operations.md#takeright),
-[tap](docs/Operations.md#tap),
-[thru](docs/Operations.md#thru)
-[toArray](docs/Operations.md#toarray),
-[toObject](docs/Operations.md#toobject),
-[unary](docs/Operations.md#unary)
-[union](docs/Operations.md#union),
-[unique / distinct](docs/Operations.md#unique--distinct),
-[values](docs/Operations.md#values)
-
 #### Jump to:
 
+-   [Functions / Operations](#operations)
 -   [Highlights](#highlights)
 -   [Why use Dash?](#why-use-dash)
 -   [Installation](#installation)
@@ -119,6 +35,10 @@ echo "Average male age is $avgMaleAge.";
 -   [Changelog](https://github.com/mpetrovich/dash/releases)
 -   [Roadmap](docs/Roadmap.md)
 -   [Contributing](CONTRIBUTING.md)
+
+## Functions / Operations
+
+[View full list of operations here](docs/Operations.md)
 
 ## Highlights
 
