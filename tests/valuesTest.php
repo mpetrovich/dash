@@ -4,7 +4,7 @@
  * @covers Dash\values
  * @covers Dash\Curry\values
  */
-class valuesTest extends PHPUnit_Framework_TestCase
+class valuesTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -99,14 +99,14 @@ class valuesTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\values($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\values expects iterable or stdClass or null but was given $type",
 				$e->getMessage()

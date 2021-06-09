@@ -4,7 +4,7 @@
  * @covers Dash\unique
  * @covers Dash\distinct
  */
-class uniqueTest extends PHPUnit_Framework_TestCase
+class uniqueTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -215,14 +215,14 @@ class uniqueTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\unique($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\unique expects iterable or stdClass or null but was given $type",
 				$e->getMessage()
@@ -232,8 +232,7 @@ class uniqueTest extends PHPUnit_Framework_TestCase
 
 		try {
 			Dash\distinct($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\unique expects iterable or stdClass or null but was given $type",
 				$e->getMessage()

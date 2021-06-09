@@ -3,7 +3,7 @@
 /**
  * @covers Dash\currify
  */
-class currifyTest extends PHPUnit_Framework_TestCase
+class currifyTest extends PHPUnit\Framework\TestCase
 {
 	public function test()
 	{

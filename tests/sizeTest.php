@@ -6,7 +6,7 @@
  * @covers Dash\count
  * @covers Dash\Curry\count
  */
-class sizeTest extends PHPUnit_Framework_TestCase
+class sizeTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases

@@ -4,7 +4,7 @@
  * @covers Dash\deltas
  * @covers Dash\Curry\deltas
  */
-class deltasTest extends PHPUnit_Framework_TestCase
+class deltasTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -99,14 +99,14 @@ class deltasTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\deltas($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\deltas expects iterable or stdClass or null but was given $type",
 				$e->getMessage()

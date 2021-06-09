@@ -39,21 +39,19 @@ function getDirect($input, $key, $default = null)
 		return $default;
 	}
 
-	if ($input instanceof \ArrayAccess && $input->offsetExists($key)) {
+	if (is_null($input)) {
+		$value = $default;
+	} elseif ($input instanceof \ArrayAccess && $input->offsetExists($key)) {
 		$value = $input[$key];
-	}
-	elseif (is_array($input) && array_key_exists($key, $input)) {
+	} elseif (is_array($input) && array_key_exists($key, $input)) {
 		$value = $input[$key];
-	}
-	elseif (is_object($input) && property_exists($input, $key)) {
+	} elseif (is_object($input) && property_exists($input, $key)) {
 		$value = $input->$key;
-	}
-	elseif (method_exists($input, $key)) {
+	} elseif ((is_string($input) || is_object($input)) && method_exists($input, $key)) {
 		$value = function () use ($input, $key) {
 			return call_user_func_array([$input, $key], func_get_args());
 		};
-	}
-	else {
+	} else {
 		$array = toArray($input);
 		$value = isset($array[$key]) ? $array[$key] : $default;
 	}

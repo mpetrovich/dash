@@ -6,7 +6,7 @@
  * @covers Dash\includes
  * @covers Dash\Curry\includes
  */
-class containsTest extends PHPUnit_Framework_TestCase
+class containsTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -166,16 +166,16 @@ class containsTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		$target = 3;
 
 		try {
 			Dash\contains($iterable, $target);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\contains expects iterable or stdClass or null but was given $type",
 				$e->getMessage()
@@ -185,8 +185,7 @@ class containsTest extends PHPUnit_Framework_TestCase
 
 		try {
 			Dash\includes($iterable, $target);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\contains expects iterable or stdClass or null but was given $type",
 				$e->getMessage()

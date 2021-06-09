@@ -4,7 +4,7 @@
  * @covers Dash\apply
  * @covers Dash\Curry\apply
  */
-class applyTest extends PHPUnit_Framework_TestCase
+class applyTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -105,14 +105,15 @@ class applyTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($args, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
-			Dash\apply(function () {}, $args);
-		}
-		catch (Exception $e) {
+			Dash\apply(function () {
+			}, $args);
+		} catch (Exception $e) {
 			$this->assertSame("Dash\\apply expects iterable or stdClass but was given $type", $e->getMessage());
 			throw $e;
 		}

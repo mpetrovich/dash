@@ -4,7 +4,7 @@
  * @covers Dash\groupBy
  * @covers Dash\Curry\groupBy
  */
-class groupByTest extends PHPUnit_Framework_TestCase
+class groupByTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -209,14 +209,14 @@ class groupByTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\groupBy($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\groupBy expects iterable or stdClass or null but was given $type",
 				$e->getMessage()

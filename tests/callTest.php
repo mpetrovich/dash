@@ -3,7 +3,7 @@
 /**
  * @covers Dash\call
  */
-class callTest extends PHPUnit_Framework_TestCase
+class callTest extends PHPUnit\Framework\TestCase
 {
 	public function testWithNoArgs()
 	{

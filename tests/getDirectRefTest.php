@@ -3,7 +3,7 @@
 /**
  * @covers Dash\getDirectRef
  */
-class getDirectRefTest extends PHPUnit_Framework_TestCase
+class getDirectRefTest extends PHPUnit\Framework\TestCase
 {
 	public function testArray()
 	{
@@ -37,14 +37,14 @@ class getDirectRefTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesNoMatchingField
-	 * @expectedException UnexpectedValueException
 	 */
 	public function testNoMatchingField($input, $key, $message)
 	{
+		$this->expectException(UnexpectedValueException::class);
+
 		try {
 			Dash\getDirectRef($input, $key);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame($message, $e->getMessage());
 			throw $e;
 		}

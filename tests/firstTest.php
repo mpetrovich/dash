@@ -6,7 +6,7 @@
  * @covers Dash\head
  * @covers Dash\Curry\head
  */
-class firstTest extends PHPUnit_Framework_TestCase
+class firstTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -105,22 +105,21 @@ class firstTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\first($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame("Dash\\first expects iterable or stdClass or null but was given $type", $e->getMessage());
 			throw $e;
 		}
 
 		try {
 			Dash\head($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame("Dash\\first expects iterable or stdClass or null but was given $type", $e->getMessage());
 			throw $e;
 		}

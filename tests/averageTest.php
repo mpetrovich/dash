@@ -6,7 +6,7 @@
  * @covers Dash\mean
  * @covers Dash\Curry\mean
  */
-class averageTest extends PHPUnit_Framework_TestCase
+class averageTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -105,14 +105,14 @@ class averageTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\average($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\average expects iterable or stdClass or null but was given $type",
 				$e->getMessage()
@@ -122,8 +122,7 @@ class averageTest extends PHPUnit_Framework_TestCase
 
 		try {
 			Dash\mean($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\average expects iterable or stdClass or null but was given $type",
 				$e->getMessage()

@@ -3,7 +3,7 @@
 /**
  * @covers Dash\where
  */
-class whereTest extends PHPUnit_Framework_TestCase
+class whereTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases

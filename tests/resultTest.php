@@ -4,7 +4,7 @@
  * @covers Dash\result
  * @covers Dash\Curry\result
  */
-class resultTest extends PHPUnit_Framework_TestCase
+class resultTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -63,12 +63,16 @@ class resultTest extends PHPUnit_Framework_TestCase
 			],
 			'With a callable iteratee' => [
 				'input' => (object) ['foo' => 'value'],
-				'path' => function ($input) { return $input->foo; },
+				'path' => function ($input) {
+					return $input->foo;
+				},
 				'default' => 'default',
 				'expected' => 'value',
 			],
 			'With a callable value' => [
-				'input' => ['a' => ['b' => ['c' => function () { return 'result'; }]]],
+				'input' => ['a' => ['b' => ['c' => function () {
+					return 'result';
+				}]]],
 				'path' => 'a.b.c',
 				'default' => 'default',
 				'expected' => 'result',
@@ -260,9 +264,15 @@ class resultTest extends PHPUnit_Framework_TestCase
 	{
 		$input = [
 			'people' => new ArrayObject([
-				['name' => 'Pete', 'getHash' => function () { return '4d17a4'; }],
-				['name' => 'John', 'getHash' => function () { return 'fd2a48'; }],
-				['name' => 'Paul', 'getHash' => function () { return 'd8575d'; }],
+				['name' => 'Pete', 'getHash' => function () {
+					return '4d17a4';
+				}],
+				['name' => 'John', 'getHash' => function () {
+					return 'fd2a48';
+				}],
+				['name' => 'Paul', 'getHash' => function () {
+					return 'd8575d';
+				}],
 			])
 		];
 

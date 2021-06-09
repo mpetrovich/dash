@@ -3,7 +3,7 @@
 /**
  * @covers Dash\flatten
  */
-class flattenTest extends PHPUnit_Framework_TestCase
+class flattenTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -54,7 +54,7 @@ class flattenTest extends PHPUnit_Framework_TestCase
 			'With an indexed array with only array values' => [
 				'iterable' => [
 					[2, 3],
-					[7,9],
+					[7, 9],
 				],
 				'expected' => [2, 3, 7, 9]
 			],
@@ -69,7 +69,7 @@ class flattenTest extends PHPUnit_Framework_TestCase
 					'b' => 1,
 					'c' => 3,
 				],
-				'expected' => [ 6, 1, 3]
+				'expected' => [6, 1, 3]
 			],
 			'With an associative array with a mix of scalar and non-scalar values' => [
 				'iterable' => [
@@ -85,7 +85,7 @@ class flattenTest extends PHPUnit_Framework_TestCase
 			'With an associative array with only array values' => [
 				'iterable' => [
 					'b' => [2, 3],
-					'c' => [7,9],
+					'c' => [7, 9],
 				],
 				'expected' => [2, 3, 7, 9]
 			],
@@ -116,7 +116,7 @@ class flattenTest extends PHPUnit_Framework_TestCase
 			'With an stdClass with only array values' => [
 				'iterable' => (object) [
 					'b' => [2, 3],
-					'c' => [7,9],
+					'c' => [7, 9],
 				],
 				'expected' => [2, 3, 7, 9]
 			],
@@ -147,7 +147,7 @@ class flattenTest extends PHPUnit_Framework_TestCase
 			'With an ArrayObject with only array values' => [
 				'iterable' => new ArrayObject([
 					'b' => [2, 3],
-					'c' => [7,9],
+					'c' => [7, 9],
 				]),
 				'expected' => [2, 3, 7, 9]
 			],
@@ -168,14 +168,14 @@ class flattenTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\flatten($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\flatten expects iterable or stdClass or null but was given $type",
 				$e->getMessage()

@@ -4,7 +4,7 @@
  * @covers Dash\hasDirect
  * @covers Dash\Curry\hasDirect
  */
-class hasDirectTest extends PHPUnit_Framework_TestCase
+class hasDirectTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -43,7 +43,8 @@ class hasDirectTest extends PHPUnit_Framework_TestCase
 			],
 			'With a closure key' => [
 				'input' => ['foo' => 'value'],
-				'key' => function () {},
+				'key' => function () {
+				},
 				'expected' => false,
 			],
 			'With null' => [

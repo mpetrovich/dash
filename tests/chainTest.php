@@ -4,7 +4,7 @@
  * @covers Dash\chain
  * @covers Dash\Curry\chain
  */
-class chainTest extends PHPUnit_Framework_TestCase
+class chainTest extends PHPUnit\Framework\TestCase
 {
 	public function test()
 	{
@@ -13,7 +13,9 @@ class chainTest extends PHPUnit_Framework_TestCase
 		$this->assertInstanceOf('Dash\Dash', $chain);
 		$this->assertSame([1, 2, 3], $chain->value());
 
-		$chain->map(function ($n) { return $n * 2; });
+		$chain->map(function ($n) {
+			return $n * 2;
+		});
 		$this->assertSame([2, 4, 6], $chain->value());
 	}
 
@@ -25,15 +27,21 @@ class chainTest extends PHPUnit_Framework_TestCase
 		$this->assertInstanceOf('Dash\Dash', $chain);
 		$this->assertSame([1, 2, 3], $chain->value());
 
-		$chain->map(function ($n) { return $n * 2; });
+		$chain->map(function ($n) {
+			return $n * 2;
+		});
 		$this->assertSame([2, 4, 6], $chain->value());
 	}
 
 	public function testExamples()
 	{
 		$result = Dash\chain([1, 2, 3])
-			->filter(function ($n) { return $n < 3; })
-			->map(function ($n) { return $n * 2; })
+			->filter(function ($n) {
+				return $n < 3;
+			})
+			->map(function ($n) {
+				return $n * 2;
+			})
 			->value();
 
 		$this->assertSame([2, 4], $result);

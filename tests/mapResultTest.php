@@ -4,7 +4,7 @@
  * @covers Dash\mapResult
  * @covers Dash\Curry\mapResult
  */
-class mapResultTest extends PHPUnit_Framework_TestCase
+class mapResultTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -62,10 +62,16 @@ class mapResultTest extends PHPUnit_Framework_TestCase
 
 			'With an indexed array and a direct property path' => [
 				'iterable' => [
-					['fn' => function() { return 'a fn'; }],
-					['fn' => function() { return 'b fn'; }],
+					['fn' => function () {
+						return 'a fn';
+					}],
+					['fn' => function () {
+						return 'b fn';
+					}],
 					[],
-					['fn' => function() { return 'd fn'; }],
+					['fn' => function () {
+						return 'd fn';
+					}],
 					null,
 				],
 				'path' => 'fn',
@@ -83,7 +89,9 @@ class mapResultTest extends PHPUnit_Framework_TestCase
 					[
 						'foo' => [
 							'bar',
-							(object) ['fn' => function() { return 'a fn'; }]
+							(object) ['fn' => function () {
+								return 'a fn';
+							}]
 						],
 					],
 					[
@@ -95,7 +103,9 @@ class mapResultTest extends PHPUnit_Framework_TestCase
 					[
 						'foo' => [
 							'bar',
-							(object) ['fn' => function() { return 'c fn'; }]
+							(object) ['fn' => function () {
+								return 'c fn';
+							}]
 						],
 					],
 					[
@@ -107,7 +117,9 @@ class mapResultTest extends PHPUnit_Framework_TestCase
 					[
 						'foo' => [
 							'bar',
-							(object) ['fn' => function() { return 'e fn'; }]
+							(object) ['fn' => function () {
+								return 'e fn';
+							}]
 						],
 					],
 					null,
@@ -130,10 +142,16 @@ class mapResultTest extends PHPUnit_Framework_TestCase
 
 			'With an associative array and a direct property path' => [
 				'iterable' => [
-					'a' => ['fn' => function() { return 'a fn'; }],
-					'b' => ['fn' => function() { return 'b fn'; }],
+					'a' => ['fn' => function () {
+						return 'a fn';
+					}],
+					'b' => ['fn' => function () {
+						return 'b fn';
+					}],
 					'c' => [],
-					'd' => ['fn' => function() { return 'd fn'; }],
+					'd' => ['fn' => function () {
+						return 'd fn';
+					}],
 					'e' => null,
 				],
 				'path' => 'fn',
@@ -151,7 +169,9 @@ class mapResultTest extends PHPUnit_Framework_TestCase
 					'a' => [
 						'foo' => [
 							'bar',
-							(object) ['fn' => function() { return 'a fn'; }]
+							(object) ['fn' => function () {
+								return 'a fn';
+							}]
 						],
 					],
 					'b' => [
@@ -163,7 +183,9 @@ class mapResultTest extends PHPUnit_Framework_TestCase
 					'c' => [
 						'foo' => [
 							'bar',
-							(object) ['fn' => function() { return 'c fn'; }]
+							(object) ['fn' => function () {
+								return 'c fn';
+							}]
 						],
 					],
 					'd' => [
@@ -175,7 +197,9 @@ class mapResultTest extends PHPUnit_Framework_TestCase
 					'e' => [
 						'foo' => [
 							'bar',
-							(object) ['fn' => function() { return 'e fn'; }]
+							(object) ['fn' => function () {
+								return 'e fn';
+							}]
 						],
 					],
 					'f' => null,
@@ -198,10 +222,16 @@ class mapResultTest extends PHPUnit_Framework_TestCase
 
 			'With an stdClass and a direct property path' => [
 				'iterable' => (object) [
-					'a' => ['fn' => function() { return 'a fn'; }],
-					'b' => ['fn' => function() { return 'b fn'; }],
+					'a' => ['fn' => function () {
+						return 'a fn';
+					}],
+					'b' => ['fn' => function () {
+						return 'b fn';
+					}],
 					'c' => [],
-					'd' => ['fn' => function() { return 'd fn'; }],
+					'd' => ['fn' => function () {
+						return 'd fn';
+					}],
 					'e' => null,
 				],
 				'path' => 'fn',
@@ -219,7 +249,9 @@ class mapResultTest extends PHPUnit_Framework_TestCase
 					'a' => [
 						'foo' => [
 							'bar',
-							(object) ['fn' => function() { return 'a fn'; }]
+							(object) ['fn' => function () {
+								return 'a fn';
+							}]
 						],
 					],
 					'b' => [
@@ -231,7 +263,9 @@ class mapResultTest extends PHPUnit_Framework_TestCase
 					'c' => [
 						'foo' => [
 							'bar',
-							(object) ['fn' => function() { return 'c fn'; }]
+							(object) ['fn' => function () {
+								return 'c fn';
+							}]
 						],
 					],
 					'd' => [
@@ -243,7 +277,9 @@ class mapResultTest extends PHPUnit_Framework_TestCase
 					'e' => [
 						'foo' => [
 							'bar',
-							(object) ['fn' => function() { return 'e fn'; }]
+							(object) ['fn' => function () {
+								return 'e fn';
+							}]
 						],
 					],
 					'f' => null,
@@ -266,10 +302,16 @@ class mapResultTest extends PHPUnit_Framework_TestCase
 
 			'With an ArrayObject and a direct property path' => [
 				'iterable' => new ArrayObject([
-					'a' => ['fn' => function() { return 'a fn'; }],
-					'b' => ['fn' => function() { return 'b fn'; }],
+					'a' => ['fn' => function () {
+						return 'a fn';
+					}],
+					'b' => ['fn' => function () {
+						return 'b fn';
+					}],
 					'c' => [],
-					'd' => ['fn' => function() { return 'd fn'; }],
+					'd' => ['fn' => function () {
+						return 'd fn';
+					}],
 					'e' => null,
 				]),
 				'path' => 'fn',
@@ -287,7 +329,9 @@ class mapResultTest extends PHPUnit_Framework_TestCase
 					'a' => [
 						'foo' => [
 							'bar',
-							(object) ['fn' => function() { return 'a fn'; }]
+							(object) ['fn' => function () {
+								return 'a fn';
+							}]
 						],
 					],
 					'b' => [
@@ -299,7 +343,9 @@ class mapResultTest extends PHPUnit_Framework_TestCase
 					'c' => [
 						'foo' => [
 							'bar',
-							(object) ['fn' => function() { return 'c fn'; }]
+							(object) ['fn' => function () {
+								return 'c fn';
+							}]
 						],
 					],
 					'd' => [
@@ -311,7 +357,9 @@ class mapResultTest extends PHPUnit_Framework_TestCase
 					'e' => [
 						'foo' => [
 							'bar',
-							(object) ['fn' => function() { return 'e fn'; }]
+							(object) ['fn' => function () {
+								return 'e fn';
+							}]
 						],
 					],
 					'f' => null,
@@ -352,15 +400,15 @@ class mapResultTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			$path = 'fn';
 			Dash\mapResult($iterable, $path);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\mapResult expects iterable or stdClass or null but was given $type",
 				$e->getMessage()
@@ -398,9 +446,15 @@ class mapResultTest extends PHPUnit_Framework_TestCase
 	public function testExamples()
 	{
 		$data = [
-			'john' => ['getHash' => function() { return md5('John Doe'); }],
-			'jane' => ['getHash' => function() { return md5('Jane Doe'); }],
-			'paul' => ['getHash' => function() { return md5('Paul Dyk'); }],
+			'john' => ['getHash' => function () {
+				return md5('John Doe');
+			}],
+			'jane' => ['getHash' => function () {
+				return md5('Jane Doe');
+			}],
+			'paul' => ['getHash' => function () {
+				return md5('Paul Dyk');
+			}],
 		];
 
 		$this->assertSame(

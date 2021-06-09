@@ -3,7 +3,7 @@
 /**
  * @covers Dash\compose
  */
-class composeTest extends PHPUnit_Framework_TestCase
+class composeTest extends PHPUnit\Framework\TestCase
 {
     public function testCanComposeOneUnaryFunction()
     {

@@ -4,7 +4,7 @@
  * @covers Dash\unary
  * @covers Dash\Curry\unary
  */
-class unaryTest extends PHPUnit_Framework_TestCase
+class unaryTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases

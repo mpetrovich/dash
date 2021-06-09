@@ -4,7 +4,7 @@
  * @covers Dash\custom
  * @covers Dash\Curry\custom
  */
-class customTest extends PHPUnit_Framework_TestCase
+class customTest extends PHPUnit\Framework\TestCase
 {
 	public function test()
 	{
@@ -43,7 +43,8 @@ class customTest extends PHPUnit_Framework_TestCase
 
 	public function testNumberOfArgsPreserved()
 	{
-		$fn = function($a, $b, $c) {};
+		$fn = function ($a, $b, $c) {
+		};
 		Dash\Dash::setCustom('customTest__fn', $fn);
 
 		$custom = Dash\custom('customTest__fn');

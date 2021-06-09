@@ -4,7 +4,7 @@
  * @covers Dash\pluck
  * @covers Dash\Curry\pluck
  */
-class pluckTest extends PHPUnit_Framework_TestCase
+class pluckTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -184,14 +184,14 @@ class pluckTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\pluck($iterable, 'path');
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\pluck expects iterable or stdClass or null but was given $type",
 				$e->getMessage()

@@ -4,7 +4,7 @@
  * @covers Dash\isOdd
  * @covers Dash\Curry\isOdd
  */
-class isOddTest extends PHPUnit_Framework_TestCase
+class isOddTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases

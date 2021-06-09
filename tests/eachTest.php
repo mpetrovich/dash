@@ -4,7 +4,7 @@
  * @covers Dash\each
  * @covers Dash\Curry\each
  */
-class eachTest extends PHPUnit_Framework_TestCase
+class eachTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -145,14 +145,15 @@ class eachTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
-			Dash\each($iterable, function () {});
-		}
-		catch (Exception $e) {
+			Dash\each($iterable, function () {
+			});
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\each expects iterable or stdClass or null but was given $type",
 				$e->getMessage()

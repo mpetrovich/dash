@@ -4,7 +4,7 @@
  * @covers Dash\median
  * @covers Dash\Curry\median
  */
-class medianTest extends PHPUnit_Framework_TestCase
+class medianTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -107,14 +107,14 @@ class medianTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\median($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\median expects iterable or stdClass or null but was given $type",
 				$e->getMessage()

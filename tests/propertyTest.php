@@ -4,7 +4,7 @@
  * @covers Dash\property
  * @covers Dash\Curry\property
  */
-class propertyTest extends PHPUnit_Framework_TestCase
+class propertyTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -161,14 +161,14 @@ class propertyTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($path, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\property($path);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\property expects string or numeric or null but was given $type",
 				$e->getMessage()

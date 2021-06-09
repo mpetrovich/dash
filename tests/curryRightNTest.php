@@ -3,7 +3,7 @@
 /**
  * @covers Dash\curryRightN
  */
-class curryRightNTest extends PHPUnit_Framework_TestCase
+class curryRightNTest extends PHPUnit\Framework\TestCase
 {
 	public function test()
 	{

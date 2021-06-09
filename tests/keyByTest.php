@@ -6,7 +6,7 @@
  * @covers Dash\indexBy
  * @covers Dash\Curry\indexBy
  */
-class keyByTest extends PHPUnit_Framework_TestCase
+class keyByTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -34,12 +34,16 @@ class keyByTest extends PHPUnit_Framework_TestCase
 		return [
 			'With null' => [
 				'iterable' => null,
-				'iteratee' => function ($value) { return $value * 2; },
+				'iteratee' => function ($value) {
+					return $value * 2;
+				},
 				'expected' => [],
 			],
 			'With an empty array' => [
 				'iterable' => [],
-				'iteratee' => function ($value) { return $value * 2; },
+				'iteratee' => function ($value) {
+					return $value * 2;
+				},
 				'expected' => [],
 			],
 
@@ -49,12 +53,16 @@ class keyByTest extends PHPUnit_Framework_TestCase
 
 			'With an indexed array with one element' => [
 				'iterable' => [3],
-				'iteratee' => function ($value) { return $value * 2; },
+				'iteratee' => function ($value) {
+					return $value * 2;
+				},
 				'expected' => [6 => 3],
 			],
 			'With an indexed array with several elements' => [
 				'iterable' => [3, 1, 2, 4],
-				'iteratee' => function ($value) { return $value * 2; },
+				'iteratee' => function ($value) {
+					return $value * 2;
+				},
 				'expected' => [6 => 3, 2 => 1, 4 => 2, 8 => 4],
 			],
 
@@ -64,12 +72,16 @@ class keyByTest extends PHPUnit_Framework_TestCase
 
 			'With an associative array with one element' => [
 				'iterable' => ['c' => 3],
-				'iteratee' => function ($value) { return $value * 2; },
+				'iteratee' => function ($value) {
+					return $value * 2;
+				},
 				'expected' => [6 => 3],
 			],
 			'With an associative array with several elements' => [
 				'iterable' => ['c' => 3, 'a' => 1, 'b' => 2, 'd' => 4],
-				'iteratee' => function ($value) { return $value * 2; },
+				'iteratee' => function ($value) {
+					return $value * 2;
+				},
 				'expected' => [6 => 3, 2 => 1, 4 => 2, 8 => 4],
 			],
 
@@ -79,17 +91,23 @@ class keyByTest extends PHPUnit_Framework_TestCase
 
 			'With an empty stdClass' => [
 				'iterable' => (object) [],
-				'iteratee' => function ($value) { return $value * 2; },
+				'iteratee' => function ($value) {
+					return $value * 2;
+				},
 				'expected' => [],
 			],
 			'With an stdClass with one element' => [
 				'iterable' => (object) ['c' => 3],
-				'iteratee' => function ($value) { return $value * 2; },
+				'iteratee' => function ($value) {
+					return $value * 2;
+				},
 				'expected' => [6 => 3],
 			],
 			'With an stdClass with several elements' => [
 				'iterable' => (object) ['c' => 3, 'a' => 1, 'b' => 2, 'd' => 4],
-				'iteratee' => function ($value) { return $value * 2; },
+				'iteratee' => function ($value) {
+					return $value * 2;
+				},
 				'expected' => [6 => 3, 2 => 1, 4 => 2, 8 => 4],
 			],
 
@@ -99,17 +117,23 @@ class keyByTest extends PHPUnit_Framework_TestCase
 
 			'With an empty ArrayObject' => [
 				'iterable' => new ArrayObject([]),
-				'iteratee' => function ($value) { return $value * 2; },
+				'iteratee' => function ($value) {
+					return $value * 2;
+				},
 				'expected' => [],
 			],
 			'With an ArrayObject with one element' => [
 				'iterable' => new ArrayObject(['c' => 3]),
-				'iteratee' => function ($value) { return $value * 2; },
+				'iteratee' => function ($value) {
+					return $value * 2;
+				},
 				'expected' => [6 => 3],
 			],
 			'With an ArrayObject with several elements' => [
 				'iterable' => new ArrayObject(['c' => 3, 'a' => 1, 'b' => 2, 'd' => 4]),
-				'iteratee' => function ($value) { return $value * 2; },
+				'iteratee' => function ($value) {
+					return $value * 2;
+				},
 				'expected' => [6 => 3, 2 => 1, 4 => 2, 8 => 4],
 			],
 		];
@@ -206,14 +230,14 @@ class keyByTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\keyBy($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\keyBy expects iterable or stdClass or null but was given $type",
 				$e->getMessage()
@@ -223,8 +247,7 @@ class keyByTest extends PHPUnit_Framework_TestCase
 
 		try {
 			Dash\indexBy($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\keyBy expects iterable or stdClass or null but was given $type",
 				$e->getMessage()

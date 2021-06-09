@@ -3,7 +3,7 @@
 /**
  * @covers Dash\matches
  */
-class matchesTest extends PHPUnit_Framework_TestCase
+class matchesTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases

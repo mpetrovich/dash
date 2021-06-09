@@ -4,7 +4,7 @@
  * @covers Dash\isIndexedArray
  * @covers Dash\Curry\isIndexedArray
  */
-class isIndexedArrayTest extends PHPUnit_Framework_TestCase
+class isIndexedArrayTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases

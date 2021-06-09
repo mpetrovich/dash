@@ -4,7 +4,7 @@
  * @covers Dash\reduce
  * @covers Dash\Curry\reduce
  */
-class reduceTest extends PHPUnit_Framework_TestCase
+class reduceTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -28,43 +28,57 @@ class reduceTest extends PHPUnit_Framework_TestCase
 		return [
 			'With null' => [
 				'input' => null,
-				'iteratee' => function ($result, $value) { return $result + $value; },
+				'iteratee' => function ($result, $value) {
+					return $result + $value;
+				},
 				'initial' => 0,
 				'expected' => 0,
 			],
 			'With an empty array' => [
 				'input' => [],
-				'iteratee' => function ($result, $value) { return $result + $value; },
+				'iteratee' => function ($result, $value) {
+					return $result + $value;
+				},
 				'initial' => 0,
 				'expected' => 0,
 			],
 			'With an array' => [
 				'input' => [1, 2, 3, 4],
-				'iteratee' => function ($result, $value) { return $result + $value; },
+				'iteratee' => function ($result, $value) {
+					return $result + $value;
+				},
 				'initial' => 0,
 				'expected' => 10,
 			],
 			'With an empty stdClass' => [
 				'input' => (object) [],
-				'iteratee' => function ($result, $value) { return $result + $value; },
+				'iteratee' => function ($result, $value) {
+					return $result + $value;
+				},
 				'initial' => 0,
 				'expected' => 0,
 			],
 			'With a non-empty stdClass' => [
 				'input' => (object) [1, 2, 3, 4],
-				'iteratee' => function ($result, $value) { return $result + $value; },
+				'iteratee' => function ($result, $value) {
+					return $result + $value;
+				},
 				'initial' => 0,
 				'expected' => 10,
 			],
 			'With an empty ArrayObject' => [
 				'input' => new ArrayObject([]),
-				'iteratee' => function ($result, $value) { return $result + $value; },
+				'iteratee' => function ($result, $value) {
+					return $result + $value;
+				},
 				'initial' => 0,
 				'expected' => 0,
 			],
 			'With an ArrayObject' => [
 				'input' => new ArrayObject([1, 2, 3, 4]),
-				'iteratee' => function ($result, $value) { return $result + $value; },
+				'iteratee' => function ($result, $value) {
+					return $result + $value;
+				},
 				'initial' => 0,
 				'expected' => 10,
 			],
@@ -90,14 +104,15 @@ class reduceTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
-			Dash\reduce($iterable, function () {});
-		}
-		catch (Exception $e) {
+			Dash\reduce($iterable, function () {
+			});
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\reduce expects iterable or stdClass or null but was given $type",
 				$e->getMessage()

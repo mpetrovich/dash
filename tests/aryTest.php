@@ -4,7 +4,7 @@
  * @covers Dash\ary
  * @covers Dash\Curry\ary
  */
-class aryTest extends PHPUnit_Framework_TestCase
+class aryTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -80,14 +80,15 @@ class aryTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($arity, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
-			Dash\ary(function () {}, $arity);
-		}
-		catch (Exception $e) {
+			Dash\ary(function () {
+			}, $arity);
+		} catch (Exception $e) {
 			$this->assertSame("Dash\\ary expects numeric but was given $type", $e->getMessage());
 			throw $e;
 		}

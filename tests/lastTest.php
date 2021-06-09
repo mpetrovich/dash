@@ -4,7 +4,7 @@
  * @covers Dash\last
  * @covers Dash\Curry\last
  */
-class lastTest extends PHPUnit_Framework_TestCase
+class lastTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -99,14 +99,14 @@ class lastTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\last($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame("Dash\\last expects iterable or stdClass or null but was given $type", $e->getMessage());
 			throw $e;
 		}

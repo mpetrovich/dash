@@ -4,7 +4,7 @@
  * @covers Dash\sum
  * @covers Dash\Curry\sum
  */
-class sumTest extends PHPUnit_Framework_TestCase
+class sumTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -99,14 +99,14 @@ class sumTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\sum($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame("Dash\\sum expects iterable or stdClass or null but was given $type", $e->getMessage());
 			throw $e;
 		}

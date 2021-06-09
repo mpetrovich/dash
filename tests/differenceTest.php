@@ -3,7 +3,7 @@
 /**
  * @covers Dash\difference
  */
-class differenceTest extends PHPUnit_Framework_TestCase
+class differenceTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -179,14 +179,14 @@ class differenceTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\difference($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\difference expects iterable or stdClass or null but was given $type",
 				$e->getMessage()

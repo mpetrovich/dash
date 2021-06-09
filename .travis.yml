@@ -3,17 +3,14 @@ language: php
 dist: xenial
 
 php:
-    - "5.6"
-    - "7.0"
-    - "7.1"
-    - "7.2"
-    - "7.3"
+    - "7.4"
+    - "8.0"
 
 before_script:
     - composer install --no-interaction
 
 script:
-    - make test-coverage
+    - make test
     - make check-style
 
 after_success:

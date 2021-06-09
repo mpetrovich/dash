@@ -3,7 +3,7 @@
 /**
  * @covers Dash\union
  */
-class unionTest extends PHPUnit_Framework_TestCase
+class unionTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -187,14 +187,14 @@ class unionTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\union($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\union expects iterable or stdClass or null but was given $type",
 				$e->getMessage()

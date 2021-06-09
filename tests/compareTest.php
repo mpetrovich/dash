@@ -4,7 +4,7 @@
  * @covers Dash\compare
  * @covers Dash\Curry\compare
  */
-class compareTest extends PHPUnit_Framework_TestCase
+class compareTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases

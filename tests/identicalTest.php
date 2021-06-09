@@ -4,7 +4,7 @@
  * @covers Dash\identical
  * @covers Dash\Curry\identical
  */
-class identicalTest extends PHPUnit_Framework_TestCase
+class identicalTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases

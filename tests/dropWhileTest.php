@@ -3,7 +3,7 @@
 /**
  * @covers Dash\dropWhile
  */
-class dropWhileTest extends PHPUnit_Framework_TestCase
+class dropWhileTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases

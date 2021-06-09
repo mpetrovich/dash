@@ -4,7 +4,7 @@
  * @covers Dash\debug
  * @covers Dash\Curry\debug
  */
-class debugTest extends PHPUnit_Framework_TestCase
+class debugTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -13,7 +13,7 @@ class debugTest extends PHPUnit_Framework_TestCase
 	{
 		ob_start();
 		$result = Dash\debug($value);
-		ob_clean();
+		ob_end_clean();
 
 		$this->assertSame($expected, $result);
 	}
@@ -26,7 +26,7 @@ class debugTest extends PHPUnit_Framework_TestCase
 		ob_start();
 		$debug = Dash\Curry\debug();
 		$result = $debug($value);
-		ob_clean();
+		ob_end_clean();
 
 		$this->assertSame($expected, $result);
 	}

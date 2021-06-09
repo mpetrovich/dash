@@ -4,7 +4,7 @@
  * @covers Dash\findKey
  * @covers Dash\Curry\findKey
  */
-class findKeyTest extends PHPUnit_Framework_TestCase
+class findKeyTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -293,14 +293,14 @@ class findKeyTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\findKey($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\findKey expects iterable or stdClass or null but was given $type",
 				$e->getMessage()
@@ -345,7 +345,9 @@ class findKeyTest extends PHPUnit_Framework_TestCase
 			'c',
 			Dash\findKey(
 				['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
-				function ($value, $key) { return $value > 1 && $key !== 'b'; }
+				function ($value, $key) {
+					return $value > 1 && $key !== 'b';
+				}
 			)
 		);
 		$this->assertSame(

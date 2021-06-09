@@ -4,7 +4,7 @@
  * @covers Dash\identity
  * @covers Dash\Curry\identity
  */
-class identityTest extends PHPUnit_Framework_TestCase
+class identityTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases

@@ -4,7 +4,7 @@
  * @covers Dash\findLastValue
  * @covers Dash\Curry\findLastValue
  */
-class findLastValueTest extends PHPUnit_Framework_TestCase
+class findLastValueTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -293,14 +293,14 @@ class findLastValueTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\findLastValue($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\findLastValue expects iterable or stdClass or null but was given $type",
 				$e->getMessage()
@@ -345,7 +345,9 @@ class findLastValueTest extends PHPUnit_Framework_TestCase
 			4,
 			Dash\findLastValue(
 				['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
-				function ($value, $key) { return $value > 1 && $key !== 'b'; }
+				function ($value, $key) {
+					return $value > 1 && $key !== 'b';
+				}
 			)
 		);
 		$this->assertSame(

@@ -3,7 +3,7 @@
 /**
  * @covers Dash\set
  */
-class setTest extends PHPUnit_Framework_TestCase
+class setTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -172,12 +172,11 @@ class setTest extends PHPUnit_Framework_TestCase
 		];
 	}
 
-	/**
-	 * @expectedException \UnexpectedValueException
-	 * @expectedExceptionMessage string has no property "c"
-	 */
 	public function testUnsettableProperty()
 	{
+		$this->expectException(UnexpectedValueException::class);
+		$this->expectExceptionMessage('string has no property "c"');
+
 		$input = [
 			'a' => [
 				'b' => 'hello',

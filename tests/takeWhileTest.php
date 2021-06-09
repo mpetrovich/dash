@@ -3,7 +3,7 @@
 /**
  * @covers Dash\takeWhile
  */
-class takeWhileTest extends PHPUnit_Framework_TestCase
+class takeWhileTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases

@@ -4,7 +4,7 @@
  * @covers Dash\omit
  * @covers Dash\Curry\omit
  */
-class omitTest extends PHPUnit_Framework_TestCase
+class omitTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -171,14 +171,14 @@ class omitTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\omit($iterable, 'key');
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\omit expects iterable or stdClass or null but was given $type",
 				$e->getMessage()

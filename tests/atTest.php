@@ -4,7 +4,7 @@
  * @covers Dash\at
  * @covers Dash\Curry\at
  */
-class atTest extends PHPUnit_Framework_TestCase
+class atTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -154,14 +154,14 @@ class atTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesIterableTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testIterableTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\at($iterable, 0);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame("Dash\\at expects iterable or stdClass or null but was given $type", $e->getMessage());
 			throw $e;
 		}
@@ -195,14 +195,14 @@ class atTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesIndexTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testIndexTypeAssertions($index, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\at([1, 2, 3], $index);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame("Dash\\at expects numeric but was given $type", $e->getMessage());
 			throw $e;
 		}

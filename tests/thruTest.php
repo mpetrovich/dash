@@ -4,7 +4,7 @@
  * @covers Dash\thru
  * @covers Dash\Curry\thru
  */
-class thruTest extends PHPUnit_Framework_TestCase
+class thruTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases

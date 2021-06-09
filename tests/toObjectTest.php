@@ -4,7 +4,7 @@
  * @covers Dash\toObject
  * @covers Dash\Curry\toObject
  */
-class toObjectTest extends PHPUnit_Framework_TestCase
+class toObjectTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases

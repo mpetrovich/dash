@@ -74,7 +74,7 @@ $males = array_filter($people, function ($person) {
 $avgMaleAge = array_sum(array_column($males, 'age')) / count($males);
 ```
 
-Dash makes common data transformation operations like these clearer and more fluid:
+Dash makes common data transformation operations simpler:
 
 ```php
 $avgMaleAge = Dash\chain($people)
@@ -88,7 +88,7 @@ This is just a tiny subset of what Dash can do. [**See the full list of operatio
 
 ## Installation
 
-Requires PHP 5.6+
+Requires PHP 7.4+
 
 ```sh
 composer require mpetrovich/dash
@@ -189,7 +189,7 @@ Dash can work with a wide variety of data types, including:
 
 -   arrays
 -   objects (eg. `stdClass`)
--   generators ([coming soon](https://github.com/mpetrovich/dash/issues/3))
+-   generators ([still in development](https://github.com/mpetrovich/dash/issues/3))
 -   anything that implements the [`Traversable`](http://php.net/manual/en/class.traversable.php) interface
 -   [`DirectoryIterator`](http://php.net/manual/en/class.directoryiterator.php), which is also a `Traversable` but cannot normally be used with `iterator_to_array()` [due to a PHP bug](https://bugs.php.net/bug.php?id=49755). Dash works around this transparently.
 

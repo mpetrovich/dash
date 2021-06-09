@@ -4,7 +4,7 @@
  * @covers Dash\min
  * @covers Dash\Curry\min
  */
-class minTest extends PHPUnit_Framework_TestCase
+class minTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -107,14 +107,14 @@ class minTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\min($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame("Dash\\min expects iterable or stdClass or null but was given $type", $e->getMessage());
 			throw $e;
 		}

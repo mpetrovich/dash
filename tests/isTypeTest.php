@@ -4,7 +4,7 @@
  * @covers Dash\isType
  * @covers Dash\Curry\isType
  */
-class isTest extends PHPUnit_Framework_TestCase
+class isTypeTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -17,10 +17,10 @@ class isTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @dataProvider cases
 	 */
-	public function testCurried($value, $type)
+	public function testCurried($value, $type, $expected)
 	{
 		$isType = Dash\Curry\isType($type);
-		$isType($value);
+		$this->assertSame($expected, $isType($value));
 	}
 
 	public function cases()

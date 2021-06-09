@@ -3,7 +3,7 @@
 /**
  * @covers Dash\partialRight
  */
-class partialRightTest extends PHPUnit_Framework_TestCase
+class partialRightTest extends PHPUnit\Framework\TestCase
 {
 	public function test()
 	{

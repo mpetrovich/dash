@@ -4,7 +4,7 @@
  * @covers Dash\reverse
  * @covers Dash\Curry\reverse
  */
-class reverseTest extends PHPUnit_Framework_TestCase
+class reverseTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -206,14 +206,14 @@ class reverseTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\reverse($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\reverse expects iterable or stdClass or null but was given $type",
 				$e->getMessage()

@@ -13,7 +13,7 @@ default:
 #
 test:
 ifdef op
-	@vendor/bin/phpunit tests/$(op)Test --no-coverage
+	@vendor/bin/phpunit tests/$(op)Test.php --no-coverage
 else
 	@vendor/bin/phpunit tests/ --no-coverage
 endif
@@ -28,11 +28,11 @@ endif
 #
 test-coverage:
 ifdef op
-	@vendor/bin/phpunit tests/$(op)Test
+	@vendor/bin/phpunit tests/$(op)Test.php --coverage-text
 else
-	@vendor/bin/phpunit tests/
+	@vendor/bin/phpunit tests/ --coverage-text
 endif
-@echo "Test coverage visible at:" $(shell pwd)/test-coverage/index.html
+# @echo "Test coverage visible at:" $(shell pwd)/test-coverage/index.html
 
 
 # Checks code against style rules
@@ -92,4 +92,3 @@ release:
 
 # Forces these commands to always run
 .PHONY: test test-coverage docs
-

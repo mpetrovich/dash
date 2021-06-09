@@ -4,7 +4,7 @@
  * @covers Dash\rotate
  * @covers Dash\Curry\rotate
  */
-class rotateTest extends PHPUnit_Framework_TestCase
+class rotateTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -321,14 +321,14 @@ class rotateTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\rotate($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\rotate expects iterable or stdClass or null but was given $type",
 				$e->getMessage()

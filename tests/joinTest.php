@@ -6,7 +6,7 @@
  * @covers Dash\implode
  * @covers Dash\Curry\implode
  */
-class joinTest extends PHPUnit_Framework_TestCase
+class joinTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -122,14 +122,14 @@ class joinTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesIterableTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testIterableTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\join($iterable, ', ');
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame("Dash\\join expects iterable or stdClass or null but was given $type", $e->getMessage());
 			throw $e;
 		}
@@ -163,14 +163,14 @@ class joinTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesSeparatorTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testSeparatorTypeAssertions($separator, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\join([1, 2, 3], $separator);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame("Dash\\join expects string but was given $type", $e->getMessage());
 			throw $e;
 		}

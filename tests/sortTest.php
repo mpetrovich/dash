@@ -4,7 +4,7 @@
  * @covers Dash\sort
  * @covers Dash\Curry\sort
  */
-class sortTest extends PHPUnit_Framework_TestCase
+class sortTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -133,20 +133,22 @@ class sortTest extends PHPUnit_Framework_TestCase
 
 	public function testComparatorArgs()
 	{
-		$comparator = function ($a, $b) { return $b - $a; };
+		$comparator = function ($a, $b) {
+			return $b - $a;
+		};
 		$this->assertSame([4, 3, 2, 1], Dash\sort([1, 2, 3, 4], $comparator));
 	}
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\sort($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\sort expects iterable or stdClass or null but was given $type",
 				$e->getMessage()

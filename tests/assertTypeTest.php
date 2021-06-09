@@ -4,26 +4,26 @@
  * @covers Dash\assertType
  * @covers Dash\Curry\assertType
  */
-class assertTypeTest extends PHPUnit_Framework_TestCase
+class assertTypeTest extends PHPUnit\Framework\TestCase
 {
 	/**
-	 * @dataProvider cases
+	 * @dataProvider casesWithoutException
 	 */
 	public function test($value, $type)
 	{
-		Dash\assertType($value, $type);
+		$this->assertNull(Dash\assertType($value, $type));
 	}
 
 	/**
-	 * @dataProvider cases
+	 * @dataProvider casesWithoutException
 	 */
 	public function testCurried($value, $type)
 	{
 		$assertType = Dash\Curry\assertType($type, __FUNCTION__);
-		$assertType($value);
+		$this->assertNull($assertType($value));
 	}
 
-	public function cases()
+	public function casesWithoutException()
 	{
 		return [
 			'With a null type' => [
@@ -46,15 +46,14 @@ class assertTypeTest extends PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @dataProvider casesException
+	 * @dataProvider casesWithException
 	 */
 	public function testException($value, $type, $expected)
 	{
 		try {
 			Dash\assertType($value, $type);
 			$this->assertTrue(false, 'This should never be called');
-		}
-		catch (InvalidArgumentException $e) {
+		} catch (InvalidArgumentException $e) {
 			$this->assertSame($expected, $e->getMessage());
 		}
 
@@ -62,13 +61,12 @@ class assertTypeTest extends PHPUnit_Framework_TestCase
 			$assertType = Dash\Curry\assertType($type, 'Dash\assertType');
 			$assertType($value);
 			$this->assertTrue(false, 'This should never be called');
-		}
-		catch (InvalidArgumentException $e) {
+		} catch (InvalidArgumentException $e) {
 			$this->assertSame($expected, $e->getMessage());
 		}
 	}
 
-	public function casesException()
+	public function casesWithException()
 	{
 		return [
 			'With a single type and scalar value' => [
@@ -104,8 +102,7 @@ class assertTypeTest extends PHPUnit_Framework_TestCase
 			$value = [1, 2, 3];
 			Dash\assertType($value, 'object');
 			$this->assertTrue(false, 'This should never be called');
-		}
-		catch (InvalidArgumentException $e) {
+		} catch (InvalidArgumentException $e) {
 			$this->assertTrue(true);
 		}
 	}

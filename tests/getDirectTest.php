@@ -4,7 +4,7 @@
  * @covers Dash\getDirect
  * @covers Dash\Curry\getDirect
  */
-class getDirectTest extends PHPUnit_Framework_TestCase
+class getDirectTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -25,7 +25,9 @@ class getDirectTest extends PHPUnit_Framework_TestCase
 
 	public function cases()
 	{
-		$func = function () { return 'result'; };
+		$func = function () {
+			return 'result';
+		};
 
 		return [
 			'With null' => [
@@ -48,7 +50,8 @@ class getDirectTest extends PHPUnit_Framework_TestCase
 			],
 			'With a closure key' => [
 				'input' => ['foo' => 'value'],
-				'key' => function () {},
+				'key' => function () {
+				},
 				'default' => 'default',
 				'expected' => 'default',
 			],
@@ -121,7 +124,7 @@ class getDirectTest extends PHPUnit_Framework_TestCase
 	public function testCallable()
 	{
 		$callable = Dash\getDirect(new ArrayObject([1, 2, 3]), 'count');
-		$this->assertInternalType('callable', $callable);
+		$this->assertIsCallable($callable);
 		$this->assertSame(3, call_user_func($callable));
 	}
 

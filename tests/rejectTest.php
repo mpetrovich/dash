@@ -4,7 +4,7 @@
  * @covers Dash\reject
  * @covers Dash\Curry\reject
  */
-class rejectTest extends PHPUnit_Framework_TestCase
+class rejectTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -303,14 +303,14 @@ class rejectTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\reject($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\reject expects iterable or stdClass or null but was given $type",
 				$e->getMessage()
@@ -350,7 +350,9 @@ class rejectTest extends PHPUnit_Framework_TestCase
 		$this->assertSame([2, 4], Dash\reject([1, 2, 3, 4], 'Dash\isOdd'));
 		$this->assertSame(
 			[3 => 'c', 2 => 'b'],
-			Dash\reject([3 => 'c', 1 => 'a', 2 => 'b'], function ($value, $key) { return $key <= 1; })
+			Dash\reject([3 => 'c', 1 => 'a', 2 => 'b'], function ($value, $key) {
+				return $key <= 1;
+			})
 		);
 		$this->assertSame([null, false], Dash\reject([1, 2, null, 3, false, true]));
 

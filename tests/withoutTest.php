@@ -3,7 +3,7 @@
 /**
  * @covers Dash\without
  */
-class withoutTest extends PHPUnit_Framework_TestCase
+class withoutTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases

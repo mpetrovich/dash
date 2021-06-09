@@ -4,7 +4,7 @@
  * @covers Dash\matchesProperty
  * @covers Dash\Curry\matchesProperty
  */
-class matchesPropertyTest extends PHPUnit_Framework_TestCase
+class matchesPropertyTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases

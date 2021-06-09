@@ -3,7 +3,7 @@
 /**
  * @covers Dash\Dash
  */
-class DashTest extends PHPUnit_Framework_TestCase
+class DashTest extends PHPUnit\Framework\TestCase
 {
 	public function testReadmeExamples()
 	{
@@ -40,7 +40,7 @@ class DashTest extends PHPUnit_Framework_TestCase
 
 		$result = Dash\chain(['one' => 1, 'two' => 2, 'three' => 3])
 			->filter('Dash\isOdd')
-			->thru(function($input) {
+			->thru(function ($input) {
 				return array_change_key_case($input, CASE_UPPER);
 			})
 			->keys()
@@ -113,12 +113,18 @@ class DashTest extends PHPUnit_Framework_TestCase
 	{
 		$this->assertSame(
 			[2, 4, 6],
-			Dash\Dash::map([1, 2, 3], function ($n) { return $n * 2; })
+			Dash\Dash::map([1, 2, 3], function ($n) {
+				return $n * 2;
+			})
 		);
 
 		$result = Dash\Dash::chain([1, 2, 3])
-			->filter(function ($n) { return $n < 3; })
-			->map(function ($n) { return $n * 2; })
+			->filter(function ($n) {
+				return $n < 3;
+			})
+			->map(function ($n) {
+				return $n * 2;
+			})
 			->value();
 		$this->assertSame([2, 4], $result);
 	}
@@ -161,7 +167,9 @@ class DashTest extends PHPUnit_Framework_TestCase
 		$this->assertInstanceOf('Dash\Dash', $chain);
 		$this->assertSame([1, 2, 3], $chain->value());
 
-		$chain->map(function ($n) { return $n * 2; });
+		$chain->map(function ($n) {
+			return $n * 2;
+		});
 		$this->assertSame([2, 4, 6], $chain->value());
 	}
 
@@ -173,18 +181,18 @@ class DashTest extends PHPUnit_Framework_TestCase
 		$this->assertInstanceOf('Dash\Dash', $chain);
 		$this->assertSame([1, 2, 3], $chain->value());
 
-		$chain->map(function ($n) { return $n * 2; });
+		$chain->map(function ($n) {
+			return $n * 2;
+		});
 		$this->assertSame([2, 4, 6], $chain->value());
 	}
 
-	/**
-	 * @expectedException RuntimeException
-	 */
 	public function testAddGlobalAliasWithExisting()
 	{
 		$name = 'DashTest_dash' . intval(microtime(true));
 		eval("function $name() {}");
 
+		$this->expectException(RuntimeException::class);
 		Dash\Dash::addGlobalAlias($name);
 	}
 
@@ -202,8 +210,12 @@ class DashTest extends PHPUnit_Framework_TestCase
 	public function testChainWithArray()
 	{
 		$chain = Dash\Dash::chain([1, 2, 3])
-			->filter(function ($n) { return $n < 3; })
-			->map(function ($n) { return $n * 2; });
+			->filter(function ($n) {
+				return $n < 3;
+			})
+			->map(function ($n) {
+				return $n * 2;
+			});
 
 		$this->assertSame([2, 4], $chain->value());
 	}
@@ -220,14 +232,17 @@ class DashTest extends PHPUnit_Framework_TestCase
 	public function testChainWithDefault()
 	{
 		$chain = Dash\Dash::chain()
-			->filter(function ($n) { return $n < 3; })
-			->map(function ($n) { return $n * 2; });
+			->filter(function ($n) {
+				return $n < 3;
+			})
+			->map(function ($n) {
+				return $n * 2;
+			});
 
 		try {
 			$chain->value();
 			$this->assertTrue(false, 'This should never be called');
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertTrue(true);
 		}
 
@@ -237,7 +252,9 @@ class DashTest extends PHPUnit_Framework_TestCase
 
 	public function testChainReuse()
 	{
-		$chain = Dash\Dash::chain([1, 2, 3])->map(function ($n) { return $n * 2; });
+		$chain = Dash\Dash::chain([1, 2, 3])->map(function ($n) {
+			return $n * 2;
+		});
 		$this->assertSame([2, 4, 6], $chain->value());
 
 		$chain->with([4, 5, 6]);
@@ -270,20 +287,18 @@ class DashTest extends PHPUnit_Framework_TestCase
 		try {
 			Dash\Dash::triple(2);
 			$this->assertTrue(false, 'This should never be called');
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertTrue(true);
 		}
 	}
 
-	/**
-	 * @expectedException Exception
-	 * @codingStandardsIgnoreLine
-	 * @expectedExceptionMessage Cannot create a custom method named 'map'; Dash\map() already exists and cannot be overridden
-	 */
 	public function testCustomOperationWithExisting()
 	{
-		Dash\Dash::setCustom('map', function ($n) {});
+		$this->expectException(Exception::class);
+		$this->expectExceptionMessage("Cannot create a custom method named 'map'; Dash\map() already exists and cannot be overridden");
+
+		Dash\Dash::setCustom('map', function ($n) {
+		});
 	}
 
 	public function testCustomOperationForNumbersStandalone()
@@ -311,7 +326,9 @@ class DashTest extends PHPUnit_Framework_TestCase
 	public function testCustomOperationForIterablesStandalone()
 	{
 		Dash\Dash::setCustom('addEach', function ($iterable, $add) {
-			return Dash\Dash::map($iterable, function ($n) use ($add) { return $n + $add; });
+			return Dash\Dash::map($iterable, function ($n) use ($add) {
+				return $n + $add;
+			});
 		});
 
 		$this->assertSame(
@@ -325,7 +342,9 @@ class DashTest extends PHPUnit_Framework_TestCase
 	public function testCustomOperationForIterablesChained()
 	{
 		Dash\Dash::setCustom('addEach', function ($iterable, $add) {
-			return Dash\Dash::map($iterable, function ($n) use ($add) { return $n + $add; });
+			return Dash\Dash::map($iterable, function ($n) use ($add) {
+				return $n + $add;
+			});
 		});
 
 		$this->assertSame(
@@ -364,16 +383,17 @@ class DashTest extends PHPUnit_Framework_TestCase
 	{
 		$this->assertSame(
 			[2, 4, 6],
-			Dash\Dash::map([1, 2, 3], function ($n) { return $n * 2; })
+			Dash\Dash::map([1, 2, 3], function ($n) {
+				return $n * 2;
+			})
 		);
 	}
 
-	/**
-	 * @expectedException Exception
-	 * @expectedExceptionMessage No operation named 'foobar' found
-	 */
 	public function testStandaloneInvalid()
 	{
+		$this->expectException(Exception::class);
+		$this->expectExceptionMessage("No operation named 'foobar' found");
+
 		Dash\Dash::foobar([1, 2, 3]);
 	}
 
@@ -460,7 +480,9 @@ class DashTest extends PHPUnit_Framework_TestCase
 		$this->assertSame([8, 10, 12], $chain->value());
 		$this->assertSame(6, $mapCallCount);
 
-		$chain->map(function ($n) { return $n + 1;});
+		$chain->map(function ($n) {
+			return $n + 1;
+		});
 		$this->assertSame([9, 11, 13], $chain->value());
 		$this->assertSame(9, $mapCallCount);
 		$this->assertSame([9, 11, 13], $chain->value());
@@ -470,17 +492,21 @@ class DashTest extends PHPUnit_Framework_TestCase
 	public function testArrayValue()
 	{
 		$value = Dash\Dash::chain([1, 2, 3])
-			->map(function ($n) { return $n * 2; })
+			->map(function ($n) {
+				return $n * 2;
+			})
 			->arrayValue();
 
 		$this->assertSame([2, 4, 6], $value);
-		$this->assertInternalType('array', $value);
+		$this->assertIsArray($value);
 	}
 
 	public function testObjectValue()
 	{
 		$value = Dash\Dash::chain([1, 2, 3])
-			->map(function ($n) { return $n * 2; })
+			->map(function ($n) {
+				return $n * 2;
+			})
 			->objectValue();
 
 		$this->assertEquals((object) [2, 4, 6], $value);
@@ -491,7 +517,9 @@ class DashTest extends PHPUnit_Framework_TestCase
 	{
 		$obj = (object) ['a' => 1];
 
-		$chain = Dash\Dash::chain($obj)->tap(function ($obj) { $obj->a = 2; });
+		$chain = Dash\Dash::chain($obj)->tap(function ($obj) {
+			$obj->a = 2;
+		});
 		$this->assertEquals((object) ['a' => 1], $obj);
 
 		$chain->run();
@@ -502,7 +530,9 @@ class DashTest extends PHPUnit_Framework_TestCase
 	{
 		ob_start();
 		Dash\Dash::chain([1, 2, 3])
-			->each(function ($n) { echo $n; })
+			->each(function ($n) {
+				echo $n;
+			})
 			->run();
 		$output = ob_get_clean();
 
@@ -511,13 +541,17 @@ class DashTest extends PHPUnit_Framework_TestCase
 
 	public function testCopy()
 	{
-		$original = Dash\Dash::chain()->map(function ($n) { return $n * 2; });
+		$original = Dash\Dash::chain()->map(function ($n) {
+			return $n * 2;
+		});
 
 		$original->with([1, 2, 3]);
 		$this->assertSame([2, 4, 6], $original->value());
 
 		$copy = $original->copy();
-		$copy->map(function ($n) { return $n + 1; });
+		$copy->map(function ($n) {
+			return $n + 1;
+		});
 
 		$copy->with([4, 5, 6]);
 		$this->assertSame([9, 11, 13], $copy->value());
@@ -528,13 +562,17 @@ class DashTest extends PHPUnit_Framework_TestCase
 
 	public function testClone()
 	{
-		$original = Dash\Dash::chain()->map(function ($n) { return $n * 2; });
+		$original = Dash\Dash::chain()->map(function ($n) {
+			return $n * 2;
+		});
 
 		$original->with([1, 2, 3]);
 		$this->assertSame([2, 4, 6], $original->value());
 
 		$copy = clone $original;
-		$copy->map(function ($n) { return $n + 1; });
+		$copy->map(function ($n) {
+			return $n + 1;
+		});
 
 		$copy->with([4, 5, 6]);
 		$this->assertSame([9, 11, 13], $copy->value());
@@ -548,12 +586,11 @@ class DashTest extends PHPUnit_Framework_TestCase
 		------------------------------------------------------------
 	 */
 
-	/**
-	 * @expectedException Exception
-	 * @expectedExceptionMessage No operation named 'foo' found
-	 */
 	public function testChainInvalidMethod()
 	{
+		$this->expectException(Exception::class);
+		$this->expectExceptionMessage("No operation named 'foo' found");
+
 		Dash\Dash::chain([1, 2, 3])
 			->foo()
 			->value();

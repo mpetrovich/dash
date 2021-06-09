@@ -4,7 +4,7 @@
  * @covers Dash\keys
  * @covers Dash\Curry\keys
  */
-class keysTest extends PHPUnit_Framework_TestCase
+class keysTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -99,14 +99,14 @@ class keysTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\keys($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame("Dash\\keys expects iterable or stdClass or null but was given $type", $e->getMessage());
 			throw $e;
 		}

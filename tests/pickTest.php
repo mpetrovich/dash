@@ -4,7 +4,7 @@
  * @covers Dash\pick
  * @covers Dash\Curry\pick
  */
-class pickTest extends PHPUnit_Framework_TestCase
+class pickTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -171,14 +171,14 @@ class pickTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\pick($iterable, 'key');
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\pick expects iterable or stdClass or null but was given $type",
 				$e->getMessage()

@@ -4,7 +4,7 @@
  * @covers Dash\isEven
  * @covers Dash\Curry\isEven
  */
-class isEvenTest extends PHPUnit_Framework_TestCase
+class isEvenTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases

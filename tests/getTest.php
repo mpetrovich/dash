@@ -4,7 +4,7 @@
  * @covers Dash\get
  * @covers Dash\Curry\get
  */
-class getTest extends PHPUnit_Framework_TestCase
+class getTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -25,7 +25,9 @@ class getTest extends PHPUnit_Framework_TestCase
 
 	public function cases()
 	{
-		$func = function () { return 'result'; };
+		$func = function () {
+			return 'result';
+		};
 
 		return [
 			'With null' => [
@@ -71,7 +73,9 @@ class getTest extends PHPUnit_Framework_TestCase
 			],
 			'With a callable iteratee as an anonymous closure' => [
 				'input' => ['foo' => 'value'],
-				'path' => function ($input) { return $input['foo']; },
+				'path' => function ($input) {
+					return $input['foo'];
+				},
 				'default' => 'default',
 				'expected' => 'value',
 			],

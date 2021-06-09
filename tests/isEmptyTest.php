@@ -4,7 +4,7 @@
  * @covers Dash\isEmpty
  * @covers Dash\Curry\isEmpty
  */
-class isEmptyTest extends PHPUnit_Framework_TestCase
+class isEmptyTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases

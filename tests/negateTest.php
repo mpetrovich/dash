@@ -4,11 +4,13 @@
  * @covers Dash\negate
  * @covers Dash\Curry\negate
  */
-class negateTest extends PHPUnit_Framework_TestCase
+class negateTest extends PHPUnit\Framework\TestCase
 {
 	public function test()
 	{
-		$isEven = function ($n) { return $n % 2 === 0; };
+		$isEven = function ($n) {
+			return $n % 2 === 0;
+		};
 		$isOdd = Dash\negate($isEven);
 
 		$this->assertFalse($isEven(3));
@@ -17,7 +19,9 @@ class negateTest extends PHPUnit_Framework_TestCase
 
 	public function testCurried()
 	{
-		$isEven = function ($n) { return $n % 2 === 0; };
+		$isEven = function ($n) {
+			return $n % 2 === 0;
+		};
 		$isOdd = Dash\Curry\negate();
 		$isOdd2 = $isOdd($isEven);
 
@@ -27,7 +31,9 @@ class negateTest extends PHPUnit_Framework_TestCase
 
 	public function testExamples()
 	{
-		$isEven = function ($n) { return $n % 2 === 0; };
+		$isEven = function ($n) {
+			return $n % 2 === 0;
+		};
 		$isOdd = Dash\negate($isEven);
 
 		$this->assertSame(false, $isEven(3));

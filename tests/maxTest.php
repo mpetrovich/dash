@@ -4,7 +4,7 @@
  * @covers Dash\max
  * @covers Dash\Curry\max
  */
-class maxTest extends PHPUnit_Framework_TestCase
+class maxTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -107,14 +107,14 @@ class maxTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\max($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame("Dash\\max expects iterable or stdClass or null but was given $type", $e->getMessage());
 			throw $e;
 		}

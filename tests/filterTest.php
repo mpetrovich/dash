@@ -4,7 +4,7 @@
  * @covers Dash\filter
  * @covers Dash\Curry\filter
  */
-class filterTest extends PHPUnit_Framework_TestCase
+class filterTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -303,14 +303,14 @@ class filterTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\filter($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\filter expects iterable or stdClass or null but was given $type",
 				$e->getMessage()
@@ -350,7 +350,9 @@ class filterTest extends PHPUnit_Framework_TestCase
 		$this->assertSame([2, 4], Dash\filter([1, 2, 3, 4], 'Dash\isEven'));
 		$this->assertSame(
 			[3 => 'c', 2 => 'b'],
-			Dash\filter([3 => 'c', 1 => 'a', 2 => 'b'], function ($value, $key) { return $key > 1; })
+			Dash\filter([3 => 'c', 1 => 'a', 2 => 'b'], function ($value, $key) {
+				return $key > 1;
+			})
 		);
 		$this->assertSame([1, 2, 3, true], Dash\filter([1, 2, null, 3, false, true]));
 

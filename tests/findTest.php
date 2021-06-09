@@ -4,7 +4,7 @@
  * @covers Dash\find
  * @covers Dash\Curry\find
  */
-class findTest extends PHPUnit_Framework_TestCase
+class findTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -299,14 +299,14 @@ class findTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\find($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\find expects iterable or stdClass or null but was given $type",
 				$e->getMessage()
@@ -351,7 +351,9 @@ class findTest extends PHPUnit_Framework_TestCase
 			['c', 3],
 			Dash\find(
 				['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
-				function ($value, $key) { return $value > 1 && $key !== 'b'; }
+				function ($value, $key) {
+					return $value > 1 && $key !== 'b';
+				}
 			)
 		);
 		$this->assertSame(

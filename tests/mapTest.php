@@ -4,7 +4,7 @@
  * @covers Dash\map
  * @covers Dash\Curry\map
  */
-class mapTest extends PHPUnit_Framework_TestCase
+class mapTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -206,14 +206,14 @@ class mapTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\map($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame(
 				"Dash\\map expects iterable or stdClass or null but was given $type",
 				$e->getMessage()

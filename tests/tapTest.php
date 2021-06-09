@@ -4,7 +4,7 @@
  * @covers Dash\tap
  * @covers Dash\Curry\tap
  */
-class tapTest extends PHPUnit_Framework_TestCase
+class tapTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases

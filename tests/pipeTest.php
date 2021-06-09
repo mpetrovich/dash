@@ -3,7 +3,7 @@
 /**
  * @covers Dash\pipe
  */
-class pipeTest extends PHPUnit_Framework_TestCase
+class pipeTest extends PHPUnit\Framework\TestCase
 {
     public function testCanPipeOneUnaryFunction()
     {

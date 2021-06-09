@@ -6,7 +6,7 @@
  * @covers Dash\some
  * @covers Dash\Curry\some
  */
-class anyTest extends PHPUnit_Framework_TestCase
+class anyTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases
@@ -221,22 +221,21 @@ class anyTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @dataProvider casesTypeAssertions
-	 * @expectedException InvalidArgumentException
 	 */
 	public function testTypeAssertions($iterable, $type)
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		try {
 			Dash\any($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame("Dash\\any expects iterable or stdClass or null but was given $type", $e->getMessage());
 			throw $e;
 		}
 
 		try {
 			Dash\some($iterable);
-		}
-		catch (Exception $e) {
+		} catch (Exception $e) {
 			$this->assertSame("Dash\\any expects iterable or stdClass or null but was given $type", $e->getMessage());
 			throw $e;
 		}
@@ -271,7 +270,9 @@ class anyTest extends PHPUnit_Framework_TestCase
 	public function testExamples()
 	{
 		$this->assertSame(true, Dash\any([1, 2, 3], 'Dash\isEven'));
-		$this->assertSame(false, Dash\any([1, 2, 3], function ($n) { return $n > 5; }));
+		$this->assertSame(false, Dash\any([1, 2, 3], function ($n) {
+			return $n > 5;
+		}));
 		$this->assertSame(false, Dash\any([], 'Dash\isOdd'));
 		$this->assertSame(true, Dash\any((object) ['a' => 1, 'b' => 2, 'c' => 3], 'Dash\isEven'));
 		$this->assertSame(true, Dash\any([false, true, true]));

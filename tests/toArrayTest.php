@@ -4,7 +4,7 @@
  * @covers Dash\toArray
  * @covers Dash\Curry\toArray
  */
-class toArrayTest extends PHPUnit_Framework_TestCase
+class toArrayTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases

@@ -3,7 +3,7 @@
 /**
  * @covers Dash\curry
  */
-class curryTest extends PHPUnit_Framework_TestCase
+class curryTest extends PHPUnit\Framework\TestCase
 {
 	public function test()
 	{

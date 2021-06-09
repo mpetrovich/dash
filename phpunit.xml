@@ -1,24 +1,15 @@
-<phpunit
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	colors="true"
->
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit>
 	<testsuites>
-		<testsuite>
+		<testsuite name="unit">
 			<directory suffix="Test.php">src</directory>
 		</testsuite>
 	</testsuites>
 
-	<filter>
-		<whitelist checkForUnintentionallyCoveredCode="true">
+	<coverage>
+		<include>
 			<directory suffix=".php">src</directory>
-			<exclude>
-				<directory suffix="Test.php">src</directory>
-			</exclude>
-		</whitelist>
-	</filter>
-
-	<logging>
-		<log type="coverage-html" target="test-coverage" lowUpperBound="50" highLowerBound="70" />
-		<log type="coverage-clover" target="coverage.xml" />
-	</logging>
+		</include>
+	</coverage>
 </phpunit>
