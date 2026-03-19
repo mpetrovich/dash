@@ -30,7 +30,7 @@
         },
         "files": [
             "src/Dash.php",
-            "src/_.php",
+            "src/__.php",
             "src/all.php",
             "src/any.php",
             "src/apply.php",
