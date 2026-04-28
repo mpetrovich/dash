@@ -1,4 +1,5 @@
-FROM php:7.4-fpm
+ARG PHP_VERSION=7.4
+FROM php:${PHP_VERSION}-fpm
 ENV DRIVER=pcov
 
 COPY ./php.ini /usr/local/etc/php/php.ini
