@@ -1,6 +1,6 @@
 language: php
 
-dist: xenial
+dist: focal
 
 php:
     - "8.2"
@@ -9,7 +9,6 @@ php:
     - "8.5"
 
 before_script:
-    - composer self-update --2
     - composer install --no-interaction
 
 script:
