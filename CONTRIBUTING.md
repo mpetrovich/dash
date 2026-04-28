@@ -4,6 +4,20 @@ Dash's modular design makes it easy to contribute. Operations are implemented as
 
 If you encounter a bug or have a suggestion, please [create a new GitHub issue](https://github.com/mpetrovich/dash/issues/new). We want your feedback!
 
+### Quickstart
+
+If you just want the essentials:
+
+```
+git clone https://github.com/mpetrovich/dash.git
+cd dash
+make
+make test
+make check-style
+```
+
+See [Dev setup](#dev-setup) for the full workflow, including release steps.
+
 ### Organization
 
 This repository is organized as follows:
@@ -15,6 +29,63 @@ This repository is organized as follows:
 -   `bin/`: Utility scripts, such as one for generating documentation from all operations' docblock comments.
 -   `Makefile`: Makefile used to build, run tests, check coding style, and more.
 
+### Dev setup
+
+Use this workflow to go from a fresh clone to a tagged release.
+
+1. Install prerequisites:
+
+-   PHP 7.4+
+-   [Composer](https://getcomposer.org/)
+
+2. Clone the repository and enter the project directory:
+
+```
+git clone https://github.com/mpetrovich/dash.git
+cd dash
+```
+
+3. Install dependencies (including dev tools):
+
+```
+make
+```
+
+4. Run the full test suite:
+
+```
+make test
+```
+
+To run tests for a single operation:
+
+```
+make test op=map
+```
+
+5. Check style (and optionally auto-fix style issues):
+
+```
+make check-style
+make fix-style
+```
+
+6. Regenerate operation docs when behavior, signatures, or docblocks change:
+
+```
+make docs
+```
+
+7. Before opening a PR, ensure generated docs are committed (if changed), tests pass, and style checks pass.
+
+8. Create a release (maintainers):
+
+```
+make release v=1.2.3
+```
+
+`make release` runs tests, rebuilds docs, commits `docs/Operations.md` (if needed), creates an annotated tag (`v1.2.3`), and pushes commits and tags.
+
 ### Important notes
 
 -   Dash supports legacy versions of PHP, so make sure your contributions work on the oldest supported version of PHP.
@@ -22,16 +93,27 @@ This repository is organized as follows:
 -   Dash uses [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) for linting.
 -   Dash is **strict** about following [semantic versioning](https://semver.org/).
 
-### Docker tips
+### Docker workflow (optional)
 
-Build the Docker container:
+Use Docker as an alternative to local setup when you want a reproducible environment without installing PHP and Composer directly on your machine.
+
+Build the Docker image:
 
 ```
 docker build . -t dash
 ```
 
-Run the Docker container in an interactive shell:
+Run the Docker container in an interactive shell (mounting your working tree):
 
 ```
-docker run -it dash /bin/bash
+docker run --rm -it -v "$PWD":/app -w /app dash /bin/bash
+```
+
+Inside the container, use the same Make targets as local development:
+
+```
+make
+make test
+make check-style
+make docs
 ```
