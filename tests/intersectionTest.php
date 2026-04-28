@@ -242,4 +242,19 @@ class intersectionTest extends PHPUnit\Framework\TestCase
 			)
 		);
 	}
+
+	public function testGenerator()
+	{
+		$generator = function () {
+			yield 'a' => 1;
+			yield 'b' => 2;
+			yield 'c' => 3;
+			yield 'd' => 4;
+		};
+
+		$this->assertSame(
+			['b' => 2, 'd' => 4],
+			Dash\intersection($generator(), [5, 4, 2], [4, 1, 6, 2])
+		);
+	}
 }
