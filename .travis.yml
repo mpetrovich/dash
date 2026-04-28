@@ -3,11 +3,13 @@ language: php
 dist: xenial
 
 php:
-    - "7.4"
-    - "8.0"
+    - "8.2"
+    - "8.3"
+    - "8.4"
+    - "8.5"
 
 before_script:
-    - composer self-update 2.1.6
+    - composer self-update --2
     - composer install --no-interaction
 
 script:

@@ -116,11 +116,14 @@ class toArrayTest extends PHPUnit\Framework\TestCase
 	{
 		$input = new \FilesystemIterator(
 			__DIR__,
-			\FilesystemIterator::KEY_AS_PATHNAME | \FilesystemIterator::CURRENT_AS_FILEINFO
+			\FilesystemIterator::KEY_AS_PATHNAME | \FilesystemIterator::CURRENT_AS_FILEINFO | \FilesystemIterator::SKIP_DOTS
 		);
 		$output = Dash\toArray($input);
 
-		$expectedCount = iterator_count(new \FilesystemIterator(__DIR__, \FilesystemIterator::SKIP_DOTS));
+		$expectedCount = iterator_count(new \FilesystemIterator(
+			__DIR__,
+			\FilesystemIterator::KEY_AS_PATHNAME | \FilesystemIterator::CURRENT_AS_FILEINFO | \FilesystemIterator::SKIP_DOTS
+		));
 		$actualCount = count($output);
 		$this->assertSame($expectedCount, $actualCount);
 

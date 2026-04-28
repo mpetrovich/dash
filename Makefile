@@ -1,6 +1,6 @@
 
 DOCKER_IMAGE ?= dash
-PHP_VERSION ?= 7.4
+PHP_VERSION ?= 8.2
 DOCKER_TAG := $(DOCKER_IMAGE):php$(PHP_VERSION)
 DOCKER_RUN := docker run --rm -v "$(CURDIR)":/usr/src/dash -w /usr/src/dash $(DOCKER_TAG)
 
@@ -105,7 +105,7 @@ release:
 #
 # Examples:
 #   make docker-build PHP_VERSION=8.2
-#   make docker-make-test PHP_VERSION=8.0 op=map
+#   make docker-make-test PHP_VERSION=8.5 op=map
 #
 docker-build:
 	docker build --build-arg PHP_VERSION=$(PHP_VERSION) -t $(DOCKER_TAG) .
