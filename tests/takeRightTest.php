@@ -339,4 +339,39 @@ class takeRightTest extends PHPUnit\Framework\TestCase
 		$this->assertSame(['c' => 3, 'a' => 1], Dash\takeRight(['b' => 2, 'c' => 3, 'a' => 1], 2));
 		$this->assertSame([3, 4, 5, 6], Dash\takeRight([1, 2, 3, 4, 5, 6], -2));
 	}
+
+	/**
+	 * @dataProvider casesGenerator
+	 */
+	public function testGenerator($iterable, $count, $expected)
+	{
+		$this->assertEquals($expected, Dash\takeRight($iterable, $count));
+	}
+
+	public function casesGenerator()
+	{
+		$generator = function ($iterable) {
+			foreach ((array) $iterable as $key => $value) {
+				yield $key => $value;
+			}
+		};
+
+		return [
+			'With indexed array' => [
+				'iterable' => $generator(['a', 'b', 'c', 'd']),
+				'count' => 2,
+				'expected' => ['c', 'd'],
+			],
+			'With associative array' => [
+				'iterable' => $generator(['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5]),
+				'count' => 2,
+				'expected' => ['c' => 2, 'd' => 5],
+			],
+			'With negative count' => [
+				'iterable' => $generator([1, 2, 3, 4]),
+				'count' => -1,
+				'expected' => [2, 3, 4],
+			],
+		];
+	}
 }
