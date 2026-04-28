@@ -255,4 +255,39 @@ class reverseTest extends PHPUnit\Framework\TestCase
 		$this->assertSame([2 => 'c', 1 => 'b', 0 => 'a'], Dash\reverse(['a', 'b', 'c'], true));
 		$this->assertSame([0 => 'c', 1 => 'b', 2 => 'a'], Dash\reverse(['a', 'b', 'c'], false));
 	}
+
+	/**
+	 * @dataProvider casesGenerator
+	 */
+	public function testGenerator($iterable, $preserveIntegerKeys, $expected)
+	{
+		$this->assertSame($expected, Dash\reverse($iterable, $preserveIntegerKeys));
+	}
+
+	public function casesGenerator()
+	{
+		$generator = function ($iterable) {
+			foreach ((array) $iterable as $key => $value) {
+				yield $key => $value;
+			}
+		};
+
+		return [
+			'With indexed array' => [
+				'iterable' => $generator(['a', 'b', 'c', 'd']),
+				'preserveIntegerKeys' => false,
+				'expected' => ['d', 'c', 'b', 'a'],
+			],
+			'With indexed array preserve keys' => [
+				'iterable' => $generator(['a', 'b', 'c', 'd']),
+				'preserveIntegerKeys' => true,
+				'expected' => [3 => 'd', 2 => 'c', 1 => 'b', 0 => 'a'],
+			],
+			'With associative array' => [
+				'iterable' => $generator(['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5]),
+				'preserveIntegerKeys' => false,
+				'expected' => ['d' => 5, 'c' => 2, 'b' => 8, 'a' => 3],
+			],
+		];
+	}
 }
