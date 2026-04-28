@@ -1,6 +1,6 @@
 <?php
 
-class GeneratorTest extends PHPUnit_Framework_TestCase
+class GeneratorTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider cases

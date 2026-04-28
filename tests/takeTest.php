@@ -509,11 +509,10 @@ class takeTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals([1, 2, 3], iterator_to_array(Dash\take($result, 3)));
 	}
 
-	/**
-	 * @expectedException InvalidArgumentException
-	 */
 	public function testGeneratorCountRestriction()
 	{
+		$this->expectException(InvalidArgumentException::class);
+
 		$generator = function () {
 			foreach ([1, 2, 3] as $key => $value) {
 				yield $value;

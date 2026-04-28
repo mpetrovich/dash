@@ -57,6 +57,8 @@
             "src/each.php",
             "src/equal.php",
             "src/filter.php",
+            "src/Generator/filter.php",
+            "src/Generator/take.php",
             "src/find.php",
             "src/findKey.php",
             "src/findLast.php",
