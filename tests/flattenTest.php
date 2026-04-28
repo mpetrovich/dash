@@ -2,6 +2,7 @@
 
 /**
  * @covers Dash\flatten
+ * @covers Dash\Generator\flatten
  */
 class flattenTest extends PHPUnit\Framework\TestCase
 {
@@ -177,7 +178,7 @@ class flattenTest extends PHPUnit\Framework\TestCase
 			Dash\flatten($iterable);
 		} catch (Exception $e) {
 			$this->assertSame(
-				"Dash\\flatten expects iterable or stdClass or null but was given $type",
+				"Dash\\flatten expects Generator or iterable or stdClass or null but was given $type",
 				$e->getMessage()
 			);
 			throw $e;
@@ -208,5 +209,63 @@ class flattenTest extends PHPUnit\Framework\TestCase
 				'type' => 'DateTime',
 			],
 		];
+	}
+
+	/**
+	 * @dataProvider casesGenerator
+	 */
+	public function testGenerator($iterable, $expected)
+	{
+		$result = Dash\flatten($iterable);
+		$this->assertInstanceOf(Generator::class, $result);
+		$this->assertSame($expected, iterator_to_array($result));
+	}
+
+	public function casesGenerator()
+	{
+		$stdClass = (object) ['c' => 10, 'd' => 11];
+		$arrayObject = new ArrayObject(['e' => 12, 'f' => 13]);
+		$generator = function ($iterable) {
+			foreach ((array) $iterable as $key => $value) {
+				yield $key => $value;
+			}
+		};
+
+		return [
+			'With mixed values' => [
+				'iterable' => $generator([
+					4,
+					[2, 3],
+					['a' => 7, 'b' => 9],
+					$stdClass,
+					$arrayObject,
+					8,
+				]),
+				'expected' => [4, 2, 3, 7, 9, $stdClass, $arrayObject, 8],
+			],
+			'With deeply nested arrays' => [
+				'iterable' => $generator([
+					[1, 2],
+					[[3, 4]],
+				]),
+				'expected' => [1, 2, [3, 4]],
+			],
+		];
+	}
+
+	public function testGeneratorIsLazy()
+	{
+		$iterations = 0;
+		$generator = function () use (&$iterations) {
+			$iterations++;
+			yield [1, 2];
+			$iterations++;
+			yield 3;
+		};
+
+		$result = Dash\flatten($generator());
+		$this->assertSame(0, $iterations);
+		$this->assertSame([1, 2, 3], iterator_to_array($result));
+		$this->assertSame(2, $iterations);
 	}
 }

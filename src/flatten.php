@@ -32,7 +32,11 @@ namespace Dash;
  */
 function flatten($iterable)
 {
-	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
+	assertType($iterable, ['Generator', 'iterable', 'stdClass', 'null'], __FUNCTION__);
+
+	if ($iterable instanceof \Generator) {
+		return Generator\flatten($iterable);
+	}
 
 	return reduce($iterable, function ($flattened, $value) {
 		return array_merge($flattened, is_array($value) ? array_values($value) : [$value]);

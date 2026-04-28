@@ -60,6 +60,7 @@
             "src/Generator/each.php",
             "src/Generator/filter.php",
             "src/Generator/dropWhile.php",
+            "src/Generator/flatten.php",
             "src/Generator/map.php",
             "src/Generator/mapResult.php",
             "src/Generator/mapValues.php",
