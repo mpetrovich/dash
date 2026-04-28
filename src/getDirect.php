@@ -33,6 +33,7 @@ namespace Dash;
 	Dash\getDirect($input, 'a');
 	// === 'array value'
  */
+// phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh -- branching is intrinsic to direct access precedence rules.
 function getDirect($input, $key, $default = null)
 {
 	if (!is_string($key) && !is_numeric($key) && !is_null($key)) {

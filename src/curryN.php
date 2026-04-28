@@ -45,6 +45,7 @@ namespace Dash;
 	$greetMsMary('Good morning');
 	// === 'Good morning, Ms. Mary!'
  */
+// phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh -- placeholder substitution flow requires branch-heavy control.
 function curryN(callable $callable, $numRequiredArgs /*, ...args */)
 {
 	$args = func_get_args();
