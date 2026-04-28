@@ -27,14 +27,14 @@ function rotate($iterable, $count = 1)
 {
 	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
 
-	$size = size($iterable);
+	$array = toArray($iterable);
+	$size = count($array);
 
 	if ($size === 0) {
 		return [];
 	}
 
 	$count = $count % $size;
-	$array = toArray($iterable);
 
 	if ($count === 0) {
 		return $array;
