@@ -97,23 +97,35 @@ make release v=1.2.3
 
 Use Docker as an alternative to local setup when you want a reproducible environment without installing PHP and Composer directly on your machine.
 
-Build the Docker image:
+Build the Docker image using the Makefile helper (defaults to PHP 7.4):
 
 ```
-docker build . -t dash
+make docker-build
 ```
 
-Run the Docker container in an interactive shell (mounting your working tree):
+Build with a specific PHP version:
 
 ```
-docker run --rm -it -v "$PWD":/app -w /app dash /bin/bash
+make docker-build PHP_VERSION=8.2
 ```
 
-Inside the container, use the same Make targets as local development:
+Run common development tasks through Docker:
 
 ```
-make
-make test
-make check-style
-make docs
+make docker-make-install
+make docker-make-test
+make docker-make-check-style
+make docker-make-docs
+```
+
+You can pass `PHP_VERSION` (and `op` where applicable) to these targets:
+
+```
+make docker-make-test PHP_VERSION=8.2 op=map
+```
+
+Open an interactive shell in the configured Docker image:
+
+```
+make docker-shell PHP_VERSION=8.2
 ```
