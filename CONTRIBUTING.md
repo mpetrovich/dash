@@ -35,7 +35,7 @@ Use this workflow to go from a fresh clone to a tagged release.
 
 1. Install prerequisites:
 
--   PHP 7.4+
+-   PHP 8.2+ (tested on 8.2-8.5)
 -   [Composer](https://getcomposer.org/)
 
 2. Clone the repository and enter the project directory:
@@ -109,7 +109,7 @@ make release v=1.2.3
 
 Use Docker as an alternative to local setup when you want a reproducible environment without installing PHP and Composer directly on your machine.
 
-Build the Docker image using the Makefile helper (defaults to PHP 7.4):
+Build the Docker image using the Makefile helper (defaults to PHP 8.2):
 
 ```
 make docker-build

@@ -88,7 +88,7 @@ This is just a tiny subset of what Dash can do. [**See the full list of operatio
 
 ## Installation
 
-Requires PHP 7.4+
+Requires PHP 8.2+ (tested on 8.2-8.5)
 
 ```sh
 composer require mpetrovich/dash
