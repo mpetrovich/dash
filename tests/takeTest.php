@@ -295,7 +295,7 @@ class takeTest extends PHPUnit\Framework\TestCase
 	 */
 	public function testGenerator($iterable, $count, $expected)
 	{
-		$result = Dash\mapValues(Dash\take($iterable, $count));
+		$result = iterator_to_array(Dash\take($iterable, $count));
 		$this->assertEquals($expected, $result);
 	}
 
