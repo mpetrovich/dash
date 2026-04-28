@@ -81,14 +81,19 @@ clean:
 	@rm -rf test-coverage/ vendor/
 
 
+# Runs release preflight checks in local environment
+release-check:
+	make test
+	make check-style
+	make docs
+
+
 # Creates, tags, and pushes a new release
 #
 # Example:
 # 	make release v=1.2.3
 #
 release:
-	make test
-	make docs
 	git add docs/Operations.md
 	git commit -m "Release v$v" --allow-empty
 	git tag -a v$(v) -m v$(v)
@@ -129,6 +134,11 @@ docker-make-docs: docker-build
 docker-make-clean: docker-build
 	$(DOCKER_RUN) make clean
 
+docker-release-check: docker-build
+	$(DOCKER_RUN) make test
+	$(DOCKER_RUN) make check-style
+	$(DOCKER_RUN) make docs
+
 
 # Forces these commands to always run
-.PHONY: test test-coverage docs docker-build docker-shell docker-make-install docker-make-test docker-make-test-coverage docker-make-check-style docker-make-fix-style docker-make-docs docker-make-clean
+.PHONY: test test-coverage docs release-check docker-build docker-shell docker-make-install docker-make-test docker-make-test-coverage docker-make-check-style docker-make-fix-style docker-make-docs docker-make-clean docker-release-check
