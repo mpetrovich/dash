@@ -30,7 +30,11 @@ namespace Dash;
  */
 function mapResult($iterable, $path, $default = null)
 {
-	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
+	assertType($iterable, ['Generator', 'iterable', 'stdClass', 'null'], __FUNCTION__);
+
+	if ($iterable instanceof \Generator) {
+		return Generator\mapResult($iterable, $path, $default);
+	}
 
 	if (is_null($iterable)) {
 		return [];

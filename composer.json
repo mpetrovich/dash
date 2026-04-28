@@ -59,6 +59,7 @@
             "src/filter.php",
             "src/Generator/filter.php",
             "src/Generator/map.php",
+            "src/Generator/mapResult.php",
             "src/Generator/mapValues.php",
             "src/Generator/take.php",
             "src/find.php",
