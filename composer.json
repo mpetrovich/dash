@@ -57,6 +57,7 @@
             "src/each.php",
             "src/equal.php",
             "src/filter.php",
+            "src/Generator/each.php",
             "src/Generator/filter.php",
             "src/Generator/dropWhile.php",
             "src/Generator/map.php",
