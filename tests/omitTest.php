@@ -3,6 +3,7 @@
 /**
  * @covers Dash\omit
  * @covers Dash\Curry\omit
+ * @covers Dash\Generator\filter
  */
 class omitTest extends PHPUnit\Framework\TestCase
 {
@@ -216,5 +217,53 @@ class omitTest extends PHPUnit\Framework\TestCase
 	public function testExamples()
 	{
 		$this->assertSame(['a' => 1, 'd' => 4], Dash\omit(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], ['b', 'c']));
+	}
+
+	/**
+	 * @dataProvider casesGenerator
+	 */
+	public function testGenerator($iterable, $keys, $expected)
+	{
+		$result = Dash\omit($iterable, $keys);
+		$this->assertInstanceOf(Generator::class, $result);
+		$this->assertEquals($expected, iterator_to_array($result));
+	}
+
+	public function casesGenerator()
+	{
+		$generator = function ($iterable) {
+			foreach ((array) $iterable as $key => $value) {
+				yield $key => $value;
+			}
+		};
+
+		return [
+			'Omit one from indexed array' => [
+				'iterable' => $generator([1, 2, 3, 4]),
+				'omit' => 2,
+				'expected' => [1, 2, 4],
+			],
+			'Omit several from associative array' => [
+				'iterable' => $generator(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]),
+				'omit' => ['a', 'c'],
+				'expected' => ['b' => 2, 'd' => 4],
+			],
+		];
+	}
+
+	public function testGeneratorIsLazy()
+	{
+		$iterations = 0;
+		$generator = function () use (&$iterations) {
+			$iterations++;
+			yield 'a' => 1;
+			$iterations++;
+			yield 'b' => 2;
+		};
+
+		$result = Dash\omit($generator(), ['a']);
+		$this->assertSame(0, $iterations);
+		$this->assertSame(['b' => 2], iterator_to_array($result));
+		$this->assertSame(2, $iterations);
 	}
 }
