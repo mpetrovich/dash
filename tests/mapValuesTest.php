@@ -3,6 +3,7 @@
 /**
  * @covers Dash\mapValues
  * @covers Dash\Curry\mapValues
+ * @covers Dash\Generator\mapValues
  */
 class mapValuesTest extends PHPUnit\Framework\TestCase
 {
@@ -215,7 +216,7 @@ class mapValuesTest extends PHPUnit\Framework\TestCase
 			Dash\mapValues($iterable);
 		} catch (Exception $e) {
 			$this->assertSame(
-				"Dash\\mapValues expects iterable or stdClass or null but was given $type",
+				"Dash\\mapValues expects Generator or iterable or stdClass or null but was given $type",
 				$e->getMessage()
 			);
 			throw $e;
@@ -266,5 +267,67 @@ class mapValuesTest extends PHPUnit\Framework\TestCase
 			['jdoe' => 'Doe', 'mjane' => 'Jane', 'psmith' => 'Smith'],
 			Dash\mapValues($data, 'name.last')
 		);
+	}
+
+	/**
+	 * @dataProvider casesGenerator
+	 */
+	public function testGenerator($iterable, $iteratee, $expected)
+	{
+		$result = Dash\mapValues($iterable, $iteratee);
+		$this->assertInstanceOf(Generator::class, $result);
+		$this->assertSame($expected, iterator_to_array($result));
+	}
+
+	public function casesGenerator()
+	{
+		$generator = function ($iterable) {
+			foreach ((array) $iterable as $key => $value) {
+				yield $key => $value;
+			}
+		};
+
+		return [
+			'With callable iteratee and indexed keys' => [
+				'iterable' => $generator([3, 1, 2, 4]),
+				'iteratee' => function ($value) {
+					return $value * 2;
+				},
+				'expected' => [6, 2, 4, 8],
+			],
+			'With callable iteratee and associative keys' => [
+				'iterable' => $generator(['c' => 3, 'a' => 1, 'b' => 2, 'd' => 4]),
+				'iteratee' => function ($value) {
+					return $value * 2;
+				},
+				'expected' => ['c' => 6, 'a' => 2, 'b' => 4, 'd' => 8],
+			],
+			'With path iteratee' => [
+				'iterable' => $generator([
+					'x' => ['name' => ['first' => 'John', 'last' => 'Doe']],
+					'y' => ['name' => ['first' => 'Mary', 'last' => 'Jane']],
+				]),
+				'iteratee' => 'name.last',
+				'expected' => ['x' => 'Doe', 'y' => 'Jane'],
+			],
+		];
+	}
+
+	public function testGeneratorIsLazy()
+	{
+		$calls = 0;
+		$generator = function () {
+			yield 'a' => 1;
+			yield 'b' => 2;
+		};
+		$iteratee = function ($value) use (&$calls) {
+			$calls++;
+			return $value * 2;
+		};
+
+		$result = Dash\mapValues($generator(), $iteratee);
+		$this->assertSame(0, $calls);
+		$this->assertSame(['a' => 2, 'b' => 4], iterator_to_array($result));
+		$this->assertSame(2, $calls);
 	}
 }

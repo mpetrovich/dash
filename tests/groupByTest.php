@@ -312,4 +312,65 @@ class groupByTest extends PHPUnit\Framework\TestCase
 			Dash\groupBy($data, 'last', 'Unknown')
 		);
 	}
+
+	/**
+	 * @dataProvider casesGenerator
+	 */
+	public function testGenerator($iterable, $iteratee, $expected)
+	{
+		$this->assertSame($expected, Dash\groupBy($iterable, $iteratee));
+	}
+
+	public function casesGenerator()
+	{
+		$generator = function ($iterable) {
+			foreach ((array) $iterable as $key => $value) {
+				yield $key => $value;
+			}
+		};
+
+		return [
+			'With callable iteratee' => [
+				'iterable' => $generator([3, 1, 2, 4]),
+				'iteratee' => 'Dash\\isOdd',
+				'expected' => [true => [3, 1], false => [2, 4]],
+			],
+			'With path iteratee' => [
+				'iterable' => $generator([
+					['first' => 'John', 'last' => 'Doe'],
+					['first' => 'Alice', 'last' => 'Hart'],
+					['first' => 'Anonymous'],
+					['first' => 'Jane', 'last' => 'Doe'],
+				]),
+				'iteratee' => 'last',
+				'expected' => [
+					'Doe' => [
+						['first' => 'John', 'last' => 'Doe'],
+						['first' => 'Jane', 'last' => 'Doe'],
+					],
+					'Hart' => [
+						['first' => 'Alice', 'last' => 'Hart'],
+					],
+					null => [
+						['first' => 'Anonymous'],
+					],
+				],
+			],
+		];
+	}
+
+	public function testGeneratorIterateeReceivesGenerator()
+	{
+		$generator = function () {
+			yield 'a' => 1;
+			yield 'b' => 2;
+		};
+
+		$result = Dash\groupBy($generator(), function ($value, $key, $iterable) {
+			$this->assertInstanceOf(Generator::class, $iterable);
+			return Dash\isOdd($value);
+		});
+
+		$this->assertSame([true => [1], false => [2]], $result);
+	}
 }

@@ -32,7 +32,11 @@ namespace Dash;
  */
 function mapValues($iterable, $iteratee = 'Dash\identity')
 {
-	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
+	assertType($iterable, ['Generator', 'iterable', 'stdClass', 'null'], __FUNCTION__);
+
+	if ($iterable instanceof \Generator) {
+		return Generator\mapValues($iterable, $iteratee);
+	}
 
 	if (is_null($iterable)) {
 		return [];

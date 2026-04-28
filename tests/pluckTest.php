@@ -3,6 +3,7 @@
 /**
  * @covers Dash\pluck
  * @covers Dash\Curry\pluck
+ * @covers Dash\Generator\map
  */
 class pluckTest extends PHPUnit\Framework\TestCase
 {
@@ -236,5 +237,57 @@ class pluckTest extends PHPUnit\Framework\TestCase
 
 		$this->assertSame(['John', 'Mary', 'Pete'], Dash\pluck($data, 'name'));
 		$this->assertSame([null, 35, 20], Dash\pluck($data, 'age'));
+	}
+
+	/**
+	 * @dataProvider casesGenerator
+	 */
+	public function testGenerator($iterable, $path, $expected)
+	{
+		$result = Dash\pluck($iterable, $path);
+		$this->assertInstanceOf(Generator::class, $result);
+		$this->assertSame($expected, iterator_to_array($result));
+	}
+
+	public function casesGenerator()
+	{
+		$generator = function ($iterable) {
+			foreach ((array) $iterable as $key => $value) {
+				yield $key => $value;
+			}
+		};
+
+		return [
+			'With matching path' => [
+				'iterable' => $generator([
+					['name' => 'John'],
+					['name' => 'Mary', 'age' => 35],
+					['name' => 'Pete', 'age' => 20],
+				]),
+				'path' => 'name',
+				'expected' => ['John', 'Mary', 'Pete'],
+			],
+			'With partially matching path' => [
+				'iterable' => $generator([
+					['name' => 'John'],
+					['name' => 'Mary', 'age' => 35],
+					['name' => 'Pete', 'age' => 20],
+				]),
+				'path' => 'age',
+				'expected' => [null, 35, 20],
+			],
+		];
+	}
+
+	public function testGeneratorIsLazy()
+	{
+		$generator = function () {
+			yield ['name' => 'John'];
+			yield ['name' => 'Mary'];
+		};
+
+		$result = Dash\pluck($generator(), 'name');
+		$this->assertInstanceOf(Generator::class, $result);
+		$this->assertSame(['John', 'Mary'], iterator_to_array($result));
 	}
 }

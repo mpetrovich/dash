@@ -375,4 +375,65 @@ class rejectTest extends PHPUnit\Framework\TestCase
 			Dash\reject($data, ['active', false])
 		);
 	}
+
+	/**
+	 * @dataProvider casesGenerator
+	 */
+	public function testGenerator($iterable, $predicate, $expected)
+	{
+		$result = Dash\reject($iterable, $predicate);
+		$this->assertInstanceOf(Generator::class, $result);
+		$this->assertSame($expected, iterator_to_array($result));
+	}
+
+	public function casesGenerator()
+	{
+		$generator = function ($iterable) {
+			foreach ((array) $iterable as $key => $value) {
+				yield $key => $value;
+			}
+		};
+
+		return [
+			'With callable predicate and indexed keys' => [
+				'iterable' => $generator([1, 2, 3, 4]),
+				'predicate' => 'Dash\isOdd',
+				'expected' => [2, 4],
+			],
+			'With callable predicate and associative keys' => [
+				'iterable' => $generator(['a' => 1, 'b' => 2, 'c' => 3]),
+				'predicate' => 'Dash\isOdd',
+				'expected' => ['b' => 2],
+			],
+			'With matchesProperty shorthand' => [
+				'iterable' => $generator([
+					['name' => 'John', 'active' => false],
+					['name' => 'Mary', 'active' => true],
+					['name' => 'Pete', 'active' => true],
+				]),
+				'predicate' => 'active',
+				'expected' => [
+					['name' => 'John', 'active' => false],
+				],
+			],
+		];
+	}
+
+	public function testGeneratorIsLazy()
+	{
+		$calls = 0;
+		$generator = function () {
+			yield 1;
+			yield 2;
+		};
+		$predicate = function ($value) use (&$calls) {
+			$calls++;
+			return $value % 2 === 0;
+		};
+
+		$result = Dash\reject($generator(), $predicate);
+		$this->assertSame(0, $calls);
+		$this->assertSame([1], iterator_to_array($result));
+		$this->assertSame(2, $calls);
+	}
 }

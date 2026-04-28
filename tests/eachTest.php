@@ -3,6 +3,7 @@
 /**
  * @covers Dash\each
  * @covers Dash\Curry\each
+ * @covers Dash\Generator\each
  */
 class eachTest extends PHPUnit\Framework\TestCase
 {
@@ -155,7 +156,7 @@ class eachTest extends PHPUnit\Framework\TestCase
 			});
 		} catch (Exception $e) {
 			$this->assertSame(
-				"Dash\\each expects iterable or stdClass or null but was given $type",
+				"Dash\\each expects Generator or iterable or stdClass or null but was given $type",
 				$e->getMessage()
 			);
 			throw $e;
@@ -186,5 +187,47 @@ class eachTest extends PHPUnit\Framework\TestCase
 				'type' => 'DateTime',
 			],
 		];
+	}
+
+	public function testGenerator()
+	{
+		$generator = function () {
+			yield 'a' => 'first';
+			yield 'b' => 'second';
+			yield 'c' => 'third';
+		};
+		$iterated = [];
+
+		$result = Dash\each($generator(), function ($value, $key) use (&$iterated) {
+			$iterated[] = $key . ' is ' . $value;
+		});
+
+		$this->assertInstanceOf(Generator::class, $result);
+		$this->assertSame([], $iterated);
+		$this->assertSame(
+			['a' => 'first', 'b' => 'second', 'c' => 'third'],
+			iterator_to_array($result)
+		);
+		$this->assertSame(['a is first', 'b is second', 'c is third'], $iterated);
+	}
+
+	public function testGeneratorEarlyExit()
+	{
+		$generator = function () {
+			yield 'a';
+			yield 'b';
+			yield 'c';
+		};
+		$iterated = [];
+
+		$result = Dash\each($generator(), function ($value) use (&$iterated) {
+			$iterated[] = $value;
+			if ($value === 'b') {
+				return false;
+			}
+		});
+
+		$this->assertSame(['a', 'b'], iterator_to_array($result));
+		$this->assertSame(['a', 'b'], $iterated);
 	}
 }

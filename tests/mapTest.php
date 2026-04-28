@@ -3,6 +3,7 @@
 /**
  * @covers Dash\map
  * @covers Dash\Curry\map
+ * @covers Dash\Generator\map
  */
 class mapTest extends PHPUnit\Framework\TestCase
 {
@@ -205,6 +206,68 @@ class mapTest extends PHPUnit\Framework\TestCase
 	}
 
 	/**
+	 * @dataProvider casesGenerator
+	 */
+	public function testGenerator($iterable, $iteratee, $expected)
+	{
+		$result = Dash\map($iterable, $iteratee);
+		$this->assertInstanceOf(Generator::class, $result);
+		$this->assertSame($expected, iterator_to_array($result));
+	}
+
+	public function casesGenerator()
+	{
+		$generator = function ($iterable) {
+			foreach ((array) $iterable as $key => $value) {
+				yield $key => $value;
+			}
+		};
+
+		return [
+			'With callable iteratee and indexed keys' => [
+				'iterable' => $generator([3, 1, 2, 4]),
+				'iteratee' => function ($value) {
+					return $value * 2;
+				},
+				'expected' => [6, 2, 4, 8],
+			],
+			'With callable iteratee and associative keys' => [
+				'iterable' => $generator(['c' => 3, 'a' => 1, 'b' => 2, 'd' => 4]),
+				'iteratee' => function ($value) {
+					return $value * 2;
+				},
+				'expected' => [6, 2, 4, 8],
+			],
+			'With property path iteratee' => [
+				'iterable' => $generator([
+					'x' => ['name' => ['first' => 'John', 'last' => 'Doe']],
+					'y' => ['name' => ['first' => 'Mary', 'last' => 'Jane']],
+				]),
+				'iteratee' => 'name.last',
+				'expected' => ['Doe', 'Jane'],
+			],
+		];
+	}
+
+	public function testGeneratorIsLazy()
+	{
+		$calls = 0;
+		$generator = function () {
+			yield 1;
+			yield 2;
+		};
+		$iteratee = function ($value) use (&$calls) {
+			$calls++;
+			return $value * 2;
+		};
+
+		$result = Dash\map($generator(), $iteratee);
+		$this->assertSame(0, $calls);
+		$this->assertSame([2, 4], iterator_to_array($result));
+		$this->assertSame(2, $calls);
+	}
+
+	/**
 	 * @dataProvider casesTypeAssertions
 	 */
 	public function testTypeAssertions($iterable, $type)
@@ -215,7 +278,7 @@ class mapTest extends PHPUnit\Framework\TestCase
 			Dash\map($iterable);
 		} catch (Exception $e) {
 			$this->assertSame(
-				"Dash\\map expects iterable or stdClass or null but was given $type",
+				"Dash\\map expects Generator or iterable or stdClass or null but was given $type",
 				$e->getMessage()
 			);
 			throw $e;

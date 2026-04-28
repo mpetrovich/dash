@@ -42,7 +42,7 @@ echo "Average male age is $avgMaleAge.";
 
 ## Highlights
 
--   [Many data types supported](#supported-data-types): arrays, objects, generators ([coming soon](https://github.com/mpetrovich/dash/issues/3)), [`Traversable`](http://php.net/manual/en/class.traversable.php), [`DirectoryIterator`](http://php.net/manual/en/class.directoryiterator.php), and more
+-   [Many data types supported](#supported-data-types): arrays, objects, generators, [`Traversable`](http://php.net/manual/en/class.traversable.php), [`DirectoryIterator`](http://php.net/manual/en/class.directoryiterator.php), and more
 -   [Chaining](#chaining)
 -   [Currying](#currying)
 -   [Lazy evaluation](#lazy-evaluation)
@@ -186,12 +186,11 @@ $chain->run();
 ### Supported data types
 
 Dash can work with a wide variety of data types, including:
-
--   arrays
--   objects (eg. `stdClass`)
--   generators ([still in development](https://github.com/mpetrovich/dash/issues/3))
--   anything that implements the [`Traversable`](http://php.net/manual/en/class.traversable.php) interface
--   [`DirectoryIterator`](http://php.net/manual/en/class.directoryiterator.php), which is also a `Traversable` but cannot normally be used with `iterator_to_array()` [due to a PHP bug](https://bugs.php.net/bug.php?id=49755). Dash works around this transparently.
+- arrays
+- objects (eg. `stdClass`)
+- generators
+- anything that implements the [`Traversable`](http://php.net/manual/en/class.traversable.php) interface
+- [`DirectoryIterator`](http://php.net/manual/en/class.directoryiterator.php), which is also a `Traversable` but cannot normally be used with `iterator_to_array()` [due to a PHP bug](https://bugs.php.net/bug.php?id=49755). Dash works around this transparently.
 
 #### Examples
 
@@ -228,6 +227,25 @@ Dash\chain(new ArrayObject(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]))
 	->value();
 // === 5
 ```
+
+With a generator:
+
+```php
+$integers = function () {
+	for ($int = 1; true; $int++) {
+		yield $int;
+	}
+};
+
+Dash\chain($integers())
+	->filter('Dash\isOdd')
+	->take(3)
+	->reverse()
+	->value();
+// === [5, 3, 1]
+```
+
+Generator inputs are supported. Streamable operations are lazy by default when given generator input (for example, `filter()`, `map()`, `take()`, `dropWhile()`, and `takeWhile()`), while operations that inherently require full materialization accept generators and return eager arrays (for example, `sort()`, `reverse()`, `rotate()`, and `takeRight()`).
 
 With a `DirectoryIterator`:
 

@@ -188,4 +188,32 @@ class sortTest extends PHPUnit\Framework\TestCase
 		$this->assertSame([1, 2, 3, 4], Dash\sort([4, 2, 3, 1]));
 		$this->assertSame(['b' => 1, 'c' => 2, 'a' => 3], Dash\sort(['a' => 3, 'b' => 1, 'c' => 2]));
 	}
+
+	/**
+	 * @dataProvider casesGenerator
+	 */
+	public function testGenerator($iterable, $expected)
+	{
+		$this->assertSame($expected, Dash\sort($iterable));
+	}
+
+	public function casesGenerator()
+	{
+		$generator = function ($iterable) {
+			foreach ((array) $iterable as $key => $value) {
+				yield $key => $value;
+			}
+		};
+
+		return [
+			'With indexed array' => [
+				'iterable' => $generator([3, 8, 2, 5]),
+				'expected' => [2, 3, 5, 8],
+			],
+			'With associative array' => [
+				'iterable' => $generator(['a' => 3, 'b' => 1, 'c' => 2]),
+				'expected' => ['b' => 1, 'c' => 2, 'a' => 3],
+			],
+		];
+	}
 }

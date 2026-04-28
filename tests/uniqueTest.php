@@ -287,4 +287,19 @@ class uniqueTest extends PHPUnit\Framework\TestCase
 			])
 		);
 	}
+
+	public function testGenerator()
+	{
+		$iterableFactory = function () {
+			yield 'a' => 4;
+			yield 'b' => 2;
+			yield 'c' => 1;
+			yield 0 => 3;
+			yield 1 => 5;
+			yield 2 => 1;
+		};
+
+		$this->assertSame(['a' => 4, 'b' => 2, 'c' => 1, 0 => 3, 1 => 5], Dash\unique($iterableFactory()));
+		$this->assertSame(['a' => 4, 'b' => 2, 'c' => 1, 0 => 3, 1 => 5], Dash\distinct($iterableFactory()));
+	}
 }

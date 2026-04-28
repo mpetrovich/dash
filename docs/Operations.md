@@ -28,7 +28,7 @@ Operation | Signature | Curried
 [difference](#difference) | `difference($iterable /*, ...iterables */): array` | 
 [each](#each) | `each($iterable, $iteratee): mixed` | `Curry\each`
 [equal](#equal) | `equal($a, $b): boolean` | `Curry\equal`
-[filter](#filter) | `filter($iterable, $predicate = 'Dash\identity'): array` | `Curry\filter`
+[filter](#filter) | `filter($iterable, $predicate = 'Dash\identity'): array\|iterable` | `Curry\filter`
 [find](#find) | `find($iterable, $predicate = 'Dash\identity'): array\|null` | `Curry\find`
 [findKey](#findkey) | `findKey($iterable, $predicate = 'Dash\identity'): string\|null` | `Curry\findKey`
 [findLast](#findlast) | `findLast($iterable, $predicate = 'Dash\identity'): array\|null` | `Curry\findLast`
@@ -78,7 +78,7 @@ Operation | Signature | Curried
 [size](#size--count) / count | `size($value, $encoding = 'UTF-8'): integer` | `Curry\size`
 [sort](#sort) | `sort($iterable, $comparator = 'Dash\compare'): array` | `Curry\sort`
 [sum](#sum) | `sum($iterable): numeric` | `Curry\sum`
-[take](#take) | `take($iterable, $count = 1): array` | `Curry\take`
+[take](#take) | `take($iterable, $count = 1): array\|iterable` | `Curry\take`
 [takeRight](#takeright) | `takeRight($iterable, $count = 1): array` | `Curry\takeRight`
 [tap](#tap) | `tap($value, callable $interceptor): mixed` | `Curry\tap`
 [thru](#thru) | `thru($value, callable $interceptor): mixed` | `Curry\thru`
@@ -1066,7 +1066,7 @@ filter
 See also: `reject()`
 
 ```php
-filter($iterable, $predicate = 'Dash\identity'): array
+filter($iterable, $predicate = 'Dash\identity'): array|iterable
 
 # Curried: (all parameters required)
 Curry\filter($predicate, $iterable)
@@ -1081,7 +1081,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable\|stdClass\|null` |
 `$predicate` | `callable\|string\|array` | (optional) If a callable, invoked with `($value, $key, $iterable)` for each element in `$iterable`; if a string, will get elements with truthy values at `$field`; if an array of form `[$field, $value]`, will get elements whose `$field` loosely equals `$value`
-**Returns** | `array` | List of elements in `$iterable` that satisfy `$predicate`
+**Returns** | `array\|iterable` | List of elements in `$iterable` that satisfy `$predicate`
 
 **Example:**
 ```php
@@ -3243,7 +3243,7 @@ take
 See also: `takeRight()`
 
 ```php
-take($iterable, $count = 1): array
+take($iterable, $count = 1): array|iterable
 
 # Curried: (all parameters required)
 Curry\take($count, $iterable)
@@ -3258,7 +3258,7 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable\|stdClass\|null` |
 `$count` | `integer` | If negative, gets all but the last `$count` elements of `$iterable`
-**Returns** | `array` | New array of `$count` elements
+**Returns** | `array\|iterable` | New array of `$count` elements
 
 **Example:**
 ```php

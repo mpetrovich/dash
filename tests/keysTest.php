@@ -3,6 +3,7 @@
 /**
  * @covers Dash\keys
  * @covers Dash\Curry\keys
+ * @covers Dash\Generator\map
  */
 class keysTest extends PHPUnit\Framework\TestCase
 {
@@ -141,5 +142,35 @@ class keysTest extends PHPUnit\Framework\TestCase
 	public function testExamples()
 	{
 		$this->assertSame(['c', 'a', 'b'], Dash\keys(['c' => 3, 'a' => 1, 'b' => 2]));
+	}
+
+	/**
+	 * @dataProvider casesGenerator
+	 */
+	public function testGenerator($iterable, $expected)
+	{
+		$result = Dash\keys($iterable);
+		$this->assertInstanceOf(Generator::class, $result);
+		$this->assertSame($expected, iterator_to_array($result));
+	}
+
+	public function casesGenerator()
+	{
+		$generator = function ($iterable) {
+			foreach ((array) $iterable as $key => $value) {
+				yield $key => $value;
+			}
+		};
+
+		return [
+			'With indexed array' => [
+				'iterable' => $generator([3, 8, 2, 5]),
+				'expected' => [0, 1, 2, 3],
+			],
+			'With associative array' => [
+				'iterable' => $generator(['c' => 3, 'a' => 1, 'b' => 2]),
+				'expected' => ['c', 'a', 'b'],
+			],
+		];
 	}
 }

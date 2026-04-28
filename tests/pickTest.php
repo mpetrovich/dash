@@ -3,6 +3,7 @@
 /**
  * @covers Dash\pick
  * @covers Dash\Curry\pick
+ * @covers Dash\Generator\filter
  */
 class pickTest extends PHPUnit\Framework\TestCase
 {
@@ -216,5 +217,53 @@ class pickTest extends PHPUnit\Framework\TestCase
 	public function testExamples()
 	{
 		$this->assertSame(['b' => 2, 'c' => 3], Dash\pick(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], ['b', 'c']));
+	}
+
+	/**
+	 * @dataProvider casesGenerator
+	 */
+	public function testGenerator($iterable, $keys, $expected)
+	{
+		$result = Dash\pick($iterable, $keys);
+		$this->assertInstanceOf(Generator::class, $result);
+		$this->assertEquals($expected, iterator_to_array($result));
+	}
+
+	public function casesGenerator()
+	{
+		$generator = function ($iterable) {
+			foreach ((array) $iterable as $key => $value) {
+				yield $key => $value;
+			}
+		};
+
+		return [
+			'Pick one from indexed array' => [
+				'iterable' => $generator([1, 2, 3, 4]),
+				'keys' => 2,
+				'expected' => [3],
+			],
+			'Pick several from associative array' => [
+				'iterable' => $generator(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]),
+				'keys' => ['a', 'c'],
+				'expected' => ['a' => 1, 'c' => 3],
+			],
+		];
+	}
+
+	public function testGeneratorIsLazy()
+	{
+		$calls = 0;
+		$generator = function () use (&$calls) {
+			$calls++;
+			yield 'a' => 1;
+			$calls++;
+			yield 'b' => 2;
+		};
+
+		$result = Dash\pick($generator(), ['b']);
+		$this->assertSame(0, $calls);
+		$this->assertSame(['b' => 2], iterator_to_array($result));
+		$this->assertSame(2, $calls);
 	}
 }

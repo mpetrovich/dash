@@ -3,6 +3,7 @@
 /**
  * @covers Dash\mapResult
  * @covers Dash\Curry\mapResult
+ * @covers Dash\Generator\mapResult
  */
 class mapResultTest extends PHPUnit\Framework\TestCase
 {
@@ -410,7 +411,7 @@ class mapResultTest extends PHPUnit\Framework\TestCase
 			Dash\mapResult($iterable, $path);
 		} catch (Exception $e) {
 			$this->assertSame(
-				"Dash\\mapResult expects iterable or stdClass or null but was given $type",
+				"Dash\\mapResult expects Generator or iterable or stdClass or null but was given $type",
 				$e->getMessage()
 			);
 			throw $e;
@@ -465,5 +466,69 @@ class mapResultTest extends PHPUnit\Framework\TestCase
 			],
 			Dash\mapResult($data, 'getHash')
 		);
+	}
+
+	/**
+	 * @dataProvider casesGenerator
+	 */
+	public function testGenerator($iterable, $path, $default, $expected)
+	{
+		$result = Dash\mapResult($iterable, $path, $default);
+		$this->assertInstanceOf(Generator::class, $result);
+		$this->assertSame($expected, iterator_to_array($result));
+	}
+
+	public function casesGenerator()
+	{
+		$generator = function ($iterable) {
+			foreach ((array) $iterable as $key => $value) {
+				yield $key => $value;
+			}
+		};
+
+		return [
+			'With direct callable path' => [
+				'iterable' => $generator([
+					'a' => ['fn' => function () { return 'a fn'; }],
+					'b' => ['fn' => function () { return 'b fn'; }],
+					'c' => [],
+				]),
+				'path' => 'fn',
+				'default' => 'default',
+				'expected' => [
+					'a' => 'a fn',
+					'b' => 'b fn',
+					'c' => 'default',
+				],
+			],
+			'With nested callable path' => [
+				'iterable' => $generator([
+					'a' => ['foo' => ['bar', (object) ['fn' => function () { return 'a fn'; }]]],
+					'b' => ['foo' => ['bar', []]],
+					'c' => ['foo' => ['bar', (object) ['fn' => function () { return 'c fn'; }]]],
+				]),
+				'path' => 'foo.1.fn',
+				'default' => 'default',
+				'expected' => [
+					'a' => 'a fn',
+					'b' => 'default',
+					'c' => 'c fn',
+				],
+			],
+		];
+	}
+
+	public function testGeneratorIsLazy()
+	{
+		$calls = 0;
+		$generator = function () use (&$calls) {
+			yield 'a' => ['fn' => function () use (&$calls) { $calls++; return 'a'; }];
+			yield 'b' => ['fn' => function () use (&$calls) { $calls++; return 'b'; }];
+		};
+
+		$result = Dash\mapResult($generator(), 'fn', 'default');
+		$this->assertSame(0, $calls);
+		$this->assertSame(['a' => 'a', 'b' => 'b'], iterator_to_array($result));
+		$this->assertSame(2, $calls);
 	}
 }

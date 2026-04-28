@@ -35,7 +35,11 @@ namespace Dash;
  */
 function each($iterable, $iteratee)
 {
-	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
+	assertType($iterable, ['Generator', 'iterable', 'stdClass', 'null'], __FUNCTION__);
+
+	if ($iterable instanceof \Generator) {
+		return Generator\each($iterable, $iteratee);
+	}
 
 	if (is_null($iterable)) {
 		return $iterable;

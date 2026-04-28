@@ -3,6 +3,7 @@
 /**
  * @covers Dash\values
  * @covers Dash\Curry\values
+ * @covers Dash\Generator\map
  */
 class valuesTest extends PHPUnit\Framework\TestCase
 {
@@ -147,5 +148,35 @@ class valuesTest extends PHPUnit\Framework\TestCase
 			[3, 1, 2],
 			Dash\values(['c' => 3, 'a' => 1, 'b' => 2])
 		);
+	}
+
+	/**
+	 * @dataProvider casesGenerator
+	 */
+	public function testGenerator($iterable, $expected)
+	{
+		$result = Dash\values($iterable);
+		$this->assertInstanceOf(Generator::class, $result);
+		$this->assertSame($expected, iterator_to_array($result));
+	}
+
+	public function casesGenerator()
+	{
+		$generator = function ($iterable) {
+			foreach ((array) $iterable as $key => $value) {
+				yield $key => $value;
+			}
+		};
+
+		return [
+			'With indexed array' => [
+				'iterable' => $generator([3, 8, 2, 5]),
+				'expected' => [3, 8, 2, 5],
+			],
+			'With associative array' => [
+				'iterable' => $generator(['c' => 3, 'a' => 1, 'b' => 2]),
+				'expected' => [3, 1, 2],
+			],
+		];
 	}
 }

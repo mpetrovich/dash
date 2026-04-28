@@ -16,7 +16,11 @@ namespace Dash;
  */
 function takeWhile($iterable, $predicate = 'Dash\identity')
 {
-	assertType($iterable, ['iterable', 'stdClass'], __FUNCTION__);
+	assertType($iterable, ['Generator', 'iterable', 'stdClass'], __FUNCTION__);
+
+	if ($iterable instanceof \Generator) {
+		return Generator\takeWhile($iterable, $predicate);
+	}
 
 	$keys = [];
 

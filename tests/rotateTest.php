@@ -369,4 +369,39 @@ class rotateTest extends PHPUnit\Framework\TestCase
 		$this->assertSame(['b' => 2, 'c' => 3, 'a' => 1], Dash\rotate(['a' => 1, 'b' => 2, 'c' => 3], 1));
 		$this->assertSame(['e', 'a', 'b', 'c', 'd'], Dash\rotate(['a', 'b', 'c', 'd', 'e'], -1));
 	}
+
+	/**
+	 * @dataProvider casesGenerator
+	 */
+	public function testGenerator($iterable, $count, $expected)
+	{
+		$this->assertSame($expected, Dash\rotate($iterable, $count));
+	}
+
+	public function casesGenerator()
+	{
+		$generator = function ($iterable) {
+			foreach ((array) $iterable as $key => $value) {
+				yield $key => $value;
+			}
+		};
+
+		return [
+			'With indexed array' => [
+				'iterable' => $generator(['a', 'b', 'c', 'd']),
+				'count' => 1,
+				'expected' => ['b', 'c', 'd', 'a'],
+			],
+			'With associative array' => [
+				'iterable' => $generator(['a' => 3, 'b' => 8, 'c' => 2, 'd' => 5]),
+				'count' => 1,
+				'expected' => ['b' => 8, 'c' => 2, 'd' => 5, 'a' => 3],
+			],
+			'With negative count' => [
+				'iterable' => $generator([1, 2, 3, 4]),
+				'count' => -1,
+				'expected' => [4, 1, 2, 3],
+			],
+		];
+	}
 }

@@ -241,4 +241,18 @@ class differenceTest extends PHPUnit\Framework\TestCase
 			)
 		);
 	}
+
+	public function testGenerator()
+	{
+		$generator = function () {
+			yield 'a' => 4;
+			yield 'b' => 2;
+			yield 'c' => 1;
+		};
+
+		$this->assertSame(
+			['b' => 2],
+			Dash\difference($generator(), [3, 4, 5], [1, 3, 5])
+		);
+	}
 }
