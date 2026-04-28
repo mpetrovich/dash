@@ -245,6 +245,8 @@ Dash\chain($integers())
 // === [5, 3, 1]
 ```
 
+Generator inputs are supported. Streamable operations are lazy by default when given generator input (for example, `filter()`, `map()`, `take()`, `dropWhile()`, and `takeWhile()`), while operations that inherently require full materialization accept generators and return eager arrays (for example, `sort()`, `reverse()`, `rotate()`, and `takeRight()`).
+
 With a `DirectoryIterator`:
 
 ```php
