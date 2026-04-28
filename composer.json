@@ -58,6 +58,7 @@
             "src/equal.php",
             "src/filter.php",
             "src/Generator/filter.php",
+            "src/Generator/map.php",
             "src/Generator/take.php",
             "src/find.php",
             "src/findKey.php",
