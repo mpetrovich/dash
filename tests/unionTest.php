@@ -249,4 +249,18 @@ class unionTest extends PHPUnit\Framework\TestCase
 			)
 		);
 	}
+
+	public function testGenerator()
+	{
+		$generator = function () {
+			yield 'a' => 4;
+			yield 'b' => 2;
+			yield 'c' => 1;
+		};
+
+		$this->assertSame(
+			['a' => 4, 'b' => 2, 'c' => 1, 3, 5],
+			Dash\union($generator(), [3, 5], [1, 3, 5])
+		);
+	}
 }
