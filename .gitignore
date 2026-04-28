@@ -1,3 +1,4 @@
 vendor/
 test-coverage.*
 .DS_Store
+.phpunit.result.cache
