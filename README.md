@@ -114,12 +114,12 @@ use Dash\Dash;
 Dash::map([1, 2, 3], function ($n) { return $n * 2; });  // === [2, 4, 6]
 ```
 
-`Dash\_` can also be used as an alias for `Dash\Dash`:
+`Dash\__` can also be used as an alias for `Dash\Dash`:
 
 ```php
-use Dash\_;
+use Dash\__;
 
-_::map([1, 2, 3], function ($n) { return $n * 2; });  // === [2, 4, 6]
+__::map([1, 2, 3], function ($n) { return $n * 2; });  // === [2, 4, 6]
 ```
 
 ### Chaining
@@ -150,10 +150,10 @@ For convenience, `Dash\chain()` can be aliased to a global function using `addGl
 
 ```php
 // In your application bootstrap:
-Dash::addGlobalAlias('__');
+Dash::addGlobalAlias('_Dash');
 
 // Elsewhere:
-$result = __([1, 2, 3, 4, 5])
+$result = _Dash([1, 2, 3, 4, 5])
 	->filter('Dash\isOdd')
 	->map(function ($n) { return $n * 2; })
 	->value();
