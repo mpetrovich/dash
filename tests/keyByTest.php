@@ -316,4 +316,40 @@ class keyByTest extends PHPUnit\Framework\TestCase
 			Dash\keyBy($data, 'last')
 		);
 	}
+
+	/**
+	 * @dataProvider casesGenerator
+	 */
+	public function testGenerator($iterableFactory, $iteratee, $expected)
+	{
+		$this->assertSame($expected, Dash\keyBy($iterableFactory(), $iteratee));
+		$this->assertSame($expected, Dash\indexBy($iterableFactory(), $iteratee));
+	}
+
+	public function casesGenerator()
+	{
+		return [
+			'With callable iteratee' => [
+				'iterableFactory' => function () {
+					foreach ([3, 1, 2, 4] as $key => $value) {
+						yield $key => $value;
+					}
+				},
+				'iteratee' => function ($value) { return $value * 2; },
+				'expected' => [6 => 3, 2 => 1, 4 => 2, 8 => 4],
+			],
+			'With path iteratee' => [
+				'iterableFactory' => function () {
+					yield ['first' => 'John', 'last' => 'Doe'];
+					yield ['first' => 'Alice', 'last' => 'Hart'];
+					yield ['first' => 'Jane', 'last' => 'Doe'];
+				},
+				'iteratee' => 'last',
+				'expected' => [
+					'Doe' => ['first' => 'Jane', 'last' => 'Doe'],
+					'Hart' => ['first' => 'Alice', 'last' => 'Hart'],
+				],
+			],
+		];
+	}
 }
