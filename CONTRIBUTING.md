@@ -78,13 +78,25 @@ make docs
 
 7. Before opening a PR, ensure generated docs are committed (if changed), tests pass, and style checks pass.
 
-8. Create a release (maintainers):
+8. Run release preflight checks:
+
+```
+make release-check
+```
+
+If you are using Docker:
+
+```
+make docker-release-check
+```
+
+9. Create a release (maintainers):
 
 ```
 make release v=1.2.3
 ```
 
-`make release` runs tests, rebuilds docs, commits `docs/Operations.md` (if needed), creates an annotated tag (`v1.2.3`), and pushes commits and tags.
+`make release` commits `docs/Operations.md` (if needed), creates an annotated tag (`v1.2.3`), and pushes commits and tags.
 
 ### Important notes
 
