@@ -1,4 +1,10 @@
 
+DOCKER_IMAGE ?= dash
+PHP_VERSION ?= 7.4
+DOCKER_TAG := $(DOCKER_IMAGE):php$(PHP_VERSION)
+DOCKER_RUN := docker run --rm -v "$(CURDIR)":/usr/src/dash -w /usr/src/dash $(DOCKER_TAG)
+
+
 # Installs all dependencies
 default:
 	@composer install
@@ -90,5 +96,39 @@ release:
 	git push --tags
 
 
+# Docker helpers
+#
+# Examples:
+#   make docker-build PHP_VERSION=8.2
+#   make docker-make-test PHP_VERSION=8.0 op=map
+#
+docker-build:
+	docker build --build-arg PHP_VERSION=$(PHP_VERSION) -t $(DOCKER_TAG) .
+
+docker-shell: docker-build
+	docker run --rm -it -v "$(CURDIR)":/usr/src/dash -w /usr/src/dash $(DOCKER_TAG) /bin/bash
+
+docker-make-install: docker-build
+	$(DOCKER_RUN) make
+
+docker-make-test: docker-build
+	$(DOCKER_RUN) make test op=$(op)
+
+docker-make-test-coverage: docker-build
+	$(DOCKER_RUN) make test-coverage op=$(op)
+
+docker-make-check-style: docker-build
+	$(DOCKER_RUN) make check-style op=$(op)
+
+docker-make-fix-style: docker-build
+	$(DOCKER_RUN) make fix-style op=$(op)
+
+docker-make-docs: docker-build
+	$(DOCKER_RUN) make docs
+
+docker-make-clean: docker-build
+	$(DOCKER_RUN) make clean
+
+
 # Forces these commands to always run
-.PHONY: test test-coverage docs
+.PHONY: test test-coverage docs docker-build docker-shell docker-make-install docker-make-test docker-make-test-coverage docker-make-check-style docker-make-fix-style docker-make-docs docker-make-clean
