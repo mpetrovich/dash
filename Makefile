@@ -73,7 +73,7 @@ endif
 
 # Builds documentation for all operations
 docs:
-	@bin/docs.php src docs/Operations.md
+	@php bin/docs.php src docs/Operations.md
 
 
 # Removes all generated files
