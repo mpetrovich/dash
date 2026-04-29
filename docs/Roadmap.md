@@ -72,7 +72,7 @@ None.
 -   [x] lastIndexOf
 -   [x] lastly
 -   [x] memoize
--   [ ] mixin / setCustom
+-   [x] mixin / setCustom
 -   [x] noop
 -   [x] now
 -   [x] once

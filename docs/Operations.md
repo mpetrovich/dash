@@ -100,6 +100,7 @@ Operation | Signature | Curried
 [memoize](#memoize) | `memoize(callable $callable): callable` | 
 [merge](#merge) | `merge($iterable /* , ...$sources */): array` | 
 [min](#min) | `min($iterable): mixed\|null` | `Curry\min`
+[mixin](#mixin) | `mixin($name, callable $callable): void` | 
 [negate](#negate) | `negate(callable $predicate): callable` | `Curry\negate`
 [noop](#noop) | `noop(): null` | 
 [now](#now) | `now(): integer` | 
@@ -134,6 +135,7 @@ Operation | Signature | Curried
 [sample](#sample) | `sample($iterable): mixed\|null` | `Curry\sample`
 [scan](#scan) | `scan($iterable, $iteratee, $initial = []): array\|iterable` | `Curry\scan`
 [set](#set) | `set(&$input, $path, $value): mixed` | 
+[setCustom](#setcustom) | `setCustom($name, callable $callable): void` | 
 [shift](#shift) | `shift($iterable): mixed\|null` | `Curry\shift`
 [shuffle](#shuffle--randomize) / randomize | `shuffle($iterable): array` | `Curry\shuffle`
 [size](#size--count) / count | `size($value, $encoding = 'UTF-8'): integer` | `Curry\size`
@@ -3640,6 +3642,26 @@ Dash\min([]);
 
 [↑ Top](#operations)
 
+mixin
+---
+
+
+```php
+mixin($name, callable $callable): void
+```
+Alias of `setCustom()`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$name` | `string` |
+`$callable` | `callable` |
+**Returns** | `void` |
+
+
+
+[↑ Top](#operations)
+
 negate
 ---
 
@@ -4741,6 +4763,26 @@ Dash\set($input, 'a.b.c', 'value');
 	]
 ]
 ```
+
+[↑ Top](#operations)
+
+setCustom
+---
+
+
+```php
+setCustom($name, callable $callable): void
+```
+Sets a custom Dash operation.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$name` | `string` |
+`$callable` | `callable` |
+**Returns** | `void` |
+
+
 
 [↑ Top](#operations)
 
