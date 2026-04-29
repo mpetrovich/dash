@@ -83,6 +83,7 @@ Operation | Signature | Curried
 [isEmpty](#isempty) | `isEmpty($value): boolean` | `Curry\isEmpty`
 [isEqual](#isequal) | `isEqual($a, $b): boolean` | `Curry\isEqual`
 [isEven](#iseven) | `isEven($value): boolean` | `Curry\isEven`
+[isFinite](#isfinite) | `isFinite($value): boolean` | `Curry\isFinite`
 [isIndexedArray](#isindexedarray) | `isIndexedArray($value): boolean` | `Curry\isIndexedArray`
 [isOdd](#isodd) | `isOdd($value): boolean` | `Curry\isOdd`
 [isType](#istype) | `isType($value, $type): boolean` | `Curry\isType`
@@ -3024,6 +3025,28 @@ Dash\isEven(4.9);
 Dash\isEven('a');
 // === false
 ```
+
+[↑ Top](#operations)
+
+isFinite
+---
+
+
+```php
+isFinite($value): boolean
+
+# Curried: (all parameters required)
+Curry\isFinite($value)
+```
+Checks whether `$value` is a finite number.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `mixed` |
+**Returns** | `boolean` |
+
+
 
 [↑ Top](#operations)
 
