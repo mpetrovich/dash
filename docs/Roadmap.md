@@ -37,7 +37,7 @@ None.
 -   [x] merge
 -   [ ] prepend
 -   [x] range
--   [ ] remove
+-   [x] remove
 -   [ ] removeFirst
 -   [ ] removeLast
 -   [x] repeat

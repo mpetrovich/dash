@@ -113,6 +113,7 @@ Operation | Signature | Curried
 [reduce](#reduce) | `reduce($iterable, $iteratee, $initial = []): mixed` | `Curry\reduce`
 [reduceRight](#reduceright) | `reduceRight($iterable, $iteratee, $initial = []): mixed` | `Curry\reduceRight`
 [reject](#reject) | `reject($iterable, $predicate = 'Dash\identity'): array` | `Curry\reject`
+[remove](#remove) | `remove($iterable, $predicate = 'Dash\identity'): array` | `Curry\remove`
 [repeat](#repeat) | `repeat($value, $count): array` | `Curry\repeat`
 [result](#result) | `result($input, $path, $default = null): mixed` | `Curry\result`
 [reverse](#reverse) | `reverse($iterable, $preserveIntegerKeys = false): array` | `Curry\reverse`
@@ -4163,6 +4164,29 @@ Dash\reject($data, ['active', false]);
 	['name' => 'Pete', 'active' => true]
 ]
 ```
+
+[↑ Top](#operations)
+
+remove
+---
+
+
+```php
+remove($iterable, $predicate = 'Dash\identity'): array
+
+# Curried: (all parameters required)
+Curry\remove($predicate, $iterable)
+```
+Returns a new iterable with all elements matching `$predicate` removed.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$predicate` | `callable\|string\|array` | (optional)
+**Returns** | `array` |
+
+
 
 [↑ Top](#operations)
 
