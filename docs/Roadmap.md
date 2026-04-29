@@ -154,7 +154,7 @@ No new operations
 -   [x] allPass / overEvery
 -   [x] anyPass / overSome
 -   [x] cond
--   [ ] ifElse
+-   [x] ifElse
 -   [ ] when
 -   [ ] unless
 -   [ ] juxt / over

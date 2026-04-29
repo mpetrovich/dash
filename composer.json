@@ -102,6 +102,7 @@
             "src/hasDirect.php",
             "src/identical.php",
             "src/identity.php",
+            "src/ifElse.php",
             "src/intersection.php",
             "src/intersectionWith.php",
             "src/initial.php",

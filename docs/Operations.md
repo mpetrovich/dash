@@ -55,6 +55,7 @@ Operation | Signature | Curried
 [hasDirect](#hasdirect) | `hasDirect($input, $key): boolean` | `Curry\hasDirect`
 [identical](#identical) | `identical($a, $b): boolean` | `Curry\identical`
 [identity](#identity) | `identity($value): mixed` | `Curry\identity`
+[ifElse](#ifelse) | `ifElse(callable $predicate, callable $onTrue, callable $onFalse): callable` | 
 [initial](#initial--init) / init | `initial($iterable): array\|iterable` | `Curry\initial`
 [intersection](#intersection) | `intersection($iterable /*, ...iterables */): array` | 
 [intersectionWith](#intersectionwith) | `intersectionWith($iterable, $other, $comparator = 'Dash\equal'): array` | `Curry\intersectionWith`
@@ -2231,6 +2232,36 @@ Parameter | Type | Description
 $a = new ArrayObject();
 $b = Dash\identity($a);
 // $b === $a
+```
+
+[↑ Top](#operations)
+
+ifElse
+---
+
+
+```php
+ifElse(callable $predicate, callable $onTrue, callable $onFalse): callable
+```
+Creates a function that routes arguments to `$onTrue` or `$onFalse` based on `$predicate`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$predicate` | `callable` |
+`$onTrue` | `callable` |
+`$onFalse` | `callable` |
+**Returns** | `callable` |
+
+**Example:**
+```php
+$fn = Dash\ifElse(
+	function ($n) { return $n >= 0; },
+	function ($n) { return "pos:$n"; },
+	function ($n) { return "neg:$n"; }
+);
+$fn(2);   // === 'pos:2'
+$fn(-3);  // === 'neg:-3'
 ```
 
 [↑ Top](#operations)
