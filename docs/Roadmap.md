@@ -61,7 +61,7 @@ None.
 -   [x] isFunction
 -   [x] isInteger
 -   [x] isNaN
--   [ ] isNull
+-   [x] isNull
 -   [ ] isNumber
 -   [ ] isObject
 -   [ ] isRegExp

@@ -89,6 +89,7 @@ Operation | Signature | Curried
 [isIndexedArray](#isindexedarray) | `isIndexedArray($value): boolean` | `Curry\isIndexedArray`
 [isInteger](#isinteger) | `isInteger($value): boolean` | `Curry\isInteger`
 [isNaN](#isnan) | `isNaN($value): boolean` | `Curry\isNaN`
+[isNull](#isnull) | `isNull($value): boolean` | `Curry\isNull`
 [isOdd](#isodd) | `isOdd($value): boolean` | `Curry\isOdd`
 [isType](#istype) | `isType($value, $type): boolean` | `Curry\isType`
 [join](#join--implode) / implode | `join($iterable, $separator): string` | `Curry\join`
@@ -3163,6 +3164,28 @@ isNaN($value): boolean
 Curry\isNaN($value)
 ```
 Checks whether `$value` is NaN.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `mixed` |
+**Returns** | `boolean` |
+
+
+
+[↑ Top](#operations)
+
+isNull
+---
+
+
+```php
+isNull($value): boolean
+
+# Curried: (all parameters required)
+Curry\isNull($value)
+```
+Checks whether `$value` is null.
 
 
 Parameter | Type | Description
