@@ -40,6 +40,7 @@ Operation | Signature | Curried
 [deltas](#deltas) | `deltas($iterable): array` | `Curry\deltas`
 [difference](#difference) | `difference($iterable /*, ...iterables */): array` | 
 [differenceWith](#differencewith) | `differenceWith($iterable, $other, $comparator = 'Dash\equal'): array` | `Curry\differenceWith`
+[drop](#drop) | `drop($iterable, $count = 1): array\|iterable` | `Curry\drop`
 [dropWhile](#dropwhile) | `dropWhile($iterable, $predicate = 'Dash\identity'): array\|iterable` | `Curry\dropWhile`
 [each](#each) | `each($iterable, $iteratee): mixed` | `Curry\each`
 [equal](#equal) | `equal($a, $b): boolean` | `Curry\equal`
@@ -1438,6 +1439,31 @@ Dash\differenceWith(
 );
 // === [['x' => 1]]
 ```
+
+[↑ Top](#operations)
+
+drop
+---
+See also: `take()`
+
+```php
+drop($iterable, $count = 1): array|iterable
+
+# Curried: (all parameters required)
+Curry\drop($count, $iterable)
+```
+Gets a new array of `$iterable` without the first `$count` elements.
+
+Keys are preserved unless `$iterable` is an indexed array.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$count` | `integer` | If negative, drops values from the end (array-like inputs only)
+**Returns** | `array\|iterable` |
+
+
 
 [↑ Top](#operations)
 

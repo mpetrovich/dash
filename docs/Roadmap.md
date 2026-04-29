@@ -89,7 +89,7 @@ None.
 
 ## [Bottomline](https://github.com/maciejczyzewski/bottomline)
 
--   [ ] drop
+-   [x] drop
 
 ## [brianhaveri/Underscore.php](http://brianhaveri.github.io/Underscore.php)
 
