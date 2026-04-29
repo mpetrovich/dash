@@ -92,6 +92,7 @@ Operation | Signature | Curried
 [mapResult](#mapresult) | `mapResult($iterable, $path, $default = null): array` | `Curry\mapResult`
 [mapValues](#mapvalues) | `mapValues($iterable, $iteratee = 'Dash\identity'): array` | `Curry\mapValues`
 [matches](#matches) | `matches($properties): callable` | 
+[matchesAny](#matchesany) | `matchesAny($iterable, $properties): boolean` | `Curry\matchesAny`
 [matchesProperty](#matchesproperty) | `matchesProperty($path, $value = true, $comparator = 'Dash\equal'): function` | `Curry\matchesProperty`
 [max](#max) | `max($iterable): mixed\|null` | `Curry\max`
 [median](#median) | `median($iterable): mixed\|null` | `Curry\median`
@@ -3406,6 +3407,31 @@ $matcher = Dash\matches(['b' => 2, 'd' => 4]);
 $matcher(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]);  // === true
 $matcher(['a' => 1, 'b' => 2, 'c' => 3, 'e' => 5]);  // === false
 ```
+
+[↑ Top](#operations)
+
+matchesAny
+---
+
+
+```php
+matchesAny($iterable, $properties): boolean
+
+# Curried: (all parameters required)
+Curry\matchesAny($properties, $iterable)
+```
+Checks whether any element in `$iterable` matches all key-value pairs in `$properties`.
+
+Equivalent to `any($iterable, matches($properties))`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$properties` | `iterable\|stdClass\|null` |
+**Returns** | `boolean` |
+
+
 
 [↑ Top](#operations)
 
