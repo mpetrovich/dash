@@ -14,6 +14,15 @@ namespace Dash;
  * @param iterable|stdClass|null $iterable
  * @param iterable|stdClass|null $properties
  * @return array|iterable
+ *
+ * @example
+	$users = [
+		['id' => 1, 'role' => 'admin'],
+		['id' => 2, 'role' => 'member'],
+	];
+
+	Dash\findWhere($users, ['role' => 'member']);
+	// === [['id' => 2, 'role' => 'member']]
  */
 function findWhere($iterable, $properties)
 {

@@ -14,6 +14,13 @@ namespace Dash;
  * @param mixed $input
  * @param callable|string|integer $path
  * @return boolean
+ *
+ * @example
+	Dash\has(['user' => ['name' => 'Ann']], 'user.name');
+	// === true
+
+	Dash\has(['user' => []], 'user.name');
+	// === false
  */
 function has($input, $path)
 {

@@ -10,6 +10,14 @@ namespace Dash;
  * @param callable $fn
  * @param callable $onFinally
  * @return callable
+ *
+ * @example
+	$run = Dash\lastly(
+		function () { return 42; },
+		function () { }
+	);
+
+	$run();  // === 42  (`$onFinally` still runs)
  */
 function lastly(callable $fn, callable $onFinally)
 {

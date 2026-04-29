@@ -15,6 +15,10 @@ namespace Dash;
  * @param integer $offset
  * @param integer|null $length
  * @return array|iterable
+ *
+ * @example
+	Dash\slice([1, 2, 3, 4, 5], 1, 2);
+	// === [2, 3]
  */
 function slice($iterable, $offset = 0, $length = null)
 {

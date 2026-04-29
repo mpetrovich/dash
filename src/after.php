@@ -10,6 +10,13 @@ namespace Dash;
  * @param integer $n
  * @param callable $callable
  * @return callable
+ *
+ * @example
+	$fn = Dash\after(3, function ($x) { return $x * 2; });
+
+	$fn(5);  // null — not enough calls yet
+	$fn(5);  // null
+	$fn(4);  // === 8  (third invocation runs the callable)
  */
 function after($n, callable $callable)
 {

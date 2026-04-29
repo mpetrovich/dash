@@ -8,6 +8,9 @@ namespace Dash;
  * @category Utilities & misc
  *
  * @return integer
+ *
+ * @example
+	Dash\now();  // milliseconds since Unix epoch, e.g. 1714419200123
  */
 function now()
 {

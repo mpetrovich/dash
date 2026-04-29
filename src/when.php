@@ -13,6 +13,15 @@ namespace Dash;
  * @param callable $predicate
  * @param callable $onTrue
  * @return callable
+ *
+ * @example
+	$squareIfNum = Dash\when('Dash\isNumber', function ($n) { return $n * $n; });
+
+	$squareIfNum(5);
+	// === 25
+
+	$squareIfNum('x');
+	// === 'x'
  */
 function when(callable $predicate, callable $onTrue)
 {

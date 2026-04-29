@@ -9,6 +9,12 @@ namespace Dash;
  *
  * @param iterable|stdClass|null $iterable
  * @return mixed|null
+ *
+ * @example
+	Dash\sample([10, 20, 30]);  // one of 10, 20, or 30
+
+	Dash\sample([]);
+	// === null
  */
 function sample($iterable)
 {

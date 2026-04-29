@@ -9,6 +9,12 @@ namespace Dash;
  *
  * @param mixed $value
  * @return boolean
+ *
+ * @example
+	$h = fopen('php://memory', 'r');
+	Dash\isResource($h);
+	// === true
+	fclose($h);
  */
 function isResource($value)
 {

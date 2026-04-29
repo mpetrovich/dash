@@ -9,6 +9,10 @@ namespace Dash;
  *
  * @param mixed $value
  * @return boolean
+ *
+ * @example
+	Dash\isFloat(1.0);
+	// === true
  */
 function isFloat($value)
 {

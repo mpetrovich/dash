@@ -10,6 +10,10 @@ namespace Dash;
  * @param iterable|stdClass|null $iterable
  * @param callable|string|array $predicate (optional)
  * @return array
+ *
+ * @example
+	Dash\removeLast([1, 2, 1, 3], function ($n) { return $n === 1; });
+	// === [1, 2, 3]
  */
 function removeLast($iterable, $predicate = 'Dash\identity')
 {

@@ -9,6 +9,10 @@ namespace Dash;
  *
  * @param mixed $value
  * @return boolean
+ *
+ * @example
+	Dash\isString('hello');
+	// === true
  */
 function isString($value)
 {

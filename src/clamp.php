@@ -11,6 +11,13 @@ namespace Dash;
  * @param numeric $lower
  * @param numeric $upper
  * @return numeric
+ *
+ * @example
+	Dash\clamp(15, 0, 10);
+	// === 10
+
+	Dash\clamp(-3, 0, 10);
+	// === 0
  */
 function clamp($number, $lower, $upper)
 {

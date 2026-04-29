@@ -10,6 +10,10 @@ namespace Dash;
  * @see merge()
  *
  * @return array
+ *
+ * @example
+	Dash\extend(['a' => 1], ['b' => 2], ['b' => 99]);
+	// === ['a' => 1, 'b' => 99]
  */
 function extend()
 {

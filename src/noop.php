@@ -8,6 +8,10 @@ namespace Dash;
  * @category Utilities & misc
  *
  * @return null
+ *
+ * @example
+	Dash\noop();
+	// === null
  */
 function noop()
 {

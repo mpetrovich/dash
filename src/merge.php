@@ -12,6 +12,10 @@ namespace Dash;
  * @param iterable|stdClass|null $iterable
  * @param iterable|stdClass|null ...$sources
  * @return array
+ *
+ * @example
+	Dash\merge(['a' => 1], ['b' => 2], ['b' => 3]);
+	// === ['a' => 1, 'b' => 3]
  */
 function merge($iterable /* , ...$sources */)
 {

@@ -13,6 +13,10 @@ namespace Dash;
  * @param mixed $value
  * @param callable $comparator (optional)
  * @return integer
+ *
+ * @example
+	Dash\sortedIndex([10, 20, 30], 25);
+	// === 2  (insert 25 before 30)
  */
 function sortedIndex($iterable, $value, $comparator = 'Dash\compare')
 {

@@ -9,6 +9,10 @@ namespace Dash;
  *
  * @param iterable|stdClass|null $iterable
  * @return numeric
+ *
+ * @example
+	Dash\product([2, 3, 4]);
+	// === 24
  */
 function product($iterable)
 {

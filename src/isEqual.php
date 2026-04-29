@@ -10,6 +10,10 @@ namespace Dash;
  * @param mixed $a
  * @param mixed $b
  * @return boolean
+ *
+ * @example
+	Dash\isEqual(['a' => 1], ['a' => 1]);
+	// === true
  */
 function isEqual($a, $b)
 {

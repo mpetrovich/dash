@@ -12,6 +12,17 @@ namespace Dash;
  * @param callable $callable
  * @param callable $wrapper
  * @return callable
+ *
+ * @example
+	$logged = Dash\wrap(
+		function ($x) { return $x + 1; },
+		function ($fn, $x) {
+			return 100 + call_user_func($fn, $x);
+		}
+	);
+
+	$logged(1);
+	// === 102
  */
 function wrap(callable $callable, callable $wrapper)
 {

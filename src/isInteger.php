@@ -9,6 +9,10 @@ namespace Dash;
  *
  * @param mixed $value
  * @return boolean
+ *
+ * @example
+	Dash\isInteger(42);
+	// === true
  */
 function isInteger($value)
 {

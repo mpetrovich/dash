@@ -245,7 +245,14 @@ Parameter | Type | Description
 `$callable` | `callable` |
 **Returns** | `callable` |
 
+**Example:**
+```php
+$fn = Dash\after(3, function ($x) { return $x * 2; });
 
+$fn(5);  // null — not enough calls yet
+$fn(5);  // null
+$fn(4);  // === 8  (third invocation runs the callable)
+```
 
 [↑ Top](#operations)
 
@@ -422,7 +429,13 @@ Parameter | Type | Description
 `...$values` | `mixed` |
 **Returns** | `array` |
 
+**Example:**
+```php
+Dash\append([1, 2], 3, 4);
+// === [1, 2, 3, 4]
 
+@alias unpop
+```
 
 [↑ Top](#operations)
 
@@ -621,7 +634,14 @@ Parameter | Type | Description
 `$callable` | `callable` |
 **Returns** | `callable` |
 
+**Example:**
+```php
+$fn = Dash\before(3, function ($x) { return $x + 1; });
 
+$fn(1);  // === 2
+$fn(2);  // === 3
+$fn(9);  // === 3  (threshold reached; returns last result)
+```
 
 [↑ Top](#operations)
 
@@ -740,7 +760,14 @@ Parameter | Type | Description
 `$upper` | `numeric` |
 **Returns** | `numeric` |
 
+**Example:**
+```php
+Dash\clamp(15, 0, 10);
+// === 10
 
+Dash\clamp(-3, 0, 10);
+// === 0
+```
 
 [↑ Top](#operations)
 
@@ -916,7 +943,11 @@ Parameter | Type | Description
 `$value` | `mixed` |
 **Returns** | `callable` |
 
-
+**Example:**
+```php
+$alwaysSeven = Dash\constant(7);
+$alwaysSeven();  // === 7
+```
 
 [↑ Top](#operations)
 
@@ -1005,7 +1036,11 @@ Parameter | Type | Description
 `$defaultGroup` | `string` | (optional) The key used when `$iteratee` returns `null`
 **Returns** | `array` | A new associative array of `[groupKey => count]`
 
-
+**Example:**
+```php
+Dash\countBy(['one', 'two', 'three', 'two'], function ($s) { return strlen($s); });
+// === [3 => 3, 5 => 1]
+```
 
 [↑ Top](#operations)
 
@@ -1075,7 +1110,14 @@ Parameter | Type | Description
 `$rotate` | `integer` | (optional) The number of arguments to move from start to end; see Dash\rotate()
 **Returns** | `function\|mixed` |
 
+**Example:**
+```php
+$add = function ($a, $b) { return $a + $b; };
 
+$add5 = Dash\currifyN($add, 2, [5]);
+$add5(3);
+// === 8
+```
 
 [↑ Top](#operations)
 
@@ -1388,7 +1430,14 @@ Parameter | Type | Description
 `$input` | `iterable\|stdClass\|null` |
 **Returns** | `array` |
 
-
+**Example:**
+```php
+Dash\defaults(
+	['a' => 1, 'b' => null],
+	['b' => 2, 'c' => 3]
+);
+// === ['a' => 1, 'b' => 2, 'c' => 3]
+```
 
 [↑ Top](#operations)
 
@@ -1516,7 +1565,11 @@ Parameter | Type | Description
 `$count` | `integer` | If negative, drops values from the end (array-like inputs only)
 **Returns** | `array\|iterable` |
 
-
+**Example:**
+```php
+Dash\drop([1, 2, 3, 4, 5], 2);
+// === [3, 4, 5]
+```
 
 [↑ Top](#operations)
 
@@ -1656,7 +1709,14 @@ Parameter | Type | Description
 `$transformations` | `array` |
 **Returns** | `array\|object` |
 
-
+**Example:**
+```php
+Dash\evolve(
+	['count' => 2, 'label' => 'hi'],
+	['count' => function ($n) { return $n * 10; }, 'label' => 'strtoupper']
+);
+// === ['count' => 20, 'label' => 'HI']
+```
 
 [↑ Top](#operations)
 
@@ -1672,7 +1732,11 @@ Alias of `merge()`.
 
 **Returns** | `array` |
 
-
+**Example:**
+```php
+Dash\extend(['a' => 1], ['b' => 2], ['b' => 99]);
+// === ['a' => 1, 'b' => 99]
+```
 
 [↑ Top](#operations)
 
@@ -2176,7 +2240,16 @@ Parameter | Type | Description
 `$properties` | `iterable\|stdClass\|null` |
 **Returns** | `array\|iterable` |
 
+**Example:**
+```php
+$users = [
+	['id' => 1, 'role' => 'admin'],
+	['id' => 2, 'role' => 'member'],
+];
 
+Dash\findWhere($users, ['role' => 'member']);
+// === [['id' => 2, 'role' => 'member']]
+```
 
 [↑ Top](#operations)
 
@@ -2571,7 +2644,14 @@ Parameter | Type | Description
 `$path` | `callable\|string\|integer` |
 **Returns** | `boolean` |
 
+**Example:**
+```php
+Dash\has(['user' => ['name' => 'Ann']], 'user.name');
+// === true
 
+Dash\has(['user' => []], 'user.name');
+// === false
+```
 
 [↑ Top](#operations)
 
@@ -2727,7 +2807,14 @@ Parameter | Type | Description
 `$comparator` | `callable` | (optional)
 **Returns** | `integer` |
 
+**Example:**
+```php
+Dash\indexOf(['a', 'b', 'c', 'b'], 'b');
+// === 1
 
+Dash\indexOf(['a', 'b', 'c', 'b'], 'b', 2);
+// === 3
+```
 
 [↑ Top](#operations)
 
@@ -2860,7 +2947,13 @@ Parameter | Type | Description
 `$iterable` | `iterable\|stdClass\|null` |
 **Returns** | `array` |
 
+**Example:**
+```php
+Dash\invert(['a' => 1, 'b' => 2, 'c' => 1]);
+// === ['1' => 'c', '2' => 'b']  (later duplicate values win)
 
+@alias invertObj
+```
 
 [↑ Top](#operations)
 
@@ -2883,7 +2976,14 @@ Parameter | Type | Description
 `$iteratee` | `callable\|string\|integer` | (optional) Same forms as `mapValues()`
 **Returns** | `array` |
 
+**Example:**
+```php
+Dash\invertBy(['a' => 1, 'b' => 2, 'c' => 1]);
+// === ['1' => ['a', 'c'], '2' => ['b']]
 
+Dash\invertBy(['x' => 'hello', 'y' => 'hey'], function ($s) { return strlen($s); });
+// === ['5' => ['x'], '3' => ['y']]
+```
 
 [↑ Top](#operations)
 
@@ -2904,7 +3004,16 @@ Parameter | Type | Description
 `...$args` | `mixed` |
 **Returns** | `array` |
 
+**Example:**
+```php
+$rows = [
+	['n' => 1, 'fn' => function ($m) { return $m * 2; }],
+	['n' => 3, 'fn' => function ($m) { return $m + 1; }],
+];
 
+Dash\invoke($rows, 'fn', 10);
+// === [20, 11]
+```
 
 [↑ Top](#operations)
 
@@ -2926,7 +3035,14 @@ Parameter | Type | Description
 `$value` | `mixed` |
 **Returns** | `boolean` |
 
+**Example:**
+```php
+Dash\isArray([]);
+// === true
 
+Dash\isArray(new \ArrayObject());
+// === false
+```
 
 [↑ Top](#operations)
 
@@ -2948,7 +3064,11 @@ Parameter | Type | Description
 `$value` | `mixed` |
 **Returns** | `boolean` |
 
-
+**Example:**
+```php
+Dash\isBoolean(false);
+// === true
+```
 
 [↑ Top](#operations)
 
@@ -2970,7 +3090,11 @@ Parameter | Type | Description
 `$value` | `mixed` |
 **Returns** | `boolean` |
 
-
+**Example:**
+```php
+Dash\isDate(new \DateTimeImmutable());
+// === true
+```
 
 [↑ Top](#operations)
 
@@ -3035,7 +3159,11 @@ Parameter | Type | Description
 `$b` | `mixed` |
 **Returns** | `boolean` |
 
-
+**Example:**
+```php
+Dash\isEqual(['a' => 1], ['a' => 1]);
+// === true
+```
 
 [↑ Top](#operations)
 
@@ -3094,7 +3222,14 @@ Parameter | Type | Description
 `$value` | `mixed` |
 **Returns** | `boolean` |
 
+**Example:**
+```php
+Dash\isFinite(1.5);
+// === true
 
+Dash\isFinite(INF);
+// === false
+```
 
 [↑ Top](#operations)
 
@@ -3116,7 +3251,11 @@ Parameter | Type | Description
 `$value` | `mixed` |
 **Returns** | `boolean` |
 
-
+**Example:**
+```php
+Dash\isFloat(1.0);
+// === true
+```
 
 [↑ Top](#operations)
 
@@ -3138,7 +3277,11 @@ Parameter | Type | Description
 `$value` | `mixed` |
 **Returns** | `boolean` |
 
-
+**Example:**
+```php
+Dash\isFunction(function () {});
+// === true
+```
 
 [↑ Top](#operations)
 
@@ -3192,7 +3335,11 @@ Parameter | Type | Description
 `$value` | `mixed` |
 **Returns** | `boolean` |
 
-
+**Example:**
+```php
+Dash\isInteger(42);
+// === true
+```
 
 [↑ Top](#operations)
 
@@ -3214,7 +3361,11 @@ Parameter | Type | Description
 `$value` | `mixed` |
 **Returns** | `boolean` |
 
-
+**Example:**
+```php
+Dash\isNaN(NAN);
+// === true
+```
 
 [↑ Top](#operations)
 
@@ -3236,7 +3387,11 @@ Parameter | Type | Description
 `$value` | `mixed` |
 **Returns** | `boolean` |
 
-
+**Example:**
+```php
+Dash\isNull(null);
+// === true
+```
 
 [↑ Top](#operations)
 
@@ -3258,7 +3413,14 @@ Parameter | Type | Description
 `$value` | `mixed` |
 **Returns** | `boolean` |
 
+**Example:**
+```php
+Dash\isNumber(3);
+// === true
 
+Dash\isNumber('3');
+// === false
+```
 
 [↑ Top](#operations)
 
@@ -3280,7 +3442,11 @@ Parameter | Type | Description
 `$value` | `mixed` |
 **Returns** | `boolean` |
 
-
+**Example:**
+```php
+Dash\isObject(new \stdClass());
+// === true
+```
 
 [↑ Top](#operations)
 
@@ -3339,7 +3505,14 @@ Parameter | Type | Description
 `$value` | `mixed` |
 **Returns** | `boolean` |
 
+**Example:**
+```php
+Dash\isRegExp('/^hello$/');
+// === true
 
+Dash\isRegExp('not a pattern');
+// === false
+```
 
 [↑ Top](#operations)
 
@@ -3361,7 +3534,13 @@ Parameter | Type | Description
 `$value` | `mixed` |
 **Returns** | `boolean` |
 
-
+**Example:**
+```php
+$h = fopen('php://memory', 'r');
+Dash\isResource($h);
+// === true
+fclose($h);
+```
 
 [↑ Top](#operations)
 
@@ -3383,7 +3562,14 @@ Parameter | Type | Description
 `$value` | `mixed` |
 **Returns** | `boolean` |
 
+**Example:**
+```php
+Dash\isScalar('text');
+// === true
 
+Dash\isScalar([]);
+// === false
+```
 
 [↑ Top](#operations)
 
@@ -3405,7 +3591,11 @@ Parameter | Type | Description
 `$value` | `mixed` |
 **Returns** | `boolean` |
 
-
+**Example:**
+```php
+Dash\isString('hello');
+// === true
+```
 
 [↑ Top](#operations)
 
@@ -3427,7 +3617,11 @@ Parameter | Type | Description
 `$value` | `mixed` |
 **Returns** | `boolean` |
 
-
+**Example:**
+```php
+Dash\isTraversable(new \ArrayIterator([]));
+// === true
+```
 
 [↑ Top](#operations)
 
@@ -3687,7 +3881,14 @@ Parameter | Type | Description
 `$comparator` | `callable` | (optional)
 **Returns** | `integer` |
 
+**Example:**
+```php
+Dash\lastIndexOf(['a', 'b', 'c', 'b'], 'b');
+// === 3
 
+Dash\lastIndexOf(['a', 'b', 'c', 'b'], 'b', 2);
+// === 1
+```
 
 [↑ Top](#operations)
 
@@ -3707,7 +3908,15 @@ Parameter | Type | Description
 `$onFinally` | `callable` |
 **Returns** | `callable` |
 
+**Example:**
+```php
+$run = Dash\lastly(
+	function () { return 42; },
+	function () { }
+);
 
+$run();  // === 42  (`$onFinally` still runs)
+```
 
 [↑ Top](#operations)
 
@@ -3775,7 +3984,11 @@ Parameter | Type | Description
 `$iteratee` | `callable\|string\|integer` | (optional) Same forms as `mapValues()`
 **Returns** | `array\|iterable` |
 
-
+**Example:**
+```php
+Dash\mapKeys(['a' => 1, 'b' => 2], function ($v, $k) { return strtoupper($k); });
+// === ['A' => 1, 'B' => 2]
+```
 
 [↑ Top](#operations)
 
@@ -3909,7 +4122,14 @@ Parameter | Type | Description
 `$properties` | `iterable\|stdClass\|null` |
 **Returns** | `boolean` |
 
-
+**Example:**
+```php
+Dash\matchesAny(
+	[['id' => 1, 'role' => 'admin'], ['id' => 2, 'role' => 'member']],
+	['role' => 'member']
+);
+// === true
+```
 
 [↑ Top](#operations)
 
@@ -4041,7 +4261,18 @@ Parameter | Type | Description
 `$callable` | `callable` |
 **Returns** | `callable` |
 
+**Example:**
+```php
+$calls = 0;
+$expensive = Dash\memoize(function ($n) use (&$calls) {
+	$calls++;
+	return $n * $n;
+});
 
+$expensive(5);
+$expensive(5);
+// $calls === 1
+```
 
 [↑ Top](#operations)
 
@@ -4063,7 +4294,11 @@ Parameter | Type | Description
 `...$sources` | `iterable\|stdClass\|null` |
 **Returns** | `array` |
 
-
+**Example:**
+```php
+Dash\merge(['a' => 1], ['b' => 2], ['b' => 3]);
+// === ['a' => 1, 'b' => 3]
+```
 
 [↑ Top](#operations)
 
@@ -4112,7 +4347,13 @@ Parameter | Type | Description
 `$callable` | `callable` |
 **Returns** | `void` |
 
+**Example:**
+```php
+Dash\mixin('double', function ($n) { return $n * 2; });
 
+Dash\Dash::double(6);
+// === 12
+```
 
 [↑ Top](#operations)
 
@@ -4157,7 +4398,11 @@ No operation. Always returns `null`.
 
 **Returns** | `null` |
 
-
+**Example:**
+```php
+Dash\noop();
+// === null
+```
 
 [↑ Top](#operations)
 
@@ -4173,7 +4418,10 @@ Returns the current UNIX timestamp in milliseconds.
 
 **Returns** | `integer` |
 
-
+**Example:**
+```php
+Dash\now();  // milliseconds since Unix epoch, e.g. 1714419200123
+```
 
 [↑ Top](#operations)
 
@@ -4256,7 +4504,11 @@ Parameter | Type | Description
 `$predicate` | `callable\|string\|array` | (optional) Same forms as `filter()`
 **Returns** | `array\|iterable` |
 
-
+**Example:**
+```php
+Dash\omitBy(['a' => 1, 'b' => 0, 'c' => 3], function ($n) { return $n < 2; });
+// === ['c' => 3]
+```
 
 [↑ Top](#operations)
 
@@ -4313,7 +4565,11 @@ Parameter | Type | Description
 `$padValue` | `mixed` | (optional)
 **Returns** | `array` |
 
-
+**Example:**
+```php
+Dash\pad([1, 2], 6, 0);
+// === [0, 0, 1, 2, 0, 0]
+```
 
 [↑ Top](#operations)
 
@@ -4501,7 +4757,11 @@ Parameter | Type | Description
 `$predicate` | `callable\|string\|array` | (optional) Same forms as `filter()`
 **Returns** | `array\|iterable` |
 
-
+**Example:**
+```php
+Dash\pickBy(['a' => 1, 'b' => 0, 'c' => 3], function ($n) { return $n > 0; });
+// === ['a' => 1, 'c' => 3]
+```
 
 [↑ Top](#operations)
 
@@ -4613,7 +4873,11 @@ Parameter | Type | Description
 `$iterable` | `iterable\|stdClass\|null` |
 **Returns** | `mixed\|null` |
 
-
+**Example:**
+```php
+Dash\pop([1, 2, 3]);
+// === 3
+```
 
 [↑ Top](#operations)
 
@@ -4633,7 +4897,13 @@ Parameter | Type | Description
 `...$values` | `mixed` |
 **Returns** | `array` |
 
+**Example:**
+```php
+Dash\prepend([2, 3], 1);
+// === [1, 2, 3]
 
+@alias unshift
+```
 
 [↑ Top](#operations)
 
@@ -4655,7 +4925,11 @@ Parameter | Type | Description
 `$iterable` | `iterable\|stdClass\|null` |
 **Returns** | `numeric` |
 
-
+**Example:**
+```php
+Dash\product([2, 3, 4]);
+// === 24
+```
 
 [↑ Top](#operations)
 
@@ -4751,7 +5025,12 @@ Parameter | Type | Description
 `$max` | `integer\|null` | (optional)
 **Returns** | `integer` |
 
+**Example:**
+```php
+Dash\random(1, 6);  // inclusive, like a die roll
 
+Dash\random(9);     // same as `random(0, 9)`
+```
 
 [↑ Top](#operations)
 
@@ -4774,7 +5053,17 @@ Parameter | Type | Description
 `$step` | `numeric` | (optional)
 **Returns** | `array` |
 
+**Example:**
+```php
+Dash\range(3);
+// === [0, 1, 2]
 
+Dash\range(1, 5);
+// === [1, 2, 3, 4]
+
+Dash\range(10, 0, -2);
+// === [10, 8, 6, 4, 2]
+```
 
 [↑ Top](#operations)
 
@@ -4828,7 +5117,15 @@ Parameter | Type | Description
 `$initial` | `mixed` | (optional) Initial value
 **Returns** | `mixed` |
 
-
+**Example:**
+```php
+Dash\reduceRight(
+	['a', 'b', 'c'],
+	function ($acc, $ch) { return $acc . $ch; },
+	''
+);
+// === 'cba'
+```
 
 [↑ Top](#operations)
 
@@ -4916,7 +5213,11 @@ Parameter | Type | Description
 `$predicate` | `callable\|string\|array` | (optional)
 **Returns** | `array` |
 
-
+**Example:**
+```php
+Dash\remove([1, 2, 3, 4], 'Dash\isEven');
+// === [1, 3]
+```
 
 [↑ Top](#operations)
 
@@ -4939,7 +5240,11 @@ Parameter | Type | Description
 `$predicate` | `callable\|string\|array` | (optional)
 **Returns** | `array` |
 
-
+**Example:**
+```php
+Dash\removeFirst([1, 2, 1, 3], function ($n) { return $n === 1; });
+// === [2, 1, 3]
+```
 
 [↑ Top](#operations)
 
@@ -4962,7 +5267,11 @@ Parameter | Type | Description
 `$predicate` | `callable\|string\|array` | (optional)
 **Returns** | `array` |
 
-
+**Example:**
+```php
+Dash\removeLast([1, 2, 1, 3], function ($n) { return $n === 1; });
+// === [1, 2, 3]
+```
 
 [↑ Top](#operations)
 
@@ -4985,7 +5294,11 @@ Parameter | Type | Description
 `$count` | `numeric` |
 **Returns** | `array` |
 
-
+**Example:**
+```php
+Dash\repeat('x', 3);
+// === ['x', 'x', 'x']
+```
 
 [↑ Top](#operations)
 
@@ -5127,7 +5440,13 @@ Parameter | Type | Description
 `$iterable` | `iterable\|stdClass\|null` |
 **Returns** | `mixed\|null` |
 
+**Example:**
+```php
+Dash\sample([10, 20, 30]);  // one of 10, 20, or 30
 
+Dash\sample([]);
+// === null
+```
 
 [↑ Top](#operations)
 
@@ -5153,7 +5472,11 @@ Parameter | Type | Description
 `$initial` | `mixed` | (optional) Initial value
 **Returns** | `array\|iterable` |
 
-
+**Example:**
+```php
+Dash\scan([1, 2, 3], function ($acc, $n) { return $acc + $n; }, 0);
+// === [0, 1, 3, 6]
+```
 
 [↑ Top](#operations)
 
@@ -5236,7 +5559,13 @@ Parameter | Type | Description
 `$callable` | `callable` |
 **Returns** | `void` |
 
+**Example:**
+```php
+Dash\setCustom('triple', function ($n) { return $n * 3; });
 
+Dash\Dash::triple(4);
+// === 12
+```
 
 [↑ Top](#operations)
 
@@ -5258,7 +5587,11 @@ Parameter | Type | Description
 `$iterable` | `iterable\|stdClass\|null` |
 **Returns** | `mixed\|null` |
 
-
+**Example:**
+```php
+Dash\shift([1, 2, 3]);
+// === 1
+```
 
 [↑ Top](#operations)
 
@@ -5280,7 +5613,12 @@ Parameter | Type | Description
 `$iterable` | `iterable\|stdClass\|null` |
 **Returns** | `array` |
 
+**Example:**
+```php
+$xs = Dash\shuffle([1, 2, 3, 4, 5]);  // permutation of the input
 
+@alias randomize
+```
 
 [↑ Top](#operations)
 
@@ -5341,7 +5679,11 @@ Parameter | Type | Description
 `$length` | `integer\|null` |
 **Returns** | `array\|iterable` |
 
-
+**Example:**
+```php
+Dash\slice([1, 2, 3, 4, 5], 1, 2);
+// === [2, 3]
+```
 
 [↑ Top](#operations)
 
@@ -5428,7 +5770,11 @@ Parameter | Type | Description
 `$iterable` | `iterable\|stdClass\|null` |
 **Returns** | `array` |
 
-
+**Example:**
+```php
+Dash\sortKeys(['z' => 1, 'a' => 2]);
+// === ['a' => 2, 'z' => 1]
+```
 
 [↑ Top](#operations)
 
@@ -5454,7 +5800,11 @@ Parameter | Type | Description
 `$comparator` | `callable` | (optional)
 **Returns** | `integer` |
 
-
+**Example:**
+```php
+Dash\sortedIndex([10, 20, 30], 25);
+// === 2  (insert 25 before 30)
+```
 
 [↑ Top](#operations)
 
@@ -5481,7 +5831,11 @@ Parameter | Type | Description
 `$replacement` | `iterable\|stdClass\|null` | (optional)
 **Returns** | `array` | Removed segment (reindexed)
 
-
+**Example:**
+```php
+Dash\splice([1, 2, 3, 4], 1, 2, [9, 9]);
+// === [2, 3]  (the removed segment; input is not mutated)
+```
 
 [↑ Top](#operations)
 
@@ -5763,7 +6117,11 @@ Parameter | Type | Description
 `$iteratee` | `callable` | (optional)
 **Returns** | `array` |
 
-
+**Example:**
+```php
+Dash\times(3, function ($i) { return $i * $i; });
+// === [0, 1, 4]
+```
 
 [↑ Top](#operations)
 
@@ -5843,7 +6201,13 @@ Parameter | Type | Description
 `$iterable` | `iterable\|stdClass\|null` |
 **Returns** | `array` |
 
+**Example:**
+```php
+Dash\toPairs(['a' => 1, 'b' => 2]);
+// === [['a', 1], ['b', 2]]
 
+@alias pairs
+```
 
 [↑ Top](#operations)
 
@@ -5867,7 +6231,14 @@ Parameter | Type | Description
 `$value` | `mixed` |
 **Returns** | `string` |
 
+**Example:**
+```php
+Dash\typeOf(12);
+// === 'integer'
 
+Dash\typeOf(new \stdClass());
+// === 'stdClass'
+```
 
 [↑ Top](#operations)
 
@@ -6061,7 +6432,10 @@ Parameter | Type | Description
 `$prefix` | `string` | (optional)
 **Returns** | `string` |
 
-
+**Example:**
+```php
+Dash\uniqueId('item_');  // e.g. 'item_1', then 'item_2', ...
+```
 
 [↑ Top](#operations)
 
@@ -6082,7 +6456,13 @@ Parameter | Type | Description
 `$onFalse` | `callable` |
 **Returns** | `callable` |
 
+**Example:**
+```php
+$abs = Dash\unless(function ($n) { return $n >= 0; }, function ($n) { return -$n; });
 
+$abs(-4);
+// === 4
+```
 
 [↑ Top](#operations)
 
@@ -6155,7 +6535,16 @@ Parameter | Type | Description
 `$onTrue` | `callable` |
 **Returns** | `callable` |
 
+**Example:**
+```php
+$squareIfNum = Dash\when('Dash\isNumber', function ($n) { return $n * $n; });
 
+$squareIfNum(5);
+// === 25
+
+$squareIfNum('x');
+// === 'x'
+```
 
 [↑ Top](#operations)
 
@@ -6238,7 +6627,18 @@ Parameter | Type | Description
 `$wrapper` | `callable` |
 **Returns** | `callable` |
 
+**Example:**
+```php
+$logged = Dash\wrap(
+	function ($x) { return $x + 1; },
+	function ($fn, $x) {
+		return 100 + call_user_func($fn, $x);
+	}
+);
 
+$logged(1);
+// === 102
+```
 
 [↑ Top](#operations)
 

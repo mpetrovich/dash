@@ -14,6 +14,10 @@ namespace Dash;
  * @param integer|null $length (optional)
  * @param iterable|stdClass|null $replacement (optional)
  * @return array Removed segment (reindexed)
+ *
+ * @example
+	Dash\splice([1, 2, 3, 4], 1, 2, [9, 9]);
+	// === [2, 3]  (the removed segment; input is not mutated)
  */
 function splice($iterable, $offset, $length = null, $replacement = [])
 {

@@ -13,6 +13,12 @@ namespace Dash;
  * @param callable $predicate
  * @param callable $onFalse
  * @return callable
+ *
+ * @example
+	$abs = Dash\unless(function ($n) { return $n >= 0; }, function ($n) { return -$n; });
+
+	$abs(-4);
+	// === 4
  */
 function unless(callable $predicate, callable $onFalse)
 {

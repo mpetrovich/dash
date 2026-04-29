@@ -9,6 +9,10 @@ namespace Dash;
  *
  * @param mixed $value
  * @return boolean
+ *
+ * @example
+	Dash\isTraversable(new \ArrayIterator([]));
+	// === true
  */
 function isTraversable($value)
 {

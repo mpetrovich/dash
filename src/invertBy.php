@@ -12,6 +12,13 @@ namespace Dash;
  * @param iterable|stdClass|null $iterable
  * @param callable|string|integer $iteratee (optional) Same forms as `mapValues()`
  * @return array
+ *
+ * @example
+	Dash\invertBy(['a' => 1, 'b' => 2, 'c' => 1]);
+	// === ['1' => ['a', 'c'], '2' => ['b']]
+
+	Dash\invertBy(['x' => 'hello', 'y' => 'hey'], function ($s) { return strlen($s); });
+	// === ['5' => ['x'], '3' => ['y']]
  */
 function invertBy($iterable, $iteratee = 'Dash\identity')
 {

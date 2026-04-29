@@ -12,6 +12,11 @@ namespace Dash;
  * @param integer $min (optional)
  * @param integer|null $max (optional)
  * @return integer
+ *
+ * @example
+	Dash\random(1, 6);  // inclusive, like a die roll
+
+	Dash\random(9);     // same as `random(0, 9)`
  */
 function random($min = 0, $max = null)
 {

@@ -10,6 +10,10 @@ namespace Dash;
  * @param mixed $value
  * @param numeric $count
  * @return array
+ *
+ * @example
+	Dash\repeat('x', 3);
+	// === ['x', 'x', 'x']
  */
 function repeat($value, $count)
 {

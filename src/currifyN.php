@@ -17,6 +17,13 @@ namespace Dash;
  * @param array $args (optional) Initial arguments to pass to the final curried function
  * @param integer $rotate (optional) The number of arguments to move from start to end; see Dash\rotate()
  * @return function|mixed
+ *
+ * @example
+	$add = function ($a, $b) { return $a + $b; };
+
+	$add5 = Dash\currifyN($add, 2, [5]);
+	$add5(3);
+	// === 8
  */
 function currifyN(callable $callable, $totalArgs, array $args = [], $rotate = 1)
 {

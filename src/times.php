@@ -10,6 +10,10 @@ namespace Dash;
  * @param numeric $n
  * @param callable $iteratee (optional)
  * @return array
+ *
+ * @example
+	Dash\times(3, function ($i) { return $i * $i; });
+	// === [0, 1, 4]
  */
 function times($n, $iteratee = 'Dash\identity')
 {

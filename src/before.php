@@ -12,6 +12,13 @@ namespace Dash;
  * @param integer $n
  * @param callable $callable
  * @return callable
+ *
+ * @example
+	$fn = Dash\before(3, function ($x) { return $x + 1; });
+
+	$fn(1);  // === 2
+	$fn(2);  // === 3
+	$fn(9);  // === 3  (threshold reached; returns last result)
  */
 function before($n, callable $callable)
 {

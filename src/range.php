@@ -15,6 +15,16 @@ namespace Dash;
  * @return array
  *
  * @throws InvalidArgumentException if `$step` is 0
+ *
+ * @example
+	Dash\range(3);
+	// === [0, 1, 2]
+
+	Dash\range(1, 5);
+	// === [1, 2, 3, 4]
+
+	Dash\range(10, 0, -2);
+	// === [10, 8, 6, 4, 2]
  */
 function range($start, $end = null, $step = 1)
 {

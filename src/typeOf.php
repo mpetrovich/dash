@@ -11,6 +11,13 @@ namespace Dash;
  *
  * @param mixed $value
  * @return string
+ *
+ * @example
+	Dash\typeOf(12);
+	// === 'integer'
+
+	Dash\typeOf(new \stdClass());
+	// === 'stdClass'
  */
 function typeOf($value)
 {

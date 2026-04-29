@@ -13,6 +13,10 @@ namespace Dash;
  * @param integer $length
  * @param mixed $padValue (optional)
  * @return array
+ *
+ * @example
+	Dash\pad([1, 2], 6, 0);
+	// === [0, 0, 1, 2, 0, 0]
  */
 function pad($iterable, $length, $padValue = null)
 {

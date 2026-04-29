@@ -11,6 +11,15 @@ namespace Dash;
  * @param callable|string|integer $path
  * @param mixed ...$args
  * @return array
+ *
+ * @example
+	$rows = [
+		['n' => 1, 'fn' => function ($m) { return $m * 2; }],
+		['n' => 3, 'fn' => function ($m) { return $m + 1; }],
+	];
+
+	Dash\invoke($rows, 'fn', 10);
+	// === [20, 11]
  */
 function invoke($iterable, $path /*, ...$args */)
 {

@@ -9,6 +9,13 @@ namespace Dash;
  *
  * @param mixed $value
  * @return boolean
+ *
+ * @example
+	Dash\isArray([]);
+	// === true
+
+	Dash\isArray(new \ArrayObject());
+	// === false
  */
 function isArray($value)
 {

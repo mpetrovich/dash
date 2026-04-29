@@ -9,6 +9,13 @@ namespace Dash;
  *
  * @param mixed $value
  * @return boolean
+ *
+ * @example
+	Dash\isNumber(3);
+	// === true
+
+	Dash\isNumber('3');
+	// === false
  */
 function isNumber($value)
 {

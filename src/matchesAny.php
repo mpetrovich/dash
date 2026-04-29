@@ -12,6 +12,13 @@ namespace Dash;
  * @param iterable|stdClass|null $iterable
  * @param iterable|stdClass|null $properties
  * @return boolean
+ *
+ * @example
+	Dash\matchesAny(
+		[['id' => 1, 'role' => 'admin'], ['id' => 2, 'role' => 'member']],
+		['role' => 'member']
+	);
+	// === true
  */
 function matchesAny($iterable, $properties)
 {

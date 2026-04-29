@@ -9,6 +9,10 @@ namespace Dash;
  *
  * @param mixed $value
  * @return callable
+ *
+ * @example
+	$alwaysSeven = Dash\constant(7);
+	$alwaysSeven();  // === 7
  */
 function constant($value)
 {

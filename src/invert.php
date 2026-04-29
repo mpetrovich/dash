@@ -14,6 +14,10 @@ namespace Dash;
  * @param iterable|stdClass|null $iterable
  * @return array
  *
+ * @example
+	Dash\invert(['a' => 1, 'b' => 2, 'c' => 1]);
+	// === ['1' => 'c', '2' => 'b']  (later duplicate values win)
+ *
  * @alias invertObj
  */
 function invert($iterable)

@@ -9,6 +9,10 @@ namespace Dash;
  *
  * @param mixed $value
  * @return boolean
+ *
+ * @example
+	Dash\isBoolean(false);
+	// === true
  */
 function isBoolean($value)
 {

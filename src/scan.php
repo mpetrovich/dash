@@ -15,6 +15,10 @@ namespace Dash;
  * @param callable $iteratee Called with `($result, $value, $key)` for each element
  * @param mixed $initial (optional) Initial value
  * @return array|iterable
+ *
+ * @example
+	Dash\scan([1, 2, 3], function ($acc, $n) { return $acc + $n; }, 0);
+	// === [0, 1, 3, 6]
  */
 function scan($iterable, $iteratee, $initial = [])
 {

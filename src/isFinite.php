@@ -9,6 +9,13 @@ namespace Dash;
  *
  * @param mixed $value
  * @return boolean
+ *
+ * @example
+	Dash\isFinite(1.5);
+	// === true
+
+	Dash\isFinite(INF);
+	// === false
  */
 function isFinite($value)
 {

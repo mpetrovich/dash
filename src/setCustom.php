@@ -10,6 +10,12 @@ namespace Dash;
  * @param string $name
  * @param callable $callable
  * @return void
+ *
+ * @example
+	Dash\setCustom('triple', function ($n) { return $n * 3; });
+
+	Dash\Dash::triple(4);
+	// === 12
  */
 function setCustom($name, callable $callable)
 {

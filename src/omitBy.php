@@ -12,6 +12,10 @@ namespace Dash;
  * @param iterable|stdClass|null $iterable
  * @param callable|string|array $predicate (optional) Same forms as `filter()`
  * @return array|iterable
+ *
+ * @example
+	Dash\omitBy(['a' => 1, 'b' => 0, 'c' => 3], function ($n) { return $n < 2; });
+	// === ['c' => 3]
  */
 function omitBy($iterable, $predicate = 'Dash\identity')
 {

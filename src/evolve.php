@@ -12,6 +12,13 @@ namespace Dash;
  * @param iterable|stdClass|null $input
  * @param array $transformations
  * @return array|object
+ *
+ * @example
+	Dash\evolve(
+		['count' => 2, 'label' => 'hi'],
+		['count' => function ($n) { return $n * 10; }, 'label' => 'strtoupper']
+	);
+	// === ['count' => 20, 'label' => 'HI']
  */
 function evolve($input, array $transformations)
 {

@@ -9,6 +9,13 @@ namespace Dash;
  *
  * @param mixed $value
  * @return boolean
+ *
+ * @example
+	Dash\isScalar('text');
+	// === true
+
+	Dash\isScalar([]);
+	// === false
  */
 function isScalar($value)
 {

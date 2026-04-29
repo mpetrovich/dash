@@ -13,6 +13,14 @@ namespace Dash;
  * @param callable $iteratee Called with `($result, $value, $key)` for each element from right to left
  * @param mixed $initial (optional) Initial value
  * @return mixed
+ *
+ * @example
+	Dash\reduceRight(
+		['a', 'b', 'c'],
+		function ($acc, $ch) { return $acc . $ch; },
+		''
+	);
+	// === 'cba'
  */
 function reduceRight($iterable, $iteratee, $initial = [])
 {

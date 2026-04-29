@@ -9,6 +9,10 @@ namespace Dash;
  *
  * @param iterable|stdClass|null $iterable
  * @return mixed|null
+ *
+ * @example
+	Dash\pop([1, 2, 3]);
+	// === 3
  */
 function pop($iterable)
 {

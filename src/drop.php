@@ -14,6 +14,10 @@ namespace Dash;
  * @param iterable|stdClass|null $iterable
  * @param integer $count If negative, drops values from the end (array-like inputs only)
  * @return array|iterable
+ *
+ * @example
+	Dash\drop([1, 2, 3, 4, 5], 2);
+	// === [3, 4, 5]
  */
 function drop($iterable, $count = 1)
 {

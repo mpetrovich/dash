@@ -9,6 +9,10 @@ namespace Dash;
  *
  * @param mixed $value
  * @return boolean
+ *
+ * @example
+	Dash\isNaN(NAN);
+	// === true
  */
 function isNaN($value)
 {

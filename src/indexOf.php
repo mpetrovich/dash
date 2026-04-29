@@ -16,6 +16,13 @@ namespace Dash;
  * @param numeric $fromIndex (optional) Start index (negative offsets from the end)
  * @param callable $comparator (optional)
  * @return integer
+ *
+ * @example
+	Dash\indexOf(['a', 'b', 'c', 'b'], 'b');
+	// === 1
+
+	Dash\indexOf(['a', 'b', 'c', 'b'], 'b', 2);
+	// === 3
  */
 function indexOf($iterable, $value, $fromIndex = 0, $comparator = 'Dash\equal')
 {

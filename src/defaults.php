@@ -11,6 +11,13 @@ namespace Dash;
  *
  * @param iterable|stdClass|null $input
  * @return array
+ *
+ * @example
+	Dash\defaults(
+		['a' => 1, 'b' => null],
+		['b' => 2, 'c' => 3]
+	);
+	// === ['a' => 1, 'b' => 2, 'c' => 3]
  */
 function defaults($input /*, ...$sources */)
 {

@@ -9,6 +9,10 @@ namespace Dash;
  *
  * @param mixed $value
  * @return boolean
+ *
+ * @example
+	Dash\isNull(null);
+	// === true
  */
 function isNull($value)
 {

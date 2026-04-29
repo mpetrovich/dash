@@ -11,6 +11,17 @@ namespace Dash;
  *
  * @param callable $callable
  * @return callable
+ *
+ * @example
+	$calls = 0;
+	$expensive = Dash\memoize(function ($n) use (&$calls) {
+		$calls++;
+		return $n * $n;
+	});
+
+	$expensive(5);
+	$expensive(5);
+	// $calls === 1
  */
 function memoize(callable $callable)
 {

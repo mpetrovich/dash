@@ -12,6 +12,10 @@ namespace Dash;
  * @param iterable|stdClass|null $iterable
  * @param callable|string|array $predicate (optional) Same forms as `filter()`
  * @return array|iterable
+ *
+ * @example
+	Dash\pickBy(['a' => 1, 'b' => 0, 'c' => 3], function ($n) { return $n > 0; });
+	// === ['a' => 1, 'c' => 3]
  */
 function pickBy($iterable, $predicate = 'Dash\identity')
 {

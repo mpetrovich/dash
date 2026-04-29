@@ -14,6 +14,10 @@ namespace Dash;
  * @param iterable|stdClass|null $iterable
  * @param callable|string|integer $iteratee (optional) Same forms as `mapValues()`
  * @return array|iterable
+ *
+ * @example
+	Dash\mapKeys(['a' => 1, 'b' => 2], function ($v, $k) { return strtoupper($k); });
+	// === ['A' => 1, 'B' => 2]
  */
 function mapKeys($iterable, $iteratee = 'Dash\identity')
 {

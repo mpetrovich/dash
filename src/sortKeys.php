@@ -9,6 +9,10 @@ namespace Dash;
  *
  * @param iterable|stdClass|null $iterable
  * @return array
+ *
+ * @example
+	Dash\sortKeys(['z' => 1, 'a' => 2]);
+	// === ['a' => 2, 'z' => 1]
  */
 function sortKeys($iterable)
 {

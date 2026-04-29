@@ -13,6 +13,10 @@ namespace Dash;
  * @param callable|string $iteratee (optional) If a callable, invoked with `($value, $key, $iterable)`
  * @param string $defaultGroup (optional) The key used when `$iteratee` returns `null`
  * @return array A new associative array of `[groupKey => count]`
+ *
+ * @example
+	Dash\countBy(['one', 'two', 'three', 'two'], function ($s) { return strlen($s); });
+	// === [3 => 3, 5 => 1]
  */
 // phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh -- mirrors groupBy iteratee/path dispatch rules
 function countBy($iterable, $iteratee = 'Dash\identity', $defaultGroup = null)

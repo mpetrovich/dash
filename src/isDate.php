@@ -9,6 +9,10 @@ namespace Dash;
  *
  * @param mixed $value
  * @return boolean
+ *
+ * @example
+	Dash\isDate(new \DateTimeImmutable());
+	// === true
  */
 function isDate($value)
 {

@@ -16,6 +16,13 @@ namespace Dash;
  * @param numeric|null $fromIndex (optional) Last index to consider (negative offsets from the end)
  * @param callable $comparator (optional)
  * @return integer
+ *
+ * @example
+	Dash\lastIndexOf(['a', 'b', 'c', 'b'], 'b');
+	// === 3
+
+	Dash\lastIndexOf(['a', 'b', 'c', 'b'], 'b', 2);
+	// === 1
  */
 function lastIndexOf($iterable, $value, $fromIndex = null, $comparator = 'Dash\equal')
 {

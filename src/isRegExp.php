@@ -9,6 +9,13 @@ namespace Dash;
  *
  * @param mixed $value
  * @return boolean
+ *
+ * @example
+	Dash\isRegExp('/^hello$/');
+	// === true
+
+	Dash\isRegExp('not a pattern');
+	// === false
  */
 function isRegExp($value)
 {
