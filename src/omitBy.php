@@ -1,0 +1,23 @@
+<?php
+
+namespace Dash;
+
+/**
+ * Omits elements of `$iterable` for which `$predicate` returns truthy, preserving keys.
+ *
+ * @see pickBy(), filter()
+ *
+ * @param iterable|stdClass|null $iterable
+ * @param callable|string|array $predicate (optional) Same forms as `filter()`
+ * @return array|iterable
+ */
+function omitBy($iterable, $predicate = 'Dash\identity')
+{
+	assertType($iterable, ['Generator', 'iterable', 'stdClass', 'null'], __FUNCTION__);
+
+	if (!is_callable($predicate)) {
+		$predicate = call_user_func_array('Dash\matchesProperty', (array) $predicate);
+	}
+
+	return pickBy($iterable, negate($predicate));
+}

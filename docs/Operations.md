@@ -80,6 +80,7 @@ Operation | Signature | Curried
 [negate](#negate) | `negate(callable $predicate): callable` | `Curry\negate`
 [nth](#nth) | `nth($iterable, $index, $default = null): mixed` | `Curry\nth`
 [omit](#omit) | `omit($iterable, $keys): array` | `Curry\omit`
+[omitBy](#omitby) | `omitBy($iterable, $predicate = 'Dash\identity'): array\|iterable` | `Curry\omitBy`
 [once](#once) | `once(callable $callable): callable` | 
 [partial](#partial) | `partial($callable /*, ...args */): callable` | 
 [partialRight](#partialright) | `partialRight($callable /*, ...args */): callable` | 
@@ -3145,6 +3146,29 @@ Parameter | Type | Description
 Dash\omit(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], ['b', 'c']);
 // === ['a' => 1, 'd' => 4]
 ```
+
+[↑ Top](#operations)
+
+omitBy
+---
+See also: `pickBy()`, `filter()`
+
+```php
+omitBy($iterable, $predicate = 'Dash\identity'): array|iterable
+
+# Curried: (all parameters required)
+Curry\omitBy($predicate, $iterable)
+```
+Omits elements of `$iterable` for which `$predicate` returns truthy, preserving keys.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$predicate` | `callable\|string\|array` | (optional) Same forms as `filter()`
+**Returns** | `array\|iterable` |
+
+
 
 [↑ Top](#operations)
 
