@@ -102,7 +102,7 @@ make release v=1.2.3
 
 -   Dash supports legacy versions of PHP, so make sure your contributions work on the oldest supported version of PHP.
 -   Dash uses [PHPUnit](https://phpunit.de/) for unit testing, and unit tests are automatically run on [Travis CI](https://travis-ci.org/mpetrovich/dash) against new branches and pull requests. Tests are run across all supported PHP versions.
--   Dash uses [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer) for linting.
+-   Dash uses [PHP_CodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer) for linting.
 -   Dash is **strict** about following [semantic versioning](https://semver.org/).
 
 ### Docker workflow (optional)
