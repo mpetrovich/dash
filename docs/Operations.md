@@ -67,6 +67,7 @@ Operation | Signature | Curried
 [omit](#omit) | `omit($iterable, $keys): array` | `Curry\omit`
 [partial](#partial) | `partial($callable /*, ...args */): callable` | 
 [partialRight](#partialright) | `partialRight($callable /*, ...args */): callable` | 
+[partition](#partition) | `partition($iterable, $predicate = 'Dash\identity'): array` | `Curry\partition`
 [pick](#pick) | `pick($iterable, $keys): array` | `Curry\pick`
 [pipe](#pipe) | `pipe(callable ...$fns): callable` | 
 [pluck](#pluck) | `pluck($iterable, $path, $default = null): array` | `Curry\pluck`
@@ -2750,6 +2751,42 @@ $sayHowdy = Dash\partialRight($greet, 'Howdy', Dash\_);
 
 $sayHello('Mark');  // === 'Hello, Mark!'
 $sayHowdy('Jane');  // === 'Howdy, Jane!'
+```
+
+[↑ Top](#operations)
+
+partition
+---
+See also: `filter()`, `reject()`
+
+```php
+partition($iterable, $predicate = 'Dash\identity'): array
+
+# Curried: (all parameters required)
+Curry\partition($predicate, $iterable)
+```
+Splits `$iterable` into two lists: elements for which `$predicate` returns truthy, and the rest.
+
+Keys are preserved in each list unless `$iterable` is an indexed array.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$predicate` | `callable\|string\|array` | (optional) Same forms as `filter()`: callable `($value, $key, $iterable)`, string path for `matchesProperty`, or `[$field, $value]`.
+**Returns** | `array` | A two-element array: `[ $passing, $failing ]`, each an array
+
+**Example:**
+```php
+Dash\partition([1, 2, 3, 4], 'Dash\isEven');
+// === [[2, 4], [1, 3]]
+
+```
+
+**Example:** With associative array
+```php
+Dash\partition(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], 'Dash\isEven');
+// === [['b' => 2, 'd' => 4], ['a' => 1, 'c' => 3]]
 ```
 
 [↑ Top](#operations)

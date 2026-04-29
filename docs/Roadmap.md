@@ -90,7 +90,7 @@
 -   [ ] now
 -   [ ] once
 -   [ ] pairs
--   [ ] partition
+-   [x] partition
 -   [ ] provide / dash
 -   [ ] reduceRight
 -   [ ] sample
