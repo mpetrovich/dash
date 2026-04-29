@@ -70,6 +70,7 @@
             "src/Generator/mapValues.php",
             "src/Generator/take.php",
             "src/Generator/takeWhile.php",
+            "src/Generator/uniqueBy.php",
             "src/Generator/zip.php",
             "src/Generator/zipAll.php",
             "src/Generator/zipWith.php",
@@ -134,6 +135,7 @@
             "src/unary.php",
             "src/union.php",
             "src/unique.php",
+            "src/uniqueBy.php",
             "src/unzip.php",
             "src/values.php",
             "src/where.php",
@@ -211,6 +213,7 @@
             "src/Curry/toObject.php",
             "src/Curry/unary.php",
             "src/Curry/unzip.php",
+            "src/Curry/uniqueBy.php",
             "src/Curry/values.php",
             "src/Curry/zipWith.php"
         ]

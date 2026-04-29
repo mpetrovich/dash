@@ -90,6 +90,7 @@ Operation | Signature | Curried
 [unary](#unary) | `unary(callable $callable): callable` | `Curry\unary`
 [union](#union) | `union($iterable /*, ...iterables */): array` | 
 [unique](#unique--distinct) / distinct | `unique($iterable): array` | 
+[uniqueBy](#uniqueby--uniqby--distinctby) / uniqBy / distinctBy | `uniqueBy($iterable, $iteratee = 'Dash\identity'): array\|iterable` | `Curry\uniqueBy`
 [unzip](#unzip--transpose) / transpose | `unzip($iterable): array` | `Curry\unzip`
 [values](#values) | `values($iterable): array` | `Curry\values`
 [zip](#zip) | `zip(/* ...$iterables */): array\|iterable` | 
@@ -3653,6 +3654,48 @@ Dash\unique([1, 2, 2, 3, 1]);
 ```php
 Dash\unique(['a' => 1, 'b' => 2, 'c' => 1]);
 // === ['a' => 1, 'b' => 2]
+```
+
+[↑ Top](#operations)
+
+uniqueBy / uniqBy / distinctBy
+---
+See also: `unique()`, `keyBy()`, `groupBy()`
+
+```php
+uniqueBy($iterable, $iteratee = 'Dash\identity'): array|iterable
+
+# Curried: (all parameters required)
+Curry\uniqueBy($iteratee, $iterable)
+```
+Returns a new list of unique values, where uniqueness is determined by the return value of `$iteratee` for each element.
+
+The first occurrence of each computed key is kept. Keys are preserved unless `$iterable` is an indexed array.
+If `$iterable` is a `Generator`, a lazy `Generator` is returned.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$iteratee` | `callable\|string\|array\|int` | (optional) Same resolution as `groupBy()`: path on each value, or callable `($value, $key, $iterable)`.
+**Returns** | `array\|iterable` |
+
+**Example:**
+```php
+Dash\uniqueBy([1, 2, 1, 3, 2], 'Dash\identity');
+// === [1, 2, 3]
+
+```
+
+**Example:** With a path iteratee
+```php
+$rows = [
+	['id' => 1, 'name' => 'a'],
+	['id' => 1, 'name' => 'b'],
+	['id' => 2, 'name' => 'c'],
+];
+Dash\uniqueBy($rows, 'id');
+// === [['id' => 1, 'name' => 'a'], ['id' => 2, 'name' => 'c']]
 ```
 
 [↑ Top](#operations)

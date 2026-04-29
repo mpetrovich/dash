@@ -121,7 +121,7 @@ No new operations
 
 ## [Lodash](https://lodash.com/docs/4.17.4)
 
-TBD
+-   [x] uniqueBy
 
 ## [Ramda](http://ramdajs.com/docs)
 
