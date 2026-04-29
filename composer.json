@@ -152,6 +152,7 @@
             "src/matchesProperty.php",
             "src/max.php",
             "src/median.php",
+            "src/memoize.php",
             "src/merge.php",
             "src/min.php",
             "src/negate.php",

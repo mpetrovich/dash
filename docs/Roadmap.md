@@ -71,7 +71,7 @@ None.
 -   [ ] isTraversable
 -   [x] lastIndexOf
 -   [x] lastly
--   [ ] memoize
+-   [x] memoize
 -   [ ] mixin / setCustom
 -   [x] noop
 -   [x] now
