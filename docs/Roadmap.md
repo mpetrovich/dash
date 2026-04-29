@@ -46,7 +46,7 @@ None.
 ## [bdelespierre/underscore.php](https://github.com/bdelespierre/underscore.php)
 
 -   [x] after
--   [ ] before
+-   [x] before
 -   [ ] bind
 -   [ ] bindAll
 -   [ ] bindClass

@@ -42,6 +42,7 @@
             "src/assertType.php",
             "src/at.php",
             "src/average.php",
+            "src/before.php",
             "src/call.php",
             "src/chain.php",
             "src/chunk.php",

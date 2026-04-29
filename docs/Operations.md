@@ -15,6 +15,7 @@ Operation | Signature | Curried
 [assertType](#asserttype) | `assertType($value, $type, $funcName = __FUNCTION__): void` | `Curry\assertType`
 [at](#at) | `at($iterable, $index, $default = null): mixed` | `Curry\at`
 [average](#average--mean) / mean | `average($iterable): double\|null` | `Curry\average`
+[before](#before) | `before($n, callable $callable): callable` | 
 [call](#call) | `call(callable $callable /*, ...args */): mixed` | 
 [chain](#chain) | `chain($input = null): Dash\Dash` | `Curry\chain`
 [chunk](#chunk--splitevery) / splitEvery | `chunk($iterable, $size): array\|iterable` | `Curry\chunk`
@@ -534,6 +535,28 @@ Parameter | Type | Description
 Dash\average([2, 3, 5, 8]);
 // === 4.5
 ```
+
+[↑ Top](#operations)
+
+before
+---
+
+
+```php
+before($n, callable $callable): callable
+```
+Creates a function that invokes `$callable` while called fewer than `$n` times.
+
+Once the threshold is reached, it returns the last computed result.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$n` | `integer` |
+`$callable` | `callable` |
+**Returns** | `callable` |
+
+
 
 [↑ Top](#operations)
 
