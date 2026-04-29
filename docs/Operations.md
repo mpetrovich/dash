@@ -129,6 +129,7 @@ Operation | Signature | Curried
 [sample](#sample) | `sample($iterable): mixed\|null` | `Curry\sample`
 [scan](#scan) | `scan($iterable, $iteratee, $initial = []): array\|iterable` | `Curry\scan`
 [set](#set) | `set(&$input, $path, $value): mixed` | 
+[shift](#shift) | `shift($iterable): mixed\|null` | `Curry\shift`
 [shuffle](#shuffle--randomize) / randomize | `shuffle($iterable): array` | `Curry\shuffle`
 [size](#size--count) / count | `size($value, $encoding = 'UTF-8'): integer` | `Curry\size`
 [slice](#slice) | `slice($iterable, $offset = 0, $length = null): array\|iterable` | `Curry\slice`
@@ -4625,6 +4626,28 @@ Dash\set($input, 'a.b.c', 'value');
 	]
 ]
 ```
+
+[↑ Top](#operations)
+
+shift
+---
+
+
+```php
+shift($iterable): mixed|null
+
+# Curried: (all parameters required)
+Curry\shift($iterable)
+```
+Returns the first value removed from `$iterable` (PHP-style shift behavior).
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+**Returns** | `mixed\|null` |
+
+
 
 [↑ Top](#operations)
 

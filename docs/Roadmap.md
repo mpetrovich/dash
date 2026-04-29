@@ -14,7 +14,7 @@ None.
 -   [x] product
 -   [x] random
 -   [x] invert / flip
--   [ ] shift
+-   [x] shift
 -   [ ] pop
 -   [x] slice
 -   [ ] splice
