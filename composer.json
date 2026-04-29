@@ -60,6 +60,7 @@
             "src/each.php",
             "src/equal.php",
             "src/filter.php",
+            "src/flip.php",
             "src/Generator/chunk.php",
             "src/Generator/compact.php",
             "src/Generator/each.php",

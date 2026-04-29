@@ -44,6 +44,7 @@ Operation | Signature | Curried
 [flatten](#flatten) | `flatten($iterable): array` | 
 [flattenDeep](#flattendeep) | `flattenDeep($iterable): array\|iterable` | `Curry\flattenDeep`
 [flattenDepth](#flattendepth) | `flattenDepth($iterable, $depth = 1): array\|iterable` | `Curry\flattenDepth`
+[flip](#flip) | `flip(callable $callable): callable` | 
 [get](#get) | `get($input, $path, $default = null): mixed` | `Curry\get`
 [getDirect](#getdirect) | `getDirect($input, $key, $default = null): mixed` | `Curry\getDirect`
 [getDirectRef](#getdirectref) | `getDirectRef(&$input, $key): mixed` | 
@@ -1802,6 +1803,36 @@ Dash\flattenDepth([[1, [2, [3]]]], 2);
 
 Dash\flattenDepth([[1, [2, [3]]]], 3);
 // === [1, 2, 3]
+```
+
+[↑ Top](#operations)
+
+flip
+---
+
+
+```php
+flip(callable $callable): callable
+```
+Creates a new function that swaps the first two arguments before invoking `$callable`.
+
+Any additional arguments are passed through unchanged.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` |
+**Returns** | `callable` |
+
+**Example:**
+```php
+$subtract = function ($a, $b) {
+	return $a - $b;
+};
+
+$reverseSubtract = Dash\flip($subtract);
+$reverseSubtract(2, 10);
+// === 8
 ```
 
 [↑ Top](#operations)

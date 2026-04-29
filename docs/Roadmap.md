@@ -137,6 +137,7 @@ No new operations
 -   [x] tail
 -   [x] uniqueBy
 -   [x] symmetricDifference
+-   [x] flip
 -   [ ] defaults
 -   [ ] range
 -   [ ] times
