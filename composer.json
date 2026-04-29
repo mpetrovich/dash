@@ -150,6 +150,7 @@
             "src/min.php",
             "src/negate.php",
             "src/noop.php",
+            "src/now.php",
             "src/nth.php",
             "src/omit.php",
             "src/omitBy.php",

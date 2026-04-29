@@ -86,7 +86,7 @@ None.
 -   [ ] memoize
 -   [ ] mixin / setCustom
 -   [x] noop
--   [ ] now
+-   [x] now
 -   [x] once
 -   [x] pairs
 -   [x] partition

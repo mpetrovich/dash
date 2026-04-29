@@ -95,6 +95,7 @@ Operation | Signature | Curried
 [min](#min) | `min($iterable): mixed\|null` | `Curry\min`
 [negate](#negate) | `negate(callable $predicate): callable` | `Curry\negate`
 [noop](#noop) | `noop(): null` | 
+[now](#now) | `now(): integer` | 
 [nth](#nth) | `nth($iterable, $index, $default = null): mixed` | `Curry\nth`
 [omit](#omit) | `omit($iterable, $keys): array` | `Curry\omit`
 [omitBy](#omitby) | `omitBy($iterable, $predicate = 'Dash\identity'): array\|iterable` | `Curry\omitBy`
@@ -3513,6 +3514,22 @@ No operation. Always returns `null`.
 
 
 **Returns** | `null` |
+
+
+
+[↑ Top](#operations)
+
+now
+---
+
+
+```php
+now(): integer
+```
+Returns the current UNIX timestamp in milliseconds.
+
+
+**Returns** | `integer` |
 
 
 
