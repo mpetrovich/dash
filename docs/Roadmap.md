@@ -95,7 +95,7 @@ When plan status changes, update this file in the same pass.
 -   [ ] pairs
 -   [x] partition
 -   [ ] provide / dash
--   [ ] reduceRight
+-   [x] reduceRight
 -   [ ] sample
 -   [ ] sortedIndex
 -   [ ] template

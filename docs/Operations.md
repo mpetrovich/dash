@@ -89,6 +89,7 @@ Operation | Signature | Curried
 [pluck](#pluck) | `pluck($iterable, $path, $default = null): array` | `Curry\pluck`
 [property](#property) | `property($path, $default = null): function` | `Curry\property`
 [reduce](#reduce) | `reduce($iterable, $iteratee, $initial = []): mixed` | `Curry\reduce`
+[reduceRight](#reduceright) | `reduceRight($iterable, $iteratee, $initial = []): mixed` | `Curry\reduceRight`
 [reject](#reject) | `reject($iterable, $predicate = 'Dash\identity'): array` | `Curry\reject`
 [result](#result) | `result($input, $path, $default = null): mixed` | `Curry\result`
 [reverse](#reverse) | `reverse($iterable, $preserveIntegerKeys = false): array` | `Curry\reverse`
@@ -3529,6 +3530,30 @@ Dash\reduce([1, 2, 3, 4], function ($sum, $value) {
 }, 0);
 // === 10
 ```
+
+[↑ Top](#operations)
+
+reduceRight
+---
+See also: `reduce()`, `reverse()`
+
+```php
+reduceRight($iterable, $iteratee, $initial = []): mixed
+
+# Curried: (all parameters required)
+Curry\reduceRight($iteratee, $initial, $iterable)
+```
+Iteratively reduces `$iterable` from right to left by way of `$iteratee`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$iteratee` | `callable` | Called with `($result, $value, $key)` for each element from right to left
+`$initial` | `mixed` | (optional) Initial value
+**Returns** | `mixed` |
+
+
 
 [↑ Top](#operations)
 
