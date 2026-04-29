@@ -5,6 +5,7 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/mpet
 Operation | Signature | Curried
 :--- | :--- | :---
 [all](#all--every) / every | `all($iterable, $predicate = 'Dash\identity'): boolean` | `Curry\all`
+[allPass](#allpass--overevery) / overEvery | `allPass($predicates): callable` | 
 [any](#any--some) / some | `any($iterable, $predicate = 'Dash\identity'): boolean` | `Curry\any`
 [apply](#apply) | `apply(callable $callable, $args): mixed` | `Curry\apply`
 [ary](#ary) | `ary(callable $callable, $arity): callable` | `Curry\ary`
@@ -157,6 +158,36 @@ Dash\all([true, true, true]);
 
 Dash\all([true, false, true]);
 // === false
+```
+
+[↑ Top](#operations)
+
+allPass / overEvery
+---
+
+
+```php
+allPass($predicates): callable
+```
+Creates a predicate that returns truthy only if every predicate in `$predicates` returns truthy.
+
+Predicates are invoked with the same runtime arguments and evaluation short-circuits on the
+first falsey result.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$predicates` | `iterable\|stdClass\|null` |
+**Returns** | `callable` |
+
+**Example:**
+```php
+$fn = Dash\allPass([
+	function ($n) { return $n > 0; },
+	function ($n) { return $n % 2 === 0; },
+]);
+$fn(4);  // === true
+$fn(3);  // === false
 ```
 
 [↑ Top](#operations)

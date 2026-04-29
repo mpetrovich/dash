@@ -151,7 +151,7 @@ No new operations
 -   [x] uniqBy / distinctBy (aliases of `uniqueBy`)
 -   [x] init (alias of `initial`)
 -   [x] rest (alias of `tail`)
--   [ ] allPass / overEvery
+-   [x] allPass / overEvery
 -   [ ] anyPass / overSome
 -   [ ] cond
 -   [ ] ifElse

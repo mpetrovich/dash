@@ -32,6 +32,7 @@
             "src/Dash.php",
             "src/__.php",
             "src/all.php",
+            "src/allPass.php",
             "src/any.php",
             "src/apply.php",
             "src/ary.php",
