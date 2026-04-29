@@ -40,6 +40,7 @@ Operation | Signature | Curried
 [each](#each) | `each($iterable, $iteratee): mixed` | `Curry\each`
 [equal](#equal) | `equal($a, $b): boolean` | `Curry\equal`
 [evolve](#evolve) | `evolve($input, array $transformations): array\|object` | `Curry\evolve`
+[extend](#extend) | `extend(): array` | 
 [filter](#filter) | `filter($iterable, $predicate = 'Dash\identity'): array\|iterable` | `Curry\filter`
 [find](#find) | `find($iterable, $predicate = 'Dash\identity'): array\|null` | `Curry\find`
 [findIndex](#findindex) | `findIndex($iterable, $predicate = 'Dash\identity'): integer` | `Curry\findIndex`
@@ -1468,6 +1469,22 @@ Parameter | Type | Description
 `$input` | `iterable\|stdClass\|null` |
 `$transformations` | `array` |
 **Returns** | `array\|object` |
+
+
+
+[↑ Top](#operations)
+
+extend
+---
+See also: `merge()`
+
+```php
+extend(): array
+```
+Alias of `merge()`.
+
+
+**Returns** | `array` |
 
 
 

@@ -65,6 +65,7 @@
             "src/differenceWith.php",
             "src/dropWhile.php",
             "src/each.php",
+            "src/extend.php",
             "src/evolve.php",
             "src/equal.php",
             "src/filter.php",
