@@ -87,6 +87,7 @@ Operation | Signature | Curried
 [isFloat](#isfloat) | `isFloat($value): boolean` | `Curry\isFloat`
 [isFunction](#isfunction) | `isFunction($value): boolean` | `Curry\isFunction`
 [isIndexedArray](#isindexedarray) | `isIndexedArray($value): boolean` | `Curry\isIndexedArray`
+[isInteger](#isinteger) | `isInteger($value): boolean` | `Curry\isInteger`
 [isOdd](#isodd) | `isOdd($value): boolean` | `Curry\isOdd`
 [isType](#istype) | `isType($value, $type): boolean` | `Curry\isType`
 [join](#join--implode) / implode | `join($iterable, $separator): string` | `Curry\join`
@@ -3125,6 +3126,28 @@ Dash\isIndexedArray([1 => 'a', 'b', 'c']);
 Dash\isIndexedArray(['a' => 1, 'b' => 2]);
 // === false
 ```
+
+[↑ Top](#operations)
+
+isInteger
+---
+
+
+```php
+isInteger($value): boolean
+
+# Curried: (all parameters required)
+Curry\isInteger($value)
+```
+Checks whether `$value` is an integer.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `mixed` |
+**Returns** | `boolean` |
+
+
 
 [↑ Top](#operations)
 
