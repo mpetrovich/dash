@@ -65,6 +65,7 @@ Operation | Signature | Curried
 [isOdd](#isodd) | `isOdd($value): boolean` | `Curry\isOdd`
 [isType](#istype) | `isType($value, $type): boolean` | `Curry\isType`
 [join](#join--implode) / implode | `join($iterable, $separator): string` | `Curry\join`
+[juxt](#juxt--over) / over | `juxt($functions): callable` | 
 [keyBy](#keyby--indexby) / indexBy | `keyBy($iterable, $iteratee = 'Dash\identity'): array` | `Curry\keyBy`
 [keys](#keys) | `keys($iterable): array` | `Curry\keys`
 [last](#last) | `last($iterable): mixed\|null` | `Curry\last`
@@ -2606,6 +2607,33 @@ Dash\join([123, 456, 789], '-');
 
 Dash\join(['a' => 1, 'b' => 2, 'c' => 3], ', ');
 // === '1, 2, 3'
+```
+
+[↑ Top](#operations)
+
+juxt / over
+---
+
+
+```php
+juxt($functions): callable
+```
+Creates a function that applies each function in `$functions` to the same runtime arguments and
+returns an array of results in order.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$functions` | `iterable\|stdClass\|null` |
+**Returns** | `callable` |
+
+**Example:**
+```php
+$fn = Dash\juxt([
+	function ($n) { return $n + 1; },
+	function ($n) { return $n * 2; },
+]);
+$fn(3);  // === [4, 6]
 ```
 
 [↑ Top](#operations)

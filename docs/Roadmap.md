@@ -157,7 +157,7 @@ No new operations
 -   [x] ifElse
 -   [x] when
 -   [x] unless
--   [ ] juxt / over
+-   [x] juxt / over
 -   [ ] converge
 -   [ ] toPairs / pairs
 

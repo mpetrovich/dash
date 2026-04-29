@@ -112,6 +112,7 @@
             "src/isOdd.php",
             "src/isType.php",
             "src/join.php",
+            "src/juxt.php",
             "src/keyBy.php",
             "src/keys.php",
             "src/last.php",
