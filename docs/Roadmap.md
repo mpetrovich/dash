@@ -141,7 +141,7 @@ No new operations
 -   [x] defaults
 -   [x] range
 -   [x] times
--   [ ] clamp
+-   [x] clamp
 -   [ ] repeat
 
 ## [Ramda](http://ramdajs.com/docs)

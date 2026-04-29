@@ -16,6 +16,7 @@ Operation | Signature | Curried
 [call](#call) | `call(callable $callable /*, ...args */): mixed` | 
 [chain](#chain) | `chain($input = null): Dash\Dash` | `Curry\chain`
 [chunk](#chunk--splitevery) / splitEvery | `chunk($iterable, $size): array\|iterable` | `Curry\chunk`
+[clamp](#clamp) | `clamp($number, $lower, $upper): numeric` | `Curry\clamp`
 [compact](#compact) | `compact($iterable): array\|iterable` | `Curry\compact`
 [compare](#compare) | `compare($a, $b): integer` | `Curry\compare`
 [compose](#compose) | `compose(callable ...$fns): callable` | 
@@ -557,6 +558,30 @@ Dash\chunk([1, 2, 3, 4, 5], 2);
 Dash\chunk(['a' => 1, 'b' => 2, 'c' => 3], 2);
 // === [['a' => 1, 'b' => 2], ['c' => 3]]
 ```
+
+[↑ Top](#operations)
+
+clamp
+---
+
+
+```php
+clamp($number, $lower, $upper): numeric
+
+# Curried: (all parameters required)
+Curry\clamp($lower, $upper, $number)
+```
+Constrains `$number` to the inclusive range [`$lower`, `$upper`].
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$number` | `numeric` |
+`$lower` | `numeric` |
+`$upper` | `numeric` |
+**Returns** | `numeric` |
+
+
 
 [↑ Top](#operations)
 
