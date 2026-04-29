@@ -100,7 +100,7 @@ None.
 -   [ ] typeOf
 -   [ ] unescape
 -   [x] uniqueId
--   [ ] wrap
+-   [x] wrap
 -   [x] zip
 
 ## [Bottomline](https://github.com/maciejczyzewski/bottomline)

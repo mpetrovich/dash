@@ -159,6 +159,7 @@ Operation | Signature | Curried
 [when](#when) | `when(callable $predicate, callable $onTrue): callable` | 
 [where](#where) | `where($iterable, $properties): array` | 
 [without](#without) | `without($iterable, $exclude): array` | `Curry\without`
+[wrap](#wrap) | `wrap(callable $callable, callable $wrapper): callable` | 
 [zip](#zip) | `zip(/* ...$iterables */): array\|iterable` | 
 [zipAll](#zipall) | `zipAll(/* ...$iterables */): array\|iterable` | 
 [zipWith](#zipwith) | `zipWith($iterable1, $iterable2, callable $combiner): array\|iterable` | `Curry\zipWith`
@@ -5505,6 +5506,28 @@ Parameter | Type | Description
 Dash\without(['a', 'b', 'c', 'd'], ['b', 'c']);
 // === ['a', 'd']
 ```
+
+[↑ Top](#operations)
+
+wrap
+---
+
+
+```php
+wrap(callable $callable, callable $wrapper): callable
+```
+Wraps `$callable` with `$wrapper`.
+
+The wrapper receives the original callable as its first argument.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` |
+`$wrapper` | `callable` |
+**Returns** | `callable` |
+
+
 
 [↑ Top](#operations)
 
