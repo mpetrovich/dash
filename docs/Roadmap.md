@@ -38,7 +38,7 @@ None.
 -   [ ] prepend
 -   [x] range
 -   [x] remove
--   [ ] removeFirst
+-   [x] removeFirst
 -   [ ] removeLast
 -   [x] repeat
 -   [x] sortKeys
