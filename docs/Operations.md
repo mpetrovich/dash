@@ -48,6 +48,7 @@ Operation | Signature | Curried
 [findLastKey](#findlastkey) | `findLastKey($iterable, $predicate = 'Dash\identity'): string\|null` | `Curry\findLastKey`
 [findLastValue](#findlastvalue) | `findLastValue($iterable, $predicate = 'Dash\identity'): mixed\|null` | `Curry\findLastValue`
 [findValue](#findvalue) | `findValue($iterable, $predicate = 'Dash\identity'): mixed\|null` | `Curry\findValue`
+[findWhere](#findwhere) | `findWhere($iterable, $properties): array\|iterable` | `Curry\findWhere`
 [first](#first--head) / head | `first($iterable): mixed\|null` | `Curry\first`
 [flatten](#flatten) | `flatten($iterable): array` | 
 [flattenDeep](#flattendeep) | `flattenDeep($iterable): array\|iterable` | `Curry\flattenDeep`
@@ -1915,6 +1916,31 @@ Dash\findValue($data, 'active');
 Dash\findValue($data, ['active', false]);
 // === ['name' => 'John', 'active' => false]
 ```
+
+[↑ Top](#operations)
+
+findWhere
+---
+See also: `where()`, `matches()`, `filter()`
+
+```php
+findWhere($iterable, $properties): array|iterable
+
+# Curried: (all parameters required)
+Curry\findWhere($properties, $iterable)
+```
+Returns all elements of `$iterable` that match all key-value pairs in `$properties`.
+
+Equivalent to `filter($iterable, matches($properties))`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$properties` | `iterable\|stdClass\|null` |
+**Returns** | `array\|iterable` |
+
+
 
 [↑ Top](#operations)
 

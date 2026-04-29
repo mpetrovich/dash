@@ -59,7 +59,7 @@ None.
 -   [ ] eachReference / eachRef
 -   [ ] escape
 -   [ ] extend
--   [ ] findWhere
+-   [x] findWhere
 -   [ ] functions
 -   [ ] indexOf
 -   [ ] is / isType
