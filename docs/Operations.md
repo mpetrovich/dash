@@ -75,6 +75,7 @@ Operation | Signature | Curried
 [intersectionWith](#intersectionwith) | `intersectionWith($iterable, $other, $comparator = 'Dash\equal'): array` | `Curry\intersectionWith`
 [invert](#invert--invertobj) / invertObj | `invert($iterable): array` | `Curry\invert`
 [invertBy](#invertby) | `invertBy($iterable, $iteratee = 'Dash\identity'): array` | `Curry\invertBy`
+[invoke](#invoke) | `invoke($iterable, $path /*, ...$args */): array` | 
 [isEmpty](#isempty) | `isEmpty($value): boolean` | `Curry\isEmpty`
 [isEven](#iseven) | `isEven($value): boolean` | `Curry\isEven`
 [isIndexedArray](#isindexedarray) | `isIndexedArray($value): boolean` | `Curry\isIndexedArray`
@@ -2796,6 +2797,27 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable\|stdClass\|null` |
 `$iteratee` | `callable\|string\|integer` | (optional) Same forms as `mapValues()`
+**Returns** | `array` |
+
+
+
+[↑ Top](#operations)
+
+invoke
+---
+
+
+```php
+invoke($iterable, $path /*, ...$args */): array
+```
+Invokes a method/callable at `$path` for each element in `$iterable`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$path` | `callable\|string\|integer` |
+`...$args` | `mixed` |
 **Returns** | `array` |
 
 

@@ -126,6 +126,7 @@
             "src/ifElse.php",
             "src/intersection.php",
             "src/intersectionWith.php",
+            "src/invoke.php",
             "src/indexOf.php",
             "src/invert.php",
             "src/invertBy.php",

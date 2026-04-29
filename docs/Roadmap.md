@@ -27,7 +27,7 @@ None.
 
 -   [x] flatten
 -   [x] has
--   [ ] invoke
+-   [x] invoke
 -   [ ] matchesAny
 -   [x] merge
 -   [x] prepend
