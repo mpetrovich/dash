@@ -93,6 +93,7 @@ Operation | Signature | Curried
 [isNumber](#isnumber) | `isNumber($value): boolean` | `Curry\isNumber`
 [isObject](#isobject) | `isObject($value): boolean` | `Curry\isObject`
 [isOdd](#isodd) | `isOdd($value): boolean` | `Curry\isOdd`
+[isRegExp](#isregexp) | `isRegExp($value): boolean` | `Curry\isRegExp`
 [isType](#istype) | `isType($value, $type): boolean` | `Curry\isType`
 [join](#join--implode) / implode | `join($iterable, $separator): string` | `Curry\join`
 [juxt](#juxt--over) / over | `juxt($functions): callable` | 
@@ -3277,6 +3278,28 @@ Dash\isOdd(5.9);
 Dash\isOdd('a');
 // === false
 ```
+
+[↑ Top](#operations)
+
+isRegExp
+---
+
+
+```php
+isRegExp($value): boolean
+
+# Curried: (all parameters required)
+Curry\isRegExp($value)
+```
+Checks whether `$value` is a valid regular expression pattern string.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `mixed` |
+**Returns** | `boolean` |
+
+
 
 [↑ Top](#operations)
 
