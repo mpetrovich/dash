@@ -68,6 +68,7 @@ Operation | Signature | Curried
 [median](#median) | `median($iterable): mixed\|null` | `Curry\median`
 [min](#min) | `min($iterable): mixed\|null` | `Curry\min`
 [negate](#negate) | `negate(callable $predicate): callable` | `Curry\negate`
+[nth](#nth) | `nth($iterable, $index, $default = null): mixed` | `Curry\nth`
 [omit](#omit) | `omit($iterable, $keys): array` | `Curry\omit`
 [partial](#partial) | `partial($callable /*, ...args */): callable` | 
 [partialRight](#partialright) | `partialRight($callable /*, ...args */): callable` | 
@@ -2765,6 +2766,37 @@ $isOdd = Dash\negate($isEven);
 
 $isEven(3);  // === false
 $isOdd(3);   // === true
+```
+
+[↑ Top](#operations)
+
+nth
+---
+See also: `at()`, `first()`, `last()`
+
+```php
+nth($iterable, $index, $default = null): mixed
+
+# Curried: (all parameters required)
+Curry\nth($index, $default, $iterable)
+```
+Gets the `$n`th element of `$iterable` (by iteration order, ignoring keys). Negative `$n` counts from the end (`-1` is the last element).
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$index` | `integer` |
+`$default` | `mixed` | (optional) Returned when the index is out of bounds
+**Returns** | `mixed` |
+
+**Example:**
+```php
+Dash\nth([10, 20, 30], 1);
+// === 20
+
+Dash\nth([10, 20, 30], -1);
+// === 30
 ```
 
 [↑ Top](#operations)

@@ -127,6 +127,7 @@ No new operations
 -   [x] sortBy
 -   [x] findIndex
 -   [x] findLastIndex
+-   [x] nth
 -   [x] uniqueBy
 
 ## [Ramda](http://ramdajs.com/docs)
