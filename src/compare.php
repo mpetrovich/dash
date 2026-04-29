@@ -9,6 +9,8 @@ namespace Dash;
  * Uses loose equality for comparison. For comparison tables across data types,
  * see: http://php.net/manual/en/types.comparisons.php
  *
+ * @category Predicates & comparison
+ *
  * @param mixed $a
  * @param mixed $b
  * @return integer

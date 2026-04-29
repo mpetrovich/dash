@@ -7,6 +7,8 @@ namespace Dash;
  *
  * Subsequent calls return the result from the first invocation.
  *
+ * @category Functions & composition
+ *
  * @param callable $callable
  * @return callable
  *

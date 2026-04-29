@@ -7,6 +7,8 @@ namespace Dash;
  *
  * Unlike `hasDirect()`, this supports nested paths (dot notation) via `property()`.
  *
+ * @category Objects & paths
+ *
  * @see get(), hasDirect(), property()
  *
  * @param mixed $input

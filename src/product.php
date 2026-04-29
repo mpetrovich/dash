@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Returns the product of numeric values in `$iterable`.
  *
+ * @category Math & numeric
+ *
  * @param iterable|stdClass|null $iterable
  * @return numeric
  */

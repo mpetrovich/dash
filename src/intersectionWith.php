@@ -8,6 +8,8 @@ namespace Dash;
  *
  * Order and keys follow `$iterable`. Indexed inputs yield a reindexed array.
  *
+ * @category Collections & iterators
+ *
  * @see intersection(), differenceWith()
  *
  * @param iterable|stdClass|null $iterable

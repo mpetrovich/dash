@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Gets the average value of all elements in `$iterable`.
  *
+ * @category Math & numeric
+ *
  * @param iterable|stdClass|null $iterable
  * @return double|null Null if `$iterable` is empty
  *

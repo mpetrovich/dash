@@ -7,6 +7,8 @@ namespace Dash;
  *
  * Equivalent to `any($iterable, matches($properties))`.
  *
+ * @category Predicates & comparison
+ *
  * @param iterable|stdClass|null $iterable
  * @param iterable|stdClass|null $properties
  * @return boolean

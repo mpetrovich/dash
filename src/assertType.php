@@ -6,6 +6,8 @@ namespace Dash;
  * Throws an `InvalidArgumentException` exception if `$value` is not of type `$type`.
  * If `$value` is an accepted type, this function is a no-op.
  *
+ * @category Type & value checks
+ *
  * @see isType()
  *
  * @param mixed $value

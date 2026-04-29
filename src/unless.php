@@ -6,6 +6,8 @@ namespace Dash;
  * Creates a function that applies `$onFalse` when `$predicate` returns falsey; otherwise returns
  * the first argument unchanged.
  *
+ * @category Functions & composition
+ *
  * @see ifElse(), when()
  *
  * @param callable $predicate

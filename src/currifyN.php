@@ -8,6 +8,8 @@ namespace Dash;
  *
  * In essence, this takes a data-first function and returns a curryable data-last function.
  *
+ * @category Functions & composition
+ *
  * @see currify(), curry(), partial()
  *
  * @param callable $callable

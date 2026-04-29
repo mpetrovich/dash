@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Groups the element values of `$iterable` by the common return values of `$iteratee`.
  *
+ * @category Collections & iterators
+ *
  * @see keyBy()
  *
  * @param iterable|stdClass|null $iterable

@@ -7,6 +7,8 @@ namespace Dash;
  *
  * Iteration will stop at the first truthy return value.
  *
+ * @category Collections & iterators
+ *
  * @see find(), findKey(), findLastValue()
  *
  * @param iterable|stdClass|null $iterable

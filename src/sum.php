@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Gets the sum of all element values in `$iterable`.
  *
+ * @category Math & numeric
+ *
  * @param iterable|stdClass|null $iterable
  * @return numeric Zero if `$iterable` is empty
  *

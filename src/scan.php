@@ -7,6 +7,8 @@ namespace Dash;
  *
  * Output begins with `$initial`, then one accumulator value per element.
  *
+ * @category Collections & iterators
+ *
  * @see reduce()
  *
  * @param iterable|stdClass|null $iterable

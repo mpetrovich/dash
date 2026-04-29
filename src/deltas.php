@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Returns a new array whose values are the differences between successive values of `$iterable`.
  *
+ * @category Math & numeric
+ *
  * @param iterable|stdClass|null $iterable
  * @return array
  *

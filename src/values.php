@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Gets the values of `$iterable` as an array.
  *
+ * @category Objects & paths
+ *
  * @see keys()
  *
  * @param iterable|stdClass|null $iterable

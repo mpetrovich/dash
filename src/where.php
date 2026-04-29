@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Returns all elements of `$iterable` containing key-value pairs that loosely equal `$properties`.
  *
+ * @category Collections & iterators
+ *
  * @see matches(), filter()
  *
  * @param iterable|stdClass|null $iterable

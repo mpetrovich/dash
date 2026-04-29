@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Calls `$iteratee` `$n` times with each 0-based index and returns collected results.
  *
+ * @category Collections & iterators
+ *
  * @param numeric $n
  * @param callable $iteratee (optional)
  * @return array

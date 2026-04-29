@@ -7,6 +7,8 @@ namespace Dash;
  *
  * Later key collisions overwrite earlier entries.
  *
+ * @category Objects & paths
+ *
  * @see mapValues(), keyBy()
  *
  * @param iterable|stdClass|null $iterable

@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Creates a function that returns whether `$comparator` returns truthy for the value at `$path` for a given input.
  *
+ * @category Predicates & comparison
+ *
  * @param callable|string|number|null $path Any valid path supported by `Dash\get()`
  * @param mixed $value Value passed to `$comparator` for comparison
  * @param callable $comparator (optional) Function with signature `($valueAtPath, $value)` that

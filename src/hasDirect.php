@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Checks whether an array value, object property, or method exists at `$key` within `$input`.
  *
+ * @category Objects & paths
+ *
  * @see getDirect()
  *
  * @param mixed $input

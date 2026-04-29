@@ -7,6 +7,8 @@ namespace Dash;
  *
  * A later value will overwrite an earlier value that has the same key.
  *
+ * @category Collections & iterators
+ *
  * @see groupBy()
  *
  * @param iterable|stdClass|null $iterable

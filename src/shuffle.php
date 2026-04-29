@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Returns a new array with values from `$iterable` in randomized order.
  *
+ * @category Collections & iterators
+ *
  * @param iterable|stdClass|null $iterable
  * @return array
  *

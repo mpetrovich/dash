@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Constrains `$number` to the inclusive range [`$lower`, `$upper`].
  *
+ * @category Math & numeric
+ *
  * @param numeric $number
  * @param numeric $lower
  * @param numeric $upper

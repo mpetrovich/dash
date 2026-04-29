@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Iteratively reduces `$iterable` from right to left by way of `$iteratee`.
  *
+ * @category Collections & iterators
+ *
  * @see reduce(), reverse()
  *
  * @param iterable|stdClass|null $iterable

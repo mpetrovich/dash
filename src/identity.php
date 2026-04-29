@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Returns the first argument it receives.
  *
+ * @category Functions & composition
+ *
  * @param mixed $value
  * @return mixed `$value` unmodified
  *

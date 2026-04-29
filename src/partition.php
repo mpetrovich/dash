@@ -7,6 +7,8 @@ namespace Dash;
  *
  * Keys are preserved in each list unless `$iterable` is an indexed array.
  *
+ * @category Collections & iterators
+ *
  * @see filter(), reject()
  *
  * @param iterable|stdClass|null $iterable

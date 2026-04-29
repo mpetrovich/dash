@@ -7,6 +7,8 @@ namespace Dash;
  *
  * Non-indexed keys are preseved, but duplicate keys will overwrite previous ones.
  *
+ * @category Collections & iterators
+ *
  * @param iterable|stdClass|null $iterable
  * @return array
  *

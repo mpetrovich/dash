@@ -6,6 +6,8 @@ namespace Dash;
  * Gets the elements of `$iterable` with keys that match any in `$keys`.
  * The opposite of `pick()`.
  *
+ * @category Objects & paths
+ *
  * @see pick()
  *
  * @param iterable|stdClass|null $iterable

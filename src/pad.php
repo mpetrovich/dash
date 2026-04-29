@@ -7,6 +7,8 @@ namespace Dash;
  *
  * If total padding is odd, the extra element is added to the right side.
  *
+ * @category Collections & iterators
+ *
  * @param iterable|stdClass|null $iterable
  * @param integer $length
  * @param mixed $padValue (optional)

@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Similar to `getDirect()`, but returns a reference to the value at `$key` within `$input`.
  *
+ * @category Objects & paths
+ *
  * @see getDirect(), hasDirect()
  *
  * @param array|object|ArrayAccess $input

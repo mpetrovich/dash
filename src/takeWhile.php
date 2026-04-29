@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Returns a subset of `$iterable` taken from the beginning while `$predicate` returns truthy.
  *
+ * @category Collections & iterators
+ *
  * @see dropWhile()
  *
  * @param iterable|stdClass|null $iterable

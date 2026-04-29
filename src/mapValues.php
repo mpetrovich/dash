@@ -7,6 +7,8 @@ namespace Dash;
  *
  * Unlike `map()`, keys in `$iterable` are preserved.
  *
+ * @category Collections & iterators
+ *
  * @see map(), mapResult()
  *
  * @param iterable|stdClass|null $iterable

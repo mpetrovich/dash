@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Gets a new array of `$iterable` elements in reverse order.
  *
+ * @category Collections & iterators
+ *
  * @param iterable|stdClass|null $iterable
  * @param boolean $preserveIntegerKeys (optional) If true, integer keys will be preserved;
  *                                     non-integer keys are always preserved regardless of this setting

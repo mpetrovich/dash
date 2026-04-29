@@ -7,6 +7,8 @@ namespace Dash;
  *
  * If only one argument is provided, it is treated as `$max` and `$min` defaults to 0.
  *
+ * @category Math & numeric
+ *
  * @param integer $min (optional)
  * @param integer|null $max (optional)
  * @return integer

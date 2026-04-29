@@ -6,6 +6,8 @@ namespace Dash;
  * Creates a function that applies each function in `$functions` to the same runtime arguments and
  * returns an array of results in order.
  *
+ * @category Functions & composition
+ *
  * @param iterable|stdClass|null $functions
  * @return callable
  *

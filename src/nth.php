@@ -6,6 +6,8 @@ namespace Dash;
  * Gets the `$n`th element of `$iterable` (by iteration order, ignoring keys).
  * Negative `$n` counts from the end (`-1` is the last element).
  *
+ * @category Collections & iterators
+ *
  * @see at(), first(), last()
  *
  * @param iterable|stdClass|null $iterable

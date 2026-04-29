@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Invokes a method/callable at `$path` for each element in `$iterable`.
  *
+ * @category Collections & iterators
+ *
  * @param iterable|stdClass|null $iterable
  * @param callable|string|integer $path
  * @param mixed ...$args

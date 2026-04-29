@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Counts elements of `$iterable` by key produced from `$iteratee`.
  *
+ * @category Collections & iterators
+ *
  * @see groupBy(), keyBy()
  *
  * @param iterable|stdClass|null $iterable

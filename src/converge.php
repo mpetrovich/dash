@@ -6,6 +6,8 @@ namespace Dash;
  * Creates a function that applies each branch function to the same runtime arguments, then passes
  * branch results as positional arguments to `$combiner`.
  *
+ * @category Functions & composition
+ *
  * @param callable $combiner
  * @param iterable|stdClass|null $branches
  * @return callable

@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Returns the median value of an iterable.
  *
+ * @category Math & numeric
+ *
  * @param iterable|stdClass|null $iterable
  * @return mixed|null Null if `$iterable` is empty
  *

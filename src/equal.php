@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Checks whether `$a` and `$b` are loosely equal (same value, possibly different types).
  *
+ * @category Predicates & comparison
+ *
  * @param mixed $a
  * @param mixed $b
  * @return boolean

@@ -9,6 +9,8 @@ namespace Dash;
  * The first occurrence of each computed key is kept. Keys are preserved unless `$iterable` is an indexed array.
  * If `$iterable` is a `Generator`, a lazy `Generator` is returned.
  *
+ * @category Collections & iterators
+ *
  * @see unique(), keyBy(), groupBy()
  *
  * @param iterable|stdClass|null $iterable

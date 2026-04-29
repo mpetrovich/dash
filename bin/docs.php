@@ -3,7 +3,7 @@
 /**
  * Builds docs/Operations.md from src/*.php docblocks.
  *
- * Optional docblock tag: @category Label — overrides the default section in the grouped table of contents.
+ * Each documented operator must include `@category Label` in its docblock (table-of-contents grouping).
  */
 
 require_once 'vendor/autoload.php';
@@ -18,22 +18,13 @@ function makeDocs($sourceDir, $destFilepath)
 		->reject(function ($fileinfo) { return $fileinfo->isDir(); })
 		->map(function ($fileinfo) { return pathinfo($fileinfo)['filename']; })
 		->reject(function ($name) { return $name[0] === '_'; })
+		->reject(function ($name) { return $name === 'Dash'; })
 		->map(function ($name) { return "src/$name.php"; })
 		->filter(function ($filepath) { return file_exists($filepath); })
 		->map('createOp')
 		->reject('isIncomplete')
-		->reject(['name', 'Dash'])
 		->sort(function ($op1, $op2) {
 			return strnatcmp($op1->name, $op2->name);
-		})
-		->value();
-
-	$ops = Dash\chain($ops)
-		->map(function ($op) {
-			if (!$op->category) {
-				$op->category = inferCategoryForOp($op->name);
-			}
-			return $op;
 		})
 		->value();
 
@@ -62,6 +53,12 @@ function createOp($filepath)
 		->map(Dash\ary('strtolower', 1))
 		->join('--')
 		->value();
+
+	if (!$op->category) {
+		throw new \RuntimeException(
+			"Missing required @category in docblock: {$filepath}"
+		);
+	}
 
 	return $op;
 }
@@ -100,7 +97,7 @@ function parseDocblock($docblock)
 		->any(function ($line) { return strpos($line, '@incomplete') === 0; })
 		->value();
 
-	// Category (optional; used for grouped table of contents)
+	// Category (required; used for grouped table of contents)
 	$categoryLine = Dash\chain($lines)
 		->filter(function ($line) { return strpos($line, '@category') === 0; })
 		->first()
@@ -137,16 +134,16 @@ function parseDocblock($docblock)
 		->value();
 
 	// Alias
-	$op->aliases = Dash\chain($lines)
+	$aliasLine = Dash\chain($lines)
 		->filter(function ($line) { return strpos($line, '@alias') === 0; })
 		->first()
-		->thru(function ($line) {
-			$matches = [];
-			preg_match('/^@alias\s+(.*)$/', $line, $matches);
-			$aliases = $matches[1];
-			return $aliases ? explode(', ', $aliases) : [];
-		})
 		->value();
+	$op->aliases = [];
+	if ($aliasLine) {
+		$matches = [];
+		preg_match('/^@alias\s+(.*)$/', $aliasLine, $matches);
+		$op->aliases = !empty($matches[1]) ? explode(', ', $matches[1]) : [];
+	}
 
 	// Return value
 	$op->return = Dash\chain($lines)
@@ -295,74 +292,6 @@ $examples
 
 [↑ Top](#operations)
 END;
-}
-
-// phpcs:ignore Generic.Metrics.CyclomaticComplexity -- lookup tables by operator name
-function inferCategoryForOp($name)
-{
-	static $byCategory = null;
-
-	if ($byCategory === null) {
-		$byCategory = [];
-
-		$collections = [
-			'all', 'any', 'append', 'at', 'chunk', 'compact', 'contains', 'countBy', 'difference',
-			'differenceWith', 'drop', 'dropWhile', 'each', 'filter', 'find', 'findIndex', 'findKey',
-			'findLast', 'findLastIndex', 'findLastKey', 'findLastValue', 'findValue', 'findWhere',
-			'first', 'flatten', 'flattenDeep', 'flattenDepth', 'groupBy', 'indexOf', 'initial',
-			'intersection', 'intersectionWith', 'invoke', 'join', 'keyBy', 'last',
-			'lastIndexOf', 'map', 'mapValues', 'nth', 'pad', 'partition', 'pluck', 'pop', 'prepend',
-			'range', 'reduce', 'reduceRight', 'reject', 'remove', 'removeFirst', 'removeLast',
-			'repeat', 'reverse', 'rotate', 'sample', 'scan', 'shift', 'shuffle', 'size', 'slice',
-			'sort', 'sortBy', 'sortKeys', 'sortedIndex', 'splice', 'symmetricDifference', 'tail',
-			'take', 'takeRight', 'takeWhile', 'times', 'toPairs', 'union', 'unionWith', 'unique',
-			'uniqueBy', 'unzip',
-			'where', 'without', 'zip', 'zipAll', 'zipWith',
-		];
-		$objects = [
-			'defaults', 'evolve', 'extend', 'get', 'getDirect', 'getDirectRef', 'has', 'hasDirect',
-			'invert', 'invertBy', 'mapKeys', 'mapResult', 'merge', 'omit', 'omitBy', 'pick', 'pickBy',
-			'keys', 'property', 'result', 'set', 'toArray', 'toObject', 'values',
-		];
-		$functions = [
-			'after', 'allPass', 'anyPass', 'apply', 'ary', 'before', 'call', 'compose', 'cond',
-			'constant', 'converge', 'currify', 'currifyN', 'curry', 'curryN', 'curryRight',
-			'curryRightN', 'flip', 'ifElse', 'identity', 'juxt', 'lastly', 'memoize', 'once',
-			'partial', 'partialRight', 'pipe', 'tap', 'thru', 'unless', 'when', 'wrap',
-		];
-		$predicates = [
-			'compare', 'equal', 'identical', 'isEqual', 'matches', 'matchesAny', 'matchesProperty',
-			'negate',
-		];
-		$types = [
-			'assertType', 'isArray', 'isBoolean', 'isDate', 'isEmpty', 'isEven', 'isFinite', 'isFloat',
-			'isFunction', 'isIndexedArray', 'isInteger', 'isNaN', 'isNull', 'isNumber', 'isObject',
-			'isOdd', 'isRegExp', 'isResource', 'isScalar', 'isString', 'isTraversable', 'isType',
-			'typeOf',
-		];
-		$math = [
-			'average', 'clamp', 'deltas', 'max', 'median', 'min', 'product', 'random', 'sum',
-		];
-		$utilities = [
-			'chain', 'custom', 'debug', 'mixin', 'noop', 'now', 'setCustom', 'unary', 'uniqueId',
-		];
-
-		$assign = function ($names, $label) use (&$byCategory) {
-			foreach ($names as $n) {
-				$byCategory[$n] = $label;
-			}
-		};
-
-		$assign($collections, 'Collections & iterators');
-		$assign($objects, 'Objects & paths');
-		$assign($functions, 'Functions & composition');
-		$assign($predicates, 'Predicates & comparison');
-		$assign($types, 'Type & value checks');
-		$assign($math, 'Math & numeric');
-		$assign($utilities, 'Utilities & misc');
-	}
-
-	return isset($byCategory[$name]) ? $byCategory[$name] : 'Utilities & misc';
 }
 
 function categorySortOrder()

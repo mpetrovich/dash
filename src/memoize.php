@@ -7,6 +7,8 @@ namespace Dash;
  *
  * Results are cached by argument values.
  *
+ * @category Functions & composition
+ *
  * @param callable $callable
  * @return callable
  */

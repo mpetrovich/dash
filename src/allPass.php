@@ -8,6 +8,8 @@ namespace Dash;
  * Predicates are invoked with the same runtime arguments and evaluation short-circuits on the
  * first falsey result.
  *
+ * @category Functions & composition
+ *
  * @param iterable|stdClass|null $predicates
  * @return callable
  *

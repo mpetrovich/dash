@@ -7,6 +7,8 @@ namespace Dash;
  *
  * Comparison is delegated to `$comparator($value, $current)`.
  *
+ * @category Collections & iterators
+ *
  * @see indexOf(), contains()
  *
  * @param iterable|stdClass|null $iterable

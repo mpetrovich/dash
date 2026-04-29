@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Picks elements of `$iterable` for which `$predicate` returns truthy, always preserving keys.
  *
+ * @category Objects & paths
+ *
  * @see filter(), omitBy()
  *
  * @param iterable|stdClass|null $iterable

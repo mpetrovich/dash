@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Returns a new array with `$values` added to the end of `$iterable`.
  *
+ * @category Collections & iterators
+ *
  * @param iterable|stdClass|null $iterable
  * @param mixed ...$values
  * @return array

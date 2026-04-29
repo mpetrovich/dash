@@ -7,6 +7,8 @@ namespace Dash;
  *
  * Result order is `$iterable`-only values first, then `$other`-only values.
  *
+ * @category Collections & iterators
+ *
  * @see difference(), union()
  *
  * @param iterable|stdClass|null $iterable

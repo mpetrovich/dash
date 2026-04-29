@@ -7,6 +7,8 @@ namespace Dash;
  *
  * The length of the result is the length of the shortest iterable (truncated).
  *
+ * @category Collections & iterators
+ *
  * @param iterable|stdClass|null ...$iterables
  * @return array|iterable A list of tuples; each tuple's elements are drawn from each iterable at the same logical
  *                        position.

@@ -6,6 +6,8 @@ namespace Dash;
  * Concatenates the string value of all elements in `$iterable`,
  * with each value separated by `$separator`.
  *
+ * @category Collections & iterators
+ *
  * @param iterable|stdClass|null $iterable
  * @param string $separator
  * @return string

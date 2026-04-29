@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Gets the elements of `$iterable` with keys that match any in `$keys`.
  *
+ * @category Objects & paths
+ *
  * @see omit()
  *
  * @param iterable|stdClass|null $iterable

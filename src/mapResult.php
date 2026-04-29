@@ -8,6 +8,8 @@ namespace Dash;
  *
  * Unlike `map()`, keys in `$iterable` are preserved.
  *
+ * @category Objects & paths
+ *
  * @see map(), mapValues()
  *
  * @param iterable|stdClass|null $iterable

@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Creates a function that always runs `$onFinally` after `$fn` (try/finally semantics).
  *
+ * @category Functions & composition
+ *
  * @param callable $fn
  * @param callable $onFinally
  * @return callable

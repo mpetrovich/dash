@@ -7,6 +7,8 @@ namespace Dash;
  *
  * Elements are dropped while `$predicate` returns truthy, then all remaining elements are kept.
  *
+ * @category Collections & iterators
+ *
  * @see takeWhile()
  *
  * @param iterable|stdClass|null $iterable

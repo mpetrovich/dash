@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Like `zip()`, but uses the longest iterable length and pads missing positions with `null`.
  *
+ * @category Collections & iterators
+ *
  * @param iterable|stdClass|null ...$iterables
  * @return array|iterable A list of tuples
  *

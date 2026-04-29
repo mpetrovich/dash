@@ -8,6 +8,8 @@ namespace Dash;
  *
  * Use `Dash\_` as a placeholder to replace with arguments from subsequent calls.
  *
+ * @category Functions & composition
+ *
  * @see curryN(), curryRight(), partial(), currify()
  *
  * @param callable $callable Any valid callable except for relative static methods, eg. ['A', 'parent::foo']

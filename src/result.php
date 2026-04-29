@@ -6,6 +6,8 @@ namespace Dash;
  * Gets the value at `$path` within `$input`. Nested properties are accessible with dot notation.
  * Like `get()` but if the value is callable, it is invoked and its return value is returned.
  *
+ * @category Objects & paths
+ *
  * @see get(), property()
  *
  * @param mixed $input

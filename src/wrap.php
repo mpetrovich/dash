@@ -7,6 +7,8 @@ namespace Dash;
  *
  * The wrapper receives the original callable as its first argument.
  *
+ * @category Functions & composition
+ *
  * @param callable $callable
  * @param callable $wrapper
  * @return callable

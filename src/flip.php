@@ -7,6 +7,8 @@ namespace Dash;
  *
  * Any additional arguments are passed through unchanged.
  *
+ * @category Functions & composition
+ *
  * @param callable $callable
  * @return callable
  *

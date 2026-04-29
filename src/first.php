@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Gets the value of the first element in `$iterable`.
  *
+ * @category Collections & iterators
+ *
  * @see take()
  *
  * @param iterable|stdClass|null $iterable

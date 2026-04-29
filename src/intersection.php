@@ -8,6 +8,8 @@ namespace Dash;
  *
  * The order, keys, and values of elements in the returned array are determined by `$iterable`.
  *
+ * @category Collections & iterators
+ *
  * @see difference(), union()
  *
  * @param iterable|stdClass|null $iterable (variadic) Iterable against which all other passed iterables are compared

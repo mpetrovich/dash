@@ -7,6 +7,8 @@ namespace Dash;
  *
  * Later duplicate values overwrite earlier keys.
  *
+ * @category Objects & paths
+ *
  * @see keys(), values(), invertBy()
  *
  * @param iterable|stdClass|null $iterable

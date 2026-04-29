@@ -7,6 +7,8 @@ namespace Dash;
  *
  * This operation is non-mutating with respect to the original input.
  *
+ * @category Collections & iterators
+ *
  * @param iterable|stdClass|null $iterable
  * @param integer $offset
  * @param integer|null $length (optional)

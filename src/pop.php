@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Returns the last value removed from `$iterable` (PHP-style pop behavior).
  *
+ * @category Collections & iterators
+ *
  * @param iterable|stdClass|null $iterable
  * @return mixed|null
  */

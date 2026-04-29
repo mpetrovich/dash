@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Returns a random value from `$iterable`.
  *
+ * @category Collections & iterators
+ *
  * @param iterable|stdClass|null $iterable
  * @return mixed|null
  */

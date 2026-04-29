@@ -7,6 +7,8 @@ namespace Dash;
  *
  * Non-indexed keys are preseved, but duplicate keys will overwrite previous ones.
  *
+ * @category Collections & iterators
+ *
  * @see intersection(), difference()
  *
  * @param iterable|stdClass|null $iterable (variadic) One or more iterables to merge

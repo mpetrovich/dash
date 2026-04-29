@@ -8,6 +8,8 @@ namespace Dash;
  * Note: Contrary to other curried operations, the curried version of this operation
  * accepts arguments in the same order as the original method.
  *
+ * @category Functions & composition
+ *
  * @param callable $callable
  * @param iterable|stdClass $args Arguments to pass to `$callable`
  * @return mixed Return value of `$callable`

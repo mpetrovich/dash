@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Returns a callable that always returns `$value`.
  *
+ * @category Functions & composition
+ *
  * @param mixed $value
  * @return callable
  */

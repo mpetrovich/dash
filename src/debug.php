@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Prints debugging information for one or more values.
  *
+ * @category Utilities & misc
+ *
  * @param mixed $value (variadic) One or more values to debug
  * @return mixed The first argument
  *

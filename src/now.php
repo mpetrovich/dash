@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Returns the current UNIX timestamp in milliseconds.
  *
+ * @category Utilities & misc
+ *
  * @return integer
  */
 function now()

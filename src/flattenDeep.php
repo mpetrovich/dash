@@ -8,6 +8,8 @@ namespace Dash;
  *
  * Non-array elements are left as-is. Keys are not preserved.
  *
+ * @category Collections & iterators
+ *
  * @see flatten(), flattenDepth()
  *
  * @param iterable|stdClass|null $iterable

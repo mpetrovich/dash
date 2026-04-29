@@ -9,6 +9,8 @@ namespace Dash;
  * Keys are preserved unless `$iterable` is an indexed array.
  * An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
  *
+ * @category Collections & iterators
+ *
  * @param iterable|stdClass|null $iterable
  * @param integer $count If negative, moves `$count` elements from the end to the beginning
  * @return array New array of rotated elements

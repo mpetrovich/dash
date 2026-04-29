@@ -6,6 +6,8 @@ namespace Dash;
  * Creates a function that applies `$onTrue` when `$predicate` returns truthy; otherwise returns
  * the first argument unchanged.
  *
+ * @category Functions & composition
+ *
  * @see ifElse(), unless()
  *
  * @param callable $predicate

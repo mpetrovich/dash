@@ -8,6 +8,8 @@ namespace Dash;
  * Each pair must be `[$predicate, $transform]`. Returned function evaluates predicates in order
  * and invokes the transform for the first truthy predicate. Returns `null` if no predicate matches.
  *
+ * @category Functions & composition
+ *
  * @param iterable|stdClass|null $pairs
  * @return callable
  *

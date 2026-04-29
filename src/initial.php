@@ -7,6 +7,8 @@ namespace Dash;
  *
  * Keys are preserved unless `$iterable` is an indexed array. An empty or single-element iterable yields an empty array.
  *
+ * @category Collections & iterators
+ *
  * @see last(), tail()
  *
  * @param iterable|stdClass|null $iterable

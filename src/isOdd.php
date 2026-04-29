@@ -7,6 +7,8 @@ namespace Dash;
  *
  * If a double is provided, only its truncated integer component is evaluated.
  *
+ * @category Type & value checks
+ *
  * @param numeric $value
  * @return boolean True if `$value` is an odd number, false otherwise
  *

@@ -7,6 +7,8 @@ namespace Dash;
  *
  * Uses `$comparator($left, $right)` with `Dash\compare` semantics.
  *
+ * @category Collections & iterators
+ *
  * @param iterable|stdClass|null $iterable
  * @param mixed $value
  * @param callable $comparator (optional)

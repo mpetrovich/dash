@@ -9,6 +9,8 @@ namespace Dash;
  * When `$iterable` is indexed, new values are appended and the result is reindexed.
  * Otherwise keys from `$other` are used for appended entries.
  *
+ * @category Collections & iterators
+ *
  * @see union(), intersectionWith()
  *
  * @param iterable|stdClass|null $iterable

@@ -9,6 +9,8 @@ namespace Dash;
  * Keys are preserved in each group unless `$iterable` is an indexed array.
  * An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
  *
+ * @category Collections & iterators
+ *
  * @param iterable|stdClass|null $iterable
  * @param integer $size
  * @return array|iterable A list of groups from `$iterable`

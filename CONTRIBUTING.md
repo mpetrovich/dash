@@ -100,6 +100,7 @@ make release v=1.2.3
 
 ### Important notes
 
+-   Each operation in `src/*.php` (except `Dash.php` and `__.php`) must include a **`@category …`** line in its docblock. That label groups the function in [docs/Operations.md](docs/Operations.md). Use one of the existing section titles (for example `Collections & iterators`, `Objects & paths`, `Functions & composition`, `Predicates & comparison`, `Type & value checks`, `Math & numeric`, `Utilities & misc`) or add a new category consistently across related ops. `make docs` fails if `@category` is missing.
 -   Dash supports legacy versions of PHP, so make sure your contributions work on the oldest supported version of PHP.
 -   Dash uses [PHPUnit](https://phpunit.de/) for unit testing, and unit tests are automatically run on [Travis CI](https://travis-ci.org/mpetrovich/dash) against new branches and pull requests. Tests are run across all supported PHP versions.
 -   Dash uses [PHP_CodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer) for linting.

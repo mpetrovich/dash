@@ -7,6 +7,8 @@ namespace Dash;
  *
  * With one argument, range is `[0, $start)`.
  *
+ * @category Collections & iterators
+ *
  * @param numeric $start
  * @param numeric|null $end (optional)
  * @param numeric $step (optional)

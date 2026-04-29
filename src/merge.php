@@ -7,6 +7,8 @@ namespace Dash;
  *
  * Later sources overwrite earlier keys.
  *
+ * @category Objects & paths
+ *
  * @param iterable|stdClass|null $iterable
  * @param iterable|stdClass|null ...$sources
  * @return array

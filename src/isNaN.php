@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Checks whether `$value` is NaN.
  *
+ * @category Type & value checks
+ *
  * @param mixed $value
  * @return boolean
  */

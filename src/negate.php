@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Creates a new function that negates the return value of `$predicate`.
  *
+ * @category Predicates & comparison
+ *
  * @param callable $predicate
  * @return callable New function
  *

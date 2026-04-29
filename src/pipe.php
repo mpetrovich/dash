@@ -8,6 +8,8 @@ namespace Dash;
  *
  * The first function can have any arity, but the rest must be unary.
  *
+ * @category Functions & composition
+ *
  * @see compose()
  *
  * @param callable ...$fns

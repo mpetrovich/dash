@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Converts `$iterable` to a list of `[key, value]` tuples.
  *
+ * @category Collections & iterators
+ *
  * @see values(), keys()
  *
  * @param iterable|stdClass|null $iterable

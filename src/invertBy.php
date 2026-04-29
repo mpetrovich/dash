@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Like `invert()`, but groups original keys into arrays by transformed value.
  *
+ * @category Objects & paths
+ *
  * @see invert(), mapKeys()
  *
  * @param iterable|stdClass|null $iterable

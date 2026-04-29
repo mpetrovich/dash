@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Returns a new array of `$iterable` excluding all values in `$exclude` (loose equality).
  *
+ * @category Collections & iterators
+ *
  * @see reject(), contains()
  *
  * @param iterable|stdClass|null $iterable

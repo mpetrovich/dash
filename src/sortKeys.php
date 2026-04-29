@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Returns a new array of `$iterable` sorted by key.
  *
+ * @category Collections & iterators
+ *
  * @param iterable|stdClass|null $iterable
  * @return array
  */

@@ -8,6 +8,8 @@ namespace Dash;
  * A value is empty if it is an iterable of size zero or loosely equals false.
  * @link http://php.net/manual/en/function.empty.php
  *
+ * @category Type & value checks
+ *
  * @param mixed $value
  * @return boolean True if `$value` is empty, false otherwise
  *

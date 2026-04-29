@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Creates a function that invokes `$callable` only after it is called `$n` times.
  *
+ * @category Functions & composition
+ *
  * @param integer $n
  * @param callable $callable
  * @return callable

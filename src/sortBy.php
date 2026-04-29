@@ -7,6 +7,8 @@ namespace Dash;
  *
  * Keys are preserved unless `$iterable` is an indexed array.
  *
+ * @category Collections & iterators
+ *
  * @see sort(), groupBy()
  *
  * @param iterable|stdClass|null $iterable

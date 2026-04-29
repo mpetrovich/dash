@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Checks whether `$value` is a valid regular expression pattern string.
  *
+ * @category Type & value checks
+ *
  * @param mixed $value
  * @return boolean
  */

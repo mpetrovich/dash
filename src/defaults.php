@@ -7,6 +7,8 @@ namespace Dash;
  *
  * The first non-null source value for a key wins.
  *
+ * @category Objects & paths
+ *
  * @param iterable|stdClass|null $input
  * @return array
  */

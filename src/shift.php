@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Returns the first value removed from `$iterable` (PHP-style shift behavior).
  *
+ * @category Collections & iterators
+ *
  * @param iterable|stdClass|null $iterable
  * @return mixed|null
  */

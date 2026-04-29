@@ -7,6 +7,8 @@ namespace Dash;
  *
  * Counts in forward iteration order (unrelated to numeric array keys for associative iterables).
  *
+ * @category Collections & iterators
+ *
  * @see find(), findKey(), findLastIndex()
  *
  * @param iterable|stdClass|null $iterable

@@ -7,6 +7,8 @@ namespace Dash;
  *
  * Uses loose equality for value comparison and supports nested paths via `get()`.
  *
+ * @category Predicates & comparison
+ *
  * @param iterable|stdClass|null $properties
  * @return callable with signature `($iterable): boolean`
  *

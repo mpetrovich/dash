@@ -7,6 +7,8 @@ namespace Dash;
  *
  * Stops when the shorter iterable ends (same length rule as `zip()`).
  *
+ * @category Collections & iterators
+ *
  * @param iterable|stdClass|null $iterable1
  * @param iterable|stdClass|null $iterable2
  * @param callable $combiner Invoked with `($valueFromFirst, $valueFromSecond)` for each aligned pair

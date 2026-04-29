@@ -7,6 +7,8 @@ namespace Dash;
  *
  * v1 applies only one level deep.
  *
+ * @category Objects & paths
+ *
  * @param iterable|stdClass|null $input
  * @param array $transformations
  * @return array|object

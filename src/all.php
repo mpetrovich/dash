@@ -10,6 +10,8 @@ namespace Dash;
  * Note: Returns true if `$iterable` is empty, because everything is true of empty iterables.
  * @link https://en.wikipedia.org/wiki/Vacuous_truth
  *
+ * @category Collections & iterators
+ *
  * @param iterable|stdClass|null $iterable
  * @param callable $predicate (optional) Invoked with `($value, $key, $iterable)` for each element in `$iterable`
  * @return boolean true if `$predicate` returns truthy for every item in `$iterable`

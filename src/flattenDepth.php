@@ -7,6 +7,8 @@ namespace Dash;
  * A depth of `0` returns a copy of `$iterable` with the same indexed vs associative rules as other array-returning
  * operations.
  *
+ * @category Collections & iterators
+ *
  * @see flatten(), flattenDeep()
  *
  * @param iterable|stdClass|null $iterable

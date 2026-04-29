@@ -8,6 +8,8 @@ namespace Dash;
  * If an array offset, object property, and/or method all exist for the same key,
  * the value at the array offset takes precedence and will be returned.
  *
+ * @category Objects & paths
+ *
  * @see getDirectRef(), hasDirect(), get()
  *
  * @param mixed $input

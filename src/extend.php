@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Alias of `merge()`.
  *
+ * @category Objects & paths
+ *
  * @see merge()
  *
  * @return array

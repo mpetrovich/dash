@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Alias of `setCustom()`.
  *
+ * @category Utilities & misc
+ *
  * @param string $name
  * @param callable $callable
  * @return void

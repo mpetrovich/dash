@@ -7,6 +7,8 @@ namespace Dash;
  *
  * Returns class names for objects.
  *
+ * @category Type & value checks
+ *
  * @param mixed $value
  * @return string
  */

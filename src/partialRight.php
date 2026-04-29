@@ -11,6 +11,8 @@ namespace Dash;
  *
  * Use `Dash\_` as a placeholder to replace with arguments passed to the returned function.
  *
+ * @category Functions & composition
+ *
  * @see partial(), curryRight()
  *
  * @param callable $callable

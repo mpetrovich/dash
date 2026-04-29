@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Creates a function that routes arguments to `$onTrue` or `$onFalse` based on `$predicate`.
  *
+ * @category Functions & composition
+ *
  * @param callable $predicate
  * @param callable $onTrue
  * @param callable $onFalse

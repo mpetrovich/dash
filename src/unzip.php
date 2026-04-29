@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Inverse of `zip()`: turns an iterable of tuples into parallel arrays (columns).
  *
+ * @category Collections & iterators
+ *
  * @alias transpose
  *
  * @param iterable|stdClass|null $iterable Iterable of rows (each row an iterable of cells)

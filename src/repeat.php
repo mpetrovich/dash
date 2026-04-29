@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Returns an array of length `$count` with every element set to `$value`.
  *
+ * @category Collections & iterators
+ *
  * @param mixed $value
  * @param numeric $count
  * @return array

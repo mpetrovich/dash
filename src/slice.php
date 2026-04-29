@@ -9,6 +9,8 @@ namespace Dash;
  *
  * For generators, only non-negative `$offset` and non-negative (or null) `$length` are supported.
  *
+ * @category Collections & iterators
+ *
  * @param iterable|stdClass|null $iterable
  * @param integer $offset
  * @param integer|null $length

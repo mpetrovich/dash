@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Checks whether `$value` is an object.
  *
+ * @category Type & value checks
+ *
  * @param mixed $value
  * @return boolean
  */

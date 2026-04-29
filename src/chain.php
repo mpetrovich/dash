@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Creates a new chain. Alias for `Dash::chain()`.
  *
+ * @category Utilities & misc
+ *
  * @param mixed $input (optional) Initial input value of the chain
  * @return Dash\Dash A new chain
  *

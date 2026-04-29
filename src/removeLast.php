@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Returns a new iterable with the last element matching `$predicate` removed.
  *
+ * @category Collections & iterators
+ *
  * @param iterable|stdClass|null $iterable
  * @param callable|string|array $predicate (optional)
  * @return array

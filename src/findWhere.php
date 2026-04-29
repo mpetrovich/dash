@@ -7,6 +7,8 @@ namespace Dash;
  *
  * Equivalent to `filter($iterable, matches($properties))`.
  *
+ * @category Collections & iterators
+ *
  * @see where(), matches(), filter()
  *
  * @param iterable|stdClass|null $iterable

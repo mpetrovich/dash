@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Gets a plain object representation of `$value`.
  *
+ * @category Objects & paths
+ *
  * @param mixed $value
  * @return object Empty object if `$value` is not iterable
  *

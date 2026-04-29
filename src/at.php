@@ -5,6 +5,8 @@ namespace Dash;
 /**
  * Iterates over `$iterable` and returns the value of the `$index`th element, ignoring keys.
  *
+ * @category Collections & iterators
+ *
  * @param iterable|stdClass|null $iterable
  * @param integer $index 0-based index
  * @param mixed $default (optional) Value to return if `$index` is out of bounds

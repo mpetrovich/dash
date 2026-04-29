@@ -7,6 +7,8 @@ namespace Dash;
  *
  * Once the threshold is reached, it returns the last computed result.
  *
+ * @category Functions & composition
+ *
  * @param integer $n
  * @param callable $callable
  * @return callable
