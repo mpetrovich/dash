@@ -21,6 +21,7 @@ Operation | Signature | Curried
 [compose](#compose) | `compose(callable ...$fns): callable` | 
 [cond](#cond) | `cond($pairs): callable` | 
 [contains](#contains--includes) / includes | `contains($iterable, $target, $comparator = 'Dash\equal'): boolean` | `Curry\contains`
+[converge](#converge) | `converge(callable $combiner, $branches): callable` | 
 [currify](#currify) | `currify(callable $callable, array $args = [], $rotate = 1): function\|mixed` | 
 [currifyN](#currifyn) | `currifyN(callable $callable, $totalArgs, array $args = [], $rotate = 1): function\|mixed` | 
 [curry](#curry) | `curry(callable $callable /*, ...args */): function\|mixed` | 
@@ -736,6 +737,36 @@ Dash\contains([1, '2', 3], 2);
 ```php
 Dash\contains([1, '2', 3], 2, 'Dash\identical');
 // === false
+```
+
+[↑ Top](#operations)
+
+converge
+---
+
+
+```php
+converge(callable $combiner, $branches): callable
+```
+Creates a function that applies each branch function to the same runtime arguments, then passes
+branch results as positional arguments to `$combiner`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$combiner` | `callable` |
+`$branches` | `iterable\|stdClass\|null` |
+**Returns** | `callable` |
+
+**Example:**
+```php
+$avg = Dash\converge(function ($sum, $count) {
+	return $sum / $count;
+}, [
+	'Dash\sum',
+	'Dash\size',
+]);
+$avg([2, 4, 6]);  // === 4
 ```
 
 [↑ Top](#operations)

@@ -158,6 +158,6 @@ No new operations
 -   [x] when
 -   [x] unless
 -   [x] juxt / over
--   [ ] converge
+-   [x] converge
 -   [ ] toPairs / pairs
 

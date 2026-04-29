@@ -45,6 +45,7 @@
             "src/chunk.php",
             "src/cond.php",
             "src/compare.php",
+            "src/converge.php",
             "src/compose.php",
             "src/compact.php",
             "src/contains.php",
