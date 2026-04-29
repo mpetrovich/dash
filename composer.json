@@ -274,6 +274,7 @@
             "src/Curry/tail.php",
             "src/Curry/take.php",
             "src/Curry/takeRight.php",
+            "src/Curry/takeWhile.php",
             "src/Curry/tap.php",
             "src/Curry/thru.php",
             "src/Curry/times.php",

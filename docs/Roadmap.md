@@ -7,7 +7,7 @@ When plan status changes, update this file in the same pass.
 
 -   [x] dropWhile
 -   [ ] matches
--   [ ] takeWhile
+-   [x] takeWhile
 -   [ ] where
 -   [ ] without
 

@@ -3,29 +3,34 @@
 namespace Dash;
 
 /**
- * @incomplete
- * Returns a subset of $iterable taken from the beginning until $predicate returns falsey.
+ * Returns a subset of `$iterable` taken from the beginning while `$predicate` returns truthy.
  *
- * @param iterable|stdClass $iterable
- * @param callable $predicate Invoked with ($value, $key)
- * @return array|object Array for array-like $iterable, object for object-like $iterable
+ * @see dropWhile()
+ *
+ * @param iterable|stdClass|null $iterable
+ * @param callable $predicate (optional) Invoked with `($value, $key, $iterable)`
+ * @return array|iterable
  *
  * @example
-	takeWhile([2, 4, 6, 7, 8, 10], 'Dash\isEven');
+	Dash\takeWhile([2, 4, 6, 7, 8, 10], 'Dash\isEven');
 	// === [2, 4, 6]
  */
 function takeWhile($iterable, $predicate = 'Dash\identity')
 {
-	assertType($iterable, ['Generator', 'iterable', 'stdClass'], __FUNCTION__);
+	assertType($iterable, ['Generator', 'iterable', 'stdClass', 'null'], __FUNCTION__);
 
 	if ($iterable instanceof \Generator) {
 		return Generator\takeWhile($iterable, $predicate);
 	}
 
+	if (is_null($iterable)) {
+		return [];
+	}
+
 	$keys = [];
 
 	foreach ($iterable as $key => $value) {
-		if (call_user_func($predicate, $value, $key)) {
+		if (call_user_func($predicate, $value, $key, $iterable)) {
 			$keys[] = $key;
 		}
 		else {

@@ -115,6 +115,7 @@ Operation | Signature | Curried
 [tail](#tail--rest) / rest | `tail($iterable): array\|iterable` | `Curry\tail`
 [take](#take) | `take($iterable, $count = 1): array\|iterable` | `Curry\take`
 [takeRight](#takeright) | `takeRight($iterable, $count = 1): array` | `Curry\takeRight`
+[takeWhile](#takewhile) | `takeWhile($iterable, $predicate = 'Dash\identity'): array\|iterable` | `Curry\takeWhile`
 [tap](#tap) | `tap($value, callable $interceptor): mixed` | `Curry\tap`
 [thru](#thru) | `thru($value, callable $interceptor): mixed` | `Curry\thru`
 [times](#times) | `times($n, $iteratee = 'Dash\identity'): array` | `Curry\times`
@@ -4362,6 +4363,33 @@ Dash\take(['b' => 2, 'c' => 3, 'a' => 1], 2);
 
 Dash\take([1, 2, 3, 4, 5, 6], -2);
 // === [3, 4, 5, 6]
+```
+
+[↑ Top](#operations)
+
+takeWhile
+---
+See also: `dropWhile()`
+
+```php
+takeWhile($iterable, $predicate = 'Dash\identity'): array|iterable
+
+# Curried: (all parameters required)
+Curry\takeWhile($predicate, $iterable)
+```
+Returns a subset of `$iterable` taken from the beginning while `$predicate` returns truthy.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$predicate` | `callable` | (optional) Invoked with `($value, $key, $iterable)`
+**Returns** | `array\|iterable` |
+
+**Example:**
+```php
+Dash\takeWhile([2, 4, 6, 7, 8, 10], 'Dash\isEven');
+// === [2, 4, 6]
 ```
 
 [↑ Top](#operations)

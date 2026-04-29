@@ -2,6 +2,7 @@
 
 /**
  * @covers Dash\takeWhile
+ * @covers Dash\Curry\takeWhile
  * @covers Dash\Generator\takeWhile
  */
 class takeWhileTest extends PHPUnit\Framework\TestCase
@@ -14,9 +15,23 @@ class takeWhileTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($expected, Dash\takeWhile($input, $predicate));
 	}
 
+	/**
+	 * @dataProvider cases
+	 */
+	public function testCurried($input, $predicate, $expected)
+	{
+		$f = Dash\Curry\takeWhile($predicate);
+		$this->assertEquals($expected, $f($input));
+	}
+
 	public function cases()
 	{
 		return [
+			[
+				'input' => null,
+				'predicate' => 'Dash\isEven',
+				'expected' => [],
+			],
 			[
 				'input' => [2, 4, 6, 7, 8, 10],
 				'predicate' => 'Dash\isEven',
