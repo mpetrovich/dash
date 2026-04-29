@@ -71,6 +71,7 @@ Operation | Signature | Curried
 [keys](#keys) | `keys($iterable): array` | `Curry\keys`
 [last](#last) | `last($iterable): mixed\|null` | `Curry\last`
 [map](#map) | `map($iterable, $iteratee = 'Dash\identity'): array` | `Curry\map`
+[mapKeys](#mapkeys) | `mapKeys($iterable, $iteratee = 'Dash\identity'): array\|iterable` | `Curry\mapKeys`
 [mapResult](#mapresult) | `mapResult($iterable, $path, $default = null): array` | `Curry\mapResult`
 [mapValues](#mapvalues) | `mapValues($iterable, $iteratee = 'Dash\identity'): array` | `Curry\mapValues`
 [matchesProperty](#matchesproperty) | `matchesProperty($path, $value = true, $comparator = 'Dash\equal'): function` | `Curry\matchesProperty`
@@ -2834,6 +2835,31 @@ $data = [
 Dash\map($data, 'name.last');
 // === ['Doe', 'Jane', 'Smith']
 ```
+
+[↑ Top](#operations)
+
+mapKeys
+---
+See also: `mapValues()`, `keyBy()`
+
+```php
+mapKeys($iterable, $iteratee = 'Dash\identity'): array|iterable
+
+# Curried: (all parameters required)
+Curry\mapKeys($iteratee, $iterable)
+```
+Returns a new associative array with keys transformed by `$iteratee`, keeping original values.
+
+Later key collisions overwrite earlier entries.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$iteratee` | `callable\|string\|integer` | (optional) Same forms as `mapValues()`
+**Returns** | `array\|iterable` |
+
+
 
 [↑ Top](#operations)
 
