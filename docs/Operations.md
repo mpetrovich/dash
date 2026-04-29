@@ -85,6 +85,7 @@ Operation | Signature | Curried
 [partialRight](#partialright) | `partialRight($callable /*, ...args */): callable` | 
 [partition](#partition) | `partition($iterable, $predicate = 'Dash\identity'): array` | `Curry\partition`
 [pick](#pick) | `pick($iterable, $keys): array` | `Curry\pick`
+[pickBy](#pickby) | `pickBy($iterable, $predicate = 'Dash\identity'): array\|iterable` | `Curry\pickBy`
 [pipe](#pipe) | `pipe(callable ...$fns): callable` | 
 [pluck](#pluck) | `pluck($iterable, $path, $default = null): array` | `Curry\pluck`
 [property](#property) | `property($path, $default = null): function` | `Curry\property`
@@ -3340,6 +3341,29 @@ Parameter | Type | Description
 Dash\pick(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], ['b', 'c']);
 // === ['b' => 2, 'c' => 3]
 ```
+
+[↑ Top](#operations)
+
+pickBy
+---
+See also: `filter()`, `omitBy()`
+
+```php
+pickBy($iterable, $predicate = 'Dash\identity'): array|iterable
+
+# Curried: (all parameters required)
+Curry\pickBy($predicate, $iterable)
+```
+Picks elements of `$iterable` for which `$predicate` returns truthy, always preserving keys.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$predicate` | `callable\|string\|array` | (optional) Same forms as `filter()`
+**Returns** | `array\|iterable` |
+
+
 
 [↑ Top](#operations)
 
