@@ -19,6 +19,7 @@ Operation | Signature | Curried
 [compact](#compact) | `compact($iterable): array\|iterable` | `Curry\compact`
 [compare](#compare) | `compare($a, $b): integer` | `Curry\compare`
 [compose](#compose) | `compose(callable ...$fns): callable` | 
+[cond](#cond) | `cond($pairs): callable` | 
 [contains](#contains--includes) / includes | `contains($iterable, $target, $comparator = 'Dash\equal'): boolean` | `Curry\contains`
 [currify](#currify) | `currify(callable $callable, array $args = [], $rotate = 1): function\|mixed` | 
 [currifyN](#currifyn) | `currifyN(callable $callable, $totalArgs, array $args = [], $rotate = 1): function\|mixed` | 
@@ -666,6 +667,36 @@ $triple = function ($v) {
 
 $composed = Dash\compose($triple, $addOne, $pow);
 $composed(2, 3); // === 27
+```
+
+[↑ Top](#operations)
+
+cond
+---
+
+
+```php
+cond($pairs): callable
+```
+Creates a function that dispatches to the first matching predicate/transform pair.
+
+Each pair must be `[$predicate, $transform]`. Returned function evaluates predicates in order
+and invokes the transform for the first truthy predicate. Returns `null` if no predicate matches.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$pairs` | `iterable\|stdClass\|null` |
+**Returns** | `callable` |
+
+**Example:**
+```php
+$fn = Dash\cond([
+	[function ($n) { return $n < 0; }, function () { return 'neg'; }],
+	[function ($n) { return $n > 0; }, function () { return 'pos'; }],
+]);
+$fn(-1);  // === 'neg'
+$fn(0);   // === null
 ```
 
 [↑ Top](#operations)

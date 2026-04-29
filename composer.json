@@ -43,6 +43,7 @@
             "src/call.php",
             "src/chain.php",
             "src/chunk.php",
+            "src/cond.php",
             "src/compare.php",
             "src/compose.php",
             "src/compact.php",

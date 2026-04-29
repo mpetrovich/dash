@@ -153,7 +153,7 @@ No new operations
 -   [x] rest (alias of `tail`)
 -   [x] allPass / overEvery
 -   [x] anyPass / overSome
--   [ ] cond
+-   [x] cond
 -   [ ] ifElse
 -   [ ] when
 -   [ ] unless
