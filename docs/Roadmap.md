@@ -60,7 +60,7 @@ None.
 -   [x] isFloat
 -   [x] isFunction
 -   [x] isInteger
--   [ ] isNaN
+-   [x] isNaN
 -   [ ] isNull
 -   [ ] isNumber
 -   [ ] isObject
