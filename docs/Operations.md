@@ -95,6 +95,7 @@ Operation | Signature | Curried
 [pipe](#pipe) | `pipe(callable ...$fns): callable` | 
 [pluck](#pluck) | `pluck($iterable, $path, $default = null): array` | `Curry\pluck`
 [property](#property) | `property($path, $default = null): function` | `Curry\property`
+[range](#range) | `range($start, $end = null, $step = 1): array` | 
 [reduce](#reduce) | `reduce($iterable, $iteratee, $initial = []): mixed` | `Curry\reduce`
 [reduceRight](#reduceright) | `reduceRight($iterable, $iteratee, $initial = []): mixed` | `Curry\reduceRight`
 [reject](#reject) | `reject($iterable, $predicate = 'Dash\identity'): array` | `Curry\reject`
@@ -3672,6 +3673,29 @@ $getter([
 $getter = Dash\property('a.b.c');
 $getter(['a.b.c' => 'value']);  // === 'value'
 ```
+
+[↑ Top](#operations)
+
+range
+---
+
+
+```php
+range($start, $end = null, $step = 1): array
+```
+Returns an array of numbers from `$start` (inclusive) to `$end` (exclusive), stepping by `$step`.
+
+With one argument, range is `[0, $start)`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$start` | `numeric` |
+`$end` | `numeric\|null` | (optional)
+`$step` | `numeric` | (optional)
+**Returns** | `array` |
+
+
 
 [↑ Top](#operations)
 

@@ -40,7 +40,7 @@ When plan status changes, update this file in the same pass.
 -   [ ] matchesAny
 -   [ ] merge
 -   [ ] prepend
--   [ ] range
+-   [x] range
 -   [ ] remove
 -   [ ] removeFirst
 -   [ ] removeLast
@@ -139,7 +139,7 @@ No new operations
 -   [x] symmetricDifference
 -   [x] flip
 -   [x] defaults
--   [ ] range
+-   [x] range
 -   [ ] times
 -   [ ] clamp
 -   [ ] repeat
