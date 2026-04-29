@@ -94,6 +94,7 @@ Operation | Signature | Curried
 [merge](#merge) | `merge($iterable /* , ...$sources */): array` | 
 [min](#min) | `min($iterable): mixed\|null` | `Curry\min`
 [negate](#negate) | `negate(callable $predicate): callable` | `Curry\negate`
+[noop](#noop) | `noop(): null` | 
 [nth](#nth) | `nth($iterable, $index, $default = null): mixed` | `Curry\nth`
 [omit](#omit) | `omit($iterable, $keys): array` | `Curry\omit`
 [omitBy](#omitby) | `omitBy($iterable, $predicate = 'Dash\identity'): array\|iterable` | `Curry\omitBy`
@@ -3498,6 +3499,22 @@ $isOdd = Dash\negate($isEven);
 $isEven(3);  // === false
 $isOdd(3);   // === true
 ```
+
+[↑ Top](#operations)
+
+noop
+---
+
+
+```php
+noop(): null
+```
+No operation. Always returns `null`.
+
+
+**Returns** | `null` |
+
+
 
 [↑ Top](#operations)
 

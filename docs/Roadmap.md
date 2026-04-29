@@ -85,7 +85,7 @@ None.
 -   [ ] lastly
 -   [ ] memoize
 -   [ ] mixin / setCustom
--   [ ] noop
+-   [x] noop
 -   [ ] now
 -   [x] once
 -   [x] pairs
