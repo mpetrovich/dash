@@ -74,6 +74,7 @@ Operation | Signature | Curried
 [negate](#negate) | `negate(callable $predicate): callable` | `Curry\negate`
 [nth](#nth) | `nth($iterable, $index, $default = null): mixed` | `Curry\nth`
 [omit](#omit) | `omit($iterable, $keys): array` | `Curry\omit`
+[once](#once) | `once(callable $callable): callable` | 
 [partial](#partial) | `partial($callable /*, ...args */): callable` | 
 [partialRight](#partialright) | `partialRight($callable /*, ...args */): callable` | 
 [partition](#partition) | `partition($iterable, $predicate = 'Dash\identity'): array` | `Curry\partition`
@@ -2955,6 +2956,37 @@ Parameter | Type | Description
 ```php
 Dash\omit(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4], ['b', 'c']);
 // === ['a' => 1, 'd' => 4]
+```
+
+[↑ Top](#operations)
+
+once
+---
+
+
+```php
+once(callable $callable): callable
+```
+Creates a new function that invokes `$callable` at most once.
+
+Subsequent calls return the result from the first invocation.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$callable` | `callable` |
+**Returns** | `callable` |
+
+**Example:**
+```php
+$next = 0;
+$inc = Dash\once(function () use (&$next) {
+	$next++;
+	return $next;
+});
+
+$inc();  // === 1
+$inc();  // === 1
 ```
 
 [↑ Top](#operations)

@@ -91,7 +91,7 @@ When plan status changes, update this file in the same pass.
 -   [ ] mixin / setCustom
 -   [ ] noop
 -   [ ] now
--   [ ] once
+-   [x] once
 -   [ ] pairs
 -   [x] partition
 -   [ ] provide / dash

@@ -122,6 +122,7 @@
             "src/negate.php",
             "src/nth.php",
             "src/omit.php",
+            "src/once.php",
             "src/partial.php",
             "src/partialRight.php",
             "src/partition.php",
