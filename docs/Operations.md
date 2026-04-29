@@ -91,6 +91,7 @@ Operation | Signature | Curried
 [toObject](#toobject) | `toObject($value): object` | `Curry\toObject`
 [unary](#unary) | `unary(callable $callable): callable` | `Curry\unary`
 [union](#union) | `union($iterable /*, ...iterables */): array` | 
+[unionWith](#unionwith) | `unionWith($iterable, $other, $comparator = 'Dash\equal'): array` | `Curry\unionWith`
 [unique](#unique--distinct) / distinct | `unique($iterable): array` | 
 [uniqueBy](#uniqueby--uniqby--distinctby) / uniqBy / distinctBy | `uniqueBy($iterable, $iteratee = 'Dash\identity'): array\|iterable` | `Curry\uniqueBy`
 [unzip](#unzip--transpose) / transpose | `unzip($iterable): array` | `Curry\unzip`
@@ -3696,6 +3697,36 @@ Dash\union(
 	['e' => 5, 'f' => 6]
 );
 // === ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4, 'e' => 5, 'f' => 6]
+```
+
+[↑ Top](#operations)
+
+unionWith
+---
+See also: `union()`, `intersectionWith()`
+
+```php
+unionWith($iterable, $other, $comparator = 'Dash\equal'): array
+
+# Curried: (all parameters required)
+Curry\unionWith($other, $comparator, $iterable)
+```
+Returns the combined values of `$iterable` and `$other`, in that order, omitting later values that compare equal to an earlier one using `$comparator`.
+
+When `$iterable` is indexed, new values are appended and the result is reindexed. Otherwise keys from `$other` are used for appended entries.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$other` | `iterable\|stdClass\|null` |
+`$comparator` | `callable` | (optional) Invoked as `($a, $b)`; truthy means values are considered equal
+**Returns** | `array` |
+
+**Example:**
+```php
+Dash\unionWith([1, 3], [2, 1], 'Dash\equal');
+// === [1, 3, 2]
 ```
 
 [↑ Top](#operations)

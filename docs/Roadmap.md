@@ -123,6 +123,7 @@ No new operations
 
 -   [x] differenceWith
 -   [x] intersectionWith
+-   [x] unionWith
 -   [x] uniqueBy
 
 ## [Ramda](http://ramdajs.com/docs)
