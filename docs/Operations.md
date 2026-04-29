@@ -43,6 +43,7 @@ Operation | Signature | Curried
 [first](#first--head) / head | `first($iterable): mixed\|null` | `Curry\first`
 [flatten](#flatten) | `flatten($iterable): array` | 
 [flattenDeep](#flattendeep) | `flattenDeep($iterable): array\|iterable` | `Curry\flattenDeep`
+[flattenDepth](#flattendepth) | `flattenDepth($iterable, $depth = 1): array\|iterable` | `Curry\flattenDepth`
 [get](#get) | `get($input, $path, $default = null): mixed` | `Curry\get`
 [getDirect](#getdirect) | `getDirect($input, $key, $default = null): mixed` | `Curry\getDirect`
 [getDirectRef](#getdirectref) | `getDirectRef(&$input, $key): mixed` | 
@@ -1765,6 +1766,36 @@ Parameter | Type | Description
 ```php
 Dash\flattenDeep([[1, [2, [3, 4]]], 5]);
 // === [1, 2, 3, 4, 5]
+```
+
+[↑ Top](#operations)
+
+flattenDepth
+---
+See also: `flatten()`, `flattenDeep()`
+
+```php
+flattenDepth($iterable, $depth = 1): array|iterable
+
+# Curried: (all parameters required)
+Curry\flattenDepth($depth, $iterable)
+```
+Flattens nested arrays up to `$depth` levels (`1` behaves like `flatten()`). A depth of `0` returns a copy of `$iterable` with the same indexed vs associative rules as other array-returning operations.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$depth` | `integer` |
+**Returns** | `array\|iterable` |
+
+**Example:**
+```php
+Dash\flattenDepth([[1, [2, [3]]]], 2);
+// === [1, 2, [3]]
+
+Dash\flattenDepth([[1, [2, [3]]]], 3);
+// === [1, 2, 3]
 ```
 
 [↑ Top](#operations)
