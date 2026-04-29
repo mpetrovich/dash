@@ -33,7 +33,6 @@ echo "Average male age is $avgMaleAge.";
     -   [Custom operations](#custom-operations)
     -   [Tips](#tips)
 -   [Changelog](https://github.com/mpetrovich/dash/releases)
--   [Roadmap](docs/Roadmap.md)
 -   [Contributing](CONTRIBUTING.md)
 
 ## Operations
