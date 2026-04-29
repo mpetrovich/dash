@@ -61,6 +61,7 @@ Operation | Signature | Curried
 [intersection](#intersection) | `intersection($iterable /*, ...iterables */): array` | 
 [intersectionWith](#intersectionwith) | `intersectionWith($iterable, $other, $comparator = 'Dash\equal'): array` | `Curry\intersectionWith`
 [invert](#invert--invertobj) / invertObj | `invert($iterable): array` | `Curry\invert`
+[invertBy](#invertby) | `invertBy($iterable, $iteratee = 'Dash\identity'): array` | `Curry\invertBy`
 [isEmpty](#isempty) | `isEmpty($value): boolean` | `Curry\isEmpty`
 [isEven](#iseven) | `isEven($value): boolean` | `Curry\isEven`
 [isIndexedArray](#isindexedarray) | `isIndexedArray($value): boolean` | `Curry\isIndexedArray`
@@ -2433,6 +2434,29 @@ Later duplicate values overwrite earlier keys.
 Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable\|stdClass\|null` |
+**Returns** | `array` |
+
+
+
+[↑ Top](#operations)
+
+invertBy
+---
+See also: `invert()`, `mapKeys()`
+
+```php
+invertBy($iterable, $iteratee = 'Dash\identity'): array
+
+# Curried: (all parameters required)
+Curry\invertBy($iteratee, $iterable)
+```
+Like `invert()`, but groups original keys into arrays by transformed value.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$iteratee` | `callable\|string\|integer` | (optional) Same forms as `mapValues()`
 **Returns** | `array` |
 
 
