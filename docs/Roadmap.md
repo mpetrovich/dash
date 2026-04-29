@@ -82,7 +82,7 @@ None.
 -   [x] sample
 -   [x] sortedIndex
 -   [x] times
--   [ ] typeOf
+-   [x] typeOf
 -   [x] uniqueId
 -   [x] wrap
 -   [x] zip

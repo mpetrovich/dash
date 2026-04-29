@@ -175,6 +175,7 @@ Operation | Signature | Curried
 [toArray](#toarray) | `toArray($value): array` | `Curry\toArray`
 [toObject](#toobject) | `toObject($value): object` | `Curry\toObject`
 [toPairs](#topairs--pairs) / pairs | `toPairs($iterable): array` | `Curry\toPairs`
+[typeOf](#typeof) | `typeOf($value): string` | `Curry\typeOf`
 [unary](#unary) | `unary(callable $callable): callable` | `Curry\unary`
 [union](#union) | `union($iterable /*, ...iterables */): array` | 
 [unionWith](#unionwith) | `unionWith($iterable, $other, $comparator = 'Dash\equal'): array` | `Curry\unionWith`
@@ -5806,6 +5807,30 @@ Parameter | Type | Description
 --- | --- | :---
 `$iterable` | `iterable\|stdClass\|null` |
 **Returns** | `array` |
+
+
+
+[↑ Top](#operations)
+
+typeOf
+---
+
+
+```php
+typeOf($value): string
+
+# Curried: (all parameters required)
+Curry\typeOf($value)
+```
+Gets a normalized type name for `$value`.
+
+Returns class names for objects.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `mixed` |
+**Returns** | `string` |
 
 
 
