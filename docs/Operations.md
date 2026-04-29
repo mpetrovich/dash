@@ -36,6 +36,7 @@ Operation | Signature | Curried
 [findIndex](#findindex) | `findIndex($iterable, $predicate = 'Dash\identity'): integer` | `Curry\findIndex`
 [findKey](#findkey) | `findKey($iterable, $predicate = 'Dash\identity'): string\|null` | `Curry\findKey`
 [findLast](#findlast) | `findLast($iterable, $predicate = 'Dash\identity'): array\|null` | `Curry\findLast`
+[findLastIndex](#findlastindex) | `findLastIndex($iterable, $predicate = 'Dash\identity'): integer` | `Curry\findLastIndex`
 [findLastKey](#findlastkey) | `findLastKey($iterable, $predicate = 'Dash\identity'): string\|null` | `Curry\findLastKey`
 [findLastValue](#findlastvalue) | `findLastValue($iterable, $predicate = 'Dash\identity'): mixed\|null` | `Curry\findLastValue`
 [findValue](#findvalue) | `findValue($iterable, $predicate = 'Dash\identity'): mixed\|null` | `Curry\findValue`
@@ -1454,6 +1455,35 @@ Dash\findLast($data, 'active');
 
 Dash\findLast($data, ['active', false]);
 // === [3, ['name' => 'Jane', 'active' => false]]
+```
+
+[↑ Top](#operations)
+
+findLastIndex
+---
+See also: `findLast()`, `findLastKey()`, `findIndex()`
+
+```php
+findLastIndex($iterable, $predicate = 'Dash\identity'): integer
+
+# Curried: (all parameters required)
+Curry\findLastIndex($predicate, $iterable)
+```
+Returns the 0-based index of the last element for which `$predicate` returns truthy, or `-1` if none.
+
+Counts in forward iteration order (same indexing as `findIndex()`).
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$predicate` | `callable\|string\|array` | (optional) Same forms as `find()`.
+**Returns** | `integer` |
+
+**Example:**
+```php
+Dash\findLastIndex([1, 2, 3, 4, 2], function ($v) { return $v === 2; });
+// === 4
 ```
 
 [↑ Top](#operations)

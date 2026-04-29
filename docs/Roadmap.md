@@ -126,6 +126,7 @@ No new operations
 -   [x] unionWith
 -   [x] sortBy
 -   [x] findIndex
+-   [x] findLastIndex
 -   [x] uniqueBy
 
 ## [Ramda](http://ramdajs.com/docs)
