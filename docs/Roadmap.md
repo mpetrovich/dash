@@ -131,6 +131,7 @@ No new operations
 -   [x] flattenDeep
 -   [x] flattenDepth
 -   [x] initial
+-   [x] tail
 -   [x] uniqueBy
 
 ## [Ramda](http://ramdajs.com/docs)

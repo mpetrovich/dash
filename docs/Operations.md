@@ -90,6 +90,7 @@ Operation | Signature | Curried
 [sort](#sort) | `sort($iterable, $comparator = 'Dash\compare'): array` | `Curry\sort`
 [sortBy](#sortby) | `sortBy($iterable, $iteratee = 'Dash\identity'): array` | `Curry\sortBy`
 [sum](#sum) | `sum($iterable): numeric` | `Curry\sum`
+[tail](#tail--rest) / rest | `tail($iterable): array\|iterable` | `Curry\tail`
 [take](#take) | `take($iterable, $count = 1): array\|iterable` | `Curry\take`
 [takeRight](#takeright) | `takeRight($iterable, $count = 1): array` | `Curry\takeRight`
 [tap](#tap) | `tap($value, callable $interceptor): mixed` | `Curry\tap`
@@ -3648,6 +3649,37 @@ Dash\sum([2, 3, 5, 8]);
 
 Dash\sum([]);
 // === 0
+```
+
+[↑ Top](#operations)
+
+tail / rest
+---
+See also: `first()`, `initial()`
+
+```php
+tail($iterable): array|iterable
+
+# Curried: (all parameters required)
+Curry\tail($iterable)
+```
+Returns all elements of `$iterable` except the first.
+
+Keys are preserved unless `$iterable` is an indexed array. An empty iterable yields an empty array.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+**Returns** | `array\|iterable` |
+
+**Example:**
+```php
+Dash\tail([1, 2, 3]);
+// === [2, 3]
+
+Dash\tail([1]);
+// === []
 ```
 
 [↑ Top](#operations)
