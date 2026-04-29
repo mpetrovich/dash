@@ -34,7 +34,7 @@ None.
 -   [x] has
 -   [ ] invoke
 -   [ ] matchesAny
--   [ ] merge
+-   [x] merge
 -   [ ] prepend
 -   [x] range
 -   [ ] remove
@@ -58,7 +58,7 @@ None.
 -   [ ] duplicate
 -   [ ] eachReference / eachRef
 -   [ ] escape
--   [ ] extend
+-   [x] extend
 -   [x] findWhere
 -   [ ] functions
 -   [x] indexOf

@@ -89,6 +89,7 @@ Operation | Signature | Curried
 [matchesProperty](#matchesproperty) | `matchesProperty($path, $value = true, $comparator = 'Dash\equal'): function` | `Curry\matchesProperty`
 [max](#max) | `max($iterable): mixed\|null` | `Curry\max`
 [median](#median) | `median($iterable): mixed\|null` | `Curry\median`
+[merge](#merge) | `merge($iterable /* , ...$sources */): array` | 
 [min](#min) | `min($iterable): mixed\|null` | `Curry\min`
 [negate](#negate) | `negate(callable $predicate): callable` | `Curry\negate`
 [nth](#nth) | `nth($iterable, $index, $default = null): mixed` | `Curry\nth`
@@ -3376,6 +3377,28 @@ Dash\median([3, 2, 1, 5, 4]);
 Dash\median([3, 2, 1, 4]);
 // === 2.5
 ```
+
+[↑ Top](#operations)
+
+merge
+---
+
+
+```php
+merge($iterable /* , ...$sources */): array
+```
+Returns a new shallow-merged array from one or more iterables.
+
+Later sources overwrite earlier keys.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`...$sources` | `iterable\|stdClass\|null` |
+**Returns** | `array` |
+
+
 
 [↑ Top](#operations)
 

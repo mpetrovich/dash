@@ -144,6 +144,7 @@
             "src/matchesProperty.php",
             "src/max.php",
             "src/median.php",
+            "src/merge.php",
             "src/min.php",
             "src/negate.php",
             "src/nth.php",
