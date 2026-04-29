@@ -161,6 +161,7 @@
             "src/unzip.php",
             "src/values.php",
             "src/where.php",
+            "src/when.php",
             "src/without.php",
             "src/zip.php",
             "src/zipAll.php",

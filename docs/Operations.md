@@ -111,6 +111,7 @@ Operation | Signature | Curried
 [uniqueBy](#uniqueby--uniqby--distinctby) / uniqBy / distinctBy | `uniqueBy($iterable, $iteratee = 'Dash\identity'): array\|iterable` | `Curry\uniqueBy`
 [unzip](#unzip--transpose) / transpose | `unzip($iterable): array` | `Curry\unzip`
 [values](#values) | `values($iterable): array` | `Curry\values`
+[when](#when) | `when(callable $predicate, callable $onTrue): callable` | 
 [zip](#zip) | `zip(/* ...$iterables */): array\|iterable` | 
 [zipAll](#zipall) | `zipAll(/* ...$iterables */): array\|iterable` | 
 [zipWith](#zipwith) | `zipWith($iterable1, $iterable2, callable $combiner): array\|iterable` | `Curry\zipWith`
@@ -4331,6 +4332,27 @@ Parameter | Type | Description
 Dash\values(['c' => 3, 'a' => 1, 'b' => 2]);
 // === [3, 1, 2]
 ```
+
+[↑ Top](#operations)
+
+when
+---
+See also: `ifElse()`, `unless()`
+
+```php
+when(callable $predicate, callable $onTrue): callable
+```
+Creates a function that applies `$onTrue` when `$predicate` returns truthy; otherwise returns
+the first argument unchanged.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$predicate` | `callable` |
+`$onTrue` | `callable` |
+**Returns** | `callable` |
+
+
 
 [↑ Top](#operations)
 
