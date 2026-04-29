@@ -206,6 +206,7 @@
             "src/Curry/debug.php",
             "src/Curry/deltas.php",
             "src/Curry/differenceWith.php",
+            "src/Curry/dropWhile.php",
             "src/Curry/each.php",
             "src/Curry/evolve.php",
             "src/Curry/equal.php",

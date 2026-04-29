@@ -2,6 +2,7 @@
 
 /**
  * @covers Dash\dropWhile
+ * @covers Dash\Curry\dropWhile
  * @covers Dash\Generator\dropWhile
  */
 class dropWhileTest extends PHPUnit\Framework\TestCase
@@ -14,9 +15,23 @@ class dropWhileTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($expected, Dash\dropWhile($input, $predicate));
 	}
 
+	/**
+	 * @dataProvider cases
+	 */
+	public function testCurried($input, $predicate, $expected)
+	{
+		$f = Dash\Curry\dropWhile($predicate);
+		$this->assertEquals($expected, $f($input));
+	}
+
 	public function cases()
 	{
 		return [
+			'With null' => [
+				'input' => null,
+				'predicate' => 'Dash\isEven',
+				'expected' => [],
+			],
 			'With an indexed array' => [
 				'input' => [2, 4, 6, 7, 8, 10],
 				'predicate' => 'Dash\isEven',

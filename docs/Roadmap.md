@@ -5,7 +5,7 @@ When plan status changes, update this file in the same pass.
 
 ## Implemented but not finalized
 
--   [ ] dropWhile
+-   [x] dropWhile
 -   [ ] matches
 -   [ ] takeWhile
 -   [ ] where

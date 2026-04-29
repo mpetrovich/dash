@@ -35,6 +35,7 @@ Operation | Signature | Curried
 [deltas](#deltas) | `deltas($iterable): array` | `Curry\deltas`
 [difference](#difference) | `difference($iterable /*, ...iterables */): array` | 
 [differenceWith](#differencewith) | `differenceWith($iterable, $other, $comparator = 'Dash\equal'): array` | `Curry\differenceWith`
+[dropWhile](#dropwhile) | `dropWhile($iterable, $predicate = 'Dash\identity'): array\|iterable` | `Curry\dropWhile`
 [each](#each) | `each($iterable, $iteratee): mixed` | `Curry\each`
 [equal](#equal) | `equal($a, $b): boolean` | `Curry\equal`
 [evolve](#evolve) | `evolve($input, array $transformations): array\|object` | `Curry\evolve`
@@ -1290,6 +1291,35 @@ Dash\differenceWith(
 	}
 );
 // === [['x' => 1]]
+```
+
+[↑ Top](#operations)
+
+dropWhile
+---
+See also: `takeWhile()`
+
+```php
+dropWhile($iterable, $predicate = 'Dash\identity'): array|iterable
+
+# Curried: (all parameters required)
+Curry\dropWhile($predicate, $iterable)
+```
+Returns a subset of `$iterable` that excludes elements from the beginning.
+
+Elements are dropped while `$predicate` returns truthy, then all remaining elements are kept.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$predicate` | `callable` | (optional) Invoked with `($value, $key, $iterable)` for each element
+**Returns** | `array\|iterable` |
+
+**Example:**
+```php
+Dash\dropWhile([2, 4, 6, 7, 8], 'Dash\isEven');
+// === [7, 8]
 ```
 
 [↑ Top](#operations)
