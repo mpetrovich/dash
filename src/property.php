@@ -57,7 +57,7 @@ function property($path, $default = null)
 		}
 
 		$result = $input;
-		$steps = explode('.', $path);
+		$steps = explode('.', (string) $path);
 
 		foreach ($steps as $step) {
 			if (hasDirect($result, $step)) {

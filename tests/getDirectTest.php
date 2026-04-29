@@ -37,7 +37,7 @@ class getDirectTest extends PHPUnit\Framework\TestCase
 				'expected' => 'default',
 			],
 			'With matching null key' => [
-				'input' => [null => 'value'],
+				'input' => ['' => 'value'],
 				'key' => null,
 				'default' => 'default',
 				'expected' => 'value',
@@ -166,7 +166,9 @@ class getDirectTest extends PHPUnit\Framework\TestCase
 		$count = Dash\getDirect(new ArrayObject([1, 2, 3]), 'count');
 		$this->assertSame($count(), 3);
 
-		$input = new ArrayObject(['a' => 'array value']);
+		$input = new class (['a' => 'array value']) extends ArrayObject {
+			public $a;
+		};
 		$input->a = 'object value';
 		$this->assertSame('array value', Dash\getDirect($input, 'a'));
 	}

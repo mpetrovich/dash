@@ -9,7 +9,7 @@ WORKDIR /usr/src/dash
 RUN apt-get update && \
     apt-get install --yes --no-install-recommends git zip unzip libzip-dev
 RUN pecl install pcov
-COPY --from=composer:2.1.6 /usr/bin/composer /usr/bin/
+COPY --from=composer:2 /usr/bin/composer /usr/bin/
 RUN composer install
 
 RUN make

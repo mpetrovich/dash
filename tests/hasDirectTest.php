@@ -32,7 +32,7 @@ class hasDirectTest extends PHPUnit\Framework\TestCase
 				'expected' => false,
 			],
 			'With matching null key' => [
-				'input' => [null => 'foo'],
+				'input' => ['' => 'foo'],
 				'key' => null,
 				'expected' => true,
 			],

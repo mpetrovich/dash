@@ -33,7 +33,7 @@ class resultTest extends PHPUnit\Framework\TestCase
 				'expected' => 'default',
 			],
 			'With matching null path' => [
-				'input' => [null => 'value'],
+				'input' => ['' => 'value'],
 				'path' => null,
 				'default' => 'default',
 				'expected' => 'value',

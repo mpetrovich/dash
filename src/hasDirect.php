@@ -30,8 +30,10 @@ function hasDirect($input, $key)
 		return false;
 	}
 
-	return is_array($input) && array_key_exists($key, $input)
-		|| (is_object($input) || is_string($input) && class_exists($input))
+	$arrayKey = is_null($key) ? '' : $key;
+
+	return is_array($input) && array_key_exists($arrayKey, $input)
+		|| !is_null($key) && (is_object($input) || is_string($input) && class_exists($input))
 		&& (property_exists($input, $key) || method_exists($input, $key))
-		|| $input instanceof \ArrayAccess && $input->offsetExists($key);
+		|| $input instanceof \ArrayAccess && $input->offsetExists($arrayKey);
 }

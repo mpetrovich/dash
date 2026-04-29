@@ -175,7 +175,7 @@ class groupByTest extends PHPUnit\Framework\TestCase
 						['a' => ['b' => 'first'], 'id' => 1],
 						['a' => ['b' => 'first'], 'id' => 4],
 					],
-					null => [
+					'' => [
 						['x' => 'missing', 'id' => 2]
 					],
 					'third' => [
@@ -282,7 +282,7 @@ class groupByTest extends PHPUnit\Framework\TestCase
 					['first' => 'Alice', 'last' => 'Hart'],
 					['first' => 'Fred', 'last' => 'Hart'],
 				],
-				null => [
+				'' => [
 					['first' => 'Anonymous'],
 				],
 				'Gibbons' => [
@@ -351,7 +351,7 @@ class groupByTest extends PHPUnit\Framework\TestCase
 					'Hart' => [
 						['first' => 'Alice', 'last' => 'Hart'],
 					],
-					null => [
+					'' => [
 						['first' => 'Anonymous'],
 					],
 				],

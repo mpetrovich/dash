@@ -73,6 +73,7 @@ function keyBy($iterable, $iteratee = 'Dash\identity')
 			$mapper = is_callable($iteratee) ? $iteratee : property($iteratee, null);
 			$newKey = call_user_func($mapper, $value, $key, $iterable);
 		}
+		$newKey = is_null($newKey) ? '' : $newKey;
 		$keyed[$newKey] = $value;
 	}
 

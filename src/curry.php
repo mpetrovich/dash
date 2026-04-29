@@ -56,7 +56,12 @@ function curry(callable $callable /*, ...args */)
 		is_callable($callable, false, /* $by reference */ $callableName);
 
 		if (strpos($callableName, '::') !== false) {
-			$reflectionFn = new \ReflectionMethod($callableName);
+			if (method_exists('\ReflectionMethod', 'createFromMethodName')) {
+				$reflectionFn = \ReflectionMethod::createFromMethodName($callableName);
+			}
+			else {
+				$reflectionFn = new \ReflectionMethod($callableName);
+			}
 		}
 		else {
 			$reflectionFn = new \ReflectionFunction($callableName);

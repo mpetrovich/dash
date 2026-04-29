@@ -36,23 +36,25 @@ namespace Dash;
 // phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh -- branching is intrinsic to direct access precedence rules.
 function getDirect($input, $key, $default = null)
 {
+	$arrayKey = is_null($key) ? '' : $key;
+
 	if (!is_string($key) && !is_numeric($key) && !is_null($key)) {
 		$value = $default;
 	} elseif (is_null($input)) {
 		$value = $default;
-	} elseif ($input instanceof \ArrayAccess && $input->offsetExists($key)) {
-		$value = $input[$key];
-	} elseif (is_array($input) && array_key_exists($key, $input)) {
-		$value = $input[$key];
-	} elseif (is_object($input) && property_exists($input, $key)) {
+	} elseif ($input instanceof \ArrayAccess && $input->offsetExists($arrayKey)) {
+		$value = $input[$arrayKey];
+	} elseif (is_array($input) && array_key_exists($arrayKey, $input)) {
+		$value = $input[$arrayKey];
+	} elseif (!is_null($key) && is_object($input) && property_exists($input, $key)) {
 		$value = $input->$key;
-	} elseif ((is_string($input) || is_object($input)) && method_exists($input, $key)) {
+	} elseif (!is_null($key) && (is_string($input) || is_object($input)) && method_exists($input, $key)) {
 		$value = function () use ($input, $key) {
 			return call_user_func_array([$input, $key], func_get_args());
 		};
 	} else {
 		$array = toArray($input);
-		$value = isset($array[$key]) ? $array[$key] : $default;
+		$value = array_key_exists($arrayKey, $array) ? $array[$arrayKey] : $default;
 	}
 
 	return $value;

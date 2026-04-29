@@ -25,5 +25,5 @@ namespace Dash;
  */
 function isOdd($value)
 {
-	return is_numeric($value) && ($value % 2 !== 0);
+	return is_numeric($value) && (((int) $value) % 2 !== 0);
 }

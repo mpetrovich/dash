@@ -86,6 +86,7 @@ function groupBy($iterable, $iteratee = 'Dash\identity', $defaultGroup = null)
 			$newKey = call_user_func($mapper, $value, $key, $iterable);
 		}
 		$newKey = is_null($newKey) ? $defaultGroup : $newKey;
+		$newKey = is_null($newKey) ? '' : $newKey;
 		$grouped[$newKey][] = $value;
 	}
 

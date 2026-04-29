@@ -12,6 +12,7 @@ namespace Dash;
  * @param string $defaultGroup (optional) The key used when `$iteratee` returns `null`
  * @return array A new associative array of `[groupKey => count]`
  */
+// phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh -- mirrors groupBy iteratee/path dispatch rules
 function countBy($iterable, $iteratee = 'Dash\identity', $defaultGroup = null)
 {
 	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
@@ -32,6 +33,7 @@ function countBy($iterable, $iteratee = 'Dash\identity', $defaultGroup = null)
 		}
 
 		$newKey = is_null($newKey) ? $defaultGroup : $newKey;
+		$newKey = is_null($newKey) ? '' : $newKey;
 		$counted[$newKey] = ($counted[$newKey] ?? 0) + 1;
 	}
 

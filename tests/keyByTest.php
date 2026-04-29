@@ -207,7 +207,7 @@ class keyByTest extends PHPUnit\Framework\TestCase
 				'iteratee' => 'a.b',
 				'expected' => [
 					'first' => ['a' => ['b' => 'first'], 'id' => 4],
-					null => ['x' => 'missing', 'id' => 2],
+					'' => ['x' => 'missing', 'id' => 2],
 					'third' => ['a' => ['b' => 'third'], 'id' => 3],
 				],
 			],

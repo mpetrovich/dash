@@ -37,7 +37,7 @@ class countByTest extends PHPUnit\Framework\TestCase
 					['first' => 'Jane', 'last' => 'Doe'],
 				],
 				'last',
-				['Doe' => 2, 'Hart' => 1, null => 1],
+				['Doe' => 2, 'Hart' => 1, '' => 1],
 			],
 		];
 	}
