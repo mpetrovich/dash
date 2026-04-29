@@ -13,6 +13,7 @@ Operation | Signature | Curried
 [average](#average--mean) / mean | `average($iterable): double\|null` | `Curry\average`
 [call](#call) | `call(callable $callable /*, ...args */): mixed` | 
 [chain](#chain) | `chain($input = null): Dash\Dash` | `Curry\chain`
+[compact](#compact) | `compact($iterable): array\|iterable` | `Curry\compact`
 [compare](#compare) | `compare($a, $b): integer` | `Curry\compare`
 [compose](#compose) | `compose(callable ...$fns): callable` | 
 [contains](#contains--includes) / includes | `contains($iterable, $target, $comparator = 'Dash\equal'): boolean` | `Curry\contains`
@@ -417,6 +418,43 @@ Dash\chain([1, 2, 3])
 	->map(function ($n) { return $n * 2; })
 	->value();
 // === [2, 4]
+```
+
+[↑ Top](#operations)
+
+compact
+---
+
+
+```php
+compact($iterable): array|iterable
+
+# Curried: (all parameters required)
+Curry\compact($iterable)
+```
+Gets a list of truthy elements in `$iterable`.
+
+This is equivalent to `filter($iterable, 'Dash\identity')`.
+Keys are preserved unless `$iterable` is an indexed array.
+An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+**Returns** | `array\|iterable` | List of truthy elements in `$iterable`
+
+**Example:**
+```php
+Dash\compact([0, 1, false, 2, '', 3, null]);
+// === [1, 2, 3]
+
+```
+
+**Example:** With associative array
+```php
+Dash\compact(['a' => 0, 'b' => 2, 'c' => false, 'd' => 4]);
+// === ['b' => 2, 'd' => 4]
 ```
 
 [↑ Top](#operations)

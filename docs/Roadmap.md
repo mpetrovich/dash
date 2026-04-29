@@ -51,7 +51,7 @@
 -   [ ] bind
 -   [ ] bindAll
 -   [ ] bindClass
--   [ ] compact
+-   [x] compact
 -   [x] compose
 -   [ ] constant
 -   [ ] countBy
