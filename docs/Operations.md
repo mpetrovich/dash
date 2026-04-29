@@ -30,6 +30,7 @@ Operation | Signature | Curried
 [curryRightN](#curryrightn) | `curryRightN(callable $callable, $numRequiredArgs /*, ...args */): function\|mixed` | 
 [custom](#custom) | `custom($name): function` | `Curry\custom`
 [debug](#debug) | `debug($value /*, ...value */): mixed` | `Curry\debug`
+[defaults](#defaults) | `defaults($input /*, ...$sources */): array` | 
 [deltas](#deltas) | `deltas($iterable): array` | `Curry\deltas`
 [difference](#difference) | `difference($iterable /*, ...iterables */): array` | 
 [differenceWith](#differencewith) | `differenceWith($iterable, $other, $comparator = 'Dash\equal'): array` | `Curry\differenceWith`
@@ -1137,6 +1138,27 @@ NULL
 
 @codeCoverageIgnore Due to output buffering
 ```
+
+[↑ Top](#operations)
+
+defaults
+---
+
+
+```php
+defaults($input /*, ...$sources */): array
+```
+Fills missing or null keys in `$input` from sources, left to right.
+
+The first non-null source value for a key wins.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$input` | `iterable\|stdClass\|null` |
+**Returns** | `array` |
+
+
 
 [↑ Top](#operations)
 

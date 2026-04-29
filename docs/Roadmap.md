@@ -58,7 +58,7 @@ When plan status changes, update this file in the same pass.
 -   [x] compose
 -   [ ] constant
 -   [ ] countBy
--   [ ] defaults
+-   [x] defaults
 -   [ ] duplicate
 -   [ ] eachReference / eachRef
 -   [ ] escape
@@ -138,7 +138,7 @@ No new operations
 -   [x] uniqueBy
 -   [x] symmetricDifference
 -   [x] flip
--   [ ] defaults
+-   [x] defaults
 -   [ ] range
 -   [ ] times
 -   [ ] clamp
