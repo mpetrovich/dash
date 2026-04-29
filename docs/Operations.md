@@ -78,6 +78,7 @@ Operation | Signature | Curried
 [invertBy](#invertby) | `invertBy($iterable, $iteratee = 'Dash\identity'): array` | `Curry\invertBy`
 [invoke](#invoke) | `invoke($iterable, $path /*, ...$args */): array` | 
 [isArray](#isarray) | `isArray($value): boolean` | `Curry\isArray`
+[isBoolean](#isboolean) | `isBoolean($value): boolean` | `Curry\isBoolean`
 [isEmpty](#isempty) | `isEmpty($value): boolean` | `Curry\isEmpty`
 [isEven](#iseven) | `isEven($value): boolean` | `Curry\isEven`
 [isIndexedArray](#isindexedarray) | `isIndexedArray($value): boolean` | `Curry\isIndexedArray`
@@ -2867,6 +2868,28 @@ isArray($value): boolean
 Curry\isArray($value)
 ```
 Checks whether `$value` is an array.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `mixed` |
+**Returns** | `boolean` |
+
+
+
+[↑ Top](#operations)
+
+isBoolean
+---
+
+
+```php
+isBoolean($value): boolean
+
+# Curried: (all parameters required)
+Curry\isBoolean($value)
+```
+Checks whether `$value` is a boolean.
 
 
 Parameter | Type | Description

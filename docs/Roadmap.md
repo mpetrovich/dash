@@ -52,7 +52,7 @@ None.
 -   [x] indexOf
 -   [x] is / isType
 -   [x] isArray
--   [ ] isBoolean
+-   [x] isBoolean
 -   [ ] isDate
 -   [x] isEmpty
 -   [ ] isEqual
