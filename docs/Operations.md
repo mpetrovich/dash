@@ -94,6 +94,7 @@ Operation | Signature | Curried
 [result](#result) | `result($input, $path, $default = null): mixed` | `Curry\result`
 [reverse](#reverse) | `reverse($iterable, $preserveIntegerKeys = false): array` | `Curry\reverse`
 [rotate](#rotate) | `rotate($iterable, $count = 1): array` | `Curry\rotate`
+[scan](#scan) | `scan($iterable, $iteratee, $initial = []): array\|iterable` | `Curry\scan`
 [set](#set) | `set(&$input, $path, $value): mixed` | 
 [size](#size--count) / count | `size($value, $encoding = 'UTF-8'): integer` | `Curry\size`
 [sort](#sort) | `sort($iterable, $comparator = 'Dash\compare'): array` | `Curry\sort`
@@ -3739,6 +3740,32 @@ Dash\rotate(['a' => 1, 'b' => 2, 'c' => 3], 1);
 Dash\rotate(['a', 'b', 'c', 'd', 'e'], -1);
 // === ['e', 'a', 'b', 'c', 'd']
 ```
+
+[↑ Top](#operations)
+
+scan
+---
+See also: `reduce()`
+
+```php
+scan($iterable, $iteratee, $initial = []): array|iterable
+
+# Curried: (all parameters required)
+Curry\scan($iteratee, $initial, $iterable)
+```
+Like `reduce()`, but returns all intermediate accumulator values from left to right.
+
+Output begins with `$initial`, then one accumulator value per element.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$iteratee` | `callable` | Called with `($result, $value, $key)` for each element
+`$initial` | `mixed` | (optional) Initial value
+**Returns** | `array\|iterable` |
+
+
 
 [↑ Top](#operations)
 
