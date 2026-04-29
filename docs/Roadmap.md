@@ -14,7 +14,7 @@ None.
 -   [x] pad
 -   [ ] product
 -   [ ] random
--   [ ] invert / flip
+-   [x] invert / flip
 -   [ ] replaceKeys
 -   [ ] replaceValue
 -   [ ] shift
@@ -30,7 +30,7 @@ None.
 
 ## [anahkiasen/underscore-php](http://anahkiasen.github.io/underscore-php)
 
--   [ ] flatten
+-   [x] flatten
 -   [ ] has
 -   [ ] invoke
 -   [ ] matchesAny
@@ -62,11 +62,11 @@ None.
 -   [x] findWhere
 -   [ ] functions
 -   [x] indexOf
--   [ ] is / isType
+-   [x] is / isType
 -   [ ] isArray
 -   [ ] isBoolean
 -   [ ] isDate
--   [ ] isEmpty
+-   [x] isEmpty
 -   [ ] isEqual
 -   [ ] isFinite
 -   [ ] isFloat
@@ -88,7 +88,7 @@ None.
 -   [ ] noop
 -   [ ] now
 -   [x] once
--   [ ] pairs
+-   [x] pairs
 -   [x] partition
 -   [ ] provide / dash
 -   [x] reduceRight
