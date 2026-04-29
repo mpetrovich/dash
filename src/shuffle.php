@@ -10,10 +10,10 @@ namespace Dash;
  * @param iterable|stdClass|null $iterable
  * @return array
  *
+ * @alias randomize
+ *
  * @example
 	$xs = Dash\shuffle([1, 2, 3, 4, 5]);  // permutation of the input
- *
- * @alias randomize
  */
 function shuffle($iterable)
 {

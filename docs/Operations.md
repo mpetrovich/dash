@@ -433,8 +433,6 @@ Parameter | Type | Description
 ```php
 Dash\append([1, 2], 3, 4);
 // === [1, 2, 3, 4]
-
-@alias unpop
 ```
 
 [↑ Top](#operations)
@@ -2951,8 +2949,6 @@ Parameter | Type | Description
 ```php
 Dash\invert(['a' => 1, 'b' => 2, 'c' => 1]);
 // === ['1' => 'c', '2' => 'b']  (later duplicate values win)
-
-@alias invertObj
 ```
 
 [↑ Top](#operations)
@@ -4901,8 +4897,6 @@ Parameter | Type | Description
 ```php
 Dash\prepend([2, 3], 1);
 // === [1, 2, 3]
-
-@alias unshift
 ```
 
 [↑ Top](#operations)
@@ -5616,8 +5610,6 @@ Parameter | Type | Description
 **Example:**
 ```php
 $xs = Dash\shuffle([1, 2, 3, 4, 5]);  // permutation of the input
-
-@alias randomize
 ```
 
 [↑ Top](#operations)
@@ -6205,8 +6197,6 @@ Parameter | Type | Description
 ```php
 Dash\toPairs(['a' => 1, 'b' => 2]);
 // === [['a', 1], ['b', 2]]
-
-@alias pairs
 ```
 
 [↑ Top](#operations)

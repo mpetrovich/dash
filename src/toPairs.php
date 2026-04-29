@@ -12,11 +12,11 @@ namespace Dash;
  * @param iterable|stdClass|null $iterable
  * @return array
  *
+ * @alias pairs
+ *
  * @example
 	Dash\toPairs(['a' => 1, 'b' => 2]);
 	// === [['a', 1], ['b', 2]]
- *
- * @alias pairs
  */
 function toPairs($iterable)
 {

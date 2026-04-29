@@ -11,11 +11,11 @@ namespace Dash;
  * @param mixed ...$values
  * @return array
  *
+ * @alias unshift
+ *
  * @example
 	Dash\prepend([2, 3], 1);
 	// === [1, 2, 3]
- *
- * @alias unshift
  */
 function prepend($iterable /* , ...$values */)
 {

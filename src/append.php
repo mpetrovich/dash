@@ -11,11 +11,11 @@ namespace Dash;
  * @param mixed ...$values
  * @return array
  *
+ * @alias unpop
+ *
  * @example
 	Dash\append([1, 2], 3, 4);
 	// === [1, 2, 3, 4]
- *
- * @alias unpop
  */
 function append($iterable /* , ...$values */)
 {
