@@ -55,7 +55,7 @@ None.
 -   [x] isBoolean
 -   [x] isDate
 -   [x] isEmpty
--   [ ] isEqual
+-   [x] isEqual
 -   [ ] isFinite
 -   [ ] isFloat
 -   [ ] isFunction

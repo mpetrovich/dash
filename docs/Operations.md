@@ -81,6 +81,7 @@ Operation | Signature | Curried
 [isBoolean](#isboolean) | `isBoolean($value): boolean` | `Curry\isBoolean`
 [isDate](#isdate) | `isDate($value): boolean` | `Curry\isDate`
 [isEmpty](#isempty) | `isEmpty($value): boolean` | `Curry\isEmpty`
+[isEqual](#isequal) | `isEqual($a, $b): boolean` | `Curry\isEqual`
 [isEven](#iseven) | `isEven($value): boolean` | `Curry\isEven`
 [isIndexedArray](#isindexedarray) | `isIndexedArray($value): boolean` | `Curry\isIndexedArray`
 [isOdd](#isodd) | `isOdd($value): boolean` | `Curry\isOdd`
@@ -2963,6 +2964,29 @@ Dash\isEmpty(0);
 Dash\isEmpty([0]);
 // === false
 ```
+
+[↑ Top](#operations)
+
+isEqual
+---
+
+
+```php
+isEqual($a, $b): boolean
+
+# Curried: (all parameters required)
+Curry\isEqual($b, $a)
+```
+Alias of `equal()`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$a` | `mixed` |
+`$b` | `mixed` |
+**Returns** | `boolean` |
+
+
 
 [↑ Top](#operations)
 
