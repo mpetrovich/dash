@@ -15,7 +15,7 @@ None.
 -   [x] random
 -   [x] invert / flip
 -   [x] shift
--   [ ] pop
+-   [x] pop
 -   [x] slice
 -   [ ] splice
 -   [x] unique / uniq

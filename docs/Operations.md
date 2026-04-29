@@ -111,6 +111,7 @@ Operation | Signature | Curried
 [pickBy](#pickby) | `pickBy($iterable, $predicate = 'Dash\identity'): array\|iterable` | `Curry\pickBy`
 [pipe](#pipe) | `pipe(callable ...$fns): callable` | 
 [pluck](#pluck) | `pluck($iterable, $path, $default = null): array` | `Curry\pluck`
+[pop](#pop) | `pop($iterable): mixed\|null` | `Curry\pop`
 [prepend](#prepend--unshift) / unshift | `prepend($iterable /* , ...$values */): array` | 
 [product](#product) | `product($iterable): numeric` | `Curry\product`
 [property](#property) | `property($path, $default = null): function` | `Curry\property`
@@ -4023,6 +4024,28 @@ Dash\pluck($data, 'name');
 Dash\pluck($data, 'age');
 // === [null, 35, 20]
 ```
+
+[↑ Top](#operations)
+
+pop
+---
+
+
+```php
+pop($iterable): mixed|null
+
+# Curried: (all parameters required)
+Curry\pop($iterable)
+```
+Returns the last value removed from `$iterable` (PHP-style pop behavior).
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+**Returns** | `mixed\|null` |
+
+
 
 [↑ Top](#operations)
 
