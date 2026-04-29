@@ -50,6 +50,7 @@
             "src/compose.php",
             "src/compact.php",
             "src/contains.php",
+            "src/constant.php",
             "src/countBy.php",
             "src/currify.php",
             "src/currifyN.php",

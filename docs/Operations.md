@@ -21,6 +21,7 @@ Operation | Signature | Curried
 [compare](#compare) | `compare($a, $b): integer` | `Curry\compare`
 [compose](#compose) | `compose(callable ...$fns): callable` | 
 [cond](#cond) | `cond($pairs): callable` | 
+[constant](#constant) | `constant($value): callable` | 
 [contains](#contains--includes) / includes | `contains($iterable, $target, $comparator = 'Dash\equal'): boolean` | `Curry\contains`
 [converge](#converge) | `converge(callable $combiner, $branches): callable` | 
 [countBy](#countby) | `countBy($iterable, $iteratee = 'Dash\identity', $defaultGroup = null): array` | `Curry\countBy`
@@ -760,6 +761,25 @@ $fn = Dash\cond([
 $fn(-1);  // === 'neg'
 $fn(0);   // === null
 ```
+
+[↑ Top](#operations)
+
+constant
+---
+
+
+```php
+constant($value): callable
+```
+Returns a callable that always returns `$value`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `mixed` |
+**Returns** | `callable` |
+
+
 
 [↑ Top](#operations)
 

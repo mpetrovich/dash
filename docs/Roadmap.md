@@ -52,7 +52,7 @@ None.
 -   [ ] bindClass
 -   [x] compact
 -   [x] compose
--   [ ] constant
+-   [x] constant
 -   [x] countBy
 -   [x] defaults
 -   [ ] duplicate
