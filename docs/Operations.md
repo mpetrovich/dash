@@ -82,6 +82,7 @@ Operation | Signature | Curried
 [set](#set) | `set(&$input, $path, $value): mixed` | 
 [size](#size--count) / count | `size($value, $encoding = 'UTF-8'): integer` | `Curry\size`
 [sort](#sort) | `sort($iterable, $comparator = 'Dash\compare'): array` | `Curry\sort`
+[sortBy](#sortby) | `sortBy($iterable, $iteratee = 'Dash\identity'): array` | `Curry\sortBy`
 [sum](#sum) | `sum($iterable): numeric` | `Curry\sum`
 [take](#take) | `take($iterable, $count = 1): array\|iterable` | `Curry\take`
 [takeRight](#takeright) | `takeRight($iterable, $count = 1): array` | `Curry\takeRight`
@@ -3399,6 +3400,38 @@ Dash\sort([4, 2, 3, 1]);
 
 Dash\sort(['a' => 3, 'b' => 1, 'c' => 2]);
 // === ['b' => 1, 'c' => 2, 'a' => 3]
+```
+
+[↑ Top](#operations)
+
+sortBy
+---
+See also: `sort()`, `groupBy()`
+
+```php
+sortBy($iterable, $iteratee = 'Dash\identity'): array
+
+# Curried: (all parameters required)
+Curry\sortBy($iteratee, $iterable)
+```
+Sorts `$iterable` by the values produced by `$iteratee` for each element (stable tie-breaking).
+
+Keys are preserved unless `$iterable` is an indexed array.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$iteratee` | `callable\|string\|array\|int` | (optional) Same resolution as `groupBy()` for each element value.
+**Returns** | `array` |
+
+**Example:**
+```php
+Dash\sortBy([['a' => 2], ['a' => 1], ['a' => 3]], 'a');
+// === [['a' => 1], ['a' => 2], ['a' => 3]]
+
+Dash\sortBy([4, 3, 5, 1, 2], 'Dash\identity');
+// === [1, 2, 3, 4, 5]
 ```
 
 [↑ Top](#operations)
