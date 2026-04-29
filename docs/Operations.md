@@ -77,6 +77,7 @@ Operation | Signature | Curried
 [invert](#invert--invertobj) / invertObj | `invert($iterable): array` | `Curry\invert`
 [invertBy](#invertby) | `invertBy($iterable, $iteratee = 'Dash\identity'): array` | `Curry\invertBy`
 [invoke](#invoke) | `invoke($iterable, $path /*, ...$args */): array` | 
+[isArray](#isarray) | `isArray($value): boolean` | `Curry\isArray`
 [isEmpty](#isempty) | `isEmpty($value): boolean` | `Curry\isEmpty`
 [isEven](#iseven) | `isEven($value): boolean` | `Curry\isEven`
 [isIndexedArray](#isindexedarray) | `isIndexedArray($value): boolean` | `Curry\isIndexedArray`
@@ -2850,6 +2851,28 @@ Parameter | Type | Description
 `$path` | `callable\|string\|integer` |
 `...$args` | `mixed` |
 **Returns** | `array` |
+
+
+
+[↑ Top](#operations)
+
+isArray
+---
+
+
+```php
+isArray($value): boolean
+
+# Curried: (all parameters required)
+Curry\isArray($value)
+```
+Checks whether `$value` is an array.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `mixed` |
+**Returns** | `boolean` |
 
 
 

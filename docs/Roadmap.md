@@ -51,7 +51,7 @@ None.
 -   [x] findWhere
 -   [x] indexOf
 -   [x] is / isType
--   [ ] isArray
+-   [x] isArray
 -   [ ] isBoolean
 -   [ ] isDate
 -   [x] isEmpty
