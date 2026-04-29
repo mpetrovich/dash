@@ -48,6 +48,7 @@ Operation | Signature | Curried
 [identical](#identical) | `identical($a, $b): boolean` | `Curry\identical`
 [identity](#identity) | `identity($value): mixed` | `Curry\identity`
 [intersection](#intersection) | `intersection($iterable /*, ...iterables */): array` | 
+[intersectionWith](#intersectionwith) | `intersectionWith($iterable, $other, $comparator = 'Dash\equal'): array` | `Curry\intersectionWith`
 [isEmpty](#isempty) | `isEmpty($value): boolean` | `Curry\isEmpty`
 [isEven](#iseven) | `isEven($value): boolean` | `Curry\isEven`
 [isIndexedArray](#isindexedarray) | `isIndexedArray($value): boolean` | `Curry\isIndexedArray`
@@ -2014,6 +2015,42 @@ Dash\intersection(
 	['a' => 4, 'b' => 2]
 );
 // === ['b' => 2, 'd' => 4]
+```
+
+[↑ Top](#operations)
+
+intersectionWith
+---
+See also: `intersection()`, `differenceWith()`
+
+```php
+intersectionWith($iterable, $other, $comparator = 'Dash\equal'): array
+
+# Curried: (all parameters required)
+Curry\intersectionWith($other, $comparator, $iterable)
+```
+Returns values from `$iterable` that match some value in `$other`, using `$comparator` for equality (like `Dash\equal`).
+
+Order and keys follow `$iterable`. Indexed inputs yield a reindexed array.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$other` | `iterable\|stdClass\|null` |
+`$comparator` | `callable` | (optional) Invoked as `($a, $b)`; truthy means values are considered equal
+**Returns** | `array` |
+
+**Example:**
+```php
+Dash\intersectionWith(
+	[['x' => 1], ['x' => 2]],
+	[['x' => 2]],
+	function ($a, $b) {
+		return $a['x'] === $b['x'];
+	}
+);
+// === [['x' => 2]]
 ```
 
 [↑ Top](#operations)
