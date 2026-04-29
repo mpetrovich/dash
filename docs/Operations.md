@@ -42,6 +42,7 @@ Operation | Signature | Curried
 [findValue](#findvalue) | `findValue($iterable, $predicate = 'Dash\identity'): mixed\|null` | `Curry\findValue`
 [first](#first--head) / head | `first($iterable): mixed\|null` | `Curry\first`
 [flatten](#flatten) | `flatten($iterable): array` | 
+[flattenDeep](#flattendeep) | `flattenDeep($iterable): array\|iterable` | `Curry\flattenDeep`
 [get](#get) | `get($input, $path, $default = null): mixed` | `Curry\get`
 [getDirect](#getdirect) | `getDirect($input, $key, $default = null): mixed` | `Curry\getDirect`
 [getDirectRef](#getdirectref) | `getDirectRef(&$input, $key): mixed` | 
@@ -1736,6 +1737,34 @@ Dash\flatten([
 	[[3, 4]]
 ]);
 // === [1, 2, [3, 4]]
+```
+
+[↑ Top](#operations)
+
+flattenDeep
+---
+See also: `flatten()`, `flattenDepth()`
+
+```php
+flattenDeep($iterable): array|iterable
+
+# Curried: (all parameters required)
+Curry\flattenDeep($iterable)
+```
+Recursively flattens nested arrays in `$iterable` into a single list (like repeated `flatten()` until no nested arrays remain).
+
+Non-array elements are left as-is. Keys are not preserved.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+**Returns** | `array\|iterable` |
+
+**Example:**
+```php
+Dash\flattenDeep([[1, [2, [3, 4]]], 5]);
+// === [1, 2, 3, 4, 5]
 ```
 
 [↑ Top](#operations)

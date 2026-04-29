@@ -128,6 +128,7 @@ No new operations
 -   [x] findIndex
 -   [x] findLastIndex
 -   [x] nth
+-   [x] flattenDeep
 -   [x] uniqueBy
 
 ## [Ramda](http://ramdajs.com/docs)
