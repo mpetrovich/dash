@@ -26,7 +26,7 @@ None.
 -   [ ] unpop / append
 -   [ ] natsort
 -   [ ] natcasesort
--   [ ] shuffle / randomize
+-   [x] shuffle / randomize
 
 ## [anahkiasen/underscore-php](http://anahkiasen.github.io/underscore-php)
 

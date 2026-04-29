@@ -117,6 +117,7 @@ Operation | Signature | Curried
 [sample](#sample) | `sample($iterable): mixed\|null` | `Curry\sample`
 [scan](#scan) | `scan($iterable, $iteratee, $initial = []): array\|iterable` | `Curry\scan`
 [set](#set) | `set(&$input, $path, $value): mixed` | 
+[shuffle](#shuffle--randomize) / randomize | `shuffle($iterable): array` | `Curry\shuffle`
 [size](#size--count) / count | `size($value, $encoding = 'UTF-8'): integer` | `Curry\size`
 [slice](#slice) | `slice($iterable, $offset = 0, $length = null): array\|iterable` | `Curry\slice`
 [sort](#sort) | `sort($iterable, $comparator = 'Dash\compare'): array` | `Curry\sort`
@@ -4360,6 +4361,28 @@ Dash\set($input, 'a.b.c', 'value');
 	]
 ]
 ```
+
+[↑ Top](#operations)
+
+shuffle / randomize
+---
+
+
+```php
+shuffle($iterable): array
+
+# Curried: (all parameters required)
+Curry\shuffle($iterable)
+```
+Returns a new array with values from `$iterable` in randomized order.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+**Returns** | `array` |
+
+
 
 [↑ Top](#operations)
 
