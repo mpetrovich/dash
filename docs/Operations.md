@@ -85,6 +85,7 @@ Operation | Signature | Curried
 [isEven](#iseven) | `isEven($value): boolean` | `Curry\isEven`
 [isFinite](#isfinite) | `isFinite($value): boolean` | `Curry\isFinite`
 [isFloat](#isfloat) | `isFloat($value): boolean` | `Curry\isFloat`
+[isFunction](#isfunction) | `isFunction($value): boolean` | `Curry\isFunction`
 [isIndexedArray](#isindexedarray) | `isIndexedArray($value): boolean` | `Curry\isIndexedArray`
 [isOdd](#isodd) | `isOdd($value): boolean` | `Curry\isOdd`
 [isType](#istype) | `isType($value, $type): boolean` | `Curry\isType`
@@ -3062,6 +3063,28 @@ isFloat($value): boolean
 Curry\isFloat($value)
 ```
 Checks whether `$value` is a float.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `mixed` |
+**Returns** | `boolean` |
+
+
+
+[↑ Top](#operations)
+
+isFunction
+---
+
+
+```php
+isFunction($value): boolean
+
+# Curried: (all parameters required)
+Curry\isFunction($value)
+```
+Checks whether `$value` is callable.
 
 
 Parameter | Type | Description

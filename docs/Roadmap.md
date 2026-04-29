@@ -58,7 +58,7 @@ None.
 -   [x] isEqual
 -   [x] isFinite
 -   [x] isFloat
--   [ ] isFunction
+-   [x] isFunction
 -   [ ] isInteger
 -   [ ] isNaN
 -   [ ] isNull
