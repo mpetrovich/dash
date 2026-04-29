@@ -138,6 +138,7 @@ Operation | Signature | Curried
 [sortBy](#sortby) | `sortBy($iterable, $iteratee = 'Dash\identity'): array` | `Curry\sortBy`
 [sortKeys](#sortkeys) | `sortKeys($iterable): array` | `Curry\sortKeys`
 [sortedIndex](#sortedindex) | `sortedIndex($iterable, $value, $comparator = 'Dash\compare'): integer` | `Curry\sortedIndex`
+[splice](#splice) | `splice($iterable, $offset, $length = null, $replacement = []): array` | `Curry\splice`
 [sum](#sum) | `sum($iterable): numeric` | `Curry\sum`
 [symmetricDifference](#symmetricdifference) | `symmetricDifference($iterable, $other): array` | `Curry\symmetricDifference`
 [tail](#tail--rest) / rest | `tail($iterable): array\|iterable` | `Curry\tail`
@@ -4865,6 +4866,33 @@ Parameter | Type | Description
 `$value` | `mixed` |
 `$comparator` | `callable` | (optional)
 **Returns** | `integer` |
+
+
+
+[↑ Top](#operations)
+
+splice
+---
+
+
+```php
+splice($iterable, $offset, $length = null, $replacement = []): array
+
+# Curried: (all parameters required)
+Curry\splice($offset, $length, $replacement, $iterable)
+```
+Returns the segment removed by applying PHP-style splice parameters to `$iterable`.
+
+This operation is non-mutating with respect to the original input.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$offset` | `integer` |
+`$length` | `integer\|null` | (optional)
+`$replacement` | `iterable\|stdClass\|null` | (optional)
+**Returns** | `array` | Removed segment (reindexed)
 
 
 

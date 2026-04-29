@@ -17,7 +17,7 @@ None.
 -   [x] shift
 -   [x] pop
 -   [x] slice
--   [ ] splice
+-   [x] splice
 -   [x] unique / uniq
 -   [x] unshift / prepend
 -   [x] unpop / append
