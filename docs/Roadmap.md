@@ -41,7 +41,7 @@ None.
 -   [ ] removeFirst
 -   [ ] removeLast
 -   [x] repeat
--   [ ] sortKeys
+-   [x] sortKeys
 
 ## [bdelespierre/underscore.php](https://github.com/bdelespierre/underscore.php)
 

@@ -122,6 +122,7 @@ Operation | Signature | Curried
 [slice](#slice) | `slice($iterable, $offset = 0, $length = null): array\|iterable` | `Curry\slice`
 [sort](#sort) | `sort($iterable, $comparator = 'Dash\compare'): array` | `Curry\sort`
 [sortBy](#sortby) | `sortBy($iterable, $iteratee = 'Dash\identity'): array` | `Curry\sortBy`
+[sortKeys](#sortkeys) | `sortKeys($iterable): array` | `Curry\sortKeys`
 [sortedIndex](#sortedindex) | `sortedIndex($iterable, $value, $comparator = 'Dash\compare'): integer` | `Curry\sortedIndex`
 [sum](#sum) | `sum($iterable): numeric` | `Curry\sum`
 [symmetricDifference](#symmetricdifference) | `symmetricDifference($iterable, $other): array` | `Curry\symmetricDifference`
@@ -4509,6 +4510,28 @@ Dash\sortBy([['a' => 2], ['a' => 1], ['a' => 3]], 'a');
 Dash\sortBy([4, 3, 5, 1, 2], 'Dash\identity');
 // === [1, 2, 3, 4, 5]
 ```
+
+[↑ Top](#operations)
+
+sortKeys
+---
+
+
+```php
+sortKeys($iterable): array
+
+# Curried: (all parameters required)
+Curry\sortKeys($iterable)
+```
+Returns a new array of `$iterable` sorted by key.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+**Returns** | `array` |
+
+
 
 [↑ Top](#operations)
 
