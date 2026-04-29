@@ -152,7 +152,7 @@ No new operations
 -   [x] init (alias of `initial`)
 -   [x] rest (alias of `tail`)
 -   [x] allPass / overEvery
--   [ ] anyPass / overSome
+-   [x] anyPass / overSome
 -   [ ] cond
 -   [ ] ifElse
 -   [ ] when

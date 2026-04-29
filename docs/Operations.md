@@ -7,6 +7,7 @@ Operation | Signature | Curried
 [all](#all--every) / every | `all($iterable, $predicate = 'Dash\identity'): boolean` | `Curry\all`
 [allPass](#allpass--overevery) / overEvery | `allPass($predicates): callable` | 
 [any](#any--some) / some | `any($iterable, $predicate = 'Dash\identity'): boolean` | `Curry\any`
+[anyPass](#anypass--oversome) / overSome | `anyPass($predicates): callable` | 
 [apply](#apply) | `apply(callable $callable, $args): mixed` | `Curry\apply`
 [ary](#ary) | `ary(callable $callable, $arity): callable` | `Curry\ary`
 [assertType](#asserttype) | `assertType($value, $type, $funcName = __FUNCTION__): void` | `Curry\assertType`
@@ -236,6 +237,36 @@ Dash\any([false, true, true]);
 
 Dash\any([false, false, false]);
 // === false
+```
+
+[↑ Top](#operations)
+
+anyPass / overSome
+---
+
+
+```php
+anyPass($predicates): callable
+```
+Creates a predicate that returns truthy if any predicate in `$predicates` returns truthy.
+
+Predicates are invoked with the same runtime arguments and evaluation short-circuits on the
+first truthy result.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$predicates` | `iterable\|stdClass\|null` |
+**Returns** | `callable` |
+
+**Example:**
+```php
+$fn = Dash\anyPass([
+	function ($n) { return $n < 0; },
+	function ($n) { return $n % 2 === 0; },
+]);
+$fn(4);  // === true
+$fn(3);  // === false
 ```
 
 [↑ Top](#operations)
