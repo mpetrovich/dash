@@ -3,7 +3,8 @@
 namespace Dash;
 
 /**
- * Returns values from `$iterable` that match some value in `$other`, using `$comparator` for equality (like `Dash\equal`).
+ * Returns values from `$iterable` that match some value in `$other`, using `$comparator` for equality
+ * (like `Dash\equal`).
  *
  * Order and keys follow `$iterable`. Indexed inputs yield a reindexed array.
  *

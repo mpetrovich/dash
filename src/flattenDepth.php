@@ -3,7 +3,9 @@
 namespace Dash;
 
 /**
- * Flattens nested arrays up to `$depth` levels (`1` behaves like `flatten()`). A depth of `0` returns a copy of `$iterable` with the same indexed vs associative rules as other array-returning operations.
+ * Flattens nested arrays up to `$depth` levels (`1` behaves like `flatten()`).
+ * A depth of `0` returns a copy of `$iterable` with the same indexed vs associative rules as other array-returning
+ * operations.
  *
  * @see flatten(), flattenDeep()
  *

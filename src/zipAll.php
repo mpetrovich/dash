@@ -12,6 +12,7 @@ namespace Dash;
 	Dash\zipAll([1, 2], [10]);
 	// === [[1, 10], [2, null]]
  */
+// phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh -- generator vs array longest-row branches
 function zipAll(/* ...$iterables */)
 {
 	$args = func_get_args();

@@ -20,6 +20,7 @@ namespace Dash;
 	Dash\sortBy([4, 3, 5, 1, 2], 'Dash\identity');
 	// === [1, 2, 3, 4, 5]
  */
+// phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh -- stable decorate-sort per groupBy-style iteratee
 function sortBy($iterable, $iteratee = 'Dash\identity')
 {
 	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);

@@ -3,7 +3,8 @@
 namespace Dash;
 
 /**
- * Recursively flattens nested arrays in `$iterable` into a single list (like repeated `flatten()` until no nested arrays remain).
+ * Recursively flattens nested arrays in `$iterable` into a single list (like repeated `flatten()` until no nested
+ * arrays remain).
  *
  * Non-array elements are left as-is. Keys are not preserved.
  *

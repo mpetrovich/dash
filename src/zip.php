@@ -8,7 +8,8 @@ namespace Dash;
  * The length of the result is the length of the shortest iterable (truncated).
  *
  * @param iterable|stdClass|null ...$iterables
- * @return array|iterable A list of tuples; each tuple's elements are drawn from each iterable at the same logical position.
+ * @return array|iterable A list of tuples; each tuple's elements are drawn from each iterable at the same logical
+ *                        position.
  *
  * @example
 	Dash\zip([1, 2, 3], [10, 20, 30]);
@@ -21,6 +22,7 @@ namespace Dash;
 	Dash\zip();
 	// === []
  */
+// phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh -- generator vs array tuple assembly branches
 function zip(/* ...$iterables */)
 {
 	$args = func_get_args();

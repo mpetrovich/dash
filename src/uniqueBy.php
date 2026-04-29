@@ -3,7 +3,8 @@
 namespace Dash;
 
 /**
- * Returns a new list of unique values, where uniqueness is determined by the return value of `$iteratee` for each element.
+ * Returns a new list of unique values, where uniqueness is determined by the return value of `$iteratee`
+ * for each element.
  *
  * The first occurrence of each computed key is kept. Keys are preserved unless `$iterable` is an indexed array.
  * If `$iterable` is a `Generator`, a lazy `Generator` is returned.
@@ -11,7 +12,8 @@ namespace Dash;
  * @see unique(), keyBy(), groupBy()
  *
  * @param iterable|stdClass|null $iterable
- * @param callable|string|array|int $iteratee (optional) Same resolution as `groupBy()`: path on each value, or callable `($value, $key, $iterable)`.
+ * @param callable|string|array|int $iteratee (optional) Same resolution as `groupBy()`: path on each value,
+ *                                               or callable `($value, $key, $iterable)`.
  * @return array|iterable
  *
  * @alias uniqBy, distinctBy
@@ -29,6 +31,7 @@ namespace Dash;
 	Dash\uniqueBy($rows, 'id');
 	// === [['id' => 1, 'name' => 'a'], ['id' => 2, 'name' => 'c']]
  */
+// phpcs:ignore Generic.Metrics.CyclomaticComplexity.TooHigh -- mirrors groupBy iteratee handling
 function uniqueBy($iterable, $iteratee = 'Dash\identity')
 {
 	assertType($iterable, ['Generator', 'iterable', 'stdClass', 'null'], __FUNCTION__);

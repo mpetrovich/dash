@@ -3,9 +3,11 @@
 namespace Dash;
 
 /**
- * Returns the combined values of `$iterable` and `$other`, in that order, omitting later values that compare equal to an earlier one using `$comparator`.
+ * Returns the combined values of `$iterable` and `$other`, in that order, omitting later values that compare equal
+ * to an earlier one using `$comparator`.
  *
- * When `$iterable` is indexed, new values are appended and the result is reindexed. Otherwise keys from `$other` are used for appended entries.
+ * When `$iterable` is indexed, new values are appended and the result is reindexed.
+ * Otherwise keys from `$other` are used for appended entries.
  *
  * @see union(), intersectionWith()
  *

@@ -3,7 +3,8 @@
 namespace Dash;
 
 /**
- * Gets the `$n`th element of `$iterable` (by iteration order, ignoring keys). Negative `$n` counts from the end (`-1` is the last element).
+ * Gets the `$n`th element of `$iterable` (by iteration order, ignoring keys).
+ * Negative `$n` counts from the end (`-1` is the last element).
  *
  * @see at(), first(), last()
  *
