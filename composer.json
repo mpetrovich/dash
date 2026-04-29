@@ -33,6 +33,7 @@
             "src/__.php",
             "src/all.php",
             "src/allPass.php",
+            "src/after.php",
             "src/any.php",
             "src/anyPass.php",
             "src/append.php",

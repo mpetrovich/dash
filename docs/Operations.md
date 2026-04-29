@@ -4,6 +4,7 @@ Is there an operation you'd like to see? [Open an issue](https://github.com/mpet
 
 Operation | Signature | Curried
 :--- | :--- | :---
+[after](#after) | `after($n, callable $callable): callable` | 
 [all](#all--every) / every | `all($iterable, $predicate = 'Dash\identity'): boolean` | `Curry\all`
 [allPass](#allpass--overevery) / overEvery | `allPass($predicates): callable` | 
 [any](#any--some) / some | `any($iterable, $predicate = 'Dash\identity'): boolean` | `Curry\any`
@@ -161,6 +162,26 @@ Operation | Signature | Curried
 [zipAll](#zipall) | `zipAll(/* ...$iterables */): array\|iterable` | 
 [zipWith](#zipwith) | `zipWith($iterable1, $iterable2, callable $combiner): array\|iterable` | `Curry\zipWith`
 
+
+after
+---
+
+
+```php
+after($n, callable $callable): callable
+```
+Creates a function that invokes `$callable` only after it is called `$n` times.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$n` | `integer` |
+`$callable` | `callable` |
+**Returns** | `callable` |
+
+
+
+[↑ Top](#operations)
 
 all / every
 ---
