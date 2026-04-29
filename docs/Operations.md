@@ -114,6 +114,7 @@ Operation | Signature | Curried
 [takeRight](#takeright) | `takeRight($iterable, $count = 1): array` | `Curry\takeRight`
 [tap](#tap) | `tap($value, callable $interceptor): mixed` | `Curry\tap`
 [thru](#thru) | `thru($value, callable $interceptor): mixed` | `Curry\thru`
+[times](#times) | `times($n, $iteratee = 'Dash\identity'): array` | `Curry\times`
 [toArray](#toarray) | `toArray($value): array` | `Curry\toArray`
 [toObject](#toobject) | `toObject($value): object` | `Curry\toObject`
 [unary](#unary) | `unary(callable $callable): callable` | `Curry\unary`
@@ -4354,6 +4355,29 @@ $result = Dash\chain([1, 3, 4])
 
 // $result === [1, 3, 1]
 ```
+
+[↑ Top](#operations)
+
+times
+---
+
+
+```php
+times($n, $iteratee = 'Dash\identity'): array
+
+# Curried: (all parameters required)
+Curry\times($iteratee, $n)
+```
+Calls `$iteratee` `$n` times with each 0-based index and returns collected results.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$n` | `numeric` |
+`$iteratee` | `callable` | (optional)
+**Returns** | `array` |
+
+
 
 [↑ Top](#operations)
 

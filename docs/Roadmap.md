@@ -100,7 +100,7 @@ When plan status changes, update this file in the same pass.
 -   [ ] sortedIndex
 -   [ ] template
 -   [ ] throttle
--   [ ] times
+-   [x] times
 -   [ ] typeOf
 -   [ ] unescape
 -   [ ] uniqueId
@@ -140,7 +140,7 @@ No new operations
 -   [x] flip
 -   [x] defaults
 -   [x] range
--   [ ] times
+-   [x] times
 -   [ ] clamp
 -   [ ] repeat
 
