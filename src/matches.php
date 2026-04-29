@@ -3,20 +3,24 @@
 namespace Dash;
 
 /**
- * @incomplete
- * Creates a function with signature (iterable $iterable) that returns true if $iterable contains
- * all key-value pairs in $properties, using loose equality for value comparison.
+ * Creates a predicate that checks whether an input contains all key-value pairs in `$properties`.
  *
- * @param iterable|stdClass $properties Key-value pairs that the returned function will match its input against
- * @return callable with signature (iterable $iterable)
+ * Uses loose equality for value comparison and supports nested paths via `get()`.
+ *
+ * @param iterable|stdClass|null $properties
+ * @return callable with signature `($iterable): boolean`
  *
  * @example
-	$matcher = matches(['b' => 2, 'd' => 4]);
+	$matcher = Dash\matches(['b' => 2, 'd' => 4]);
 	$matcher(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]);  // === true
 	$matcher(['a' => 1, 'b' => 2, 'c' => 3, 'e' => 5]);  // === false
  */
 function matches($properties)
 {
+	assertType($properties, ['iterable', 'stdClass', 'null'], __FUNCTION__);
+
+	$properties = toArray($properties);
+
 	$matches = function ($iterable) use ($properties) {
 		foreach ($properties as $propertyName => $propertyValue) {
 			if (get($iterable, $propertyName) != $propertyValue) {

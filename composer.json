@@ -286,6 +286,7 @@
             "src/Curry/unzip.php",
             "src/Curry/uniqueBy.php",
             "src/Curry/values.php",
+            "src/Curry/without.php",
             "src/Curry/zipWith.php"
         ]
     },

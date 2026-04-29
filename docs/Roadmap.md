@@ -5,11 +5,7 @@ When plan status changes, update this file in the same pass.
 
 ## Implemented but not finalized
 
--   [x] dropWhile
--   [ ] matches
--   [x] takeWhile
--   [ ] where
--   [ ] without
+None.
 
 ## [Array methods](http://php.net/manual/en/ref.array.php)
 

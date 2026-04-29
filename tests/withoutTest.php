@@ -2,6 +2,7 @@
 
 /**
  * @covers Dash\without
+ * @covers Dash\Curry\without
  */
 class withoutTest extends PHPUnit\Framework\TestCase
 {
@@ -13,9 +14,23 @@ class withoutTest extends PHPUnit\Framework\TestCase
 		$this->assertSame($expected, Dash\without($iterable, $without));
 	}
 
+	/**
+	 * @dataProvider cases
+	 */
+	public function testCurried($iterable, $without, $expected)
+	{
+		$f = Dash\Curry\without($without);
+		$this->assertSame($expected, $f($iterable));
+	}
+
 	public function cases()
 	{
 		return [
+			'With null iterable' => [
+				'iterable' => null,
+				'without' => [],
+				'expected' => [],
+			],
 			'With an empty array' => [
 				'iterable' => [],
 				'without' => [],

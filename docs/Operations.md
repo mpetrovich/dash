@@ -80,6 +80,7 @@ Operation | Signature | Curried
 [mapKeys](#mapkeys) | `mapKeys($iterable, $iteratee = 'Dash\identity'): array\|iterable` | `Curry\mapKeys`
 [mapResult](#mapresult) | `mapResult($iterable, $path, $default = null): array` | `Curry\mapResult`
 [mapValues](#mapvalues) | `mapValues($iterable, $iteratee = 'Dash\identity'): array` | `Curry\mapValues`
+[matches](#matches) | `matches($properties): callable` | 
 [matchesProperty](#matchesproperty) | `matchesProperty($path, $value = true, $comparator = 'Dash\equal'): function` | `Curry\matchesProperty`
 [max](#max) | `max($iterable): mixed\|null` | `Curry\max`
 [median](#median) | `median($iterable): mixed\|null` | `Curry\median`
@@ -130,6 +131,8 @@ Operation | Signature | Curried
 [unzip](#unzip--transpose) / transpose | `unzip($iterable): array` | `Curry\unzip`
 [values](#values) | `values($iterable): array` | `Curry\values`
 [when](#when) | `when(callable $predicate, callable $onTrue): callable` | 
+[where](#where) | `where($iterable, $properties): array` | 
+[without](#without) | `without($iterable, $exclude): array` | `Curry\without`
 [zip](#zip) | `zip(/* ...$iterables */): array\|iterable` | 
 [zipAll](#zipall) | `zipAll(/* ...$iterables */): array\|iterable` | 
 [zipWith](#zipwith) | `zipWith($iterable1, $iterable2, callable $combiner): array\|iterable` | `Curry\zipWith`
@@ -3102,6 +3105,32 @@ Dash\mapValues($data, 'name.last');
 
 [↑ Top](#operations)
 
+matches
+---
+
+
+```php
+matches($properties): callable
+```
+Creates a predicate that checks whether an input contains all key-value pairs in `$properties`.
+
+Uses loose equality for value comparison and supports nested paths via `get()`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$properties` | `iterable\|stdClass\|null` |
+**Returns** | `callable` | with signature `($iterable): boolean`
+
+**Example:**
+```php
+$matcher = Dash\matches(['b' => 2, 'd' => 4]);
+$matcher(['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4]);  // === true
+$matcher(['a' => 1, 'b' => 2, 'c' => 3, 'e' => 5]);  // === false
+```
+
+[↑ Top](#operations)
+
 matchesProperty
 ---
 
@@ -4812,6 +4841,67 @@ Parameter | Type | Description
 **Returns** | `callable` |
 
 
+
+[↑ Top](#operations)
+
+where
+---
+See also: `matches()`, `filter()`
+
+```php
+where($iterable, $properties): array
+```
+Returns all elements of `$iterable` containing key-value pairs that loosely equal `$properties`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$properties` | `iterable\|stdClass\|null` |
+**Returns** | `array` |
+
+**Example:**
+```php
+$input = [
+	['name' => 'Jane', 'age' => 25, 'gender' => 'f'],
+	['name' => 'Mike', 'age' => 30, 'gender' => 'm'],
+	['name' => 'Abby', 'age' => 30, 'gender' => 'f'],
+	['name' => 'Pete', 'age' => 45, 'gender' => 'm'],
+	['name' => 'Kate', 'age' => 30, 'gender' => 'f'],
+];
+Dash\where($input, ['gender' => 'f', 'age' => 30]);
+// === [
+	['name' => 'Abby', 'age' => 30, 'gender' => 'f'],
+	['name' => 'Kate', 'age' => 30, 'gender' => 'f'],
+]
+```
+
+[↑ Top](#operations)
+
+without
+---
+See also: `reject()`, `contains()`
+
+```php
+without($iterable, $exclude): array
+
+# Curried: (all parameters required)
+Curry\without($exclude, $iterable)
+```
+Returns a new array of `$iterable` excluding all values in `$exclude` (loose equality).
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$exclude` | `iterable\|stdClass\|null` | Values to exclude
+**Returns** | `array` | Subset of $iterable
+
+**Example:**
+```php
+Dash\without(['a', 'b', 'c', 'd'], ['b', 'c']);
+// === ['a', 'd']
+```
 
 [↑ Top](#operations)
 

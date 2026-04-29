@@ -17,6 +17,11 @@ class whereTest extends PHPUnit\Framework\TestCase
 	public function cases()
 	{
 		return [
+			'With null iterable' => [
+				'iterable' => null,
+				'properties' => ['age' => 30],
+				'expected' => [],
+			],
 			'With an empty array' => [
 				'iterable' => [],
 				'properties' => ['age' => 30],

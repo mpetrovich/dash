@@ -3,11 +3,12 @@
 namespace Dash;
 
 /**
- * @incomplete
- * Returns all elements of $iterable containing key-value pairs that loosely equal $properties.
+ * Returns all elements of `$iterable` containing key-value pairs that loosely equal `$properties`.
  *
- * @param iterable|stdClass $iterable
- * @param iterable|stdClass $properties
+ * @see matches(), filter()
+ *
+ * @param iterable|stdClass|null $iterable
+ * @param iterable|stdClass|null $properties
  * @return array
  *
  * @example
@@ -18,7 +19,7 @@ namespace Dash;
 		['name' => 'Pete', 'age' => 45, 'gender' => 'm'],
 		['name' => 'Kate', 'age' => 30, 'gender' => 'f'],
 	];
-	where($input, ['gender' => 'f', 'age' => 30]);
+	Dash\where($input, ['gender' => 'f', 'age' => 30]);
 	// === [
 		['name' => 'Abby', 'age' => 30, 'gender' => 'f'],
 		['name' => 'Kate', 'age' => 30, 'gender' => 'f'],
@@ -26,6 +27,13 @@ namespace Dash;
  */
 function where($iterable, $properties)
 {
+	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
+	assertType($properties, ['iterable', 'stdClass', 'null'], __FUNCTION__);
+
+	if (is_null($iterable)) {
+		return [];
+	}
+
 	$matches = matches($properties);
 	$results = [];
 

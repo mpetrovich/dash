@@ -17,6 +17,11 @@ class matchesTest extends PHPUnit\Framework\TestCase
 	public function cases()
 	{
 		return [
+			'With null properties' => [
+				'properties' => null,
+				'value' => ['a' => 1],
+				'expected' => true,
+			],
 			'With matching arrays' => [
 				'properties' => ['b' => 2, 'd' => 4],
 				'value' => ['a' => 1, 'b' => 2, 'c' => 3, 'd' => 4],
