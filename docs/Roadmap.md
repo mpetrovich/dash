@@ -1,5 +1,8 @@
 # Roadmap
 
+Active source-of-truth plan: `~/.cursor/plans/add_lodash_ramda_operators_5b369653.plan.md`.
+When plan status changes, update this file in the same pass.
+
 ## Implemented but not finalized
 
 -   [ ] dropWhile
@@ -133,7 +136,27 @@ No new operations
 -   [x] initial
 -   [x] tail
 -   [x] uniqueBy
+-   [x] symmetricDifference
+-   [ ] defaults
+-   [ ] range
+-   [ ] times
+-   [ ] clamp
+-   [ ] repeat
 
 ## [Ramda](http://ramdajs.com/docs)
 
-TBD
+-   [x] splitEvery (alias of `chunk`)
+-   [x] transpose (alias of `unzip`)
+-   [x] uniqBy / distinctBy (aliases of `uniqueBy`)
+-   [x] init (alias of `initial`)
+-   [x] rest (alias of `tail`)
+-   [ ] allPass / overEvery
+-   [ ] anyPass / overSome
+-   [ ] cond
+-   [ ] ifElse
+-   [ ] when
+-   [ ] unless
+-   [ ] juxt / over
+-   [ ] converge
+-   [ ] toPairs / pairs
+

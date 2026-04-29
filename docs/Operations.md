@@ -90,6 +90,7 @@ Operation | Signature | Curried
 [sort](#sort) | `sort($iterable, $comparator = 'Dash\compare'): array` | `Curry\sort`
 [sortBy](#sortby) | `sortBy($iterable, $iteratee = 'Dash\identity'): array` | `Curry\sortBy`
 [sum](#sum) | `sum($iterable): numeric` | `Curry\sum`
+[symmetricDifference](#symmetricdifference) | `symmetricDifference($iterable, $other): array` | `Curry\symmetricDifference`
 [tail](#tail--rest) / rest | `tail($iterable): array\|iterable` | `Curry\tail`
 [take](#take) | `take($iterable, $count = 1): array\|iterable` | `Curry\take`
 [takeRight](#takeright) | `takeRight($iterable, $count = 1): array` | `Curry\takeRight`
@@ -3654,6 +3655,35 @@ Dash\sum([2, 3, 5, 8]);
 
 Dash\sum([]);
 // === 0
+```
+
+[↑ Top](#operations)
+
+symmetricDifference
+---
+See also: `difference()`, `union()`
+
+```php
+symmetricDifference($iterable, $other): array
+
+# Curried: (all parameters required)
+Curry\symmetricDifference($other, $iterable)
+```
+Returns values present in either `$iterable` or `$other`, but not both.
+
+Result order is `$iterable`-only values first, then `$other`-only values.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$other` | `iterable\|stdClass\|null` |
+**Returns** | `array` |
+
+**Example:**
+```php
+Dash\symmetricDifference([1, 2, 3], [2, 4]);
+// === [1, 3, 4]
 ```
 
 [↑ Top](#operations)
