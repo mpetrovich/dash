@@ -156,6 +156,7 @@
             "src/unary.php",
             "src/union.php",
             "src/unionWith.php",
+            "src/unless.php",
             "src/unique.php",
             "src/uniqueBy.php",
             "src/unzip.php",

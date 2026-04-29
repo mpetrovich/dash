@@ -109,6 +109,7 @@ Operation | Signature | Curried
 [unionWith](#unionwith) | `unionWith($iterable, $other, $comparator = 'Dash\equal'): array` | `Curry\unionWith`
 [unique](#unique--distinct) / distinct | `unique($iterable): array` | 
 [uniqueBy](#uniqueby--uniqby--distinctby) / uniqBy / distinctBy | `uniqueBy($iterable, $iteratee = 'Dash\identity'): array\|iterable` | `Curry\uniqueBy`
+[unless](#unless) | `unless(callable $predicate, callable $onFalse): callable` | 
 [unzip](#unzip--transpose) / transpose | `unzip($iterable): array` | `Curry\unzip`
 [values](#values) | `values($iterable): array` | `Curry\values`
 [when](#when) | `when(callable $predicate, callable $onTrue): callable` | 
@@ -4280,6 +4281,27 @@ $rows = [
 Dash\uniqueBy($rows, 'id');
 // === [['id' => 1, 'name' => 'a'], ['id' => 2, 'name' => 'c']]
 ```
+
+[↑ Top](#operations)
+
+unless
+---
+See also: `ifElse()`, `when()`
+
+```php
+unless(callable $predicate, callable $onFalse): callable
+```
+Creates a function that applies `$onFalse` when `$predicate` returns falsey; otherwise returns
+the first argument unchanged.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$predicate` | `callable` |
+`$onFalse` | `callable` |
+**Returns** | `callable` |
+
+
 
 [↑ Top](#operations)
 
