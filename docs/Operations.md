@@ -1,51 +1,27 @@
 Operations
 ===
-Is there an operation you'd like to see? [Open an issue](https://github.com/mpetrovich/dash/issues/new?labels=enhancement) or vote on an existing one.
+Is there an operation you'd like to see?
+[Open an issue](https://github.com/mpetrovich/dash/issues/new?labels=enhancement) or vote on an existing one.
+
+**Browse by category:** [Collections & iterators](#cat-collections) · [Objects & paths](#cat-objects) · [Functions & composition](#cat-functions) · [Predicates & comparison](#cat-predicates) · [Type & value checks](#cat-types) · [Math & numeric](#cat-math) · [Utilities & misc](#cat-utilities)
+
+<h3 id="cat-collections">Collections & iterators</h3>
 
 Operation | Signature | Curried
 :--- | :--- | :---
-[after](#after) | `after($n, callable $callable): callable` | 
 [all](#all--every) / every | `all($iterable, $predicate = 'Dash\identity'): boolean` | `Curry\all`
-[allPass](#allpass--overevery) / overEvery | `allPass($predicates): callable` | 
 [any](#any--some) / some | `any($iterable, $predicate = 'Dash\identity'): boolean` | `Curry\any`
-[anyPass](#anypass--oversome) / overSome | `anyPass($predicates): callable` | 
 [append](#append--unpop) / unpop | `append($iterable /* , ...$values */): array` | 
-[apply](#apply) | `apply(callable $callable, $args): mixed` | `Curry\apply`
-[ary](#ary) | `ary(callable $callable, $arity): callable` | `Curry\ary`
-[assertType](#asserttype) | `assertType($value, $type, $funcName = __FUNCTION__): void` | `Curry\assertType`
 [at](#at) | `at($iterable, $index, $default = null): mixed` | `Curry\at`
-[average](#average--mean) / mean | `average($iterable): double\|null` | `Curry\average`
-[before](#before) | `before($n, callable $callable): callable` | 
-[call](#call) | `call(callable $callable /*, ...args */): mixed` | 
-[chain](#chain) | `chain($input = null): Dash\Dash` | `Curry\chain`
 [chunk](#chunk--splitevery) / splitEvery | `chunk($iterable, $size): array\|iterable` | `Curry\chunk`
-[clamp](#clamp) | `clamp($number, $lower, $upper): numeric` | `Curry\clamp`
 [compact](#compact) | `compact($iterable): array\|iterable` | `Curry\compact`
-[compare](#compare) | `compare($a, $b): integer` | `Curry\compare`
-[compose](#compose) | `compose(callable ...$fns): callable` | 
-[cond](#cond) | `cond($pairs): callable` | 
-[constant](#constant) | `constant($value): callable` | 
 [contains](#contains--includes) / includes | `contains($iterable, $target, $comparator = 'Dash\equal'): boolean` | `Curry\contains`
-[converge](#converge) | `converge(callable $combiner, $branches): callable` | 
 [countBy](#countby) | `countBy($iterable, $iteratee = 'Dash\identity', $defaultGroup = null): array` | `Curry\countBy`
-[currify](#currify) | `currify(callable $callable, array $args = [], $rotate = 1): function\|mixed` | 
-[currifyN](#currifyn) | `currifyN(callable $callable, $totalArgs, array $args = [], $rotate = 1): function\|mixed` | 
-[curry](#curry) | `curry(callable $callable /*, ...args */): function\|mixed` | 
-[curryN](#curryn) | `curryN(callable $callable, $numRequiredArgs /*, ...args */): function\|mixed` | 
-[curryRight](#curryright) | `curryRight(callable $callable /*, ...args */): function\|mixed` | 
-[curryRightN](#curryrightn) | `curryRightN(callable $callable, $numRequiredArgs /*, ...args */): function\|mixed` | 
-[custom](#custom) | `custom($name): function` | `Curry\custom`
-[debug](#debug) | `debug($value /*, ...value */): mixed` | `Curry\debug`
-[defaults](#defaults) | `defaults($input /*, ...$sources */): array` | 
-[deltas](#deltas) | `deltas($iterable): array` | `Curry\deltas`
 [difference](#difference) | `difference($iterable /*, ...iterables */): array` | 
 [differenceWith](#differencewith) | `differenceWith($iterable, $other, $comparator = 'Dash\equal'): array` | `Curry\differenceWith`
 [drop](#drop) | `drop($iterable, $count = 1): array\|iterable` | `Curry\drop`
 [dropWhile](#dropwhile) | `dropWhile($iterable, $predicate = 'Dash\identity'): array\|iterable` | `Curry\dropWhile`
 [each](#each) | `each($iterable, $iteratee): mixed` | `Curry\each`
-[equal](#equal) | `equal($a, $b): boolean` | `Curry\equal`
-[evolve](#evolve) | `evolve($input, array $transformations): array\|object` | `Curry\evolve`
-[extend](#extend) | `extend(): array` | 
 [filter](#filter) | `filter($iterable, $predicate = 'Dash\identity'): array\|iterable` | `Curry\filter`
 [find](#find) | `find($iterable, $predicate = 'Dash\identity'): array\|null` | `Curry\find`
 [findIndex](#findindex) | `findIndex($iterable, $predicate = 'Dash\identity'): integer` | `Curry\findIndex`
@@ -60,28 +36,151 @@ Operation | Signature | Curried
 [flatten](#flatten) | `flatten($iterable): array` | 
 [flattenDeep](#flattendeep) | `flattenDeep($iterable): array\|iterable` | `Curry\flattenDeep`
 [flattenDepth](#flattendepth) | `flattenDepth($iterable, $depth = 1): array\|iterable` | `Curry\flattenDepth`
-[flip](#flip) | `flip(callable $callable): callable` | 
-[get](#get) | `get($input, $path, $default = null): mixed` | `Curry\get`
-[getDirect](#getdirect) | `getDirect($input, $key, $default = null): mixed` | `Curry\getDirect`
-[getDirectRef](#getdirectref) | `getDirectRef(&$input, $key): mixed` | 
 [groupBy](#groupby) | `groupBy($iterable, $iteratee = 'Dash\identity', $defaultGroup = null): array` | `Curry\groupBy`
-[has](#has) | `has($input, $path): boolean` | `Curry\has`
-[hasDirect](#hasdirect) | `hasDirect($input, $key): boolean` | `Curry\hasDirect`
-[identical](#identical) | `identical($a, $b): boolean` | `Curry\identical`
-[identity](#identity) | `identity($value): mixed` | `Curry\identity`
-[ifElse](#ifelse) | `ifElse(callable $predicate, callable $onTrue, callable $onFalse): callable` | 
 [indexOf](#indexof) | `indexOf($iterable, $value, $fromIndex = 0, $comparator = 'Dash\equal'): integer` | `Curry\indexOf`
 [initial](#initial--init) / init | `initial($iterable): array\|iterable` | `Curry\initial`
 [intersection](#intersection) | `intersection($iterable /*, ...iterables */): array` | 
 [intersectionWith](#intersectionwith) | `intersectionWith($iterable, $other, $comparator = 'Dash\equal'): array` | `Curry\intersectionWith`
+[invoke](#invoke) | `invoke($iterable, $path /*, ...$args */): array` | 
+[join](#join--implode) / implode | `join($iterable, $separator): string` | `Curry\join`
+[keyBy](#keyby--indexby) / indexBy | `keyBy($iterable, $iteratee = 'Dash\identity'): array` | `Curry\keyBy`
+[last](#last) | `last($iterable): mixed\|null` | `Curry\last`
+[lastIndexOf](#lastindexof) | `lastIndexOf($iterable, $value, $fromIndex = null, $comparator = 'Dash\equal'): integer` | `Curry\lastIndexOf`
+[map](#map) | `map($iterable, $iteratee = 'Dash\identity'): array` | `Curry\map`
+[mapValues](#mapvalues) | `mapValues($iterable, $iteratee = 'Dash\identity'): array` | `Curry\mapValues`
+[nth](#nth) | `nth($iterable, $index, $default = null): mixed` | `Curry\nth`
+[pad](#pad) | `pad($iterable, $length, $padValue = null): array` | `Curry\pad`
+[partition](#partition) | `partition($iterable, $predicate = 'Dash\identity'): array` | `Curry\partition`
+[pluck](#pluck) | `pluck($iterable, $path, $default = null): array` | `Curry\pluck`
+[pop](#pop) | `pop($iterable): mixed\|null` | `Curry\pop`
+[prepend](#prepend--unshift) / unshift | `prepend($iterable /* , ...$values */): array` | 
+[range](#range) | `range($start, $end = null, $step = 1): array` | 
+[reduce](#reduce) | `reduce($iterable, $iteratee, $initial = []): mixed` | `Curry\reduce`
+[reduceRight](#reduceright) | `reduceRight($iterable, $iteratee, $initial = []): mixed` | `Curry\reduceRight`
+[reject](#reject) | `reject($iterable, $predicate = 'Dash\identity'): array` | `Curry\reject`
+[remove](#remove) | `remove($iterable, $predicate = 'Dash\identity'): array` | `Curry\remove`
+[removeFirst](#removefirst) | `removeFirst($iterable, $predicate = 'Dash\identity'): array` | `Curry\removeFirst`
+[removeLast](#removelast) | `removeLast($iterable, $predicate = 'Dash\identity'): array` | `Curry\removeLast`
+[repeat](#repeat) | `repeat($value, $count): array` | `Curry\repeat`
+[reverse](#reverse) | `reverse($iterable, $preserveIntegerKeys = false): array` | `Curry\reverse`
+[rotate](#rotate) | `rotate($iterable, $count = 1): array` | `Curry\rotate`
+[sample](#sample) | `sample($iterable): mixed\|null` | `Curry\sample`
+[scan](#scan) | `scan($iterable, $iteratee, $initial = []): array\|iterable` | `Curry\scan`
+[shift](#shift) | `shift($iterable): mixed\|null` | `Curry\shift`
+[shuffle](#shuffle--randomize) / randomize | `shuffle($iterable): array` | `Curry\shuffle`
+[size](#size--count) / count | `size($value, $encoding = 'UTF-8'): integer` | `Curry\size`
+[slice](#slice) | `slice($iterable, $offset = 0, $length = null): array\|iterable` | `Curry\slice`
+[sort](#sort) | `sort($iterable, $comparator = 'Dash\compare'): array` | `Curry\sort`
+[sortBy](#sortby) | `sortBy($iterable, $iteratee = 'Dash\identity'): array` | `Curry\sortBy`
+[sortKeys](#sortkeys) | `sortKeys($iterable): array` | `Curry\sortKeys`
+[sortedIndex](#sortedindex) | `sortedIndex($iterable, $value, $comparator = 'Dash\compare'): integer` | `Curry\sortedIndex`
+[splice](#splice) | `splice($iterable, $offset, $length = null, $replacement = []): array` | `Curry\splice`
+[symmetricDifference](#symmetricdifference) | `symmetricDifference($iterable, $other): array` | `Curry\symmetricDifference`
+[tail](#tail--rest) / rest | `tail($iterable): array\|iterable` | `Curry\tail`
+[take](#take) | `take($iterable, $count = 1): array\|iterable` | `Curry\take`
+[takeRight](#takeright) | `takeRight($iterable, $count = 1): array` | `Curry\takeRight`
+[takeWhile](#takewhile) | `takeWhile($iterable, $predicate = 'Dash\identity'): array\|iterable` | `Curry\takeWhile`
+[times](#times) | `times($n, $iteratee = 'Dash\identity'): array` | `Curry\times`
+[toPairs](#topairs--pairs) / pairs | `toPairs($iterable): array` | `Curry\toPairs`
+[union](#union) | `union($iterable /*, ...iterables */): array` | 
+[unionWith](#unionwith) | `unionWith($iterable, $other, $comparator = 'Dash\equal'): array` | `Curry\unionWith`
+[unique](#unique--distinct--uniq) / distinct / uniq | `unique($iterable): array` | 
+[uniqueBy](#uniqueby--uniqby--distinctby) / uniqBy / distinctBy | `uniqueBy($iterable, $iteratee = 'Dash\identity'): array\|iterable` | `Curry\uniqueBy`
+[unzip](#unzip--transpose) / transpose | `unzip($iterable): array` | `Curry\unzip`
+[where](#where) | `where($iterable, $properties): array` | 
+[without](#without) | `without($iterable, $exclude): array` | `Curry\without`
+[zip](#zip) | `zip(/* ...$iterables */): array\|iterable` | 
+[zipAll](#zipall) | `zipAll(/* ...$iterables */): array\|iterable` | 
+[zipWith](#zipwith) | `zipWith($iterable1, $iterable2, callable $combiner): array\|iterable` | `Curry\zipWith`
+
+<h3 id="cat-objects">Objects & paths</h3>
+
+Operation | Signature | Curried
+:--- | :--- | :---
+[defaults](#defaults) | `defaults($input /*, ...$sources */): array` | 
+[evolve](#evolve) | `evolve($input, array $transformations): array\|object` | `Curry\evolve`
+[extend](#extend) | `extend(): array` | 
+[get](#get) | `get($input, $path, $default = null): mixed` | `Curry\get`
+[getDirect](#getdirect) | `getDirect($input, $key, $default = null): mixed` | `Curry\getDirect`
+[getDirectRef](#getdirectref) | `getDirectRef(&$input, $key): mixed` | 
+[has](#has) | `has($input, $path): boolean` | `Curry\has`
+[hasDirect](#hasdirect) | `hasDirect($input, $key): boolean` | `Curry\hasDirect`
 [invert](#invert--invertobj) / invertObj | `invert($iterable): array` | `Curry\invert`
 [invertBy](#invertby) | `invertBy($iterable, $iteratee = 'Dash\identity'): array` | `Curry\invertBy`
-[invoke](#invoke) | `invoke($iterable, $path /*, ...$args */): array` | 
+[keys](#keys) | `keys($iterable): array` | `Curry\keys`
+[mapKeys](#mapkeys) | `mapKeys($iterable, $iteratee = 'Dash\identity'): array\|iterable` | `Curry\mapKeys`
+[mapResult](#mapresult) | `mapResult($iterable, $path, $default = null): array` | `Curry\mapResult`
+[merge](#merge) | `merge($iterable /* , ...$sources */): array` | 
+[omit](#omit) | `omit($iterable, $keys): array` | `Curry\omit`
+[omitBy](#omitby) | `omitBy($iterable, $predicate = 'Dash\identity'): array\|iterable` | `Curry\omitBy`
+[pick](#pick) | `pick($iterable, $keys): array` | `Curry\pick`
+[pickBy](#pickby) | `pickBy($iterable, $predicate = 'Dash\identity'): array\|iterable` | `Curry\pickBy`
+[property](#property) | `property($path, $default = null): function` | `Curry\property`
+[result](#result) | `result($input, $path, $default = null): mixed` | `Curry\result`
+[set](#set) | `set(&$input, $path, $value): mixed` | 
+[toArray](#toarray) | `toArray($value): array` | `Curry\toArray`
+[toObject](#toobject) | `toObject($value): object` | `Curry\toObject`
+[values](#values) | `values($iterable): array` | `Curry\values`
+
+<h3 id="cat-functions">Functions & composition</h3>
+
+Operation | Signature | Curried
+:--- | :--- | :---
+[after](#after) | `after($n, callable $callable): callable` | 
+[allPass](#allpass--overevery) / overEvery | `allPass($predicates): callable` | 
+[anyPass](#anypass--oversome) / overSome | `anyPass($predicates): callable` | 
+[apply](#apply) | `apply(callable $callable, $args): mixed` | `Curry\apply`
+[ary](#ary) | `ary(callable $callable, $arity): callable` | `Curry\ary`
+[before](#before) | `before($n, callable $callable): callable` | 
+[call](#call) | `call(callable $callable /*, ...args */): mixed` | 
+[compose](#compose) | `compose(callable ...$fns): callable` | 
+[cond](#cond) | `cond($pairs): callable` | 
+[constant](#constant) | `constant($value): callable` | 
+[converge](#converge) | `converge(callable $combiner, $branches): callable` | 
+[currify](#currify) | `currify(callable $callable, array $args = [], $rotate = 1): function\|mixed` | 
+[currifyN](#currifyn) | `currifyN(callable $callable, $totalArgs, array $args = [], $rotate = 1): function\|mixed` | 
+[curry](#curry) | `curry(callable $callable /*, ...args */): function\|mixed` | 
+[curryN](#curryn) | `curryN(callable $callable, $numRequiredArgs /*, ...args */): function\|mixed` | 
+[curryRight](#curryright) | `curryRight(callable $callable /*, ...args */): function\|mixed` | 
+[curryRightN](#curryrightn) | `curryRightN(callable $callable, $numRequiredArgs /*, ...args */): function\|mixed` | 
+[flip](#flip) | `flip(callable $callable): callable` | 
+[identity](#identity) | `identity($value): mixed` | `Curry\identity`
+[ifElse](#ifelse) | `ifElse(callable $predicate, callable $onTrue, callable $onFalse): callable` | 
+[juxt](#juxt--over) / over | `juxt($functions): callable` | 
+[lastly](#lastly) | `lastly(callable $fn, callable $onFinally): callable` | 
+[memoize](#memoize) | `memoize(callable $callable): callable` | 
+[once](#once) | `once(callable $callable): callable` | 
+[partial](#partial) | `partial($callable /*, ...args */): callable` | 
+[partialRight](#partialright) | `partialRight($callable /*, ...args */): callable` | 
+[pipe](#pipe) | `pipe(callable ...$fns): callable` | 
+[tap](#tap) | `tap($value, callable $interceptor): mixed` | `Curry\tap`
+[thru](#thru) | `thru($value, callable $interceptor): mixed` | `Curry\thru`
+[unless](#unless) | `unless(callable $predicate, callable $onFalse): callable` | 
+[when](#when) | `when(callable $predicate, callable $onTrue): callable` | 
+[wrap](#wrap) | `wrap(callable $callable, callable $wrapper): callable` | 
+
+<h3 id="cat-predicates">Predicates & comparison</h3>
+
+Operation | Signature | Curried
+:--- | :--- | :---
+[compare](#compare) | `compare($a, $b): integer` | `Curry\compare`
+[equal](#equal) | `equal($a, $b): boolean` | `Curry\equal`
+[identical](#identical) | `identical($a, $b): boolean` | `Curry\identical`
+[isEqual](#isequal) | `isEqual($a, $b): boolean` | `Curry\isEqual`
+[matches](#matches) | `matches($properties): callable` | 
+[matchesAny](#matchesany) | `matchesAny($iterable, $properties): boolean` | `Curry\matchesAny`
+[matchesProperty](#matchesproperty) | `matchesProperty($path, $value = true, $comparator = 'Dash\equal'): function` | `Curry\matchesProperty`
+[negate](#negate) | `negate(callable $predicate): callable` | `Curry\negate`
+
+<h3 id="cat-types">Type & value checks</h3>
+
+Operation | Signature | Curried
+:--- | :--- | :---
+[assertType](#asserttype) | `assertType($value, $type, $funcName = __FUNCTION__): void` | `Curry\assertType`
 [isArray](#isarray) | `isArray($value): boolean` | `Curry\isArray`
 [isBoolean](#isboolean) | `isBoolean($value): boolean` | `Curry\isBoolean`
 [isDate](#isdate) | `isDate($value): boolean` | `Curry\isDate`
 [isEmpty](#isempty) | `isEmpty($value): boolean` | `Curry\isEmpty`
-[isEqual](#isequal) | `isEqual($a, $b): boolean` | `Curry\isEqual`
 [isEven](#iseven) | `isEven($value): boolean` | `Curry\isEven`
 [isFinite](#isfinite) | `isFinite($value): boolean` | `Curry\isFinite`
 [isFloat](#isfloat) | `isFloat($value): boolean` | `Curry\isFloat`
@@ -99,99 +198,35 @@ Operation | Signature | Curried
 [isString](#isstring) | `isString($value): boolean` | `Curry\isString`
 [isTraversable](#istraversable) | `isTraversable($value): boolean` | `Curry\isTraversable`
 [isType](#istype) | `isType($value, $type): boolean` | `Curry\isType`
-[join](#join--implode) / implode | `join($iterable, $separator): string` | `Curry\join`
-[juxt](#juxt--over) / over | `juxt($functions): callable` | 
-[keyBy](#keyby--indexby) / indexBy | `keyBy($iterable, $iteratee = 'Dash\identity'): array` | `Curry\keyBy`
-[keys](#keys) | `keys($iterable): array` | `Curry\keys`
-[last](#last) | `last($iterable): mixed\|null` | `Curry\last`
-[lastIndexOf](#lastindexof) | `lastIndexOf($iterable, $value, $fromIndex = null, $comparator = 'Dash\equal'): integer` | `Curry\lastIndexOf`
-[lastly](#lastly) | `lastly(callable $fn, callable $onFinally): callable` | 
-[map](#map) | `map($iterable, $iteratee = 'Dash\identity'): array` | `Curry\map`
-[mapKeys](#mapkeys) | `mapKeys($iterable, $iteratee = 'Dash\identity'): array\|iterable` | `Curry\mapKeys`
-[mapResult](#mapresult) | `mapResult($iterable, $path, $default = null): array` | `Curry\mapResult`
-[mapValues](#mapvalues) | `mapValues($iterable, $iteratee = 'Dash\identity'): array` | `Curry\mapValues`
-[matches](#matches) | `matches($properties): callable` | 
-[matchesAny](#matchesany) | `matchesAny($iterable, $properties): boolean` | `Curry\matchesAny`
-[matchesProperty](#matchesproperty) | `matchesProperty($path, $value = true, $comparator = 'Dash\equal'): function` | `Curry\matchesProperty`
+[typeOf](#typeof) | `typeOf($value): string` | `Curry\typeOf`
+
+<h3 id="cat-math">Math & numeric</h3>
+
+Operation | Signature | Curried
+:--- | :--- | :---
+[average](#average--mean) / mean | `average($iterable): double\|null` | `Curry\average`
+[clamp](#clamp) | `clamp($number, $lower, $upper): numeric` | `Curry\clamp`
+[deltas](#deltas) | `deltas($iterable): array` | `Curry\deltas`
 [max](#max) | `max($iterable): mixed\|null` | `Curry\max`
 [median](#median) | `median($iterable): mixed\|null` | `Curry\median`
-[memoize](#memoize) | `memoize(callable $callable): callable` | 
-[merge](#merge) | `merge($iterable /* , ...$sources */): array` | 
 [min](#min) | `min($iterable): mixed\|null` | `Curry\min`
+[product](#product) | `product($iterable): numeric` | `Curry\product`
+[random](#random) | `random($min = 0, $max = null): integer` | `Curry\random`
+[sum](#sum) | `sum($iterable): numeric` | `Curry\sum`
+
+<h3 id="cat-utilities">Utilities & misc</h3>
+
+Operation | Signature | Curried
+:--- | :--- | :---
+[chain](#chain) | `chain($input = null): Dash\Dash` | `Curry\chain`
+[custom](#custom) | `custom($name): function` | `Curry\custom`
+[debug](#debug) | `debug($value /*, ...value */): mixed` | `Curry\debug`
 [mixin](#mixin) | `mixin($name, callable $callable): void` | 
-[negate](#negate) | `negate(callable $predicate): callable` | `Curry\negate`
 [noop](#noop) | `noop(): null` | 
 [now](#now) | `now(): integer` | 
-[nth](#nth) | `nth($iterable, $index, $default = null): mixed` | `Curry\nth`
-[omit](#omit) | `omit($iterable, $keys): array` | `Curry\omit`
-[omitBy](#omitby) | `omitBy($iterable, $predicate = 'Dash\identity'): array\|iterable` | `Curry\omitBy`
-[once](#once) | `once(callable $callable): callable` | 
-[pad](#pad) | `pad($iterable, $length, $padValue = null): array` | `Curry\pad`
-[partial](#partial) | `partial($callable /*, ...args */): callable` | 
-[partialRight](#partialright) | `partialRight($callable /*, ...args */): callable` | 
-[partition](#partition) | `partition($iterable, $predicate = 'Dash\identity'): array` | `Curry\partition`
-[pick](#pick) | `pick($iterable, $keys): array` | `Curry\pick`
-[pickBy](#pickby) | `pickBy($iterable, $predicate = 'Dash\identity'): array\|iterable` | `Curry\pickBy`
-[pipe](#pipe) | `pipe(callable ...$fns): callable` | 
-[pluck](#pluck) | `pluck($iterable, $path, $default = null): array` | `Curry\pluck`
-[pop](#pop) | `pop($iterable): mixed\|null` | `Curry\pop`
-[prepend](#prepend--unshift) / unshift | `prepend($iterable /* , ...$values */): array` | 
-[product](#product) | `product($iterable): numeric` | `Curry\product`
-[property](#property) | `property($path, $default = null): function` | `Curry\property`
-[random](#random) | `random($min = 0, $max = null): integer` | `Curry\random`
-[range](#range) | `range($start, $end = null, $step = 1): array` | 
-[reduce](#reduce) | `reduce($iterable, $iteratee, $initial = []): mixed` | `Curry\reduce`
-[reduceRight](#reduceright) | `reduceRight($iterable, $iteratee, $initial = []): mixed` | `Curry\reduceRight`
-[reject](#reject) | `reject($iterable, $predicate = 'Dash\identity'): array` | `Curry\reject`
-[remove](#remove) | `remove($iterable, $predicate = 'Dash\identity'): array` | `Curry\remove`
-[removeFirst](#removefirst) | `removeFirst($iterable, $predicate = 'Dash\identity'): array` | `Curry\removeFirst`
-[removeLast](#removelast) | `removeLast($iterable, $predicate = 'Dash\identity'): array` | `Curry\removeLast`
-[repeat](#repeat) | `repeat($value, $count): array` | `Curry\repeat`
-[result](#result) | `result($input, $path, $default = null): mixed` | `Curry\result`
-[reverse](#reverse) | `reverse($iterable, $preserveIntegerKeys = false): array` | `Curry\reverse`
-[rotate](#rotate) | `rotate($iterable, $count = 1): array` | `Curry\rotate`
-[sample](#sample) | `sample($iterable): mixed\|null` | `Curry\sample`
-[scan](#scan) | `scan($iterable, $iteratee, $initial = []): array\|iterable` | `Curry\scan`
-[set](#set) | `set(&$input, $path, $value): mixed` | 
 [setCustom](#setcustom) | `setCustom($name, callable $callable): void` | 
-[shift](#shift) | `shift($iterable): mixed\|null` | `Curry\shift`
-[shuffle](#shuffle--randomize) / randomize | `shuffle($iterable): array` | `Curry\shuffle`
-[size](#size--count) / count | `size($value, $encoding = 'UTF-8'): integer` | `Curry\size`
-[slice](#slice) | `slice($iterable, $offset = 0, $length = null): array\|iterable` | `Curry\slice`
-[sort](#sort) | `sort($iterable, $comparator = 'Dash\compare'): array` | `Curry\sort`
-[sortBy](#sortby) | `sortBy($iterable, $iteratee = 'Dash\identity'): array` | `Curry\sortBy`
-[sortKeys](#sortkeys) | `sortKeys($iterable): array` | `Curry\sortKeys`
-[sortedIndex](#sortedindex) | `sortedIndex($iterable, $value, $comparator = 'Dash\compare'): integer` | `Curry\sortedIndex`
-[splice](#splice) | `splice($iterable, $offset, $length = null, $replacement = []): array` | `Curry\splice`
-[sum](#sum) | `sum($iterable): numeric` | `Curry\sum`
-[symmetricDifference](#symmetricdifference) | `symmetricDifference($iterable, $other): array` | `Curry\symmetricDifference`
-[tail](#tail--rest) / rest | `tail($iterable): array\|iterable` | `Curry\tail`
-[take](#take) | `take($iterable, $count = 1): array\|iterable` | `Curry\take`
-[takeRight](#takeright) | `takeRight($iterable, $count = 1): array` | `Curry\takeRight`
-[takeWhile](#takewhile) | `takeWhile($iterable, $predicate = 'Dash\identity'): array\|iterable` | `Curry\takeWhile`
-[tap](#tap) | `tap($value, callable $interceptor): mixed` | `Curry\tap`
-[thru](#thru) | `thru($value, callable $interceptor): mixed` | `Curry\thru`
-[times](#times) | `times($n, $iteratee = 'Dash\identity'): array` | `Curry\times`
-[toArray](#toarray) | `toArray($value): array` | `Curry\toArray`
-[toObject](#toobject) | `toObject($value): object` | `Curry\toObject`
-[toPairs](#topairs--pairs) / pairs | `toPairs($iterable): array` | `Curry\toPairs`
-[typeOf](#typeof) | `typeOf($value): string` | `Curry\typeOf`
 [unary](#unary) | `unary(callable $callable): callable` | `Curry\unary`
-[union](#union) | `union($iterable /*, ...iterables */): array` | 
-[unionWith](#unionwith) | `unionWith($iterable, $other, $comparator = 'Dash\equal'): array` | `Curry\unionWith`
-[unique](#unique--distinct--uniq) / distinct / uniq | `unique($iterable): array` | 
-[uniqueBy](#uniqueby--uniqby--distinctby) / uniqBy / distinctBy | `uniqueBy($iterable, $iteratee = 'Dash\identity'): array\|iterable` | `Curry\uniqueBy`
 [uniqueId](#uniqueid) | `uniqueId($prefix = ''): string` | 
-[unless](#unless) | `unless(callable $predicate, callable $onFalse): callable` | 
-[unzip](#unzip--transpose) / transpose | `unzip($iterable): array` | `Curry\unzip`
-[values](#values) | `values($iterable): array` | `Curry\values`
-[when](#when) | `when(callable $predicate, callable $onTrue): callable` | 
-[where](#where) | `where($iterable, $properties): array` | 
-[without](#without) | `without($iterable, $exclude): array` | `Curry\without`
-[wrap](#wrap) | `wrap(callable $callable, callable $wrapper): callable` | 
-[zip](#zip) | `zip(/* ...$iterables */): array\|iterable` | 
-[zipAll](#zipall) | `zipAll(/* ...$iterables */): array\|iterable` | 
-[zipWith](#zipwith) | `zipWith($iterable1, $iterable2, callable $combiner): array\|iterable` | `Curry\zipWith`
 
 
 after

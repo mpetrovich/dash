@@ -1,5 +1,10 @@
 #!/usr/bin/php
 <?php
+/**
+ * Builds docs/Operations.md from src/*.php docblocks.
+ *
+ * Optional docblock tag: @category Label — overrides the default section in the grouped table of contents.
+ */
 
 require_once 'vendor/autoload.php';
 
@@ -18,8 +23,17 @@ function makeDocs($sourceDir, $destFilepath)
 		->map('createOp')
 		->reject('isIncomplete')
 		->reject(['name', 'Dash'])
-		->sort(function($op1, $op2) {
+		->sort(function ($op1, $op2) {
 			return strnatcmp($op1->name, $op2->name);
+		})
+		->value();
+
+	$ops = Dash\chain($ops)
+		->map(function ($op) {
+			if (!$op->category) {
+				$op->category = inferCategoryForOp($op->name);
+			}
+			return $op;
 		})
 		->value();
 
@@ -85,6 +99,19 @@ function parseDocblock($docblock)
 	$op->isIncomplete = Dash\chain($lines)
 		->any(function ($line) { return strpos($line, '@incomplete') === 0; })
 		->value();
+
+	// Category (optional; used for grouped table of contents)
+	$categoryLine = Dash\chain($lines)
+		->filter(function ($line) { return strpos($line, '@category') === 0; })
+		->first()
+		->value();
+	$op->category = null;
+	if ($categoryLine) {
+		$matches = [];
+		if (preg_match('/^@category\s+(.+)$/', $categoryLine, $matches)) {
+			$op->category = trim($matches[1]);
+		}
+	}
 
 	// Description
 	$op->description = Dash\chain($lines)
@@ -242,7 +269,10 @@ END;
 	if ($op->curriedFilepath) {
 		$signature = extractFunctionSignature($op->curriedFilepath);
 		$signature = preg_replace('#/\* (.+) \*/#', '$1', $signature);  // Removes wrapping /* comment */
-		$curriedSignature = "\n\n" . "# Curried: (all parameters required)\n" . "Curry\\" . $signature;
+		$curriedSignature = sprintf(
+			"\n\n# Curried: (all parameters required)\nCurry\\%s",
+			$signature
+		);
 	}
 	else {
 		$curriedSignature = '';
@@ -267,29 +297,164 @@ $examples
 END;
 }
 
+// phpcs:ignore Generic.Metrics.CyclomaticComplexity -- lookup tables by operator name
+function inferCategoryForOp($name)
+{
+	static $byCategory = null;
+
+	if ($byCategory === null) {
+		$byCategory = [];
+
+		$collections = [
+			'all', 'any', 'append', 'at', 'chunk', 'compact', 'contains', 'countBy', 'difference',
+			'differenceWith', 'drop', 'dropWhile', 'each', 'filter', 'find', 'findIndex', 'findKey',
+			'findLast', 'findLastIndex', 'findLastKey', 'findLastValue', 'findValue', 'findWhere',
+			'first', 'flatten', 'flattenDeep', 'flattenDepth', 'groupBy', 'indexOf', 'initial',
+			'intersection', 'intersectionWith', 'invoke', 'join', 'keyBy', 'last',
+			'lastIndexOf', 'map', 'mapValues', 'nth', 'pad', 'partition', 'pluck', 'pop', 'prepend',
+			'range', 'reduce', 'reduceRight', 'reject', 'remove', 'removeFirst', 'removeLast',
+			'repeat', 'reverse', 'rotate', 'sample', 'scan', 'shift', 'shuffle', 'size', 'slice',
+			'sort', 'sortBy', 'sortKeys', 'sortedIndex', 'splice', 'symmetricDifference', 'tail',
+			'take', 'takeRight', 'takeWhile', 'times', 'toPairs', 'union', 'unionWith', 'unique',
+			'uniqueBy', 'unzip',
+			'where', 'without', 'zip', 'zipAll', 'zipWith',
+		];
+		$objects = [
+			'defaults', 'evolve', 'extend', 'get', 'getDirect', 'getDirectRef', 'has', 'hasDirect',
+			'invert', 'invertBy', 'mapKeys', 'mapResult', 'merge', 'omit', 'omitBy', 'pick', 'pickBy',
+			'keys', 'property', 'result', 'set', 'toArray', 'toObject', 'values',
+		];
+		$functions = [
+			'after', 'allPass', 'anyPass', 'apply', 'ary', 'before', 'call', 'compose', 'cond',
+			'constant', 'converge', 'currify', 'currifyN', 'curry', 'curryN', 'curryRight',
+			'curryRightN', 'flip', 'ifElse', 'identity', 'juxt', 'lastly', 'memoize', 'once',
+			'partial', 'partialRight', 'pipe', 'tap', 'thru', 'unless', 'when', 'wrap',
+		];
+		$predicates = [
+			'compare', 'equal', 'identical', 'isEqual', 'matches', 'matchesAny', 'matchesProperty',
+			'negate',
+		];
+		$types = [
+			'assertType', 'isArray', 'isBoolean', 'isDate', 'isEmpty', 'isEven', 'isFinite', 'isFloat',
+			'isFunction', 'isIndexedArray', 'isInteger', 'isNaN', 'isNull', 'isNumber', 'isObject',
+			'isOdd', 'isRegExp', 'isResource', 'isScalar', 'isString', 'isTraversable', 'isType',
+			'typeOf',
+		];
+		$math = [
+			'average', 'clamp', 'deltas', 'max', 'median', 'min', 'product', 'random', 'sum',
+		];
+		$utilities = [
+			'chain', 'custom', 'debug', 'mixin', 'noop', 'now', 'setCustom', 'unary', 'uniqueId',
+		];
+
+		$assign = function ($names, $label) use (&$byCategory) {
+			foreach ($names as $n) {
+				$byCategory[$n] = $label;
+			}
+		};
+
+		$assign($collections, 'Collections & iterators');
+		$assign($objects, 'Objects & paths');
+		$assign($functions, 'Functions & composition');
+		$assign($predicates, 'Predicates & comparison');
+		$assign($types, 'Type & value checks');
+		$assign($math, 'Math & numeric');
+		$assign($utilities, 'Utilities & misc');
+	}
+
+	return isset($byCategory[$name]) ? $byCategory[$name] : 'Utilities & misc';
+}
+
+function categorySortOrder()
+{
+	return [
+		'Collections & iterators' => 0,
+		'Objects & paths' => 1,
+		'Functions & composition' => 2,
+		'Predicates & comparison' => 3,
+		'Type & value checks' => 4,
+		'Math & numeric' => 5,
+		'Utilities & misc' => 6,
+	];
+}
+
+function categoryAnchorId($label)
+{
+	static $map = [
+		'Collections & iterators' => 'cat-collections',
+		'Objects & paths' => 'cat-objects',
+		'Functions & composition' => 'cat-functions',
+		'Predicates & comparison' => 'cat-predicates',
+		'Type & value checks' => 'cat-types',
+		'Math & numeric' => 'cat-math',
+		'Utilities & misc' => 'cat-utilities',
+	];
+
+	return isset($map[$label]) ? $map[$label] : 'cat-other';
+}
+
+// phpcs:ignore Generic.Metrics.CyclomaticComplexity -- grouping and rendering only
 function renderTableOfContents($ops)
 {
-	$opSummaries = Dash\chain($ops)
-		->sort(function($op1, $op2) {
+	$order = categorySortOrder();
+
+	$grouped = Dash\chain($ops)
+		->sort(function ($op1, $op2) {
 			return strnatcmp($op1->name, $op2->name);
 		})
-		->map(function ($op) {
-			$returnType = $op->return->type ? ": {$op->return->type}" : '';
-			$returnType = str_replace('|', '\\|', $returnType);
-			$aliases = $op->aliases ? ' / ' . implode(' / ', $op->aliases) : '';
-			$curried = function_exists("\\Dash\\Curry\\{$op->name}") ? "`Curry\\{$op->name}`" : '';
-			return "[$op->name](#$op->slug)$aliases | `{$op->signature}{$returnType}` | $curried";
-		})
-		->join("\n")
+		->groupBy('category')
 		->value();
+
+	uksort($grouped, function ($a, $b) use ($order) {
+		$ia = isset($order[$a]) ? $order[$a] : 99;
+		$ib = isset($order[$b]) ? $order[$b] : 99;
+		if ($ia !== $ib) {
+			return $ia <=> $ib;
+		}
+		return strnatcmp($a, $b);
+	});
+
+	$quickLinks = Dash\chain(array_keys($grouped))
+		->map(function ($label) {
+			$id = categoryAnchorId($label);
+			return "[$label](#$id)";
+		})
+		->join(' · ')
+		->value();
+
+	$sections = [];
+	foreach ($grouped as $label => $catOps) {
+		$id = categoryAnchorId($label);
+		$rows = Dash\chain($catOps)
+			->map(function ($op) {
+				$returnType = $op->return->type ? ": {$op->return->type}" : '';
+				$returnType = str_replace('|', '\\|', $returnType);
+				$aliases = $op->aliases ? ' / ' . implode(' / ', $op->aliases) : '';
+				$curried = function_exists("\\Dash\\Curry\\{$op->name}") ? "`Curry\\{$op->name}`" : '';
+				return "[$op->name](#$op->slug)$aliases | `{$op->signature}{$returnType}` | $curried";
+			})
+			->join("\n")
+			->value();
+
+		$sections[] = <<<END
+<h3 id="$id">$label</h3>
+
+Operation | Signature | Curried
+:--- | :--- | :---
+$rows
+END;
+	}
+
+	$sectionsOut = implode("\n\n", $sections);
 
 	return <<<END
 Operations
 ===
-Is there an operation you'd like to see? [Open an issue](https://github.com/mpetrovich/dash/issues/new?labels=enhancement) or vote on an existing one.
+Is there an operation you'd like to see?
+[Open an issue](https://github.com/mpetrovich/dash/issues/new?labels=enhancement) or vote on an existing one.
 
-Operation | Signature | Curried
-:--- | :--- | :---
-$opSummaries
+**Browse by category:** $quickLinks
+
+$sectionsOut
 END;
 }
