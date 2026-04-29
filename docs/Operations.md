@@ -1754,7 +1754,8 @@ flattenDeep($iterable): array|iterable
 # Curried: (all parameters required)
 Curry\flattenDeep($iterable)
 ```
-Recursively flattens nested arrays in `$iterable` into a single list (like repeated `flatten()` until no nested arrays remain).
+Recursively flattens nested arrays in `$iterable` into a single list (like repeated `flatten()` until no nested
+arrays remain).
 
 Non-array elements are left as-is. Keys are not preserved.
 
@@ -1782,7 +1783,9 @@ flattenDepth($iterable, $depth = 1): array|iterable
 # Curried: (all parameters required)
 Curry\flattenDepth($depth, $iterable)
 ```
-Flattens nested arrays up to `$depth` levels (`1` behaves like `flatten()`). A depth of `0` returns a copy of `$iterable` with the same indexed vs associative rules as other array-returning operations.
+Flattens nested arrays up to `$depth` levels (`1` behaves like `flatten()`).
+A depth of `0` returns a copy of `$iterable` with the same indexed vs associative rules as other array-returning
+operations.
 
 
 Parameter | Type | Description
@@ -2188,7 +2191,8 @@ intersectionWith($iterable, $other, $comparator = 'Dash\equal'): array
 # Curried: (all parameters required)
 Curry\intersectionWith($other, $comparator, $iterable)
 ```
-Returns values from `$iterable` that match some value in `$other`, using `$comparator` for equality (like `Dash\equal`).
+Returns values from `$iterable` that match some value in `$other`, using `$comparator` for equality
+(like `Dash\equal`).
 
 Order and keys follow `$iterable`. Indexed inputs yield a reindexed array.
 
@@ -2873,7 +2877,8 @@ nth($iterable, $index, $default = null): mixed
 # Curried: (all parameters required)
 Curry\nth($index, $default, $iterable)
 ```
-Gets the `$n`th element of `$iterable` (by iteration order, ignoring keys). Negative `$n` counts from the end (`-1` is the last element).
+Gets the `$n`th element of `$iterable` (by iteration order, ignoring keys).
+Negative `$n` counts from the end (`-1` is the last element).
 
 
 Parameter | Type | Description
@@ -3963,9 +3968,11 @@ unionWith($iterable, $other, $comparator = 'Dash\equal'): array
 # Curried: (all parameters required)
 Curry\unionWith($other, $comparator, $iterable)
 ```
-Returns the combined values of `$iterable` and `$other`, in that order, omitting later values that compare equal to an earlier one using `$comparator`.
+Returns the combined values of `$iterable` and `$other`, in that order, omitting later values that compare equal
+to an earlier one using `$comparator`.
 
-When `$iterable` is indexed, new values are appended and the result is reindexed. Otherwise keys from `$other` are used for appended entries.
+When `$iterable` is indexed, new values are appended and the result is reindexed.
+Otherwise keys from `$other` are used for appended entries.
 
 
 Parameter | Type | Description
@@ -4025,7 +4032,8 @@ uniqueBy($iterable, $iteratee = 'Dash\identity'): array|iterable
 # Curried: (all parameters required)
 Curry\uniqueBy($iteratee, $iterable)
 ```
-Returns a new list of unique values, where uniqueness is determined by the return value of `$iteratee` for each element.
+Returns a new list of unique values, where uniqueness is determined by the return value of `$iteratee`
+for each element.
 
 The first occurrence of each computed key is kept. Keys are preserved unless `$iterable` is an indexed array.
 If `$iterable` is a `Generator`, a lazy `Generator` is returned.
@@ -4124,7 +4132,7 @@ The length of the result is the length of the shortest iterable (truncated).
 Parameter | Type | Description
 --- | --- | :---
 `...$iterables` | `iterable\|stdClass\|null` |
-**Returns** | `array\|iterable` | A list of tuples; each tuple's elements are drawn from each iterable at the same logical position.
+**Returns** | `array\|iterable` | A list of tuples; each tuple's elements are drawn from each iterable at the same logical
 
 **Example:**
 ```php
