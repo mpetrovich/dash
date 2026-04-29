@@ -108,6 +108,7 @@ Operation | Signature | Curried
 [pickBy](#pickby) | `pickBy($iterable, $predicate = 'Dash\identity'): array\|iterable` | `Curry\pickBy`
 [pipe](#pipe) | `pipe(callable ...$fns): callable` | 
 [pluck](#pluck) | `pluck($iterable, $path, $default = null): array` | `Curry\pluck`
+[prepend](#prepend--unshift) / unshift | `prepend($iterable /* , ...$values */): array` | 
 [property](#property) | `property($path, $default = null): function` | `Curry\property`
 [range](#range) | `range($start, $end = null, $step = 1): array` | 
 [reduce](#reduce) | `reduce($iterable, $iteratee, $initial = []): mixed` | `Curry\reduce`
@@ -3953,6 +3954,26 @@ Dash\pluck($data, 'name');
 Dash\pluck($data, 'age');
 // === [null, 35, 20]
 ```
+
+[↑ Top](#operations)
+
+prepend / unshift
+---
+
+
+```php
+prepend($iterable /* , ...$values */): array
+```
+Returns a new array with `$values` added to the beginning of `$iterable`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`...$values` | `mixed` |
+**Returns** | `array` |
+
+
 
 [↑ Top](#operations)
 

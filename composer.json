@@ -163,6 +163,7 @@
             "src/pickBy.php",
             "src/pipe.php",
             "src/pluck.php",
+            "src/prepend.php",
             "src/property.php",
             "src/range.php",
             "src/reduce.php",

@@ -22,7 +22,7 @@ None.
 -   [x] slice
 -   [ ] splice
 -   [x] unique / uniq
--   [ ] unshift / prepend
+-   [x] unshift / prepend
 -   [ ] unpop / append
 -   [ ] natsort
 -   [ ] natcasesort
@@ -35,7 +35,7 @@ None.
 -   [ ] invoke
 -   [ ] matchesAny
 -   [x] merge
--   [ ] prepend
+-   [x] prepend
 -   [x] range
 -   [x] remove
 -   [x] removeFirst
