@@ -121,6 +121,7 @@ No new operations
 
 ## [Lodash](https://lodash.com/docs/4.17.4)
 
+-   [x] differenceWith
 -   [x] uniqueBy
 
 ## [Ramda](http://ramdajs.com/docs)

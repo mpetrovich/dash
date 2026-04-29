@@ -28,6 +28,7 @@ Operation | Signature | Curried
 [debug](#debug) | `debug($value /*, ...value */): mixed` | `Curry\debug`
 [deltas](#deltas) | `deltas($iterable): array` | `Curry\deltas`
 [difference](#difference) | `difference($iterable /*, ...iterables */): array` | 
+[differenceWith](#differencewith) | `differenceWith($iterable, $other, $comparator = 'Dash\equal'): array` | `Curry\differenceWith`
 [each](#each) | `each($iterable, $iteratee): mixed` | `Curry\each`
 [equal](#equal) | `equal($a, $b): boolean` | `Curry\equal`
 [filter](#filter) | `filter($iterable, $predicate = 'Dash\identity'): array\|iterable` | `Curry\filter`
@@ -1054,6 +1055,42 @@ Dash\difference(
 	['a' => 3.0, 'b' => 4]
 );
 // === ['a' => 1, 'e' => 5]
+```
+
+[↑ Top](#operations)
+
+differenceWith
+---
+See also: `difference()`, `intersectionWith()`
+
+```php
+differenceWith($iterable, $other, $comparator = 'Dash\equal'): array
+
+# Curried: (all parameters required)
+Curry\differenceWith($other, $comparator, $iterable)
+```
+Returns values from `$iterable` that have no match in `$other`, using `$comparator` for equality (like `Dash\equal`).
+
+Order and keys follow `$iterable`. Indexed inputs yield a reindexed array.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$other` | `iterable\|stdClass\|null` |
+`$comparator` | `callable` | (optional) Invoked as `($a, $b)`; truthy means values are considered equal
+**Returns** | `array` |
+
+**Example:**
+```php
+Dash\differenceWith(
+	[['x' => 1], ['x' => 2], ['x' => 1]],
+	[['x' => 2]],
+	function ($a, $b) {
+		return $a['x'] === $b['x'];
+	}
+);
+// === [['x' => 1]]
 ```
 
 [↑ Top](#operations)
