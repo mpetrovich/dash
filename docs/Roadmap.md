@@ -23,7 +23,7 @@ None.
 -   [ ] splice
 -   [x] unique / uniq
 -   [x] unshift / prepend
--   [ ] unpop / append
+-   [x] unpop / append
 -   [ ] natsort
 -   [ ] natcasesort
 -   [x] shuffle / randomize

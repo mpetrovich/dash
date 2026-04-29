@@ -35,6 +35,7 @@
             "src/allPass.php",
             "src/any.php",
             "src/anyPass.php",
+            "src/append.php",
             "src/apply.php",
             "src/ary.php",
             "src/assertType.php",

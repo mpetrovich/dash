@@ -8,6 +8,7 @@ Operation | Signature | Curried
 [allPass](#allpass--overevery) / overEvery | `allPass($predicates): callable` | 
 [any](#any--some) / some | `any($iterable, $predicate = 'Dash\identity'): boolean` | `Curry\any`
 [anyPass](#anypass--oversome) / overSome | `anyPass($predicates): callable` | 
+[append](#append--unpop) / unpop | `append($iterable /* , ...$values */): array` | 
 [apply](#apply) | `apply(callable $callable, $args): mixed` | `Curry\apply`
 [ary](#ary) | `ary(callable $callable, $arity): callable` | `Curry\ary`
 [assertType](#asserttype) | `assertType($value, $type, $funcName = __FUNCTION__): void` | `Curry\assertType`
@@ -314,6 +315,26 @@ $fn = Dash\anyPass([
 $fn(4);  // === true
 $fn(3);  // === false
 ```
+
+[↑ Top](#operations)
+
+append / unpop
+---
+
+
+```php
+append($iterable /* , ...$values */): array
+```
+Returns a new array with `$values` added to the end of `$iterable`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`...$values` | `mixed` |
+**Returns** | `array` |
+
+
 
 [↑ Top](#operations)
 
