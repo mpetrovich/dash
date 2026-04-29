@@ -114,6 +114,7 @@ Operation | Signature | Curried
 [prepend](#prepend--unshift) / unshift | `prepend($iterable /* , ...$values */): array` | 
 [product](#product) | `product($iterable): numeric` | `Curry\product`
 [property](#property) | `property($path, $default = null): function` | `Curry\property`
+[random](#random) | `random($min = 0, $max = null): integer` | `Curry\random`
 [range](#range) | `range($start, $end = null, $step = 1): array` | 
 [reduce](#reduce) | `reduce($iterable, $iteratee, $initial = []): mixed` | `Curry\reduce`
 [reduceRight](#reduceright) | `reduceRight($iterable, $iteratee, $initial = []): mixed` | `Curry\reduceRight`
@@ -4134,6 +4135,31 @@ $getter([
 $getter = Dash\property('a.b.c');
 $getter(['a.b.c' => 'value']);  // === 'value'
 ```
+
+[↑ Top](#operations)
+
+random
+---
+
+
+```php
+random($min = 0, $max = null): integer
+
+# Curried: (all parameters required)
+Curry\random($min, $max)
+```
+Returns a random integer between `$min` and `$max` (inclusive).
+
+If only one argument is provided, it is treated as `$max` and `$min` defaults to 0.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$min` | `integer` | (optional)
+`$max` | `integer\|null` | (optional)
+**Returns** | `integer` |
+
+
 
 [↑ Top](#operations)
 

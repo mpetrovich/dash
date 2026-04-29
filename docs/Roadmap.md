@@ -12,7 +12,7 @@ None.
 -   [x] chunk
 -   [x] pad
 -   [x] product
--   [ ] random
+-   [x] random
 -   [x] invert / flip
 -   [ ] shift
 -   [ ] pop
