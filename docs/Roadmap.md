@@ -31,7 +31,7 @@ None.
 ## [anahkiasen/underscore-php](http://anahkiasen.github.io/underscore-php)
 
 -   [x] flatten
--   [ ] has
+-   [x] has
 -   [ ] invoke
 -   [ ] matchesAny
 -   [ ] merge

@@ -59,6 +59,7 @@ Operation | Signature | Curried
 [getDirect](#getdirect) | `getDirect($input, $key, $default = null): mixed` | `Curry\getDirect`
 [getDirectRef](#getdirectref) | `getDirectRef(&$input, $key): mixed` | 
 [groupBy](#groupby) | `groupBy($iterable, $iteratee = 'Dash\identity', $defaultGroup = null): array` | `Curry\groupBy`
+[has](#has) | `has($input, $path): boolean` | `Curry\has`
 [hasDirect](#hasdirect) | `hasDirect($input, $key): boolean` | `Curry\hasDirect`
 [identical](#identical) | `identical($a, $b): boolean` | `Curry\identical`
 [identity](#identity) | `identity($value): mixed` | `Curry\identity`
@@ -2342,6 +2343,31 @@ Dash\groupBy($data, 'last', 'Unknown');
 	],
 ]
 ```
+
+[↑ Top](#operations)
+
+has
+---
+See also: `get()`, `hasDirect()`, `property()`
+
+```php
+has($input, $path): boolean
+
+# Curried: (all parameters required)
+Curry\has($path, $input)
+```
+Checks whether a value exists at `$path` within `$input`.
+
+Unlike `hasDirect()`, this supports nested paths (dot notation) via `property()`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$input` | `mixed` |
+`$path` | `callable\|string\|integer` |
+**Returns** | `boolean` |
+
+
 
 [↑ Top](#operations)
 
