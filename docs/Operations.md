@@ -94,6 +94,7 @@ Operation | Signature | Curried
 [isObject](#isobject) | `isObject($value): boolean` | `Curry\isObject`
 [isOdd](#isodd) | `isOdd($value): boolean` | `Curry\isOdd`
 [isRegExp](#isregexp) | `isRegExp($value): boolean` | `Curry\isRegExp`
+[isResource](#isresource) | `isResource($value): boolean` | `Curry\isResource`
 [isType](#istype) | `isType($value, $type): boolean` | `Curry\isType`
 [join](#join--implode) / implode | `join($iterable, $separator): string` | `Curry\join`
 [juxt](#juxt--over) / over | `juxt($functions): callable` | 
@@ -3292,6 +3293,28 @@ isRegExp($value): boolean
 Curry\isRegExp($value)
 ```
 Checks whether `$value` is a valid regular expression pattern string.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `mixed` |
+**Returns** | `boolean` |
+
+
+
+[↑ Top](#operations)
+
+isResource
+---
+
+
+```php
+isResource($value): boolean
+
+# Curried: (all parameters required)
+Curry\isResource($value)
+```
+Checks whether `$value` is a resource.
 
 
 Parameter | Type | Description

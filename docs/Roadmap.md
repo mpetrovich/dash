@@ -65,7 +65,7 @@ None.
 -   [x] isNumber
 -   [x] isObject
 -   [x] isRegExp
--   [ ] isResource
+-   [x] isResource
 -   [ ] isScalar
 -   [ ] isString
 -   [ ] isTraversable
