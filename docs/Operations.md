@@ -96,6 +96,7 @@ Operation | Signature | Curried
 [isRegExp](#isregexp) | `isRegExp($value): boolean` | `Curry\isRegExp`
 [isResource](#isresource) | `isResource($value): boolean` | `Curry\isResource`
 [isScalar](#isscalar) | `isScalar($value): boolean` | `Curry\isScalar`
+[isString](#isstring) | `isString($value): boolean` | `Curry\isString`
 [isType](#istype) | `isType($value, $type): boolean` | `Curry\isType`
 [join](#join--implode) / implode | `join($iterable, $separator): string` | `Curry\join`
 [juxt](#juxt--over) / over | `juxt($functions): callable` | 
@@ -3338,6 +3339,28 @@ isScalar($value): boolean
 Curry\isScalar($value)
 ```
 Checks whether `$value` is scalar.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `mixed` |
+**Returns** | `boolean` |
+
+
+
+[↑ Top](#operations)
+
+isString
+---
+
+
+```php
+isString($value): boolean
+
+# Curried: (all parameters required)
+Curry\isString($value)
+```
+Checks whether `$value` is a string.
 
 
 Parameter | Type | Description

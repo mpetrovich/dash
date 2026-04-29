@@ -67,7 +67,7 @@ None.
 -   [x] isRegExp
 -   [x] isResource
 -   [x] isScalar
--   [ ] isString
+-   [x] isString
 -   [ ] isTraversable
 -   [x] lastIndexOf
 -   [x] lastly
