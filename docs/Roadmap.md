@@ -11,7 +11,7 @@ None.
 
 -   [x] chunk
 -   [ ] multisort
--   [ ] pad
+-   [x] pad
 -   [ ] product
 -   [ ] random
 -   [ ] invert / flip
@@ -19,7 +19,7 @@ None.
 -   [ ] replaceValue
 -   [ ] shift
 -   [ ] pop
--   [ ] slice
+-   [x] slice
 -   [ ] splice
 -   [x] unique / uniq
 -   [ ] unshift / prepend
@@ -53,7 +53,7 @@ None.
 -   [x] compact
 -   [x] compose
 -   [ ] constant
--   [ ] countBy
+-   [x] countBy
 -   [x] defaults
 -   [ ] duplicate
 -   [ ] eachReference / eachRef
@@ -61,7 +61,7 @@ None.
 -   [ ] extend
 -   [x] findWhere
 -   [ ] functions
--   [ ] indexOf
+-   [x] indexOf
 -   [ ] is / isType
 -   [ ] isArray
 -   [ ] isBoolean
@@ -81,7 +81,7 @@ None.
 -   [ ] isScalar
 -   [ ] isString
 -   [ ] isTraversable
--   [ ] lastIndexOf
+-   [x] lastIndexOf
 -   [ ] lastly
 -   [ ] memoize
 -   [ ] mixin / setCustom
@@ -93,7 +93,7 @@ None.
 -   [ ] provide / dash
 -   [x] reduceRight
 -   [ ] sample
--   [ ] sortedIndex
+-   [x] sortedIndex
 -   [ ] template
 -   [ ] throttle
 -   [x] times
@@ -155,5 +155,5 @@ No new operations
 -   [x] unless
 -   [x] juxt / over
 -   [x] converge
--   [ ] toPairs / pairs
+-   [x] toPairs / pairs
 

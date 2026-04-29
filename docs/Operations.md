@@ -23,6 +23,7 @@ Operation | Signature | Curried
 [cond](#cond) | `cond($pairs): callable` | 
 [contains](#contains--includes) / includes | `contains($iterable, $target, $comparator = 'Dash\equal'): boolean` | `Curry\contains`
 [converge](#converge) | `converge(callable $combiner, $branches): callable` | 
+[countBy](#countby) | `countBy($iterable, $iteratee = 'Dash\identity', $defaultGroup = null): array` | `Curry\countBy`
 [currify](#currify) | `currify(callable $callable, array $args = [], $rotate = 1): function\|mixed` | 
 [currifyN](#currifyn) | `currifyN(callable $callable, $totalArgs, array $args = [], $rotate = 1): function\|mixed` | 
 [curry](#curry) | `curry(callable $callable /*, ...args */): function\|mixed` | 
@@ -62,6 +63,7 @@ Operation | Signature | Curried
 [identical](#identical) | `identical($a, $b): boolean` | `Curry\identical`
 [identity](#identity) | `identity($value): mixed` | `Curry\identity`
 [ifElse](#ifelse) | `ifElse(callable $predicate, callable $onTrue, callable $onFalse): callable` | 
+[indexOf](#indexof) | `indexOf($iterable, $value, $fromIndex = 0, $comparator = 'Dash\equal'): integer` | `Curry\indexOf`
 [initial](#initial--init) / init | `initial($iterable): array\|iterable` | `Curry\initial`
 [intersection](#intersection) | `intersection($iterable /*, ...iterables */): array` | 
 [intersectionWith](#intersectionwith) | `intersectionWith($iterable, $other, $comparator = 'Dash\equal'): array` | `Curry\intersectionWith`
@@ -77,6 +79,7 @@ Operation | Signature | Curried
 [keyBy](#keyby--indexby) / indexBy | `keyBy($iterable, $iteratee = 'Dash\identity'): array` | `Curry\keyBy`
 [keys](#keys) | `keys($iterable): array` | `Curry\keys`
 [last](#last) | `last($iterable): mixed\|null` | `Curry\last`
+[lastIndexOf](#lastindexof) | `lastIndexOf($iterable, $value, $fromIndex = null, $comparator = 'Dash\equal'): integer` | `Curry\lastIndexOf`
 [map](#map) | `map($iterable, $iteratee = 'Dash\identity'): array` | `Curry\map`
 [mapKeys](#mapkeys) | `mapKeys($iterable, $iteratee = 'Dash\identity'): array\|iterable` | `Curry\mapKeys`
 [mapResult](#mapresult) | `mapResult($iterable, $path, $default = null): array` | `Curry\mapResult`
@@ -91,6 +94,7 @@ Operation | Signature | Curried
 [omit](#omit) | `omit($iterable, $keys): array` | `Curry\omit`
 [omitBy](#omitby) | `omitBy($iterable, $predicate = 'Dash\identity'): array\|iterable` | `Curry\omitBy`
 [once](#once) | `once(callable $callable): callable` | 
+[pad](#pad) | `pad($iterable, $length, $padValue = null): array` | `Curry\pad`
 [partial](#partial) | `partial($callable /*, ...args */): callable` | 
 [partialRight](#partialright) | `partialRight($callable /*, ...args */): callable` | 
 [partition](#partition) | `partition($iterable, $predicate = 'Dash\identity'): array` | `Curry\partition`
@@ -110,8 +114,10 @@ Operation | Signature | Curried
 [scan](#scan) | `scan($iterable, $iteratee, $initial = []): array\|iterable` | `Curry\scan`
 [set](#set) | `set(&$input, $path, $value): mixed` | 
 [size](#size--count) / count | `size($value, $encoding = 'UTF-8'): integer` | `Curry\size`
+[slice](#slice) | `slice($iterable, $offset = 0, $length = null): array\|iterable` | `Curry\slice`
 [sort](#sort) | `sort($iterable, $comparator = 'Dash\compare'): array` | `Curry\sort`
 [sortBy](#sortby) | `sortBy($iterable, $iteratee = 'Dash\identity'): array` | `Curry\sortBy`
+[sortedIndex](#sortedindex) | `sortedIndex($iterable, $value, $comparator = 'Dash\compare'): integer` | `Curry\sortedIndex`
 [sum](#sum) | `sum($iterable): numeric` | `Curry\sum`
 [symmetricDifference](#symmetricdifference) | `symmetricDifference($iterable, $other): array` | `Curry\symmetricDifference`
 [tail](#tail--rest) / rest | `tail($iterable): array\|iterable` | `Curry\tail`
@@ -123,6 +129,7 @@ Operation | Signature | Curried
 [times](#times) | `times($n, $iteratee = 'Dash\identity'): array` | `Curry\times`
 [toArray](#toarray) | `toArray($value): array` | `Curry\toArray`
 [toObject](#toobject) | `toObject($value): object` | `Curry\toObject`
+[toPairs](#topairs--pairs) / pairs | `toPairs($iterable): array` | `Curry\toPairs`
 [unary](#unary) | `unary(callable $callable): callable` | `Curry\unary`
 [union](#union) | `union($iterable /*, ...iterables */): array` | 
 [unionWith](#unionwith) | `unionWith($iterable, $other, $comparator = 'Dash\equal'): array` | `Curry\unionWith`
@@ -811,6 +818,30 @@ $avg = Dash\converge(function ($sum, $count) {
 ]);
 $avg([2, 4, 6]);  // === 4
 ```
+
+[↑ Top](#operations)
+
+countBy
+---
+See also: `groupBy()`, `keyBy()`
+
+```php
+countBy($iterable, $iteratee = 'Dash\identity', $defaultGroup = null): array
+
+# Curried: (all parameters required)
+Curry\countBy($iteratee, $defaultGroup, $iterable)
+```
+Counts elements of `$iterable` by key produced from `$iteratee`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$iteratee` | `callable\|string` | (optional) If a callable, invoked with `($value, $key, $iterable)`
+`$defaultGroup` | `string` | (optional) The key used when `$iteratee` returns `null`
+**Returns** | `array` | A new associative array of `[groupKey => count]`
+
+
 
 [↑ Top](#operations)
 
@@ -2443,6 +2474,33 @@ $fn(-3);  // === 'neg:-3'
 
 [↑ Top](#operations)
 
+indexOf
+---
+See also: `contains()`, `lastIndexOf()`
+
+```php
+indexOf($iterable, $value, $fromIndex = 0, $comparator = 'Dash\equal'): integer
+
+# Curried: (all parameters required)
+Curry\indexOf($value, $fromIndex, $comparator, $iterable)
+```
+Returns the positional index of the first element equal to `$value`, or `-1` if not found.
+
+Comparison is delegated to `$comparator($value, $current)`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$value` | `mixed` |
+`$fromIndex` | `numeric` | (optional) Start index (negative offsets from the end)
+`$comparator` | `callable` | (optional)
+**Returns** | `integer` |
+
+
+
+[↑ Top](#operations)
+
 initial / init
 ---
 See also: `last()`, `tail()`
@@ -2980,6 +3038,33 @@ Dash\last([]);
 
 [↑ Top](#operations)
 
+lastIndexOf
+---
+See also: `indexOf()`, `contains()`
+
+```php
+lastIndexOf($iterable, $value, $fromIndex = null, $comparator = 'Dash\equal'): integer
+
+# Curried: (all parameters required)
+Curry\lastIndexOf($value, $fromIndex, $comparator, $iterable)
+```
+Returns the positional index of the last element equal to `$value`, or `-1` if not found.
+
+Comparison is delegated to `$comparator($value, $current)`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$value` | `mixed` |
+`$fromIndex` | `numeric\|null` | (optional) Last index to consider (negative offsets from the end)
+`$comparator` | `callable` | (optional)
+**Returns** | `integer` |
+
+
+
+[↑ Top](#operations)
+
 map
 ---
 See also: `mapValues()`, `mapResult()`
@@ -3437,6 +3522,32 @@ $inc = Dash\once(function () use (&$next) {
 $inc();  // === 1
 $inc();  // === 1
 ```
+
+[↑ Top](#operations)
+
+pad
+---
+
+
+```php
+pad($iterable, $length, $padValue = null): array
+
+# Curried: (all parameters required)
+Curry\pad($length, $padValue, $iterable)
+```
+Pads `$iterable` to `$length` by adding `$padValue` to both sides.
+
+If total padding is odd, the extra element is added to the right side.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$length` | `integer` |
+`$padValue` | `mixed` | (optional)
+**Returns** | `array` |
+
+
 
 [↑ Top](#operations)
 
@@ -4196,6 +4307,34 @@ Dash\size('Beyoncé');
 
 [↑ Top](#operations)
 
+slice
+---
+
+
+```php
+slice($iterable, $offset = 0, $length = null): array|iterable
+
+# Curried: (all parameters required)
+Curry\slice($offset, $length, $iterable)
+```
+Returns a segment of `$iterable` from `$offset` with optional `$length`.
+
+Keys are preserved unless `$iterable` is an indexed array.
+
+For generators, only non-negative `$offset` and non-negative (or null) `$length` are supported.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$offset` | `integer` |
+`$length` | `integer\|null` |
+**Returns** | `array\|iterable` |
+
+
+
+[↑ Top](#operations)
+
 sort
 ---
 
@@ -4258,6 +4397,32 @@ Dash\sortBy([['a' => 2], ['a' => 1], ['a' => 3]], 'a');
 Dash\sortBy([4, 3, 5, 1, 2], 'Dash\identity');
 // === [1, 2, 3, 4, 5]
 ```
+
+[↑ Top](#operations)
+
+sortedIndex
+---
+
+
+```php
+sortedIndex($iterable, $value, $comparator = 'Dash\compare'): integer
+
+# Curried: (all parameters required)
+Curry\sortedIndex($value, $comparator, $iterable)
+```
+Returns the insertion index for `$value` in an already-sorted `$iterable`.
+
+Uses `$comparator($left, $right)` with `Dash\compare` semantics.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$value` | `mixed` |
+`$comparator` | `callable` | (optional)
+**Returns** | `integer` |
+
+
 
 [↑ Top](#operations)
 
@@ -4598,6 +4763,28 @@ Dash\toObject(['a' => 1, 'b' => 2]);
 Dash\toObject(new ArrayObject(['a' => 1, 'b' => 2]));
 // === (object) ['a' => 1, 'b' => 2]
 ```
+
+[↑ Top](#operations)
+
+toPairs / pairs
+---
+See also: `values()`, `keys()`
+
+```php
+toPairs($iterable): array
+
+# Curried: (all parameters required)
+Curry\toPairs($iterable)
+```
+Converts `$iterable` to a list of `[key, value]` tuples.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+**Returns** | `array` |
+
+
 
 [↑ Top](#operations)
 
