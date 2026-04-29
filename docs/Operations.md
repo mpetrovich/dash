@@ -33,6 +33,7 @@ Operation | Signature | Curried
 [equal](#equal) | `equal($a, $b): boolean` | `Curry\equal`
 [filter](#filter) | `filter($iterable, $predicate = 'Dash\identity'): array\|iterable` | `Curry\filter`
 [find](#find) | `find($iterable, $predicate = 'Dash\identity'): array\|null` | `Curry\find`
+[findIndex](#findindex) | `findIndex($iterable, $predicate = 'Dash\identity'): integer` | `Curry\findIndex`
 [findKey](#findkey) | `findKey($iterable, $predicate = 'Dash\identity'): string\|null` | `Curry\findKey`
 [findLast](#findlast) | `findLast($iterable, $predicate = 'Dash\identity'): array\|null` | `Curry\findLast`
 [findLastKey](#findlastkey) | `findLastKey($iterable, $predicate = 'Dash\identity'): string\|null` | `Curry\findLastKey`
@@ -1303,6 +1304,38 @@ Dash\find($data, 'active');
 
 Dash\find($data, ['active', false]);
 // === [0, ['name' => 'John', 'active' => false]]
+```
+
+[↑ Top](#operations)
+
+findIndex
+---
+See also: `find()`, `findKey()`, `findLastIndex()`
+
+```php
+findIndex($iterable, $predicate = 'Dash\identity'): integer
+
+# Curried: (all parameters required)
+Curry\findIndex($predicate, $iterable)
+```
+Returns the 0-based index of the first element for which `$predicate` returns truthy, or `-1` if none.
+
+Counts in forward iteration order (unrelated to numeric array keys for associative iterables).
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$predicate` | `callable\|string\|array` | (optional) Same forms as `find()`.
+**Returns** | `integer` |
+
+**Example:**
+```php
+Dash\findIndex([1, 2, 3, 4], 'Dash\isEven');
+// === 1
+
+Dash\findIndex(['a' => 1, 'b' => 2], function ($v) { return $v === 2; });
+// === 1
 ```
 
 [↑ Top](#operations)

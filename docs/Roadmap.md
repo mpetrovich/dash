@@ -125,6 +125,7 @@ No new operations
 -   [x] intersectionWith
 -   [x] unionWith
 -   [x] sortBy
+-   [x] findIndex
 -   [x] uniqueBy
 
 ## [Ramda](http://ramdajs.com/docs)
