@@ -10,13 +10,10 @@ None.
 ## [Array methods](http://php.net/manual/en/ref.array.php)
 
 -   [x] chunk
--   [ ] multisort
 -   [x] pad
 -   [x] product
 -   [ ] random
 -   [x] invert / flip
--   [ ] replaceKeys
--   [ ] replaceValue
 -   [ ] shift
 -   [ ] pop
 -   [x] slice
@@ -24,8 +21,6 @@ None.
 -   [x] unique / uniq
 -   [x] unshift / prepend
 -   [x] unpop / append
--   [ ] natsort
--   [ ] natcasesort
 -   [x] shuffle / randomize
 
 ## [anahkiasen/underscore-php](http://anahkiasen.github.io/underscore-php)
@@ -47,20 +42,13 @@ None.
 
 -   [x] after
 -   [x] before
--   [ ] bind
--   [ ] bindAll
--   [ ] bindClass
 -   [x] compact
 -   [x] compose
 -   [x] constant
 -   [x] countBy
 -   [x] defaults
--   [ ] duplicate
--   [ ] eachReference / eachRef
--   [ ] escape
 -   [x] extend
 -   [x] findWhere
--   [ ] functions
 -   [x] indexOf
 -   [x] is / isType
 -   [ ] isArray
@@ -90,15 +78,11 @@ None.
 -   [x] once
 -   [x] pairs
 -   [x] partition
--   [ ] provide / dash
 -   [x] reduceRight
 -   [x] sample
 -   [x] sortedIndex
--   [ ] template
--   [ ] throttle
 -   [x] times
 -   [ ] typeOf
--   [ ] unescape
 -   [x] uniqueId
 -   [x] wrap
 -   [x] zip
@@ -106,13 +90,6 @@ None.
 ## [Bottomline](https://github.com/maciejczyzewski/bottomline)
 
 -   [ ] drop
--   [ ] patch
--   [ ] ease
--   [ ] hasKeys
--   [ ] unease
--   [ ] slug
--   [ ] truncate
--   [ ] urlify
 
 ## [brianhaveri/Underscore.php](http://brianhaveri.github.io/Underscore.php)
 
