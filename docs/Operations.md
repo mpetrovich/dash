@@ -84,6 +84,7 @@ Operation | Signature | Curried
 [isEqual](#isequal) | `isEqual($a, $b): boolean` | `Curry\isEqual`
 [isEven](#iseven) | `isEven($value): boolean` | `Curry\isEven`
 [isFinite](#isfinite) | `isFinite($value): boolean` | `Curry\isFinite`
+[isFloat](#isfloat) | `isFloat($value): boolean` | `Curry\isFloat`
 [isIndexedArray](#isindexedarray) | `isIndexedArray($value): boolean` | `Curry\isIndexedArray`
 [isOdd](#isodd) | `isOdd($value): boolean` | `Curry\isOdd`
 [isType](#istype) | `isType($value, $type): boolean` | `Curry\isType`
@@ -3039,6 +3040,28 @@ isFinite($value): boolean
 Curry\isFinite($value)
 ```
 Checks whether `$value` is a finite number.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `mixed` |
+**Returns** | `boolean` |
+
+
+
+[↑ Top](#operations)
+
+isFloat
+---
+
+
+```php
+isFloat($value): boolean
+
+# Curried: (all parameters required)
+Curry\isFloat($value)
+```
+Checks whether `$value` is a float.
 
 
 Parameter | Type | Description
