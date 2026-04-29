@@ -90,7 +90,11 @@ Operation | Signature | Curried
 [unary](#unary) | `unary(callable $callable): callable` | `Curry\unary`
 [union](#union) | `union($iterable /*, ...iterables */): array` | 
 [unique](#unique--distinct) / distinct | `unique($iterable): array` | 
+[unzip](#unzip--transpose) / transpose | `unzip($iterable): array` | `Curry\unzip`
 [values](#values) | `values($iterable): array` | `Curry\values`
+[zip](#zip) | `zip(/* ...$iterables */): array\|iterable` | 
+[zipAll](#zipall) | `zipAll(/* ...$iterables */): array\|iterable` | 
+[zipWith](#zipwith) | `zipWith($iterable1, $iterable2, callable $combiner): array\|iterable` | `Curry\zipWith`
 
 
 all / every
@@ -3653,6 +3657,32 @@ Dash\unique(['a' => 1, 'b' => 2, 'c' => 1]);
 
 [↑ Top](#operations)
 
+unzip / transpose
+---
+
+
+```php
+unzip($iterable): array
+
+# Curried: (all parameters required)
+Curry\unzip($iterable)
+```
+Inverse of `zip()`: turns an iterable of tuples into parallel arrays (columns).
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` | Iterable of rows (each row an iterable of cells)
+**Returns** | `array` | A list of arrays; each inner array is one column across rows.
+
+**Example:**
+```php
+Dash\unzip([[1, 10], [2, 20], [3, 30]]);
+// === [[1, 2, 3], [10, 20, 30]]
+```
+
+[↑ Top](#operations)
+
 values
 ---
 See also: `keys()`
@@ -3675,6 +3705,96 @@ Parameter | Type | Description
 ```php
 Dash\values(['c' => 3, 'a' => 1, 'b' => 2]);
 // === [3, 1, 2]
+```
+
+[↑ Top](#operations)
+
+zip
+---
+
+
+```php
+zip(/* ...$iterables */): array|iterable
+```
+Combines parallel iterables into tuples (arrays of values), one tuple per index position.
+
+The length of the result is the length of the shortest iterable (truncated).
+
+
+Parameter | Type | Description
+--- | --- | :---
+`...$iterables` | `iterable\|stdClass\|null` |
+**Returns** | `array\|iterable` | A list of tuples; each tuple's elements are drawn from each iterable at the same logical position.
+
+**Example:**
+```php
+Dash\zip([1, 2, 3], [10, 20, 30]);
+// === [[1, 10], [2, 20], [3, 30]]
+
+Dash\zip([1, 2], [10, 20, 99]);
+// === [[1, 10], [2, 20]]
+
+```
+
+**Example:** With no arguments
+```php
+Dash\zip();
+// === []
+```
+
+[↑ Top](#operations)
+
+zipAll
+---
+
+
+```php
+zipAll(/* ...$iterables */): array|iterable
+```
+Like `zip()`, but uses the longest iterable length and pads missing positions with `null`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`...$iterables` | `iterable\|stdClass\|null` |
+**Returns** | `array\|iterable` | A list of tuples
+
+**Example:**
+```php
+Dash\zipAll([1, 2], [10]);
+// === [[1, 10], [2, null]]
+```
+
+[↑ Top](#operations)
+
+zipWith
+---
+
+
+```php
+zipWith($iterable1, $iterable2, callable $combiner): array|iterable
+
+# Curried: (all parameters required)
+Curry\zipWith($combiner, $iterable1, $iterable2)
+```
+Combines two iterables element-wise using `$combiner($valueFromFirst, $valueFromSecond)`.
+
+Stops when the shorter iterable ends (same length rule as `zip()`).
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable1` | `iterable\|stdClass\|null` |
+`$iterable2` | `iterable\|stdClass\|null` |
+`$combiner` | `callable` | Invoked with `($valueFromFirst, $valueFromSecond)` for each aligned pair
+**Returns** | `array\|iterable` |
+
+**Example:**
+```php
+Dash\zipWith([1, 2, 3], [10, 20, 30], function ($a, $b) {
+	return $a + $b;
+});
+// === [11, 22, 33]
 ```
 
 [↑ Top](#operations)

@@ -102,7 +102,7 @@
 -   [ ] unescape
 -   [ ] uniqueId
 -   [ ] wrap
--   [ ] zip
+-   [x] zip
 
 ## [Bottomline](https://github.com/maciejczyzewski/bottomline)
 

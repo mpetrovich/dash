@@ -70,6 +70,9 @@
             "src/Generator/mapValues.php",
             "src/Generator/take.php",
             "src/Generator/takeWhile.php",
+            "src/Generator/zip.php",
+            "src/Generator/zipAll.php",
+            "src/Generator/zipWith.php",
             "src/find.php",
             "src/findKey.php",
             "src/findLast.php",
@@ -131,9 +134,13 @@
             "src/unary.php",
             "src/union.php",
             "src/unique.php",
+            "src/unzip.php",
             "src/values.php",
             "src/where.php",
             "src/without.php",
+            "src/zip.php",
+            "src/zipAll.php",
+            "src/zipWith.php",
             "src/Curry/all.php",
             "src/Curry/any.php",
             "src/Curry/apply.php",
@@ -199,10 +206,13 @@
             "src/Curry/takeRight.php",
             "src/Curry/tap.php",
             "src/Curry/thru.php",
+            "src/Curry/transpose.php",
             "src/Curry/toArray.php",
             "src/Curry/toObject.php",
             "src/Curry/unary.php",
-            "src/Curry/values.php"
+            "src/Curry/unzip.php",
+            "src/Curry/values.php",
+            "src/Curry/zipWith.php"
         ]
     },
     "require-dev": {
