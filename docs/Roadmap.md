@@ -39,7 +39,7 @@ None.
 -   [x] range
 -   [x] remove
 -   [x] removeFirst
--   [ ] removeLast
+-   [x] removeLast
 -   [x] repeat
 -   [x] sortKeys
 

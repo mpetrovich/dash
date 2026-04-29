@@ -115,6 +115,7 @@ Operation | Signature | Curried
 [reject](#reject) | `reject($iterable, $predicate = 'Dash\identity'): array` | `Curry\reject`
 [remove](#remove) | `remove($iterable, $predicate = 'Dash\identity'): array` | `Curry\remove`
 [removeFirst](#removefirst) | `removeFirst($iterable, $predicate = 'Dash\identity'): array` | `Curry\removeFirst`
+[removeLast](#removelast) | `removeLast($iterable, $predicate = 'Dash\identity'): array` | `Curry\removeLast`
 [repeat](#repeat) | `repeat($value, $count): array` | `Curry\repeat`
 [result](#result) | `result($input, $path, $default = null): mixed` | `Curry\result`
 [reverse](#reverse) | `reverse($iterable, $preserveIntegerKeys = false): array` | `Curry\reverse`
@@ -4202,6 +4203,29 @@ removeFirst($iterable, $predicate = 'Dash\identity'): array
 Curry\removeFirst($predicate, $iterable)
 ```
 Returns a new iterable with the first element matching `$predicate` removed.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$predicate` | `callable\|string\|array` | (optional)
+**Returns** | `array` |
+
+
+
+[↑ Top](#operations)
+
+removeLast
+---
+
+
+```php
+removeLast($iterable, $predicate = 'Dash\identity'): array
+
+# Curried: (all parameters required)
+Curry\removeLast($predicate, $iterable)
+```
+Returns a new iterable with the last element matching `$predicate` removed.
 
 
 Parameter | Type | Description
