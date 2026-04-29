@@ -62,7 +62,7 @@ None.
 -   [x] isInteger
 -   [x] isNaN
 -   [x] isNull
--   [ ] isNumber
+-   [x] isNumber
 -   [ ] isObject
 -   [ ] isRegExp
 -   [ ] isResource

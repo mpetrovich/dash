@@ -90,6 +90,7 @@ Operation | Signature | Curried
 [isInteger](#isinteger) | `isInteger($value): boolean` | `Curry\isInteger`
 [isNaN](#isnan) | `isNaN($value): boolean` | `Curry\isNaN`
 [isNull](#isnull) | `isNull($value): boolean` | `Curry\isNull`
+[isNumber](#isnumber) | `isNumber($value): boolean` | `Curry\isNumber`
 [isOdd](#isodd) | `isOdd($value): boolean` | `Curry\isOdd`
 [isType](#istype) | `isType($value, $type): boolean` | `Curry\isType`
 [join](#join--implode) / implode | `join($iterable, $separator): string` | `Curry\join`
@@ -3186,6 +3187,28 @@ isNull($value): boolean
 Curry\isNull($value)
 ```
 Checks whether `$value` is null.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `mixed` |
+**Returns** | `boolean` |
+
+
+
+[↑ Top](#operations)
+
+isNumber
+---
+
+
+```php
+isNumber($value): boolean
+
+# Curried: (all parameters required)
+Curry\isNumber($value)
+```
+Checks whether `$value` is an integer or float.
 
 
 Parameter | Type | Description
