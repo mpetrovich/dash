@@ -100,6 +100,7 @@ Operation | Signature | Curried
 [reduce](#reduce) | `reduce($iterable, $iteratee, $initial = []): mixed` | `Curry\reduce`
 [reduceRight](#reduceright) | `reduceRight($iterable, $iteratee, $initial = []): mixed` | `Curry\reduceRight`
 [reject](#reject) | `reject($iterable, $predicate = 'Dash\identity'): array` | `Curry\reject`
+[repeat](#repeat) | `repeat($value, $count): array` | `Curry\repeat`
 [result](#result) | `result($input, $path, $default = null): mixed` | `Curry\result`
 [reverse](#reverse) | `reverse($iterable, $preserveIntegerKeys = false): array` | `Curry\reverse`
 [rotate](#rotate) | `rotate($iterable, $count = 1): array` | `Curry\rotate`
@@ -3841,6 +3842,29 @@ Dash\reject($data, ['active', false]);
 	['name' => 'Pete', 'active' => true]
 ]
 ```
+
+[↑ Top](#operations)
+
+repeat
+---
+
+
+```php
+repeat($value, $count): array
+
+# Curried: (all parameters required)
+Curry\repeat($count, $value)
+```
+Returns an array of length `$count` with every element set to `$value`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `mixed` |
+`$count` | `numeric` |
+**Returns** | `array` |
+
+
 
 [↑ Top](#operations)
 

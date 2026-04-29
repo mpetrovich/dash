@@ -44,7 +44,7 @@ When plan status changes, update this file in the same pass.
 -   [ ] remove
 -   [ ] removeFirst
 -   [ ] removeLast
--   [ ] repeat
+-   [x] repeat
 -   [ ] sortKeys
 
 ## [bdelespierre/underscore.php](https://github.com/bdelespierre/underscore.php)
@@ -142,7 +142,7 @@ No new operations
 -   [x] range
 -   [x] times
 -   [x] clamp
--   [ ] repeat
+-   [x] repeat
 
 ## [Ramda](http://ramdajs.com/docs)
 
