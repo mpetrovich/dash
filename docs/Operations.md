@@ -36,6 +36,7 @@ Operation | Signature | Curried
 [differenceWith](#differencewith) | `differenceWith($iterable, $other, $comparator = 'Dash\equal'): array` | `Curry\differenceWith`
 [each](#each) | `each($iterable, $iteratee): mixed` | `Curry\each`
 [equal](#equal) | `equal($a, $b): boolean` | `Curry\equal`
+[evolve](#evolve) | `evolve($input, array $transformations): array\|object` | `Curry\evolve`
 [filter](#filter) | `filter($iterable, $predicate = 'Dash\identity'): array\|iterable` | `Curry\filter`
 [find](#find) | `find($iterable, $predicate = 'Dash\identity'): array\|null` | `Curry\find`
 [findIndex](#findindex) | `findIndex($iterable, $predicate = 'Dash\identity'): integer` | `Curry\findIndex`
@@ -1348,6 +1349,31 @@ Dash\equal([1, 2, 3], [1, '2', 3]);
 Dash\equal([1, 2, 3], [3, 2, 1]);
 // === false
 ```
+
+[↑ Top](#operations)
+
+evolve
+---
+
+
+```php
+evolve($input, array $transformations): array|object
+
+# Curried: (all parameters required)
+Curry\evolve($transformations, $input)
+```
+Returns a new copy of `$input` with transformations applied at matching top-level keys.
+
+v1 applies only one level deep.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$input` | `iterable\|stdClass\|null` |
+`$transformations` | `array` |
+**Returns** | `array\|object` |
+
+
 
 [↑ Top](#operations)
 
