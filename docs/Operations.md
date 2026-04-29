@@ -60,6 +60,7 @@ Operation | Signature | Curried
 [initial](#initial--init) / init | `initial($iterable): array\|iterable` | `Curry\initial`
 [intersection](#intersection) | `intersection($iterable /*, ...iterables */): array` | 
 [intersectionWith](#intersectionwith) | `intersectionWith($iterable, $other, $comparator = 'Dash\equal'): array` | `Curry\intersectionWith`
+[invert](#invert--invertobj) / invertObj | `invert($iterable): array` | `Curry\invert`
 [isEmpty](#isempty) | `isEmpty($value): boolean` | `Curry\isEmpty`
 [isEven](#iseven) | `isEven($value): boolean` | `Curry\isEven`
 [isIndexedArray](#isindexedarray) | `isIndexedArray($value): boolean` | `Curry\isIndexedArray`
@@ -2411,6 +2412,30 @@ Dash\intersectionWith(
 );
 // === [['x' => 2]]
 ```
+
+[↑ Top](#operations)
+
+invert / invertObj
+---
+See also: `keys()`, `values()`, `invertBy()`
+
+```php
+invert($iterable): array
+
+# Curried: (all parameters required)
+Curry\invert($iterable)
+```
+Returns a new associative array with keys and values swapped.
+
+Later duplicate values overwrite earlier keys.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+**Returns** | `array` |
+
+
 
 [↑ Top](#operations)
 

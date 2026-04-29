@@ -1,0 +1,33 @@
+<?php
+
+namespace Dash;
+
+/**
+ * Returns a new associative array with keys and values swapped.
+ *
+ * Later duplicate values overwrite earlier keys.
+ *
+ * @see keys(), values(), invertBy()
+ *
+ * @param iterable|stdClass|null $iterable
+ * @return array
+ *
+ * @alias invertObj
+ */
+function invert($iterable)
+{
+	assertType($iterable, ['iterable', 'stdClass', 'null'], __FUNCTION__);
+
+	$out = [];
+
+	foreach (toArray($iterable) as $key => $value) {
+		$out[(string) $value] = $key;
+	}
+
+	return $out;
+}
+
+function invertObj()
+{
+	return call_user_func_array('Dash\invert', func_get_args());
+}
