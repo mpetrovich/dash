@@ -12,7 +12,7 @@ None.
 -   [x] chunk
 -   [ ] multisort
 -   [x] pad
--   [ ] product
+-   [x] product
 -   [ ] random
 -   [x] invert / flip
 -   [ ] replaceKeys

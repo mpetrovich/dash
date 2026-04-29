@@ -110,6 +110,7 @@ Operation | Signature | Curried
 [pipe](#pipe) | `pipe(callable ...$fns): callable` | 
 [pluck](#pluck) | `pluck($iterable, $path, $default = null): array` | `Curry\pluck`
 [prepend](#prepend--unshift) / unshift | `prepend($iterable /* , ...$values */): array` | 
+[product](#product) | `product($iterable): numeric` | `Curry\product`
 [property](#property) | `property($path, $default = null): function` | `Curry\property`
 [range](#range) | `range($start, $end = null, $step = 1): array` | 
 [reduce](#reduce) | `reduce($iterable, $iteratee, $initial = []): mixed` | `Curry\reduce`
@@ -3993,6 +3994,28 @@ Parameter | Type | Description
 `$iterable` | `iterable\|stdClass\|null` |
 `...$values` | `mixed` |
 **Returns** | `array` |
+
+
+
+[↑ Top](#operations)
+
+product
+---
+
+
+```php
+product($iterable): numeric
+
+# Curried: (all parameters required)
+Curry\product($iterable)
+```
+Returns the product of numeric values in `$iterable`.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+**Returns** | `numeric` |
 
 
 
