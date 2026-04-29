@@ -13,6 +13,7 @@ Operation | Signature | Curried
 [average](#average--mean) / mean | `average($iterable): double\|null` | `Curry\average`
 [call](#call) | `call(callable $callable /*, ...args */): mixed` | 
 [chain](#chain) | `chain($input = null): Dash\Dash` | `Curry\chain`
+[chunk](#chunk--splitevery) / splitEvery | `chunk($iterable, $size): array\|iterable` | `Curry\chunk`
 [compact](#compact) | `compact($iterable): array\|iterable` | `Curry\compact`
 [compare](#compare) | `compare($a, $b): integer` | `Curry\compare`
 [compose](#compose) | `compose(callable ...$fns): callable` | 
@@ -418,6 +419,44 @@ Dash\chain([1, 2, 3])
 	->map(function ($n) { return $n * 2; })
 	->value();
 // === [2, 4]
+```
+
+[↑ Top](#operations)
+
+chunk / splitEvery
+---
+
+
+```php
+chunk($iterable, $size): array|iterable
+
+# Curried: (all parameters required)
+Curry\chunk($size, $iterable)
+```
+Splits `$iterable` into groups of `$size`.
+
+The last group may contain fewer than `$size` elements.
+Keys are preserved in each group unless `$iterable` is an indexed array.
+An indexed array is one with sequential integer keys starting at zero. See [isIndexedArray()](#isindexedarray)
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$iterable` | `iterable\|stdClass\|null` |
+`$size` | `integer` |
+**Returns** | `array\|iterable` | A list of groups from `$iterable`
+
+**Example:**
+```php
+Dash\chunk([1, 2, 3, 4, 5], 2);
+// === [[1, 2], [3, 4], [5]]
+
+```
+
+**Example:** With associative array
+```php
+Dash\chunk(['a' => 1, 'b' => 2, 'c' => 3], 2);
+// === [['a' => 1, 'b' => 2], ['c' => 3]]
 ```
 
 [↑ Top](#operations)

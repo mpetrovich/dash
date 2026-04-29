@@ -10,7 +10,7 @@
 
 ## [Array methods](http://php.net/manual/en/ref.array.php)
 
--   [ ] chunk
+-   [x] chunk
 -   [ ] multisort
 -   [ ] pad
 -   [ ] product
