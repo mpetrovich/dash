@@ -92,7 +92,7 @@ None.
 -   [x] partition
 -   [ ] provide / dash
 -   [x] reduceRight
--   [ ] sample
+-   [x] sample
 -   [x] sortedIndex
 -   [ ] template
 -   [ ] throttle
