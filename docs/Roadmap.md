@@ -53,7 +53,7 @@ None.
 -   [x] is / isType
 -   [x] isArray
 -   [x] isBoolean
--   [ ] isDate
+-   [x] isDate
 -   [x] isEmpty
 -   [ ] isEqual
 -   [ ] isFinite
