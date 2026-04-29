@@ -282,6 +282,7 @@
             "src/Curry/toObject.php",
             "src/Curry/transpose.php",
             "src/Curry/unary.php",
+            "src/Curry/uniq.php",
             "src/Curry/unionWith.php",
             "src/Curry/unzip.php",
             "src/Curry/uniqueBy.php",

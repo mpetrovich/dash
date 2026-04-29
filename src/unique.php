@@ -10,7 +10,7 @@ namespace Dash;
  * @param iterable|stdClass|null $iterable
  * @return array
  *
- * @alias distinct
+ * @alias distinct, uniq
  *
  * @example With indexed arrays
 	Dash\unique([1, 2, 2, 3, 1]);
@@ -27,6 +27,11 @@ function unique($iterable)
 }
 
 function distinct()
+{
+	return call_user_func_array('Dash\unique', func_get_args());
+}
+
+function uniq()
 {
 	return call_user_func_array('Dash\unique', func_get_args());
 }

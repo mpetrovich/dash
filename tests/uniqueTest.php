@@ -3,6 +3,8 @@
 /**
  * @covers Dash\unique
  * @covers Dash\distinct
+ * @covers Dash\uniq
+ * @covers Dash\Curry\uniq
  */
 class uniqueTest extends PHPUnit\Framework\TestCase
 {
@@ -13,6 +15,16 @@ class uniqueTest extends PHPUnit\Framework\TestCase
 	{
 		$this->assertSame($expected, Dash\unique($iterable));
 		$this->assertSame($expected, Dash\distinct($iterable));
+		$this->assertSame($expected, Dash\uniq($iterable));
+	}
+
+	/**
+	 * @dataProvider cases
+	 */
+	public function testCurried($iterable, $expected)
+	{
+		$uniq = Dash\Curry\uniq();
+		$this->assertSame($expected, $uniq($iterable));
 	}
 
 	public function cases()

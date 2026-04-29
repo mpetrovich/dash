@@ -125,7 +125,7 @@ Operation | Signature | Curried
 [unary](#unary) | `unary(callable $callable): callable` | `Curry\unary`
 [union](#union) | `union($iterable /*, ...iterables */): array` | 
 [unionWith](#unionwith) | `unionWith($iterable, $other, $comparator = 'Dash\equal'): array` | `Curry\unionWith`
-[unique](#unique--distinct) / distinct | `unique($iterable): array` | 
+[unique](#unique--distinct--uniq) / distinct / uniq | `unique($iterable): array` | 
 [uniqueBy](#uniqueby--uniqby--distinctby) / uniqBy / distinctBy | `uniqueBy($iterable, $iteratee = 'Dash\identity'): array\|iterable` | `Curry\uniqueBy`
 [unless](#unless) | `unless(callable $predicate, callable $onFalse): callable` | 
 [unzip](#unzip--transpose) / transpose | `unzip($iterable): array` | `Curry\unzip`
@@ -4675,7 +4675,7 @@ Dash\unionWith([1, 3], [2, 1], 'Dash\equal');
 
 [↑ Top](#operations)
 
-unique / distinct
+unique / distinct / uniq
 ---
 
 

@@ -21,7 +21,7 @@ None.
 -   [ ] pop
 -   [ ] slice
 -   [ ] splice
--   [ ] unique / uniq
+-   [x] unique / uniq
 -   [ ] unshift / prepend
 -   [ ] unpop / append
 -   [ ] natsort
