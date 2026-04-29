@@ -87,6 +87,7 @@ Operation | Signature | Curried
 [keys](#keys) | `keys($iterable): array` | `Curry\keys`
 [last](#last) | `last($iterable): mixed\|null` | `Curry\last`
 [lastIndexOf](#lastindexof) | `lastIndexOf($iterable, $value, $fromIndex = null, $comparator = 'Dash\equal'): integer` | `Curry\lastIndexOf`
+[lastly](#lastly) | `lastly(callable $fn, callable $onFinally): callable` | 
 [map](#map) | `map($iterable, $iteratee = 'Dash\identity'): array` | `Curry\map`
 [mapKeys](#mapkeys) | `mapKeys($iterable, $iteratee = 'Dash\identity'): array\|iterable` | `Curry\mapKeys`
 [mapResult](#mapresult) | `mapResult($iterable, $path, $default = null): array` | `Curry\mapResult`
@@ -3228,6 +3229,26 @@ Parameter | Type | Description
 `$fromIndex` | `numeric\|null` | (optional) Last index to consider (negative offsets from the end)
 `$comparator` | `callable` | (optional)
 **Returns** | `integer` |
+
+
+
+[↑ Top](#operations)
+
+lastly
+---
+
+
+```php
+lastly(callable $fn, callable $onFinally): callable
+```
+Creates a function that always runs `$onFinally` after `$fn` (try/finally semantics).
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$fn` | `callable` |
+`$onFinally` | `callable` |
+**Returns** | `callable` |
 
 
 

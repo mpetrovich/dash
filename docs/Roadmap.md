@@ -70,7 +70,7 @@ None.
 -   [ ] isString
 -   [ ] isTraversable
 -   [x] lastIndexOf
--   [ ] lastly
+-   [x] lastly
 -   [ ] memoize
 -   [ ] mixin / setCustom
 -   [x] noop

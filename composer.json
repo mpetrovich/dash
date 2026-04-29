@@ -141,6 +141,7 @@
             "src/keyBy.php",
             "src/keys.php",
             "src/last.php",
+            "src/lastly.php",
             "src/lastIndexOf.php",
             "src/map.php",
             "src/mapKeys.php",
