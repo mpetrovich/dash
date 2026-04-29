@@ -97,6 +97,7 @@ Operation | Signature | Curried
 [isResource](#isresource) | `isResource($value): boolean` | `Curry\isResource`
 [isScalar](#isscalar) | `isScalar($value): boolean` | `Curry\isScalar`
 [isString](#isstring) | `isString($value): boolean` | `Curry\isString`
+[isTraversable](#istraversable) | `isTraversable($value): boolean` | `Curry\isTraversable`
 [isType](#istype) | `isType($value, $type): boolean` | `Curry\isType`
 [join](#join--implode) / implode | `join($iterable, $separator): string` | `Curry\join`
 [juxt](#juxt--over) / over | `juxt($functions): callable` | 
@@ -3361,6 +3362,28 @@ isString($value): boolean
 Curry\isString($value)
 ```
 Checks whether `$value` is a string.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$value` | `mixed` |
+**Returns** | `boolean` |
+
+
+
+[↑ Top](#operations)
+
+isTraversable
+---
+
+
+```php
+isTraversable($value): boolean
+
+# Curried: (all parameters required)
+Curry\isTraversable($value)
+```
+Checks whether `$value` is traversable.
 
 
 Parameter | Type | Description

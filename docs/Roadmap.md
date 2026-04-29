@@ -68,7 +68,7 @@ None.
 -   [x] isResource
 -   [x] isScalar
 -   [x] isString
--   [ ] isTraversable
+-   [x] isTraversable
 -   [x] lastIndexOf
 -   [x] lastly
 -   [x] memoize
