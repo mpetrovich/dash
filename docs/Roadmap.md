@@ -99,7 +99,7 @@ None.
 -   [x] times
 -   [ ] typeOf
 -   [ ] unescape
--   [ ] uniqueId
+-   [x] uniqueId
 -   [ ] wrap
 -   [x] zip
 

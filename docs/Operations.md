@@ -141,6 +141,7 @@ Operation | Signature | Curried
 [unionWith](#unionwith) | `unionWith($iterable, $other, $comparator = 'Dash\equal'): array` | `Curry\unionWith`
 [unique](#unique--distinct--uniq) / distinct / uniq | `unique($iterable): array` | 
 [uniqueBy](#uniqueby--uniqby--distinctby) / uniqBy / distinctBy | `uniqueBy($iterable, $iteratee = 'Dash\identity'): array\|iterable` | `Curry\uniqueBy`
+[uniqueId](#uniqueid) | `uniqueId($prefix = ''): string` | 
 [unless](#unless) | `unless(callable $predicate, callable $onFalse): callable` | 
 [unzip](#unzip--transpose) / transpose | `unzip($iterable): array` | `Curry\unzip`
 [values](#values) | `values($iterable): array` | `Curry\values`
@@ -5095,6 +5096,25 @@ $rows = [
 Dash\uniqueBy($rows, 'id');
 // === [['id' => 1, 'name' => 'a'], ['id' => 2, 'name' => 'c']]
 ```
+
+[↑ Top](#operations)
+
+uniqueId
+---
+
+
+```php
+uniqueId($prefix = ''): string
+```
+Generates a unique id string, optionally prefixed.
+
+
+Parameter | Type | Description
+--- | --- | :---
+`$prefix` | `string` | (optional)
+**Returns** | `string` |
+
+
 
 [↑ Top](#operations)
 

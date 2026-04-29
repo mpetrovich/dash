@@ -197,6 +197,7 @@
             "src/unless.php",
             "src/unique.php",
             "src/uniqueBy.php",
+            "src/uniqueId.php",
             "src/unzip.php",
             "src/values.php",
             "src/where.php",
